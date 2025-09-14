@@ -161,11 +161,4 @@ class CMapManager : public CScreen, public IPhysicsWorld
 				return false;
 			}
 		};
-	public:
-		void SetAtlasInfoFileName (const char* filename)
-		{
-			m_stAtlasInfoFileName = filename;
-		}
-	private:
-		std::string m_stAtlasInfoFileName;
 };

@@ -2,3 +2,10 @@
 | Kaptan Yosun's Pureline                                        |
 +----------------------------------------------------------------+
 *** v1.0 (Changes Over Mainline) ***
+	~ Much better folder hierarchy and structure.
+	~ Fixed all build errors.
+	~ Fixed quest compilation on Windows
+	~ [YOSUN_PACK_FIX_001] ("Python int too large to convert to C long")
+	~ Some UiScripts moved from locale/xx to Root/UiScript
+		* 
+	~ Atlasinfo.txt is now read from root instead of locale/xx

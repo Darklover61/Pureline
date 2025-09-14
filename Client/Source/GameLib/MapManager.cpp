@@ -657,11 +657,10 @@ void CMapManager::__LoadMapInfoVector()
 {
 	CMappedFile kFile;
 	LPCVOID pData;
-	if (!CEterPackManager::Instance().Get (kFile, m_stAtlasInfoFileName.c_str(), &pData))
-		if (!CEterPackManager::Instance().Get (kFile, "AtlasInfo.txt", &pData))
-		{
-			return;
-		}
+	if (!CEterPackManager::Instance().Get (kFile, "AtlasInfo.txt", &pData))
+	{
+		return;
+	}
 
 	CMemoryTextFileLoader textFileLoader;
 	textFileLoader.Bind (kFile.Size(), pData);

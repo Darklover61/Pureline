@@ -255,9 +255,6 @@ CPythonBackground::~CPythonBackground()
 
 void CPythonBackground::Initialize()
 {
-	std::string stAtlasInfoFileName (LocaleService_GetLocalePath());
-	stAtlasInfoFileName += "/AtlasInfo.txt";
-	SetAtlasInfoFileName (stAtlasInfoFileName.c_str());
 	CMapManager::Initialize();
 }
 
