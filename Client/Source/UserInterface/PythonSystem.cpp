@@ -2,8 +2,6 @@
 #include "PythonSystem.h"
 #include "PythonApplication.h"
 
-#define DEFAULT_VALUE_ALWAYS_SHOW_NAME		true
-
 void CPythonSystem::SetInterfaceHandler (PyObject * poHandler)
 {
 	// NOTE : 레퍼런스 카운트는 바꾸지 않는다. 레퍼런스가 남아 있어 Python에서 완전히 지워지지 않기 때문.
@@ -308,29 +306,24 @@ void CPythonSystem::SetDefaultConfig()
 {
 	memset (&m_Config, 0, sizeof (m_Config));
 
-	m_Config.width				= 1024;
-	m_Config.height				= 768;
+	m_Config.width				= 1280;
+	m_Config.height				= 720;
 	m_Config.bpp				= 32;
-
-	#if defined( LOCALE_SERVICE_WE_JAPAN )
 	m_Config.bWindowed			= true;
-	#else
-	m_Config.bWindowed			= false;
-	#endif
 
 	m_Config.is_software_cursor	= false;
 	m_Config.is_object_culling	= true;
 	m_Config.iDistance			= 3;
 
 	m_Config.gamma				= 3;
-	m_Config.music_volume		= 1.0f;
-	m_Config.voice_volume		= 5;
+	m_Config.music_volume		= 0.1f;
+	m_Config.voice_volume		= 3;
 
 	m_Config.bDecompressDDS		= 0;
 	m_Config.bSoftwareTiling	= 0;
-	m_Config.iShadowLevel		= 3;
+	m_Config.iShadowLevel		= 5;
 	m_Config.bViewChat			= true;
-	m_Config.bAlwaysShowName	= DEFAULT_VALUE_ALWAYS_SHOW_NAME;
+	m_Config.bAlwaysShowName	= true;
 	m_Config.bShowDamage		= true;
 	m_Config.bShowSalesText		= true;
 }
@@ -583,59 +576,28 @@ bool CPythonSystem::SaveConfig()
 		return false;
 	}
 
-	fprintf (fp, "WIDTH						%d\n"
-				 "HEIGHT						%d\n"
-				 "BPP						%d\n"
-				 "FREQUENCY					%d\n"
-				 "SOFTWARE_CURSOR			%d\n"
-				 "OBJECT_CULLING				%d\n"
-				 "VISIBILITY					%d\n"
-				 "MUSIC_VOLUME				%.3f\n"
-				 "VOICE_VOLUME				%d\n"
-				 "GAMMA						%d\n"
-				 "IS_SAVE_ID					%d\n"
-				 "SAVE_ID					%s\n"
-				 "PRE_LOADING_DELAY_TIME		%d\n"
-				 "DECOMPRESSED_TEXTURE		%d\n",
-			 m_Config.width,
-			 m_Config.height,
-			 m_Config.bpp,
-			 m_Config.frequency,
-			 m_Config.is_software_cursor,
-			 m_Config.is_object_culling,
-			 m_Config.iDistance,
-			 m_Config.music_volume,
-			 m_Config.voice_volume,
-			 m_Config.gamma,
-			 m_Config.isSaveID,
-			 m_Config.SaveID,
-			 g_iLoadingDelayTime,
-			 m_Config.bDecompressDDS);
-
-	if (m_Config.bWindowed == 1)
-	{
-		fprintf (fp, "WINDOWED				%d\n", m_Config.bWindowed);
-	}
-	if (m_Config.bViewChat == 0)
-	{
-		fprintf (fp, "VIEW_CHAT				%d\n", m_Config.bViewChat);
-	}
-	if (m_Config.bAlwaysShowName != DEFAULT_VALUE_ALWAYS_SHOW_NAME)
-	{
-		fprintf (fp, "ALWAYS_VIEW_NAME		%d\n", m_Config.bAlwaysShowName);
-	}
-	if (m_Config.bShowDamage == 0)
-	{
-		fprintf (fp, "SHOW_DAMAGE		%d\n", m_Config.bShowDamage);
-	}
-	if (m_Config.bShowSalesText == 0)
-	{
-		fprintf (fp, "SHOW_SALESTEXT		%d\n", m_Config.bShowSalesText);
-	}
-
-	fprintf (fp, "USE_DEFAULT_IME		%d\n", m_Config.bUseDefaultIME);
-	fprintf (fp, "SOFTWARE_TILING		%d\n", m_Config.bSoftwareTiling);
-	fprintf (fp, "SHADOW_LEVEL			%d\n", m_Config.iShadowLevel);
+	fprintf (fp, "WIDTH\t\t\t\t\t%d\n", m_Config.width);
+	fprintf (fp, "HEIGHT\t\t\t\t\t%d\n", m_Config.height);
+	fprintf (fp, "BPP\t\t\t\t\t\t%d\n", m_Config.bpp);
+	fprintf (fp, "FREQUENCY\t\t\t\t%d\n", m_Config.frequency);
+	fprintf (fp, "SOFTWARE_CURSOR\t\t\t%d\n", m_Config.is_software_cursor);
+	fprintf (fp, "OBJECT_CULLING\t\t\t%d\n", m_Config.is_object_culling);
+	fprintf (fp, "VISIBILITY\t\t\t\t%d\n", m_Config.iDistance);
+	fprintf (fp, "MUSIC_VOLUME\t\t\t%.3f\n", m_Config.music_volume);
+	fprintf (fp, "VOICE_VOLUME\t\t\t%d\n", m_Config.voice_volume);
+	fprintf (fp, "GAMMA\t\t\t\t\t%d\n", m_Config.gamma);
+	fprintf (fp, "IS_SAVE_ID\t\t\t\t%d\n", m_Config.isSaveID);
+	fprintf (fp, "SAVE_ID\t\t\t\t\t%s\n", m_Config.SaveID);
+	fprintf (fp, "PRE_LOADING_DELAY_TIME\t%d\n", g_iLoadingDelayTime);
+	fprintf (fp, "DECOMPRESSED_TEXTURE\t%d\n", m_Config.bDecompressDDS);
+	fprintf (fp, "WINDOWED\t\t\t\t%d\n", m_Config.bWindowed);
+	fprintf (fp, "VIEW_CHAT\t\t\t\t%d\n", m_Config.bViewChat);
+	fprintf (fp, "ALWAYS_VIEW_NAME\t\t%d\n", m_Config.bAlwaysShowName);
+	fprintf (fp, "SHOW_DAMAGE\t\t\t\t%d\n", m_Config.bShowDamage);
+	fprintf (fp, "SHOW_SALESTEXT\t\t\t%d\n", m_Config.bShowSalesText);
+	fprintf (fp, "USE_DEFAULT_IME\t\t\t%d\n", m_Config.bUseDefaultIME);
+	fprintf (fp, "SOFTWARE_TILING\t\t\t%d\n", m_Config.bSoftwareTiling);
+	fprintf (fp, "SHADOW_LEVEL\t\t\t%d\n", m_Config.iShadowLevel);
 	fprintf (fp, "\n");
 
 	fclose (fp);
