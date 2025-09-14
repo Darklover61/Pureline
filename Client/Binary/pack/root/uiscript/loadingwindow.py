@@ -63,7 +63,7 @@ window = {
 						"d:/ymir work/ui/intro/loading/08.sub",
 						"d:/ymir work/ui/intro/loading/09.sub",
 						"d:/ymir work/ui/intro/loading/10.sub",
-						"d:/ymir work/ui/intro/loading/11.sub",						
+						"d:/ymir work/ui/intro/loading/11.sub",
 						"d:/ymir work/ui/intro/loading/12.sub",
 						"d:/ymir work/ui/intro/loading/13.sub",
 						"d:/ymir work/ui/intro/loading/14.sub",
@@ -85,7 +85,7 @@ window = {
 					"x" : 70,
 					"y" : 25,
 
-					"image" : "d:/ymir work/ui/intro/loading/gauge_empty.sub",			
+					"image" : "d:/ymir work/ui/intro/loading/gauge_empty.sub",
 				},
 				{
 					"name" : "FullGage",
@@ -94,7 +94,7 @@ window = {
 					"x" : 70,
 					"y" : 25,
 
-					"image" : "d:/ymir work/ui/intro/loading/gauge_full.sub",			
+					"image" : "d:/ymir work/ui/intro/loading/gauge_full.sub",
 				},
 			),
 		},

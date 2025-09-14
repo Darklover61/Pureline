@@ -6,6 +6,8 @@
 	~ Fixed all build errors.
 	~ Fixed quest compilation on Windows
 	~ [YOSUN_PACK_FIX_001] ("Python int too large to convert to C long")
-	~ Some UiScripts moved from locale/xx to Root/UiScript
-		* 
+	~ Some UiScripts are now read from Root/UiScript instead of locale/xx
+		* loadingwindow.py
 	~ Atlasinfo.txt is now read from root instead of locale/xx
+	~ Some repeating files are now read from locale/common instead of locale/xx
+		*
