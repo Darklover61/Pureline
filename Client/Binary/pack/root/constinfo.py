@@ -238,3 +238,5 @@ def IS_AUTO_POTION_SP(itemVnum):
 				
 	return 0
 
+def TextColor(text, hexString):
+	return "|cff{}|h{}|r".format(hexString, text)
