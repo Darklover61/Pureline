@@ -1549,7 +1549,7 @@ class Interface(object):
 		whisperButton.SetOverVisual("d:/ymir work/ui/game/windows/btn_mail_up.sub")
 		whisperButton.SetDownVisual("d:/ymir work/ui/game/windows/btn_mail_up.sub")
 		if self.IsGameMasterName(name):
-			whisperButton.SetToolTipTextWithColor(name, 0xffffa200)
+			whisperButton.SetToolTipTextWithColor(name, CTOA("ffffa200"))
 		else:
 			whisperButton.SetToolTipText(name)
 		whisperButton.ToolTipText.SetHorizontalAlignCenter()

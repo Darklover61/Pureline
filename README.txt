@@ -155,6 +155,7 @@
 [STEALTH_FIX ]              : Properly manages invisibility effects
 [EFFECT_CAMERA_VIEW_FIX]    : Fix attached effects still rendered even though model is hidden
 
+[YOSUN_PACK_FIX_001]        : "Python int too large to convert to C long" error fix.
 
 +------------------------------------------------------------+
 |                          * TODO *                          |

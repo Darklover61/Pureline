@@ -344,7 +344,7 @@ class RefineDialogNew(ui.ScriptWindow):
 		textLine = ui.TextLine()
 		textLine.SetParent(thinBoard)
 		textLine.SetFontName(localeInfo.UI_DEF_FONT)
-		textLine.SetPackedFontColor(0xffdddddd)
+		textLine.SetPackedFontColor(CTOA("ffdddddd"))
 		textLine.SetText("%s x %02d" % (item.GetItemName(), count))
 		textLine.SetOutline()
 		textLine.SetFeather(False)

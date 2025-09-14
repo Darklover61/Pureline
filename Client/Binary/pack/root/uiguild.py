@@ -953,7 +953,7 @@ class GuildWindow(ui.ScriptWindow):
 			self.tabButtonDict["SKILL"].Disable()
 
 		self.board.SetCloseEvent(ui.__mem_func__(self.Close))
-		self.board.SetTitleColor(0xffffffff)
+		self.board.SetTitleColor(CTOA("ffffffff"))
 		self.SelectPage("GUILD_INFO")
 
 		self.offerDialog = uiPickMoney.PickMoneyDialog()

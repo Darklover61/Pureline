@@ -61,7 +61,7 @@ window = {
 							"all_align" : "center",
 
 							"text" : uiScriptLocale.DRAGONSOUL_PAGE_BUTTON_1,
-							"color" : 0xFFF1E6C0,
+							"color" : CTOA("FFF1E6C0"),
 						},
 					),
 				},
@@ -88,7 +88,7 @@ window = {
 							"all_align" : "center",
 
 							"text" : uiScriptLocale.DRAGONSOUL_PAGE_BUTTON_2,
-							"color" : 0xFFF1E6C0,
+							"color" : CTOA("FFF1E6C0"),
 						},
 					),
 				},
@@ -115,7 +115,7 @@ window = {
 							"all_align" : "center",
 
 							"text" : uiScriptLocale.DRAGONSOUL_PAGE_BUTTON_3,
-							"color" : 0xFFF1E6C0,
+							"color" : CTOA("FFF1E6C0"),
 						},
 					),
 				},
@@ -142,7 +142,7 @@ window = {
 							"all_align" : "center",
 
 							"text" : uiScriptLocale.DRAGONSOUL_PAGE_BUTTON_4,
-							"color" : 0xFFF1E6C0,
+							"color" : CTOA("FFF1E6C0"),
 						},
 					),
 				},
@@ -169,7 +169,7 @@ window = {
 							"all_align" : "center",
 
 							"text" : uiScriptLocale.DRAGONSOUL_PAGE_BUTTON_5,
-							"color" : 0xFFF1E6C0,
+							"color" : CTOA("FFF1E6C0"),
 						},
 					),
 				},
@@ -405,7 +405,7 @@ window = {
 					"y" : 315,
 
 					"text" : uiScriptLocale.DRAGONSOUL_TAP_TITLE_1,
-					"color" : 0xFFC0C0C0,
+					"color" : CTOA("FFC0C0C0"),
 				},
 				{					
 					"name" : "activate",

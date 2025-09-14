@@ -653,7 +653,7 @@ window = {
 					"y" : 34,
 					"width" : 354,
 					"height" : 0,
-					"color" : 0xff777777,
+					"color" : CTOA("ff777777"),
 				},
 				{
 					"name" : "HorizontalLine2",
@@ -663,7 +663,7 @@ window = {
 					"y" : 35,
 					"width" : 355,
 					"height" : 0,
-					"color" : 0xff111111,
+					"color" : CTOA("ff111111"),
 				},
 
 				## Vertical
@@ -675,7 +675,7 @@ window = {
 					"y" : 38,
 					"width" : 0,
 					"height" : SERVER_LIST_HEIGHT + 4,
-					"color" : 0xff777777,
+					"color" : CTOA("ff777777"),
 				},
 				{
 					"name" : "VerticalLine2",
@@ -685,7 +685,7 @@ window = {
 					"y" : 38,
 					"width" : 0,
 					"height" : SERVER_LIST_HEIGHT + 4,
-					"color" : 0xff111111,
+					"color" : CTOA("ff111111"),
 				},
 
 				## ListBox

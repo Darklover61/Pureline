@@ -47,7 +47,7 @@ window = {
 					"y" : 57,
 
 					"text" : uiScriptLocale.SYSTEM_MALL,
-					"text_color" : 0xffF8BF24,
+					"text_color" : CTOA("ffF8BF24"),
 
 					"default_image" : ROOT + "XLarge_Button_02.sub",
 					"over_image" : ROOT + "XLarge_Button_02.sub",

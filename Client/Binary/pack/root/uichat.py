@@ -1118,7 +1118,7 @@ class ChatLogWindow(ui.Window):
 			grp.SetColor(0x77000000)
 			grp.RenderBox(x+1, y+1, width-2, height)
 
-			grp.SetColor(0xff989898)
+			grp.SetColor(CTOA("ff989898"))
 			grp.RenderLine(x+width-13, y+height-1, 11, -11)
 			grp.RenderLine(x+width-9, y+height-1, 7, -7)
 			grp.RenderLine(x+width-5, y+height-1, 3, -3)
@@ -1133,7 +1133,7 @@ class ChatLogWindow(ui.Window):
 			grp.SetColor(0x77000000)
 			grp.RenderBox(x+1, y+1, width-2, height)
 
-			grp.SetColor(0xff989898)
+			grp.SetColor(CTOA("ff989898"))
 			grp.RenderLine(x+width-13, y+height-1, 11, -11)
 			grp.RenderLine(x+width-9, y+height-1, 7, -7)
 			grp.RenderLine(x+width-5, y+height-1, 3, -3)

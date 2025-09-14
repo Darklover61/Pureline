@@ -65,8 +65,8 @@ class QuestCurtain(ui.Window):
 		self.TopBar.Show()
 		self.BottomBar.Show()
 
-		self.TopBar.SetColor(0xff000000)
-		self.BottomBar.SetColor(0xff000000)
+		self.TopBar.SetColor(CTOA("ff000000"))
+		self.BottomBar.SetColor(CTOA("ff000000"))
 
 		self.TopBar.SetPosition(0,-self.BarHeight)
 		self.TopBar.SetSize(wndMgr.GetScreenWidth(),self.BarHeight)
@@ -452,7 +452,7 @@ class QuestDialog(ui.ScriptWindow):
 			b.SetEvent(lambda s=self:event.SelectAnswer(s.descIndex, 254) or s.CloseSelf())
 			b.SetText(localeInfo.UI_NEXT)
 		b.Show()
-		b.SetTextColor(0xffffffff)
+		b.SetTextColor(CTOA("ffffffff"))
 		self.btnNext = b
 		
 	# END_OF_QUEST_CANCEL
@@ -490,7 +490,7 @@ class QuestDialog(ui.ScriptWindow):
 			button.SetSize(106,26)
 			button.SetPosition(self.sx + self.board.GetWidth()/2+((i*2)-1)*56-56, self.sy+(event.GetLineCount(self.descIndex))*16+20+5)
 			button.SetText("a")
-			button.SetTextColor(0xff000000)
+			button.SetTextColor(CTOA("ff000000"))
 		else:
 			i = i % 8
 			button = BarButton("TOP_MOST")
@@ -498,7 +498,7 @@ class QuestDialog(ui.ScriptWindow):
 			button.SetSize(200,26)
 			button.SetPosition(self.sx + self.board.GetWidth()/2-100,self.sy+(event.GetLineCount(self.descIndex)+i*2)*16+20+5)
 			button.SetText("a")
-			button.SetTextColor(0xffffffff)
+			button.SetTextColor(CTOA("ffffffff"))
 		return button
 		
 	def MakeNextPrevPageButton(self):
@@ -506,7 +506,7 @@ class QuestDialog(ui.ScriptWindow):
 		button.SetParent(self.board)
 		button.SetSize(52,26)
 		button.SetText("a")
-		button.SetTextColor(0xffffffff)
+		button.SetTextColor(CTOA("ffffffff"))
 		return button
 		
 	def RefreshQuestPage(self, n):

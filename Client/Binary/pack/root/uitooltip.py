@@ -71,7 +71,7 @@ class ToolTip(ui.ThinBoard):
 	SPECIAL_TITLE_COLOR = grp.GenerateColor(1.0, 0.7843, 0.0, 1.0)
 	NORMAL_COLOR = grp.GenerateColor(0.7607, 0.7607, 0.7607, 1.0)
 	FONT_COLOR = grp.GenerateColor(0.7607, 0.7607, 0.7607, 1.0)
-	PRICE_COLOR = 0xffFFB96D
+	PRICE_COLOR = CTOA("ffFFB96D")
 
 	HIGH_PRICE_COLOR = SPECIAL_TITLE_COLOR
 	MIDDLE_PRICE_COLOR = grp.GenerateColor(0.85, 0.85, 0.85, 1.0)
@@ -85,10 +85,10 @@ class ToolTip(ui.ThinBoard):
 	SPECIAL_POSITIVE_COLOR = grp.GenerateColor(0.6911, 0.8754, 0.7068, 1.0)
 	SPECIAL_POSITIVE_COLOR2 = grp.GenerateColor(0.8824, 0.9804, 0.8824, 1.0)
 
-	CONDITION_COLOR = 0xffBEB47D
-	CAN_LEVEL_UP_COLOR = 0xff8EC292
+	CONDITION_COLOR = CTOA("ffBEB47D")
+	CAN_LEVEL_UP_COLOR = CTOA("ff8EC292")
 	CANNOT_LEVEL_UP_COLOR = DISABLE_COLOR
-	NEED_SKILL_POINT_COLOR = 0xff9A9CDB
+	NEED_SKILL_POINT_COLOR = CTOA("ff9A9CDB")
 
 	def __init__(self, width = TOOL_TIP_WIDTH, isPickable=False):
 		ui.ThinBoard.__init__(self, "TOP_MOST")
@@ -137,9 +137,9 @@ class ToolTip(ui.ThinBoard):
 			horizontalLine.Show()
 
 			if 0 == i:
-				horizontalLine.SetColor(0xff555555)
+				horizontalLine.SetColor(CTOA("ff555555"))
 			else:
-				horizontalLine.SetColor(0xff000000)
+				horizontalLine.SetColor(CTOA("ff000000"))
 
 			self.childrenList.append(horizontalLine)
 

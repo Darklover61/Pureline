@@ -672,9 +672,9 @@ class EditLine(TextLine):
 		self.readingWnd.SetReadingPosition( gx + textlen*6-24-readinglen*6, gy )
 		self.readingWnd.SetText(reading)
 		if ime.GetReadingError() == 0:
-			self.readingWnd.SetTextColor(0xffffffff)
+			self.readingWnd.SetTextColor(CTOA("ffffffff"))
 		else:
-			self.readingWnd.SetTextColor(0xffff0000)
+			self.readingWnd.SetTextColor(CTOA("ffff0000"))
 		self.readingWnd.SetSize(readinglen * 6 + 4, 19)
 		self.readingWnd.Show()
 		return True

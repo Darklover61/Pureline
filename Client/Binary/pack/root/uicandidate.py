@@ -43,7 +43,7 @@ class VerticalCandidateBoard(ui.Board):
 			slot.SetParent(self.BaseBar)
 			slot.SetPosition(10 + 1 - 10, 3 + y*14 + 1 - 3)
 			slot.SetSize(xCount*14 - 1, 13)
-			slot.SetColor(0xFF302C2A)
+			slot.SetColor(CTOA("FF302C2A"))
 			slot.Show()
 			self.slotList.append(slot)
 
@@ -60,7 +60,7 @@ class VerticalCandidateBoard(ui.Board):
 		BaseBar = ui.Bar()
 		BaseBar.SetParent(self)
 		BaseBar.SetPosition(10, 3)
-		BaseBar.SetColor(0xff000000)
+		BaseBar.SetColor(CTOA("ff000000"))
 		BaseBar.Show()
 		self.BaseBar = BaseBar
 

@@ -124,7 +124,7 @@ window = {
 							"width" : 0,
 							"height" : 122,
 
-							"color" : 0xffAAA6A1,
+							"color" : CTOA("ffAAA6A1"),
 						},
 						{
 							"name" : "bottom_line",
@@ -136,7 +136,7 @@ window = {
 							"width" : 189,
 							"height" : 0,
 
-							"color" : 0xffAAA6A1,
+							"color" : CTOA("ffAAA6A1"),
 						},
 						{
 							"name" : "left_line",
@@ -148,7 +148,7 @@ window = {
 							"width" : 0,
 							"height" : 122-1,
 
-							"color" : 0xff2A2521,
+							"color" : CTOA("ff2A2521"),
 						},
 						{
 							"name" : "top_line",
@@ -160,7 +160,7 @@ window = {
 							"width" : 189,
 							"height" : 0,
 
-							"color" : 0xff2A2521,
+							"color" : CTOA("ff2A2521"),
 						},
 					),
 				},

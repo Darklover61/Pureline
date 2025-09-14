@@ -199,6 +199,28 @@ import __builtin__
 __builtin__.__import__ = __pack_import
 module_do = exec_add_module_do
 
+# - YOSUN_PACK_FIX_001 --------------------------------
+def StringColorToInt(colorstring):
+	import grp
+
+	colorstring = colorstring.strip()
+
+	if len(colorstring) != 8:
+		raise ValueError("input #%s is not in AARRGGBB format" % colorstring)
+
+	a, r, g, b = colorstring[:2], colorstring[2:4], colorstring[4:6], colorstring[6:8]
+	a, r, g, b = [int(n, 16) for n in (a, r, g, b)]
+
+	return grp.GenerateColor(
+		float(r) / 255.0,
+		float(g) / 255.0,
+		float(b) / 255.0,
+		float(a) / 255.0,
+	)
+
+__builtin__.CTOA = StringColorToInt
+# -----------------------------------------------------
+
 """
 #
 # PSYCO installation (must move to system.py, systemrelease.pyc)
