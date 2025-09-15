@@ -12,7 +12,6 @@
 
 #include "ProcessScanner.h"
 
-#include "HackShield.h"
 #include "NProtectGameGuard.h"
 #include "CheckLatestFiles.h"
 
@@ -407,12 +406,6 @@ bool CPythonApplication::Process()
 {
 	#if defined(CHECK_LATEST_DATA_FILES)
 	if (CheckLatestFiles_PollEvent())
-	{
-		return false;
-	}
-	#endif
-	#ifdef USE_AHNLAB_HACKSHIELD
-	if (HackShield_PollEvent())
 	{
 		return false;
 	}

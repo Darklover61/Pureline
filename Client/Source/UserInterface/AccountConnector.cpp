@@ -5,8 +5,6 @@
 #include "../EterBase/tea.h"
 #include "../EterPack/EterPackManager.h"
 
-#include "Hackshield.h"
-
 // CHINA_CRYPT_KEY
 extern DWORD g_adwEncryptKey[4];
 extern DWORD g_adwDecryptKey[4];
@@ -354,11 +352,6 @@ bool CAccountConnector::__AuthState_RecvPhase()
 			}
 		}
 		#else /* USE_OPENID */
-
-		#ifdef USE_AHNLAB_HACKSHIELD
-		HackShield_SetUserInfo (m_strID.c_str());
-		#endif
-
 
 		TPacketCGLogin3 LoginPacket;
 		LoginPacket.header = HEADER_CG_LOGIN3;

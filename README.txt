@@ -35,6 +35,7 @@
 | Removed Systems/Significant Code  | Server | Client | Pack |
 +-----------------------------------+--------+--------+------+
 | Xtrap                             | YES    | YES    | NO   |
+| Hackshield                        | YES    | YES    | NO   |
 |                                   |        |        |      |
 +-----------------------------------+--------+--------+------+
 

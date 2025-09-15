@@ -914,5 +914,6 @@
     <None Include="any_function.inc">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="Makefile" />
   </ItemGroup>
 </Project>

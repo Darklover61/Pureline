@@ -1,23 +1,5 @@
 #pragma once
 
-#ifdef USE_AHNLAB_HACKSHIELD
-#include "Hackshield.h"
-#includeMETIN2HS_INCLUDE_ANTICPXSVR
-#else
-#pragma pack(push) //기존 alignment 저장
-#pragma pack(8)
-
-#define ANTICPX_TRANS_BUFFER_MAX			400
-
-typedef struct _AHNHS_TRANS_BUFFER
-{
-	unsigned char byBuffer[ANTICPX_TRANS_BUFFER_MAX/* 송수신 패킷의 최대 크기 */];
-	unsigned short nLength;
-} AHNHS_TRANS_BUFFER, * PAHNHS_TRANS_BUFFER;
-
-#pragma pack(pop) // 기존 alignment 복구.
-#endif /* !USE_AHNLAB_HACKSHIELD */
-
 #include "../GameLib/RaceData.h"
 
 typedef BYTE TPacketHeader;
@@ -148,8 +130,6 @@ enum
 
 	HEADER_CG_RUNUP_MATRIX_ANSWER               = 201,
 	HEADER_CG_NEWCIBN_PASSPOD_ANSWER			= 202,
-
-	HEADER_CG_HS_ACK							= 203,
 
 	HEADER_CG_DRAGON_SOUL_REFINE			= 205,
 	HEADER_CG_STATE_CHECKER					= 206,
@@ -343,10 +323,6 @@ enum
 	// AUTOBAN
 	HEADER_GC_AUTOBAN_QUIZ						= 206,
 	// END_OF_AUTOBAN
-
-	HEADER_GC_HS_REQUEST						= 207,	// Origially it's 204 on devel branch
-	#else
-	HEADER_GC_HS_REQUEST						= 204,
 	#endif
 
 	#ifdef __AUCTION__
@@ -2692,12 +2668,6 @@ typedef struct packet_state
 	DWORD			dwTime;
 	TPixelPosition	kPPos;
 } TPacketCCState;
-
-typedef struct packet_hs_check_req
-{
-	BYTE	bHeader;
-	AHNHS_TRANS_BUFFER	Req;
-} TPacketHSCheck;
 
 // AUTOBAN
 typedef struct packet_autoban_quiz

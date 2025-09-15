@@ -191,10 +191,6 @@
     <ClInclude Include="GameType.h" />
     <ClInclude Include="GuildMarkDownloader.h" />
     <ClInclude Include="GuildMarkUploader.h" />
-    <ClInclude Include="Hackshield.h" />
-    <ClInclude Include="HackshieldLicense.h" />
-    <ClInclude Include="HackshieldLicense_metin2.h" />
-    <ClInclude Include="HackshieldLicense_metin2client.h" />
     <ClInclude Include="InstanceBase.h" />
     <ClInclude Include="InsultChecker.h" />
     <ClInclude Include="Locale.h" />
@@ -256,7 +252,6 @@
     <ClCompile Include="GameType.cpp" />
     <ClCompile Include="GuildMarkDownloader.cpp" />
     <ClCompile Include="GuildMarkUploader.cpp" />
-    <ClCompile Include="HackShield.cpp" />
     <ClCompile Include="InstanceBase.cpp" />
     <ClCompile Include="InstanceBaseBattle.cpp" />
     <ClCompile Include="InstanceBaseEffect.cpp" />

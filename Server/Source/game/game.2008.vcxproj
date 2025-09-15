@@ -428,6 +428,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="any_function.inc" />
+    <None Include="Makefile" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\libgame\libgame.2008.vcxproj">

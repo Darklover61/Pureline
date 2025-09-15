@@ -16,7 +16,6 @@
 
 #include "CheckLatestFiles.h"
 
-#include "Hackshield.h"
 #include "NProtectGameGuard.h"
 
 extern "C" {
@@ -542,11 +541,6 @@ bool __IsOpenIDTestOption (LPSTR lpCmdLine) //클라이언트에서 로그인이 가능하다.
 
 int APIENTRY WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-	if (strstr (lpCmdLine, "--hackshield") != 0)
-	{
-		return 0;
-	}
-
 	#ifdef _DEBUG
 	_CrtSetDbgFlag (_CRTDBG_ALLOC_MEM_DF | _CRTDBG_CHECK_CRT_DF | _CRTDBG_LEAK_CHECK_DF);
 	//_CrtSetBreakAlloc( 110247 );
@@ -556,13 +550,6 @@ int APIENTRY WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdL
 
 	LocaleService_LoadConfig ("locale.cfg");
 	SetDefaultCodePage (LocaleService_GetCodePage());
-
-	#ifdef USE_AHNLAB_HACKSHIELD
-	if (!HackShield_Init())
-	{
-		return 0;
-	}
-	#endif
 
 	#ifdef USE_NPROTECT_GAMEGUARD
 	if (!GameGuard_Init())
@@ -729,9 +716,6 @@ int APIENTRY WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdL
 	}
 
 Clean:
-	#ifdef USE_AHNLAB_HACKSHIELD
-	HackShield_Shutdown();
-	#endif
 	SAFE_FREE_GLOBAL (szArgv);
 
 	return 0;

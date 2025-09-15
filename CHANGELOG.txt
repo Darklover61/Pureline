@@ -16,3 +16,4 @@
 		* HammerOfTor
 		* Roulette
 		* Xtrap
+		* Hackshield
