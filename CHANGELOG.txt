@@ -14,3 +14,4 @@
 	~ Removed some code
 		* Netmarble
 		* HammerOfTor
+		* Roulette
