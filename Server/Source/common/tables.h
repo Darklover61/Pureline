@@ -115,7 +115,6 @@ enum
 	HEADER_GD_PCBANG_INSERT_IP			= 113,
 	// END_OF_PCBANG_IP_LIST_BY_AUTH
 
-	HEADER_GD_HAMMER_OF_TOR			= 114,
 	HEADER_GD_RELOAD_ADMIN			= 115,			///<운영자 정보 요청
 	HEADER_GD_BREAK_MARRIAGE		= 116,			///< 결혼 파기
 	HEADER_GD_ELECT_MONARCH			= 117,			///< 군주 투표
@@ -1215,12 +1214,6 @@ typedef struct SPacketGDCreateObject
 	float	yRot;
 	float	zRot;
 } TPacketGDCreateObject;
-
-typedef struct SPacketGDHammerOfTor
-{
-	DWORD 	key;
-	DWORD	delay;
-} TPacketGDHammerOfTor;
 
 typedef struct SPacketGDVCard
 {

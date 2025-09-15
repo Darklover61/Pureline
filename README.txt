@@ -41,6 +41,7 @@
 | Removed Small/Insignificant Code  | Server | Client | Pack |
 +-----------------------------------+--------+--------+------+
 | Netmarble                         | YES    | NO     | NO   |
+| HammerOfTor                       | YES    | NO     | NO   |
 |                                   |        |        |      |
 +-----------------------------------+--------+--------+------+
 

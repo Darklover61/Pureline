@@ -1,7 +1,7 @@
 +----------------------------------------------------------------+
 | Kaptan Yosun's Pureline                                        |
 +----------------------------------------------------------------+
-*** v1.0 (Changes Over Mainline) ***
+	14.09.2025 (Initial Release)
 	~ Much better folder hierarchy and structure.
 	~ Fixed all build errors.
 	~ Fixed quest compilation on Windows
@@ -9,7 +9,8 @@
 	~ Some UiScripts are now read from Root/UiScript instead of locale/xx
 		* loadingwindow.py
 	~ Atlasinfo.txt is now read from root instead of locale/xx
-	~ Some repeating files are now read from locale/common instead of locale/xx
-		*
+
+	15.09.2025
 	~ Removed some code
 		* Netmarble
+		* HammerOfTor
