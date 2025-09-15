@@ -5306,8 +5306,6 @@ VNUM	LOCALE_NAME
 72312	NoNAme
 72313	NoNAme
 72314	NoNAme
-72501	Anel Experiência(iCafe)
-72502	Luva de Ladrão (iCafe)
 72701	Sapatos de Vento
 72702	Sapatos de Vento+ (N)
 72703	Brinco Osso de Tigre

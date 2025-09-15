@@ -5306,8 +5306,6 @@ VNUM	LOCALE_NAME
 72312	NoNAme
 72313	NoNAme
 72314	NoNAme
-72501	Ervarings Ring(iCafe)
-72502	Dieven Handschoen(iCafe)
 72701	Windschoenen
 72702	Windschoenen+ (ruilbaar)
 72703	Tijger Bot Oorbellen

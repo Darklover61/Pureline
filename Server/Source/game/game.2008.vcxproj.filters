@@ -322,9 +322,6 @@
     <ClCompile Include="passpod.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pcbang.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PetSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -778,9 +775,6 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="passpod.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pcbang.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="PetSystem.h">

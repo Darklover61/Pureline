@@ -5306,8 +5306,6 @@ VNUM	LOCALE_NAME
 72312	NoNAme
 72313	NoNAme
 72314	NoNAme
-72501	Experience Ring (iCafe)
-72502	Thief's Glove (iCafe)
 72701	Wind Shoes
 72702	Wind Shoes+ (tradeable)
 72703	Tiger Bone Earring

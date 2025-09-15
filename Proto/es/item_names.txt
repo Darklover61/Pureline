@@ -5306,8 +5306,6 @@ VNUM	LOCALE_NAME
 72312	NoNAme
 72313	NoNAme
 72314	NoNAme
-72501	Anillo Exp. (iCafe)
-72502	Ladrón
 72701	Zapatos Viento
 72702	Zapatos Viento+ (negoc.)
 72703	Pendientes Hueso Tigre

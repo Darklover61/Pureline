@@ -5306,8 +5306,6 @@ VNUM	LOCALE_NAME
 72312	ETC icon/item/71028.tga
 72313	ETC icon/item/71030.tga
 72314	ETC icon/item/71032.tga
-72501	Erfahrungsring (iCafe)
-72502	Diebeshandschuh (iCafe)
 72701	Windschuhe
 72702	Windschuhe+ (handelbar)
 72703	Tigerknochenohrring

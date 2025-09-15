@@ -5306,8 +5306,6 @@ VNUM	LOCALE_NAME
 72312	NoNAme
 72313	NoNAme
 72314	NoNAme
-72501	Pierœcieñ Doœw. (iCafe)
-72502	Rêkawica Z³odz. (iCafe)
 72701	Buty Wiatru
 72702	Buty Wiatru+ (do handlu)
 72703	Kolczyk z koœci tygrysa

@@ -5306,8 +5306,6 @@ VNUM	LOCALE_NAME
 72312	NoNAme
 72313	NoNAme
 72314	NoNAme
-72501	Anneau d'exp.(iCafé)
-72502	Gants de voleur (iCafé)
 72701	Bottes du vent
 72702	Bottes du vent+ (négoc.)
 72703	Boucles en os de tigre
