@@ -25,22 +25,21 @@ object/
 ## Property pack
 Tools/Epack32/Property/
 
+## Compiled executables
+db*.exe
+game*.exe
+qc*.exe
+Metin2*.exe
+MakePack*.exe
+dump_proto.exe
+
 ## Will be automatically generated
 Client/Binary/imgui.ini
 Client/Binary/log.txt
 Client/Binary/syserr.txt
 Client/Binary/metin2.cfg
-Metin2*.exe
-MakePack*.exe
-Extern/Client/library/Discord_d.idb
-Extern/Client/library/Discord_d.lib
-Extern/Client/library/Discord_d.pdb
-Extern/Client/library/Discord_r.lib
-Extern/Client/library/Discord_r.pdb
+Extern/Client/library/Discord*.*
 log/
-db*.exe
-game*.exe
-qc*.exe
 Client/Binary/channel.inf
 Client/Binary/*.bsc
 Client/Binary/keysave
@@ -49,51 +48,20 @@ Client/Binary/screenshot/*.jpg
 Server/Binary/share/locale/english/quest/pre_qc/*
 
 ## Symlinks
-Server/Binary/cores/auth/*.exe
-Server/Binary/cores/auth/*.dll
-Server/Binary/cores/auth/locale
-Server/Binary/cores/auth/p2p_packet_info.txt
-Server/Binary/cores/auth/packet_info.txt
-Server/Binary/cores/auth/PTS.txt
-Server/Binary/cores/auth/syserr.txt
-Server/Binary/cores/auth/syslog.txt
-Server/Binary/cores/ch1/*.exe
-Server/Binary/cores/ch1/data
-Server/Binary/cores/ch1/*.dll
-Server/Binary/cores/ch1/locale
-Server/Binary/cores/ch1/p2p_packet_info.txt
-Server/Binary/cores/ch1/packet_info.txt
-Server/Binary/cores/ch1/PTS.txt
-Server/Binary/cores/ch1/syserr.txt
-Server/Binary/cores/ch1/syslog.txt
-Server/Binary/cores/ch2/*.exe
-Server/Binary/cores/ch2/data
-Server/Binary/cores/ch2/*.dll
-Server/Binary/cores/ch2/locale
-Server/Binary/cores/ch2/p2p_packet_info.txt
-Server/Binary/cores/ch2/packet_info.txt
-Server/Binary/cores/ch2/PTS.txt
-Server/Binary/cores/ch2/syserr.txt
-Server/Binary/cores/ch2/syslog.txt
-Server/Binary/cores/ch99/*.exe
-Server/Binary/cores/ch99/data
-Server/Binary/cores/ch99/*.dll
-Server/Binary/cores/ch99/locale
-Server/Binary/cores/ch99/p2p_packet_info.txt
-Server/Binary/cores/ch99/packet_info.txt
-Server/Binary/cores/ch99/PTS.txt
-Server/Binary/cores/ch99/syserr.txt
-Server/Binary/cores/ch99/syslog.txt
-Server/Binary/cores/db/*.exe
+Server/Binary/cores/**/*.exe
+Server/Binary/cores/**/*.dll
+Server/Binary/cores/**/locale
+Server/Binary/cores/**/p2p_packet_info.txt
+Server/Binary/cores/**/packet_info.txt
+Server/Binary/cores/**/PTS.txt
+Server/Binary/cores/**/syserr.txt
+Server/Binary/cores/**/syslog.txt
+Server/Binary/cores/**/data
 Server/Binary/cores/db/item_names.txt
 Server/Binary/cores/db/item_proto.txt
 Server/Binary/cores/db/mob_names.txt
 Server/Binary/cores/db/mob_proto.txt
-Server/Binary/cores/db/PTS.txt
-Server/Binary/cores/db/syserr.txt
-Server/Binary/cores/db/syslog.txt
 Server/Binary/cores/db/usage.txt
-Server/Binary/share/locale/english/quest/qc.exe
 
 ## Pack
 *.eix

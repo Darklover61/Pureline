@@ -82,5 +82,5 @@ GRANT ALL PRIVILEGES ON *.* TO 'kaptan'@'localhost' WITH GRANT OPTION;
 +------------------------------------------------------------+
 |                  * Commands for GitHub *                   |
 +------------------------------------------------------------+
-Remove cached files in case gitignore doesn't ignore them:    git rm -r --cached paste_path_here
+Remove cached files in case gitignore doesn't ignore them:    git rm -r --cached *
 Generate a Diff file of the latest commit:                    git show --pretty=format:%b > burayaisimyaz.diff
