@@ -4342,7 +4342,6 @@ VNUM	LOCALE_NAME
 45157	Hlava Dýnì Jacka (ž)
 45158	Hlava Dýnì Jacka+ (m)
 45159	Hlava Dýnì Jacka+ (ž)
-50001	Kniha štìstí
 50002	Zlatý prsten
 50003	Reset
 50004	Detektor úkolù

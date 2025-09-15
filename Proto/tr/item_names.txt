@@ -4342,7 +4342,6 @@ VNUM	LOCALE_NAME
 45157	Jack Pumpkin kafasý (k)
 45158	Jack Pumpkin kafasý+ (e)
 45159	Jack Pumpkin kafasý+ (k)
-50001	Ýyi Þans Kitabý
 50002	Altýn Yüzük
 50003	Beceri Sýfýrlama Kaðýdý
 50004	Olay Dedektörü

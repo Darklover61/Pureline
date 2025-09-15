@@ -4342,7 +4342,6 @@ VNUM	LOCALE_NAME
 45157	Testa Jack Pumpkin (f)
 45158	Testa Jack Pumpkin+ (m)
 45159	Testa Jack Pumpkin+ (f)
-50001	Libro della Fortuna
 50002	Anello d'Oro
 50003	Annullamento Abilità
 50004	Cerca-Eventi

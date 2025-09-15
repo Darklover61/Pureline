@@ -49,7 +49,6 @@ enum EItemTypes
     ITEM_MATERIAL,          //5
     ITEM_SPECIAL,           //6 //Ω∫∆‰º» æ∆¿Ã≈€
     ITEM_TOOL,              //7
-    ITEM_LOTTERY,           //8//∫π±«
     ITEM_ELK,               //9//µ∑
     ITEM_METIN,             //10
     ITEM_CONTAINER,         //11
@@ -258,12 +257,6 @@ enum ESpecialSubTypes
 enum EToolSubTypes
 {
 	TOOL_FISHING_ROD
-};
-
-enum ELotterySubTypes
-{
-	LOTTERY_TICKET,
-	LOTTERY_INSTANT
 };
 
 enum EItemFlag

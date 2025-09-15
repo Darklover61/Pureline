@@ -4342,7 +4342,6 @@ VNUM	LOCALE_NAME
 45157	Capatana Jack Dovleacul
 45158	Capatana Jack Dovleacul+
 45159	Capatana Jack Dovleacul+ 
-50001	Carte norocoasã
 50002	Inel de aur
 50003	Reseteaza Skill
 50004	Detector evenimente

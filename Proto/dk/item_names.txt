@@ -4342,7 +4342,6 @@ VNUM	LOCALE_NAME
 45157	Græskar Jack hoved (f)
 45158	Græskar Jack hoved+ (m)
 45159	Græskar Jack hoved+ (f)
-50001	Lykkens bog
 50002	Guldring
 50003	Annulleringsdokument
 50004	Begivenheds-detektor

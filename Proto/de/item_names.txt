@@ -4342,7 +4342,6 @@ VNUM	LOCALE_NAME
 45157	Jack-Pumpkin-Kopf (w)
 45158	Jack-Pumpkin-Kopf+ (m)
 45159	Jack-Pumpkin-Kopf+ (w)
-50001	Glücksbuch
 50002	Goldring
 50003	Fertigkeitszurücksetzung
 50004	Ereignis-Detektor

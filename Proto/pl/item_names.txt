@@ -4342,7 +4342,6 @@ VNUM	LOCALE_NAME
 45157	Czerep Jacka Pumpkina (k)
 45158	Czerep Jacka Pumpkina+ (m
 45159	Czerep Jacka Pumpkina+ (k
-50001	Ksiêga Szczêœcia
 50002	Z³oty Pierœcieñ
 50003	Zwój Cofania Umiejêtn.
 50004	Wykrywacz Zdarzeñ

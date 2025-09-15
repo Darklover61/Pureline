@@ -4342,7 +4342,6 @@ VNUM	LOCALE_NAME
 45157	Pompoenen Jan Hoofd (v)
 45158	Pompoenen Jan Hoofd+ (m)
 45159	Pompoenen Jan Hoofd+ (v)
-50001	Geluks Boek
 50002	Gouden Ring
 50003	Correctie Document
 50004	Gebeurtenis Detector

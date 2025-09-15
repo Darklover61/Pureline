@@ -4342,7 +4342,6 @@ VNUM	LOCALE_NAME
 45157	Cabeça do Jack Abóbora (f
 45158	Cabeça do Jack Abóbora+ (
 45159	Cabeça do Jack Abóbora+ (
-50001	Livro da Boa-Sorte
 50002	Anel d'Ouro
 50003	Documento de Habilidades
 50004	Detector de Eventos

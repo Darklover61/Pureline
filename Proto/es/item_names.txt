@@ -4342,7 +4342,6 @@ VNUM	LOCALE_NAME
 45157	Unknown Item
 45158	Unknown Item
 45159	Unknown Item
-50001	Libro Afortunado
 50002	Anillo de Oro
 50003	Documento reajuste hab.
 50004	Detector de Eventos

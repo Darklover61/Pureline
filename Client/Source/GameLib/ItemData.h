@@ -29,7 +29,6 @@ class CItemData
 			ITEM_TYPE_MATERIAL,				//5
 			ITEM_TYPE_SPECIAL,				//6 //Ω∫∆‰º» æ∆¿Ã≈€
 			ITEM_TYPE_TOOL,					//7
-			ITEM_TYPE_LOTTERY,				//8//∫π±«
 			ITEM_TYPE_ELK,					//9//µ∑
 			ITEM_TYPE_METIN,				//10
 			ITEM_TYPE_CONTAINER,			//11

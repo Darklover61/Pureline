@@ -62,7 +62,7 @@ int get_Item_Type_Value (string inputString)
 					   "ITEM_ARMOR", "ITEM_USE",
 					   "ITEM_AUTOUSE", "ITEM_MATERIAL",
 					   "ITEM_SPECIAL", "ITEM_TOOL",
-					   "ITEM_LOTTERY", "ITEM_ELK",					//10개
+					   "ITEM_ELK",					//10개
 
 					   "ITEM_METIN", "ITEM_CONTAINER",
 					   "ITEM_FISH", "ITEM_ROD",
@@ -122,19 +122,18 @@ int get_Item_SubType_Value (int type_value, string inputString)
 							 };
 	static string arSub6[] = { "SPECIAL_MAP", "SPECIAL_KEY", "SPECIAL_DOC", "SPECIAL_SPIRIT"};
 	static string arSub7[] = { "TOOL_FISHING_ROD" };
-	static string arSub8[] = { "LOTTERY_TICKET", "LOTTERY_INSTANT" };
-	static string arSub10[] = { "METIN_NORMAL", "METIN_GOLD" };
-	static string arSub12[] = { "FISH_ALIVE", "FISH_DEAD"};
-	static string arSub14[] = { "RESOURCE_FISHBONE", "RESOURCE_WATERSTONEPIECE", "RESOURCE_WATERSTONE", "RESOURCE_BLOOD_PEARL",
+	static string arSub9[] = { "METIN_NORMAL", "METIN_GOLD" };
+	static string arSub11[] = { "FISH_ALIVE", "FISH_DEAD"};
+	static string arSub13[] = { "RESOURCE_FISHBONE", "RESOURCE_WATERSTONEPIECE", "RESOURCE_WATERSTONE", "RESOURCE_BLOOD_PEARL",
 								"RESOURCE_BLUE_PEARL", "RESOURCE_WHITE_PEARL", "RESOURCE_BUCKET", "RESOURCE_CRYSTAL", "RESOURCE_GEM",
 								"RESOURCE_STONE", "RESOURCE_METIN", "RESOURCE_ORE"
 							  };
-	static string arSub16[] = { "UNIQUE_NONE", "UNIQUE_BOOK", "UNIQUE_SPECIAL_RIDE", "UNIQUE_3", "UNIQUE_4", "UNIQUE_5",
+	static string arSub15[] = { "UNIQUE_NONE", "UNIQUE_BOOK", "UNIQUE_SPECIAL_RIDE", "UNIQUE_3", "UNIQUE_4", "UNIQUE_5",
 								"UNIQUE_6", "UNIQUE_7", "UNIQUE_8", "UNIQUE_9", "USE_SPECIAL"
 							  };
-	static string arSub28[] = { "COSTUME_BODY", "COSTUME_HAIR" };
-	static string arSub29[] = { "DS_SLOT1", "DS_SLOT2", "DS_SLOT3", "DS_SLOT4", "DS_SLOT5", "DS_SLOT6" };
-	static string arSub31[] = { "EXTRACT_DRAGON_SOUL", "EXTRACT_DRAGON_HEART" };
+	static string arSub27[] = { "COSTUME_BODY", "COSTUME_HAIR" };
+	static string arSub28[] = { "DS_SLOT1", "DS_SLOT2", "DS_SLOT3", "DS_SLOT4", "DS_SLOT5", "DS_SLOT6" };
+	static string arSub30[] = { "EXTRACT_DRAGON_SOUL", "EXTRACT_DRAGON_HEART" };
 
 	static string* arSubType[] = {0,	//0
 								  arSub1,		//1
@@ -144,15 +143,14 @@ int get_Item_SubType_Value (int type_value, string inputString)
 								  arSub5,	//5
 								  arSub6,	//6
 								  arSub7,	//7
-								  arSub8,	//8
 								  0,			//9
-								  arSub10,	//10
+								  arSub9,	//10
 								  0,			//11
-								  arSub12,	//12
+								  arSub11,	//12
 								  0,			//13
-								  arSub14,	//14
+								  arSub13,	//14
 								  0,			//15
-								  arSub16,	//16
+								  arSub15,	//16
 								  0,			//17
 								  0,			//18
 								  0,			//19
@@ -164,10 +162,10 @@ int get_Item_SubType_Value (int type_value, string inputString)
 								  0,			//25
 								  0,			//26
 								  0,			//27
-								  arSub28,	//28
-								  arSub29,		//29
-								  arSub29,	//30
-								  arSub31,	//31
+								  arSub27,	//28
+								  arSub28,		//29
+								  arSub28,	//30
+								  arSub30,	//31
 								  0,			//32
 								  0,			//33 반지
 								  0,			//34 벨트
@@ -182,16 +180,14 @@ int get_Item_SubType_Value (int type_value, string inputString)
 		sizeof (arSub5) / sizeof (arSub5[0]),
 		sizeof (arSub6) / sizeof (arSub6[0]),
 		sizeof (arSub7) / sizeof (arSub7[0]),
-		sizeof (arSub8) / sizeof (arSub8[0]),
 		0,
-		sizeof (arSub10) / sizeof (arSub10[0]),
+		sizeof (arSub9) / sizeof (arSub9[0]),
 		0,
-		sizeof (arSub12) / sizeof (arSub12[0]),
+		sizeof (arSub11) / sizeof (arSub11[0]),
 		0,
-		sizeof (arSub14) / sizeof (arSub14[0]),
+		sizeof (arSub13) / sizeof (arSub13[0]),
 		0,
-		sizeof (arSub16) / sizeof (arSub16[0]),
-		0,
+		sizeof (arSub15) / sizeof (arSub15[0]),
 		0,
 		0,
 		0,
@@ -202,10 +198,11 @@ int get_Item_SubType_Value (int type_value, string inputString)
 		0,
 		0,
 		0,
+		0,
+		sizeof (arSub27) / sizeof (arSub27[0]),
 		sizeof (arSub28) / sizeof (arSub28[0]),
-		sizeof (arSub29) / sizeof (arSub29[0]),
-		sizeof (arSub29) / sizeof (arSub29[0]),
-		sizeof (arSub31) / sizeof (arSub31[0]),
+		sizeof (arSub28) / sizeof (arSub28[0]),
+		sizeof (arSub30) / sizeof (arSub30[0]),
 		0, // 32
 		0, // 33 반지
 		0, // 34 벨트

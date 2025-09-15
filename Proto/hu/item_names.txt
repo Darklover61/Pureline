@@ -4342,7 +4342,6 @@ VNUM	LOCALE_NAME
 45157	Sütõtök Jack fej (n)
 45158	Sütõtök Jack fej+ (f)
 45159	Sütõtök Jack fej+ (n)
-50001	Szerencsekönyv
 50002	Aranygyûrû
 50003	Készség visszaállító
 50004	Esemény érzékelõ

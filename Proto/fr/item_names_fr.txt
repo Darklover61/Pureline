@@ -4342,7 +4342,6 @@ VNUM	LOCALE_NAME
 45157	Tête de Jack Pumpkin (f)
 45158	Tête de Jack Pumpkin+ (m)
 45159	Tête de Jack Pumpkin+ (f)
-50001	Livre de Bonne fortune
 50002	Anneau d'or
 50003	Doc. oubli des compét.
 50004	Détecteur d'évènement

@@ -4342,7 +4342,6 @@ VNUM	LOCALE_NAME
 45157	Pumpkin Jack Head (f)
 45158	Pumpkin Jack Head+ (m)
 45159	Pumpkin Jack Head+ (f)
-50001	Lucky Book
 50002	Gold Ring
 50003	Skill Reset Document
 50004	Event Detector
