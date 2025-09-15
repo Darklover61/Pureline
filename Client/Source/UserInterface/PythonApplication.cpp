@@ -14,7 +14,6 @@
 
 #include "HackShield.h"
 #include "NProtectGameGuard.h"
-#include "WiseLogicXTrap.h"
 #include "CheckLatestFiles.h"
 
 extern void GrannyCreateSharedDeformBuffer();
@@ -417,9 +416,6 @@ bool CPythonApplication::Process()
 	{
 		return false;
 	}
-	#endif
-	#ifdef XTRAP_CLIENT_ENABLE
-	XTrap_PollEvent();
 	#endif
 	ELTimer_SetFrameMSec();
 
@@ -1157,12 +1153,6 @@ bool CPythonApplication::Create (PyObject * poSelf, const char* c_szName, int wi
 
 	#ifdef USE_NPROTECT_GAMEGUARD
 	if (!GameGuard_Run (CMSWindow::GetWindowHandle()))
-	{
-		return false;
-	}
-	#endif
-	#ifdef XTRAP_CLIENT_ENABLE
-	if (!XTrap_CheckInit())
 	{
 		return false;
 	}

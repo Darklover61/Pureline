@@ -561,7 +561,6 @@ class CPythonNetworkStream : public CNetworkStream, public CSingleton<CPythonNet
 
 		//Security
 		bool RecvHSCheckRequest();
-		bool RecvXTrapVerifyRequest();
 
 	protected:
 		// 이모티콘

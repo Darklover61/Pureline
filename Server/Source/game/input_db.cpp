@@ -44,7 +44,6 @@
 #include "gm.h"
 #include "panama.h"
 #include "map_location.h"
-#include "XTrapManager.h"
 
 #include "DragonSoul.h"
 
@@ -496,8 +495,6 @@ void CInputDB::PlayerLoad (LPDESC d, const char* data)
 			 ch->GetGMLevel());
 
 	ch->QuerySafeboxSize();
-
-	CXTrapManager::instance().CreateClientSession (ch);
 }
 
 void CInputDB::Boot (const char* data)

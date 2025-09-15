@@ -54,7 +54,6 @@
 #include "map_location.h"
 #include "BlueDragon_Binder.h"
 #include "skill_power.h"
-#include "XTrapManager.h"
 #include "buff_on_attributes.h"
 
 #ifdef __PET_SYSTEM__
@@ -1491,8 +1490,6 @@ void CHARACTER::Disconnect (const char* c_pszReason)
 		GetDesc()->BindCharacter (NULL);
 		//		BindDesc(NULL);
 	}
-
-	CXTrapManager::instance().DestroyClientSession (this);
 
 	M2_DESTROY_CHARACTER (this);
 }

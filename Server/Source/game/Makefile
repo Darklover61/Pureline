@@ -48,9 +48,6 @@ INCDIR += -I../../../Extern/include
 LIBDIR += -L../../../Extern/lib
 LIBS += -lcryptopp -lgtest
 
-# XTrap
-INCDIR += -I../../libxtrap/include
-
 # openssl
 #INCDIR += -I/usr/include
 #LIBS += -lssl
@@ -96,7 +93,7 @@ CPPFILE = BattleArena.cpp FSM.cpp MarkConvert.cpp MarkImage.cpp MarkManager.cpp 
 		  wedding.cpp xmas_event.cpp version.cpp panama.cpp threeway_war.cpp map_location.cpp auth_brazil.cpp\
 		  BlueDragon.cpp BlueDragon_Binder.cpp DragonLair.cpp questlua_dragonlair.cpp\
 		  skill_power.cpp affect.cpp\
-		  SpeedServer.cpp questlua_speedserver.cpp XTrapManager.cpp\
+		  SpeedServer.cpp questlua_speedserver.cpp\
 		  auction_manager.cpp FileMonitor_FreeBSD.cpp ClientPackageCryptInfo.cpp cipher.cpp\
 		  buff_on_attributes.cpp check_server.cpp dragon_soul_table.cpp DragonSoul.cpp\
 		  group_text_parse_tree.cpp char_dragonsoul.cpp questlua_dragonsoul.cpp\

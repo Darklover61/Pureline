@@ -247,7 +247,6 @@
     <ClInclude Include="ServerStateChecker.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="Test.h" />
-    <ClInclude Include="WiseLogicXTrap.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AccountConnector.cpp" />
@@ -347,7 +346,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="UserInterface.cpp" />
-    <ClCompile Include="WiseLogicXTrap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Cursors\cursor.cur" />

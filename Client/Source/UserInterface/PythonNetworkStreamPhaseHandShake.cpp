@@ -4,7 +4,6 @@
 #include "Packet.h"
 #include "../eterpack/EterPackManager.h"
 #include "Hackshield.h"
-#include "WiseLogicXTrap.h"
 
 #ifdef USE_AHNLAB_HACKSHIELD
 	#includeMETIN2HS_INCLUDE_HSHIELD
@@ -329,29 +328,4 @@ bool CPythonNetworkStream::RecvHSCheckRequest()
 	#else
 	return false;
 	#endif
-}
-
-bool CPythonNetworkStream::RecvXTrapVerifyRequest()
-{
-	TPacketXTrapCSVerify packet;
-
-	if (!Recv (sizeof (packet), &packet))
-	{
-		TraceError ("XTrap: Recv failed");
-
-		return false;
-	}
-
-	TPacketXTrapCSVerify packet_res;
-	packet_res.bHeader = HEADER_CG_XTRAP_ACK;
-
-	XTrap_ValidateCheckStream (packet.bPacketData, packet_res.bPacketData);
-
-	if (!Send (sizeof (packet_res), &packet_res))
-	{
-		TraceError ("XTrap: Send failed");
-		return false;
-	}
-
-	return true;
 }

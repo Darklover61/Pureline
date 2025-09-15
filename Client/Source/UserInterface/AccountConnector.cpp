@@ -6,7 +6,6 @@
 #include "../EterPack/EterPackManager.h"
 
 #include "Hackshield.h"
-#include "WiseLogicXTrap.h"
 
 // CHINA_CRYPT_KEY
 extern DWORD g_adwEncryptKey[4];
@@ -358,9 +357,6 @@ bool CAccountConnector::__AuthState_RecvPhase()
 
 		#ifdef USE_AHNLAB_HACKSHIELD
 		HackShield_SetUserInfo (m_strID.c_str());
-		#endif
-		#ifdef XTRAP_CLIENT_ENABLE
-		XTrap_SetUserInfo (m_strID.c_str(), NULL, NULL, NULL, NULL);
 		#endif
 
 

@@ -499,9 +499,6 @@
     <ClCompile Include="xmas_event.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="XTrapManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Extern\Server\include\miniLZO\minilzo.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -910,9 +907,6 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="xmas_event.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="XTrapManager.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

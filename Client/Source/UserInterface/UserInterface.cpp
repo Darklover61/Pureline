@@ -18,7 +18,6 @@
 
 #include "Hackshield.h"
 #include "NProtectGameGuard.h"
-#include "WiseLogicXTrap.h"
 
 extern "C" {
 	extern int _fltused;
@@ -362,12 +361,6 @@ bool RunMainScript (CPythonLauncher& pyLauncher, const char* lpCmdLine)
 
 		if (stVec.size() != 0 && "--pause-before-create-window" == stVec[0])
 		{
-			#ifdef XTRAP_CLIENT_ENABLE
-			if (!XTrap_CheckInit())
-			{
-				return false;
-			}
-			#endif
 			system ("pause");
 		}
 		if (!pyLauncher.RunFile ("system.py"))
@@ -563,13 +556,6 @@ int APIENTRY WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdL
 
 	LocaleService_LoadConfig ("locale.cfg");
 	SetDefaultCodePage (LocaleService_GetCodePage());
-
-	#ifdef XTRAP_CLIENT_ENABLE
-	if (!XTrap_Init())
-	{
-		return 0;
-	}
-	#endif
 
 	#ifdef USE_AHNLAB_HACKSHIELD
 	if (!HackShield_Init())
