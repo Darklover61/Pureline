@@ -49,7 +49,6 @@ class CLIENT_DESC : public DESC
 
 extern LPCLIENT_DESC db_clientdesc;
 extern LPCLIENT_DESC g_pkAuthMasterDesc;
-extern LPCLIENT_DESC g_NetmarbleDBDesc;
 extern LPCLIENT_DESC g_TeenDesc;
 extern LPCLIENT_DESC g_PasspodDesc;
 

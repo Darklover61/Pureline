@@ -11,3 +11,5 @@
 	~ Atlasinfo.txt is now read from root instead of locale/xx
 	~ Some repeating files are now read from locale/common instead of locale/xx
 		*
+	~ Removed some code
+		* Netmarble
