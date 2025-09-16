@@ -1035,7 +1035,7 @@ bool LoadLocaleData (const char* localePath)
 	snprintf (szItemDesc,	sizeof (szItemDesc),	"%s/itemdesc.txt",	localePath);
 	snprintf (szMobProto,	sizeof (szMobProto),	"%s/mob_proto",		localePath);
 	snprintf (szSkillDescFileName, sizeof (szSkillDescFileName),	"%s/SkillDesc.txt", localePath);
-	snprintf (szSkillTableFileName, sizeof (szSkillTableFileName),	"%s/SkillTable.txt", localePath);
+	snprintf (szSkillTableFileName, sizeof (szSkillTableFileName),	"locale/common/SkillTable.txt");
 	snprintf (szInsultList,	sizeof (szInsultList),	"%s/insult.txt", localePath);
 
 	rkNPCMgr.Destroy();
