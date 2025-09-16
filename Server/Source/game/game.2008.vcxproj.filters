@@ -91,9 +91,6 @@
     <ClCompile Include="char_state.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="check_server.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="cipher.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -565,9 +562,6 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="char_manager.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="check_server.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="cipher.h">

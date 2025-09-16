@@ -152,7 +152,6 @@
     <ClCompile Include="char_resist.cpp" />
     <ClCompile Include="char_skill.cpp" />
     <ClCompile Include="char_state.cpp" />
-    <ClCompile Include="check_server.cpp" />
     <ClCompile Include="cipher.cpp" />
     <ClCompile Include="ClientPackageCryptInfo.cpp" />
     <ClCompile Include="cmd.cpp" />
@@ -311,7 +310,6 @@
     <ClInclude Include="castle.h" />
     <ClInclude Include="char.h" />
     <ClInclude Include="char_manager.h" />
-    <ClInclude Include="check_server.h" />
     <ClInclude Include="cipher.h" />
     <ClInclude Include="ClientPackageCryptInfo.h" />
     <ClInclude Include="cmd.h" />
@@ -438,10 +436,6 @@
     </ProjectReference>
     <ProjectReference Include="..\libpoly\libpoly.2008.vcxproj">
       <Project>{bd8e86dd-07ba-49b0-bf04-3282da8377eb}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\libserverkey\libserverkey.vcxproj">
-      <Project>{991e4247-cb13-4ca9-b0f1-b662594935a7}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\libsql\libsql.2008.vcxproj">

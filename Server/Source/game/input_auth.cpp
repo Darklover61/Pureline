@@ -11,10 +11,6 @@
 #include "auth_brazil.h"
 #include "db.h"
 
-#ifndef __WIN32__
-	#include "limit_time.h"
-#endif
-
 extern time_t get_global_time();
 extern int openid_server;
 
@@ -117,17 +113,6 @@ CInputAuth::CInputAuth()
 
 void CInputAuth::Login (LPDESC d, const char* c_pData)
 {
-	extern bool Metin2Server_IsInvalid();
-
-	#ifdef ENABLE_LIMIT_TIME
-	if (Metin2Server_IsInvalid())
-	{
-		extern void ClearAdminPages();
-		ClearAdminPages();
-		exit (1);
-		return;
-	}
-	#endif
 	TPacketCGLogin3 * pinfo = (TPacketCGLogin3*) c_pData;
 
 	if (!g_bAuthServer)
@@ -248,17 +233,6 @@ void CInputAuth::Login (LPDESC d, const char* c_pData)
 
 void CInputAuth::LoginOpenID (LPDESC d, const char* c_pData)
 {
-	extern bool Metin2Server_IsInvalid();
-
-	#ifdef ENABLE_LIMIT_TIME
-	if (Metin2Server_IsInvalid())
-	{
-		extern void ClearAdminPages();
-		ClearAdminPages();
-		exit (1);
-		return;
-	}
-	#endif
 	//OpenID test code.
 	TPacketCGLogin5 *tempInfo1 = (TPacketCGLogin5*)c_pData;
 

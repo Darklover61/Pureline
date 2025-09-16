@@ -18,10 +18,6 @@
 #include "castle.h"
 #include "dev_log.h"
 
-#ifndef __WIN32__
-	#include "limit_time.h"
-#endif
-
 extern time_t get_global_time();
 extern bool g_bNoPasspod;
 
@@ -205,17 +201,6 @@ bool CInputProcessor::Process (LPDESC lpDesc, const void* c_pvOrig, int iBytes, 
 void CInputProcessor::Pong (LPDESC d)
 {
 	d->SetPong (true);
-
-	extern bool Metin2Server_IsInvalid();
-
-	#ifdef ENABLE_LIMIT_TIME
-	if (Metin2Server_IsInvalid())
-	{
-		extern bool g_bShutdown;
-		g_bShutdown = true;
-		ClearAdminPages();
-	}
-	#endif
 }
 
 void CInputProcessor::Handshake (LPDESC d, const char* c_pData)

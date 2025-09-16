@@ -61,9 +61,6 @@
 #include "SpeedServer.h"
 #include "DragonSoul.h"
 #include <boost/bind.hpp>
-#ifndef __WIN32__
-	#include "limit_time.h"
-#endif
 
 //#define __FILEMONITOR__
 
@@ -82,12 +79,6 @@
 #ifdef USE_STACKTRACE
 	#include <execinfo.h>
 #endif
-
-// 윈도우에서 테스트할 때는 항상 서버키 체크
-#ifdef _WIN32
-	//#define _USE_SERVER_KEY_
-#endif
-#include "check_server.h"
 
 extern void WriteVersion();
 //extern const char * _malloc_options;
@@ -256,13 +247,6 @@ void heartbeat (LPHEART ht, int pulse)
 	// 1초마다
 	if (! (pulse % ht->passes_per_sec))
 	{
-		#ifdef ENABLE_LIMIT_TIME
-		if ((unsigned)get_global_time() >= GLOBAL_LIMIT_TIME)
-		{
-			g_bShutdown = true;
-		}
-		#endif
-
 		if (g_bAuthServer && LC_IsBrazil() && !test_server)
 		{
 			auth_brazil_log();
@@ -367,90 +351,6 @@ void heartbeat (LPHEART ht, int pulse)
 			thecore_shutdown();
 		}
 	}
-}
-
-static bool g_isInvalidServer = false;
-
-bool Metin2Server_IsInvalid()
-{
-	return g_isInvalidServer;
-}
-
-void Metin2Server_Check()
-{
-	#ifdef _USE_SERVER_KEY_
-	if (false == CheckServer::CheckIp (g_szPublicIP))
-	{
-		#ifdef _WIN32
-		fprintf (stderr, "check ip failed\n");
-		#endif
-		g_isInvalidServer = true;
-	}
-	return;
-	#endif
-
-	if (LC_IsEurope() || test_server)
-	{
-		return;
-	}
-
-
-	// 브라질 ip
-	if (strncmp (g_szPublicIP, "189.112.1", 9) == 0)
-	{
-		return;
-	}
-
-	// 캐나다 ip
-	if (strncmp (g_szPublicIP, "74.200.6", 8) == 0)
-	{
-		return;
-	}
-
-	return;
-
-	static const size_t CheckServerListSize = 1;
-	static const char* CheckServerList[] = { "202.31.178.251"};
-	static const int CheckServerPort = 7120;
-
-	socket_t sockConnector = INVALID_SOCKET;
-
-	for (size_t i = 0 ; i < CheckServerListSize ; i++)
-	{
-		sockConnector = socket_connect (CheckServerList[i], CheckServerPort);
-
-		if (0 < sockConnector)
-		{
-			break;
-		}
-	}
-
-	if (0 > sockConnector)
-	{
-		if (true != LC_IsEurope()) // 유럽은 접속을 하지 못하면 인증된 것으로 간주
-		{
-			g_isInvalidServer = true;
-		}
-
-		return;
-	}
-
-	char buf[256] = { 0, };
-
-	socket_read (sockConnector, buf, sizeof (buf) - 1);
-
-	sys_log (0, "recv[%s]", buf);
-
-	if (strncmp (buf, "OK", 2) == 0)
-	{
-		g_isInvalidServer = false;
-	}
-	else if (strncmp (buf, "CK", 2) == 0)
-	{
-		g_isInvalidServer = true;
-	}
-
-	socket_close (sockConnector);
 }
 
 static void CleanUpForEarlyExit()
@@ -560,15 +460,6 @@ int main (int argc, char** argv)
 	Blend_Item_init();
 	ani_init();
 	PanamaLoad();
-
-	Metin2Server_Check();
-
-	#if defined(_WIN32) && defined(_USE_SERVER_KEY_)
-	if (CheckServer::IsFail())
-	{
-		return 1;
-	}
-	#endif
 
 	if (g_bTrafficProfileOn)
 	{
@@ -686,12 +577,6 @@ int start (int argc, char** argv)
 	//_malloc_options = "A";
 	#if defined(__FreeBSD__) && defined(DEBUG_ALLOC)
 	_malloc_message = WriteMallocMessage;
-	#endif
-	#ifdef ENABLE_LIMIT_TIME
-	if ((unsigned)get_global_time() >= GLOBAL_LIMIT_TIME)
-	{
-		return 0;
-	}
 	#endif
 
 	while (false /*(ch = getopt(argc, argv, "npverltI")) != -1*/)
@@ -963,12 +848,6 @@ int idle()
 		memset (&thecore_profiler[0], 0, sizeof (thecore_profiler));
 		memset (&s_dwProfiler[0], 0, sizeof (s_dwProfiler));
 	}
-	#ifdef _USE_SERVER_KEY_
-	if (Metin2Server_IsInvalid() && 0 == (thecore_random() % 7146))
-	{
-		return 0; // shutdown
-	}
-	#endif
 
 	#ifdef __WIN32__
 	if (_kbhit())

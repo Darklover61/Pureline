@@ -57,10 +57,9 @@ LIBS += -lcryptopp -lgtest
 INCDIR += -I../../liblua/include
 INCDIR += -I/usr/local/include
 # INCDIR += -L/usr/local/lib/mysql
-INCDIR += -I../../libserverkey
-LIBDIR += -L../../libthecore/lib -L../../libpoly -L../../libsql -L../../libgame/lib -L../../liblua/lib -L../../libserverkey
+LIBDIR += -L../../libthecore/lib -L../../libpoly -L../../libsql -L../../libgame/lib -L../../liblua/lib
 LIBDIR += -L/usr/local/lib
-LIBS += -lthecore -lpoly -llua -llualib -lsql -lgame -lserverkey
+LIBS += -lthecore -lpoly -llua -llualib -lsql -lgame
 USE_STACKTRACE = 0
 ifeq ($(USE_STACKTRACE), 1)
 LIBS += /usr/local/lib/libexecinfo.a
@@ -95,7 +94,7 @@ CPPFILE = BattleArena.cpp FSM.cpp MarkConvert.cpp MarkImage.cpp MarkManager.cpp 
 		  skill_power.cpp affect.cpp\
 		  SpeedServer.cpp questlua_speedserver.cpp\
 		  auction_manager.cpp FileMonitor_FreeBSD.cpp ClientPackageCryptInfo.cpp cipher.cpp\
-		  buff_on_attributes.cpp check_server.cpp dragon_soul_table.cpp DragonSoul.cpp\
+		  buff_on_attributes.cpp dragon_soul_table.cpp DragonSoul.cpp\
 		  group_text_parse_tree.cpp char_dragonsoul.cpp questlua_dragonsoul.cpp\
 		  shop_manager.cpp shopEx.cpp item_manager_read_tables.cpp
 
@@ -123,10 +122,6 @@ $(OBJDIR)/minilzo.o: minilzo.c
 $(OBJDIR)/%.o: %.cpp
 	@echo compile $<
 	@$(CC) $(CFLAGS) $(INCDIR) -c $< -o $@
-
-limit_time:
-	@echo update limit time
-	@python update_limit_time.py
 
 $(TARGET): $(CPPOBJS) $(COBJS) $(MAINOBJ)
 	@echo linking $(TARGET)....

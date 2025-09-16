@@ -4,16 +4,10 @@ CXX=clang++-devel
 PLATFORM = $(shell file /bin/ls | cut -d' ' -f3 | cut -d'-' -f1)
 BSD_VERSION = $(shell uname -v 2>&1 | cut -d' ' -f2 | cut -d'.' -f1)
 
-default: libthecore libpoly libgame liblua libsql libserverkey game db
+default: libthecore libpoly libgame liblua libsql game db
 	@echo "--------------------------------------"
 	@echo "Build Done"
 	@echo "--------------------------------------"
-
-libserverkey: .
-	@touch $@/Depend
-	$(MAKE) -C $@ dep
-	$(MAKE) -C $@ clean
-	$(MAKE) -C $@
 
 liblua: .
 	$(MAKE) -C $@ clean
@@ -43,17 +37,10 @@ libthecore: .
 	$(MAKE) -C $@/src clean
 	$(MAKE) -C $@/src
 
-libserverkey: .
-	@touch $@/Depend
-	$(MAKE) -C $@ dep
-	$(MAKE) -C $@ clean
-	$(MAKE) -C $@
-
 game: .
 	@touch $@/src/Depend
 	$(MAKE) -C $@/src dep
 	$(MAKE) -C $@/src clean
-	$(MAKE) -C $@/src limit_time
 #	$(MAKE) -C $@/src
 
 db: .
@@ -93,7 +80,6 @@ all:
 	@touch game/src/Depend
 	$(MAKE) -C game/src dep
 	$(MAKE) -C game/src clean
-	$(MAKE) -C game/src limit_time
 #	$(MAKE) -C game/src
 
 	@touch db/src/Depend

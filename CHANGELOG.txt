@@ -8,6 +8,7 @@
 		* Teen
 		* nProtect_GameGuard
 		* Software Tiling
+		* LibServerKey
 
 	15.09.2025
 	~ Removed some code
