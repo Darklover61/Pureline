@@ -21,6 +21,7 @@
 		* Lottery
 
 	16.09.2025
+	~ item_list.txt is now read from locale/common instead of each locale folder, preventing duplication.
 	~ Removed some code
 		* Teen
 		* nProtect_GameGuard

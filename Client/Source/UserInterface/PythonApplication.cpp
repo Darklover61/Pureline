@@ -1030,7 +1030,7 @@ bool LoadLocaleData (const char* localePath)
 	char szSkillDescFileName[256];
 	char szSkillTableFileName[256];
 	char szInsultList[256];
-	snprintf (szItemList,	sizeof (szItemList),	"%s/item_list.txt",	localePath);
+	snprintf (szItemList,	sizeof (szItemList),	"locale/common/item_list.txt");
 	snprintf (szItemProto,	sizeof (szItemProto),	"%s/item_proto",	localePath);
 	snprintf (szItemDesc,	sizeof (szItemDesc),	"%s/itemdesc.txt",	localePath);
 	snprintf (szMobProto,	sizeof (szMobProto),	"%s/mob_proto",		localePath);
