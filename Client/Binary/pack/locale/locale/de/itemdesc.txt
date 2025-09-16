@@ -1218,7 +1218,6 @@
 45167	Schneehasenmütze+	Kopfbedeckung in Form eines Schneehasen. Verleiht dir mindestens einen zufälligen Bonus.
 45168	Eisbärenmütze+	Kopfbedeckung in Form eines Eisbären. Verleiht dir mindestens einen zufälligen Bonus.
 45169	Schneeleopardenmütze+	Kopfbedeckung in Form eines Schneeleoparden. Verleiht dir mindestens einen zufälligen Bonus.
-50001	Glücksbuch	Ein Buch mit Glückszahlen. Die Lotterie wird von der Regierung durchgeführt.
 50002	Goldring	Ein einfacher Goldring, der im Verkauf einen hohen Preis erzielen kann.
 50003	Fertigkeitszurücksetzung	Ermöglicht es, die aktuellen Fertigkeiten zugunsten neuer zurück zu setzen.
 50004	Ereignis-Detektor	Dieser Gegenstand zeigt an, wo die nächste Aufgabe zu finden ist.
@@ -1241,7 +1240,6 @@
 50023	Geldtasche	Der Umschlag enthält etwas Zuschuss zum neuen Jahr.
 50024	Rose	Eine Blume, mit der oftmals auf romantische Weise Zuneigung bekundet werden kann. Nur weibliche Charaktere können sie verwenden.
 50025	Schokolade	Eine Süßigkeit aus Kakao, Milch, Butter und Zucker. Schokolade wird oftmals als kleines Geschenk der Zuneigung überreicht. Nur männliche Charaktere können sie verwenden.
-50027	Lotterielos	Leider handelt es sich bei diesem Los um eine Niete - es bringt kein Glück.
 50031	Rose	Eine Blume, mit der oftmals auf romantische Weise Zuneigung bekundet werden kann. Nur männliche Charaktere können sie verwenden.
 50032	Bonbon	Eine beliebte Süßigkeit, die oftmals als kleines Geschenk der Zuneigung überreicht wird. Nur weibliche Charaktere können sie verwenden.
 50033	Geheimnisvolle Truhe	Eine Truhe mit einer fremdartigen Gravur, die einem Buchstaben gleicht. Wenn sie geöffnet wird, springt etwas hervor.
@@ -2138,8 +2136,6 @@
 72312	ETC icon/item/71028.tga	ETC icon/item/71028.tga
 72313	ETC icon/item/71030.tga	ETC icon/item/71030.tga
 72314	ETC icon/item/71032.tga	ETC icon/item/71032.tga
-72501	Erfahrungsring (iCafe)	Erhöht das Sammeln von Erfahrung um 20 % im Mitglieder-iCafe.
-72502	Diebeshandschuh (iCafe)	Die Erfolgsrate für das Erbeuten von Gegenständen erhöht sich um das Anderthalbfache im Mitglieder-iCafe.
 72701	Windschuhe	Sie erhöhen deine Bewegungsgeschwindigkeit um 30, solange sie ausgerüstet sind.
 72703	Tigerknochenohrring	Dein Angriffswert wird für 2 Stunden um 200 Punkte erhöht (Zeit läuft nur ab, wenn das Item angelegt ist). Das Item ist nicht handelbar.
 72704	Drachenknochenohrring	Dein Verteidigungswert wird für 2 Stunden um 200 Punkte erhöht (Zeit läuft nur ab, wenn das Item angelegt ist). Das Item ist nicht handelbar.

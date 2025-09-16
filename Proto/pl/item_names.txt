@@ -4367,7 +4367,6 @@ VNUM	LOCALE_NAME
 50024	Ró¿a
 50025	Czekolada
 50026	Monety
-50027	Bilet Na Loteriê
 50028	24k Z³oty Pierœcieñ
 50029	18k Z³oty Pierœcieñ
 50030	14k Z³oty Pierœcieñ

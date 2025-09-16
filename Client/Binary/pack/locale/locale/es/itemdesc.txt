@@ -1338,7 +1338,6 @@
 45203	Turbante blanco+	Un noble turbante de color blanco y tejido resistente para luchadores. Te otorga como mínimo una bonificación aleatoria.
 45204	Pañuelo marrón+	Pañuelo marrón de tejido ligero para las luchadoras. Te otorga como mínimo una bonificación aleatoria.
 45205	Pañuelo blanco+	Pañuelo blanco de tejido ligero para las luchadoras. Te otorga como mínimo una bonificación aleatoria.
-50001	Libro Afortunado	Un libro con números afortunados. La lotería es controlada por el gobierno.
 50002	Anillo de Oro	Un simple anillo de oro, que puede ser vendido en tiendas por un alto precio.
 50003	Documento reajuste hab.	Te permite restaurar tus habilidades para poder aprender nuevas.
 50004	Detector de Eventos	Este objeto te muestra dónde puden ser encontradas las misiones.
@@ -1361,7 +1360,6 @@
 50023	Bolsa de Dinero	Bolsa de Dinero
 50024	Rosa	Una flor romántica usada para mostrar afecto. Sólo pueden usarla personajes femeninos.
 50025	Chocolate	Hecho con cacao, leche, mantequilla y azucar. El chocolate se da para mostrar afecto. Sólo pueden usarlo los personajes masculinos.
-50027	Billete de Lotería	Desgraciadamente, este billete de lotería es un objeto inútil. No es afortunado.
 50031	Rosa	Una flor romántica usada para mostrar afecto. Sólo pueden usarla personajes masculinos.
 50032	Caramelo	Un dulce popular; el caramelo se da para mostrar afecto. Sólo los personajes femeninos pueden usarlo.
 50033	Cofre Misterioso	Un cofre con una extraña letra grabada en él. Algo surgirá si es abierto.
@@ -2314,8 +2312,6 @@
 72312		
 72313		
 72314		
-72501	Anillo Exp. (iCafe)	Incrementa la ganancia de EXP en un 20% a los miembros de iCafe.
-72502	Ladrón	El robo de artefactos incrementa en un 1,5 veces a los miembros de iCafe.
 72701	Zapatos Viento	Mientras estén equipados, aumentan tu velocidad de movimiento en 30.
 72703	Pendientes Hueso Tigre	Aumentan tu valor de ataque en 200 puntos durante 2 horas (el tiempo solamente avanza mientras el objeto esté equipado). No se puede comerciar con el objeto.
 72704	Pendientes Hueso Dragón	Aumentan tu valor de defensa en 200 puntos durante 2 horas (el tiempo solamente avanza mientras el objeto esté equipado). No se puede comerciar con el objeto.

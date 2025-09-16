@@ -4367,7 +4367,6 @@ VNUM	LOCALE_NAME
 50024	Rózsa
 50025	Csokoládé
 50026	Érmék
-50027	Lottó szelvény
 50028	24k-os aranygyûrû
 50029	18k-os aranygyûrû
 50030	14k-os aranygyûrû

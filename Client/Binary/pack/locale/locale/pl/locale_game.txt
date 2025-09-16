@@ -644,13 +644,6 @@ STAT_TOOLTIP_DEX	Podwy¿sza atak i uniki
 STAT_TOOLTIP_INT	Podwy¿sza PE, magiczny atak i obronê.
 STAT_TOOLTIP_STR	Podwy¿sza Wartoœæ Ataku i Uszkodzeñ
 SYMBOLLIST_TITLE	Zarejestruj Flagê Gildii
-SYSTEM_OPTION_CPU_TILING_1	CPU TNL mo¿e ulepszyæ szybkoœæ s³abszego PC.
-SYSTEM_OPTION_CPU_TILING_2	Jeœli jest problem z grafik¹, wybierz ,Opcje System lub ,CONFIG.exe;
-SYSTEM_OPTION_CPU_TILING_3	i zmieñ na GPU TNL.
-SYSTEM_OPTION_GPU_TILING_1	GPU TNL mo¿e dzia³aæ wolniej na s³abszych PC.
-SYSTEM_OPTION_GPU_TILING_2	Jeœli zaistniej¹ problem z grafik¹, wybierz 'Opcje Systemu' lub 'CONFIG.exe'
-SYSTEM_OPTION_GPU_TILING_3	i zmieñ na GPU TNL
-SYSTEM_OPTION_TILING_EXIT	Aby zmieniæ tryb TNL trzeba zrestartowaæ grê.
 TARGET_BUTTON_ACCEPT_FIGHT	Zgoda
 TARGET_BUTTON_AVENGE	Zemsta
 TARGET_BUTTON_BUILDING_DESTROY	Zniszcz
@@ -790,8 +783,6 @@ TOOLTIP_ITEM_SLOW	Wolny
 TOOLTIP_ITEM_VERY_FAST	Bardzo szybki
 TOOLTIP_ITEM_VERY_SLOW	Bardzo wolny
 TOOLTIP_ITEM_WEARABLE_JOB	[ Do ubrania ]
-TOOLTIP_LOTTERY_STEP_NUMBER	%d
-TOOLTIP_LOTTO_NUMBER	Szczêœliwy Numer: %d
 TOOLTIP_MAGIC_ATTBONUS_PER	Magiczny atak +%d%%	SA
 TOOLTIP_MAGIC_ATT_GRADE	Wartoœæ Magicznego Ataku: +%d	SA
 TOOLTIP_MAGIC_DEF_GRADE	Magiczna Obrona: +%d	SA

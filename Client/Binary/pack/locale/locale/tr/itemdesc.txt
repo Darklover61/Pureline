@@ -1338,7 +1338,6 @@
 45203	Beyaz Kavuk+	Savaþçýlar için dayanýklý bir kumaþtan üretilen zarif, beyaz bir kavuk. Sana en az bir rastgele bonus verir.
 45204	Kahverengi Baþlýk+	Diþi savaþçýlar için hafif bir kumaþtan üretilen kahverengi bir baþlýk. Sana en az bir rastgele bonus verir.
 45205	Beyaz Baþlýk+	Diþi savaþçýlar için hafif bir kumaþtan üretilen beyaz bir baþlýk. Sana en az bir rastgele bonus verir.
-50001	Ýyi Þans Kitabý	Þans numarasýný içeren kitap. Yönetim tarafýndan düzenlenen piyango için.
 50002	Altýn Yüzük	Basit altýn yüzük. | Maðazada yüksek fiyata satýlabilir.
 50003	Beceri Sýfýrlama Kaðýdý	Becerilerinizi sýfýrlayýp yeni bir beceri öðrenmenizi saðlar.
 50004	Olay Dedektörü	Bu nesne size, nerede görev olduðunu gösterir.
@@ -1361,7 +1360,6 @@
 50023	Para Zarfý	Yeni yýl ikramiyesi içinde olur.
 50024	Gül	Sevgiyi göstermeyi saðlayan romantik çiçek. Sadece bayan karakterler kullanabilir.
 50025	Çikolata	Kakao, süt, yað ve þekerden yapýlýr. Sevgi gösterir. Sadece erkek karakterler kullanabilir.
-50027	Lottery Lot	Oyun içinde piyango bileti deðiþtirilmez. | Faydasýz nesne.
 50031	Gül	Sevgi ifade eden romantik çiçek. Sadece erkek karakterler kullanabilir.
 50032	Lolipop	Kakao,süt,yað ve þekerden yapýlýr. Çikolata sevgi ifade eder. Sadece bayan karakterler kullanabilir.
 50033	Gizemli Sandýk	Üzerinde garip harfler olan bir sandýk. Açýlýrsa bir þeyler çýkar.
@@ -2314,8 +2312,6 @@
 72312		
 72313		
 72314		
-72501	Tecrübe Yüzüðü(iCafe)	iCafe üyeliginde 20% EXP kazancý saðlar.
-72502	Hýrsýz Eldiveni(iCafe)	iCafe üyeliginde nesne düþme aralýðý 1.5 kat artar.
 72701	Rüzgarýn Ayakkabýlarý	Giydiðinizde hareket hýzýnýzý 30 artýrýr.(25 oyun saati içindir)
 72703	Kaplan Kemiði Küpesi	Saldýrý deðerini 2 saatliðine 200 puan artýrýr (süresi ancak eþya kuþanýldýðýnda baþlar). Eþya satýlamaz.
 72704	Ejder Kemiði Küpesi	Savunma deðerini 2 saatliðine 200 puan artýrýr (süresi ancak eþya kuþanýldýðýnda baþlar). Eþya satýlamaz.

@@ -4367,7 +4367,6 @@ VNUM	LOCALE_NAME
 50024	Rose
 50025	Chocolate
 50026	Coins
-50027	Lottery Ticket
 50028	24k Gold Ring
 50029	18k Gold Ring
 50030	14k Gold Ring

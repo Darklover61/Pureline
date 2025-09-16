@@ -1338,7 +1338,6 @@
 45203	Bia³y Turban+	Elegancki, bia³y turban z wytrzyma³ego materia³u - w sam raz dla wojowników. Daje ci min. jeden losowy bonus.
 45204	Br¹zowa Chusta+	Br¹zowa chusta na g³owê z lekkiego materia³u - w sam raz dla wojowniczek. Daje ci min. jeden losowy bonus.
 45205	Bia³a Chusta+	Bia³a chusta na g³owê z lekkiego materia³u - w sam raz dla wojowniczek. Daje ci min. jeden losowy bonus.
-50001	Ksiêga Szczêœcia	Ksiêga ze szczêœliwymi numerami. Loteria jest prowadzona przez rz¹d.
 50002	Z³oty Pierœcieñ	Prosty, Z³oty Pierœcionek. | Mo¿e byæ sprzedany w sklepie za wysok¹ cenê.
 50003	Zwój Cofania Umiejêtn.	Pozwala na ponowne wybranie profesji postaci.
 50004	Wykrywacz Zdarzeñ	Pokazuje, gdzie mo¿na znaleŸæ misje.
@@ -1361,7 +1360,6 @@
 50023	Sakiewka Pieniêdzy	W œrodku znajduje siê noworoczna pensja.
 50024	Ró¿a	Romantyczny kwiat okazuj¹cy zauroczenie. Przedmiot mo¿e byæ u¿ywany tylko przez kobiety.
 50025	Czekolada	Zrobiona z kakao, mleka, mas³a i cukru. Dawana aby okazywaæ zauroczenie. Przedmiot mo¿e byæ u¿ywany tylko przez mê¿czyzn.
-50027	Bilet Na Loteriê	Nie ma loterii w grze. | Bezu¿yteczny przedmiot.
 50031	Ró¿a	Romantyczny kwiat okazuj¹cy zauroczenie. Przedmiot mo¿e byæ u¿ywany tylko przez mê¿czyzn.
 50032	Cukierek	Zrobiona z kakao, mleka, mas³a i cukru. Dawana aby okazywaæ zauroczenie. Przedmiot mo¿e byæ u¿ywany tylko przez kobiety.
 50033	Zagadkowa Szkatu³ka	Szkatu³ka, na której wygrawerowany jest jakiœ list. Prawdopodobnie coœ wyskoczy po jej otwarciu.
@@ -2314,8 +2312,6 @@
 72312		
 72313		
 72314		
-72501	Pierœcieñ Doœw. (iCafe)	Zwiêksza otrzymywane Punkty Doœwiadczenia o 20% dla cz³onków iCafe.
-72502	Rêkawica Z³odz. (iCafe)	Szansa na wyrzucanie przedmiotów zwiêkszona 1.5 raza dla cz³onków iCafe.
 72701	Buty Wiatru	Gdy ich u¿ywasz, Szybkoœæ Ruchu twojej postaci jest zwiêkszona o 30.
 72703	Kolczyk z koœci tygrysa	Wartoœæ ataku wzrasta na 2 godziny o 200 punktów (czas up³ywa, tylko gdy przedmiot jest za³o¿ony). Przedmiot ten jest niezdatny do handlu.
 72704	Kolczyk z koœci smoka	Wartoœæ obrony wzrasta na 2 godziny o 200 punktów (czas up³ywa, tylko gdy przedmiot jest za³o¿ony). Przedmiot ten jest niezdatny do handlu.

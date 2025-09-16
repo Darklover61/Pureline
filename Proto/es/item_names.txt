@@ -4367,7 +4367,6 @@ VNUM	LOCALE_NAME
 50024	Rosa
 50025	Chocolate
 50026	Monedas
-50027	Billete de Lotería
 50028	Anillo de Oro 24k
 50029	Anillo de Oro 18k
 50030	Anillo de Oro 14k

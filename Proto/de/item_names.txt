@@ -4367,7 +4367,6 @@ VNUM	LOCALE_NAME
 50024	Rose
 50025	Schokolade
 50026	Münzen
-50027	Lotterielos
 50028	Ring mit Goldgehalt 999
 50029	Ring mit Goldgehalt 750
 50030	Ring mit Goldgehalt 585

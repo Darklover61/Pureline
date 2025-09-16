@@ -1218,7 +1218,6 @@
 45167	Snow Rabbit Hat+	Headdress in the form of a snow rabbit. Provides you with at least one random bonus.
 45168	Polar Bear Hat+	Headdress in the form of a polar bear. Provides you with at least one random bonus.
 45169	Snow Leopard Hat+	Headdress in the form of a snow leopard. Provides you with at least one random bonus.
-50001	Lucky Book	A book with lucky numbers. The lottery is run by the government.
 50002	Gold Ring	A simple gold ring, that can be sold in shops for high prices.
 50003	Skill Reset Document	Allows you to reset your skills in order to learn new ones.
 50004	Event Detector	This item shows you, where missions can be found.
@@ -1241,7 +1240,6 @@
 50023	Money Pouch	Money Pouch
 50024	Rose	A romantic flower used to show affection. Only female characters can use it.
 50025	Chocolate	Made of cacao, milk, butter, and sugar. Chocolate is given to show affection. Only male characters can use it.
-50027	Lottery Ticket	Unfortunately this lottery ticket is a useless item. It is not lucky.
 50031	Rose	A flower used to show affection for somebody. Only male characters can use it.
 50032	Candy	A popular sweet; candy is given to show affection. Only female characters can use it.
 50033	Mysterious Chest	A chest with a strange letter engraved on it. Something will pop up if it is opened.
@@ -2138,8 +2136,6 @@
 72312		
 72313		
 72314		
-72501	Experience Ring (iCafe)	Increases collection of experience points by 20% in the membership iCafe.
-72502	Thief's Glove (iCafe)	Chance of items being dropped increases by 1.5 times in Membership iCafe.
 72701	Wind Shoes	Increases your movement speed by 30 when equipped.
 72703	Tiger Bone Earring	Your attack value will be increased by 200 points for 2 hours (time only counts down while the item is being worn). The item is not tradeable.
 72704	Dragon Bone Earring	Your defence value will be increased by 200 points for 2 hours (time only counts down while the item is being worn). The item is not tradeable.

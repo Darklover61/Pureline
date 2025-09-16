@@ -1338,7 +1338,6 @@
 45203	Turbante Branco+	Um nobre turbante branco, feito de material suficientemente durável para guerreiros. Dá-te pelo menos um bónus aleatório.
 45204	Lenço Cabeça Castanho+	Um lenço de cabeça castanho, feito de material leve e perfeito para guerreiras. Dá-te pelo menos um bónus aleatório.
 45205	Lenço Cabeça Branco+	Um lenço de cabeça branco, feito de material leve e perfeito para guerreiras. Dá-te pelo menos um bónus aleatório.
-50001	Livro da Boa-Sorte	Um livro com números da sorte. A lotaria é executada pelo Governo.
 50002	Anel d'Ouro	Um anel de ouro simples | Pode ser vendido na loja a um preço alto.
 50003	Documento de Habilidades	Permite remover todos os Pontos de Habilidade para poder recolocá-los.
 50004	Detector de Eventos	Este Item mostra onde podem ser encontradas missões.
@@ -1361,7 +1360,6 @@
 50023	Bolsa de Dinheiro	A mesada de Ano Novo está nela.
 50024	Rosa	Uma flor romântica utilizada para mostrar afecto. Apenas personagens femininas podem usá-la.
 50025	Chocolate	Feito de cacau, leite, manteiga e açúcar. O Chocolate é dado para mostrar afecto. Apenas personagens masculinas podem usá-lo.
-50027	Bilhete de Lotaria	A Troca de Bilhetes de Lotaria não existe no jogo. | É um Item inútil.
 50031	Rosa	Uma flor romântica usada para mostrar afecto. Apenas personagens masculinas podem usá-la.
 50032	Chupa-Chupa	Feito de açúcar e xarope. O chupa-chupa é dado para mostrar afecto. Apenas personagens femininas podem usá-lo.
 50033	Caixa Mistério	Uma caixa com umas estranhas letras gravadas. Algo sairá do seu interior se for aberta.
@@ -2314,8 +2312,6 @@
 72312		
 72313		
 72314		
-72501	Anel Experiência(iCafe)	Aumenta o ganho de EXP em 20% para Membros do iCafe.
-72502	Luva de Ladrão (iCafe)	A probabilidade de ganhar Itens é aumentada 1.5 vezes para Membros iCafe.
 72701	Sapatos de Vento	Aumenta a tua rapidez de movimento em 30 quando equipado.
 72703	Brinco Osso de Tigre	O teu Valor de Ataque será aumentado em 200 durante 2 horas (apenas contabilizadas quando o item é utilizado). Item não negociável.
 72704	Brinco Osso de Dragão	A tua Defesa será aumentada em 200 durante 2 horas (apenas contabilizadas quando o item é utilizado). Item não negociável.

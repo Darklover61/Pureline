@@ -4367,7 +4367,6 @@ VNUM	LOCALE_NAME
 50024	Rose
 50025	Chokolade
 50026	Mønter
-50027	Lotteriseddel
 50028	24 Karat Guldring
 50029	18 Karat Guldring
 50030	14 Karat Guldring

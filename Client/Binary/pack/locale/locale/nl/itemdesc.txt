@@ -1338,7 +1338,6 @@
 45203	Witte Tulband+	Een galante witte tulband, gemaakt van materiaal sterk genoeg voor krijgers. Geeft je minstens één willekeurige bonus.
 45204	Bruine Hoofddoek+	Een bruine hoofddoek gemaakt van licht materiaal, perfect voor vrouwelijke krijgers. Geeft je minstens één willekeurige bonus.
 45205	Witte Hoofddoek+	Een witte hoofddoek gemaakt van licht materiaal, perfect voor vrouwelijke krijgers. Geeft je minstens één willekeurige bonus.
-50001	Geluks Boek	Een boek met geluksnummers. De loterij wordt door de overheid beheerd.
 50002	Gouden Ring	Een simpele gouden ring | Het kan verkocht worden in de winkel voor een hoge prijs.
 50003	Correctie Document	Staat het toe om de vaardigheden te resetten en nieuwe te leren.
 50004	Gebeurtenis Detector	Dit Voorwerp laat je zien waar quests gevonden kunnen worden.
@@ -1361,7 +1360,6 @@
 50023	Geld Buidel	Er zit een Nieuw Jaars honorarium in.
 50024	Roos	Een romantische bloem waarmee je je genegenheid toont. Alleen vrouwelijke karakters mogen het gebruiken.
 50025	Chocolade	Gemaakt van cacao, boter en suiker. Chocolade wordt gegeven om je genegenheid te tonen. Alleen mannelijke karakters mogen het gebruiken.
-50027	Loterij Lot	Er is geen loterij! | Dit Voorwerp is nutteloos.
 50031	Roos	Een romantische bloem waarmee je je genegenheid toont. Alleen mannelijke karakters mogen het gebruiken.
 50032	Snoep	Een suiker bonbon. Alleen vrouwelijke karakters kunnen het gebruiken.
 50033	Raadsel Doos	Een doos met een vreemde letter erop gegraveerd. Er zal iets uitspringen als het geopend wordt.
@@ -2314,8 +2312,6 @@
 72312		
 72313		
 72314		
-72501	Ervarings Ring(iCafe)	Verhoogt het verkrijgen van Ervarings Punten met 20% in het Leden iCafe.
-72502	Dieven Handschoen(iCafe)	Vergroot de snelheid waarmee Voorwerpen vallen in het Leden iCafe.
 72701	Windschoenen	Verhoogt de Loopsnelheid met 30, wanneer je hiermee uitgerust bent.
 72703	Tijger Bot Oorbellen	Je aanval waarde zal voor 2 uur worden verhoogt met 200 punten (tijd telt alleen af als het item gedragen word). Het item is niet verhandelbaar.
 72704	Draken Bot Oorbellen	Je verdediging waarde zal voor 2 uur worden verhoogt met 200 punten (tijd telt alleen af als het item gedragen word). Het item is niet verhandelbaar.

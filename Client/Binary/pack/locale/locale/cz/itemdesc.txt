@@ -1338,7 +1338,6 @@
 45203	Bílı turban+	Skvìle padnoucí bílı turban, vyrobenı z odolného materiálu speciálnì pro váleèníky. Poskytuje alespoò jeden náhodnı bonus.
 45204	Hnìdı šátek+	Hnìdı šátek vyrobenı z lehkého materiálu - perfektní pro váleènice. Poskytuje alespoò jeden náhodnı bonus.
 45205	Bílı šátek+	Bílı šátek vyrobenı z lehkého materiálu - perfektní pro váleènice. Poskytuje alespoò jeden náhodnı bonus.
-50001	Kniha štìstí	Kniha se šastnımi èíslicemi. Loterii provádí vláda.
 50002	Zlatı prsten	Obyèejnı zlatı prsten. V obchodì se dá prodat za vysokou cenu.
 50003	Reset	Umoòuje zamìnit schopnosti oproti jinım schopnostem.
 50004	Detektor úkolù	Tento pøedmìt ti ukáe, kde najdeš další úlohu.
@@ -1361,7 +1360,6 @@
 50023	Váèek s penìzi	Obsahuje malı pøíspìvek.
 50024	Rùe	Romantická kvìtina, kterou se projevuje náklonnost. Mohou ji pouívat jen enské postavy.
 50025	Èokoláda	Vırobek z kakaa, mléka a másla.  Èokoláda je náznak náklonnosti. Mohou ji pouívat jen muské postavy.
-50027	Loterijní los	Je bohuel na nic. Neuiteènı pøedmìt.
 50031	Rùe	Romantická kvìtina, pouívá se jako znamení náklonnosti. Mohou ji pouívat jen muské postavy.
 50032	Bonbon	Sladkı bonbon. Mohou ho pouívat jen enské postavy.
 50033	Tajemná truhla	Truhla s vyrytımi zvláštními písmeny. Pøi otevøení nìco vyskoèí.
@@ -2314,8 +2312,6 @@
 72312		
 72313		
 72314		
-72501	Prsten zkuš.  (iCafe)	Zvıší sbírání zkušeností o 20 % pokud máš èlenství v iCafe.
-72502	Zlodìj. rukavice (iCafe)	V iCafe èlenù zvıší o jedenapùlnásobek úspìšné ukoøistìní pøedmìtù.
 72701	Vìtrné boty	Zvıší rychlost pohybu o 30, pokud jsou souèástí vıbavy.
 72703	Náušnice z tygøí kosti	Hodnota útoku bude zvıšena o 200 bodù na 2 hodiny (èas se poèítá, pouze kdy se pøedmìt pouívá). S pøedmìtem nelze obchodovat.
 72704	Náušnice z draèí kosti	Hodnota obrany bude zvıšena o 200 bodù na 2 hodiny (èas se poèítá, pouze kdy se pøedmìt pouívá). S pøedmìtem nelze obchodovat.

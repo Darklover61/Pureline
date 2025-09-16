@@ -4367,7 +4367,6 @@ VNUM	LOCALE_NAME
 50024	Rùže
 50025	Èokoláda
 50026	Mince
-50027	Loterijní los
 50028	24-karátový zlatý prsten
 50029	18-karátový zlatý prsten
 50030	14-karátový zlatý prsten

@@ -1218,7 +1218,6 @@
 45167	Hófehér nyúl kalap+	Egy hófehér nyulat formázó fejfedõ. Legalább egy véletlenszerû bónuszt biztosít.
 45168	Jegesmedve kalap+	Egy jegesmedvét formázó fejfedõ. Legalább egy véletlenszerû bónuszt biztosít.
 45169	Hópárduc kalap+	Egy hópárducot formázó fejfedõ. Legalább egy véletlenszerû bónuszt biztosít.
-50001	Szerencsekönyv	Könyv szerencseszámokkal. A lottót a kormány mûködteti.
 50002	Aranygyûrû	Egyszerû aranygyûrû. A boltban drágán eladható.
 50003	Készség visszaállító	Lehetõvé teszi hogy visszaállítsad a képességeidet hogy újakat tanulhass.
 50004	Esemény érzékelõ	Ez a tárgy megmutatja, hogy hol találhatsz feladatot.
@@ -1241,7 +1240,6 @@
 50023	Pénztárca	Új évi juttatás van benne.
 50024	Rózsa	Romantikus virág, amit vonzódás jelzésére használnak. Csak nõi karakterek tudják felhasználni.
 50025	Csokoládé	Kakaóból, cukorból, vajból és tejbõl állítják elõ. Csokoládét adnak a vonzódás jelzése céljából. Csak férfi karakterek tudják használni.
-50027	Lottó szelvény	Nem lehet beváltani. Értéktelen papírdarab.
 50031	Rózsa	Olyan virág amivel valakihez vonzódást fejezel ki. Csak férfi karakterek használhatják.
 50032	Bonbon	Népszerû édesség; a szeretet jeleként adják. Csak nõi karakterek tudják felhasználni.
 50033	Titokzatos láda	Egy láda, gravírozott, érdekes betûvel. Amikor kinyitják, valami kiugrik belõle.
@@ -2138,8 +2136,6 @@
 72312		
 72313		
 72314		
-72501	Tapasztalat gyûrû(iCafe)	Növeli a tapasztalatszerzést 20%-kal a tag iCafe-ban.
-72502	Tolvaj kesztyû (iCafe)	Másfélszerezi esélyed tárgyak zsákmányolására a tag iCafe-ban.
 72701	Szélcipõ	30-cal növeli mozgási sebességed addig, amíg fel van szerelve.
 72703	Tigriscsont fülbevaló	Támadóértéked megnövekszik 200 ponttal 2 órán át (az idõ csak akkor telik, ha viselik a tárgyat). A tárgy nem adható át.
 72704	Sárkánycsont fülbevaló	Védelmi értéked megnövekszik 200 ponttal 2 órán át (az idõ csak akkor telik, ha viselik a tárgyat). A tárgy nem adható át.

@@ -4367,7 +4367,6 @@ VNUM	LOCALE_NAME
 50024	Roos
 50025	Chocolade
 50026	Munten
-50027	Loterij Lot
 50028	24k Gouden Ring
 50029	18k Gouden Ring
 50030	14k Gouden Ring

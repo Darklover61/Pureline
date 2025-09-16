@@ -4367,7 +4367,6 @@ VNUM	LOCALE_NAME
 50024	Gül
 50025	Çikolata
 50026	Madeni Para
-50027	Lottery Lot
 50028	24 Ayar Altýn Yüzük
 50029	18 Ayar Altýn Yüzük
 50030	14 Ayar Altýn Yüzük

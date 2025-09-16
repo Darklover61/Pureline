@@ -1338,7 +1338,6 @@
 45203	Turban Alb+	Un turban de culoare alba, elegant, fabricat dintr-un material foarte rezistent, numai bun pentru razboinici. Iti ofera cel putin un bonus aleatoriu.
 45204	Vãl Maro+	Un vãl de culoare maro, fabricat dintr-un material usor, perfect pentru femeile razboinic. Iti ofera cel putin un bonus aleatoriu.
 45205	Vãl Alb+	Un vãl de culoare alba, fabricat dintr-un material usor, perfect pentru femeile razboinic. Iti ofera cel putin un bonus aleatoriu.
-50001	Carte norocoasã	O carte cu numere norocoase. Loteria este organizatã de guvern.
 50002	Inel de aur	Un simplu inel de aur. El poate fi vândut în magazin la un preþ ridicat.
 50003	Reseteaza Skill	Iti permite resetarea skill-urilor pentru a invata altele noi.
 50004	Detector evenimente	Acest obiect îþi aratã unde gãseºti probleme.
@@ -1361,7 +1360,6 @@
 50023	Tolbã de bani	În ea se aflã o primã de Anul-Nou.
 50024	Trandafir	Floare romanticã folositã pentru a arãta afecþiunea. Doar caracterele feminine pot sã o foloseascã.
 50025	Ciocolata	Produsã din cacao, lapte, unt ºi zahãr. Ciocolata este dãruitã pentru a arãta afecþiunea. Doar caracterele masculine pot sã o foloseascã.
-50027	Loz de loterie	Din pãcate o farsã. Un obiect fãrã de folos.
 50031	Trandafir	Floare folositã pentru a arãta afecþiunea fata de cineva. Doar caracterele masculine o pot folosi.
 50032	Bomboanã	Bomboanã dulce. Doar caracterele feminine pot sã o foloseascã.
 50033	Ladã misterioasã	O ladã pe care este gravatã o literã ciudatã. Dacã este deschisã, va sãri ceva din ea.
@@ -2314,8 +2312,6 @@
 72312		
 72313		
 72314		
-72501	Inelul experienþei(iCafe	Creºte adunarea de experienþã cu 20% în iCafe-ul membrilor.
-72502	Mãnuºa tâlharului(iCafe)	Rata de succes pentru capturarea de obiecte se multiplicã de 1,5 ori în iCafe-ul membrilor.
 72701	Papuci de Vant	Atunci cand sunt purtati, papucii iti cresc viteza de miscare cu 30.
 72703	Cercel Os de Tigru	Valoarea atacului tau va fi mai mare cu 200 de puncte pentru 2 ore (timpul se scurge doar daca cerceii sunt purtati). Obiectul nu este de vanzare.
 72704	Cercel Os de Dragon	Apararea ta va fi mai mare cu 200 de puncte pentru 2 ore (timpul se scurge doar daca cerceii sunt purtati). Obiectul nu este de vanzare.

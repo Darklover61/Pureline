@@ -4367,7 +4367,6 @@ VNUM	LOCALE_NAME
 50024	Trandafir
 50025	Ciocolata
 50026	Monede
-50027	Loz de loterie
 50028	Inel de aur 999
 50029	Inel de aur 750
 50030	Inel de aur 585

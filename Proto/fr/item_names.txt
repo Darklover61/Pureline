@@ -4367,7 +4367,6 @@ VNUM	LOCALE_NAME
 50024	Rose
 50025	Chocolat
 50026	Monnaie
-50027	Ticket de loterie
 50028	Anneau d'Or 24 000
 50029	Anneau d'or 18 000
 50030	Anneau d'or 14 000

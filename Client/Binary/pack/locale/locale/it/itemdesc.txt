@@ -1338,7 +1338,6 @@
 45203	Turbante bianco +	Un turbante bianco resistente e di nobile fattura. Ideale per i guerrieri. Conferisce almeno un bonus scelto dalla sorte.
 45204	Foulard marrone +	Un foulard marrone di tessuto leggero. Ideale per le guerriere. Conferisce almeno un bonus scelto dalla sorte.
 45205	Foulard bianco +	Un foulard bianco di tessuto leggero. Ideale per le guerriere. Conferisce almeno un bonus scelto dalla sorte.
-50001	Libro della Fortuna	Un libro con numeri portafortuna. La lotteria è gestita dallo stato.
 50002	Anello d'Oro	Un semplice anello d'oro. | Può essere venduto al negozio per una somma altissima di Yang.
 50003	Annullamento Abilità	Permette di annullare le attuali abilità a favore di altre.
 50004	Cerca-Eventi	Questo oggetto ti mostra dove trovare le missioni.
@@ -1361,7 +1360,6 @@
 50023	Sacca di Soldi	Dentro c'è un sussidio d'inizio anno
 50024	Rosa	Un fiore romantico usato per dimostrare affetto. Possono usarli solo i personaggi femminili.
 50025	Cioccolato	Fatta con cacao, latte, burro e zucchero. La cioccolata è data per dimostrare affetto. Possono usarli solo i personaggi maschili.
-50027	Biglietto della Lotteria	Purtroppo non hai vinto. | Un oggetto senza valore.
 50031	Rosa	Un fiore spesso usato per dichiarare romanticamente i propri sentimenti. Possono usarlo solo i personaggi maschili.
 50032	Caramella	Un lecca lecca dolce.  Possono usarli solo i personaggi femminili.
 50033	Baule Misterioso	Un baule con incise delle strane lettere. Quando lo si apre salta fuori qualcosa.
@@ -2314,8 +2312,6 @@
 72312		
 72313		
 72314		
-72501	Anello Esperienza(iCafe)	Aumenta la raccolta di esperienza del 20 % per i membri del iCafe.
-72502	Guanti del Ladro(iCafe)	La quantità di oggetti razziati aumenta di 1,5 volte per i membri del iCafe.
 72701	Scarpe del Vento	Quando le indossi la tua velocità di movimento aumenta di 30.
 72703	Orecchini Osso di Tigre	Il tuo valore d'attacco aumenta di 200 punti per 2 ore (il tempo decorre a partire dal momento in cui indossi l'item). L'item non è commerciabile.
 72704	Orecchini Osso di Drago	Il tuo valore d'attacco aumenta di 200 punti per 2 ore (il tempo decorre a partire dal momento in cui indossi l'item). L'item non è commerciabile.

@@ -648,13 +648,6 @@ STAT_TOOLTIP_DEX	Saldýrý ve Savuþturma'yý arttýryor
 STAT_TOOLTIP_INT	SP, Büyülü Saldýrý ve Savunma'yý artýrýyor
 STAT_TOOLTIP_STR	Saldýrý Deðeri'ni ve Hasarý arttýrýyor
 SYMBOLLIST_TITLE	Lonca Bayraðý kaydedildi.
-SYSTEM_OPTION_CPU_TILING_1	CPU modu zayýf bilgisayarlarýn daha hýzlý çalýþmasýný saðlar.
-SYSTEM_OPTION_CPU_TILING_2	Eðer grafiklerde problem varsa diðer seçeneði iþaretleyiniz ,Sistem seçenekleri‘ veya ,CONFIG.exe‘
-SYSTEM_OPTION_CPU_TILING_3	ve GPU modunu seçin.
-SYSTEM_OPTION_GPU_TILING_1	GPU Modu zayýf bilgisayarlarý daha yavaþ çalýþtýrýr.
-SYSTEM_OPTION_GPU_TILING_2	Grafik ile ilgili sorunlarda, 'Sistem Seçenekleri' veya 'CONFIG.exe'yi seç
-SYSTEM_OPTION_GPU_TILING_3	GPU modunu deðiþtirin.
-SYSTEM_OPTION_TILING_EXIT	Tiling-Modu deðiþimi için oyun yeniden baþlatýlmalý.
 TARGET_BUTTON_ACCEPT_FIGHT	Anlaþma
 TARGET_BUTTON_AVENGE	Ýntikam
 TARGET_BUTTON_BUILDING_DESTROY	Yýkmak
@@ -794,8 +787,6 @@ TOOLTIP_ITEM_SLOW	Yavaþ
 TOOLTIP_ITEM_VERY_FAST	Çok Hýzlý
 TOOLTIP_ITEM_VERY_SLOW	Çok Yavaþ
 TOOLTIP_ITEM_WEARABLE_JOB	[ Giyilebilir ]
-TOOLTIP_LOTTERY_STEP_NUMBER	%d
-TOOLTIP_LOTTO_NUMBER	Þans Numarasý: %d
 TOOLTIP_MAGIC_ATTBONUS_PER	Büyü Saldýrý +%%%d	SA
 TOOLTIP_MAGIC_ATT_GRADE	Büyülü Saldýrý Deðeri +%d	SA
 TOOLTIP_MAGIC_DEF_GRADE	Büyü Savunmasý +%d	SA

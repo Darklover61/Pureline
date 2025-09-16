@@ -1338,7 +1338,6 @@
 45203	Hvid Turban+	En galant hvid turban, lavet af et materiale stærkt nok til krigere. Giver dig mindst en tilfældig bonus.
 45204	Brunt Tørklæde+	Et brunt tørklæde lavet af et let materiale, perfekt til kvindelige krigere. Giver dig mindst en tilfældig bonus.
 45205	Hvidt Tørklæde+	Et hvidt tørklæde lavet af et let materiale, perfekt til kvindelige krigere. Giver dig mindst en tilfældig bonus.
-50001	Lykkens bog	En bog med lykketal. Lotteriet bliver afholdt af regeringen.
 50002	Guldring	En simpel guldring. | Kan blive solgt for høj pris hos adskillige handelsmand.
 50003	Annulleringsdokument	Tillader at nulstille færdigheder for at kunne lære andre.
 50004	Begivenheds-detektor	Denne detektor, viser dig hvor en mission kan blive fundet.
@@ -1361,7 +1360,6 @@
 50023	Pung	Den indeholder en nytårsbonus.
 50024	Rose	En romantisk blomst der bruges til at vise ens hengivelse. Kun kvindlige karaktere kan bruge den.
 50025	Chokolade	Chokolade af kakao, mælk, smør og sukker. Chokolade bliver givet videre for at vise ens hengivelse. Kun mandlige karaktere kan bruge den.
-50027	Lotteriseddel	Desværre en nitte. | En værdiløs genstand.
 50031	Rose	En romantisk blomst der bruges til at vise ens hengivelse. Kun mandlige karaktere kan bruge den.
 50032	Slik	en sød bonbon. Kun kvindlige karaktere kan bruge den.
 50033	Hemmelighedsfuld kiste	En kiste med indgraverede bogstaver. Når kisten åbnes, hopper noget ud.
@@ -2314,8 +2312,6 @@
 72312		
 72313		
 72314		
-72501	Erfaringsring (iCafe)	Øger sandsynligheden for medlemmer af iCafe med 20%.
-72502	Tyvens handsker (iCafe)	Sandsynligheden for at finde genstande er 1½-gange højere for medlemmer af iCafe.
 72701	Vindsko	Øger bevægelseshastigheden med 30.
 72703	Tigerknogleørering	Din angreb vil blive øget med 200 point for 2 timer (Tiden går kun når det bliver båret). Denne genstand er ikke omsættelige.
 72704	Drageknogleørering	Din forsvar vil blive øget med 200 point for 2 timer (Tiden går kun når det bliver båret). Denne genstand er ikke omsættelige.

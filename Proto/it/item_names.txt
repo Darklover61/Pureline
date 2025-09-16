@@ -4367,7 +4367,6 @@ VNUM	LOCALE_NAME
 50024	Rosa
 50025	Cioccolato
 50026	Monete
-50027	Biglietto della Lotteria
 50028	Anello d'Oro 24k
 50029	Anello d'Oro 18k
 50030	Anello d'Oro 14k

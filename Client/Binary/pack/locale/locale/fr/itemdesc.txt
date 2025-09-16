@@ -1086,7 +1086,6 @@
 45167	Bonnet de lièvre alpin+	Couvre-chef en forme de lièvre alpin. Vous confère au minimum un bonus aléatoire.
 45168	Bonnet d'ours blanc+	Couvre-chef en forme d'ours blanc. Vous confère au minimum un bonus aléatoire.
 45169	Bonnet d'once+	Couvre-chef en forme d'once. Vous confère au minimum un bonus aléatoire.
-50001	Livre de Bonne fortune	Un livre contenant des numéros de loterie gagnants. La loterie est organisée par le gouvernement.
 50002	Anneau d'or	Vous pourrez le vendre dans une échoppe pour un bon prix.
 50003	Doc. oubli des compét.	Vous autorise à remettre vos améliorations à niveau pour en apprendre des nouveaux.
 50004	Détecteur d'évènement	Cet objet vous montre ou vous pourrez trouver de nouvelles missions.
@@ -1109,7 +1108,6 @@
 50023	Bourse de Yangs	Une somme de Yangs donnés en étrennes sont contenus dans cette bourse.
 50024	Rose	Une fleur romantique que l'on donne pour témoigner de son amour. Seules les femmes peuvent utiliser cet objet.
 50025	Chocolat	Une sucrerie faite à partir de cacao, de lait, de beurre et de sucre. Le chocolat s'offre en gage d'affection. Seuls les hommes peuvent utiliser cet objet.
-50027	Ticket de loterie	L'échange de tickets de loterie ne se fait pas dans le jeu. C'est un objet inutile.
 50031	Rose	Une fleur romantique utilisée pour témoigner de son amour. Seuls les hommes peuvent l'utiliser.
 50032	Bonbon	Une sucrerie très appréciée qui s'offre en gage d'affection. Seules les femmes peuvent utiliser cet objet.
 50033	Boîte mystérieuse	Une boîte avec une lettre étrange gravée dessus. Quelque chose va apparaître si la boîte est ouverte.
@@ -1973,8 +1971,6 @@
 72312		
 72313		
 72314		
-72501	Anneau d'exp.(iCafé)	Augmente les gains d'EXP de 20% d'un joueur d'un CyberCafé.
-72502	Gants de voleur (iCafé)	La quantité d'objets lâchés est multipliée par 1,5 pour un joueur d'un CyberCafé.
 72701	Bottes du vent	Augmentez votre vitesse de 30 lorsqu'elles sont à vos pieds.
 72703	Boucles en os de tigre	Votre valeur d'attaque est augmentée de 200 points pendant 2 heures (le temps n'est décompté que lorsque l'objet est porté). Cet objet n'est pas négociable.
 72704	Boucles en os de dragon	Votre valeur de défense est augmentée de 200 points pendant 2 heures (le temps n'est décompté que lorsque l'objet est porté). Cet objet n'est pas négociable.
