@@ -1,14 +1,13 @@
 +----------------------------------------------------------------+
 | Kaptan Yosun's Pureline                                        |
 +----------------------------------------------------------------+
-	14.09.2025 (Initial Release)
-	~ Much better folder hierarchy and structure.
-	~ Fixed all build errors.
-	~ Fixed quest compilation on Windows
-	~ [YOSUN_PACK_FIX_001] ("Python int too large to convert to C long")
-	~ Some UiScripts are now read from Root/UiScript instead of locale/xx
-		* loadingwindow.py
-	~ Atlasinfo.txt is now read from root instead of locale/xx
+	16.09.2025
+	~ item_list.txt is now read from locale/common instead of each locale folder, preventing duplication.
+	~ skilltable.txt is now read from locale/common instead of each locale folder, preventing duplication.
+	~ Removed some code
+		* Teen
+		* nProtect_GameGuard
+		* Software Tiling
 
 	15.09.2025
 	~ Removed some code
@@ -20,10 +19,11 @@
 		* PC_Bang
 		* Lottery
 
-	16.09.2025
-	~ item_list.txt is now read from locale/common instead of each locale folder, preventing duplication.
-	~ skilltable.txt is now read from locale/common instead of each locale folder, preventing duplication.
-	~ Removed some code
-		* Teen
-		* nProtect_GameGuard
-		* Software Tiling
+	14.09.2025 (Initial Release)
+	~ Much better folder hierarchy and structure.
+	~ Fixed all build errors.
+	~ Fixed quest compilation on Windows
+	~ [YOSUN_PACK_FIX_001] ("Python int too large to convert to C long")
+	~ Some UiScripts are now read from Root/UiScript instead of locale/xx
+		* loadingwindow.py
+	~ Atlasinfo.txt is now read from root instead of locale/xx
