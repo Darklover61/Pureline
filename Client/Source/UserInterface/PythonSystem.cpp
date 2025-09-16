@@ -320,7 +320,6 @@ void CPythonSystem::SetDefaultConfig()
 	m_Config.voice_volume		= 3;
 
 	m_Config.bDecompressDDS		= 0;
-	m_Config.bSoftwareTiling	= 0;
 	m_Config.iShadowLevel		= 5;
 	m_Config.bViewChat			= true;
 	m_Config.bAlwaysShowName	= true;
@@ -371,38 +370,6 @@ bool CPythonSystem::IsShowSalesText()
 void CPythonSystem::SetShowSalesTextFlag (int iFlag)
 {
 	m_Config.bShowSalesText = iFlag == 1 ? true : false;
-}
-
-bool CPythonSystem::IsAutoTiling()
-{
-	if (m_Config.bSoftwareTiling == 0)
-	{
-		return true;
-	}
-
-	return false;
-}
-
-void CPythonSystem::SetSoftwareTiling (bool isEnable)
-{
-	if (isEnable)
-	{
-		m_Config.bSoftwareTiling = 1;
-	}
-	else
-	{
-		m_Config.bSoftwareTiling = 2;
-	}
-}
-
-bool CPythonSystem::IsSoftwareTiling()
-{
-	if (m_Config.bSoftwareTiling == 1)
-	{
-		return true;
-	}
-
-	return false;
 }
 
 bool CPythonSystem::IsUseDefaultIME()
@@ -501,10 +468,6 @@ bool CPythonSystem::LoadConfig()
 		{
 			m_Config.bUseDefaultIME = atoi (value) == 1 ? true : false;
 		}
-		else if (!stricmp (command, "SOFTWARE_TILING"))
-		{
-			m_Config.bSoftwareTiling = atoi (value);
-		}
 		else if (!stricmp (command, "SHADOW_LEVEL"))
 		{
 			m_Config.iShadowLevel = atoi (value);
@@ -596,7 +559,6 @@ bool CPythonSystem::SaveConfig()
 	fprintf (fp, "SHOW_DAMAGE\t\t\t\t%d\n", m_Config.bShowDamage);
 	fprintf (fp, "SHOW_SALESTEXT\t\t\t%d\n", m_Config.bShowSalesText);
 	fprintf (fp, "USE_DEFAULT_IME\t\t\t%d\n", m_Config.bUseDefaultIME);
-	fprintf (fp, "SOFTWARE_TILING\t\t\t%d\n", m_Config.bSoftwareTiling);
 	fprintf (fp, "SHADOW_LEVEL\t\t\t%d\n", m_Config.iShadowLevel);
 	fprintf (fp, "\n");
 

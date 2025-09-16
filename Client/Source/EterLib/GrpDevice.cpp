@@ -7,7 +7,6 @@ bool GRAPHICS_CAPS_CAN_NOT_DRAW_LINE = false;
 bool GRAPHICS_CAPS_CAN_NOT_DRAW_SHADOW = false;
 bool GRAPHICS_CAPS_HALF_SIZE_IMAGE = false;
 bool GRAPHICS_CAPS_CAN_NOT_TEXTURE_ADDRESS_BORDER = false;
-bool GRAPHICS_CAPS_SOFTWARE_TILING = false;
 
 D3DPRESENT_PARAMETERS g_kD3DPP;
 bool g_isBrowserMode = false;
@@ -311,21 +310,10 @@ BOOL EL3D_ConfirmDevice (D3DCAPS8& rkD3DCaps, UINT uBehavior, D3DFORMAT /*eD3DFm
 			return FALSE;
 		}
 
-		// Software T&L Support - ATI NOT SUPPORT CLIP, USE DIRECTX SOFTWARE PROCESSING CLIPPING
-		if (GRAPHICS_CAPS_SOFTWARE_TILING)
+		// Shadow/Terrain
+		if (! (rkD3DCaps.VertexProcessingCaps & D3DVTXPCAPS_TEXGEN))
 		{
-			if (! (rkD3DCaps.PrimitiveMiscCaps & D3DPMISCCAPS_CLIPTLVERTS))
-			{
-				return FALSE;
-			}
-		}
-		else
-		{
-			// Shadow/Terrain
-			if (! (rkD3DCaps.VertexProcessingCaps & D3DVTXPCAPS_TEXGEN))
-			{
-				return FALSE;
-			}
+			return FALSE;
 		}
 	}
 

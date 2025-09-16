@@ -24,3 +24,4 @@
 	~ Removed some code
 		* Teen
 		* nProtect_GameGuard
+		* Software Tiling

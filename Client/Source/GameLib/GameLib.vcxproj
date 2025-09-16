@@ -155,7 +155,6 @@
     <ClCompile Include="MapOutdoorQuadtree.cpp" />
     <ClCompile Include="MapOutdoorRender.cpp" />
     <ClCompile Include="MapOutdoorRenderHTP.cpp" />
-    <ClCompile Include="MapOutdoorRenderSTP.cpp" />
     <ClCompile Include="MapOutdoorUpdate.cpp" />
     <ClCompile Include="MapOutdoorWater.cpp" />
     <ClCompile Include="MapType.cpp" />

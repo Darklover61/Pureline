@@ -31,7 +31,6 @@ CMapOutdoor& CMapManager::GetMapOutdoorRef()
 CMapManager::CMapManager() : mc_pcurEnvironmentData (NULL)
 {
 	m_pkMap = NULL;
-	m_isSoftwareTilingEnableReserved = false;
 
 	//	Initialize();
 }
@@ -40,17 +39,6 @@ CMapManager::~CMapManager()
 {
 	Destroy();
 }
-
-bool CMapManager::IsSoftwareTilingEnable()
-{
-	return CTerrainPatch::SOFTWARE_TRANSFORM_PATCH_ENABLE;
-}
-
-void CMapManager::ReserveSoftwareTilingEnable (bool isEnable)
-{
-	m_isSoftwareTilingEnableReserved = isEnable;
-}
-
 
 void CMapManager::Initialize()
 {
@@ -66,8 +54,6 @@ void CMapManager::Create()
 		Clear();
 		return;
 	}
-
-	CTerrainPatch::SOFTWARE_TRANSFORM_PATCH_ENABLE = m_isSoftwareTilingEnableReserved;
 
 	m_pkMap = (CMapOutdoor*)AllocMap();
 
@@ -255,7 +241,7 @@ void CMapManager::BeginEnvironment()
 	{
 		ms_lpd3dDevice->LightEnable (0, TRUE);
 
-		rkMap.ApplyLight ((DWORD)mc_pcurEnvironmentData, mc_pcurEnvironmentData->DirLights[ENV_DIRLIGHT_BACKGROUND]);
+		rkMap.ApplyLight (mc_pcurEnvironmentData->DirLights[ENV_DIRLIGHT_BACKGROUND]);
 	}
 	else
 	{

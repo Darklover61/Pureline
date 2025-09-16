@@ -8,44 +8,9 @@
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
-
-CTerrainPatch::SSoftwareTransformPatch::SSoftwareTransformPatch()
-{
-	__Initialize();
-}
-
-CTerrainPatch::SSoftwareTransformPatch::~SSoftwareTransformPatch()
-{
-	Destroy();
-}
-
-void CTerrainPatch::SSoftwareTransformPatch::Create()
-{
-	assert (NULL == m_akTerrainVertex);
-	m_akTerrainVertex = new SoftwareTransformPatch_SSourceVertex[TERRAIN_VERTEX_COUNT];
-}
-
-void CTerrainPatch::SSoftwareTransformPatch::Destroy()
-{
-	if (m_akTerrainVertex)
-	{
-		delete [] m_akTerrainVertex;
-	}
-
-	__Initialize();
-}
-
-void CTerrainPatch::SSoftwareTransformPatch::__Initialize()
-{
-	m_akTerrainVertex = NULL;
-}
-
-bool CTerrainPatch::SOFTWARE_TRANSFORM_PATCH_ENABLE = TRUE;
-
 void CTerrainPatch::Clear()
 {
 	m_kHT.m_kVB.Destroy();
-	m_kST.Destroy();
 
 	m_WaterVertexBuffer.Destroy();
 	ClearID();
@@ -84,28 +49,7 @@ void CTerrainPatch::BuildWaterVertexBuffer (SWaterVertex* akSrcVertex, UINT uWat
 
 void CTerrainPatch::BuildTerrainVertexBuffer (HardwareTransformPatch_SSourceVertex* akSrcVertex)
 {
-	if (SOFTWARE_TRANSFORM_PATCH_ENABLE)
-	{
-		__BuildSoftwareTerrainVertexBuffer (akSrcVertex);
-	}
-	else
-	{
-		__BuildHardwareTerrainVertexBuffer (akSrcVertex);
-	}
-}
-
-void CTerrainPatch::__BuildSoftwareTerrainVertexBuffer (HardwareTransformPatch_SSourceVertex* akSrcVertex)
-{
-	//DWORD dwVBSize=sizeof(HardwareTransformPatch_SSourceVertex)*TERRAIN_VERTEX_COUNT;
-
-	m_kST.Create();
-
-	SoftwareTransformPatch_SSourceVertex* akDstVertex = SoftwareTransformPatch_GetTerrainVertexDataPtr();
-	for (UINT uIndex = 0; uIndex != TERRAIN_VERTEX_COUNT; ++uIndex)
-	{
-		* ((HardwareTransformPatch_SSourceVertex*) (akDstVertex + uIndex)) = * (akSrcVertex + uIndex);
-		akDstVertex[uIndex].dwDiffuse = 0xFFFFFFFF;
-	}
+	__BuildHardwareTerrainVertexBuffer (akSrcVertex);
 }
 
 void CTerrainPatch::__BuildHardwareTerrainVertexBuffer (HardwareTransformPatch_SSourceVertex* akSrcVertex)
@@ -125,70 +69,6 @@ void CTerrainPatch::__BuildHardwareTerrainVertexBuffer (HardwareTransformPatch_S
 		memcpy (akDstVertex, akSrcVertex, uVBSize);
 		rkVB.Unlock();
 	}
-}
-
-void CTerrainPatch::SoftwareTransformPatch_UpdateTerrainLighting (DWORD dwVersion, const D3DLIGHT8& c_rkLight, const D3DMATERIAL8& c_rkMtrl)
-{
-	if (m_dwVersion == dwVersion)
-	{
-		return;
-	}
-
-	m_dwVersion = dwVersion;
-
-	SoftwareTransformPatch_SSourceVertex* akSrcVertex = SoftwareTransformPatch_GetTerrainVertexDataPtr();
-	if (!akSrcVertex)
-	{
-		return;
-	}
-
-	D3DXVECTOR3 kLightDir = c_rkLight.Direction;
-
-
-	DWORD dwDot;
-	DWORD dwAmbientR = (c_rkMtrl.Ambient.r * c_rkLight.Ambient.r + c_rkMtrl.Emissive.r) * 255.0f;
-	DWORD dwAmbientG = (c_rkMtrl.Ambient.g * c_rkLight.Ambient.g + c_rkMtrl.Emissive.g) * 255.0f;
-	DWORD dwAmbientB = (c_rkMtrl.Ambient.b * c_rkLight.Ambient.b + c_rkMtrl.Emissive.b) * 255.0f;
-	DWORD dwDiffuseR = (c_rkMtrl.Diffuse.r * c_rkLight.Diffuse.r) * 255.0f;
-	DWORD dwDiffuseG = (c_rkMtrl.Diffuse.g * c_rkLight.Diffuse.g) * 255.0f;
-	DWORD dwDiffuseB = (c_rkMtrl.Diffuse.b * c_rkLight.Diffuse.b) * 255.0f;
-
-	if (dwDiffuseR > 255 - dwAmbientR)
-	{
-		dwDiffuseR = 255 - dwAmbientR;
-	}
-
-	if (dwDiffuseG + dwAmbientG > 255)
-	{
-		dwDiffuseG = 255 - dwAmbientG;
-	}
-
-	if (dwDiffuseB + dwAmbientB > 255)
-	{
-		dwDiffuseB = 255 - dwAmbientB;
-	}
-
-	for (UINT uIndex = 0; uIndex != CTerrainPatch::TERRAIN_VERTEX_COUNT; ++uIndex)
-	{
-		float fDot = D3DXVec3Dot (&akSrcVertex[uIndex].kNormal, &kLightDir);
-
-		const float N = 0xffffff;
-		const int S = 24;
-		if (fDot < 0.0f)
-		{
-			dwDot = (N * -fDot);
-		}
-		else
-		{
-			dwDot = (N * +fDot);
-		}
-
-		akSrcVertex[uIndex].dwDiffuse = (0xff000000) |
-										(((dwDiffuseR * dwDot >> S) + dwAmbientR) << 16) |
-										(((dwDiffuseG * dwDot >> S) + dwAmbientG) << 8) |
-										((dwDiffuseB * dwDot >> S) + dwAmbientB);
-	}
-
 }
 
 UINT CTerrainPatch::GetWaterFaceCount()
@@ -226,29 +106,11 @@ bool CTerrainPatchProxy::IsIn (const D3DXVECTOR3& c_rv3Target, float fRadius)
 	return false;
 }
 
-void CTerrainPatchProxy::SoftwareTransformPatch_UpdateTerrainLighting (DWORD dwVersion, const D3DLIGHT8& c_rkLight, const D3DMATERIAL8& c_rkMtrl)
-{
-	if (m_pTerrainPatch)
-	{
-		m_pTerrainPatch->SoftwareTransformPatch_UpdateTerrainLighting (dwVersion, c_rkLight, c_rkMtrl);
-	}
-}
-
 CGraphicVertexBuffer* CTerrainPatchProxy::HardwareTransformPatch_GetVertexBufferPtr()
 {
 	if (m_pTerrainPatch)
 	{
 		return m_pTerrainPatch->HardwareTransformPatch_GetVertexBufferPtr();
-	}
-
-	return NULL;
-}
-
-SoftwareTransformPatch_SSourceVertex* CTerrainPatchProxy::SoftwareTransformPatch_GetTerrainVertexDataPtr()
-{
-	if (m_pTerrainPatch)
-	{
-		return m_pTerrainPatch->SoftwareTransformPatch_GetTerrainVertexDataPtr();
 	}
 
 	return NULL;

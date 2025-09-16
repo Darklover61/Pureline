@@ -54,15 +54,7 @@ void CMapOutdoor::RenderTerrain()
 	// 거리순 정렬
 	std::sort (m_PatchVector.begin(), m_PatchVector.end());
 
-	// 그리기 위한 벡터 세팅
-	if (CTerrainPatch::SOFTWARE_TRANSFORM_PATCH_ENABLE)
-	{
-		__RenderTerrain_RenderSoftwareTransformPatch();
-	}
-	else
-	{
-		__RenderTerrain_RenderHardwareTransformPatch();
-	}
+	__RenderTerrain_RenderHardwareTransformPatch();
 }
 
 void CMapOutdoor::__RenderTerrain_RecurseRenderQuadTree (CTerrainQuadtreeNode *Node, bool bCullCheckNeed)
@@ -154,9 +146,8 @@ void CMapOutdoor::__RenderTerrain_AppendPatch (const D3DXVECTOR3& c_rv3Center, f
 	m_PatchVector.push_back (std::make_pair (fDistance, lPatchNum));
 }
 
-void CMapOutdoor::ApplyLight (DWORD dwVersion, const D3DLIGHT8& c_rkLight)
+void CMapOutdoor::ApplyLight (const D3DLIGHT8& c_rkLight)
 {
-	m_kSTPD.m_dwLightVersion = dwVersion;
 	STATEMANAGER.SetLight (0, &c_rkLight);
 }
 

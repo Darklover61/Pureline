@@ -78,15 +78,10 @@ CMapOutdoor::CMapOutdoor()
 	m_BuildingTransparentImageInstance.SetImagePointer (pBuildTransparentImage);
 
 	Initialize();
-
-	__SoftwareTransformPatch_Initialize();
-	__SoftwareTransformPatch_Create();
 }
 
 CMapOutdoor::~CMapOutdoor()
 {
-	__SoftwareTransformPatch_Destroy();
-
 	// 2004.10.14.myevan.TEMP_CAreaLoaderThread
 	//ms_AreaLoaderThread.Shutdown();
 	Destroy();
