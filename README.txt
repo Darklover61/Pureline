@@ -39,6 +39,7 @@
 | PC_Bang            [+ Dump Proto] | YES    | YES    | YES  |
 | Lottery            [+ Dump Proto] | YES    | YES    | YES  |
 | Teen                              | YES    | NO     | NO   |
+| nProtect_GameGuard                | NO     | YES    | NO   |
 |                                   |        |        |      |
 +-----------------------------------+--------+--------+------+
 

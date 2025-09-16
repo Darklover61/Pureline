@@ -212,7 +212,6 @@
     <ClInclude Include="MarkManager.h" />
     <ClInclude Include="MovieMan.h" />
     <ClInclude Include="NetworkActorManager.h" />
-    <ClInclude Include="NProtectGameGuard.h" />
     <ClInclude Include="Packet.h" />
     <ClInclude Include="ProcessCRC.h" />
     <ClInclude Include="ProcessScanner.h" />
@@ -265,7 +264,6 @@
     <ClCompile Include="MarkManager.cpp" />
     <ClCompile Include="MovieMan.cpp" />
     <ClCompile Include="NetworkActorManager.cpp" />
-    <ClCompile Include="NProtectGameGuard.cpp" />
     <ClCompile Include="ProcessCRC.cpp" />
     <ClCompile Include="ProcessScanner.cpp" />
     <ClCompile Include="PythonApplication.cpp" />
