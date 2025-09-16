@@ -22,7 +22,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{FDF84D
 		Server\Source\common\singleton.h = Server\Source\common\singleton.h
 		Server\Source\common\stl.h = Server\Source\common\stl.h
 		Server\Source\common\tables.h = Server\Source\common\tables.h
-		Server\Source\common\teen_packet.h = Server\Source\common\teen_packet.h
 		Server\Source\common\utils.h = Server\Source\common\utils.h
 		Server\Source\common\VnumHelper.h = Server\Source\common\VnumHelper.h
 	EndProjectSection

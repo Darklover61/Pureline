@@ -223,9 +223,6 @@
     <ClCompile Include="input_p2p.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="input_teen.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="input_udp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

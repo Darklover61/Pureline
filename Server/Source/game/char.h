@@ -28,9 +28,6 @@ class CPetSystem;
 #define AI_FLAG_HELPER				(1 << 2)
 #define AI_FLAG_STAYZONE			(1 << 3)
 
-
-#define SET_OVER_TIME(ch, time)	(ch)->SetOverTime(time)
-
 extern int g_nPortalLimitTime;
 
 enum
@@ -509,12 +506,6 @@ namespace marriage
 {
 	class WeddingMap;
 }
-enum e_overtime
-{
-	OT_NONE,
-	OT_3HOUR,
-	OT_5HOUR,
-};
 
 class CHARACTER : public CEntity, public CFSM, public CHorseRider
 {
@@ -2226,22 +2217,6 @@ class CHARACTER : public CEntity, public CFSM, public CHorseRider
 
 	public:
 		bool IsSiegeNPC() const;
-
-	private:
-		//중국 전용
-		//18세 미만 전용
-		//3시간 : 50 % 5 시간 0%
-		e_overtime m_eOverTime;
-
-	public:
-		bool IsOverTime (e_overtime e) const
-		{
-			return (e == m_eOverTime);
-		}
-		void SetOverTime (e_overtime e)
-		{
-			m_eOverTime = e;
-		}
 
 	private:
 		int		m_deposit_pulse;

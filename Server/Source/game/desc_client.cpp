@@ -16,7 +16,6 @@ extern LPFDWATCH	main_fdw;
 
 LPCLIENT_DESC db_clientdesc = NULL;
 LPCLIENT_DESC g_pkAuthMasterDesc = NULL;
-LPCLIENT_DESC g_TeenDesc		= NULL;
 LPCLIENT_DESC g_PasspodDesc = NULL;
 
 static const char* GetKnownClientDescName (LPCLIENT_DESC desc)
@@ -28,10 +27,6 @@ static const char* GetKnownClientDescName (LPCLIENT_DESC desc)
 	else if (desc == g_pkAuthMasterDesc)
 	{
 		return "g_pkAuthMasterDesc";
-	}
-	else if (desc == g_TeenDesc)
-	{
-		return "g_TeenDesc";
 	}
 	else if (desc == g_PasspodDesc)
 	{
@@ -255,12 +250,6 @@ void CLIENT_DESC::SetPhase (int iPhase)
 		case PHASE_CLOSE:
 			m_pInputProcessor = NULL;
 			break;
-
-		case PHASE_TEEN:
-			m_inputTeen.SetStep (0);
-			m_pInputProcessor = &m_inputTeen;
-			break;
-
 	}
 
 	m_iPhase = iPhase;

@@ -1,6 +1,5 @@
 #include "stdafx.h"
 
-#include "../../common/teen_packet.h"
 #include "../../common/VnumHelper.h"
 
 #include "char.h"
@@ -345,8 +344,6 @@ void CHARACTER::Initialize()
 	InitMC();
 
 	m_deposit_pulse = 0;
-
-	SET_OVER_TIME (this, OT_NONE);
 
 	m_strNewName = "";
 
@@ -1458,24 +1455,6 @@ void CHARACTER::Disconnect (const char* c_pszReason)
 	CTargetManager::instance().Logout (GetPlayerID());
 
 	MessengerManager::instance().Logout (GetName());
-
-	if (g_TeenDesc)
-	{
-		int		offset = 0;
-		char	buf[245] = {0};
-
-		buf[0] = HEADER_GT_LOGOUT;
-		offset += 1;
-
-		memset (buf + offset, 0x00, 2);
-		offset += 2;
-
-		TAccountTable	&acc_table = GetDesc()->GetAccountTable();
-		memcpy (buf + offset, &acc_table.id, 4);
-		offset += 4;
-
-		g_TeenDesc->Packet (buf, offset);
-	}
 
 	if (GetDesc())
 	{
@@ -3270,25 +3249,6 @@ void CHARACTER::PointChange (BYTE type, int amount, bool bAmount, bool bBroadcas
 			DWORD exp = GetExp();
 			DWORD next_exp = GetNextExp();
 
-			// 청소년보호
-			if (LC_IsNewCIBN())
-			{
-				if (IsOverTime (OT_NONE))
-				{
-					dev_log (LOG_DEB0, "<EXP_LOG> %s = NONE", GetName());
-				}
-				else if (IsOverTime (OT_3HOUR))
-				{
-					amount = (amount / 2);
-					dev_log (LOG_DEB0, "<EXP_LOG> %s = 3HOUR", GetName());
-				}
-				else if (IsOverTime (OT_5HOUR))
-				{
-					amount = 0;
-					dev_log (LOG_DEB0, "<EXP_LOG> %s = 5HOUR", GetName());
-				}
-			}
-
 			// exp가 0 이하로 가지 않도록 한다
 			if (amount < 0 && exp < -amount)
 			{
@@ -3577,25 +3537,6 @@ void CHARACTER::PointChange (BYTE type, int amount, bool bAmount, bool bBroadcas
 				sys_err ("[OVERFLOW_GOLD] OriGold %d AddedGold %d id %u Name %s ", GetGold(), amount, GetPlayerID(), GetName());
 				LogManager::instance().CharLog (this, GetGold() + amount, "OVERFLOW_GOLD", "");
 				return;
-			}
-
-			// 청소년보호
-			if (LC_IsNewCIBN() && amount > 0)
-			{
-				if (IsOverTime (OT_NONE))
-				{
-					dev_log (LOG_DEB0, "<GOLD_LOG> %s = NONE", GetName());
-				}
-				else if (IsOverTime (OT_3HOUR))
-				{
-					amount = (amount / 2);
-					dev_log (LOG_DEB0, "<GOLD_LOG> %s = 3HOUR", GetName());
-				}
-				else if (IsOverTime (OT_5HOUR))
-				{
-					amount = 0;
-					dev_log (LOG_DEB0, "<GOLD_LOG> %s = 5HOUR", GetName());
-				}
 			}
 
 			SetGold (GetGold() + amount);
@@ -5334,22 +5275,6 @@ void CHARACTER::OnClick (LPCHARACTER pkChrCauser)
 			return;
 		}
 	}
-
-	// 청소년은 퀘스트 못함
-	if (LC_IsNewCIBN())
-	{
-		if (pkChrCauser->IsOverTime (OT_3HOUR))
-		{
-			sys_log (0, "Teen OverTime : name = %s, hour = %d)", pkChrCauser->GetName(), 3);
-			return;
-		}
-		else if (pkChrCauser->IsOverTime (OT_5HOUR))
-		{
-			sys_log (0, "Teen OverTime : name = %s, hour = %d)", pkChrCauser->GetName(), 5);
-			return;
-		}
-	}
-
 
 	pkChrCauser->SetQuestNPCID (GetVID());
 
