@@ -34,9 +34,6 @@
     <ClCompile Include="blend_item.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="block_country.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="BlueDragon.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -532,9 +529,6 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="blend_item.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="block_country.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="BlueDragon.h">

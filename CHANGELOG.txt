@@ -1,6 +1,10 @@
 +----------------------------------------------------------------+
 | Kaptan Yosun's Pureline                                        |
 +----------------------------------------------------------------+
+	17.09.2025
+	~ Removed some code
+		* BlockCountryIp
+
 	16.09.2025
 	~ Updated SQL Dumps, fixed some "data truncated" errors.
 	~ item_list.txt is now read from locale/common instead of each locale folder, preventing duplication.

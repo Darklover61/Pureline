@@ -11,7 +11,7 @@
  Target Server Version : 50651 (5.6.51-log)
  File Encoding         : 65001
 
- Date: 17/09/2025 01:34:18
+ Date: 17/09/2025 17:32:19
 */
 
 SET NAMES utf8mb4;
@@ -61,19 +61,6 @@ INSERT INTO `account` VALUES (1, 'admin', '*E6CC90B878B948C35E92B003C792C46C58C4
 INSERT INTO `account` VALUES (2, 'test', '*E6CC90B878B948C35E92B003C792C46C58C4AF40', '1234567', '', '0000-00-00 00:00:00', 0, 'OK', '', 0, 0, 0, '0000-00-00 00:00:00', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 0, '', NULL, '2021-08-06 11:42:12');
 
 -- ----------------------------
--- Table structure for block_exception
--- ----------------------------
-DROP TABLE IF EXISTS `block_exception`;
-CREATE TABLE `block_exception`  (
-  `login` int(11) NULL DEFAULT NULL
-) ENGINE = MyISAM CHARACTER SET = big5 COLLATE = big5_chinese_ci ROW_FORMAT = Fixed;
-
--- ----------------------------
--- Records of block_exception
--- ----------------------------
-INSERT INTO `block_exception` VALUES (100);
-
--- ----------------------------
 -- Table structure for gametime
 -- ----------------------------
 DROP TABLE IF EXISTS `gametime`;
@@ -84,7 +71,7 @@ CREATE TABLE `gametime`  (
   `LimitDt` datetime NULL DEFAULT '1990-01-01 00:00:00',
   `Scores` int(11) NULL DEFAULT 0,
   PRIMARY KEY (`UserID`) USING BTREE
-) ENGINE = MyISAM CHARACTER SET = euckr COLLATE = euckr_korean_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM CHARACTER SET = euckr COLLATE = euckr_korean_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of gametime
@@ -107,7 +94,7 @@ CREATE TABLE `gametimeip`  (
   PRIMARY KEY (`ipid`) USING BTREE,
   UNIQUE INDEX `ip_uniq`(`ip`, `startIP`, `endIP`) USING BTREE,
   INDEX `ip_idx`(`ip`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = euckr COLLATE = euckr_korean_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = euckr COLLATE = euckr_korean_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of gametimeip
@@ -126,26 +113,11 @@ CREATE TABLE `gametimelog`  (
   `ip` varchar(15) CHARACTER SET gb2312 COLLATE gb2312_chinese_ci NOT NULL DEFAULT '000.000.000.000',
   `server` varchar(32) CHARACTER SET gb2312 COLLATE gb2312_chinese_ci NOT NULL DEFAULT '',
   INDEX `login_key`(`login`) USING BTREE
-) ENGINE = MyISAM CHARACTER SET = gb2312 COLLATE = gb2312_chinese_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM CHARACTER SET = gb2312 COLLATE = gb2312_chinese_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of gametimelog
 -- ----------------------------
-
--- ----------------------------
--- Table structure for iptocountry
--- ----------------------------
-DROP TABLE IF EXISTS `iptocountry`;
-CREATE TABLE `iptocountry`  (
-  `IP_FROM` varchar(16) CHARACTER SET big5 COLLATE big5_chinese_ci NULL DEFAULT NULL,
-  `IP_TO` varchar(16) CHARACTER SET big5 COLLATE big5_chinese_ci NULL DEFAULT NULL,
-  `COUNTRY_NAME` varchar(16) CHARACTER SET big5 COLLATE big5_chinese_ci NULL DEFAULT NULL
-) ENGINE = MyISAM CHARACTER SET = big5 COLLATE = big5_chinese_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of iptocountry
--- ----------------------------
-INSERT INTO `iptocountry` VALUES ('', '', '');
 
 -- ----------------------------
 -- Table structure for string
@@ -155,7 +127,7 @@ CREATE TABLE `string`  (
   `name` varchar(64) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT '',
   `text` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
   PRIMARY KEY (`name`) USING BTREE
-) ENGINE = MyISAM CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of string

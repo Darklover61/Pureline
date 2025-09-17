@@ -133,7 +133,6 @@
     <ClCompile Include="battle.cpp" />
     <ClCompile Include="BattleArena.cpp" />
     <ClCompile Include="blend_item.cpp" />
-    <ClCompile Include="block_country.cpp" />
     <ClCompile Include="BlueDragon.cpp" />
     <ClCompile Include="BlueDragon_Binder.cpp" />
     <ClCompile Include="buffer_manager.cpp" />
@@ -300,7 +299,6 @@
     <ClInclude Include="BattleArena.h" />
     <ClInclude Include="belt_inventory_helper.h" />
     <ClInclude Include="blend_item.h" />
-    <ClInclude Include="block_country.h" />
     <ClInclude Include="BlueDragon.h" />
     <ClInclude Include="BlueDragon_Binder.h" />
     <ClInclude Include="BlueDragon_Skill.h" />

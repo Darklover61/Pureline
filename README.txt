@@ -42,6 +42,7 @@
 | nProtect_GameGuard                | NO     | YES    | NO   |
 | Software Tiling                   | NO     | YES    | YES  |
 | libserverkey                      | YES    | NO     | NO   |
+| BlockCountryIp                    | YES    | NO     | NO   |
 |                                   |        |        |      |
 +-----------------------------------+--------+--------+------+
 
