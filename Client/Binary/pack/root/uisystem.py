@@ -1,7 +1,6 @@
 import net
 import app
 import ui
-import uiOption
 
 import uiSystemOption
 import uiGameOption

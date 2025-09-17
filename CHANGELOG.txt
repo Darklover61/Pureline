@@ -2,6 +2,8 @@
 | Kaptan Yosun's Pureline                                        |
 +----------------------------------------------------------------+
 	17.09.2025
+	~ Deleted some unused files
+		* uioption.py
 	~ Removed some code
 		* BlockCountryIp
 		* Mobile - SMS
