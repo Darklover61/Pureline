@@ -7,6 +7,7 @@
 	~ Removed some code
 		* BlockCountryIp
 		* Mobile - SMS
+		* Auth_Brazil & Auth_Japan
 
 	16.09.2025
 	~ Updated SQL Dumps, fixed some "data truncated" errors.

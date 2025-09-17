@@ -25,9 +25,6 @@ enum
 	// BLOCK_CHAT
 	QID_BLOCK_CHAT_LIST,
 	// END_OF_BLOCK_CHAT
-
-	QID_BRAZIL_CREATE_ID,
-	QID_JAPAN_CREATE_ID,
 };
 
 typedef struct SUseTime

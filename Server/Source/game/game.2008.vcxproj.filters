@@ -19,9 +19,6 @@
     <ClCompile Include="auction_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="auth_brazil.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="banword.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -511,9 +508,6 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="auction_packet.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="auth_brazil.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="banword.h">

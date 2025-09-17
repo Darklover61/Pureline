@@ -128,7 +128,6 @@
     <ClCompile Include="ani.cpp" />
     <ClCompile Include="arena.cpp" />
     <ClCompile Include="auction_manager.cpp" />
-    <ClCompile Include="auth_brazil.cpp" />
     <ClCompile Include="banword.cpp" />
     <ClCompile Include="battle.cpp" />
     <ClCompile Include="BattleArena.cpp" />
@@ -293,7 +292,6 @@
     <ClInclude Include="arena.h" />
     <ClInclude Include="auction_manager.h" />
     <ClInclude Include="auction_packet.h" />
-    <ClInclude Include="auth_brazil.h" />
     <ClInclude Include="banword.h" />
     <ClInclude Include="battle.h" />
     <ClInclude Include="BattleArena.h" />

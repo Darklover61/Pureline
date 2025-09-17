@@ -18,7 +18,6 @@
 #include "login_data.h"
 #include "locale_service.h"
 #include "spam.h"
-#include "auth_brazil.h"
 
 extern bool g_bNoPasspod;
 extern std::string g_stBlockDate;
@@ -753,22 +752,9 @@ void DBManager::AnalyzeReturnQuery (SQLMsg * pMsg)
 
 			if (pMsg->Get()->uiNumRows == 0)
 			{
-				if (true == LC_IsBrazil())
-				{
-					// 계정이 없으면 새로 만들어야 한다
-					ReturnQuery (QID_BRAZIL_CREATE_ID, qi->dwIdent, pinfo,
-								 "INSERT INTO account(login, password, social_id, create_time) "
-								 "VALUES('%s', password('%s'), '0000000', NOW()) ;",
-								 pinfo->login, pinfo->passwd);
-
-					sys_log (0, "[AUTH_BRAZIL] : Create A new AccountID From OnGame");
-				}
-				else
-				{
-					sys_log (0, "   NOID");
-					LoginFailure (d, "NOID");
-					M2_DELETE (pinfo);
-				}
+				sys_log (0, "   NOID");
+				LoginFailure (d, "NOID");
+				M2_DELETE (pinfo);
 			}
 			else
 			{
@@ -970,32 +956,9 @@ void DBManager::AnalyzeReturnQuery (SQLMsg * pMsg)
 
 			if (pMsg->Get()->uiNumRows == 0)
 			{
-				if (true == LC_IsBrazil())
-				{
-					// 계정이 없으면 새로 만들어야 한다
-					ReturnQuery (QID_BRAZIL_CREATE_ID, qi->dwIdent, pinfo,
-								 "INSERT INTO account(login, password, social_id, create_time) "
-								 "VALUES('%s', password('%s'), '0000000', NOW()) ;",
-								 pinfo->login, pinfo->passwd);
-
-					sys_log (0, "[AUTH_BRAZIL] : Create A new AccountID From OnGame");
-				}
-				else if (true == LC_IsJapan())
-				{
-					// 계정이 없으면 새로 만들어야 한다
-					ReturnQuery (QID_JAPAN_CREATE_ID, qi->dwIdent, pinfo,
-								 "INSERT INTO account(login, password, social_id, create_time) "
-								 "VALUES('%s', password('%s'), '0000000', NOW()) ;",
-								 pinfo->login, "^Aasl@(!$)djl!231fj!&#");
-
-					sys_log (0, "[AUTH_JAPAN] : Create A new AccountID From OGE");
-				}
-				else
-				{
-					sys_log (0, "   NOID");
-					LoginFailure (d, "NOID");
-					M2_DELETE (pinfo);
-				}
+				sys_log (0, "   NOID");
+				LoginFailure (d, "NOID");
+				M2_DELETE (pinfo);
 			}
 			else
 			{
@@ -1401,69 +1364,6 @@ void DBManager::AnalyzeReturnQuery (SQLMsg * pMsg)
 		}
 		break;
 		// END_OF_BLOCK_CHAT
-
-		case QID_BRAZIL_CREATE_ID :
-		{
-			TPacketCGLogin3 * pinfo = (TPacketCGLogin3*) qi->pvData ;
-
-			if (pMsg->Get()->uiAffectedRows == 0 || pMsg->Get()->uiAffectedRows == (uint32_t) -1)
-			{
-				LPDESC d = DESC_MANAGER::instance().FindByLoginKey (qi->dwIdent) ;
-				sys_log (0, "[AUTH_BRAZIL]   NOID") ;
-				sys_log (0, "[AUTH_BRAZIL] : Failed to create a new account %s", pinfo->login) ;
-				LoginFailure (d, "NOID") ;
-				M2_DELETE (pinfo);
-			}
-			else
-			{
-				sys_log (0, "[AUTH_BRAZIL] : Succeed to create a new account %s", pinfo->login) ;
-
-				ReturnQuery (QID_AUTH_LOGIN, qi->dwIdent, pinfo,
-							 "SELECT PASSWORD('%s'),password,securitycode,social_id,id,status,availDt - NOW() > 0,"
-							 "UNIX_TIMESTAMP(silver_expire),"
-							 "UNIX_TIMESTAMP(gold_expire),"
-							 "UNIX_TIMESTAMP(safebox_expire),"
-							 "UNIX_TIMESTAMP(autoloot_expire),"
-							 "UNIX_TIMESTAMP(fish_mind_expire),"
-							 "UNIX_TIMESTAMP(marriage_fast_expire),"
-							 "UNIX_TIMESTAMP(money_drop_rate_expire),"
-							 "UNIX_TIMESTAMP(create_time)"
-							 " FROM account WHERE login='%s'",
-							 pinfo->passwd, pinfo->login) ;
-			}
-		}
-		break;
-		case QID_JAPAN_CREATE_ID :
-		{
-			TPacketCGLogin3 * pinfo = (TPacketCGLogin3*) qi->pvData ;
-
-			if (pMsg->Get()->uiAffectedRows == 0 || pMsg->Get()->uiAffectedRows == (uint32_t) -1)
-			{
-				LPDESC d = DESC_MANAGER::instance().FindByLoginKey (qi->dwIdent) ;
-				sys_log (0, "[AUTH_JAPAN]   NOID") ;
-				sys_log (0, "[AUTH_JAPAN] : Failed to create a new account %s", pinfo->login) ;
-				LoginFailure (d, "NOID") ;
-				M2_DELETE (pinfo);
-			}
-			else
-			{
-				sys_log (0, "[AUTH_JAPAN] : Succeed to create a new account %s", pinfo->login) ;
-
-				ReturnQuery (QID_AUTH_LOGIN_OPENID, qi->dwIdent, pinfo,
-							 "SELECT PASSWORD('%s'),password,securitycode,social_id,id,status,availDt - NOW() > 0,"
-							 "UNIX_TIMESTAMP(silver_expire),"
-							 "UNIX_TIMESTAMP(gold_expire),"
-							 "UNIX_TIMESTAMP(safebox_expire),"
-							 "UNIX_TIMESTAMP(autoloot_expire),"
-							 "UNIX_TIMESTAMP(fish_mind_expire),"
-							 "UNIX_TIMESTAMP(marriage_fast_expire),"
-							 "UNIX_TIMESTAMP(money_drop_rate_expire),"
-							 "UNIX_TIMESTAMP(create_time)"
-							 " FROM account WHERE login='%s'",
-							 pinfo->passwd, pinfo->login) ;
-			}
-		}
-		break;
 
 		default:
 			sys_err ("FATAL ERROR!!! Unhandled return query id %d", qi->iType);
