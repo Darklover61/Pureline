@@ -1251,7 +1251,6 @@ CREATE TABLE `player`  (
   `alignment` int(11) NOT NULL DEFAULT 0,
   `last_play` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `change_name` tinyint(1) NOT NULL DEFAULT 0,
-  `mobile` varchar(24) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `sub_skill_point` smallint(3) NOT NULL DEFAULT 0,
   `stat_reset_count` tinyint(4) NOT NULL DEFAULT 0,
   `horse_hp` smallint(4) NOT NULL DEFAULT 0,
@@ -1316,7 +1315,6 @@ CREATE TABLE `player_deleted`  (
   `alignment` int(11) NOT NULL DEFAULT 0,
   `last_play` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `change_name` tinyint(1) NOT NULL DEFAULT 0,
-  `mobile` varchar(32) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `sub_skill_point` smallint(3) NOT NULL DEFAULT 0,
   `stat_reset_count` tinyint(4) NOT NULL DEFAULT 0,
   `horse_hp` smallint(4) NOT NULL DEFAULT 0,
@@ -2466,26 +2464,6 @@ INSERT INTO `skill_proto` VALUES (259, '??¹?¹ü?§200½º?³', 0, 1, 1, 0, 'HP
 INSERT INTO `skill_proto` VALUES (260, 'CURSH400½º?³', 0, 1, 1, 0, 'HP', '-5*k*atk', '', '', '', '12', '', '', 'ATTACK,USE_MELEE_DAMAGE,SPLASH,CRUSH', '', 'NONE', '', '', '', '', '', '', '', 0, 0, 'MELEE', 0, '1', 0, 600);
 INSERT INTO `skill_proto` VALUES (261, 'µ¶250½º?³', 0, 1, 1, 0, 'HP', '-5*k*atk', '', '', '', '10', '', '', 'ATTACK,USE_MELEE_DAMAGE,SPLASH,ATTACK_POISON', '', 'NONE', '80', '', '', '', '', '', '', 0, 0, 'MELEE', 0, '1', 0, 375);
 INSERT INTO `skill_proto` VALUES (262, 'SLOW300½º?³', 0, 1, 1, 0, 'HP', '-5*k*atk', '', '', '', '14', '', '', 'ATTACK,USE_MELEE_DAMAGE,SPLASH', '', 'MOV_SPEED', '-20', '10', '', '', '', '', '', 0, 0, 'MELEE', 0, '1', 0, 450);
-
--- ----------------------------
--- Table structure for sms_pool
--- ----------------------------
-DROP TABLE IF EXISTS `sms_pool`;
-CREATE TABLE `sms_pool`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `server` int(11) NOT NULL DEFAULT 0,
-  `sender` varchar(32) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `receiver` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT '',
-  `mobile` varchar(32) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `sent` enum('N','Y') CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT 'N',
-  `msg` varchar(80) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE,
-  INDEX `sent_idx`(`sent`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of sms_pool
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for string

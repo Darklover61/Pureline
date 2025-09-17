@@ -26,16 +26,6 @@ void CPythonMessenger::OnFriendLogout (const char* c_szKey)
 	}
 }
 
-void CPythonMessenger::SetMobile (const char* c_szKey, BYTE byState)
-{
-	m_FriendNameMap.insert (c_szKey);
-
-	if (m_poMessengerHandler)
-	{
-		PyCallClassMemberFunc (m_poMessengerHandler, "OnMobile", Py_BuildValue ("(isi)", MESSENGER_GRUOP_INDEX_FRIEND, c_szKey, byState));
-	}
-}
-
 BOOL CPythonMessenger::IsFriendByKey (const char* c_szKey)
 {
 	return m_FriendNameMap.end() != m_FriendNameMap.find (c_szKey);

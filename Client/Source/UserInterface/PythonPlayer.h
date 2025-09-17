@@ -399,11 +399,6 @@ class CPythonPlayer : public CSingleton<CPythonPlayer>, public IAbstractPlayer
 		DWORD	GetPKMode();
 
 
-		// Mobile
-		void	SetMobileFlag (BOOL bFlag);
-		BOOL	HasMobilePhoneNumber();
-
-
 		// Combo
 		void	SetComboSkillFlag (BOOL bFlag);
 
@@ -654,9 +649,6 @@ class CPythonPlayer : public CSingleton<CPythonPlayer>, public IAbstractPlayer
 
 		// Guild
 		DWORD					m_inGuildAreaID;
-
-		// Mobile
-		BOOL					m_bMobileFlag;
 
 		// System
 		BOOL					m_sysIsCoolTime;

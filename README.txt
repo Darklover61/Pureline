@@ -43,6 +43,7 @@
 | Software Tiling                   | NO     | YES    | YES  |
 | libserverkey                      | YES    | NO     | NO   |
 | BlockCountryIp                    | YES    | NO     | NO   |
+| Mobile - SMS                      | YES    | YES    | YES  |
 |                                   |        |        |      |
 +-----------------------------------+--------+--------+------+
 
