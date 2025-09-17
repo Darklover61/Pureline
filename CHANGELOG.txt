@@ -2,6 +2,8 @@
 | Kaptan Yosun's Pureline                                        |
 +----------------------------------------------------------------+
 	17.09.2025
+	~ Made some enums more readable in protoreader.
+	~ [YOSUN_SERVER_FIX_001] Fixed a typo
 	~ Deleted some unused files
 		* uioption.py
 	~ Removed some code
