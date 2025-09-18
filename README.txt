@@ -73,10 +73,11 @@
 |                       * Bug Fixes *                        |
 +------------------------------------------------------------+
 (TODO) [REVERSED] FOG_FIX          : Official fog mode fix to toggle fog on and off.
-(TODO) [REVERSED] LEVEL_UPDATE_FIX : Fixes an old bug where level is not immediately updated on screen.
+[REVERSED] LEVEL_UPDATE_FIX : Fixes an old bug where level is not immediately updated on screen. [Client + Server]
 (TODO) [FOG_TGA FIX]               : Fixes client crashing without a syserr while warping.
 
-[YOSUN_PACK_FIX_001]        : "Python int too large to convert to C long" error fix.
+[YOSUN_PACK_FIX_001]               : "Python int too large to convert to C long" error fix.
+[YOSUN_SERVER_FIX_001]             : Fixed a typo
 
 +------------------------------------------------------------+
 |                          * TODO *                          |

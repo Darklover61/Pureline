@@ -1,6 +1,9 @@
 +----------------------------------------------------------------+
 | Kaptan Yosun's Pureline                                        |
 +----------------------------------------------------------------+
+	18.09.2025
+	~ Added [REVERSED] LEVEL_UPDATE_FIX
+
 	17.09.2025
 	~ Made some enums more readable in protoreader.
 	~ [YOSUN_SERVER_FIX_001] Fixed a typo
