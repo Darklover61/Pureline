@@ -38,6 +38,7 @@ Client/Binary/imgui.ini
 Client/Binary/log.txt
 Client/Binary/syserr.txt
 Client/Binary/metin2.cfg
+Client/Binary/mouse.cfg
 Extern/Client/library/Discord*.*
 log/
 Client/Binary/channel.inf

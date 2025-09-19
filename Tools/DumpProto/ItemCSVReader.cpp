@@ -61,7 +61,7 @@ int get_Item_Type_Value(string inputString)
 		"ITEM_SPECIAL",			// 6
 		"ITEM_TOOL",			// 7
 		"ITEM_ELK",				// 8
-								   
+
 		"ITEM_METIN",			// 9
 		"ITEM_CONTAINER",		// 10
 		"ITEM_FISH",			// 11
@@ -72,7 +72,7 @@ int get_Item_Type_Value(string inputString)
 		"ITEM_SKILLBOOK",		// 16
 		"ITEM_QUEST",			// 17
 		"ITEM_POLYMORPH",		// 18
-								   
+
 		"ITEM_TREASURE_BOX",	// 19
 		"ITEM_TREASURE_KEY",	// 20
 		"ITEM_SKILLFORGET",		// 21
@@ -83,11 +83,11 @@ int get_Item_Type_Value(string inputString)
 		"ITEM_BLEND",			// 26
 		"ITEM_COSTUME",			// 27
 		"ITEM_DS",				// 28
-								   
+
 		"ITEM_SPECIAL_DS",		// 29
 		"ITEM_EXTRACT",			// 30
 		"ITEM_SECONDARY_COIN",	// 31
-								   
+
 		"ITEM_RING",			// 32
 		"ITEM_BELT"				// 33 (EItemTypes 33)
 	};
@@ -790,7 +790,9 @@ int get_Mob_Size_Value(string inputString)
 {
 	string arSize[] =
 	{
-		"SMALL", // @fix5
+		/* - YOSUN_DUMP_PROTO_FIX_001 -------------------------- */
+		"SMALL",
+		/* ----------------------------------------------------- */
 		"MEDIUM",
 		"BIG"
 	};
