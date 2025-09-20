@@ -1,6 +1,10 @@
 +----------------------------------------------------------------+
 | Kaptan Yosun's Pureline                                        |
 +----------------------------------------------------------------+
+	20.09.2025
+	~ Removed locale_name column from protos and a couple related functions
+	~ ETC_drop_item renewal. The file will use VNUM instead of Korean names.
+
 	18.09.2025
 	~ Added [REVERSED] LEVEL_UPDATE_FIX
 

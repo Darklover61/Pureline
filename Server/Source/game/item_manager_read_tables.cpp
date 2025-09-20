@@ -466,7 +466,7 @@ bool ITEM_MANAGER::ReadEtcDropItemFile (const char* c_pszFileName)
 
 	int lines = 0;
 
-	while (fgets (buf, 512, fp))
+	while (fgets (buf, sizeof(buf), fp))
 	{
 		++lines;
 
@@ -475,11 +475,10 @@ bool ITEM_MANAGER::ReadEtcDropItemFile (const char* c_pszFileName)
 			continue;
 		}
 
-		char szItemName[256];
+		DWORD dwItemVnum;
 		float fProb = 0.0f;
 
-		strlcpy (szItemName, buf, sizeof (szItemName));
-		char* cpTab = strrchr (szItemName, '\t');
+		char* cpTab = strrchr (buf, '\t');
 
 		if (!cpTab)
 		{
@@ -489,22 +488,20 @@ bool ITEM_MANAGER::ReadEtcDropItemFile (const char* c_pszFileName)
 		*cpTab = '\0';
 		fProb = atof (cpTab + 1);
 
-		if (!*szItemName || fProb == 0.0f)
+		if (!*buf || fProb <= 0.0f)
 		{
 			continue;
 		}
 
-		DWORD dwItemVnum;
-
-		if (!ITEM_MANAGER::instance().GetVnumByOriginalName (szItemName, dwItemVnum))
+		if (!str_to_number(dwItemVnum, buf))
 		{
-			sys_err ("No such an item (name: %s)", szItemName);
-			fclose (fp);
+			sys_err("Invalid VNUM: %s (line %d)", buf, lines);
+			fclose(fp);
 			return false;
 		}
 
 		m_map_dwEtcItemDropProb[dwItemVnum] = (DWORD) (fProb * 10000.0f);
-		sys_log (0, "ETC_DROP_ITEM: %s prob %f", szItemName, fProb);
+		sys_log (0, "ETC_DROP_ITEM: VNUM: %lu Prob: %f", dwItemVnum, fProb);
 	}
 
 	fclose (fp);
