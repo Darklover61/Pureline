@@ -572,7 +572,7 @@ void CHARACTER::Destroy()
 
 const char* CHARACTER::GetName() const
 {
-	return m_stName.empty() ? (m_pkMobData ? m_pkMobData->m_table.szLocaleName : "") : m_stName.c_str();
+	return m_stName.empty() ? (m_pkMobData ? m_pkMobData->m_table.szName : "") : m_stName.c_str();
 }
 
 void CHARACTER::OpenMyShop (const char* c_pszSign, TShopItemTable * pTable, BYTE bItemCount)

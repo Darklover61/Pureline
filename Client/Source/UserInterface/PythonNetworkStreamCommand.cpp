@@ -72,7 +72,7 @@ void AppendMonsterList (const CPythonNonPlayer::TMobTableList & c_rMobTableList,
 			{
 				strMonsterList += ", ";
 			}
-			strMonsterList += c_pMobTable->szLocaleName;
+			strMonsterList += c_pMobTable->szName;
 			if (++dwMonsterCount > 5)
 			{
 				break;

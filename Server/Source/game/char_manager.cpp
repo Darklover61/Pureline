@@ -340,7 +340,7 @@ LPCHARACTER CHARACTER_MANAGER::SpawnMobRandomPosition (DWORD dwVnum, long lMapIn
 		return NULL;
 	}
 
-	LPCHARACTER ch = CHARACTER_MANAGER::instance().CreateCharacter (pkMob->m_table.szLocaleName);
+	LPCHARACTER ch = CHARACTER_MANAGER::instance().CreateCharacter (pkMob->m_table.szName);
 
 	if (!ch)
 	{
@@ -450,7 +450,7 @@ LPCHARACTER CHARACTER_MANAGER::SpawnMob (DWORD dwVnum, long lMapIndex, long x, l
 		return NULL;
 	}
 
-	LPCHARACTER ch = CHARACTER_MANAGER::instance().CreateCharacter (pkMob->m_table.szLocaleName);
+	LPCHARACTER ch = CHARACTER_MANAGER::instance().CreateCharacter (pkMob->m_table.szName);
 
 	if (!ch)
 	{

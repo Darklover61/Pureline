@@ -249,7 +249,7 @@ DWORD CItemData::GetIndex() const
 
 const char* CItemData::GetName() const
 {
-	return m_ItemTable.szLocaleName;
+	return m_ItemTable.szName;
 }
 
 const char* CItemData::GetDescription() const

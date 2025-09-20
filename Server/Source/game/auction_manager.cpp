@@ -22,12 +22,12 @@ const char* auction_table_name[_AUCTION_MAX] = {"auction", "wish_auction", "my_a
 
 bool CompareItemInfoByItemNameAC (TAuctionItemInfo* i, TAuctionItemInfo* j)
 {
-	return (strcmp (i->item_proto->szLocaleName, j->item_proto->szLocaleName) < 0);
+	return (strcmp (i->item_proto->szName, j->item_proto->szName) < 0);
 }
 
 bool CompareItemInfoByItemNameDC (TAuctionItemInfo* i, TAuctionItemInfo* j)
 {
-	return (strcmp (i->item_proto->szLocaleName, j->item_proto->szLocaleName) > 0);
+	return (strcmp (i->item_proto->szName, j->item_proto->szName) > 0);
 }
 
 bool CompareItemInfoByCategoryAC (TAuctionItemInfo* i, TAuctionItemInfo* j)

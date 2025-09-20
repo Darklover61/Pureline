@@ -725,7 +725,7 @@ namespace quest
 			TItemTable* pTable = ITEM_MANAGER::instance().GetTable (dwVnum);
 			if (pTable)
 			{
-				lua_pushstring (L, pTable->szLocaleName);
+				lua_pushstring (L, pTable->szName);
 			}
 			else
 			{
@@ -748,7 +748,7 @@ namespace quest
 
 			if (pkMob)
 			{
-				lua_pushstring (L, pkMob->m_table.szLocaleName);
+				lua_pushstring (L, pkMob->m_table.szName);
 			}
 			else
 			{

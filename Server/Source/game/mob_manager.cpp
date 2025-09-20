@@ -33,7 +33,7 @@ void CMob::AddSkillSplash (int iIndex, DWORD dwTiming, DWORD dwHitDistance)
 	}
 
 	sys_log (0, "MOB_SPLASH %s idx %d timing %u hit_distance %u",
-			 m_table.szLocaleName, iIndex, dwTiming, dwHitDistance);
+			 m_table.szName, iIndex, dwTiming, dwHitDistance);
 
 	m_mobSkillInfo[iIndex].vecSplashAttack.push_back (TMobSplashAttackInfo (dwTiming, dwHitDistance));
 }
@@ -70,7 +70,7 @@ bool CMobManager::Initialize (TMobTable * pTable, int iSize)
 		thecore_memcpy (&pkMob->m_table, t, sizeof (TMobTable));
 
 		m_map_pkMobByVnum.insert (std::map<DWORD, CMob*>::value_type (t->dwVnum, pkMob));
-		m_map_pkMobByName.insert (std::map<std::string, CMob*>::value_type (t->szLocaleName, pkMob));
+		m_map_pkMobByName.insert (std::map<std::string, CMob*>::value_type (t->szName, pkMob));
 
 		int SkillCount = 0;
 
@@ -81,7 +81,7 @@ bool CMobManager::Initialize (TMobTable * pTable, int iSize)
 			}
 
 		sys_log (0, "MOB: #%-5d %-30s LEVEL %u HP %u DEF %u EXP %u DROP_ITEM_VNUM %u SKILL_COUNT %d",
-				 t->dwVnum, t->szLocaleName, t->bLevel, t->dwMaxHP, t->wDef, t->dwExp, t->dwDropItemVnum, SkillCount);
+				 t->dwVnum, t->szName, t->bLevel, t->dwMaxHP, t->wDef, t->dwExp, t->dwDropItemVnum, SkillCount);
 
 		if (t->bType == CHAR_TYPE_NPC || t->bType == CHAR_TYPE_WARP || t->bType == CHAR_TYPE_GOTO)
 		{

@@ -47,6 +47,8 @@ Client/Binary/keysave
 Client/Binary/ErrorLog.txt
 Client/Binary/screenshot/*.jpg
 Server/Binary/share/locale/english/quest/pre_qc/*
+Server/Binary/share/conf/*.txt
+Client/Binary/pack/locale/**/*_proto
 
 ## Symlinks
 Server/Binary/cores/**/*.exe

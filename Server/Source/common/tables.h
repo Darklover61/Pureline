@@ -482,7 +482,6 @@ typedef struct SEntityTable
 typedef struct SMobTable : public SEntityTable
 {
 	char	szName[CHARACTER_NAME_MAX_LEN + 1];
-	char	szLocaleName[CHARACTER_NAME_MAX_LEN + 1];
 
 	BYTE	bType;			// Monster, NPC
 	BYTE	bRank;			// PAWN, KNIGHT, KING
@@ -629,7 +628,6 @@ typedef struct SItemTable : public SEntityTable
 {
 	DWORD		dwVnumRange;
 	char        szName[ITEM_NAME_MAX_LEN + 1];
-	char	szLocaleName[ITEM_NAME_MAX_LEN + 1];
 	BYTE	bType;
 	BYTE	bSubType;
 

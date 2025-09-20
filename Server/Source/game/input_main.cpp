@@ -483,11 +483,11 @@ int CInputMain::Whisper (LPCHARACTER ch, const char* data, size_t uiBytes)
 						int len;
 						if (3 == processReturn) //교환중
 						{
-							len = snprintf (buf, sizeof (buf), LC_TEXT ("다른 거래중(창고,교환,상점)에는 개인상점을 사용할 수 없습니다."), pTable->szLocaleName);
+							len = snprintf (buf, sizeof (buf), LC_TEXT ("다른 거래중(창고,교환,상점)에는 개인상점을 사용할 수 없습니다."), pTable->szName);
 						}
 						else
 						{
-							len = snprintf (buf, sizeof (buf), LC_TEXT ("%s이 필요합니다."), pTable->szLocaleName);
+							len = snprintf (buf, sizeof (buf), LC_TEXT ("%s이 필요합니다."), pTable->szName);
 						}
 
 
@@ -508,7 +508,7 @@ int CInputMain::Whisper (LPCHARACTER ch, const char* data, size_t uiBytes)
 						ch->GetDesc()->BufferedPacket (&pack, sizeof (pack));
 						ch->GetDesc()->Packet (buf, len);
 
-						sys_log (0, "WHISPER: not enough %s: char: %s", pTable->szLocaleName, ch->GetName());
+						sys_log (0, "WHISPER: not enough %s: char: %s", pTable->szName, ch->GetName());
 					}
 				}
 
@@ -781,11 +781,11 @@ int CInputMain::Chat (LPCHARACTER ch, const char* data, size_t uiBytes)
 		{
 			if (3 == processReturn) //교환중
 			{
-				ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("다른 거래중(창고,교환,상점)에는 개인상점을 사용할 수 없습니다."), pTable->szLocaleName);
+				ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("다른 거래중(창고,교환,상점)에는 개인상점을 사용할 수 없습니다."), pTable->szName);
 			}
 			else
 			{
-				ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("%s이 필요합니다."), pTable->szLocaleName);
+				ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("%s이 필요합니다."), pTable->szName);
 			}
 
 		}

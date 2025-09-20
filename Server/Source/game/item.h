@@ -58,10 +58,6 @@ class CItem : public CEntity
 		int		GetShopBuyPrice();
 		const char* 	GetName()
 		{
-			return m_pProto ? m_pProto->szLocaleName : NULL;
-		}
-		const char* 	GetBaseName()
-		{
 			return m_pProto ? m_pProto->szName : NULL;
 		}
 		BYTE		GetSize()

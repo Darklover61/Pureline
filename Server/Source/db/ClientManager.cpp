@@ -28,7 +28,6 @@ extern int g_iItemCacheFlushSeconds;
 extern int g_test_server;
 extern int g_log;
 extern std::string g_stLocale;
-extern std::string g_stLocaleNameColumn;
 bool CreateItemTableFromRes (MYSQL_RES * res, std::vector<TPlayerItem>* pVec, DWORD dwPID);
 
 DWORD g_dwUsageMax = 0;
@@ -3527,7 +3526,6 @@ bool CClientManager::InitializeLocalization()
 				}
 
 				g_stLocale = "gb2312";
-				g_stLocaleNameColumn = "gb2312name";
 			}
 			else if (strcmp (locale.szValue, "ymir") == 0)
 			{
@@ -3539,7 +3537,6 @@ bool CClientManager::InitializeLocalization()
 				}
 
 				g_stLocale = "euckr";
-				g_stLocaleNameColumn = "name";
 			}
 			else if (strcmp (locale.szValue, "japan") == 0)
 			{
@@ -3551,7 +3548,6 @@ bool CClientManager::InitializeLocalization()
 				}
 
 				g_stLocale = "sjis";
-				g_stLocaleNameColumn = "locale_name";
 			}
 			else if (strcmp (locale.szValue, "english") == 0)
 			{
@@ -3563,7 +3559,6 @@ bool CClientManager::InitializeLocalization()
 				}
 
 				g_stLocale = "";
-				g_stLocaleNameColumn = "locale_name";
 			}
 			else if (strcmp (locale.szValue, "germany") == 0)
 			{
@@ -3575,7 +3570,6 @@ bool CClientManager::InitializeLocalization()
 				}
 
 				g_stLocale = "latin1";
-				g_stLocaleNameColumn = "locale_name";
 			}
 			else if (strcmp (locale.szValue, "france") == 0)
 			{
@@ -3587,7 +3581,6 @@ bool CClientManager::InitializeLocalization()
 				}
 
 				g_stLocale = "latin1";
-				g_stLocaleNameColumn = "locale_name";
 			}
 			else if (strcmp (locale.szValue, "italy") == 0)
 			{
@@ -3599,7 +3592,6 @@ bool CClientManager::InitializeLocalization()
 				}
 
 				g_stLocale = "latin1";
-				g_stLocaleNameColumn = "locale_name";
 			}
 			else if (strcmp (locale.szValue, "spain") == 0)
 			{
@@ -3611,7 +3603,6 @@ bool CClientManager::InitializeLocalization()
 				}
 
 				g_stLocale = "latin1";
-				g_stLocaleNameColumn = "locale_name";
 			}
 			else if (strcmp (locale.szValue, "uk") == 0)
 			{
@@ -3623,7 +3614,6 @@ bool CClientManager::InitializeLocalization()
 				}
 
 				g_stLocale = "latin1";
-				g_stLocaleNameColumn = "locale_name";
 			}
 			else if (strcmp (locale.szValue, "turkey") == 0)
 			{
@@ -3635,7 +3625,6 @@ bool CClientManager::InitializeLocalization()
 				}
 
 				g_stLocale = "latin5";
-				g_stLocaleNameColumn = "locale_name";
 			}
 			else if (strcmp (locale.szValue, "poland") == 0)
 			{
@@ -3647,7 +3636,6 @@ bool CClientManager::InitializeLocalization()
 				}
 
 				g_stLocale = "latin2";
-				g_stLocaleNameColumn = "locale_name";
 			}
 			else if (strcmp (locale.szValue, "portugal") == 0)
 			{
@@ -3659,7 +3647,6 @@ bool CClientManager::InitializeLocalization()
 				}
 
 				g_stLocale = "latin1";
-				g_stLocaleNameColumn = "locale_name";
 			}
 			else if (strcmp (locale.szValue, "hongkong") == 0)
 			{
@@ -3671,7 +3658,6 @@ bool CClientManager::InitializeLocalization()
 				}
 
 				g_stLocale = "big5";
-				g_stLocaleNameColumn = "locale_name";
 			}
 			else if (strcmp (locale.szValue, "newcibn") == 0)
 			{
@@ -3683,7 +3669,6 @@ bool CClientManager::InitializeLocalization()
 				}
 
 				g_stLocale = "gb2312";
-				g_stLocaleNameColumn = "gb2312name";
 			}
 			else if (strcmp (locale.szValue, "korea") == 0)
 			{
@@ -3695,7 +3680,6 @@ bool CClientManager::InitializeLocalization()
 				}
 
 				g_stLocale = "euckr";
-				g_stLocaleNameColumn = "name";
 			}
 			else if (strcmp (locale.szValue, "canada") == 0)
 			{
@@ -3707,7 +3691,6 @@ bool CClientManager::InitializeLocalization()
 				}
 
 				g_stLocale = "latin1";
-				g_stLocaleNameColumn = "gb2312name";
 			}
 			else if (strcmp (locale.szValue, "brazil") == 0)
 			{
@@ -3719,7 +3702,6 @@ bool CClientManager::InitializeLocalization()
 				}
 
 				g_stLocale = "latin1";
-				g_stLocaleNameColumn = "locale_name";
 			}
 			else if (strcmp (locale.szValue, "greek") == 0)
 			{
@@ -3731,7 +3713,6 @@ bool CClientManager::InitializeLocalization()
 				}
 
 				g_stLocale = "greek";
-				g_stLocaleNameColumn = "locale_name";
 			}
 			else if (strcmp (locale.szValue, "russia") == 0)
 			{
@@ -3743,7 +3724,6 @@ bool CClientManager::InitializeLocalization()
 				}
 
 				g_stLocale = "cp1251";
-				g_stLocaleNameColumn = "locale_name";
 			}
 			else if (strcmp (locale.szValue, "denmark") == 0)
 			{
@@ -3755,7 +3735,6 @@ bool CClientManager::InitializeLocalization()
 				}
 
 				g_stLocale = "latin1";
-				g_stLocaleNameColumn = "locale_name";
 			}
 			else if (strcmp (locale.szValue, "bulgaria") == 0)
 			{
@@ -3767,7 +3746,6 @@ bool CClientManager::InitializeLocalization()
 				}
 
 				g_stLocale = "cp1251";
-				g_stLocaleNameColumn = "locale_name";
 			}
 			else if (strcmp (locale.szValue, "croatia") == 0)
 			{
@@ -3779,7 +3757,6 @@ bool CClientManager::InitializeLocalization()
 				}
 
 				g_stLocale = "cp1251";
-				g_stLocaleNameColumn = "locale_name";
 			}
 			else if (strcmp (locale.szValue, "mexico") == 0)
 			{
@@ -3791,7 +3768,6 @@ bool CClientManager::InitializeLocalization()
 				}
 
 				g_stLocale = "latin1";
-				g_stLocaleNameColumn = "locale_name";
 			}
 			else if (strcmp (locale.szValue, "arabia") == 0)
 			{
@@ -3803,7 +3779,6 @@ bool CClientManager::InitializeLocalization()
 				}
 
 				g_stLocale = "cp1256";
-				g_stLocaleNameColumn = "locale_name";
 			}
 			else if (strcmp (locale.szValue, "czech") == 0)
 			{
@@ -3815,7 +3790,6 @@ bool CClientManager::InitializeLocalization()
 				}
 
 				g_stLocale = "latin2";
-				g_stLocaleNameColumn = "locale_name";
 			}
 			else if (strcmp (locale.szValue, "hungary") == 0)
 			{
@@ -3827,7 +3801,6 @@ bool CClientManager::InitializeLocalization()
 				}
 
 				g_stLocale = "latin2";
-				g_stLocaleNameColumn = "locale_name";
 			}
 			else if (strcmp (locale.szValue, "romania") == 0)
 			{
@@ -3839,7 +3812,6 @@ bool CClientManager::InitializeLocalization()
 				}
 
 				g_stLocale = "latin2";
-				g_stLocaleNameColumn = "locale_name";
 			}
 			else if (strcmp (locale.szValue, "netherlands") == 0)
 			{
@@ -3851,7 +3823,6 @@ bool CClientManager::InitializeLocalization()
 				}
 
 				g_stLocale = "latin1";
-				g_stLocaleNameColumn = "locale_name";
 			}
 			else if (strcmp (locale.szValue, "singapore") == 0)
 			{
@@ -3863,7 +3834,6 @@ bool CClientManager::InitializeLocalization()
 				}
 
 				g_stLocale = "latin1";
-				g_stLocaleNameColumn = "locale_name";
 			}
 			else if (strcmp (locale.szValue, "vietnam") == 0)
 			{
@@ -3875,7 +3845,6 @@ bool CClientManager::InitializeLocalization()
 				}
 
 				g_stLocale = "latin1";
-				g_stLocaleNameColumn = "locale_name";
 			}
 			else if (strcmp (locale.szValue, "thailand") == 0)
 			{
@@ -3887,7 +3856,6 @@ bool CClientManager::InitializeLocalization()
 				}
 
 				g_stLocale = "latin1";
-				g_stLocaleNameColumn = "locale_name";
 			}
 			else if (strcmp (locale.szValue, "usa") == 0)
 			{
@@ -3899,7 +3867,6 @@ bool CClientManager::InitializeLocalization()
 				}
 
 				g_stLocale = "latin1";
-				g_stLocaleNameColumn = "locale_name";
 			}
 			else if (strcmp (locale.szValue, "we_korea") == 0)
 			{
@@ -3911,7 +3878,6 @@ bool CClientManager::InitializeLocalization()
 				}
 
 				g_stLocale = "euckr";
-				g_stLocaleNameColumn = "name";
 			}
 			else if (strcmp (locale.szValue, "taiwan") == 0)
 			{
@@ -3922,7 +3888,6 @@ bool CClientManager::InitializeLocalization()
 					sys_log (0, "Changed g_stLocale %s to %s", g_stLocale.c_str(), "big5");
 				}
 				g_stLocale = "big5";
-				g_stLocaleNameColumn = "locale_name";
 			}
 			else
 			{
@@ -3931,11 +3896,6 @@ bool CClientManager::InitializeLocalization()
 			}
 
 			CDBManager::instance().SetLocale (g_stLocale.c_str());
-		}
-		else if (strcmp (locale.szKey, "DB_NAME_COLUMN") == 0)
-		{
-			sys_log (0, "locale[DB_NAME_COLUMN] = %s", locale.szValue);
-			g_stLocaleNameColumn = locale.szValue;
 		}
 		else
 		{

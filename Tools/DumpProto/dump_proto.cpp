@@ -55,7 +55,6 @@ typedef struct SMobTable
 {
 	DWORD	dwVnum;
 	char	szName[CHARACTER_NAME_MAX_LEN + 1];
-	char	szLocaleName[CHARACTER_NAME_MAX_LEN + 1];
 
 	BYTE	bType;			// Monster, NPC
 	BYTE	bRank;			// PAWN, KNIGHT, KING
@@ -158,7 +157,6 @@ typedef struct
 	DWORD       dwVnum;
 	DWORD		dwVnumRange;
 	char        szName[ITEM_NAME_MAX_LEN + 1];
-	char	szLocaleName[ITEM_NAME_MAX_LEN + 1];
 	BYTE	bType;
 	BYTE	bSubType;
 
@@ -197,84 +195,139 @@ bool Set_Proto_Mob_Table(TMobTable* mobTable, cCsvTable& csvTable, std::map<int,
 {
 	int col = 0;
 
+	/*======== VNUM =======*/
 	mobTable->dwVnum = atoi(csvTable.AsStringByIndex(col++));
+
+	/*======== NAME =======*/
 	strncpy(mobTable->szName, csvTable.AsStringByIndex(col++), CHARACTER_NAME_MAX_LEN);
-	//네임 파일이 존재하면 정보를 읽어옴.
-	map<int, const char*>::iterator it;
-	it = nameMap.find(mobTable->dwVnum);
+
+	// Overwrite name if localized name exists
+	map<int, const char*>::iterator it = nameMap.find(mobTable->dwVnum);
 	if (it != nameMap.end()) {
-		const char* localeName = it->second;
-		strncpy(mobTable->szLocaleName, localeName, sizeof(mobTable->szLocaleName));
+		strncpy(mobTable->szName, it->second, CHARACTER_NAME_MAX_LEN);
 	}
-	else {	//네임 파일이 없으면, 한글을 그대로 사용.
-		strncpy(mobTable->szLocaleName, mobTable->szName, sizeof(mobTable->szLocaleName));
-	}
-	//4. RANK
+
+	/*======== RANK =======*/
 	int rankValue = get_Mob_Rank_Value(csvTable.AsStringByIndex(col++));
 	mobTable->bRank = rankValue;
-	//5. TYPE
+
+	/*======== TYPE =======*/
 	int typeValue = get_Mob_Type_Value(csvTable.AsStringByIndex(col++));
 	mobTable->bType = typeValue;
-	//6. BATTLE_TYPE
+
+	/*======== BATTLE_TYPE =======*/
 	int battleTypeValue = get_Mob_BattleType_Value(csvTable.AsStringByIndex(col++));
 	mobTable->bBattleType = battleTypeValue;
 
+	/*======== LEVEL =======*/
 	mobTable->bLevel = atoi(csvTable.AsStringByIndex(col++));
-	//8. SIZE
+
+	/*======== SIZE =======*/
 	int sizeValue = get_Mob_Size_Value(csvTable.AsStringByIndex(col++));
 	mobTable->bSize = sizeValue;
-	//9. AI_FLAG
+
+	/*======== AI_FLAG =======*/
 	int aiFlagValue = get_Mob_AIFlag_Value(csvTable.AsStringByIndex(col++));
 	mobTable->dwAIFlag = aiFlagValue;
-	col++; //mount_capacity;
-	//10. RACE_FLAG
+
+	/*======== MOUNT_CAPACITY =======*/
+	col++;
+
+	/*======== RACE_FLAG =======*/
 	int raceFlagValue = get_Mob_RaceFlag_Value(csvTable.AsStringByIndex(col++));
 	mobTable->dwRaceFlag = raceFlagValue;
-	//11. IMMUNE_FLAG
+
+	/*======== IMMUNE_FLAG =======*/
 	int immuneFlagValue = get_Mob_ImmuneFlag_Value(csvTable.AsStringByIndex(col++));
 	mobTable->dwImmuneFlag = immuneFlagValue;
 
+	/*======== EMPIRE =======*/
 	mobTable->bEmpire = atoi(csvTable.AsStringByIndex(col++));
 
-	//folder
+	/*======== FOLDER =======*/
 	strncpy(mobTable->szFolder, csvTable.AsStringByIndex(col++), sizeof(mobTable->szFolder));
 
-
+	/*======== ON_CLICK =======*/
 	mobTable->bOnClickType = atoi(csvTable.AsStringByIndex(col++));
 
+	/*======== STR =======*/
 	mobTable->bStr = atoi(csvTable.AsStringByIndex(col++));
+
+	/*======== DEX =======*/
 	mobTable->bDex = atoi(csvTable.AsStringByIndex(col++));
+
+	/*======== VIT =======*/
 	mobTable->bCon = atoi(csvTable.AsStringByIndex(col++));
+
+	/*======== INT =======*/
 	mobTable->bInt = atoi(csvTable.AsStringByIndex(col++));
+
+	/*======== DAMAGE_MIN =======*/
 	mobTable->dwDamageRange[0] = atoi(csvTable.AsStringByIndex(col++));
+
+	/*======== DAMAGE_MAX =======*/
 	mobTable->dwDamageRange[1] = atoi(csvTable.AsStringByIndex(col++));
+
+	/*======== MAX_HP =======*/
 	mobTable->dwMaxHP = atoi(csvTable.AsStringByIndex(col++));
+
+	/*======== REGEN_CYCLE =======*/
 	mobTable->bRegenCycle = atoi(csvTable.AsStringByIndex(col++));
+
+	/*======== REGEN_PERCENT =======*/
 	mobTable->bRegenPercent = atoi(csvTable.AsStringByIndex(col++));
 
-	col++;	//gold min
-	col++;	//gold max
+	/*======== GOLD_MIN =======*/
+	col++;
+
+	/*======== GOLD_MAX =======*/
+	col++;
+
+	/*======== EXP =======*/
 	mobTable->dwExp = atoi(csvTable.AsStringByIndex(col++));
+
+	/*======== DEF =======*/
 	mobTable->wDef = atoi(csvTable.AsStringByIndex(col++));
+
+	/*======== ATTACK_SPEED =======*/
 	mobTable->sAttackSpeed = atoi(csvTable.AsStringByIndex(col++));
+
+	/*======== MOVE_SPEED =======*/
 	mobTable->sMovingSpeed = atoi(csvTable.AsStringByIndex(col++));
+
+	/*======== AGGRESSIVE_HP_PCT =======*/
 	mobTable->bAggresiveHPPct = atoi(csvTable.AsStringByIndex(col++));
+
+	/*======== AGGRESSIVE_SIGHT =======*/
 	mobTable->wAggressiveSight = atoi(csvTable.AsStringByIndex(col++));
+
+	/*======== ATTACK_RANGE =======*/
 	mobTable->wAttackRange = atoi(csvTable.AsStringByIndex(col++));
 
+	/*======== DROP_ITEM =======*/
 	mobTable->dwDropItemVnum = atoi(csvTable.AsStringByIndex(col++));
-	col++;	//resurrectionVnum
 
+	/*======== RESURRECTION_VNUM =======*/
+	col++;
 
+	/*======== EMobEnchants =======*/
 	for (int i = 0; i < MOB_ENCHANTS_MAX_NUM; ++i)
 		mobTable->cEnchants[i] = atoi(csvTable.AsStringByIndex(col++));
 
+	/*======== EMobResists =======*/
 	for (int i = 0; i < MOB_RESISTS_MAX_NUM; ++i)
 		mobTable->cResists[i] = atoi(csvTable.AsStringByIndex(col++));
 
+	/*======== DAM_MULTIPLY =======*/
 	mobTable->fDamMultiply = atoi(csvTable.AsStringByIndex(col++));
+
+	/*======== SUMMON =======*/
 	mobTable->dwSummonVnum = atoi(csvTable.AsStringByIndex(col++));
+
+	/*======== DRAIN_SP =======*/
 	mobTable->dwDrainSP = atoi(csvTable.AsStringByIndex(col++));
+
+	/*======== MOB_COLOR =======*/
 	mobTable->dwMobColor = atoi(csvTable.AsStringByIndex(col++));
 
 	return true;
@@ -437,7 +490,6 @@ bool BuildMobTable()
 
 			mob_table->dwVnum = tempTable->dwVnum;
 			strncpy(mob_table->szName, tempTable->szName, CHARACTER_NAME_MAX_LEN);
-			strncpy(mob_table->szLocaleName, tempTable->szLocaleName, CHARACTER_NAME_MAX_LEN);
 			mob_table->bRank = tempTable->bRank;
 			mob_table->bType = tempTable->bType;
 			mob_table->bBattleType = tempTable->bBattleType;
@@ -477,7 +529,7 @@ bool BuildMobTable()
 
 		}
 
-		fprintf(stdout, "MOB #%-5d %-16s %-16s sight: %u color %u[%s]\n", mob_table->dwVnum, mob_table->szName, mob_table->szLocaleName, mob_table->wAggressiveSight, mob_table->dwMobColor, 0);
+		fprintf(stdout, "MOB #%-5d %-16s sight: %u color %u[%s]\n", mob_table->dwVnum, mob_table->szName, mob_table->wAggressiveSight, mob_table->dwMobColor, 0);
 
 		//셋에 vnum 추가
 		vnumSet.insert(mob_table->dwVnum);
@@ -517,7 +569,7 @@ bool BuildMobTable()
 				fprintf(stderr, "Mob proto table setting failure.\n");
 			}
 
-			fprintf(stdout, "[New]MOB #%-5d %-16s sight: %u color %u[%s]\n", mob_table->dwVnum, mob_table->szLocaleName, mob_table->wAggressiveSight, mob_table->dwMobColor, test_data.AsStringByIndex(54));
+			fprintf(stdout, "[New]MOB #%-5d %-16s sight: %u color %u[%s]\n", mob_table->dwVnum, mob_table->szName, mob_table->wAggressiveSight, mob_table->dwMobColor, test_data.AsStringByIndex(54));
 
 			//셋에 vnum 추가
 			vnumSet.insert(mob_table->dwVnum);
@@ -668,16 +720,11 @@ bool Set_Proto_Item_Table(TClientItemTable* itemTable, cCsvTable& csvTable, std:
 	int col = 1;
 
 	strncpy(itemTable->szName, csvTable.AsStringByIndex(col++), ITEM_NAME_MAX_LEN);
-	//네임 파일이 존재하면 정보를 읽어옴.
-	map<int, const char*>::iterator it;
-	it = nameMap.find(itemTable->dwVnum);
-	if (it != nameMap.end()) {
-		const char* localeName = it->second;
-		strncpy(itemTable->szLocaleName, localeName, sizeof(itemTable->szLocaleName));
-	}
-	else { //네임 파일이 존재하지 않으면 한글로..
-		strncpy(itemTable->szLocaleName, itemTable->szName, sizeof(itemTable->szLocaleName));
-	}
+	// Overwrite name with localized name if present in item_names.txt
+	auto it = nameMap.find(itemTable->dwVnum);
+	if (it != nameMap.end())
+		strncpy(itemTable->szName, it->second, ITEM_NAME_MAX_LEN);
+
 	itemTable->bType = get_Item_Type_Value(csvTable.AsStringByIndex(col++));
 	itemTable->bSubType = get_Item_SubType_Value(itemTable->bType, csvTable.AsStringByIndex(col++));
 	itemTable->bSize = atoi(csvTable.AsStringByIndex(col++));
@@ -867,7 +914,6 @@ bool BuildItemTable()
 
 			item_table->dwVnum = tempTable->dwVnum;
 			strncpy(item_table->szName, tempTable->szName, ITEM_NAME_MAX_LEN);
-			strncpy(item_table->szLocaleName, tempTable->szLocaleName, ITEM_NAME_MAX_LEN);
 			item_table->bType = tempTable->bType;
 			item_table->bSubType = tempTable->bSubType;
 			item_table->bSize = tempTable->bSize;
@@ -905,10 +951,9 @@ bool BuildItemTable()
 		}
 
 
-		fprintf(stdout, "ITEM #%-5u %-24s %-24s VAL: %ld %ld %ld %ld %ld %ld WEAR %u ANTI %u IMMUNE %u REFINE %u\n",
+		fprintf(stdout, "ITEM #%-5u %-24s VAL: %ld %ld %ld %ld %ld %ld WEAR %u ANTI %u IMMUNE %u REFINE %u\n",
 			item_table->dwVnum,
 			item_table->szName,
-			item_table->szLocaleName,
 			item_table->alValues[0],
 			item_table->alValues[1],
 			item_table->alValues[2],
@@ -951,10 +996,9 @@ bool BuildItemTable()
 				fprintf(stderr, "Item proto table setting failure.\n");
 			}
 
-			fprintf(stdout, "[NEW]ITEM #%-5u %-24s %-24s VAL: %ld %ld %ld %ld %ld %ld WEAR %u ANTI %u IMMUNE %u REFINE %u\n",
+			fprintf(stdout, "[NEW]ITEM #%-5u %-24s VAL: %ld %ld %ld %ld %ld %ld WEAR %u ANTI %u IMMUNE %u REFINE %u\n",
 				item_table->dwVnum,
 				item_table->szName,
-				item_table->szLocaleName,
 				item_table->alValues[0],
 				item_table->alValues[1],
 				item_table->alValues[2],
