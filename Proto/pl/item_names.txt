@@ -1,6 +1,6 @@
 VNUM	LOCALE_NAME
 1	Yang
-2	By TMP4
+2	By Kaptan Yosun
 10	Miecz+0
 11	Miecz+1
 12	Miecz+2

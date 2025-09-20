@@ -1,6 +1,6 @@
 VNUM	LOCALE_NAME
 1	Yang
-2	By TMP4
+2	By Kaptan Yosun
 10	Sword+0
 11	Sword+1
 12	Sword+2
@@ -3924,8 +3924,8 @@ VNUM	LOCALE_NAME
 41026	TUR Boxing Outfit (F)
 41027	BRA Boxing Outfit (M)
 41028	BRA Boxing Outfit (F)
-41029	Desert Warrior (M,Bonus)
-41030	Desert Warrior (F,Bonus)
+41029	"Desert Warrior (M,Bonus)"
+41030	"Desert Warrior (F,Bonus)"
 41031	Olym. Fencing Outfit (M)
 41032	Olym. Fencing Outfit (F)
 41033	GER Fencing Outfit (M)
@@ -4190,10 +4190,10 @@ VNUM	LOCALE_NAME
 41308	Cobra Outfit (f)
 41309	Cobra Outfit+ (m)
 41310	Cobra Outfit+ (f)
-41311	Desert Warrior (M, blk)
-41312	Desert Warrior (F, blk)
-41313	Desert Warrior+ (M, blk)
-41314	Desert Warrior+ (F, blk)
+41311	"Desert Warrior (M, blk)"
+41312	"Desert Warrior (F, blk)"
+41313	"Desert Warrior+ (M, blk)"
+41314	"Desert Warrior+ (F, blk)"
 41315	Azrael's Armour (m)
 41316	Azrael's Armour (f)
 41317	Azrael's Armour+ (m)
@@ -5557,9 +5557,9 @@ VNUM	LOCALE_NAME
 76024	Green Strength
 80001	Money Pouch
 80002	Blank Paper
-80003	Silver Bar (50,000 Yang)
-80004	Silver Bar(100,000 Yang)
-80005	Gold Bar (500,000 Yang)
+80003	"Silver Bar (50,000 Yang)"
+80004	"Silver Bar(100,000 Yang)"
+80005	"Gold Bar (500,000 Yang)"
 80006	Gold Bar (1Million Yang)
 80007	Gold Bar (2Million Yang)
 80008	Lump of Gold

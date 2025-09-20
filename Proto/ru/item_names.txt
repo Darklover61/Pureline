@@ -1,6 +1,6 @@
 VNUM	LOCALE_NAME
 1	янг
-2	By TMP4
+2	By Kaptan Yosun
 10	Меч+0
 11	Меч+1
 12	Меч+2
