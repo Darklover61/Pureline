@@ -3,7 +3,8 @@
 +----------------------------------------------------------------+
 	20.09.2025
 	~ Removed locale_name column from protos and a couple related functions
-	~ ETC_drop_item renewal. The file will use VNUM instead of Korean names.
+	~ ETC_drop_item update. The file will use VNUM instead of Korean names.
+	~ special_item_group update. Korean item names are changed to VNUM's and "gold" keyword is added for convenience.
 
 	18.09.2025
 	~ Added [REVERSED] LEVEL_UPDATE_FIX

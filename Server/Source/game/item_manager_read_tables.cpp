@@ -243,7 +243,11 @@ bool ITEM_MANAGER::ReadSpecialDropItemFile (const char* c_pszFileName)
 
 					if (!GetVnumByOriginalName (name.c_str(), dwVnum))
 					{
-						if (name == "°æÇèÄ¡" || name == "exp")
+						if (name == "gold")
+						{
+							dwVnum = CSpecialItemGroup::GOLD;
+						}
+						else if (name == "exp")
 						{
 							dwVnum = CSpecialItemGroup::EXP;
 						}
