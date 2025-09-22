@@ -1,50 +1,57 @@
 +----------------------------------------------------------------+
 | Kaptan Yosun's Pureline                                        |
 +----------------------------------------------------------------+
-	20.09.2025
-	~ Removed locale_name column from protos and a couple related functions
-	~ ETC_drop_item update. The file will use VNUM instead of Korean names.
-	~ special_item_group update. Korean item names are changed to VNUM's and "gold" keyword is added for convenience.
-	~ mob_drop_item.txt fixed using all VNUM's instead of Korean names.
-
-	18.09.2025
-	~ Added [REVERSED] LEVEL_UPDATE_FIX
-
-	17.09.2025
-	~ Made some enums more readable in protoreader.
-	~ [YOSUN_SERVER_FIX_001] Fixed a typo
-	~ Deleted some unused files
-		* uioption.py
-	~ Removed some code
-		* BlockCountryIp
-		* Mobile - SMS
-		* Auth_Brazil & Auth_Japan
-
-	16.09.2025
-	~ Updated SQL Dumps, fixed some "data truncated" errors.
-	~ item_list.txt is now read from locale/common instead of each locale folder, preventing duplication.
-	~ skilltable.txt is now read from locale/common instead of each locale folder, preventing duplication.
-	~ Removed some code
-		* Teen
-		* nProtect_GameGuard
-		* Software Tiling
-		* LibServerKey
-
-	15.09.2025
-	~ Removed some code
-		* Netmarble
-		* HammerOfTor
-		* Roulette
-		* Xtrap
-		* Hackshield
-		* PC_Bang
-		* Lottery
-
-	14.09.2025 (Initial Release)
-	~ Much better folder hierarchy and structure.
-	~ Fixed all build errors.
-	~ Fixed quest compilation on Windows
-	~ [YOSUN_PACK_FIX_001] ("Python int too large to convert to C long")
-	~ Some UiScripts are now read from Root/UiScript instead of locale/xx
-		* loadingwindow.py
-	~ Atlasinfo.txt is now read from root instead of locale/xx
++------------+
+| 20.09.2025 |
++------------+
+~ Removed locale_name column from protos and a couple related functions
+~ ETC_drop_item update. The file will use VNUM instead of Korean names.
+~ special_item_group update. Korean item names are changed to VNUM's and "gold" keyword is added for convenience.
+~ mob_drop_item.txt fixed using all VNUM's instead of Korean names.
++------------+
+| 18.09.2025 |
++------------+
+~ Added [REVERSED] LEVEL_UPDATE_FIX
++------------+
+| 17.09.2025 |
++------------+
+~ Made some enums more readable in protoreader.
+~ [YOSUN_SERVER_FIX_001] Fixed a typo
+~ Deleted some unused files
+	* uioption.py
+~ Removed some code
+	* BlockCountryIp
+	* Mobile - SMS
+	* Auth_Brazil & Auth_Japan
++------------+
+| 16.09.2025 |
++------------+
+~ Updated SQL Dumps, fixed some "data truncated" errors.
+~ item_list.txt is now read from locale/common instead of each locale folder, preventing duplication.
+~ skilltable.txt is now read from locale/common instead of each locale folder, preventing duplication.
+~ Removed some code
+	* Teen
+	* nProtect_GameGuard
+	* Software Tiling
+	* LibServerKey
++------------+
+| 15.09.2025 |
++------------+
+~ Removed some code
+	* Netmarble
+	* HammerOfTor
+	* Roulette
+	* Xtrap
+	* Hackshield
+	* PC_Bang
+	* Lottery
++------------+
+| 14.09.2025 |
++------------+
+~ Much better folder hierarchy and structure.
+~ Fixed all build errors.
+~ Fixed quest compilation on Windows
+~ [YOSUN_PACK_FIX_001] ("Python int too large to convert to C long")
+~ Some UiScripts are now read from Root/UiScript instead of locale/xx
+	* loadingwindow.py
+~ Atlasinfo.txt is now read from root instead of locale/xx
