@@ -25,6 +25,10 @@ class OptionDialog(ui.ScriptWindow):
 		self.__Initialize()
 		self.__Load()
 
+		# - SAVE_CAMERA_MODE ----------------------------------
+		self.RefreshCameraMode()
+		# -----------------------------------------------------
+
 	def __del__(self):
 		ui.ScriptWindow.__del__(self)
 		print " -------------------------------------- DELETE SYSTEM OPTION DIALOG"
@@ -126,9 +130,16 @@ class OptionDialog(ui.ScriptWindow):
 
 		selButton.Down()
 
-	def __SetCameraMode(self, index):
+	# - SAVE_CAMERA_MODE ----------------------------------
+	def RefreshCameraMode(self):
+		index = systemSetting.GetCameraMode()
 		constInfo.SET_CAMERA_MAX_DISTANCE_INDEX(index)
 		self.__ClickRadioButton(self.cameraModeButtonList, index)
+	
+	def __SetCameraMode(self, index):
+		systemSetting.SetCameraMode(index)
+		self.RefreshCameraMode()
+	# -----------------------------------------------------
 
 	def __SetFogLevel(self, index):
 		constInfo.SET_FOG_LEVEL_INDEX(index)

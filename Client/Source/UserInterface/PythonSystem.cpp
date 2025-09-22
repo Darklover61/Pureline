@@ -325,6 +325,10 @@ void CPythonSystem::SetDefaultConfig()
 	m_Config.bAlwaysShowName	= true;
 	m_Config.bShowDamage		= true;
 	m_Config.bShowSalesText		= true;
+
+	/* - SAVE_CAMERA_MODE ---------------------------------- */
+	m_Config.bCameraMode		= 0;
+	/* ----------------------------------------------------- */
 }
 
 bool CPythonSystem::IsWindowed()
@@ -376,6 +380,18 @@ bool CPythonSystem::IsUseDefaultIME()
 {
 	return m_Config.bUseDefaultIME;
 }
+
+/* - SAVE_CAMERA_MODE ---------------------------------- */
+void CPythonSystem::SetCameraMode(BYTE bMode)
+{
+	m_Config.bCameraMode = bMode;
+}
+
+BYTE CPythonSystem::GetCameraMode() const
+{
+	return m_Config.bCameraMode;
+}
+/* ----------------------------------------------------- */
 
 bool CPythonSystem::LoadConfig()
 {
@@ -496,6 +512,13 @@ bool CPythonSystem::LoadConfig()
 		{
 			m_Config.bShowSalesText = atoi (value) == 1 ? true : false;
 		}
+
+		/* - SAVE_CAMERA_MODE ---------------------------------- */
+		else if (!stricmp(command, "CAMERA_MODE"))
+		{
+			m_Config.bCameraMode = atoi(value);
+		}
+		/* ----------------------------------------------------- */
 	}
 
 	if (m_Config.bWindowed)
@@ -560,6 +583,11 @@ bool CPythonSystem::SaveConfig()
 	fprintf (fp, "SHOW_SALESTEXT\t\t\t%d\n", m_Config.bShowSalesText);
 	fprintf (fp, "USE_DEFAULT_IME\t\t\t%d\n", m_Config.bUseDefaultIME);
 	fprintf (fp, "SHADOW_LEVEL\t\t\t%d\n", m_Config.iShadowLevel);
+
+	/* - SAVE_CAMERA_MODE ---------------------------------- */
+	fprintf (fp, "CAMERA_MODE\t\t\t\t%d\n", m_Config.bCameraMode);
+	/* ----------------------------------------------------- */
+
 	fprintf (fp, "\n");
 
 	fclose (fp);

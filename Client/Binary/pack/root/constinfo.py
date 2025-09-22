@@ -1,3 +1,7 @@
+# - SAVE_CAMERA_MODE ----------------------------------
+import systemSetting
+# -----------------------------------------------------
+
 # option
 IN_GAME_SHOP_ENABLE = 1
 CONSOLE_ENABLE = 0
@@ -17,7 +21,10 @@ FOG_LEVEL_LIST=[FOG_LEVEL0, FOG_LEVEL1, FOG_LEVEL2]
 CAMERA_MAX_DISTANCE_SHORT = 2500.0
 CAMERA_MAX_DISTANCE_LONG = 3500.0
 CAMERA_MAX_DISTANCE_LIST=[CAMERA_MAX_DISTANCE_SHORT, CAMERA_MAX_DISTANCE_LONG]
-CAMERA_MAX_DISTANCE = CAMERA_MAX_DISTANCE_SHORT
+
+# - SAVE_CAMERA_MODE ----------------------------------
+CAMERA_MAX_DISTANCE = CAMERA_MAX_DISTANCE_LIST[systemSetting.GetCameraMode()]
+# -----------------------------------------------------
 
 CHRNAME_COLOR_INDEX = 0
 

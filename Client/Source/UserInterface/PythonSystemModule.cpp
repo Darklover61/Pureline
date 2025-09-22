@@ -438,6 +438,23 @@ PyObject* systemSetShadowLevel (PyObject * poSelf, PyObject * poArgs)
 	return Py_BuildNone();
 }
 
+/* - SAVE_CAMERA_MODE ---------------------------------- */
+PyObject* systemSetCameraMode(PyObject* poSelf, PyObject* poArgs)
+{
+	BYTE bMode;
+	if (!PyTuple_GetByte(poArgs, 0, &bMode))
+		return Py_BadArgument();
+
+	CPythonSystem::Instance().SetCameraMode(bMode);
+	return Py_BuildNone();
+}
+
+PyObject* systemGetCameraMode(PyObject* poSelf, PyObject* poArgs)
+{
+	return Py_BuildValue("i", CPythonSystem::Instance().GetCameraMode());
+}
+/* ----------------------------------------------------- */
+
 void initsystem()
 {
 	static PyMethodDef s_methods[] =
@@ -491,6 +508,11 @@ void initsystem()
 
 		{ "GetShadowLevel",				systemGetShadowLevel,			METH_VARARGS },
 		{ "SetShadowLevel",				systemSetShadowLevel,			METH_VARARGS },
+
+		/* - SAVE_CAMERA_MODE ---------------------------------- */
+		{ "SetCameraMode",				systemSetCameraMode,			METH_VARARGS },
+		{ "GetCameraMode",				systemGetCameraMode,			METH_VARARGS },
+		/* ----------------------------------------------------- */
 
 		{ NULL,							NULL,							NULL }
 	};

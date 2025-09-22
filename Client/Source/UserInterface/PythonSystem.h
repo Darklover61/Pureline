@@ -74,6 +74,11 @@ class CPythonSystem : public CSingleton<CPythonSystem>
 			bool			bAlwaysShowName;
 			bool			bShowDamage;
 			bool			bShowSalesText;
+
+			/* - SAVE_CAMERA_MODE ---------------------------------- */
+			BYTE			bCameraMode;
+			/* ----------------------------------------------------- */
+
 		} TConfig;
 
 	public:
@@ -144,6 +149,11 @@ class CPythonSystem : public CSingleton<CPythonSystem>
 		int								GetDistance();
 		int								GetShadowLevel();
 		void							SetShadowLevel (unsigned int level);
+
+		/* - SAVE_CAMERA_MODE ---------------------------------- */
+		void							SetCameraMode(BYTE bMode);
+		BYTE							GetCameraMode() const;
+		/* ----------------------------------------------------- */
 
 	protected:
 		TResolution						m_ResolutionList[RESOLUTION_MAX_NUM];
