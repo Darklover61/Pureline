@@ -223,7 +223,7 @@ void CItemData::__SetIconImage (const char* c_szFileName)
 {
 	if (!CResourceManager::Instance().IsFileExist (c_szFileName))
 	{
-		TraceError ("%s 파일이 없습니다.CItemData::__SetIconImage", c_szFileName);
+		TraceError ("%s File does not exist. CItemData::__SetIconImage", c_szFileName);
 		m_pIconImage = NULL;
 	}
 	else if (m_pIconImage == NULL)

@@ -180,7 +180,7 @@ float CMapManager::GetHeight (float fx, float fy)
 {
 	if (!m_pkMap)
 	{
-		TraceError ("CMapManager::GetHeight(%f, %f) - 맵이 생성되지 않은 상태에서 접근", fx, fy);
+		TraceError ("CMapManager::GetHeight(%f, %f) - attempted access with no map initialized", fx, fy);
 		return 0.0f;
 	}
 	CMapOutdoor& rkMap = GetMapOutdoorRef();
@@ -191,7 +191,7 @@ float CMapManager::GetTerrainHeight (float fx, float fy)
 {
 	if (!m_pkMap)
 	{
-		TraceError ("CMapManager::GetTerrainHeight(%f, %f) - 맵이 생성되지 않은 상태에서 접근", fx, fy);
+		TraceError ("CMapManager::GetTerrainHeight(%f, %f) - attempted access with no map initialized", fx, fy);
 		return 0.0f;
 	}
 	CMapOutdoor& rkMap = GetMapOutdoorRef();
@@ -202,7 +202,7 @@ bool CMapManager::GetWaterHeight (int iX, int iY, long* plWaterHeight)
 {
 	if (!m_pkMap)
 	{
-		TraceError ("CMapManager::GetTerrainHeight(%f, %f) - 맵이 생성되지 않은 상태에서 접근", iX, iY);
+		TraceError ("CMapManager::GetTerrainHeight(%f, %f) - attempted access with no map initialized", iX, iY);
 		return false;
 	}
 

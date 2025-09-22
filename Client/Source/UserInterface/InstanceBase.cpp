@@ -470,7 +470,7 @@ void CInstanceBase::__EnableSkipCollision()
 {
 	if (__IsMainInstance())
 	{
-		TraceError ("CInstanceBase::__EnableSkipCollision - 자신은 충돌검사스킵이 되면 안된다!!");
+		TraceError ("CInstanceBase::__EnableSkipCollision - this object must not skip collision checks!!");
 		return;
 	}
 	m_GraphicThingInstance.EnableSkipCollision();
@@ -1335,8 +1335,8 @@ void CInstanceBase::PushTCPState (DWORD dwCmdTime, const TPixelPosition& c_rkPPo
 {
 	if (__IsMainInstance())
 	{
-		//assert(!"CInstanceBase::PushTCPState 플레이어 자신에게 이동패킷은 오면 안된다!");
-		TraceError ("CInstanceBase::PushTCPState 플레이어 자신에게 이동패킷은 오면 안된다!");
+		//assert(!"CInstanceBase::PushTCPState player must not receive its own movement packet!");
+		TraceError ("CInstanceBase::PushTCPState player must not receive its own movement packet!");
 		return;
 	}
 
@@ -1350,7 +1350,7 @@ void CInstanceBase::PushTCPState (DWORD dwCmdTime, const TPixelPosition& c_rkPPo
 		m_dwBaseChkTime = ELTimer_GetFrameMSec()-nNetworkGap;
 		m_dwBaseCmdTime = dwCmdTime;
 
-		Tracenf("VID[%d] 네트웍갭 [%d]", GetVirtualID(), nNetworkGap);
+		Tracenf("VID[%d] Network gap detected [%d]", GetVirtualID(), nNetworkGap);
 	}
 	*/
 
@@ -1368,7 +1368,7 @@ void CInstanceBase::PushTCPState (DWORD dwCmdTime, const TPixelPosition& c_rkPPo
 	//int nApplyGap=kCmdNew.m_dwChkTime-ELTimer_GetServerFrameMSec();
 
 	//if (nApplyGap<-500 || nApplyGap>500)
-	//	Tracenf("VID[%d] NAME[%s] 네트웍갭 [cur:%d ave:%d] 작동시간 (%d)", GetVirtualID(), GetNameString(), nNetworkGap, m_nAverageNetworkGap, nApplyGap);
+	//	Tracenf("VID[%d] NAME[%s] network gap [current:%d, average:%d], uptime: %d", GetVirtualID(), GetNameString(), nNetworkGap, m_nAverageNetworkGap, nApplyGap);
 }
 
 /*
@@ -1473,7 +1473,7 @@ void CInstanceBase::StateProcess()
 
 		if (!__CanProcessNetworkStatePacket())
 		{
-			Lognf (0, "vid=%d 움직일 수 없는 상태라 스킵 IsDead=%d, IsKnockDown=%d", uVID, m_GraphicThingInstance.IsDead(), m_GraphicThingInstance.IsKnockDown());
+			Lognf (0, "VID=%d - movement skipped: immobile state (IsDead=%d, IsKnockDown=%d)", uVID, m_GraphicThingInstance.IsDead(), m_GraphicThingInstance.IsKnockDown());
 			return;
 		}
 
