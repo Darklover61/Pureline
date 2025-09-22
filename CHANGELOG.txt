@@ -5,6 +5,7 @@
 | 23.09.2025 |
 +------------+
 ~ Added [REVERSED] SAVE_CAMERA_MODE
+~ Added [REVERSED] ABORT_TRACEBACK_UPDATE
 
 +------------+
 | 20.09.2025 |

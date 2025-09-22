@@ -151,13 +151,33 @@ void CPythonApplication::GetInfo (UINT eInfo, std::string* pstInfo)
 	}
 }
 
+/* - ABORT_TRACEBACK_UPDATE ---------------------------- */
 void CPythonApplication::Abort()
 {
 	TraceError ("============================================================================================================");
-	TraceError ("Abort!!!!\n\n");
+	TraceError ("Abort!!!!\n");
 
-	PostQuitMessage (0);
+	PyThreadState* tstate = PyThreadState_GET();
+	if (tstate)
+	{
+		for (PyFrameObject* frame = tstate->frame; frame; frame = frame->f_back)
+		{
+			PyCodeObject* f_code = frame->f_code;
+			if (!f_code || !f_code->co_filename || !f_code->co_name)
+				continue;
+
+			const char* filename = PyString_AsString(f_code->co_filename);
+			const char* funcname = PyString_AsString(f_code->co_name);
+			int line = PyFrame_GetLineNumber(frame);
+			TraceError ("Filename = [%s] - Name = [%s] - Line = [%d]", filename, funcname, line);
+		}
+	}
+
+	TraceError("============================================================================================================");
+
+	PostQuitMessage(0);
 }
+/* ----------------------------------------------------- */
 
 void CPythonApplication::Exit()
 {
