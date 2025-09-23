@@ -972,7 +972,7 @@ void CHARACTER::Reward (bool bItemDrop)
 		{
 			int iItemIdx = s_vec_item.size() - 1;
 
-			std::priority_queue<std::pair<int, LPCHARACTER>> pq;
+			std::priority_queue<std::pair<int, LPCHARACTER >> pq;
 
 			int total_dam = 0;
 
@@ -1165,7 +1165,7 @@ void CHARACTER::ItemDropPenalty (LPCHARACTER pkKiller)
 		iAlignIndex = 8;
 	}
 
-	std::vector<std::pair<LPITEM, int>> vec_item;
+	std::vector<std::pair<LPITEM, int >> vec_item;
 	LPITEM pkItem;
 	int	i;
 	bool isDropAllEquipments = false;

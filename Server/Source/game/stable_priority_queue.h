@@ -2,7 +2,7 @@
 #ifndef STABLE_PRIORITY_QUEUE_H_
 #define STABLE_PRIORITY_QUEUE_H_
 
-template<class T, class Container = std::list<T>, class Compare = std::less<typename Container::value_type>>
+template<class T, class Container = std::list<T>, class Compare = std::less<typename Container::value_type >>
 class stable_priority_queue
 {
 	public:
@@ -39,7 +39,7 @@ class stable_priority_queue
 		{
 			return c.size();
 		}
-		const value_type& top() const
+		const value_type & top() const
 		{
 			return c.back();
 		}
@@ -48,7 +48,7 @@ class stable_priority_queue
 			c.pop_back();
 		}
 
-		void push (const value_type& x)
+		void push (const value_type & x)
 		{
 			c.insert (std::lower_bound (c.begin(), c.end(), x, comp), x);
 		}

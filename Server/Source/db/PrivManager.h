@@ -91,11 +91,11 @@ class CPrivManager : public singleton<CPrivManager>
 		typedef std::pair<time_t, TPrivGuildData*> stPairGuild;
 		typedef std::pair<time_t, TPrivEmpireData*> stPairEmpire;
 
-		std::priority_queue<stPairChar, std::vector<stPairChar>, std::greater<stPairChar>>
+		std::priority_queue<stPairChar, std::vector<stPairChar>, std::greater<stPairChar >>
 		m_pqPrivChar;
-		std::priority_queue<stPairGuild, std::vector<stPairGuild>, std::greater<stPairGuild>>
+		std::priority_queue<stPairGuild, std::vector<stPairGuild>, std::greater<stPairGuild >>
 		m_pqPrivGuild;
-		std::priority_queue<stPairEmpire, std::vector<stPairEmpire>, std::greater<stPairEmpire>>
+		std::priority_queue<stPairEmpire, std::vector<stPairEmpire>, std::greater<stPairEmpire >>
 		m_pqPrivEmpire;
 
 		TPrivEmpireData* m_aaPrivEmpire[MAX_PRIV_NUM][EMPIRE_MAX_NUM];

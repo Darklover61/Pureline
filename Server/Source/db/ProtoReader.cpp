@@ -321,21 +321,21 @@ int get_Item_SubType_Value (int type_value, string inputString)
 	static int arNumberOfSubtype[_countof (arSubType)] =
 	{
 		0,									// 0
-		sizeof(arSub1)/sizeof(arSub1[0]),	// 1
-		sizeof(arSub2)/sizeof(arSub2[0]),	// 2
-		sizeof(arSub3)/sizeof(arSub3[0]),	// 3
-		sizeof(arSub4)/sizeof(arSub4[0]),	// 4
-		sizeof(arSub5)/sizeof(arSub5[0]),	// 5
-		sizeof(arSub6)/sizeof(arSub6[0]),	// 6
-		sizeof(arSub7)/sizeof(arSub7[0]),	// 7
+		sizeof (arSub1) / sizeof (arSub1[0]),	// 1
+		sizeof (arSub2) / sizeof (arSub2[0]),	// 2
+		sizeof (arSub3) / sizeof (arSub3[0]),	// 3
+		sizeof (arSub4) / sizeof (arSub4[0]),	// 4
+		sizeof (arSub5) / sizeof (arSub5[0]),	// 5
+		sizeof (arSub6) / sizeof (arSub6[0]),	// 6
+		sizeof (arSub7) / sizeof (arSub7[0]),	// 7
 		0,									// 8
-		sizeof(arSub9)/sizeof(arSub9[0]),	// 9
+		sizeof (arSub9) / sizeof (arSub9[0]),	// 9
 		0,									// 10
-		sizeof(arSub11)/sizeof(arSub11[0]),	// 11
+		sizeof (arSub11) / sizeof (arSub11[0]),	// 11
 		0,									// 12
-		sizeof(arSub13)/sizeof(arSub13[0]),	// 13
+		sizeof (arSub13) / sizeof (arSub13[0]),	// 13
 		0,									// 14
-		sizeof(arSub15)/sizeof(arSub15[0]),	// 15
+		sizeof (arSub15) / sizeof (arSub15[0]),	// 15
 		0,									// 16
 		0,									// 17
 		0,									// 18
@@ -347,10 +347,10 @@ int get_Item_SubType_Value (int type_value, string inputString)
 		0,									// 24
 		0,									// 25
 		0,									// 26
-		sizeof(arSub27)/sizeof(arSub27[0]),	// 27
-		sizeof(arSub28)/sizeof(arSub28[0]),	// 28
-		sizeof(arSub28)/sizeof(arSub28[0]),	// 29
-		sizeof(arSub30)/sizeof(arSub30[0]),	// 30
+		sizeof (arSub27) / sizeof (arSub27[0]),	// 27
+		sizeof (arSub28) / sizeof (arSub28[0]),	// 28
+		sizeof (arSub28) / sizeof (arSub28[0]),	// 29
+		sizeof (arSub30) / sizeof (arSub30[0]),	// 30
 		0,									// 31
 		0,									// 32 반지
 		0,									// 33 벨트
@@ -990,310 +990,312 @@ int get_Mob_ImmuneFlag_Value (string inputString)
 #ifndef __DUMP_PROTO__
 
 //몹 테이블을 셋팅해준다.
-bool Set_Proto_Mob_Table(TMobTable* mobTable, cCsvTable& csvTable, std::map<int, const char*>& nameMap)
+bool Set_Proto_Mob_Table (TMobTable* mobTable, cCsvTable& csvTable, std::map<int, const char*>& nameMap)
 {
 	int col = 0;
 
 	/*======== VNUM =======*/
-	const char* vnumStr = csvTable.AsStringByIndex(col);
+	const char* vnumStr = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->dwVnum, vnumStr);
+	str_to_number (mobTable->dwVnum, vnumStr);
 
 	/*======== NAME =======*/
-	strlcpy(mobTable->szName, csvTable.AsStringByIndex(col++), sizeof(mobTable->szName));
+	strlcpy (mobTable->szName, csvTable.AsStringByIndex (col++), sizeof (mobTable->szName));
 
 	// Overwrite name with localized name if found
-	auto it = nameMap.find(mobTable->dwVnum);
+	auto it = nameMap.find (mobTable->dwVnum);
 	if (it != nameMap.end())
-		strlcpy(mobTable->szName, it->second, sizeof(mobTable->szName));
+	{
+		strlcpy (mobTable->szName, it->second, sizeof (mobTable->szName));
+	}
 
 	/*======== RANK =======*/
-	std::string rankStr = csvTable.AsStringByIndex(col);
+	std::string rankStr = csvTable.AsStringByIndex (col);
 	++col;
 
-	int rankValue = get_Mob_Rank_Value(rankStr);
+	int rankValue = get_Mob_Rank_Value (rankStr);
 	mobTable->bRank = rankValue;
 
 	/*======== TYPE =======*/
-	std::string typeStr = csvTable.AsStringByIndex(col);
+	std::string typeStr = csvTable.AsStringByIndex (col);
 	++col;
 
-	int typeValue = get_Mob_Type_Value(typeStr);
+	int typeValue = get_Mob_Type_Value (typeStr);
 	mobTable->bType = typeValue;
 
 	/*======== BATTLE_TYPE =======*/
-	std::string battleTypeStr = csvTable.AsStringByIndex(col);
+	std::string battleTypeStr = csvTable.AsStringByIndex (col);
 	++col;
 
-	int battleTypeValue = get_Mob_BattleType_Value(battleTypeStr);
+	int battleTypeValue = get_Mob_BattleType_Value (battleTypeStr);
 
 	mobTable->bBattleType = battleTypeValue;
 
 	/*======== LEVEL =======*/
-	const char* levelStr = csvTable.AsStringByIndex(col);
+	const char* levelStr = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->bLevel, levelStr);
+	str_to_number (mobTable->bLevel, levelStr);
 
 	/*======== SIZE =======*/
-	std::string sizeStr = csvTable.AsStringByIndex(col);
+	std::string sizeStr = csvTable.AsStringByIndex (col);
 	++col;
 
-	int sizeValue = get_Mob_Size_Value(sizeStr);
+	int sizeValue = get_Mob_Size_Value (sizeStr);
 	mobTable->bSize = sizeValue;
 
 	/*======== AI_FLAG =======*/
-	std::string aiFlagStr = csvTable.AsStringByIndex(col);
+	std::string aiFlagStr = csvTable.AsStringByIndex (col);
 	++col;
 
-	int aiFlagValue = get_Mob_AIFlag_Value(aiFlagStr);
+	int aiFlagValue = get_Mob_AIFlag_Value (aiFlagStr);
 	mobTable->dwAIFlag = aiFlagValue;
 
 	/*======== MOUNT_CAPACITY =======*/
 	col++;
 
 	/*======== RACE_FLAG =======*/
-	std::string raceFlagStr = csvTable.AsStringByIndex(col);
+	std::string raceFlagStr = csvTable.AsStringByIndex (col);
 	++col;
 
-	int raceFlagValue = get_Mob_RaceFlag_Value(raceFlagStr);
+	int raceFlagValue = get_Mob_RaceFlag_Value (raceFlagStr);
 	mobTable->dwRaceFlag = raceFlagValue;
 
 	/*======== IMMUNE_FLAG =======*/
-	std::string immuneFlagStr = csvTable.AsStringByIndex(col);
+	std::string immuneFlagStr = csvTable.AsStringByIndex (col);
 	++col;
 
-	int immuneFlagValue = get_Mob_ImmuneFlag_Value(immuneFlagStr);
+	int immuneFlagValue = get_Mob_ImmuneFlag_Value (immuneFlagStr);
 	mobTable->dwImmuneFlag = immuneFlagValue;
 
 	/*======== EMPIRE =======*/
-	const char* empireStr = csvTable.AsStringByIndex(col);
+	const char* empireStr = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->bEmpire, empireStr);
+	str_to_number (mobTable->bEmpire, empireStr);
 
 	/*======== FOLDER =======*/
-	strlcpy(mobTable->szFolder, csvTable.AsStringByIndex(col++), sizeof(mobTable->szFolder));
+	strlcpy (mobTable->szFolder, csvTable.AsStringByIndex (col++), sizeof (mobTable->szFolder));
 
 	/*======== ON_CLICK =======*/
-	const char* onClickStr = csvTable.AsStringByIndex(col);
+	const char* onClickStr = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->bOnClickType, onClickStr);
+	str_to_number (mobTable->bOnClickType, onClickStr);
 
 	/*======== STR =======*/
-	const char* strValue = csvTable.AsStringByIndex(col);
+	const char* strValue = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->bStr, strValue);
+	str_to_number (mobTable->bStr, strValue);
 
 	/*======== DEX =======*/
-	const char* dexValue = csvTable.AsStringByIndex(col);
+	const char* dexValue = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->bDex, dexValue);
+	str_to_number (mobTable->bDex, dexValue);
 
 	/*======== VIT =======*/
-	const char* conValue = csvTable.AsStringByIndex(col);
+	const char* conValue = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->bCon, conValue);
+	str_to_number (mobTable->bCon, conValue);
 
 	/*======== INT =======*/
-	const char* intValue = csvTable.AsStringByIndex(col);
+	const char* intValue = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->bInt, intValue);
+	str_to_number (mobTable->bInt, intValue);
 
 	/*======== DAMAGE_MIN =======*/
-	const char* minDamageStr = csvTable.AsStringByIndex(col);
+	const char* minDamageStr = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->dwDamageRange[0], minDamageStr);
+	str_to_number (mobTable->dwDamageRange[0], minDamageStr);
 
 	/*======== DAMAGE_MAX =======*/
-	const char* maxDamageStr = csvTable.AsStringByIndex(col);
+	const char* maxDamageStr = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->dwDamageRange[1], maxDamageStr);
+	str_to_number (mobTable->dwDamageRange[1], maxDamageStr);
 
 	/*======== MAX_HP =======*/
-	const char* maxHpStr = csvTable.AsStringByIndex(col);
+	const char* maxHpStr = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->dwMaxHP, maxHpStr);
+	str_to_number (mobTable->dwMaxHP, maxHpStr);
 
 	/*======== REGEN_CYCLE =======*/
-	const char* regenCycleStr = csvTable.AsStringByIndex(col);
+	const char* regenCycleStr = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->bRegenCycle, regenCycleStr);
+	str_to_number (mobTable->bRegenCycle, regenCycleStr);
 
 	/*======== REGEN_PERCENT =======*/
-	const char* regenPercentStr = csvTable.AsStringByIndex(col);
+	const char* regenPercentStr = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->bRegenPercent, regenPercentStr);
+	str_to_number (mobTable->bRegenPercent, regenPercentStr);
 
 	/*======== GOLD_MIN =======*/
-	const char* goldMinStr = csvTable.AsStringByIndex(col);
+	const char* goldMinStr = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->dwGoldMin, goldMinStr);
+	str_to_number (mobTable->dwGoldMin, goldMinStr);
 
 	/*======== GOLD_MAX =======*/
-	const char* goldMaxStr = csvTable.AsStringByIndex(col);
+	const char* goldMaxStr = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->dwGoldMax, goldMaxStr);
+	str_to_number (mobTable->dwGoldMax, goldMaxStr);
 
 	/*======== EXP =======*/
-	const char* expStr = csvTable.AsStringByIndex(col);
+	const char* expStr = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->dwExp, expStr);
+	str_to_number (mobTable->dwExp, expStr);
 
 	/*======== DEF =======*/
-	const char* defStr = csvTable.AsStringByIndex(col);
+	const char* defStr = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->wDef, defStr);
+	str_to_number (mobTable->wDef, defStr);
 
 	/*======== ATTACK_SPEED =======*/
-	const char* attackSpeedStr = csvTable.AsStringByIndex(col);
+	const char* attackSpeedStr = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->sAttackSpeed, attackSpeedStr);
+	str_to_number (mobTable->sAttackSpeed, attackSpeedStr);
 
 	/*======== MOVE_SPEED =======*/
-	const char* movingSpeedStr = csvTable.AsStringByIndex(col);
+	const char* movingSpeedStr = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->sMovingSpeed, movingSpeedStr);
+	str_to_number (mobTable->sMovingSpeed, movingSpeedStr);
 
 	/*======== AGGRESSIVE_HP_PCT =======*/
-	const char* aggressiveHpPctStr = csvTable.AsStringByIndex(col);
+	const char* aggressiveHpPctStr = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->bAggresiveHPPct, aggressiveHpPctStr);
+	str_to_number (mobTable->bAggresiveHPPct, aggressiveHpPctStr);
 
 	/*======== AGGRESSIVE_SIGHT =======*/
-	const char* aggressiveSightStr = csvTable.AsStringByIndex(col);
+	const char* aggressiveSightStr = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->wAggressiveSight, aggressiveSightStr);
+	str_to_number (mobTable->wAggressiveSight, aggressiveSightStr);
 
 	/*======== ATTACK_RANGE =======*/
-	const char* attackRangeStr = csvTable.AsStringByIndex(col);
+	const char* attackRangeStr = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->wAttackRange, attackRangeStr);
+	str_to_number (mobTable->wAttackRange, attackRangeStr);
 
 	/*======== DROP_ITEM =======*/
-	const char* dropItemVnumStr = csvTable.AsStringByIndex(col); // 32
+	const char* dropItemVnumStr = csvTable.AsStringByIndex (col); // 32
 	++col;
-	str_to_number(mobTable->dwDropItemVnum, dropItemVnumStr);
+	str_to_number (mobTable->dwDropItemVnum, dropItemVnumStr);
 
 	/*======== RESURRECTION_VNUM =======*/
-	const char* resurrectionVnumStr = csvTable.AsStringByIndex(col);
+	const char* resurrectionVnumStr = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->dwResurrectionVnum, resurrectionVnumStr);
+	str_to_number (mobTable->dwResurrectionVnum, resurrectionVnumStr);
 
 	/*======== EMobEnchants =======*/
 	for (int i = 0; i < MOB_ENCHANTS_MAX_NUM; ++i)
 	{
-		const char* enchantStr = csvTable.AsStringByIndex(col);
+		const char* enchantStr = csvTable.AsStringByIndex (col);
 		++col;
-		str_to_number(mobTable->cEnchants[i], enchantStr);
+		str_to_number (mobTable->cEnchants[i], enchantStr);
 	}
 
 	/*======== EMobResists =======*/
 	for (int i = 0; i < MOB_RESISTS_MAX_NUM; ++i)
 	{
-		const char* resistStr = csvTable.AsStringByIndex(col);
+		const char* resistStr = csvTable.AsStringByIndex (col);
 		++col;
-		str_to_number(mobTable->cResists[i], resistStr);
+		str_to_number (mobTable->cResists[i], resistStr);
 	}
 
 	/*======== DAM_MULTIPLY =======*/
-	const char* damMultiplyStr = csvTable.AsStringByIndex(col);
+	const char* damMultiplyStr = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->fDamMultiply, damMultiplyStr);
+	str_to_number (mobTable->fDamMultiply, damMultiplyStr);
 
 	/*======== SUMMON =======*/
-	const char* summonVnumStr = csvTable.AsStringByIndex(col);
+	const char* summonVnumStr = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->dwSummonVnum, summonVnumStr);
+	str_to_number (mobTable->dwSummonVnum, summonVnumStr);
 
 	/*======== DRAIN_SP =======*/
-	const char* drainSPStr = csvTable.AsStringByIndex(col);
+	const char* drainSPStr = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->dwDrainSP, drainSPStr);
+	str_to_number (mobTable->dwDrainSP, drainSPStr);
 
 	/*======== MOB_COLOR =======*/
 	++col;
 
 	/*======== POLYMORPH_ITEM =======*/
-	const char* polymorphItemStr = csvTable.AsStringByIndex(col);
+	const char* polymorphItemStr = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->dwPolymorphItemVnum, polymorphItemStr);
+	str_to_number (mobTable->dwPolymorphItemVnum, polymorphItemStr);
 
 	/*======== SKILL_LEVEL0 =======*/
-	const char* skillLevel0Str = csvTable.AsStringByIndex(col);
+	const char* skillLevel0Str = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->Skills[0].bLevel, skillLevel0Str);
+	str_to_number (mobTable->Skills[0].bLevel, skillLevel0Str);
 
 	/*======== SKILL_VNUM0 =======*/
-	const char* skillVnum0Str = csvTable.AsStringByIndex(col);
+	const char* skillVnum0Str = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->Skills[0].dwVnum, skillVnum0Str);
+	str_to_number (mobTable->Skills[0].dwVnum, skillVnum0Str);
 
 	/*======== SKILL_LEVEL1 =======*/
-	const char* skillLevel1Str = csvTable.AsStringByIndex(col);
+	const char* skillLevel1Str = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->Skills[1].bLevel, skillLevel1Str);
+	str_to_number (mobTable->Skills[1].bLevel, skillLevel1Str);
 
 	/*======== SKILL_VNUM1 =======*/
-	const char* skillVnum1Str = csvTable.AsStringByIndex(col);
+	const char* skillVnum1Str = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->Skills[1].dwVnum, skillVnum1Str);
+	str_to_number (mobTable->Skills[1].dwVnum, skillVnum1Str);
 
 	/*======== SKILL_LEVEL2 =======*/
-	const char* skillLevel2Str = csvTable.AsStringByIndex(col);
+	const char* skillLevel2Str = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->Skills[2].bLevel, skillLevel2Str);
+	str_to_number (mobTable->Skills[2].bLevel, skillLevel2Str);
 
 	/*======== SKILL_VNUM2 =======*/
-	const char* skillVnum2Str = csvTable.AsStringByIndex(col);
+	const char* skillVnum2Str = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->Skills[2].dwVnum, skillVnum2Str);
+	str_to_number (mobTable->Skills[2].dwVnum, skillVnum2Str);
 
 	/*======== SKILL_LEVEL3 =======*/
-	const char* skillLevel3Str = csvTable.AsStringByIndex(col);
+	const char* skillLevel3Str = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->Skills[3].bLevel, skillLevel3Str);
+	str_to_number (mobTable->Skills[3].bLevel, skillLevel3Str);
 
 	/*======== SKILL_VNUM3 =======*/
-	const char* skillVnum3Str = csvTable.AsStringByIndex(col);
+	const char* skillVnum3Str = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->Skills[3].dwVnum, skillVnum3Str);
+	str_to_number (mobTable->Skills[3].dwVnum, skillVnum3Str);
 
 	/*======== SKILL_LEVEL4 =======*/
-	const char* skillLevel4Str = csvTable.AsStringByIndex(col);
+	const char* skillLevel4Str = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->Skills[4].bLevel, skillLevel4Str);
+	str_to_number (mobTable->Skills[4].bLevel, skillLevel4Str);
 
 	/*======== SKILL_VNUM4 =======*/
-	const char* skillVnum4Str = csvTable.AsStringByIndex(col);
+	const char* skillVnum4Str = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->Skills[4].dwVnum, skillVnum4Str);
+	str_to_number (mobTable->Skills[4].dwVnum, skillVnum4Str);
 
 	/*======== SP_BERSERK =======*/
-	const char* berserkPointStr = csvTable.AsStringByIndex(col);
+	const char* berserkPointStr = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->bBerserkPoint, berserkPointStr);
+	str_to_number (mobTable->bBerserkPoint, berserkPointStr);
 
 	/*======== SP_STONESKIN =======*/
-	const char* stoneSkinStr = csvTable.AsStringByIndex(col);
+	const char* stoneSkinStr = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->bStoneSkinPoint, stoneSkinStr);
+	str_to_number (mobTable->bStoneSkinPoint, stoneSkinStr);
 
 	/*======== SP_GODSPEED =======*/
-	const char* godSpeedStr = csvTable.AsStringByIndex(col);
+	const char* godSpeedStr = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->bGodSpeedPoint, godSpeedStr);
+	str_to_number (mobTable->bGodSpeedPoint, godSpeedStr);
 
 	/*======== SP_DEATHBLOW =======*/
-	const char* deathBlowStr = csvTable.AsStringByIndex(col);
+	const char* deathBlowStr = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->bDeathBlowPoint, deathBlowStr);
+	str_to_number (mobTable->bDeathBlowPoint, deathBlowStr);
 
 	/*======== SP_REVIVE =======*/
-	const char* reviveStr = csvTable.AsStringByIndex(col);
+	const char* reviveStr = csvTable.AsStringByIndex (col);
 	++col;
-	str_to_number(mobTable->bRevivePoint, reviveStr);
+	str_to_number (mobTable->bRevivePoint, reviveStr);
 
 
-	sys_log(0, "MOB #%-5d %-24s level: %-3u rank: %u empire: %d", mobTable->dwVnum, mobTable->szName, mobTable->bLevel, mobTable->bRank, mobTable->bEmpire);
+	sys_log (0, "MOB #%-5d %-24s level: %-3u rank: %u empire: %d", mobTable->dwVnum, mobTable->szName, mobTable->bLevel, mobTable->bRank, mobTable->bEmpire);
 
 	return true;
 }
@@ -1414,9 +1416,11 @@ bool Set_Proto_Item_Table (TItemTable *itemTable, cCsvTable &csvTable, std::map<
 
 	strlcpy (itemTable->szName, csvTable.AsStringByIndex (1), sizeof (itemTable->szName));
 	// Overwrite name with localized name if found
-	auto it = nameMap.find(itemTable->dwVnum);
+	auto it = nameMap.find (itemTable->dwVnum);
 	if (it != nameMap.end())
-		strlcpy(itemTable->szName, it->second, sizeof(itemTable->szName));
+	{
+		strlcpy (itemTable->szName, it->second, sizeof (itemTable->szName));
+	}
 
 	itemTable->bType = dataArray[2];
 	itemTable->bSubType = dataArray[3];

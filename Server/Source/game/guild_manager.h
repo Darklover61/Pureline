@@ -10,27 +10,28 @@ class CGuildWarReserveForGame
 {
 	public:
 		TGuildWarReserve				data;
-		std::map<std::string, std::pair<DWORD, DWORD>> mapBet;
+		std::map<std::string, std::pair<DWORD, DWORD >> mapBet;
 };
 
-class CGuildManager : public singleton<CGuildManager>
+class CGuildManager :
+	public singleton<CGuildManager>
 {
 	public:
 		CGuildManager();
 		virtual ~CGuildManager();
 
-		DWORD		CreateGuild (TGuildCreateParameter& gcp);
-		CGuild* 	FindGuild (DWORD guild_id);
-		CGuild* 	FindGuildByName (const std::string guild_name);
+		DWORD		CreateGuild (TGuildCreateParameter & gcp);
+		CGuild * 	FindGuild (DWORD guild_id);
+		CGuild * 	FindGuildByName (const std::string guild_name);
 		void		LoadGuild (DWORD guild_id);
-		CGuild* 	TouchGuild (DWORD guild_id);
+		CGuild * 	TouchGuild (DWORD guild_id);
 		void		DisbandGuild (DWORD guild_id);
 
 		void		Initialize();
 
-		void		Link (DWORD pid, CGuild* guild);
+		void		Link (DWORD pid, CGuild * guild);
 		void		Unlink (DWORD pid);
-		CGuild* 	GetLinkedGuild (DWORD pid);
+		CGuild * 	GetLinkedGuild (DWORD pid);
 
 		void		LoginMember (LPCHARACTER ch);
 		void		P2PLoginMember (DWORD pid);
@@ -64,7 +65,7 @@ class CGuildManager : public singleton<CGuildManager>
 
 		void		Kill (LPCHARACTER killer, LPCHARACTER victim);
 
-		int		GetRank (CGuild* g);
+		int		GetRank (CGuild * g);
 		//void		GetHighRankString(DWORD dwMyGuild, char * buffer);
 		//void		GetAroundRankString(DWORD dwMyGuild, char * buffer);
 		void		GetHighRankString (DWORD dwMyGuild, char* buffer, size_t buflen);
@@ -81,10 +82,10 @@ class CGuildManager : public singleton<CGuildManager>
 		typedef std::map<DWORD, CGuild*> TGuildMap;
 		TGuildMap m_mapGuild;
 
-		typedef std::set<std::pair<DWORD, DWORD>> TGuildWarContainer;
+		typedef std::set<std::pair<DWORD, DWORD >> TGuildWarContainer;
 		TGuildWarContainer m_GuildWar;
 
-		typedef std::map<std::pair<DWORD, DWORD>, DWORD> TGuildWarEndTimeContainer;
+		typedef std::map<std::pair<DWORD, DWORD>, DWORD > TGuildWarEndTimeContainer;
 		TGuildWarEndTimeContainer m_GuildWarEndTime;
 
 		TGuildMap				m_map_pkGuildByPID;

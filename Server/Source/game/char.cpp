@@ -6309,7 +6309,7 @@ void CHARACTER::ResetPoint (int iLv)
 	BYTE bJob = GetJob();
 
 	/* - LEVEL_UPDATE_FIX ---------------------------------- */
-	PointChange(POINT_LEVEL, iLv - GetLevel(), false, true);
+	PointChange (POINT_LEVEL, iLv - GetLevel(), false, true);
 	/* ----------------------------------------------------- */
 
 	SetRealPoint (POINT_ST, JobInitialPoints[bJob].st);

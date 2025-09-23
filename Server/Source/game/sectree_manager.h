@@ -223,7 +223,7 @@ class SECTREE_MANAGER : public singleton<SECTREE_MANAGER>
 		std::map<DWORD, LPSECTREE_MAP>	m_map_pkSectree;
 		std::map<int, TAreaMap>	m_map_pkArea;
 		std::vector<TMapRegion>		m_vec_mapRegion;
-		std::map<DWORD, std::vector<npc_info>> m_mapNPCPosition;
+		std::map<DWORD, std::vector<npc_info >> m_mapNPCPosition;
 
 		// <Factor> Circular private map indexing
 		typedef std::unordered_map<long, int> PrivateIndexMapType;

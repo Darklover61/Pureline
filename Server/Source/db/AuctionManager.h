@@ -13,7 +13,7 @@ class CSaleItemInfoCache;
 class CWishItemInfoCache;
 
 template<>
-class hash<std::pair <DWORD, DWORD>>
+class hash<std::pair <DWORD, DWORD >>
 {
 		// hash functor
 	public:
@@ -46,7 +46,7 @@ class AuctionBoard
 		AuctionBoard() {}
 		~AuctionBoard() {}
 
-		void Boot (CPeer* peer)
+		void Boot (CPeer * peer)
 		{
 			peer->EncodeWORD (sizeof (ItemInfo));
 			peer->EncodeWORD (item_cache_map.size());
@@ -64,7 +64,7 @@ class AuctionBoard
 			return item_cache_map.size();
 		}
 
-		ItemInfoCache* GetItemInfoCache (Key key)
+		ItemInfoCache * GetItemInfoCache (Key key)
 		{
 			TItemInfoCacheMap::iterator it = item_cache_map.find (key);
 			if (it == item_cache_map.end())
@@ -92,7 +92,7 @@ class AuctionBoard
 			}
 		}
 
-		bool InsertItemInfo (ItemInfo *pNew, bool bSkipQuery = false)
+		bool InsertItemInfo (ItemInfo * pNew, bool bSkipQuery = false)
 		{
 			ItemInfoCache* c = GetItemInfoCache (Key (pNew->item_id));
 			if (c != NULL)
@@ -124,7 +124,7 @@ class SaleBoard
 		SaleBoard() {}
 		~SaleBoard() {}
 
-		void Boot (CPeer* peer)
+		void Boot (CPeer * peer)
 		{
 			peer->EncodeWORD (sizeof (ItemInfo));
 			peer->EncodeWORD (item_cache_map.size());
@@ -142,7 +142,7 @@ class SaleBoard
 			return item_cache_map.size();
 		}
 
-		ItemInfoCache* GetItemInfoCache (Key key)
+		ItemInfoCache * GetItemInfoCache (Key key)
 		{
 			TItemInfoCacheMap::iterator it = item_cache_map.find (key);
 			if (it == item_cache_map.end())
@@ -170,7 +170,7 @@ class SaleBoard
 			}
 		}
 
-		bool InsertItemInfo (ItemInfo *pNew, bool bSkipQuery = false)
+		bool InsertItemInfo (ItemInfo * pNew, bool bSkipQuery = false)
 		{
 			ItemInfoCache* c = GetItemInfoCache (Key (pNew->item_id));
 			if (c != NULL)
@@ -203,7 +203,7 @@ class WishBoard
 		WishBoard() {}
 		virtual ~WishBoard() {}
 
-		void Boot (CPeer* peer)
+		void Boot (CPeer * peer)
 		{
 			peer->EncodeWORD (sizeof (ItemInfo));
 			peer->EncodeWORD (item_cache_map.size());
@@ -221,7 +221,7 @@ class WishBoard
 			return item_cache_map.size();
 		}
 
-		ItemInfoCache* GetItemInfoCache (Key key)
+		ItemInfoCache * GetItemInfoCache (Key key)
 		{
 			TItemInfoCacheMap::iterator it = item_cache_map.find (key);
 			if (it == item_cache_map.end())
@@ -249,7 +249,7 @@ class WishBoard
 			}
 		}
 
-		bool InsertItemInfo (ItemInfo *pNew, bool bSkipQuery = false)
+		bool InsertItemInfo (ItemInfo * pNew, bool bSkipQuery = false)
 		{
 			ItemInfoCache* c = GetItemInfoCache (Key (pNew->item_num, pNew->offer_id));
 			if (c != NULL)
@@ -278,7 +278,7 @@ class MyBidBoard
 		MyBidBoard() {}
 		~MyBidBoard() {}
 
-		void Boot (CPeer* peer);
+		void Boot (CPeer * peer);
 		size_t Size();
 
 		int GetMoney (DWORD player_id, DWORD item_id);
@@ -317,12 +317,12 @@ class AuctionManager : public singleton <AuctionManager>
 		void LoadWishInfo();
 		void LoadMyBidInfo();
 
-		void Boot (CPeer* peer);
+		void Boot (CPeer * peer);
 
-		bool InsertItemCache (CItemCache *item_cache, bool bSkipQuery = false);
+		bool InsertItemCache (CItemCache * item_cache, bool bSkipQuery = false);
 		bool InsertItemCache (TPlayerItem * pNew, bool bSkipQuery = false);
 		bool DeleteItemCache (DWORD item_id);
-		CItemCache* GetItemCache (DWORD item_id);
+		CItemCache * GetItemCache (DWORD item_id);
 
 		size_t GetAuctionItemSize()
 		{
@@ -345,29 +345,29 @@ class AuctionManager : public singleton <AuctionManager>
 			return MyBid.Size();
 		}
 
-		void InsertAuctionItemInfoCache (TAuctionItemInfo *pNew, bool bSkipQuery = false)
+		void InsertAuctionItemInfoCache (TAuctionItemInfo * pNew, bool bSkipQuery = false)
 		{
 			Auction.InsertItemInfo (pNew, bSkipQuery);
 		}
-		CAuctionItemInfoCache* GetAuctionItemInfoCache (DWORD item_id)
+		CAuctionItemInfoCache * GetAuctionItemInfoCache (DWORD item_id)
 		{
 			return Auction.GetItemInfoCache (item_id);
 		}
 
-		void InsertSaleItemInfoCache (TSaleItemInfo *pNew, bool bSkipQuery = false)
+		void InsertSaleItemInfoCache (TSaleItemInfo * pNew, bool bSkipQuery = false)
 		{
 			Sale.InsertItemInfo (pNew, bSkipQuery);
 		}
-		CSaleItemInfoCache* GetSaleItemInfoCache (DWORD item_id)
+		CSaleItemInfoCache * GetSaleItemInfoCache (DWORD item_id)
 		{
 			return Sale.GetItemInfoCache (item_id);
 		}
 
-		void InsertWishItemInfoCache (TWishItemInfo *pNew, bool bSkipQuery = false)
+		void InsertWishItemInfoCache (TWishItemInfo * pNew, bool bSkipQuery = false)
 		{
 			Wish.InsertItemInfo (pNew, bSkipQuery);
 		}
-		CWishItemInfoCache* GetWishItemInfoCache (DWORD item_id, DWORD wisher_id)
+		CWishItemInfoCache * GetWishItemInfoCache (DWORD item_id, DWORD wisher_id)
 		{
 			return Wish.GetItemInfoCache (WishBoard::Key (item_id, wisher_id));
 		}
@@ -377,16 +377,16 @@ class AuctionManager : public singleton <AuctionManager>
 			MyBid.Insert (player_id, item_id, money);
 		}
 
-		AuctionResult EnrollInAuction (CItemCache* item_cache, TAuctionItemInfo &item_info);
-		AuctionResult EnrollInSale (CItemCache* item_cache, TSaleItemInfo &item_info);
-		AuctionResult EnrollInWish (TWishItemInfo &item_info);
+		AuctionResult EnrollInAuction (CItemCache * item_cache, TAuctionItemInfo & item_info);
+		AuctionResult EnrollInSale (CItemCache * item_cache, TSaleItemInfo & item_info);
+		AuctionResult EnrollInWish (TWishItemInfo & item_info);
 		AuctionResult Bid (DWORD bidder_id,  const char* bidder_name, DWORD item_id, DWORD bid_price);
 		AuctionResult Impur (DWORD purchaser_id, const char* purchaser_name, DWORD item_id);
-		AuctionResult GetAuctionedItem (DWORD actor_id, DWORD item_id, TPlayerItem& item);
-		AuctionResult BuySoldItem (DWORD actor_id, DWORD item_id, TPlayerItem& item);
-		AuctionResult CancelAuction (DWORD actor_id, DWORD item_id, TPlayerItem& item);
+		AuctionResult GetAuctionedItem (DWORD actor_id, DWORD item_id, TPlayerItem & item);
+		AuctionResult BuySoldItem (DWORD actor_id, DWORD item_id, TPlayerItem & item);
+		AuctionResult CancelAuction (DWORD actor_id, DWORD item_id, TPlayerItem & item);
 		AuctionResult CancelWish (DWORD actor_id, DWORD item_num);
-		AuctionResult CancelSale (DWORD actor_id, DWORD item_id, TPlayerItem& item);
+		AuctionResult CancelSale (DWORD actor_id, DWORD item_id, TPlayerItem & item);
 		AuctionResult DeleteAuctionItem (DWORD actor_id, DWORD item_id);
 		AuctionResult DeleteSaleItem (DWORD actor_id, DWORD item_id);
 		AuctionResult ReBid (DWORD bidder_id,  const char* bidder_name, DWORD item_id, DWORD bid_price);

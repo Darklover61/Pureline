@@ -106,9 +106,9 @@ namespace marriage
 			std::set<TMarriage*> m_Marriages;
 			std::map<DWORD, TMarriage*> m_MarriageByPID;
 
-			std::priority_queue<TWedding, std::vector<TWedding>, std::greater<TWedding>> m_pqWeddingStart;
+			std::priority_queue<TWedding, std::vector<TWedding>, std::greater<TWedding >> m_pqWeddingStart;
 
-			std::priority_queue<TWeddingInfo, std::vector<TWeddingInfo>, std::greater<TWeddingInfo>> m_pqWeddingEnd;
+			std::priority_queue<TWeddingInfo, std::vector<TWeddingInfo>, std::greater<TWeddingInfo >> m_pqWeddingEnd;
 
 			std::map<std::pair<DWORD, DWORD>, TWedding> m_mapRunningWedding;
 	};

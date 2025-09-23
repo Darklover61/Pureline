@@ -228,7 +228,7 @@ typedef std::vector<TTimeEventTypeVector3>		TTimeEventTableVector3;
 //        값의 직접 리턴이 아닌 포인터 리턴으로 작성 했습니다. - [levites]
 
 template <typename T>
-__forceinline void GetTimeEventBlendValue (float fElapsedTime, std::vector<CTimeEvent<T>>& rVector, T * pReturnValue)
+__forceinline void GetTimeEventBlendValue (float fElapsedTime, std::vector<CTimeEvent<T >> & rVector, T * pReturnValue)
 {
 	if (rVector.empty())
 	{
@@ -254,7 +254,7 @@ __forceinline void GetTimeEventBlendValue (float fElapsedTime, std::vector<CTime
 		return;
 	}
 
-	typedef typename std::vector<CTimeEvent<T>>::iterator iterator;
+	typedef typename std::vector<CTimeEvent<T >>::iterator iterator;
 
 	std::pair<iterator, iterator> result = std::equal_range (rVector.begin(), rVector.end(), fElapsedTime);
 
@@ -275,9 +275,9 @@ extern BOOL GetTokenTimeEventFloat (CTextFileLoader & rTextFileLoader, const cha
 //extern void InsertItemTimeEventFloat(TTimeEventTableFloat * pTable, float fTime, float fValue);
 
 template <typename T>
-void InsertItemTimeEvent (std::vector<CTimeEvent<T>>* pTable, float fTime, T fValue)
+void InsertItemTimeEvent (std::vector<CTimeEvent<T >> * pTable, float fTime, T fValue)
 {
-	typedef std::vector<CTimeEvent<T>>::iterator iterator;
+	typedef std::vector<CTimeEvent<T >>::iterator iterator;
 
 	iterator itor = std::lower_bound (pTable->begin(), pTable->end(), fTime);
 

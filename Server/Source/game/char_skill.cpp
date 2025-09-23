@@ -990,7 +990,7 @@ void CHARACTER::ResetSkill()
 	}
 
 	// 보조 스킬은 리셋시키지 않는다
-	std::vector<std::pair<DWORD, TPlayerSkill>> vec;
+	std::vector<std::pair<DWORD, TPlayerSkill >> vec;
 	size_t count = sizeof (s_adwSubSkillVnums) / sizeof (s_adwSubSkillVnums[0]);
 
 	for (size_t i = 0; i < count; ++i)
@@ -1005,7 +1005,7 @@ void CHARACTER::ResetSkill()
 
 	memset (m_pSkillLevels, 0, sizeof (TPlayerSkill) * SKILL_MAX_NUM);
 
-	std::vector<std::pair<DWORD, TPlayerSkill>>::const_iterator iter = vec.begin();
+	std::vector<std::pair<DWORD, TPlayerSkill >>::const_iterator iter = vec.begin();
 
 	while (iter != vec.end())
 	{

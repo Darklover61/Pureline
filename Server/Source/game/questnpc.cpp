@@ -907,7 +907,7 @@ namespace quest
 		void operator() (PC::QuestInfoIterator& itPCQuest, NPC::ArgQuestMapType::iterator& itQuestMap)
 		{
 			int iState = itPCQuest->second.st;
-			map<int, vector<AArgScript>>::iterator itQuestScript = itQuestMap->second.find (iState);
+			map<int, vector<AArgScript >>::iterator itQuestScript = itQuestMap->second.find (iState);
 			if (itQuestScript != itQuestMap->second.end())
 			{
 				size_t i;

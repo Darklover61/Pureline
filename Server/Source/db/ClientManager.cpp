@@ -668,7 +668,7 @@ void CClientManager::RESULT_SAFEBOX_LOAD (CPeer * pkPeer, SQLMsg * msg)
 
 			if (!bEscape)
 			{
-				std::vector<std::pair<DWORD, DWORD>> vec_dwFinishedAwardID;
+				std::vector<std::pair<DWORD, DWORD >> vec_dwFinishedAwardID;
 
 				typeof (pSet->begin()) it = pSet->begin();
 

@@ -41,7 +41,7 @@ struct SPoint
 //	SBoundaryShape
 struct SBoundaryShape
 {
-	std::vector< std::vector<SPoint>>	m_vContours;
+	std::vector< std::vector<SPoint >>	m_vContours;
 	float								m_afMin[3];
 	float								m_afMax[3];
 };

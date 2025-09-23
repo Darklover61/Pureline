@@ -47,7 +47,7 @@ class SpamManager : public singleton<SpamManager>
 		}
 
 	private:
-		std::vector< std::pair<std::string, unsigned int>> m_vec_word;
+		std::vector< std::pair<std::string, unsigned int >> m_vec_word;
 };
 
 #endif

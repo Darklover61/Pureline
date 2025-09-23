@@ -64,7 +64,7 @@ class CTargetManager : public singleton<CTargetManager>
 
 	protected:
 		// first: PID
-		std::map<DWORD, std::list<LPEVENT>> m_map_kListEvent;
+		std::map<DWORD, std::list<LPEVENT >> m_map_kListEvent;
 		int m_iID;
 };
 

@@ -122,7 +122,7 @@ bool CSpeedServerEmpireExp::WriteExpTable()
 		fprintf (fp, "\n");
 	}
 
-	for (std::map <Date, std::list <HME>>::iterator holi_it = holiday_map.begin(); holi_it != holiday_map.end(); holi_it++)
+	for (std::map <Date, std::list <HME >>::iterator holi_it = holiday_map.begin(); holi_it != holiday_map.end(); holi_it++)
 	{
 		fprintf (fp, "HOLIDAY %d.%d.%d", holi_it->first.year + 1900, holi_it->first.mon + 1, holi_it->first.day);
 		for (std::list <HME>::iterator it = holi_it->second.begin(); it != holi_it->second.end(); it++)
@@ -248,7 +248,7 @@ bool CSpeedServerEmpireExp::LoadExpTable()
 
 			sys_log (0, "y m d %d %d %d", year, mon, day);
 
-			holiday_map.insert (std::pair <Date, std::list <HME>> (Date (year - 1900, mon - 1, day), lst));
+			holiday_map.insert (std::pair <Date, std::list <HME >> (Date (year - 1900, mon - 1, day), lst));
 		}
 	}
 
@@ -302,7 +302,7 @@ std::list <HME>& CSpeedServerManager::GetHolidayExpTableOfEmpire (BYTE empire, D
 
 std::list <HME>& CSpeedServerEmpireExp::GetHolidayExpTable (Date date, bool &is_exist)
 {
-	std::map <Date, std::list <HME>>::iterator it = holiday_map.find (date);
+	std::map <Date, std::list <HME >>::iterator it = holiday_map.find (date);
 	if (it != holiday_map.end())
 	{
 		is_exist = true;
@@ -323,7 +323,7 @@ void CSpeedServerManager::SetHolidayExpTableOfEmpire (BYTE empire, Date date, HM
 
 void CSpeedServerEmpireExp::SetHolidayExpTable (Date date, HME hme)
 {
-	std::map <Date, std::list <HME>>::iterator it = holiday_map.find (date);
+	std::map <Date, std::list <HME >>::iterator it = holiday_map.find (date);
 	if (it != holiday_map.end())
 	{
 		it->second.push_back (hme);
@@ -345,11 +345,11 @@ void CSpeedServerManager::InitHolidayExpTableOfEmpire (BYTE empire, Date date)
 void CSpeedServerEmpireExp::InitHolidayExpTable (Date date)
 {
 	sys_log (0, "init holiday");
-	std::map <Date, std::list <HME>>::iterator it = holiday_map.find (date);
+	std::map <Date, std::list <HME >>::iterator it = holiday_map.find (date);
 	if (it == holiday_map.end())
 	{
 		std::list <HME> lst;
-		holiday_map.insert (std::pair <Date, std::list <HME>> (date, lst));
+		holiday_map.insert (std::pair <Date, std::list <HME >> (date, lst));
 	}
 	else
 	{
@@ -372,7 +372,7 @@ HME CSpeedServerEmpireExp::GetCurrentExpPriv (int& duration, bool &is_change)
 	Date date (datetime -> tm_year, datetime -> tm_mon,
 			   datetime -> tm_mday);
 
-	std::map <Date, std::list <HME>>::iterator holi_it = holiday_map.find (date);
+	std::map <Date, std::list <HME >>::iterator holi_it = holiday_map.find (date);
 
 	int total_sec = datetime->tm_hour * 3600 + datetime->tm_min * 60 + datetime->tm_sec;
 

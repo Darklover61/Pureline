@@ -736,7 +736,7 @@ void CMapOutdoor::SetPatchDrawVector()
 
 	m_PatchDrawStructVector.clear();
 
-	std::vector<std::pair<float, long>>::iterator aDistancePatchVectorIterator;
+	std::vector<std::pair<float, long >>::iterator aDistancePatchVectorIterator;
 
 	TPatchDrawStruct aPatchDrawStruct;
 

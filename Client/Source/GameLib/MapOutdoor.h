@@ -412,7 +412,7 @@ class CMapOutdoor : public CMapBase
 
 	protected:
 
-		std::vector<std::pair<float, long>> m_PatchVector;
+		std::vector<std::pair<float, long >> m_PatchVector;
 		std::vector<TPatchDrawStruct> m_PatchDrawStructVector;
 
 		void					SetPatchDrawVector();

@@ -1615,14 +1615,16 @@ bool CPythonNetworkStream::RecvPointChange()
 			}
 		}
 
-		/* - LEVEL_UPDATE_FIX ---------------------------------- */
+	/* - LEVEL_UPDATE_FIX ---------------------------------- */
 		else if (POINT_LEVEL == PointChange.Type)
 		{
-			CInstanceBase* pOtherInstance = CPythonCharacterManager::Instance().GetInstancePtr(PointChange.dwVID);
+			CInstanceBase* pOtherInstance = CPythonCharacterManager::Instance().GetInstancePtr (PointChange.dwVID);
 			if (pOtherInstance)
-				pOtherInstance->UpdateTextTailLevel(PointChange.value);
+			{
+				pOtherInstance->UpdateTextTailLevel (PointChange.value);
+			}
 		}
-		/* ----------------------------------------------------- */
+	/* ----------------------------------------------------- */
 
 	return true;
 }

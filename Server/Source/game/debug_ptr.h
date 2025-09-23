@@ -166,7 +166,7 @@ T* get_pointer (DebugPtr<T>& ptr)
 namespace std
 {
 	template<typename T>
-	struct less<DebugPtr<T>>
+	struct less<DebugPtr<T >>
 	{
 		bool operator() (const DebugPtr<T>& lhs, const DebugPtr<T>& rhs) const
 		{
@@ -174,7 +174,7 @@ namespace std
 		}
 	};
 	template<typename T>
-	struct equal_to<DebugPtr<T>>
+	struct equal_to<DebugPtr<T >>
 	{
 		bool operator() (const DebugPtr<T>& lhs, const DebugPtr<T>& rhs) const
 		{
@@ -198,7 +198,7 @@ namespace boost
 {
 #endif
 		template<typename T>
-		struct hash<DebugPtr<T>>
+		struct hash<DebugPtr<T >>
 		{
 			size_t operator() (const DebugPtr<T>& v) const
 			{

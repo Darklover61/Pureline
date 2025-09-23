@@ -29,7 +29,7 @@ namespace quest
 
 			// 인자가 있는 스크립트들
 			// first: state number
-			typedef map<int, vector<AArgScript>> AArgQuestScriptType;
+			typedef map<int, vector<AArgScript >> AArgQuestScriptType;
 			// first: quest number
 			typedef map<unsigned int, AArgQuestScriptType> ArgQuestMapType;
 

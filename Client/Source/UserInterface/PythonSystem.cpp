@@ -382,7 +382,7 @@ bool CPythonSystem::IsUseDefaultIME()
 }
 
 /* - SAVE_CAMERA_MODE ---------------------------------- */
-void CPythonSystem::SetCameraMode(BYTE bMode)
+void CPythonSystem::SetCameraMode (BYTE bMode)
 {
 	m_Config.bCameraMode = bMode;
 }
@@ -514,9 +514,9 @@ bool CPythonSystem::LoadConfig()
 		}
 
 		/* - SAVE_CAMERA_MODE ---------------------------------- */
-		else if (!stricmp(command, "CAMERA_MODE"))
+		else if (!stricmp (command, "CAMERA_MODE"))
 		{
-			m_Config.bCameraMode = atoi(value);
+			m_Config.bCameraMode = atoi (value);
 		}
 		/* ----------------------------------------------------- */
 	}

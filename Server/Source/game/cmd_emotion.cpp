@@ -87,7 +87,7 @@ struct emotion_type_s
 };
 
 
-std::set<std::pair<DWORD, DWORD>> s_emotion_set;
+std::set<std::pair<DWORD, DWORD >> s_emotion_set;
 
 ACMD (do_emotion_allow)
 {

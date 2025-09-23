@@ -93,7 +93,7 @@ EVENTINFO (spam_event_info)
 	}
 };
 
-typedef std::unordered_map<std::string, std::pair<unsigned int, LPEVENT>> spam_score_of_ip_t;
+typedef std::unordered_map<std::string, std::pair<unsigned int, LPEVENT >> spam_score_of_ip_t;
 spam_score_of_ip_t spam_score_of_ip;
 
 EVENTFUNC (block_chat_by_ip_event)
@@ -586,7 +586,7 @@ struct FEmpireChatPacket
 	int iMapIndex;
 	int namelen;
 
-	FEmpireChatPacket (packet_chat& p, const char* chat_msg, int len, BYTE bEmpire, int iMapIndex, int iNameLen)
+	FEmpireChatPacket (packet_chat & p, const char* chat_msg, int len, BYTE bEmpire, int iMapIndex, int iNameLen)
 		: p (p), orig_msg (chat_msg), orig_len (len), bEmpire (bEmpire), iMapIndex (iMapIndex), namelen (iNameLen)
 	{
 		memset (converted_msg, 0, sizeof (converted_msg));
@@ -645,12 +645,12 @@ struct FYmirChatPacket
 	char m_conv_msg[CHAT_MAX_LEN + 1];
 	int m_len_conv_msg;
 
-	FYmirChatPacket (packet_chat& p, const char* chat, size_t len_chat, const char* name, size_t len_name, int iMapIndex, BYTE empire, bool ring)
+	FYmirChatPacket (packet_chat & p, const char* chat, size_t len_chat, const char* name, size_t len_name, int iMapIndex, BYTE empire, bool ring)
 		: packet (p),
-		  m_szChat (chat), m_lenChat (len_chat),
-		  m_szName (name),
-		  m_iMapIndex (iMapIndex), m_bEmpire (empire),
-		  m_ring (ring)
+		m_szChat (chat), m_lenChat (len_chat),
+		m_szName (name),
+		m_iMapIndex (iMapIndex), m_bEmpire (empire),
+		m_ring (ring)
 	{
 		m_len_orig_msg = snprintf (m_orig_msg, sizeof (m_orig_msg), "%s : %s", m_szName, m_szChat) + 1; // 널 문자 포함
 

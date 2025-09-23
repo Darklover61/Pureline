@@ -919,39 +919,45 @@ void CPythonMiniMap::__LoadAtlasMarkInfo()
 		const std::string& c_rstrPositionX = rVector[0].c_str();
 		const std::string& c_rstrPositionY = rVector[1].c_str();
 		const std::string& c_rstrVnum = rVector[2].c_str();
-		const DWORD c_dwVnum = atoi(c_rstrVnum.c_str());
+		const DWORD c_dwVnum = atoi (c_rstrVnum.c_str());
 
-		const CPythonNonPlayer::TMobTable* c_pMobTable = CPythonNonPlayer::Instance().GetTable(c_dwVnum);
+		const CPythonNonPlayer::TMobTable* c_pMobTable = CPythonNonPlayer::Instance().GetTable (c_dwVnum);
 		if (c_pMobTable)
 		{
 			TAtlasMarkInfo aAtlasMarkInfo;
-			aAtlasMarkInfo.m_fX = atof(c_rstrPositionX.c_str());
-			aAtlasMarkInfo.m_fY = atof(c_rstrPositionY.c_str());
+			aAtlasMarkInfo.m_fX = atof (c_rstrPositionX.c_str());
+			aAtlasMarkInfo.m_fY = atof (c_rstrPositionY.c_str());
 			aAtlasMarkInfo.m_strText = c_pMobTable->szName;
 			if (c_pMobTable->bType == CActorInstance::TYPE_NPC)
+			{
 				aAtlasMarkInfo.m_byType = TYPE_NPC;
+			}
 			else if (c_pMobTable->bType == CActorInstance::TYPE_WARP)
 			{
 				aAtlasMarkInfo.m_byType = TYPE_WARP;
-				int iPos = aAtlasMarkInfo.m_strText.find(" ");
+				int iPos = aAtlasMarkInfo.m_strText.find (" ");
 				if (iPos >= 0)
+				{
 					aAtlasMarkInfo.m_strText[iPos] = 0;
+				}
 
 			}
 			else if (c_pMobTable->bType == CActorInstance::TYPE_STONE && c_dwVnum >= 20702 && c_dwVnum <= 20706)
+			{
 				aAtlasMarkInfo.m_byType = TYPE_NPC;
+			}
 
 			aAtlasMarkInfo.m_fScreenX = aAtlasMarkInfo.m_fX / m_fAtlasMaxX * m_fAtlasImageSizeX - (float)m_WhiteMark.GetWidth() / 2.0f;
 			aAtlasMarkInfo.m_fScreenY = aAtlasMarkInfo.m_fY / m_fAtlasMaxY * m_fAtlasImageSizeY - (float)m_WhiteMark.GetHeight() / 2.0f;
 
 			switch (aAtlasMarkInfo.m_byType)
 			{
-			case TYPE_NPC:
-				m_AtlasNPCInfoVector.push_back(aAtlasMarkInfo);
-				break;
-			case TYPE_WARP:
-				m_AtlasWarpInfoVector.push_back(aAtlasMarkInfo);
-				break;
+				case TYPE_NPC:
+					m_AtlasNPCInfoVector.push_back (aAtlasMarkInfo);
+					break;
+				case TYPE_WARP:
+					m_AtlasWarpInfoVector.push_back (aAtlasMarkInfo);
+					break;
 			}
 		}
 		/* ----------------------------------------------------- */

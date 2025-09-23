@@ -151,7 +151,7 @@ class CPythonSystem : public CSingleton<CPythonSystem>
 		void							SetShadowLevel (unsigned int level);
 
 		/* - SAVE_CAMERA_MODE ---------------------------------- */
-		void							SetCameraMode(BYTE bMode);
+		void							SetCameraMode (BYTE bMode);
 		BYTE							GetCameraMode() const;
 		/* ----------------------------------------------------- */
 

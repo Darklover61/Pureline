@@ -114,7 +114,7 @@ void MessengerManager::Logout (MessengerManager::keyA account)
 		SendLogout (*it, account);
 	}
 
-	std::map<keyT, std::set<keyT>>::iterator it2 = m_Relation.begin();
+	std::map<keyT, std::set<keyT >>::iterator it2 = m_Relation.begin();
 
 	while (it2 != m_Relation.end())
 	{

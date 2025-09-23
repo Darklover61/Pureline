@@ -470,7 +470,7 @@ bool ITEM_MANAGER::ReadEtcDropItemFile (const char* c_pszFileName)
 
 	int lines = 0;
 
-	while (fgets (buf, sizeof(buf), fp))
+	while (fgets (buf, sizeof (buf), fp))
 	{
 		++lines;
 
@@ -497,10 +497,10 @@ bool ITEM_MANAGER::ReadEtcDropItemFile (const char* c_pszFileName)
 			continue;
 		}
 
-		if (!str_to_number(dwItemVnum, buf))
+		if (!str_to_number (dwItemVnum, buf))
 		{
-			sys_err("Invalid VNUM: %s (line %d)", buf, lines);
-			fclose(fp);
+			sys_err ("Invalid VNUM: %s (line %d)", buf, lines);
+			fclose (fp);
 			return false;
 		}
 

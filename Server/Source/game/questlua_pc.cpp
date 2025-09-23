@@ -905,7 +905,7 @@ namespace quest
 
 			//·¹º§
 			/* - LEVEL_UPDATE_FIX ---------------------------------- */
-			ch->PointChange(POINT_LEVEL, newLevel - ch->GetLevel(), false, true);
+			ch->PointChange (POINT_LEVEL, newLevel - ch->GetLevel(), false, true);
 			/* ----------------------------------------------------- */
 
 			//HP, SP

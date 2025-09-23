@@ -101,7 +101,7 @@ class CSpeedServerEmpireExp
 		BYTE empire;
 		char file_name[256];
 		HME current_hme;
-		std::map <Date, std::list <HME>> holiday_map;
+		std::map <Date, std::list <HME >> holiday_map;
 		std::list <HME> wday_exp_table[7];
 };
 

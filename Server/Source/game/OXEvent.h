@@ -25,7 +25,7 @@ class COXEventManager : public singleton<COXEventManager>
 		std::map<DWORD, DWORD> m_map_attender;
 		std::map<DWORD, DWORD> m_map_miss;
 
-		std::vector<std::vector<tag_Quiz>> m_vec_quiz;
+		std::vector<std::vector<tag_Quiz >> m_vec_quiz;
 
 		LPEVENT m_timedEvent;
 

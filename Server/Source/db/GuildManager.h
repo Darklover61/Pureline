@@ -160,7 +160,7 @@ class CGuildWarReserve
 
 		TGuildWarReserve				m_data;
 		// <login, <guild, gold>>
-		std::map<std::string, std::pair<DWORD, DWORD>> mapBet;
+		std::map<std::string, std::pair<DWORD, DWORD >> mapBet;
 		int						m_iLastNoticeMin;
 };
 
@@ -174,7 +174,7 @@ class CGuildManager : public singleton<CGuildManager>
 
 		void	Load (DWORD dwGuildID);
 
-		TGuild& TouchGuild (DWORD GID);
+		TGuild & TouchGuild (DWORD GID);
 
 		void	Update();
 
@@ -199,7 +199,7 @@ class CGuildManager : public singleton<CGuildManager>
 
 		INT		GetGuildGold (DWORD dwGuild);
 		void	DepositMoney (DWORD dwGuild, INT lGold);
-		void	WithdrawMoney (CPeer* peer, DWORD dwGuild, INT lGold);
+		void	WithdrawMoney (CPeer * peer, DWORD dwGuild, INT lGold);
 		void	WithdrawMoneyReply (DWORD dwGuild, BYTE bGiveSuccess, INT lGold);
 
 		void	MoneyChange (DWORD dwGuild, DWORD dwGold);
@@ -239,20 +239,20 @@ class CGuildManager : public singleton<CGuildManager>
 		bool IsHalfWinLadderPoint (DWORD dwGuildWinner, DWORD dwGuildLoser);
 
 		std::map<DWORD, TGuild>					m_map_kGuild;
-		std::map<DWORD, std::map<DWORD, time_t>>		m_mapGuildWarEndTime;
+		std::map<DWORD, std::map<DWORD, time_t >>		m_mapGuildWarEndTime;
 
 		std::set<TGuildDeclareInfo>				m_DeclareMap; // 선전 포고 상태를 저장
-		std::map<DWORD, std::map<DWORD, TGuildWarInfo>>	m_WarMap;
+		std::map<DWORD, std::map<DWORD, TGuildWarInfo >>	m_WarMap;
 
 		typedef std::pair<time_t, TGuildWarPQElement*>	stPairGuildWar;
 		typedef std::pair<time_t, TGuildSkillUsed>	stPairSkillUsed;
 		typedef std::pair<time_t, TGuildWaitStartInfo>	stPairWaitStart;
 
-		std::priority_queue<stPairGuildWar, std::vector<stPairGuildWar>, std::greater<stPairGuildWar>>
+		std::priority_queue<stPairGuildWar, std::vector<stPairGuildWar>, std::greater<stPairGuildWar >>
 		m_pqOnWar;
-		std::priority_queue<stPairWaitStart, std::vector<stPairWaitStart>, std::greater<stPairWaitStart>>
+		std::priority_queue<stPairWaitStart, std::vector<stPairWaitStart>, std::greater<stPairWaitStart >>
 		m_pqWaitStart;
-		std::priority_queue<stPairSkillUsed, std::vector<stPairSkillUsed>, std::greater<stPairSkillUsed>>
+		std::priority_queue<stPairSkillUsed, std::vector<stPairSkillUsed>, std::greater<stPairSkillUsed >>
 		m_pqSkill;
 
 		std::map<DWORD, CGuildWarReserve*>			m_map_kWarReserve;

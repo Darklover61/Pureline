@@ -143,7 +143,7 @@ class IP
 		DWORD dwMask;
 };
 
-std::map<int, std::vector<IP>> mapBanIP;
+std::map<int, std::vector<IP >> mapBanIP;
 
 bool LoadBanIP (const char* filename)
 {
@@ -181,7 +181,7 @@ bool LoadBanIP (const char* filename)
 
 			strlcpy (end, p + 1, sizeof (end));
 
-			*p = '\0';
+			* p = '\0';
 			strlcpy (start, buf, sizeof (start));
 		}
 
@@ -193,7 +193,7 @@ bool LoadBanIP (const char* filename)
 		{
 			std::vector<IP> v;
 			v.push_back (ip);
-			mapBanIP.insert (std::map<DWORD, std::vector<IP>>::value_type (ip.hash(), v));
+			mapBanIP.insert (std::map<DWORD, std::vector<IP >>::value_type (ip.hash(), v));
 		}
 		else
 		{

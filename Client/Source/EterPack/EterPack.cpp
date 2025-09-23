@@ -214,7 +214,7 @@ void CMakePackLog::FlushError()
 
 	std::copy (iit, eos, std::back_inserter (vText));
 
-	std::ostream_iterator <std::wstring, wchar_t, std::char_traits <wchar_t>> oit (std::wcout);
+	std::ostream_iterator <std::wstring, wchar_t, std::char_traits <wchar_t >> oit (std::wcout);
 
 	std::sort (vText.begin(), vText.end());
 	std::copy (vText.begin(), vText.end(), oit);

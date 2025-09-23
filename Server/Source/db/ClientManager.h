@@ -34,7 +34,7 @@ class CClientManager : public CNetBase, public singleton<CClientManager>
 		typedef std::list<CPeer*>			TPeerList;
 		typedef boost::unordered_map<DWORD, CPlayerTableCache*> TPlayerTableCacheMap;
 		typedef boost::unordered_map<DWORD, CItemCache*> TItemCacheMap;
-		typedef boost::unordered_set<CItemCache*, boost::hash<CItemCache*>> TItemCacheSet;
+		typedef boost::unordered_set<CItemCache*, boost::hash<CItemCache* >> TItemCacheSet;
 		typedef boost::unordered_map<DWORD, TItemCacheSet*> TItemCacheSetPtrMap;
 		typedef boost::unordered_map<DWORD, CItemPriceListTableCache*> TItemPriceListCacheMap;
 		typedef boost::unordered_map<short, BYTE> TChannelStatusMap;

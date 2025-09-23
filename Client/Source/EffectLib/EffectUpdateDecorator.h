@@ -104,7 +104,7 @@ namespace NEffectUpdateDecorator
 			}
 	};
 
-	template <class T> class CTimeEventDecorator : public CBaseDecorator, public CPooledObject<CTimeEventDecorator<T>>
+	template <class T> class CTimeEventDecorator : public CBaseDecorator, public CPooledObject<CTimeEventDecorator<T >>
 	{
 		public:
 			typedef CTimeEvent<T> TTimeEventType;
@@ -203,7 +203,7 @@ namespace NEffectUpdateDecorator
 			CTextureAnimationCWDecorator (float fFrameTime, DWORD n, BYTE * pIdx) : n (n), pIdx (pIdx), fFrameTime (fFrameTime), fLastFrameTime (fFrameTime) {}
 			virtual ~CTextureAnimationCWDecorator() {}
 		protected:
-			virtual CBaseDecorator* __Clone (CParticleInstance* pfi, CParticleInstance* pi)
+			virtual CBaseDecorator * __Clone (CParticleInstance * pfi, CParticleInstance * pi)
 			{
 				return new CTextureAnimationCWDecorator (fFrameTime, n, (BYTE*) ((unsigned char*)pi + ((BYTE*)pIdx - (BYTE*)pfi)));
 			}
@@ -231,7 +231,7 @@ namespace NEffectUpdateDecorator
 			CTextureAnimationCCWDecorator (float fFrameTime, BYTE n, BYTE * pIdx) : n (n), pIdx (pIdx), fFrameTime (fFrameTime), fLastFrameTime (fFrameTime) {}
 			virtual ~CTextureAnimationCCWDecorator() {}
 		protected:
-			virtual CBaseDecorator* __Clone (CParticleInstance* pfi, CParticleInstance* pi)
+			virtual CBaseDecorator * __Clone (CParticleInstance * pfi, CParticleInstance * pi)
 			{
 				return new CTextureAnimationCCWDecorator (fFrameTime, n, (BYTE*) ((unsigned char*)pi + ((BYTE*)pIdx - (BYTE*)pfi)));
 			}
@@ -260,7 +260,7 @@ namespace NEffectUpdateDecorator
 			CTextureAnimationRandomDecorator (float fFrameTime, BYTE n, BYTE * pIdx) : n (n), pIdx (pIdx), fFrameTime (fFrameTime), fLastFrameTime (fFrameTime) {}
 			virtual ~CTextureAnimationRandomDecorator() {}
 		protected:
-			virtual CBaseDecorator* __Clone (CParticleInstance* pfi, CParticleInstance* pi)
+			virtual CBaseDecorator * __Clone (CParticleInstance * pfi, CParticleInstance * pi)
 			{
 				return new CTextureAnimationRandomDecorator (fFrameTime, n, (BYTE*) ((unsigned char*)pi + ((BYTE*)pIdx - (BYTE*)pfi)));
 			}
@@ -291,7 +291,7 @@ namespace NEffectUpdateDecorator
 
 		protected:
 			virtual void __Excute (const CDecoratorData & d);
-			virtual CBaseDecorator* __Clone (CParticleInstance* pfi, CParticleInstance* pi);
+			virtual CBaseDecorator * __Clone (CParticleInstance * pfi, CParticleInstance * pi);
 	};
 
 	class CGravityDecorator : public CBaseDecorator, public CPooledObject<CGravityDecorator>
@@ -300,8 +300,8 @@ namespace NEffectUpdateDecorator
 			CGravityDecorator() {}
 			virtual ~CGravityDecorator() {}
 		protected:
-			virtual void __Excute (const CDecoratorData& d);
-			virtual CBaseDecorator* __Clone (CParticleInstance* pfi, CParticleInstance* pi);
+			virtual void __Excute (const CDecoratorData & d);
+			virtual CBaseDecorator * __Clone (CParticleInstance * pfi, CParticleInstance * pi);
 	};
 
 	class CRotationDecorator : public CBaseDecorator, public CPooledObject<CRotationDecorator>
@@ -312,8 +312,8 @@ namespace NEffectUpdateDecorator
 			{
 			}
 		protected:
-			virtual void __Excute (const CDecoratorData& d);
-			virtual CBaseDecorator* __Clone (CParticleInstance* pfi, CParticleInstance* pi) ;
+			virtual void __Excute (const CDecoratorData & d);
+			virtual CBaseDecorator * __Clone (CParticleInstance * pfi, CParticleInstance * pi) ;
 	};
 
 }

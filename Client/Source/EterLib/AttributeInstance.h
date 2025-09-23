@@ -37,7 +37,7 @@ class CAttributeInstance
 
 		D3DXMATRIX m_matGlobal;
 
-		std::vector< std::vector<D3DXVECTOR3>> m_v3HeightDataVector;
+		std::vector< std::vector<D3DXVECTOR3 >> m_v3HeightDataVector;
 
 		CAttributeData::TRef					m_roAttributeData;
 

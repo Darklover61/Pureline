@@ -121,7 +121,7 @@ class CDungeon
 		void	SetWarpLocation (long map_index, int x, int y);
 
 		// item group은 item_vnum과 item_count로 구성.
-		typedef std::vector <std::pair <DWORD, int>> ItemGroup;
+		typedef std::vector <std::pair <DWORD, int >> ItemGroup;
 		void	CreateItemGroup (std::string& group_name, ItemGroup& item_group);
 		const ItemGroup* GetItemGroup (std::string& group_name);
 		//void	InsertItemGroup (std::string& group_name, DWORD item_vnum);

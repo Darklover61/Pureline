@@ -164,18 +164,20 @@ void CPythonApplication::Abort()
 		{
 			PyCodeObject* f_code = frame->f_code;
 			if (!f_code || !f_code->co_filename || !f_code->co_name)
+			{
 				continue;
+			}
 
-			const char* filename = PyString_AsString(f_code->co_filename);
-			const char* funcname = PyString_AsString(f_code->co_name);
-			int line = PyFrame_GetLineNumber(frame);
+			const char* filename = PyString_AsString (f_code->co_filename);
+			const char* funcname = PyString_AsString (f_code->co_name);
+			int line = PyFrame_GetLineNumber (frame);
 			TraceError ("Filename = [%s] - Name = [%s] - Line = [%d]", filename, funcname, line);
 		}
 	}
 
-	TraceError("============================================================================================================");
+	TraceError ("============================================================================================================");
 
-	PostQuitMessage(0);
+	PostQuitMessage (0);
 }
 /* ----------------------------------------------------- */
 

@@ -110,7 +110,7 @@ void CMapOutdoor::RenderWater()
 
 	float fFogDistance = __GetFogDistance();
 
-	std::vector<std::pair<float, long>>::iterator i;
+	std::vector<std::pair<float, long >>::iterator i;
 
 	for (i = m_PatchVector.begin(); i != m_PatchVector.end(); ++i)
 	{

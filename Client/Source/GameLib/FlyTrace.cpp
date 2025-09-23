@@ -114,7 +114,7 @@ struct TFlyVertexSet
 	}
 };
 
-typedef std::vector<std::pair<float, TFlyVertexSet>> TFlyVertexSetVector;
+typedef std::vector<std::pair<float, TFlyVertexSet >> TFlyVertexSetVector;
 
 void CFlyTrace::Render()
 {

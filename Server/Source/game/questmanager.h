@@ -268,7 +268,7 @@ namespace quest
 			};
 
 			typedef std::unordered_map<string, int, stringhash> THashMapQuestName;
-			typedef std::unordered_map<unsigned int, vector<char>> THashMapQuestStartScript;
+			typedef std::unordered_map<unsigned int, vector<char >> THashMapQuestStartScript;
 
 			THashMapQuestName			m_hmQuestName;
 			THashMapQuestStartScript	m_hmQuestStartScript;

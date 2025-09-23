@@ -135,7 +135,7 @@ namespace marriage
 		private:
 			std::unordered_set<TMarriage*> m_Marriages;
 			std::map<DWORD, TMarriage*> m_MarriageByPID;
-			std::set<std::pair<DWORD, DWORD>> m_setWedding;
+			std::set<std::pair<DWORD, DWORD >> m_setWedding;
 	};
 
 	template <typename Func>

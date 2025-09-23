@@ -11,7 +11,7 @@
 #define GRADE_HIGH 90
 
 template<>
-class hash<std::pair <DWORD, DWORD>>
+class hash<std::pair <DWORD, DWORD >>
 {
 		// hash functor
 	public:
@@ -52,10 +52,10 @@ class AuctionBoard
 		AuctionBoard() {}
 		~AuctionBoard() {}
 
-		TAuctionItemInfo* GetItemInfo (DWORD key);
+		TAuctionItemInfo * GetItemInfo (DWORD key);
 		bool DeleteItemInfo (DWORD key);
-		bool InsertItemInfo (TAuctionItemInfo* item_info);
-		bool UpdateItemInfo (TAuctionItemInfo* item_info);
+		bool InsertItemInfo (TAuctionItemInfo * item_info);
+		bool UpdateItemInfo (TAuctionItemInfo * item_info);
 
 
 	private:
@@ -75,13 +75,13 @@ class AuctionBoard
 
 		SortByItemName item_name_map;
 
-		void Sort (TItemInfoVec& vec, BYTE order);
+		void Sort (TItemInfoVec & vec, BYTE order);
 
 	public:
-		void SortedItemInfos (TItemInfoVec& vec, BYTE grade, BYTE category, int start_idx, BYTE size, BYTE order[5]);
+		void SortedItemInfos (TItemInfoVec & vec, BYTE grade, BYTE category, int start_idx, BYTE size, BYTE order[5]);
 
 		// 나의 경매장을 위한 함수.
-		void YourItemInfoList (TItemInfoVec& vec, DWORD player_id, int start_idx, BYTE size);
+		void YourItemInfoList (TItemInfoVec & vec, DWORD player_id, int start_idx, BYTE size);
 
 };
 class SaleBoard
@@ -96,19 +96,19 @@ class SaleBoard
 		TPCMap wisher_map;
 		TPCMap seller_map;
 
-		bool DeleteFromPCMap (TPCMap& pc_map, DWORD player_id, DWORD item_id);
-		bool InsertInPCMap (TPCMap& pc_map, DWORD player_id, TSaleItemInfo* item_info);
+		bool DeleteFromPCMap (TPCMap & pc_map, DWORD player_id, DWORD item_id);
+		bool InsertInPCMap (TPCMap & pc_map, DWORD player_id, TSaleItemInfo * item_info);
 
 	public:
 		SaleBoard() {}
 		~SaleBoard() {}
 
 		typedef std::vector <TSaleItemInfo*> TItemInfoVec;
-		void WisherItemInfoList (TItemInfoVec& vec, DWORD wisher_id, int start_idx, BYTE size);
+		void WisherItemInfoList (TItemInfoVec & vec, DWORD wisher_id, int start_idx, BYTE size);
 
-		TSaleItemInfo* GetItemInfo (DWORD key);
+		TSaleItemInfo * GetItemInfo (DWORD key);
 		bool DeleteItemInfo (DWORD key);
-		bool InsertItemInfo (TSaleItemInfo* item_info);
+		bool InsertItemInfo (TSaleItemInfo * item_info);
 };
 
 class WishBoard
@@ -124,9 +124,9 @@ class WishBoard
 		WishBoard() {}
 		~WishBoard() {}
 
-		TWishItemInfo* GetItemInfo (DWORD wisher_id, DWORD item_num);
+		TWishItemInfo * GetItemInfo (DWORD wisher_id, DWORD item_num);
 		bool DeleteItemInfo (DWORD wisher_id, DWORD item_num);
-		bool InsertItemInfo (TWishItemInfo* item_info);
+		bool InsertItemInfo (TWishItemInfo * item_info);
 };
 
 class MyBidBoard
@@ -144,7 +144,7 @@ class MyBidBoard
 
 		typedef std::vector <DWORD> TItemVec;
 
-		void YourBidInfo (TItemVec& vec, DWORD bidder_id, int start_idx, int size);
+		void YourBidInfo (TItemVec & vec, DWORD bidder_id, int start_idx, int size);
 
 		BidInfo GetMoney (DWORD player_id, DWORD item_id);
 		bool Delete (DWORD player_id, DWORD item_id);
@@ -168,29 +168,29 @@ class AuctionManager : public singleton <AuctionManager>
 
 	public:
 		bool InsertItem (LPITEM item);
-		bool InsertItem (TPlayerItem* player_item);
+		bool InsertItem (TPlayerItem * player_item);
 		LPITEM GetInventoryItem (DWORD item_id);
 		bool DeleteItem (DWORD item_id);
 
-		bool InsertAuctionItemInfo (TAuctionItemInfo* item_info);
-		TAuctionItemInfo* GetAuctionItemInfo (DWORD item_id)
+		bool InsertAuctionItemInfo (TAuctionItemInfo * item_info);
+		TAuctionItemInfo * GetAuctionItemInfo (DWORD item_id)
 		{
 			return Auction.GetItemInfo (item_id);
 		}
 
-		bool InsertSaleItemInfo (TSaleItemInfo* item_info);
-		TSaleItemInfo* GetSaleItemInfo (DWORD item_id)
+		bool InsertSaleItemInfo (TSaleItemInfo * item_info);
+		TSaleItemInfo * GetSaleItemInfo (DWORD item_id)
 		{
 			return Sale.GetItemInfo (item_id);
 		}
 
-		bool InsertWishItemInfo (TWishItemInfo* item_info);
-		TWishItemInfo* GetWishItemInfo (DWORD wisher_id, DWORD item_id)
+		bool InsertWishItemInfo (TWishItemInfo * item_info);
+		TWishItemInfo * GetWishItemInfo (DWORD wisher_id, DWORD item_id)
 		{
 			return Wish.GetItemInfo (wisher_id, item_id);
 		}
 
-		void YourBidItemInfoList (AuctionBoard::TItemInfoVec& vec, DWORD bidder_id, int start_idx, int size);
+		void YourBidItemInfoList (AuctionBoard::TItemInfoVec & vec, DWORD bidder_id, int start_idx, int size);
 
 		void Boot (const char*& pdata, WORD size);
 
@@ -199,7 +199,7 @@ class AuctionManager : public singleton <AuctionManager>
 		void get_my_purchase_list (LPCHARACTER ch, int start_idx, int size);
 		void enroll_auction (LPCHARACTER ch, LPITEM item, BYTE empire, int bidPrice, int immidiatePurchasePrice);
 
-		void recv_result_auction (DWORD commander_id, TPacketDGResultAuction* cmd_result);
+		void recv_result_auction (DWORD commander_id, TPacketDGResultAuction * cmd_result);
 
 		void bid (LPCHARACTER ch, DWORD item_id, int price);
 		void immediate_purchase (LPCHARACTER ch, DWORD item_id);

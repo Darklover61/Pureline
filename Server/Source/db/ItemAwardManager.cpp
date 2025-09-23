@@ -129,7 +129,7 @@ std::map<DWORD, TItemAward*>& ItemAwardManager::GetMapAward()
 	return m_map_award;
 }
 
-std::map<std::string, std::set<TItemAward*>>& ItemAwardManager::GetMapkSetAwardByLogin()
+std::map<std::string, std::set<TItemAward* >> & ItemAwardManager::GetMapkSetAwardByLogin()
 {
 	return m_map_kSetAwardByLogin;
 }
