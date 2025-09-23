@@ -15,9 +15,9 @@ cryptlib-*.lib
 cryptlib-*.pdb
 libcryptopp.a
 
-# Libs that server compilation generates
-Server/Source/**/*.lib
-Server/Source/**/*.idb
+# Libs that compilations generate
+**/Source/**/*.lib
+**/Source/**/*.idb
 
 ## Compiled quests
 object/
@@ -32,6 +32,7 @@ qc*.exe
 Metin2*.exe
 MakePack*.exe
 dump_proto.exe
+WorldEditor*.exe
 
 ## Will be automatically generated
 Client/Binary/imgui.ini
@@ -102,6 +103,8 @@ mono_crash.*
 [Rr]elease/
 [Rr]eleases/
 [Dd]istribute/
+[Dd]ebug-WE/
+[Rr]elease-WE/
 x64/
 x86/
 [Ww][Ii][Nn]32/

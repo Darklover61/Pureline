@@ -2,6 +2,11 @@
 | Kaptan Yosun's Pureline                                        |
 +----------------------------------------------------------------+
 +------------+
+| 29.09.2025 |
++------------+
+~ Integrated WorldEditor Source Code into the Client
+
++------------+
 | 23.09.2025 |
 +------------+
 ~ Added [REVERSED] SAVE_CAMERA_MODE
