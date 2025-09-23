@@ -156,7 +156,6 @@ class SECTREE_MANAGER : public singleton<SECTREE_MANAGER>
 		void		DestroyPrivateMap (long lMapIndex);
 
 		TAreaMap&	GetDungeonArea (long lMapIndex);
-		void		SendNPCPosition (LPCHARACTER ch);
 		void		InsertNPCPosition (long lMapIndex, BYTE bType, const char* szName, long x, long y);
 
 		BYTE		GetEmpireFromMapIndex (long lMapIndex);

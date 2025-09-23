@@ -24,6 +24,7 @@
 +-----------------------------------+--------+--------+------+
 | [REVERSED] ABORT_TRACEBACK_UPDATE | NO     | YES    | NO   | More detailed Python traceback with line printing.
 | [REVERSED] SAVE_CAMERA_MODE       | NO     | YES    | YES  | Save near or far camera mode on exit.
+| [REVERSED] ATLAS_MARK_INFO        | YES    | YES    | YES  | Pull NPC positions from Client instead of ServerFiles.
 |                                   |        |        |      |
 +-----------------------------------+--------+--------+------+
 

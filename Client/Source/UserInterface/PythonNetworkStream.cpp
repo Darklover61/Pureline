@@ -144,7 +144,6 @@ class CMainPacketHeaderMap : public CNetworkPacketHeaderMap
 			Set (HEADER_GC_REFINE_INFORMATION, CNetworkPacketHeaderMap::TPacketType (sizeof (TPacketGCRefineInformation), STATIC_SIZE_PACKET));
 			Set (HEADER_GC_REFINE_INFORMATION_NEW, CNetworkPacketHeaderMap::TPacketType (sizeof (TPacketGCRefineInformationNew), STATIC_SIZE_PACKET));
 			Set (HEADER_GC_SEPCIAL_EFFECT, CNetworkPacketHeaderMap::TPacketType (sizeof (TPacketGCSpecialEffect), STATIC_SIZE_PACKET));
-			Set (HEADER_GC_NPC_POSITION, CNetworkPacketHeaderMap::TPacketType (sizeof (TPacketGCNPCPosition), DYNAMIC_SIZE_PACKET));
 			Set (HEADER_GC_CHANGE_NAME, CNetworkPacketHeaderMap::TPacketType (sizeof (TPacketGCChangeName), STATIC_SIZE_PACKET));
 
 			Set (HEADER_GC_CHINA_MATRIX_CARD, CNetworkPacketHeaderMap::TPacketType (sizeof (TPacketGCChinaMatrixCard), STATIC_SIZE_PACKET));

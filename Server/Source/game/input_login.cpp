@@ -570,7 +570,6 @@ void CInputLogin::Entergame (LPDESC d, const char* data)
 	// 캐릭터를 맵에 추가
 	ch->Show (ch->GetMapIndex(), pos.x, pos.y, pos.z);
 
-	SECTREE_MANAGER::instance().SendNPCPosition (ch);
 	ch->ReviveInvisible (5);
 
 	d->SetPhase (PHASE_GAME);

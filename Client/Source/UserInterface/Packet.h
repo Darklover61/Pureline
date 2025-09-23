@@ -269,7 +269,6 @@ enum
 	#endif
 
 	HEADER_GC_SEPCIAL_EFFECT                    = 114,
-	HEADER_GC_NPC_POSITION						= 115,
 
 	HEADER_GC_CHINA_MATRIX_CARD                 = 116,
 	HEADER_GC_CHARACTER_UPDATE2                 = 117,
@@ -2369,13 +2368,6 @@ typedef struct SPacketGCSpecialEffect
 	BYTE type;
 	DWORD vid;
 } TPacketGCSpecialEffect;
-
-typedef struct SPacketGCNPCPosition
-{
-	BYTE header;
-	WORD size;
-	WORD count;
-} TPacketGCNPCPosition;
 
 struct TNPCPosition
 {

@@ -6,6 +6,7 @@
 +------------+
 ~ Added [REVERSED] SAVE_CAMERA_MODE
 ~ Added [REVERSED] ABORT_TRACEBACK_UPDATE
+~ Added [REVERSED] ATLAS_MARK_INFO
 
 +------------+
 | 20.09.2025 |
