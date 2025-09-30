@@ -1,9 +1,8 @@
 #if !defined(AFX_MAPOBJECTPROPERTYPAGEEFFECT_H__3C31F9B8_D921_4A26_9261_271B0FC110C4__INCLUDED_)
 #define AFX_MAPOBJECTPROPERTYPAGEEFFECT_H__3C31F9B8_D921_4A26_9261_271B0FC110C4__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // MapObjectPropertyPageEffect.h : header file
 //
 #include "MapObjectPropertyPageBase.h"

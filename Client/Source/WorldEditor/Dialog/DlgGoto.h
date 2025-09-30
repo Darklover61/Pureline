@@ -1,9 +1,8 @@
 #if !defined(AFX_DLGGOTO_H__692712FF_116E_4F64_8A7B_ECA54C74471A__INCLUDED_)
 #define AFX_DLGGOTO_H__692712FF_116E_4F64_8A7B_ECA54C74471A__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // DlgGoto.h : header file
 //
 

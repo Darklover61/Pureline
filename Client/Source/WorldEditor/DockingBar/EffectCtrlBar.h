@@ -1,9 +1,8 @@
 #if !defined(AFX_EFFECTCTRLBAR_H__41C7ADDD_CCB4_45F4_BDDF_76ECD6F6FF50__INCLUDED_)
 #define AFX_EFFECTCTRLBAR_H__41C7ADDD_CCB4_45F4_BDDF_76ECD6F6FF50__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // EffectCtrlBar.h : header file
 //
 

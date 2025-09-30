@@ -5,9 +5,7 @@
 #if !defined(AFX_SHADOWRENDERHELPER_H__262445E9_97FE_41E5_92DC_406DA02D72B4__INCLUDED_)
 #define AFX_SHADOWRENDERHELPER_H__262445E9_97FE_41E5_92DC_406DA02D72B4__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
 
 class CShadowRenderHelper : public CScreen, public CSingleton<CShadowRenderHelper>
 {

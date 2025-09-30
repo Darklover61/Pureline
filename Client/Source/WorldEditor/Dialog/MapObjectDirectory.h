@@ -1,9 +1,8 @@
 #if !defined(AFX_MAPOBJECTCREATEDIRECTORY_H__5AC43102_595A_4F7C_BB5F_D0D971B66B77__INCLUDED_)
 #define AFX_MAPOBJECTCREATEDIRECTORY_H__5AC43102_595A_4F7C_BB5F_D0D971B66B77__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // MapObjectCreateDirectory.h : header file
 //
 

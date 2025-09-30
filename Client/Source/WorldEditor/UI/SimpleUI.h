@@ -10,9 +10,7 @@
 #if !defined(AFX_SIMPLEUI_H__7513B080_76E5_11D4_97FE_004F4C02CAF7__INCLUDED_)
 #define AFX_SIMPLEUI_H__7513B080_76E5_11D4_97FE_004F4C02CAF7__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
 
 #include "GTColorDialogDlg.h"
 

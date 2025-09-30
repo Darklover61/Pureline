@@ -1,9 +1,8 @@
 #if !defined(AFX_MAPTERRAINTEXLISTCTRL_H__998FD766_C0FF_4AC5_B3FB_DC835041DEDB__INCLUDED_)
 #define AFX_MAPTERRAINTEXLISTCTRL_H__998FD766_C0FF_4AC5_B3FB_DC835041DEDB__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // mapterraintexlistctrl.h : header file
 //
 

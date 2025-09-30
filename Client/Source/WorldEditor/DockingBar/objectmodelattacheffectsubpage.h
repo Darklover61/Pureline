@@ -1,9 +1,8 @@
 #if !defined(AFX_OBJECTMODELATTACHEFFECTSUBPAGE_H__9B0C04ED_0E79_4FB2_9882_12078809C911__INCLUDED_)
 #define AFX_OBJECTMODELATTACHEFFECTSUBPAGE_H__9B0C04ED_0E79_4FB2_9882_12078809C911__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // objectmodelattacheffectsubpage.h : header file
 //
 

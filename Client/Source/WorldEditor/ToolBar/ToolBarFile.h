@@ -1,9 +1,8 @@
 #if !defined(AFX_TOOLBARFILE_H__C9E365AF_0E65_4B36_931D_8688D8F549C9__INCLUDED_)
 #define AFX_TOOLBARFILE_H__C9E365AF_0E65_4B36_931D_8688D8F549C9__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // ToolBarFile.h : header file
 //
 

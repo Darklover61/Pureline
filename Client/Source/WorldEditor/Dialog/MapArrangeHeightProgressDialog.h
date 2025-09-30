@@ -1,9 +1,8 @@
 #if !defined(AFX_MAPARRANGEHEIGHTPROGRESS_H__8899239D_155E_4D17_A866_8AD1E2EA038C__INCLUDED_)
 #define AFX_MAPARRANGEHEIGHTPROGRESS_H__8899239D_155E_4D17_A866_8AD1E2EA038C__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // MapArrangeHeightProgress.h : header file
 //
 

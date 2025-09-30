@@ -1,9 +1,8 @@
 #if !defined(AFX_EFFECTLIGHTPAGE_H__0EDAF9B7_D87C_4452_AF47_747D8C5E57A0__INCLUDED_)
 #define AFX_EFFECTLIGHTPAGE_H__0EDAF9B7_D87C_4452_AF47_747D8C5E57A0__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // EffectLightPage.h : header file
 //
 

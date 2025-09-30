@@ -1,9 +1,8 @@
 #if !defined(AFX_OBJECTANIMATIONEVENTEFFECT_H__B70B7DB5_54AB_4327_A40C_A06E1D3890DF__INCLUDED_)
 #define AFX_OBJECTANIMATIONEVENTEFFECT_H__B70B7DB5_54AB_4327_A40C_A06E1D3890DF__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // ObjectAnimationEventEffect.h : header file
 //
 

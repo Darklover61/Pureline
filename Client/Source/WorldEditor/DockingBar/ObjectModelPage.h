@@ -1,9 +1,8 @@
 #if !defined(AFX_OBJECTMODELPAGE_H__551B4B04_0E74_4272_8C9D_BAA88EEB84E0__INCLUDED_)
 #define AFX_OBJECTMODELPAGE_H__551B4B04_0E74_4272_8C9D_BAA88EEB84E0__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // ObjectModelPage.h : header file
 //
 

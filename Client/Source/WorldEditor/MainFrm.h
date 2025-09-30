@@ -5,9 +5,7 @@
 #if !defined(AFX_MAINFRM_H__18120F2C_D550_4552_BE6F_274E1A726376__INCLUDED_)
 #define AFX_MAINFRM_H__18120F2C_D550_4552_BE6F_274E1A726376__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
 
 #include "Resource.h"
 #include "./DockingBar/MapCtrlBar.h"

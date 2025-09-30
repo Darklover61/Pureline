@@ -1,9 +1,8 @@
 #if !defined(AFX_MAPTERRAINPAGE_H__DC2463C4_34C1_40C3_A0B7_3FCD626DA567__INCLUDED_)
 #define AFX_MAPTERRAINPAGE_H__DC2463C4_34C1_40C3_A0B7_3FCD626DA567__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // MapTerrainPage.h : header file
 //
 

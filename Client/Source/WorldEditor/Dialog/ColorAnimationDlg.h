@@ -1,9 +1,8 @@
 #if !defined(AFX_COLORANIMATIONDLG_H__CCBE6EC5_4556_4875_B925_74674BD146E8__INCLUDED_)
 #define AFX_COLORANIMATIONDLG_H__CCBE6EC5_4556_4875_B925_74674BD146E8__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // ColorAnimationDlg.h : header file
 //
 

@@ -1,9 +1,8 @@
 #if !defined(AFX_OBJECTTABPAGE_H__B136FBA4_4842_45DF_8C81_89DA3E24FF90__INCLUDED_)
 #define AFX_OBJECTTABPAGE_H__B136FBA4_4842_45DF_8C81_89DA3E24FF90__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // ObjectTabPage.h : header file
 //
 

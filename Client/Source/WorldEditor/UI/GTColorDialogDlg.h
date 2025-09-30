@@ -9,9 +9,7 @@
 #if !defined(AFX_GTCOLORDIALOGDLG_H__F818AFC9_4DE0_11D6_A56D_525400EA266C__INCLUDED_)
 #define AFX_GTCOLORDIALOGDLG_H__F818AFC9_4DE0_11D6_A56D_525400EA266C__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
 
 /////////////////////////////////////////////////////////////////////////////
 // CGTColorDialogDlg dialog

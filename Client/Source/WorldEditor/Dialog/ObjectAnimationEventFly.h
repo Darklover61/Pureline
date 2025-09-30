@@ -1,9 +1,8 @@
 #if !defined(AFX_OBJECTANIMATIONEVENTFLY_H__62219444_D886_4AE7_82FB_99FD9C72BF8B__INCLUDED_)
 #define AFX_OBJECTANIMATIONEVENTFLY_H__62219444_D886_4AE7_82FB_99FD9C72BF8B__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // ObjectAnimationEventFly.h : header file
 //
 

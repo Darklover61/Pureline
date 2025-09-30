@@ -5,9 +5,7 @@
 #if !defined(AFX_MINIMAPRENDERHELPER_H__D778645A_A305_4414_955D_69D08C9A943B__INCLUDED_)
 #define AFX_MINIMAPRENDERHELPER_H__D778645A_A305_4414_955D_69D08C9A943B__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
 
 class CMiniMapRenderHelper : public CScreen, public CSingleton<CMiniMapRenderHelper>
 {

@@ -1,9 +1,8 @@
 #if !defined(AFX_OBJECTANIMATIONEVENTWARP_H__C50162F9_AA0F_4997_A554_31728363D7BA__INCLUDED_)
 #define AFX_OBJECTANIMATIONEVENTWARP_H__C50162F9_AA0F_4997_A554_31728363D7BA__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // ObjectAnimationEventWarp.h : header file
 //
 

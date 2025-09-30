@@ -1,9 +1,8 @@
 #if !defined(AFX_OBJECTANIMATIONEVENTGRAPH_H__7F40DB86_AC90_440E_BAC6_5FB2DBCDD1AA__INCLUDED_)
 #define AFX_OBJECTANIMATIONEVENTGRAPH_H__7F40DB86_AC90_440E_BAC6_5FB2DBCDD1AA__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // ObjectAnimationEventGraph.h : header file
 //
 

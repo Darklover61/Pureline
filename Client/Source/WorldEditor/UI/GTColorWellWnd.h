@@ -1,9 +1,8 @@
 #if !defined(AFX_GTCOLORWELLWND_H__F818AFD5_4DE0_11D6_A56D_525400EA266C__INCLUDED_)
 #define AFX_GTCOLORWELLWND_H__F818AFD5_4DE0_11D6_A56D_525400EA266C__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // GTColorWellWnd.h : header file
 //
 

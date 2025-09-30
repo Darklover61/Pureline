@@ -5,9 +5,7 @@
 #if !defined(AFX_WORLDEDITORVIEW_H__933ED50D_E0FE_4468_A7D2_52CB5D428A27__INCLUDED_)
 #define AFX_WORLDEDITORVIEW_H__933ED50D_E0FE_4468_A7D2_52CB5D428A27__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
 
 #include "ViewportManager.h"
 #include "Dialog/DlgPerspective.h"

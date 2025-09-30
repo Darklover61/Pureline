@@ -5,9 +5,7 @@
 #if !defined(AFX_TERRAINPATCH_H__CDD52438_D542_433C_8748_3A15C910A65E__INCLUDED_)
 #define AFX_TERRAINPATCH_H__CDD52438_D542_433C_8748_3A15C910A65E__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
 
 #include "../EterLib/GrpVertexBuffer.h"
 #include "../TerrainLib/Terrain.h"

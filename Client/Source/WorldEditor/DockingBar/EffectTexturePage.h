@@ -1,9 +1,8 @@
 #if !defined(AFX_EFFECTTEXTUREPAGE_H__4D0B5194_467C_487F_9480_3A41BDB4DB2B__INCLUDED_)
 #define AFX_EFFECTTEXTUREPAGE_H__4D0B5194_467C_487F_9480_3A41BDB4DB2B__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // EffectTexturePage.h : header file
 //
 

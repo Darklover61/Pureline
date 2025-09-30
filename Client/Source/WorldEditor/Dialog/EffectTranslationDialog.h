@@ -1,9 +1,8 @@
 #if !defined(AFX_EFFECTTRANSLATIONDIALOG_H__2760C2B7_1F13_4C8E_95E2_C1C302DA902E__INCLUDED_)
 #define AFX_EFFECTTRANSLATIONDIALOG_H__2760C2B7_1F13_4C8E_95E2_C1C302DA902E__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // EffectTranslationDialog.h : header file
 //
 

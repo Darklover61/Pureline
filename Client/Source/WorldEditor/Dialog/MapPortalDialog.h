@@ -1,9 +1,8 @@
 #if !defined(AFX_MAPPORTALDIALOG_H__06366FFE_4144_4292_88F8_5EABBCB3CBC7__INCLUDED_)
 #define AFX_MAPPORTALDIALOG_H__06366FFE_4144_4292_88F8_5EABBCB3CBC7__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // MapPortalDialog.h : header file
 //
 

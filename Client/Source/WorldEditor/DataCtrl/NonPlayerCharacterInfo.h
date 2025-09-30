@@ -5,9 +5,7 @@
 #if !defined(AFX_NONPLAYERCHARACTERINFO_H__356E26F9_0EDD_4A2F_9E4C_CFC032B88C3A__INCLUDED_)
 #define AFX_NONPLAYERCHARACTERINFO_H__356E26F9_0EDD_4A2F_9E4C_CFC032B88C3A__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
 
 class CNonPlayerCharacterInfo : public CSingleton<CNonPlayerCharacterInfo>
 {

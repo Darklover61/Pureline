@@ -1,9 +1,8 @@
 #if !defined(AFX_EFFECTPARTICLETEXTUREPREVIEW_H__15B021C0_F8BB_41E3_9B48_C67E6DE404F8__INCLUDED_)
 #define AFX_EFFECTPARTICLETEXTUREPREVIEW_H__15B021C0_F8BB_41E3_9B48_C67E6DE404F8__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // effectparticletexturepreview.h : header file
 //
 

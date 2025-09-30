@@ -5,9 +5,7 @@
 #if !defined(AFX_TERRAINDECAL_H__8E387316_FCCF_446F_AB82_82721F7AC08C__INCLUDED_)
 #define AFX_TERRAINDECAL_H__8E387316_FCCF_446F_AB82_82721F7AC08C__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
 
 #include "../EterLib/Decal.h"
 

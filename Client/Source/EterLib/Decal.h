@@ -5,9 +5,7 @@
 #if !defined(AFX_DECAL_H__E3D27DFC_30CB_4995_B9B9_396B5E8A5F02__INCLUDED_)
 #define AFX_DECAL_H__E3D27DFC_30CB_4995_B9B9_396B5E8A5F02__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
 
 #include "GrpBase.h"
 

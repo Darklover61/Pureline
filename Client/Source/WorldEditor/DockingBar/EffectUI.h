@@ -1,9 +1,8 @@
 #if !defined(AFX_TEST_H__EB65D28D_8CB5_43B5_9827_35EC3B77E29D__INCLUDED_)
 #define AFX_TEST_H__EB65D28D_8CB5_43B5_9827_35EC3B77E29D__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // Test.h : header file
 //
 

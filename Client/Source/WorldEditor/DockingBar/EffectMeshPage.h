@@ -1,9 +1,8 @@
 #if !defined(AFX_EFFECTMESHPAGE_H__4FD0E72E_84BA_4BD3_BB0D_86BD94481345__INCLUDED_)
 #define AFX_EFFECTMESHPAGE_H__4FD0E72E_84BA_4BD3_BB0D_86BD94481345__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // EffectMeshPage.h : header file
 //
 

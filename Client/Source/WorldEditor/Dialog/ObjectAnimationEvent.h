@@ -1,9 +1,8 @@
 #if !defined(AFX_OBJECTANIMATIONNEWEVENT_H__EE8D7865_8AE4_4025_BC27_3AE381667C22__INCLUDED_)
 #define AFX_OBJECTANIMATIONNEWEVENT_H__EE8D7865_8AE4_4025_BC27_3AE381667C22__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // ObjectAnimationNewEvent.h : header file
 //
 

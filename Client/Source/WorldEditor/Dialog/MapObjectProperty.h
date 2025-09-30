@@ -1,9 +1,8 @@
 #if !defined(AFX_MAPOBJECTCREATEPROPERTY_H__739EF334_E0C8_418B_8EE9_3F38FCB814A7__INCLUDED_)
 #define AFX_MAPOBJECTCREATEPROPERTY_H__739EF334_E0C8_418B_8EE9_3F38FCB814A7__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // MapObjectCreateProperty.h : header file
 //
 

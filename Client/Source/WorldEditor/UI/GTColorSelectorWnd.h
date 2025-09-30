@@ -1,9 +1,8 @@
 #if !defined(AFX_GTCOLORSELECTORWND_H__F818AFD2_4DE0_11D6_A56D_525400EA266C__INCLUDED_)
 #define AFX_GTCOLORSELECTORWND_H__F818AFD2_4DE0_11D6_A56D_525400EA266C__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // GTColorSelectorWnd.h : header file
 //
 

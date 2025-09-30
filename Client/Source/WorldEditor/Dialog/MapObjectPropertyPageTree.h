@@ -1,9 +1,8 @@
 #if !defined(AFX_MAPOBJECTPROPERTYPAGETREE_H__FA29833F_4A1C_44D8_B001_5EC2EA9CAC67__INCLUDED_)
 #define AFX_MAPOBJECTPROPERTYPAGETREE_H__FA29833F_4A1C_44D8_B001_5EC2EA9CAC67__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // MapObjectPropertyPageTree.h : header file
 //
 

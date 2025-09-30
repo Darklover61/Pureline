@@ -5,9 +5,7 @@
 #if !defined(AFX_NEWMAPDLG_H__9B3FC717_E363_4831_9E12_B1410BA80BD0__INCLUDED_)
 #define AFX_NEWMAPDLG_H__9B3FC717_E363_4831_9E12_B1410BA80BD0__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
 
 class CNewMapDlg : public CDialog
 {

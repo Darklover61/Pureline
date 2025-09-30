@@ -1,9 +1,8 @@
 #if !defined(AFX_EFFECTPARTICLEPAGE_H__F69F8DC2_1C3C_4D0A_929C_3375531C5779__INCLUDED_)
 #define AFX_EFFECTPARTICLEPAGE_H__F69F8DC2_1C3C_4D0A_929C_3375531C5779__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // EffectParticlePage.h : header file
 //
 

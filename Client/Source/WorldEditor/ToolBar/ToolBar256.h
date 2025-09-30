@@ -9,9 +9,7 @@
 #if !defined(AFX_TOOLBAR256_H__BC9421B2_59EE_11D4_AFB2_004F4C02CAF7__INCLUDED_)
 #define AFX_TOOLBAR256_H__BC9421B2_59EE_11D4_AFB2_004F4C02CAF7__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
 
 /////////////////////////////////////////////////////////////////////////////
 // CToolBar256 window

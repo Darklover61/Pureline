@@ -1,9 +1,8 @@
 #if !defined(AFX_INPUTNUMBER_H__24E48670_A51A_444E_A417_B772143E71BE__INCLUDED_)
 #define AFX_INPUTNUMBER_H__24E48670_A51A_444E_A417_B772143E71BE__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // InputNumber.h : header file
 //
 

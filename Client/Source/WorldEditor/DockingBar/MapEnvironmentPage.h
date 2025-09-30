@@ -1,9 +1,8 @@
 #if !defined(AFX_MAPENVIRONMENTPAGE_H__A720959E_9F88_4F75_9409_D9FB275A7711__INCLUDED_)
 #define AFX_MAPENVIRONMENTPAGE_H__A720959E_9F88_4F75_9409_D9FB275A7711__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // MapEnvironmentPage.h : header file
 //
 

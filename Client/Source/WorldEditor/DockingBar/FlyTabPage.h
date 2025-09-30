@@ -1,9 +1,8 @@
 #if !defined(AFX_FLYTABPAGE_H__D6EBEBF7_3288_4B24_A18B_04C9B612AC37__INCLUDED_)
 #define AFX_FLYTABPAGE_H__D6EBEBF7_3288_4B24_A18B_04C9B612AC37__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // FlyTabPage.h : header file
 //
 

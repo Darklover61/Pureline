@@ -1,9 +1,8 @@
 #if !defined(AFX_DLGPERSPECTIVESETTING_H__67EE8DBE_591D_4C38_B86A_F7E178CB0B1C__INCLUDED_)
 #define AFX_DLGPERSPECTIVESETTING_H__67EE8DBE_591D_4C38_B86A_F7E178CB0B1C__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // DlgPerspectiveSetting.h : header file
 //
 

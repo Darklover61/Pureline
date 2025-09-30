@@ -1,9 +1,8 @@
 #if !defined(AFX_MAPTABPAGE_H__25725C00_AB0B_4BA0_A4BF_99BBDA94E1CC__INCLUDED_)
 #define AFX_MAPTABPAGE_H__25725C00_AB0B_4BA0_A4BF_99BBDA94E1CC__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // MapTabPage.h : header file
 //
 

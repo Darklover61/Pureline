@@ -9,9 +9,7 @@
 #if !defined(AFX_PAGECTRL_H__E5A7FC20_2B95_11D4_B73E_004F4C02CAF7__INCLUDED_)
 #define AFX_PAGECTRL_H__E5A7FC20_2B95_11D4_B73E_004F4C02CAF7__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
 
 /////////////////////////////////////////////////////////////////////////////
 // CPageCtrl dialog

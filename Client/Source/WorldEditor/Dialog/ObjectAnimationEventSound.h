@@ -1,9 +1,8 @@
 #if !defined(AFX_OBJECTANIMATIONEVENTSOUND_H__57398C3E_5AD7_43EC_A52B_707FB84B617F__INCLUDED_)
 #define AFX_OBJECTANIMATIONEVENTSOUND_H__57398C3E_5AD7_43EC_A52B_707FB84B617F__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // ObjectAnimationEventSound.h : header file
 //
 

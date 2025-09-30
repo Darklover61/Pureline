@@ -1,9 +1,8 @@
 #if !defined(AFX_TEXTUREPROPERTYDLG_H__E2858203_486F_4A1B_92C0_17FDF52101FD__INCLUDED_)
 #define AFX_TEXTUREPROPERTYDLG_H__E2858203_486F_4A1B_92C0_17FDF52101FD__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // texturepropertydlg.h : header file
 //
 

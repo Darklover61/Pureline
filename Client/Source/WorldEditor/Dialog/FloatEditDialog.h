@@ -1,9 +1,8 @@
 #if !defined(AFX_FLOATEDITDIALOG_H__2BAFCD81_4F48_4A0E_A39E_CEB96D2C286B__INCLUDED_)
 #define AFX_FLOATEDITDIALOG_H__2BAFCD81_4F48_4A0E_A39E_CEB96D2C286B__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // FloatEditDialog.h : header file
 //
 

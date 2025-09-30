@@ -1,9 +1,8 @@
 #if !defined(AFX_EFFECTTIMEBAR_H__E6EB8270_F238_42F6_B3FF_DB49BF85BC5D__INCLUDED_)
 #define AFX_EFFECTTIMEBAR_H__E6EB8270_F238_42F6_B3FF_DB49BF85BC5D__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // EffectTimeBar.h : header file
 //
 

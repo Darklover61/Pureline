@@ -1,9 +1,8 @@
 #if !defined(AFX_EFFECTBOUNDINGSPHERE_H__0657AEB6_B286_4BCB_980C_254043818736__INCLUDED_)
 #define AFX_EFFECTBOUNDINGSPHERE_H__0657AEB6_B286_4BCB_980C_254043818736__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // EffectBoundingSphere.h : header file
 //
 

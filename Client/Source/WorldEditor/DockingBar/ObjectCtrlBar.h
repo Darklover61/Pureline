@@ -1,9 +1,8 @@
 #if !defined(AFX_OBJECTCTRLBAR_H__0B8DAE54_B592_4B83_B2B9_1EBD3C9B7E9F__INCLUDED_)
 #define AFX_OBJECTCTRLBAR_H__0B8DAE54_B592_4B83_B2B9_1EBD3C9B7E9F__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // ObjectCtrlBar.h : header file
 //
 

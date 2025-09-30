@@ -1,9 +1,8 @@
 #if !defined(AFX_MAPATTRIBUTEPAGE_H__A65E8717_F547_46B2_A415_CD7056010156__INCLUDED_)
 #define AFX_MAPATTRIBUTEPAGE_H__A65E8717_F547_46B2_A415_CD7056010156__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // mapattributepage.h : header file
 //
 

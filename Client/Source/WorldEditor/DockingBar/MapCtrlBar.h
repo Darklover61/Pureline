@@ -1,9 +1,8 @@
 #if !defined(AFX_MAPCTRLBAR_H__DA86BDBF_B4DA_4886_A7A2_472078EAD79D__INCLUDED_)
 #define AFX_MAPCTRLBAR_H__DA86BDBF_B4DA_4886_A7A2_472078EAD79D__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // MapCtrlBar.h : header file
 //
 

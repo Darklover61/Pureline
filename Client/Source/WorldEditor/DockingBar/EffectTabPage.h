@@ -1,9 +1,8 @@
 #if !defined(AFX_EFFECTTABPAGE_H__654E3468_CE80_47F3_8458_7A75C4AF563C__INCLUDED_)
 #define AFX_EFFECTTABPAGE_H__654E3468_CE80_47F3_8458_7A75C4AF563C__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // EffectTabPage.h : header file
 //
 

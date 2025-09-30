@@ -5,9 +5,7 @@
 #if !defined(AFX_WORLDEDITORDOC_H__9635693F_AA8E_4775_9F20_82F7B6933B3B__INCLUDED_)
 #define AFX_WORLDEDITORDOC_H__9635693F_AA8E_4775_9F20_82F7B6933B3B__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
 
 // Test Code
 #include "./DataCtrl/UndoBuffer.h"

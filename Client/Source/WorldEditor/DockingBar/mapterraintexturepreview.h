@@ -1,9 +1,8 @@
 #if !defined(AFX_MAPTERRAINTEXTUREPREVIEW_H__A32F6C16_3D24_4E79_BC88_7920DE141AB6__INCLUDED_)
 #define AFX_MAPTERRAINTEXTUREPREVIEW_H__A32F6C16_3D24_4E79_BC88_7920DE141AB6__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // mapterraintexturepreview.h : header file
 //
 

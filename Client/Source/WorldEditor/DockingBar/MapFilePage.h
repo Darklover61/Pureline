@@ -1,9 +1,8 @@
 #if !defined(AFX_MAPFILEPAGE_H__6688CC1C_285C_409D_8CE4_3FF9280E86CC__INCLUDED_)
 #define AFX_MAPFILEPAGE_H__6688CC1C_285C_409D_8CE4_3FF9280E86CC__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // MapFilePage.h : header file
 //
 

@@ -1,9 +1,8 @@
 #if !defined(AFX_OBJECTANIMATIONEVENTATTACK_H__44579141_854D_4D4C_AE44_0279D931D317__INCLUDED_)
 #define AFX_OBJECTANIMATIONEVENTATTACK_H__44579141_854D_4D4C_AE44_0279D931D317__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // ObjectAnimationEventAttack.h : header file
 //
 

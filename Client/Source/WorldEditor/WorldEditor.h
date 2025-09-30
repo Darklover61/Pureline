@@ -4,9 +4,7 @@
 #if !defined(AFX_WORLDEDITOR_H__23A6089B_4D11_4492_BA3F_A18389CD231D__INCLUDED_)
 #define AFX_WORLDEDITOR_H__23A6089B_4D11_4492_BA3F_A18389CD231D__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
 
 #ifndef __AFXWIN_H__
 	#error include 'StdAfx.h' before including this file for PCH

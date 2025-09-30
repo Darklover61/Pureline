@@ -5,9 +5,7 @@
 #if !defined(AFX_CAMERA_H__C5D086BE_7A03_4246_9145_336747C47D9E__INCLUDED_)
 #define AFX_CAMERA_H__C5D086BE_7A03_4246_9145_336747C47D9E__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
 
 #include <map>
 

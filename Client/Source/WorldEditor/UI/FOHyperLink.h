@@ -5,9 +5,7 @@
 #if !defined(AFX_FOHYPERLINK_H__44FC73BC_F596_11DD_A43A_525400EA266C__INCLUDED_)
 #define AFX_FOHYPERLINK_H__44FC73BC_F596_11DD_A43A_525400EA266C__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
 
 class CFOHyperLink : public CStatic
 {

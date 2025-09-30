@@ -5,9 +5,7 @@
 #if !defined(AFX_TERRAIN_H__1C9108E1_69A7_4392_9B68_0E6CD4E1BFBA__INCLUDED_)
 #define AFX_TERRAIN_H__1C9108E1_69A7_4392_9B68_0E6CD4E1BFBA__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
 
 #include "../EterImageLib/TGAImage.h"
 

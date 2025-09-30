@@ -5,9 +5,7 @@
 #if !defined(AFX_SKYBOX_H__AB5049E1_8F1C_4C35_9406_45EC7EF4AD1B__INCLUDED_)
 #define AFX_SKYBOX_H__AB5049E1_8F1C_4C35_9406_45EC7EF4AD1B__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
 
 #include "GrpBase.h"
 #include "GrpScreen.h"

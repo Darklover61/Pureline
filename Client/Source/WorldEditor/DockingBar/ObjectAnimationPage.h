@@ -1,9 +1,8 @@
 #if !defined(AFX_OBJECTANIMATIONPAGE_H__AD27E02D_FA1F_4716_8226_B622C832CA99__INCLUDED_)
 #define AFX_OBJECTANIMATIONPAGE_H__AD27E02D_FA1F_4716_8226_B622C832CA99__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // ObjectAnimationPage.h : header file
 //
 

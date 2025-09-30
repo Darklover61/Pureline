@@ -1,9 +1,8 @@
 #if !defined(AFX_DLGINITBASETEXTURE_H__AAF1EC86_71C5_4693_A4C3_F419336C3FE3__INCLUDED_)
 #define AFX_DLGINITBASETEXTURE_H__AAF1EC86_71C5_4693_A4C3_F419336C3FE3__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // dlginitbasetexture.h : header file
 //
 

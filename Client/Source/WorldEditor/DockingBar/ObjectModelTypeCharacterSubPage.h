@@ -1,9 +1,8 @@
 #if !defined(AFX_CObjectModelTypeCharacterSubPage_H__A51310CF_AA0E_4740_A548_E93F8A09F4F7__INCLUDED_)
 #define AFX_CObjectModelTypeCharacterSubPage_H__A51310CF_AA0E_4740_A548_E93F8A09F4F7__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // CObjectModelTypeCharacterSubPage.h : header file
 //
 

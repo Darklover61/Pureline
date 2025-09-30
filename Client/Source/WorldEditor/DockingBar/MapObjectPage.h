@@ -1,9 +1,8 @@
 #if !defined(AFX_MAPOBJECTPAGE_H__677DB8F7_2D3E_4910_BABB_21365427E921__INCLUDED_)
 #define AFX_MAPOBJECTPAGE_H__677DB8F7_2D3E_4910_BABB_21365427E921__INCLUDED_
 
-#if _MSC_VER > 1000
-	#pragma once
-#endif // _MSC_VER > 1000
+#pragma once
+
 // MapObjectPage.h : header file
 //
 
