@@ -35,6 +35,7 @@ echo 6: Clear
 echo 7: Clear Compiled Quests
 echo 8: Make Quests
 echo 9: Start
+echo 10: Clear Before Zipping (Reduce archive size)
 echo 0: Exit
 echo.
 
@@ -51,6 +52,7 @@ if "%choice%"=="6" goto clear
 if "%choice%"=="7" goto clear_quests
 if "%choice%"=="8" goto make_quests
 if "%choice%"=="9" goto start
+if "%choice%"=="10" goto clear_before_zipping
 if "%choice%"=="0" goto exit_script
 
 :: If invalid option, show the menu again
@@ -413,17 +415,9 @@ cd "%~dp0Server/Binary/cores/db"
 for /D %%i in (log\*) do (
     if exist "%%i" rd /s /q "%%i"
 )
-del packet_info.txt
 del syserr.txt
 del syslog.txt
-del stdout.txt
 del PTS.txt
-del p2p_packet_info.txt
-del udp_packet_info.txt
-del db.core
-del VERSION.txt
-del pid
-del DEV_LOG.log
 
 cd "../auth"
 for /D %%i in (log\*) do (
@@ -432,14 +426,8 @@ for /D %%i in (log\*) do (
 del packet_info.txt
 del syserr.txt
 del syslog.txt
-del stdout.txt
 del PTS.txt
 del p2p_packet_info.txt
-del udp_packet_info.txt
-del game.core
-del VERSION.txt
-del pid
-del DEV_LOG.log
 
 cd "../ch1"
 for /D %%i in (log\*) do (
@@ -448,14 +436,8 @@ for /D %%i in (log\*) do (
 del packet_info.txt
 del syserr.txt
 del syslog.txt
-del stdout.txt
 del PTS.txt
 del p2p_packet_info.txt
-del udp_packet_info.txt
-del game.core
-del VERSION.txt
-del pid
-del DEV_LOG.log
 
 cd "../ch2"
 for /D %%i in (log\*) do (
@@ -464,14 +446,8 @@ for /D %%i in (log\*) do (
 del packet_info.txt
 del syserr.txt
 del syslog.txt
-del stdout.txt
 del PTS.txt
 del p2p_packet_info.txt
-del udp_packet_info.txt
-del game.core
-del VERSION.txt
-del pid
-del DEV_LOG.log
 
 cd "../ch99"
 for /D %%i in (log\*) do (
@@ -480,14 +456,9 @@ for /D %%i in (log\*) do (
 del packet_info.txt
 del syserr.txt
 del syslog.txt
-del stdout.txt
 del PTS.txt
 del p2p_packet_info.txt
-del udp_packet_info.txt
-del game.core
-del VERSION.txt
-del pid
-del DEV_LOG.log
+
 pause
 goto menu
 
@@ -562,6 +533,38 @@ start "ch2" "ch2.exe"
 cd "../ch99"
 start "ch99" "ch99.exe"
 
+goto menu
+
+
+
+:: ************************************************************************************
+:: *                             10: Clear Before Zipping                             *
+:: ************************************************************************************
+:clear_before_zipping
+echo Clearing...
+
+cd "%~dp0"
+rmdir /S /Q ".vs"
+
+cd "Client/Binary/pack"
+rmdir /S /Q "ETC"
+rmdir /S /Q "Icon"
+rmdir /S /Q "locale"
+rmdir /S /Q "Maps"
+rmdir /S /Q "Property"
+rmdir /S /Q "Root"
+rmdir /S /Q "Sound"
+rmdir /S /Q "Textureset"
+
+cd "../screenshot"
+for %%i in (*) do (
+    if exist "%%i" del /q "%%i"
+)
+
+cd "../../../Tools/EPack32"
+rmdir /S /Q "Property"
+
+pause
 goto menu
 
 
