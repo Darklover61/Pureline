@@ -318,7 +318,7 @@ bool CMapManagerAccessor::InitBaseTexture (const char* c_szMapName)
 	{
 		if ("" == m_pMapAccessor->GetName())
 		{
-			LogBox ("저장 실패 : 파일 이름이 없습니다");
+			LogBox ("[ERROR] InitBaseTexture: Save failed. No file name provided.");
 			return false;
 		}
 
@@ -333,23 +333,23 @@ bool CMapManagerAccessor::InitBaseTexture (const char* c_szMapName)
 
 	if (0 != _stat (strMapFolder.c_str(), &sb))
 	{
-		LogBoxf ("저장 실패 : 디렉토리 [%s]가 없습니다", strMapFolder.c_str());
+		LogBoxf ("[ERROR] InitBaseTexture: Save failed: Directory does not exist. Dir: [%s].", strMapFolder.c_str());
 		return false;
 	}
 
 	if (! (sb.st_mode & _S_IFDIR))
 	{
-		LogBoxf ("저장 실패 : 디렉토리 [%s]와 같은 이름을 가진 파일이 있습니다", strMapFolder.c_str());
+		LogBoxf ("[ERROR] InitBaseTexture: Save failed: A file with the same name as directory exists. Dir: [%s].", strMapFolder.c_str());
 		return false;
 	}
 
 	if (!m_pMapAccessor->RAW_InitBaseTexture (m_InitTextureBrushNumberVector))
 	{
-		LogBoxf ("[%s] 기본 텍스처 초기화 실패", strMapFolder.c_str());
+		LogBoxf ("[ERROR] InitBaseTexture: Failed to initialize default texture. Dir: [%s].", strMapFolder.c_str());
 		return false;
 	}
 
-	LogBoxf ("[%s] 기본 텍스처 초기화 완료", strMapFolder.c_str());
+	LogBoxf ("[SUCCESS] InitBaseTexture: Default texture initialization complete. Dir: [%s].", strMapFolder.c_str());
 
 	return true;
 }
@@ -597,7 +597,7 @@ bool CMapManagerAccessor::RemoveTerrainTexture (long lTexNum)
 
 	if (!pTextureSet->RemoveTexture (lTexNum))
 	{
-		LogBox ("텍스춰셋에서 텍스춰를 삭제 할 수 없습니다.");
+		LogBox ("[ERROR] RemoveTerrainTexture: Cannot delete texture from the texture set.");
 		return false;
 	}
 
@@ -997,34 +997,34 @@ bool CMapManagerAccessor::NewMap (const char* c_szMapName)
 		// Make The Directory
 		if (!CreateDirectory (strMapFolder.c_str(), NULL))
 		{
-			LogBoxf ("저장 실패 : 디렉토리 [%s]를 만들 수 없습니다", strMapFolder.c_str());
+			LogBoxf ("[ERROR] NewMap: Save failed: Cannot create directory. Dir: [%s].", strMapFolder.c_str());
 			return false;
 		}
 	}
 
 	if (0 != _stat (strMapFolder.c_str(), &sb))
 	{
-		LogBoxf ("저장 실패 : 디스크 에러", strMapFolder.c_str());
+		LogBoxf ("[ERROR] NewMap: Save failed: Disk error.", strMapFolder.c_str());
 		return false;
 	}
 
 	if (! (sb.st_mode & _S_IFDIR))
 	{
-		LogBoxf ("저장 실패 : 디렉토리 [%s]와 같은 이름을 가진 파일이 있습니다", strMapFolder.c_str());
+		LogBoxf ("[ERROR] NewMap: Save failed: A file with the same name as directory exists. Dir: [%s].", strMapFolder.c_str());
 		return false;
 	}
 
 	// Map Property
 	if (!SaveMapProperty (strMapFolder))
 	{
-		LogBoxf ("[%s] Property 파일을 세이브 하는데 실패했습니다", strMapFolder.c_str());
+		LogBoxf ("[ERROR] NewMap: Failed to save property file. Dir: [%s].", strMapFolder.c_str());
 		return false;
 	}
 
 	// Map Setting
 	if (!SaveMapSetting (strMapFolder))
 	{
-		LogBoxf ("[%s] Setting 파일을 세이브 하는데 실패했습니다", strMapFolder.c_str());
+		LogBoxf ("[ERROR] NewMap: Failed to save setting file. Dir: [%s].", strMapFolder.c_str());
 		return false;
 	}
 
@@ -1039,7 +1039,7 @@ bool CMapManagerAccessor::SaveMap (const char* c_szMapName)
 	{
 		if ("" == m_pMapAccessor->GetName())
 		{
-			LogBox ("저장 실패 : 파일 이름이 없습니다");
+			LogBox ("[ERROR] SaveMap: Save failed: No file name provided");
 			return false;
 		}
 
@@ -1054,49 +1054,49 @@ bool CMapManagerAccessor::SaveMap (const char* c_szMapName)
 
 	if (0 != _stat (strMapFolder.c_str(), &sb))
 	{
-		LogBoxf ("저장 실패 : 디렉토리 [%s]가 없습니다", strMapFolder.c_str());
+		LogBoxf ("[ERROR] SaveMap: Save failed: Directory does not exist. Dir: [%s].", strMapFolder.c_str());
 		return false;
 	}
 
 	if (! (sb.st_mode & _S_IFDIR))
 	{
-		LogBoxf ("저장 실패 : 디렉토리 [%s]와 같은 이름을 가진 파일이 있습니다", strMapFolder.c_str());
+		LogBoxf ("[ERROR] SaveMap: Save failed: A file with the same name as directory exists. Dir: [%s].", strMapFolder.c_str());
 		return false;
 	}
 
 	// Map Property
 	if (!SaveMapProperty (strMapFolder))
 	{
-		LogBoxf ("[%s] Property 파일을 세이브 하는데 실패했습니다", strMapFolder.c_str());
+		LogBoxf ("[ERROR] SaveMap: Failed to save property file. Dir: [%s].", strMapFolder.c_str());
 		return false;
 	}
 
 	// Map Setting
 	if (!SaveMapSetting (strMapFolder))
 	{
-		LogBoxf ("[%s] Setting 파일을 세이브 하는데 실패했습니다", strMapFolder.c_str());
+		LogBoxf ("[ERROR] SaveMap: Failed to save setting file. Dir: [%s].", strMapFolder.c_str());
 		return false;
 	}
 
 	if (!SaveTerrains())
 	{
-		LogBoxf ("[%s] Terrain 파일들을 세이브 하는데 실패했습니다", strMapFolder.c_str());
+		LogBoxf ("[ERROR] SaveMap: Failed to save terrain files. Dir: [%s].", strMapFolder.c_str());
 		return false;
 	}
 
 	if (!SaveAreas())
 	{
-		LogBoxf ("[%s] Area 파일들을 세이브 하는데 실패했습니다", strMapFolder.c_str());
+		LogBoxf ("[ERROR] SaveMap: Failed to save area files. Dir: [%s].", strMapFolder.c_str());
 		return false;
 	}
 
 	if (!SaveMonsterAreaInfo())
 	{
-		LogBoxf ("[%s] MonsterAreaInfo 파일을 세이브 하는데 실패했습니다", strMapFolder.c_str());
+		LogBoxf ("[ERROR] SaveMap: Failed to save MonsterAreaInfo file. Dir: [%s].", strMapFolder.c_str());
 		return false;
 	}
 
-	LogBoxf ("[%s] 저장 완료", strMapFolder.c_str());
+	LogBoxf ("[SUCCESS] SaveMap: Save complete. Dir: [%s]", strMapFolder.c_str());
 	return true;
 }
 
@@ -1125,7 +1125,7 @@ bool CMapManagerAccessor::CreateNewOutdoorMap()
 {
 	if ("" == m_strNewMapName || 0 == m_wNewMapSizeX || 0 == m_wNewMapSizeY)
 	{
-		LogBoxf ("[%s] (Size = %u, %u )을 생성할 수 없습니다.", m_strNewMapName.c_str(), m_wNewMapSizeX, m_wNewMapSizeY);
+		LogBoxf ("[ERROR] CreateNewOutdoorMap: Cannot create map. Name: [%s] Size: [%u, %u].", m_strNewMapName.c_str(), m_wNewMapSizeX, m_wNewMapSizeY);
 		return false;
 	}
 
@@ -1136,28 +1136,30 @@ bool CMapManagerAccessor::CreateNewOutdoorMap()
 		// Make The Directory
 		if (!CreateDirectory (m_strNewMapName.c_str(), NULL))
 		{
-			LogBoxf ("저장 실패 : 디렉토리 [%s]를 만들 수 없습니다", m_strNewMapName.c_str());
+			LogBoxf ("[ERROR] CreateNewOutdoorMap: Save failed: Cannot create directory. Dir: [%s].", m_strNewMapName.c_str());
 			return false;
 		}
 
 		if (0 != _stat (m_strNewMapName.c_str(), &sb))
 		{
-			LogBoxf ("저장 실패 : 디스크 에러", m_strNewMapName.c_str());
+			LogBoxf ("[ERROR] CreateNewOutdoorMap: Save failed: Disk error. Dir: [%s].", m_strNewMapName.c_str());
 			return false;
 		}
 
 		if (! (sb.st_mode & _S_IFDIR))
 		{
-			LogBoxf ("저장 실패 : 디렉토리 [%s]와 같은 이름을 가진 파일이 있습니다", m_strNewMapName.c_str());
+			LogBoxf ("[ERROR] CreateNewOutdoorMap: Save failed: A file with the same name as directory exists. Dir: [%s].", m_strNewMapName.c_str());
 			return false;
 		}
 	}
 	else
 	{
 		char szWarningMessage[1024];
-		sprintf (szWarningMessage, "디렉토리 [%s]가 이미 있습니다. 덮어쓰시겠습니까?\n 덮어쓰면 이전에 [%s]에 저장되어 있는 맵 중에서 중복되는 부분은 모두 지워집니다.",
+		sprintf (szWarningMessage, "Directory already exists. Dir: [%s].\n"
+								   "If you overwrite, all overlapping parts of the map previously saved in [%s] will be deleted.\n"
+								   "Do you want to overwrite it?",
 				 m_strNewMapName.c_str(), m_strNewMapName.c_str());
-		if (IDCANCEL == MessageBox (AfxGetMainWnd()->GetSafeHwnd(), szWarningMessage, "덮어쓰기 경고", MB_OKCANCEL))
+		if (IDCANCEL == MessageBox (AfxGetMainWnd()->GetSafeHwnd(), szWarningMessage, "Overwrite Warning", MB_OKCANCEL))
 		{
 			return false;
 		}
@@ -1171,13 +1173,13 @@ bool CMapManagerAccessor::CreateNewOutdoorMap()
 
 	if (!pNewMap->SaveProperty (m_strNewMapName))
 	{
-		LogBoxf ("[%s]의 Property를 저장할 수 없습니다.", m_strNewMapName.c_str());
+		LogBoxf ("[ERROR] CreateNewOutdoorMap: Cannot save the property. Dir: [%s].", m_strNewMapName.c_str());
 		return false;
 	}
 
 	if (!pNewMap->SaveSetting (m_strNewMapName))
 	{
-		LogBoxf ("[%s]의 Setting을 저장할 수 없습니다.", m_strNewMapName.c_str());
+		LogBoxf ("[ERROR] CreateNewOutdoorMap: Cannot save the setting. Dir: [%s].", m_strNewMapName.c_str());
 		return false;
 	}
 
@@ -1192,7 +1194,7 @@ bool CMapManagerAccessor::CreateNewOutdoorMap()
 		}
 	}
 
-	LogBoxf ("New Map [%s]를 생성했습니다.", m_strNewMapName.c_str());
+	LogBoxf ("[SUCCESS] CreateNewOutdoorMap: New Map has been created. Name: [%s].", m_strNewMapName.c_str());
 	return true;
 }
 
@@ -1284,23 +1286,23 @@ bool CMapManagerAccessor::ResetToDefaultAttr()
 
 	if (0 != _stat (strMapFolder.c_str(), &sb))
 	{
-		LogBoxf ("저장 실패 : 디렉토리 [%s]가 없습니다", strMapFolder.c_str());
+		LogBoxf ("[ERROR] ResetToDefaultAttr: Directory does not exist. Dir: [%s].", strMapFolder.c_str());
 		return false;
 	}
 
 	if (! (sb.st_mode & _S_IFDIR))
 	{
-		LogBoxf ("저장 실패 : 디렉토리 [%s]와 같은 이름을 가진 파일이 있습니다", strMapFolder.c_str());
+		LogBoxf ("[ERROR] ResetToDefaultAttr: Save failed: A file with the same name as directory exists. Dir: [%s].", strMapFolder.c_str());
 		return false;
 	}
 
 	if (!m_pMapAccessor->ResetToDefaultAttr())
 	{
-		LogBoxf ("[%s] 속성맵 초기화 실패", strMapFolder.c_str());
+		LogBoxf ("[ERROR] ResetToDefaultAttr: Attribute map initialization failed. Dir: [%s].", strMapFolder.c_str());
 		return false;
 	}
 
-	LogBoxf ("[%s] 속성맵 초기화 완료", strMapFolder.c_str());
+	LogBoxf ("[SUCCESS] ResetToDefaultAttr: Attribute map initialization complete. Dir: [%s].", strMapFolder.c_str());
 	return true;
 }
 
@@ -1490,7 +1492,7 @@ void CMapManagerAccessor::SaveAtlas()
 
 	ilDeleteImages (1, &dstImage);
 
-	LogBoxf ("[%s] 저장 완료", szFileName);
+	LogBoxf ("[SUCCESS] SaveAtlas: Save complete. Name: [%s].", szFileName);
 
 }
 
@@ -1571,7 +1573,7 @@ bool CMapManagerAccessor::LoadMap (const std::string & c_rstrMapName)
 
 	if (CMapBase::MAPTYPE_INDOOR == m_pMapAccessor->GetType())
 	{
-		LogBoxf ("Failed to load Indoor Map : %s", c_rstrMapName.c_str());
+		LogBoxf ("[ERROR] LoadMap: Failed to load Indoor Map. Dir: [%s].", c_rstrMapName.c_str());
 		return false;
 	}
 	else if (CMapBase::MAPTYPE_OUTDOOR == m_pMapAccessor->GetType())
@@ -1593,7 +1595,7 @@ bool CMapManagerAccessor::LoadMap (const std::string & c_rstrMapName)
 	}
 	else
 	{
-		LogBoxf ("CMapManager::LoadMap() Invalid Map Type");
+		LogBoxf ("[ERROR] LoadMap: Invalid Map Type");
 		return false;
 	}
 

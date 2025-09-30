@@ -380,7 +380,7 @@ void CObjectAnimationPage::OnLoadAnimation()
 	CWorldEditorApp * pApplication = (CWorldEditorApp*)AfxGetApp();
 	CObjectData * pObjectData = pApplication->GetObjectData();
 
-	CHECK_RETURN (!pObjectData->isModelThing(), "먼저 모델을 로드 하세요");
+	CHECK_RETURN (!pObjectData->isModelThing(), "Load the model first");
 
 	DWORD dwFlag = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT | OFN_NOCHANGEDIR;
 	const char* c_szFilter = "Granny Animation Files (*.gr2)|*.gr2|*.*|All Files (*.*)|";
@@ -388,7 +388,7 @@ void CObjectAnimationPage::OnLoadAnimation()
 
 	if (TRUE == FileOpener.DoModal())
 	{
-		CHECK_RETURN (!CResourceManager::Instance().IsFileExist (FileOpener.GetPathName()), "파일이 없습니다");
+		CHECK_RETURN (!CResourceManager::Instance().IsFileExist (FileOpener.GetPathName()), "There is no file");
 
 		GetOnlyFileName (FileOpener.GetPathName(), m_strMotionFileName);
 

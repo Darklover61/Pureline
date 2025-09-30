@@ -228,14 +228,14 @@ void CMapOutdoorAccessor::CTerrainUndoData::AddTerrainUndoDataSet (BYTE byTerrai
 {
 	if (byTerrainNum < 0 || byTerrainNum > AROUND_AREA_NUM - 1)
 	{
-		LogBoxf ("AddTerrainUndoDataSet : 터레인 번호[%u]가 유효하지 않아 언두 버퍼에 추가할 수 없습니다.", byTerrainNum);
+		LogBoxf ("[ERROR] AddTerrainUndoDataSet: Terrain number is invalid and cannot be added to the undo buffer. Number: [%u].", byTerrainNum);
 		return;
 	}
 
 	CTerrain * pTerrain;
 	if (!m_pOwner->GetTerrainPointer (byTerrainNum, &pTerrain))
 	{
-		LogBoxf ("AddTerrainUndoDataSet : 터레인의 포인터를 얻을 수 없습니다. 터레인 번호[%u]", byTerrainNum);
+		LogBoxf ("[ERROR] AddTerrainUndoDataSet: Cannot obtain pointer to terrain. Terrain number: [%u].", byTerrainNum);
 		return;
 	}
 
@@ -275,9 +275,9 @@ void CMapOutdoorAccessor::CTerrainUndoData::Backup()
 
 		if (!m_pOwner->GetTerrainPointer (byTerrainNum, &pTerrain))
 		{
-			LogBoxf ("CTerrainUndoData::Backup : 터레인의 포인터를 얻을 수 없습니다.\n"
-					 "찾는 터레인 위치[%u, %u]\n"
-					 "현재 터레인 위치[%u, %u]",
+			LogBoxf ("[ERROR] CTerrainUndoData::Backup: Cannot obtain pointer to terrain.\n"
+					 "Target terrain coordinates: [%u, %u].\n"
+					 "Current terrain coordinates: [%u, %u].",
 					 pTerrainUndoDataSet->m_sCoordX,
 					 pTerrainUndoDataSet->m_sCoordY,
 					 pTerrainUndoDataSet->m_sCenterCoordX,
@@ -318,7 +318,9 @@ void CMapOutdoorAccessor::CTerrainUndoData::Restore()
 
 		if (!m_pOwner->GetTerrainPointer (byTerrainNum, &pTerrain))
 		{
-			LogBoxf ("Restore : 터레인의 포인터를 얻을 수 없습니다.\n찾는 터레인 위치[%u, %u], 현재 중심 터레인 위치[%u, %u]",
+			LogBoxf ("[ERROR] CTerrainUndoData::Restore: Cannot obtain pointer to terrain.\n"
+					 "Target terrain coordinates: [%u, %u].\n"
+					 "Current center terrain coordinates: [%u, %u].",
 					 pTerrainUndoDataSet->m_sCoordX, pTerrainUndoDataSet->m_sCoordY, pTerrainUndoDataSet->m_sCenterCoordX, pTerrainUndoDataSet->m_sCenterCoordY);
 			continue;
 		}
@@ -333,7 +335,9 @@ void CMapOutdoorAccessor::CTerrainUndoData::Restore()
 
 		if (!m_pOwner->GetAreaPointer (byTerrainNum, &pArea))
 		{
-			LogBoxf ("Restore : Area의 포인터를 얻을 수 없습니다.\n찾는 Area 위치[%u, %u], 현재 중심 터레인 위치[%u, %u]",
+			LogBoxf ("[ERROR] CTerrainUndoData::Restore: Cannot obtain pointer to Area.\n"
+					 "Target Area coordinates: [%u, %u].\n"
+					 "Current center terrain coordinates: [%u, %u].",
 					 pTerrainUndoDataSet->m_sCoordX, pTerrainUndoDataSet->m_sCoordY, pTerrainUndoDataSet->m_sCenterCoordX, pTerrainUndoDataSet->m_sCenterCoordY);
 			continue;
 		}

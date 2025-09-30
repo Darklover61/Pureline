@@ -36,7 +36,7 @@ BOOL CModelInstanceAccessor::SetAccessorModel (CGraphicThing * pThing)
 
 	if (0 == pThing->GetModelCount())
 	{
-		LogBox ("모델 파일이 아닙니다", "Error");
+		LogBox ("Not a model file.", "Error");
 		pThing->Release();
 		return FALSE;
 	}
@@ -45,7 +45,7 @@ BOOL CModelInstanceAccessor::SetAccessorModel (CGraphicThing * pThing)
 
 	if (!pModel)
 	{
-		LogBox ("정상적인 모델 파일이 아닙니다", "Error");
+		LogBox ("Not a valid model file.", "Error");
 		pThing->Release();
 		return FALSE;
 	}
@@ -83,7 +83,7 @@ BOOL CModelInstanceAccessor::SetAccessorMotion (CGraphicThing * pThing)
 
 	if (0 == pThing->GetMotionCount())
 	{
-		LogBox ("모션 파일이 아닙니다!");
+		LogBox ("[ERROR] Not a motion file!");
 		return FALSE;
 	}
 
@@ -91,7 +91,7 @@ BOOL CModelInstanceAccessor::SetAccessorMotion (CGraphicThing * pThing)
 
 	if (!pMotion)
 	{
-		LogBox ("Failed to load!");
+		LogBox ("[ERROR] Failed to load!");
 		return FALSE;
 	}
 

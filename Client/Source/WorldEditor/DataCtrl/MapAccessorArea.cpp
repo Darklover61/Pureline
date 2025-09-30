@@ -559,7 +559,7 @@ void CAreaAccessor::SetSelectedObjectPortalNumber (int iID)
 
 		if (i >= PORTAL_ID_MAX_NUM)
 		{
-			assert (!"포탈 번호 슬롯 개수를 초과했습니다");
+			assert (!"Exceeded the number of portal number slots");
 			continue;
 		}
 
@@ -1231,7 +1231,7 @@ void CAreaAccessor::__RefreshSelectedInfo()
 	pMapAccessor->ClearSelectedPortalNumber();
 	if (m_SelectObjectList.empty())
 	{
-		pMapAccessor->SetSelectedObjectName ("없음");
+		pMapAccessor->SetSelectedObjectName ("None");
 	}
 	else
 	{

@@ -470,7 +470,7 @@ void CObjectAnimationEventGraph::MakeEventNode (float fPosition)
 
 void CObjectAnimationEventGraph::DeleteEventNode (TEventNode * pEventNode)
 {
-	if (IDYES != MessageBox ("정말 지우시겠습니까?", NULL, MB_YESNO))
+	if (IDYES != MessageBox ("Are you sure you want to delete it?", NULL, MB_YESNO))
 	{
 		return;
 	}

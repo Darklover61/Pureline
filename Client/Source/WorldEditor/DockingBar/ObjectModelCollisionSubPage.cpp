@@ -109,7 +109,7 @@ void CObjectModelCollisionSubPage::UpdateUI()
 			OnCheckTypeBody();
 			break;
 		case NRaceData::COLLISION_TYPE_ATTACKING:
-			assert (!"Collision 공격 타입은 없어졌습니다");
+			assert (!"Collision attack type no longer exists.");
 			break;
 		case NRaceData::COLLISION_TYPE_DEFENDING:
 			OnCheckTypeDefending();
@@ -234,7 +234,7 @@ void CObjectModelCollisionSubPage::SetSphereSizeType (DWORD dwAttachingIndex, DW
 			break;
 
 		default:
-			assert (!"CObjectModelCollisionSubPage::SetSphereSizeType - 잘못된 타입입니다");
+			assert (!"CObjectModelCollisionSubPage::SetSphereSizeType - Invalid/Unsupported type specified.");
 			break;
 	}
 

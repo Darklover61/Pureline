@@ -320,11 +320,11 @@ void CSceneMap::OnRenderUI (float fx, float fy)
 
 	char szMsg[128 + 1];
 
-	_snprintf (szMsg, 128, "지형 찍히는 텍스처 장수 : %d", iRenderedSplatNum);
+	_snprintf (szMsg, 128, "Number of terrain-applied textures: %d", iRenderedSplatNum);
 	m_textInstanceSplatTextureCount.SetValue (szMsg, strlen (szMsg));
-	_snprintf (szMsg, 128, "찍는 지형 매쉬 개수 : %d", iRenderedPatchNum);
+	_snprintf (szMsg, 128, "Number of terrain meshes being painted: %d", iRenderedPatchNum);
 	m_textInstanceSplatMeshCount.SetValue (szMsg, strlen (szMsg));
-	_snprintf (szMsg, 128, "텍스처 매쉬 비율 : %f", fSplatRatio);
+	_snprintf (szMsg, 128, "Texture mesh ratio: %f", fSplatRatio);
 	m_textInstanceSplatMeshPercentage.SetValue (szMsg, strlen (szMsg));
 
 	D3DXVECTOR3 v3Target = CCameraManager::Instance().GetCurrentCamera()->GetTarget();
@@ -368,7 +368,7 @@ void CSceneMap::OnRenderUI (float fx, float fy)
 	}
 	std::sort (aTilecountVector.begin(), aTilecountVector.end());
 
-	aStream << "( 전체 " << aTilecountVector.size() << " 장 ) : ";
+	aStream << "( Total " << aTilecountVector.size() << " sheets ) : ";
 	std::vector<std::pair<DWORD, int>>::reverse_iterator aIterator = aTilecountVector.rbegin();
 	while (aTilecountVector.rend() != aIterator)
 	{
@@ -378,7 +378,7 @@ void CSceneMap::OnRenderUI (float fx, float fy)
 		++aIterator;
 	}
 
-	_snprintf (szMsg, 128, "현재 Patch 텍스처 사용량%s", aStream.str().c_str());
+	_snprintf (szMsg, 128, "Current patch texture usage %s", aStream.str().c_str());
 	m_textInstancePatchSplatTileCount.SetValue (szMsg, strlen (szMsg));
 
 	std::ostringstream aStream2, aStream3;
@@ -420,13 +420,13 @@ void CSceneMap::OnRenderUI (float fx, float fy)
 	m_textInstancePatchSplatTileCount.Update();
 	m_textInstancePatchSplatTileCount.Render();
 
-	_snprintf (szMsg, 128, "0 패치 위치%s", aStream2.str().c_str());
+	_snprintf (szMsg, 128, "0 patch location %s", aStream2.str().c_str());
 	m_textInstanceTexture0Count.SetValue (szMsg, strlen (szMsg));
 	m_textInstanceTexture0Count.SetPosition (fx + 10.0f, fy + 90.0f);
 	m_textInstanceTexture0Count.Update();
 	m_textInstanceTexture0Count.Render();
 
-	_snprintf (szMsg, 128, "51개 미만 텍스처 패치 위치%s", aStream3.str().c_str());
+	_snprintf (szMsg, 128, "Patch location with fewer than 51 textures %s", aStream3.str().c_str());
 	m_textInstanceTexture0Count.SetValue (szMsg, strlen (szMsg));
 	m_textInstanceTexture0Count.SetPosition (fx + 10.0f, fy + 110.0f);
 	m_textInstanceTexture0Count.Update();
@@ -493,17 +493,17 @@ void CSceneMap::OnRenderMonsterAreaInfo (CMonsterAreaInfo * pMonsterAreaInfo)
 
 	// 몬스터 그리기
 	CNonPlayerCharacterInfo & rNPCInfo = CNonPlayerCharacterInfo::Instance();
-	std::string strMonsterName = "이름없음";
+	std::string strMonsterName = "No name";
 	if (CMonsterAreaInfo::MONSTERAREAINFOTYPE_MONSTER == pMonsterAreaInfo->GetMonsterAreaInfoType())
 	{
 		strMonsterName = pMonsterAreaInfo->GetMonsterName();
-		if (0 == strMonsterName.compare ("이름없음"))
+		if (0 == strMonsterName.compare ("No name"))
 		{
 			DWORD dwMonsterVID = pMonsterAreaInfo->GetMonsterVID();
 			if (dwMonsterVID != 0)
 			{
 				strMonsterName = rNPCInfo.GetNameByVID (dwMonsterVID);
-				if (0 != strMonsterName.compare ("이름없음"))
+				if (0 != strMonsterName.compare ("No name"))
 				{
 					pMonsterAreaInfo->SetMonsterName (strMonsterName);
 				}
@@ -515,9 +515,9 @@ void CSceneMap::OnRenderMonsterAreaInfo (CMonsterAreaInfo * pMonsterAreaInfo)
 		char szFollowerCount[32 + 1];
 		_snprintf (szFollowerCount, 32, "%d", pMonsterAreaInfo->GetMonsterGroupFollowerCount());
 		strMonsterName = pMonsterAreaInfo->GetMonsterGroupName() +
-						 "(리더:" +
+						 "(Leader:" +
 						 pMonsterAreaInfo->GetMonsterGroupLeaderName() +
-						 ", 졸개수:" +
+						 ", Number of minions:" +
 						 szFollowerCount +
 						 ")";
 	}

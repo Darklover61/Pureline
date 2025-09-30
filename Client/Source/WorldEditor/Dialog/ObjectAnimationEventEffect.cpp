@@ -77,7 +77,7 @@ BOOL CObjectAnimationEventEffect::canClose()
 	GetDlgItemText (IDC_OBJECT_ANIMATION_EVENT_EFFECT_FILE_NAME, m_strEffectFileName);
 	if (0 == strlen (m_strEffectFileName))
 	{
-		LogBox ("파일 이름이 없습니다.", "Error");
+		LogBox ("[ERROR] No file name provided.", "Error");
 		return FALSE;
 	}
 

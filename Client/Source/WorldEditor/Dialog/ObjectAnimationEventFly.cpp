@@ -90,7 +90,7 @@ BOOL CObjectAnimationEventFly::canClose()
 	GetDlgItemText (IDC_OBJECT_ANIMATION_EVENT_FLY_FILE_NAME, m_strFlyFileName);
 	if (0 == strlen (m_strFlyFileName))
 	{
-		LogBox ("파일 이름이 없습니다.", "Error");
+		LogBox ("[ERROR] No file name provided.", "Error");
 		return FALSE;
 	}
 

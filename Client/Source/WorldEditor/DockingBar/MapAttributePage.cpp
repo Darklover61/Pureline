@@ -172,8 +172,8 @@ void CMapAttributePage::Initialize()
 	}
 	else
 	{
-		m_ComboMonsterName.AddString ("몹없음");
-		m_ComboMonsterName.SelectString (0, "몹없음");
+		m_ComboMonsterName.AddString ("No mob");
+		m_ComboMonsterName.SelectString (0, "No mob");
 	}
 }
 
@@ -550,20 +550,20 @@ void CMapAttributePage::BuildMonsterAreaInfo()
 void CMapAttributePage::UpdateSelectedMonsterAreainfo()
 {
 	CNonPlayerCharacterInfo & rNonPlayerCharacterInfo = CNonPlayerCharacterInfo::Instance();
-	std::string strMonsterName = "이름없음";
+	std::string strMonsterName = "No name";
 	char szMonsterName[128 + 1];
 	switch (m_pSelectedMonsterAreaInfo->GetMonsterAreaInfoType())
 	{
 		case CMonsterAreaInfo::MONSTERAREAINFOTYPE_MONSTER:
 		{
 			strMonsterName = m_pSelectedMonsterAreaInfo->GetMonsterName();
-			if (0 == strMonsterName.compare ("이름없음"))
+			if (0 == strMonsterName.compare ("No name"))
 			{
 				DWORD dwMonsterVID = m_pSelectedMonsterAreaInfo->GetMonsterVID();
 				if (dwMonsterVID != 0)
 				{
 					strMonsterName = rNonPlayerCharacterInfo.GetNameByVID (dwMonsterVID);
-					if (0 != strMonsterName.compare ("이름없음"))
+					if (0 != strMonsterName.compare ("No name"))
 					{
 						m_pSelectedMonsterAreaInfo->SetMonsterName (strMonsterName);
 					}
@@ -585,13 +585,13 @@ void CMapAttributePage::UpdateSelectedMonsterAreainfo()
 		case CMonsterAreaInfo::MONSTERAREAINFOTYPE_GROUP:
 		{
 			strMonsterName = m_pSelectedMonsterAreaInfo->GetMonsterGroupName();
-			if (0 == strMonsterName.compare ("이름없음"))
+			if (0 == strMonsterName.compare ("No name"))
 			{
 				DWORD dwMonsterGroupID = m_pSelectedMonsterAreaInfo->GetMonsterGroupID();
 				if (dwMonsterGroupID != 0)
 				{
 					strMonsterName = rNonPlayerCharacterInfo.GetNPCGroupNameByGroupID (dwMonsterGroupID);
-					if (0 != strMonsterName.compare ("이름없음"))
+					if (0 != strMonsterName.compare ("No name"))
 					{
 						m_pSelectedMonsterAreaInfo->SetMonsterGroupName (strMonsterName);
 					}
@@ -623,7 +623,7 @@ void CMapAttributePage::UpdateSelectedMonsterAreainfo()
 	DWORD dwMonsterCount = m_pSelectedMonsterAreaInfo->GetMonsterCount();
 	CMonsterAreaInfo::EMonsterDir eMonsterDir = m_pSelectedMonsterAreaInfo->GetMonsterDir();
 
-	if (0 == strMonsterName.compare ("이름없음"))
+	if (0 == strMonsterName.compare ("No name"))
 	{
 		m_EditSelectedMonsterCount.EnableWindow (FALSE);
 		m_ComboSelectedMonsterDirection.EnableWindow (FALSE);

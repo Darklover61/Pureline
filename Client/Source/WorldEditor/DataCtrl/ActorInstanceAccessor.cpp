@@ -180,7 +180,7 @@ BOOL CActorInstanceAccessor::SetAccessorModel (CGraphicThing * pThing)
 
 	if (0 == pThing->GetModelCount())
 	{
-		LogBox ("모델 파일이 아닙니다", "Error");
+		LogBox ("[ERROR] SetAccessorModel: Not a model file.", "Error");
 		pThing->Release();
 		return FALSE;
 	}
@@ -188,7 +188,7 @@ BOOL CActorInstanceAccessor::SetAccessorModel (CGraphicThing * pThing)
 	CGrannyModel * pModel = pThing->GetModelPointer (0);
 	if (!pModel)
 	{
-		LogBox ("정상적인 모델 파일이 아닙니다", "Error");
+		LogBox ("[ERROR] SetAccessorModel: Not a valid model file.", "Error");
 		pThing->Release();
 		return FALSE;
 	}
@@ -219,7 +219,7 @@ BOOL CActorInstanceAccessor::SetAccessorMotion (CGraphicThing * pThing)
 
 	if (0 == pThing->GetMotionCount())
 	{
-		LogBox ("모션 파일이 아닙니다", "Error");
+		LogBox ("[ERROR] SetAccessorMotion: Not a motion file.", "Error");
 		pThing->Release();
 		return FALSE;
 	}
@@ -227,7 +227,7 @@ BOOL CActorInstanceAccessor::SetAccessorMotion (CGraphicThing * pThing)
 	CGrannyMotion * pMotion = pThing->GetMotionPointer (0);
 	if (!pMotion)
 	{
-		LogBox ("정상적인 모션 파일이 아닙니다", "Error");
+		LogBox ("[ERROR] SetAccessorMotion: Not a valid motion file.", "Error");
 		pThing->Release();
 		return FALSE;
 	}

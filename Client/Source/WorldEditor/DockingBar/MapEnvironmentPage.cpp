@@ -479,14 +479,14 @@ BOOL CMapEnvironmentPage::OnCommand (WPARAM wParam, LPARAM lParam)
 
 				float fNear = atof (szDistance);
 
-				Tracef ("fNear 바뀐 값 읽음 : %s -> %f\n", szDistance, fNear);
+				Tracef ("[INFO] Read changed fNear value: : %s -> %f\n", szDistance, fNear);
 
 				//				m_ctrlFogFarDistance.GetLine(0, szDistance);
 				m_ctrlFogFarDistance.GetWindowText (szDistance, 256);
 
 				float fFar = atof (szDistance);
 
-				Tracef ("fFar 기존 값 읽음 : %s -> %f\n", szDistance, fFar);
+				Tracef ("[INFO] Read existing fFar value: %s -> %f\n", szDistance, fFar);
 
 				if (fNear >= fFar)
 				{
@@ -494,7 +494,7 @@ BOOL CMapEnvironmentPage::OnCommand (WPARAM wParam, LPARAM lParam)
 				}
 
 				pMapManagerAccessor->SetFogNearDistance (fNear);
-				Tracef ("fNear 세팅 : %f\n", fNear);
+				Tracef ("[INFO] Setting fNear: %f\n", fNear);
 			}
 			break;
 			case IDC_MAP_ENVIRONMENT_FOG_FAR_DISTANCE:
@@ -505,14 +505,14 @@ BOOL CMapEnvironmentPage::OnCommand (WPARAM wParam, LPARAM lParam)
 
 				float fFar = atof (szDistance);
 
-				Tracef ("fFar 바뀐 값 읽음 : %s -> %f\n", szDistance, fFar);
+				Tracef ("[INFO] Read changed fFar value: %s -> %f\n", szDistance, fFar);
 
 				//				m_ctrlFogNearDistance.GetLine(0, szDistance);
 				m_ctrlFogNearDistance.GetWindowText (szDistance, 256);
 
 				float fNear = atof (szDistance);
 
-				Tracef ("fNear 기존 값 읽음 : %s -> %f\n", szDistance, fNear);
+				Tracef ("[INFO] Read existing fNear value: %s -> %f\n", szDistance, fNear);
 
 				if (fNear >= fFar)
 				{
@@ -520,7 +520,7 @@ BOOL CMapEnvironmentPage::OnCommand (WPARAM wParam, LPARAM lParam)
 				}
 
 				pMapManagerAccessor->SetFogFarDistance (fFar);
-				Tracef ("fFar 세팅 : %f\n", fFar);
+				Tracef ("[INFO] Setting fFar: %f\n", fFar);
 			}
 			break;
 

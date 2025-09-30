@@ -180,33 +180,33 @@ bool CMapOutdoorAccessor::SaveTerrains()
 			// Save Property
 			if (!pTerrainAccessor->SaveProperty (m_strName))
 			{
-				LogBoxf ("[%s] 맵의 %d, %d의 Property를 세이브 하는데 실패했습니다", m_strName.c_str(), usCoordX, usCoordY);
+				LogBoxf ("[ERROR] SaveTerrains: Property failed to save. Map: [%s] Coordinates: [%d, %d].", m_strName.c_str(), usCoordX, usCoordY);
 				return false;
 			}
 
 			// Save HeightFieldMap
 			if (!pTerrainAccessor->SaveHeightMap (m_strName))
 			{
-				LogBoxf ("%d, %d의 HeightFieldMap을 세이브 하는데 실패했습니다", usCoordX, usCoordY);
+				LogBoxf ("[ERROR] SaveTerrains: HeightFieldMap failed to save. Coordinates: [%d, %d].", usCoordX, usCoordY);
 				return false;
 			}
 
 			// Save TileMap
 			if (!pTerrainAccessor->RAW_SaveTileMap (m_strName))
 			{
-				LogBoxf ("%d, %d의 TileMap을 세이브 하는데 실패했습니다", usCoordX, usCoordY);
+				LogBoxf ("[ERROR] SaveTerrains: TileMap failed to save. Coordinates: [%d, %d].", usCoordX, usCoordY);
 				return false;
 			}
 
 			if (!pTerrainAccessor->SaveWaterMap (m_strName))
 			{
-				LogBoxf ("%d, %d의 WaveMap을 세이브 하는데 실패했습니다", usCoordX, usCoordY);
+				LogBoxf ("[ERROR] SaveTerrains: WaveMap failed to sace. Coordinates: [%d, %d].", usCoordX, usCoordY);
 				return false;
 			}
 
 			if (!pTerrainAccessor->SaveAttrMap (m_strName))
 			{
-				LogBoxf ("%d, %d의 AttrMap을 세이브 하는데 실패했습니다", usCoordX, usCoordY);
+				LogBoxf ("[ERROR] SaveTerrains: AttrMap failed to save. Coordinates: [%d, %d].", usCoordX, usCoordY);
 				return false;
 			}
 		}
@@ -228,7 +228,7 @@ bool CMapOutdoorAccessor::SaveAreas()
 			// Save HeightFieldMap
 			if (!pAreaAccessor->Save (m_strName))
 			{
-				LogBoxf ("%d, %d의 AreaData를 세이브 하는데 실패했습니다", usCoordX, usCoordY);
+				LogBoxf ("[ERROR] SaveAreas: AreaData failed to save. Coordinates: [%d, %d].", usCoordX, usCoordY);
 				return false;
 			}
 		}
@@ -787,48 +787,48 @@ bool CMapOutdoorAccessor::CreateNewTerrainFiles (WORD wCoordX, WORD wCoordY)
 		// Make The Directory
 		if (!CreateDirectory (szTerrainFolder, NULL))
 		{
-			LogBoxf ("저장 실패 : 디렉토리 [%s]를 만들 수 없습니다", szTerrainFolder);
+			LogBoxf ("[ERROR] CreateNewTerrainFiles: Failed to create directory: [%s].", szTerrainFolder);
 			return false;
 		}
 	}
 
 	if (0 != _stat (szTerrainFolder, &sb))
 	{
-		LogBoxf ("저장 실패 : 디스크 에러", szTerrainFolder);
+		LogBoxf ("[ERROR] CreateNewTerrainFiles: Save failed: [%s] Disk error", szTerrainFolder);
 		return false;
 	}
 
 	if (! (sb.st_mode & _S_IFDIR))
 	{
-		LogBoxf ("저장 실패 : 디렉토리 [%s]와 같은 이름을 가진 파일이 있습니다", szTerrainFolder);
+		LogBoxf ("[ERROR] CreateNewTerrainFiles: Save failed: A file with this name already exists. Name: [%s] in the directory", szTerrainFolder);
 		return false;
 	}
 
 	// Save Property
 	if (!pTerrainAccessor->SaveProperty (m_strName))
 	{
-		LogBoxf ("%d, %d의 Property를 세이브 하는데 실패했습니다", wCoordX, wCoordY);
+		LogBoxf ("[ERROR] CreateNewTerrainFiles: Failed to save property. Coordinates: [%d, %d].", wCoordX, wCoordY);
 		return false;
 	}
 
 	// Save HeightFieldMap
 	if (!pTerrainAccessor->NewHeightMap (m_strName))
 	{
-		LogBoxf ("%d, %d의 HeightFieldMap을 세이브 하는데 실패했습니다", wCoordY, wCoordY);
+		LogBoxf ("[ERROR] CreateNewTerrainFiles: Failed to save HeightFieldMap. Coordinates: [%d, %d].", wCoordY, wCoordY);
 		return false;
 	}
 
 	// Save TileMap
 	if (!pTerrainAccessor->NewTileMap (m_strName))
 	{
-		LogBoxf ("%d, %d의 TileMap을 세이브 하는데 실패했습니다", wCoordY, wCoordY);
+		LogBoxf ("[ERROR] CreateNewTerrainFiles: Failed to save TileMap. Coordinates: [%d, %d].", wCoordY, wCoordY);
 		return false;
 	}
 
 	// Save AttrMap
 	if (!pTerrainAccessor->NewAttrMap (m_strName))
 	{
-		LogBoxf ("%d, %d의 AttrMap을 세이브 하는데 실패했습니다", wCoordY, wCoordY);
+		LogBoxf ("[ERROR] CreateNewTerrainFiles: Failed to save AttrMap. Coordinates: [%d, %d].", wCoordY, wCoordY);
 		return false;
 	}
 
@@ -878,13 +878,13 @@ bool CMapOutdoorAccessor::RAW_InitBaseTexture (const std::vector<BYTE>& c_rVecto
 
 			if (0 != _stat (szTerrainFolder, &sb))
 			{
-				LogBoxf ("초기화 실패 : 디렉토리 [%s]가 없습니다", szTerrainFolder);
+				LogBoxf ("[ERROR] RAW_InitBaseTexture: Initialization failed: Directory does not exist. Dir: [%s].", szTerrainFolder);
 				return false;
 			}
 
 			if (! (sb.st_mode & _S_IFDIR))
 			{
-				LogBoxf ("초기화 실패 : 디렉토리 [%s]와 같은 이름을 가진 파일이 있습니다", szTerrainFolder);
+				LogBoxf ("[ERROR] RAW_InitBaseTexture: Initialization failed: A file with this name already exists. Name: [%s].", szTerrainFolder);
 				return false;
 			}
 
@@ -892,7 +892,7 @@ bool CMapOutdoorAccessor::RAW_InitBaseTexture (const std::vector<BYTE>& c_rVecto
 
 			if (!pTerrainAccessor->RAW_LoadAndSaveTileMap (szRAWTileMapName, m_strName, c_rVectorBaseTexture))
 			{
-				LogBoxf ("%d, %d의 ShadowMap을 로드하고 저장하는데 실패했습니다", usX, usY);
+				LogBoxf ("[ERROR] RAW_InitBaseTexture: Failed to load and save TileMap. Coordinates: [%d, %d].", usX, usY);
 				return false;
 			}
 		}
@@ -1129,19 +1129,19 @@ bool CMapOutdoorAccessor::ResetToDefaultAttr()
 
 			if (0 != _stat (szTerrainFolder, &sb))
 			{
-				LogBoxf ("초기화 실패 : 디렉토리 [%s]가 없습니다", szTerrainFolder);
+				LogBoxf ("[ERROR] ResetToDefaultAttr: Initialization failed: Directory does not exist. Dir: [%s].", szTerrainFolder);
 				return false;
 			}
 
 			if (! (sb.st_mode & _S_IFDIR))
 			{
-				LogBoxf ("초기화 실패 : 디렉토리 [%s]와 같은 이름을 가진 파일이 있습니다", szTerrainFolder);
+				LogBoxf ("[ERROR] ResetToDefaultAttr: Initialization failed: A file with this name already exists. Name: [%s].", szTerrainFolder);
 				return false;
 			}
 
 			if (!pTerrainAccessor->RAW_LoadAndSaveDefaultAttrMap (m_strName))
 			{
-				LogBoxf ("%d, %d의 속성 맵을 로드하고 저장하는데 실패했습니다", usX, usY);
+				LogBoxf ("[ERROR] ResetToDefaultAttr: Failed to load and save attribute map. Coordinates: [%d, %d].", usX, usY);
 				return false;
 			}
 		}
@@ -1171,7 +1171,7 @@ bool CMapOutdoorAccessor::Load (float x, float y, float z)
 	std::string strFileName = GetName() + "\\Setting.txt";
 	if (!LoadSetting (strFileName.c_str()))
 	{
-		LogBoxf ("아웃 도어 맵의 셋팅 파일 %s 을 읽는데 실패했습니다", strFileName.c_str());
+		LogBoxf ("[ERROR] Load: Failed to read the setting file of the outdoor map. File name: [%s].", strFileName.c_str());
 		return false;
 	}
 
@@ -1836,7 +1836,7 @@ struct FGetDungeonObjectHeight
 
 void CMapOutdoorAccessor::ArrangeTerrainHeight()
 {
-	int iRet = ::MessageBox (NULL, "작업을 진행하면 지형이 변경되며 되돌릴 수 없습니다\n계속 하시겠습니까?", "알림", MB_YESNO);
+	int iRet = ::MessageBox (NULL, "Terrain will change and it can't be undone.\nDo you want to proceed?", "Warning", MB_YESNO);
 	if (6 != iRet)
 	{
 		return;
@@ -1892,7 +1892,7 @@ void CMapOutdoorAccessor::main_ArrangeTerrainHeight (void* pv)
 		CTerrainAccessor * pTerrainAccessor;
 		if (!ms_pThis->GetTerrainPointer (i, (CTerrain**) &pTerrainAccessor))
 		{
-			ms_pkProgressDialog->AddLine ("%d/%d 스킵\n", i + 1, AROUND_AREA_NUM);
+			ms_pkProgressDialog->AddLine ("%d/%d Skip\n", i + 1, AROUND_AREA_NUM);
 			continue;
 		}
 
@@ -1961,12 +1961,12 @@ void CMapOutdoorAccessor::main_ArrangeTerrainHeight (void* pv)
 				}
 			}
 
-		ms_pkProgressDialog->AddLine ("%d/%d가 완료 되었습니다\n", i + 1, AROUND_AREA_NUM);
+		ms_pkProgressDialog->AddLine ("Completed [%d/%d].\n", i + 1, AROUND_AREA_NUM);
 		ms_pkProgressDialog->SetProgress (float (i) / float (AROUND_AREA_NUM) * 100.0f);
 	}
 
-	ms_pkProgressDialog->AddLine ("작업 종료\n");
-	LogBox ("지형 높이 조정 작업이 종료 되었습니다");
+	ms_pkProgressDialog->AddLine ("Operation completed.\n");
+	LogBox ("[SUCCESS] Terrain height adjustment operation has been completed.");
 
 	ms_pThis->SetTerrainModified();
 	ms_pThis->__HideProgressDialog();

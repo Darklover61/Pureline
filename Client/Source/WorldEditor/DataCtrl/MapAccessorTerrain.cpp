@@ -1583,7 +1583,7 @@ bool CTerrainAccessor::RAW_LoadAndSaveTileMap (const char* rawtilename, const st
 {
 	if (!RAW_LoadTileMap (rawtilename))
 	{
-		LogBoxf ("%d, %d의 TileMap을 로드 하는데 실패했습니다", m_wX, m_wY);
+		LogBoxf ("[ERROR] RAW_LoadAndSaveTileMap: Failed to load TileMap. Coordinates: [%d, %d].", m_wX, m_wY);
 		return false;
 	}
 
@@ -1596,7 +1596,7 @@ bool CTerrainAccessor::RAW_LoadAndSaveTileMap (const char* rawtilename, const st
 
 	if (!RAW_SaveTileMap (c_rstrMapName))
 	{
-		LogBoxf ("%d, %d의 TileMap을 세이브 하는데 실패했습니다", m_wX, m_wY);
+		LogBoxf ("[ERROR] RAW_LoadAndSaveTileMap: Failed to save TileMap. Coordinates: [%d, %d].", m_wX, m_wY);
 		return false;
 	}
 
@@ -1968,7 +1968,7 @@ void CTerrainAccessor::TerrainPutHeightmap (long x, long y, WORD val, bool bRecu
 	}
 	if (bWrongPut)
 	{
-		Tracef ("근처 맵에 영향을 주어 높이 값이 잘못 만들어질 수 있습니다. TerrainNum(%d), x(%d), y(%d)\n", byTerrainNum, x, y);
+		Tracef ("It may affect nearby maps and cause the height value to be generated incorrectly. TerrainNum(%d), x(%d), y(%d)\n", byTerrainNum, x, y);
 	}
 }
 

@@ -80,7 +80,10 @@
 (TODO) [FOG_TGA FIX]               : Fixes client crashing without a syserr while warping.
 
 [YOSUN_PACK_FIX_001]               : "Python int too large to convert to C long" error fix.
+
 [YOSUN_SERVER_FIX_001]             : Fixed a typo
+
+[YOSUN_WORLDEDITOR_FIX_001]        : Fixes crash when a .spt SpeedTree model is selected on brush.
 
 +------------------------------------------------------------+
 |                          * TODO *                          |

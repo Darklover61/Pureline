@@ -70,7 +70,7 @@ void CNewMapDlg::OnOK()
 
 	if ("" == m_StringName || 0 == m_uiSizeX || 0 == m_uiSizeY)
 	{
-		LogBoxf ("New Map [%s] (Size = %u, %u )의 데이타가 잘못 되었습니다.", m_StringName.GetBuffer (0), m_uiSizeX, m_uiSizeY);
+		LogBoxf ("Data of New Map is invalid. Name: [%s] Size: [%u, %u].", m_StringName.GetBuffer (0), m_uiSizeX, m_uiSizeY);
 		return;
 	}
 	pMapData->SetNewMapName (m_StringName.GetBuffer (0));

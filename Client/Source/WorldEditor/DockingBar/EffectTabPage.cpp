@@ -267,7 +267,7 @@ void CEffectTabPage::OnSaveScript (const char* c_szFileName)
 
 	fclose (File);
 
-	LogBox ("저장이 완료 되었습니다", "알림");
+	LogBox ("[SUCCESS] Save completed.", "Notification");
 }
 
 BOOL CEffectTabPage::IsOpenTimeBar()

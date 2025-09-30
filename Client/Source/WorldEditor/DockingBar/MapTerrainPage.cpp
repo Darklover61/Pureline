@@ -122,8 +122,8 @@ BOOL CMapTerrainPage::Create (CWnd * pParent)
 	UpdateBrushStrength();
 	UpdateBrushWaterHeight();
 
-	//	m_ctrTerrainTexList.InsertColumn(0, "번호", LVCFMT_RIGHT, 40);
-	m_ctrTerrainTexList.InsertColumn (0, "텍스처이름", LVCFMT_LEFT, 150);
+	//	m_ctrTerrainTexList.InsertColumn(0, "number", LVCFMT_RIGHT, 40);
+	m_ctrTerrainTexList.InsertColumn (0, "Texture name", LVCFMT_LEFT, 150);
 
 	return TRUE;
 }
@@ -597,13 +597,13 @@ void CMapTerrainPage::OnKeydownListTerraintexture (NMHDR* pNMHDR, LRESULT* pResu
 
 				char szWarningText[256+1];
 
-				snprintf(szWarningText, 256, "%s 텍스춰를 목록에서 삭제하시겠습니까?",
+				snprintf(szWarningText, 256, "Do you want to remove the texture %s from the list?",
 						pTerrainAccessor->GetTexture(nSelected + 1).stFilename.c_str());
 
-				if (IDOK == MessageBox(szWarningText, "삭제", MB_OKCANCEL))
+				if (IDOK == MessageBox(szWarningText, "Delete", MB_OKCANCEL))
 				{
 					if (!pMapManagerAccessor->RemoveTerrainTexture(nSelected + 1))
-						LogBoxf("%s 를 목록에서 삭제하는 데 실패했습니다.",
+						LogBoxf("Failed to remove %s from the list.",
 								pTerrainAccessor->GetTexture(nSelected + 1).stFilename.c_str());
 				}
 			}

@@ -243,7 +243,7 @@ DWORD CNonPlayerCharacterInfo::GetVIDByName (std::string strName)
 		}
 		++m_NonPlayerDataMapIterator;
 	}
-	TraceError ("CNonPlayerCharacterInfo::GetVIDByName %s의 VID를 찾을 수 없습니다. 0을 반환합니다.", strName.c_str());
+	TraceError ("CNonPlayerCharacterInfo::GetVIDByName Cannot find VID of [%s]. Returning 0.", strName.c_str());
 	return 0;
 }
 
@@ -503,7 +503,7 @@ DWORD CNonPlayerCharacterInfo::GetGroupIDByGroupName (std::string strGroupName)
 		}
 		++m_NPCGroupDataMapIterator;
 	}
-	TraceError ("CNonPlayerCharacterInfo::GetGroupIDByGroupName %s의 GroupID를 찾을 수 없습니다. 0을 반환합니다.", strGroupName.c_str());
+	TraceError ("CNonPlayerCharacterInfo::GetGroupIDByGroupName Cannot find GroupID of [%s]. Returning 0.", strGroupName.c_str());
 	return 0;
 }
 

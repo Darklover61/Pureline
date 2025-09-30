@@ -370,7 +370,7 @@ void CObjectModelPage::OnLoadModel()
 
 	if (TRUE == FileOpener.DoModal())
 	{
-		CHECK_RETURN (!CResourceManager::Instance().IsFileExist (FileOpener.GetPathName()), "파일이 없습니다");
+		CHECK_RETURN (!CResourceManager::Instance().IsFileExist (FileOpener.GetPathName()), "File not found.");
 
 		CWorldEditorApp * pApplication = (CWorldEditorApp*)AfxGetApp();
 		CObjectData * pObjectData = pApplication->GetObjectData();

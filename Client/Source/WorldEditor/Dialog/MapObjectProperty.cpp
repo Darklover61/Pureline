@@ -183,7 +183,7 @@ void CMapObjectProperty::OnOk()
 {
 	if (!m_pActivePage)
 	{
-		LogBox ("Type을 선택하셔야 합니다", "Error", GetSafeHwnd());
+		LogBox ("[ERROR] CMapObjectProperty::OnOk: You must select a Type.", "Error", GetSafeHwnd());
 		return;
 	}
 

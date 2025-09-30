@@ -226,7 +226,7 @@ void CMapFilePage::OnSaveMap()
 	//	{
 	//		if (!(pszPath = strrchr(szFileName, '\\')))
 	//		{
-	//			LogBox("파일을 저장할 수 없습니다: 디렉토리 명 찾기 실패");
+	//			LogBox("[ERROR] Cannot save the file: Failed to locate directory name.");
 	//			return;
 	//		}
 	//	}
@@ -266,7 +266,7 @@ void CMapFilePage::OnSaveCollisionData()
 
 void CMapFilePage::OnSaveAttrMap()
 {
-	int iResult = MessageBox ("정말 초기화 하시겠습니까?", NULL, MB_YESNO);
+	int iResult = MessageBox ("Are you sure you want to initialize?", NULL, MB_YESNO);
 	if (6 != iResult)
 	{
 		return;
@@ -468,7 +468,7 @@ void CMapFilePage::OnButtonChangeTerrainHeight()
 
 	if (!pMapManagerAccessor->IsMapReady())
 	{
-		LogBox ("맵 작성중이 아닙니다");
+		LogBox ("[ERROR] Map is not being created");
 		return;
 	}
 
@@ -483,7 +483,7 @@ void CMapFilePage::OnMapTerrainOptionFakePortalEnable()
 
 	if (!pMapManagerAccessor->IsMapReady())
 	{
-		LogBox ("맵 작성중이 아닙니다");
+		LogBox ("[ERROR] Map is not being created");
 		CheckDlgButton (IDC_MAP_TERRAIN_OPTION_FAKE_PORTAL_ENABLE, FALSE);
 		return;
 	}

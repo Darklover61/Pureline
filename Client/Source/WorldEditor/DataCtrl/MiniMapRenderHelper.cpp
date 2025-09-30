@@ -94,25 +94,25 @@ bool CMiniMapRenderHelper::StartRendering()
 
 	if (FAILED (ms_lpd3dDevice->SetRenderTarget (m_lpMiniMapRenderTargetSurface, m_lpMiniMapDepthSurface)))
 	{
-		LogBox ("CMiniMapRenderHelper::StartRenderingPhase Unable to Set Mini Map Render Target");
+		LogBox ("[ERROR] CMiniMapRenderHelper::StartRenderingPhase Unable to Set Mini Map Render Target");
 		bSuccess = false;
 	}
 
 	if (FAILED (ms_lpd3dDevice->Clear (0L, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB (0x00, 0x00, 0x00), 1.0f, 0)))
 	{
-		LogBox ("CMiniMapRenderHelper::StartRenderingPhase Unable to Clear Render Target");
+		LogBox ("[ERROR] CMiniMapRenderHelper::StartRenderingPhase Unable to Clear Render Target");
 		bSuccess = false;
 	}
 
 	if (FAILED (ms_lpd3dDevice->GetViewport (&m_BackupViewport)))
 	{
-		LogBox ("Unable to Save Window Viewport\n");
+		LogBox ("[ERROR] Unable to Save Window Viewport\n");
 		return false;
 	}
 
 	if (FAILED (ms_lpd3dDevice->SetViewport (&m_MiniMapViewport)))
 	{
-		Trace ("SetViewport Error : Phase 2\n");
+		Trace ("[ERROR] SetViewport Error : Phase 2\n");
 		bSuccess = false;
 	}
 
@@ -175,19 +175,19 @@ bool CMiniMapRenderHelper::CreateTextures()
 	// Mini Map
 	if (FAILED (ms_lpd3dDevice->CreateTexture (m_dwMiniMapSize, m_dwMiniMapSize, 1, D3DUSAGE_RENDERTARGET, D3DFMT_X8R8G8B8, D3DPOOL_DEFAULT, &m_lpMiniMapRenderTargetTexture)))
 	{
-		LogBox ("Unable to create MiniMap render target texture");
+		LogBox ("[ERROR] CMiniMapRenderHelper::CreateTextures: Unable to create MiniMap render target texture");
 		return false;
 	}
 
 	if (FAILED (m_lpMiniMapRenderTargetTexture->GetSurfaceLevel (0, &m_lpMiniMapRenderTargetSurface)))
 	{
-		LogBox ("Unable to GetSurfaceLevel MiniMap render target texture");
+		LogBox ("[ERROR] CMiniMapRenderHelper::CreateTextures: Unable to GetSurfaceLevel MiniMap render target texture");
 		return false;
 	}
 
 	if (FAILED (ms_lpd3dDevice->CreateDepthStencilSurface (m_dwMiniMapSize, m_dwMiniMapSize, D3DFMT_D16, D3DMULTISAMPLE_NONE, &m_lpMiniMapDepthSurface)))
 	{
-		LogBox ("Unable to create Output MiniMap depth Surface");
+		LogBox ("[ERROR] CMiniMapRenderHelper::CreateTextures: Unable to create Output MiniMap depth Surface");
 		return false;
 	}
 

@@ -106,13 +106,13 @@ bool CMapObjectPropertyPageEffect::OnSave (const char* c_szPathName, CProperty *
 
 	if (m_propertyEffect.strName.empty())
 	{
-		LogBox ("이름을 입력 하셔야 합니다.", "Error", GetSafeHwnd());
+		LogBox ("[ERROR] You must enter a name.", "Error", GetSafeHwnd());
 		return false;
 	}
 
 	if (m_propertyEffect.strFileName.empty())
 	{
-		LogBox ("이펙트 파일이름을 입력 하셔야 합니다.", "Error", GetSafeHwnd());
+		LogBox ("[ERROR] You must enter an effect file name.", "Error", GetSafeHwnd());
 		return false;
 	}
 
@@ -120,7 +120,7 @@ bool CMapObjectPropertyPageEffect::OnSave (const char* c_szPathName, CProperty *
 	{
 		if (CPropertyManager::Instance().Get (strFileName.c_str(), &pProperty))
 		{
-			LogBox ("같은 이름을 가진 프로퍼티가 존재합니다.", "Error", GetSafeHwnd());
+			LogBox ("[ERROR] A property with the same name already exists.", "Error", GetSafeHwnd());
 			return false;
 		}
 

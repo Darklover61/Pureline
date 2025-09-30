@@ -445,8 +445,8 @@ void CFlyTabPage::SelectAttachIndex (int iIndex)
 			case CFlyingData::FLY_ATTACH_TYPE_MULTI_LINE:
 				CheckDlgButton (IDC_FLY_TYPE_MULTI_LINE, TRUE);
 
-				GetDlgItem (IDC_FLY_ARG1)->SetWindowText ("축 회전");
-				GetDlgItem (IDC_FLY_ARG2)->SetWindowText ("거리");
+				GetDlgItem (IDC_FLY_ARG1)->SetWindowText ("Axis Rotation");
+				GetDlgItem (IDC_FLY_ARG2)->SetWindowText ("Distance");
 				SetDialogFloatText (GetSafeHwnd(), IDC_FLY_VALUE1, rfad.fRoll);
 				SetDialogFloatText (GetSafeHwnd(), IDC_FLY_VALUE2, rfad.fDistance);
 
@@ -460,9 +460,9 @@ void CFlyTabPage::SelectAttachIndex (int iIndex)
 			case CFlyingData::FLY_ATTACH_TYPE_SINE:
 				CheckDlgButton (IDC_FLY_TYPE_SINE, TRUE);
 
-				GetDlgItem (IDC_FLY_ARG1)->SetWindowText ("축 회전");
-				GetDlgItem (IDC_FLY_ARG2)->SetWindowText ("주기");
-				GetDlgItem (IDC_FLY_ARG3)->SetWindowText ("진폭");
+				GetDlgItem (IDC_FLY_ARG1)->SetWindowText ("Axis Rotation");
+				GetDlgItem (IDC_FLY_ARG2)->SetWindowText ("Cycle");
+				GetDlgItem (IDC_FLY_ARG3)->SetWindowText ("Amplitude");
 				SetDialogFloatText (GetSafeHwnd(), IDC_FLY_VALUE1, rfad.fRoll);
 				SetDialogFloatText (GetSafeHwnd(), IDC_FLY_VALUE2, rfad.fPeriod);
 				SetDialogFloatText (GetSafeHwnd(), IDC_FLY_VALUE3, rfad.fAmplitude);
@@ -477,9 +477,9 @@ void CFlyTabPage::SelectAttachIndex (int iIndex)
 			case CFlyingData::FLY_ATTACH_TYPE_EXP:
 				CheckDlgButton (IDC_FLY_TYPE_EXP, TRUE);
 
-				GetDlgItem (IDC_FLY_ARG1)->SetWindowText ("축 회전");
-				GetDlgItem (IDC_FLY_ARG2)->SetWindowText ("주기");
-				GetDlgItem (IDC_FLY_ARG3)->SetWindowText ("진폭");
+				GetDlgItem (IDC_FLY_ARG1)->SetWindowText ("Axis Rotation");
+				GetDlgItem (IDC_FLY_ARG2)->SetWindowText ("Cycle");
+				GetDlgItem (IDC_FLY_ARG3)->SetWindowText ("Amplitude");
 				SetDialogFloatText (GetSafeHwnd(), IDC_FLY_VALUE1, rfad.fRoll);
 				SetDialogFloatText (GetSafeHwnd(), IDC_FLY_VALUE2, rfad.fPeriod);
 				SetDialogFloatText (GetSafeHwnd(), IDC_FLY_VALUE3, rfad.fAmplitude);

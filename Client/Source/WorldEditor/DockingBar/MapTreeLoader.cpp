@@ -79,7 +79,7 @@ bool CTreeLoader::OnFile (const char* c_szPathName, const char* c_szFileName)
 
 		if (!CPropertyManager::Instance().Get(dwCRC, &pProperty))
 		{
-			assert(!"헉? 프로퍼티를 등록했는데 매니저에서 가져올 수 없음");
+			assert(!"Huh? The property was registered, but it can't be retrieved from the manager.");
 			return false;
 		}
 		else
@@ -158,7 +158,7 @@ bool CTreeLoader::OnFile (const char* c_szPathName, const char* c_szFileName)
 
 			if (!pProperty->Save(pProperty->GetFileName()))
 			{
-				assert(!"저장할 수 없음");
+				assert(!"[ERROR] Failed to save.");
 				return false;
 			}
 		}

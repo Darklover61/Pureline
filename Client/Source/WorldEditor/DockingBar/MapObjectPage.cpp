@@ -441,7 +441,7 @@ void CMapObjectPage::OnDelete()
 	{
 		if (!RemoveDirectory (pszPath))
 		{
-			LogBox ("하위에 파일 혹은 폴더가 존재 합니다", "Error", GetSafeHwnd());
+			LogBox ("Files or folders exist in the subdirectory.", "Error", GetSafeHwnd());
 			return;
 		}
 
@@ -458,7 +458,7 @@ void CMapObjectPage::OnDelete()
 			return;
 		}
 
-		if (IDYES != MessageBox ("정말 지우시겠습니까?", NULL, MB_YESNO))
+		if (IDYES != MessageBox ("Are you sure you want to delete it?", NULL, MB_YESNO))
 		{
 			return;
 		}
@@ -574,7 +574,7 @@ void CMapObjectPage::OnInsertPortalNumber()
 
 	if (!pMapManagerAccessor->IsSelected())
 	{
-		LogBox ("선택 중인 오브젝트가 없습니다");
+		LogBox ("No object is currently selected.");
 		return;
 	}
 

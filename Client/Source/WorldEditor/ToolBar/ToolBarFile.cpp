@@ -40,15 +40,15 @@ void CToolBarFile::ShowButtonText (BOOL bShow)
 		LoadBitmap (IDR_MAINFRAME);
 		m_nBitmapID = IDR_MAINFRAME;
 
-		SetButtonText (CommandToIndex (ID_FILE_NEW), "새문서");
-		SetButtonText (CommandToIndex (ID_FILE_OPEN), "열기");
-		SetButtonText (CommandToIndex (ID_FILE_SAVE), "저장");
-		SetButtonText (CommandToIndex (ID_EDIT_UNDO), "취소");
+		SetButtonText (CommandToIndex (ID_FILE_NEW), "New Document");
+		SetButtonText (CommandToIndex (ID_FILE_OPEN), "Open");
+		SetButtonText (CommandToIndex (ID_FILE_SAVE), "Save");
+		SetButtonText (CommandToIndex (ID_EDIT_UNDO), "Undo");
 
-		SetButtonText (CommandToIndex (ID_VIEW_OBJECT), "오브젝트");
-		SetButtonText (CommandToIndex (ID_VIEW_ENVIRONMENT), "환경");
+		SetButtonText (CommandToIndex (ID_VIEW_OBJECT), "Object");
+		SetButtonText (CommandToIndex (ID_VIEW_ENVIRONMENT), "Environment");
 
-		SetButtonText (CommandToIndex (ID_APP_ABOUT), "저작권");
+		SetButtonText (CommandToIndex (ID_APP_ABOUT), "Copyright");
 	}
 	else
 	{
