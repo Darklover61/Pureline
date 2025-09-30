@@ -134,13 +134,13 @@ void CMapFilePage::UpdateUI()
 	char buf[128];
 	SetDlgItemText (IDC_MAP_SCRIPT_NAME_PRINT, rMapOutdoor.GetName().c_str());
 
-	sprintf (buf, "%.2f 미터", (float) (m_lViewRadius) * (float) (CTerrainImpl::CELLSCALE) / 100.0f);
+	sprintf (buf, "%.2f m", (float) (m_lViewRadius) * (float) (CTerrainImpl::CELLSCALE) / 100.0f);
 	SetDlgItemText (IDC_STATIC_VIEW_RADIUS, buf);
 
-	sprintf (buf, "%.2f 미터", (float) (CTerrainImpl::CELLSCALE) / 100.0f);
+	sprintf (buf, "%.2f m", (float) (CTerrainImpl::CELLSCALE) / 100.0f);
 	SetDlgItemText (IDC_STATIC_WORLD_SCALE, buf);
 
-	sprintf (buf, "%.2f 미터", m_fHeightScale * 65535.0f / 100.0f);
+	sprintf (buf, "%.2f m", m_fHeightScale * 65535.0f / 100.0f);
 	SetDlgItemText (IDC_STATIC_MAX_HEIGHT, buf);
 
 	sprintf (buf, "%d cm", dwBaseX);
