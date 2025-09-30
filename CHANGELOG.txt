@@ -2,6 +2,14 @@
 | Kaptan Yosun's Pureline                                        |
 +----------------------------------------------------------------+
 +------------+
+| 30.09.2025 |
++------------+
+~ Pack simplified.
+~ Season patches are integrated directly in pack.
+~ Duplicate pack files deleted.
+~ Items like Blue Steel Armor and White Lion visuals fixed.
+
++------------+
 | 29.09.2025 |
 +------------+
 ~ Integrated WorldEditor Source Code into the Client

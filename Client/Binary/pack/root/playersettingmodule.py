@@ -248,11 +248,11 @@ def __InitData():
 	chrmgr.RegisterCacheEffect(chrmgr.EFFECT_DAMAGE_TARGETMISS, "", "d:/ymir work/effect/affect/damagevalue/target_miss.mse")
 	#chrmgr.RegisterCacheEffect(chrmgr.EFFECT_DAMAGE_CRITICAL, "", "d:/ymir work/effect/affect/damagevalue/critical.mse")
 
-	#chrmgr.RegisterCacheEffect(chrmgr.EFFECT_SUCCESS, "",			"season1/effect/success.mse")
-	#chrmgr.RegisterCacheEffect(chrmgr.EFFECT_FAIL, "",	"season1/effect/fail.mse")
+	#chrmgr.RegisterCacheEffect(chrmgr.EFFECT_SUCCESS, "",			"d:/ymir work/effect/success.mse")
+	#chrmgr.RegisterCacheEffect(chrmgr.EFFECT_FAIL, "",	"d:/ymir work/effect/fail.mse")
 	
-	chrmgr.RegisterCacheEffect(chrmgr.EFFECT_LEVELUP_ON_14_FOR_GERMANY, "","season1/effect/paymessage_warning.mse")	#레벨업 14일때 ( 독일전용 )
-	chrmgr.RegisterCacheEffect(chrmgr.EFFECT_LEVELUP_UNDER_15_FOR_GERMANY, "", "season1/effect/paymessage_decide.mse" )#레벨업 15일때 ( 독일전용 )
+	chrmgr.RegisterCacheEffect(chrmgr.EFFECT_LEVELUP_ON_14_FOR_GERMANY, "","d:/ymir work/effect/paymessage_warning.mse")	#레벨업 14일때 ( 독일전용 )
+	chrmgr.RegisterCacheEffect(chrmgr.EFFECT_LEVELUP_UNDER_15_FOR_GERMANY, "", "d:/ymir work/effect/paymessage_decide.mse" )#레벨업 15일때 ( 독일전용 )
 
 	chrmgr.RegisterCacheEffect(chrmgr.EFFECT_PERCENT_DAMAGE1, "", "d:/ymir work/effect/hit/percent_damage1.mse")
 	chrmgr.RegisterCacheEffect(chrmgr.EFFECT_PERCENT_DAMAGE2, "", "d:/ymir work/effect/hit/percent_damage2.mse")

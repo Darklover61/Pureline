@@ -398,8 +398,8 @@ MINIMAP_ZONE_NAME_DICT = {
 	"metin2_map_guild_03" : MAP_CG,
 	"metin2_map_trent" : MAP_TREE,
 	"metin2_map_trent02" : MAP_TREE2,
-	"season1/metin2_map_WL_01" : MAP_WL,
-	"season1/metin2_map_nusluck01" : MAP_NUSLUCK,
+	"metin2_map_WL_01" : MAP_WL,
+	"metin2_map_nusluck01" : MAP_NUSLUCK,
     "Metin2_map_CapeDragonHead" : MAP_CAPE,
     "metin2_map_Mt_Thunder" : MAP_THUNDER,
     "metin2_map_dawnmistwood" : MAP_DAWN,
@@ -624,11 +624,11 @@ MODE_NAME_LIST = ( PVP_OPTION_NORMAL, PVP_OPTION_REVENGE, PVP_OPTION_KILL, PVP_O
 TITLE_NAME_LIST = ( PVP_LEVEL0, PVP_LEVEL1, PVP_LEVEL2, PVP_LEVEL3, PVP_LEVEL4, PVP_LEVEL5, PVP_LEVEL6, PVP_LEVEL7, PVP_LEVEL8, )
 
 def GetLetterImageName():
-	return "season1/icon/scroll_close.tga"
+	return "icon/scroll_close.tga"
 def GetLetterOpenImageName():
-	return "season1/icon/scroll_open.tga"
+	return "icon/scroll_open.tga"
 def GetLetterCloseImageName():
-	return "season1/icon/scroll_close.tga"
+	return "icon/scroll_close.tga"
 
 if 949 == app.GetDefaultCodePage():
 	def EUL(name):
