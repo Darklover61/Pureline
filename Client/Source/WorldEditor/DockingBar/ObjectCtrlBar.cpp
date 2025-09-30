@@ -1,14 +1,14 @@
 // ObjectCtrlBar.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "..\WorldEditor.h"
 #include "ObjectCtrlBar.h"
 
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+	#define new DEBUG_NEW
+	#undef THIS_FILE
+	static char THIS_FILE[] = __FILE__;
 #endif
 
 
@@ -28,7 +28,7 @@ CObjectCtrlBar::~CObjectCtrlBar()
 }
 
 
-BEGIN_MESSAGE_MAP(CObjectCtrlBar, CSizingControlBar)
+BEGIN_MESSAGE_MAP (CObjectCtrlBar, CSizingControlBar)
 	//{{AFX_MSG_MAP(CObjectCtrlBar)
 	ON_WM_CREATE()
 	ON_WM_SIZE()
@@ -38,12 +38,14 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // CObjectCtrlBar normal functions
 
-BOOL CObjectCtrlBar::Create(CWnd *pParent)
+BOOL CObjectCtrlBar::Create (CWnd *pParent)
 {
-	if (!CSizingControlBar::Create("Object", pParent, CSize(220, 480), TRUE, AFX_IDW_TOOLBAR + 10))
+	if (!CSizingControlBar::Create ("Object", pParent, CSize (220, 480), TRUE, AFX_IDW_TOOLBAR + 10))
+	{
 		return FALSE;
+	}
 
-	SetBarStyle(GetBarStyle() | CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC);
+	SetBarStyle (GetBarStyle() | CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC);
 
 	return TRUE;
 }
@@ -58,18 +60,18 @@ void CObjectCtrlBar::Initialize()
 
 void CObjectCtrlBar::UpdatePage()
 {
-	switch(m_pageTab.GetCurrentTab())
+	switch (m_pageTab.GetCurrentTab())
 	{
 		case CObjectTabPage::PAGE_TYPE_MODEL:
 			m_pageModel.UpdateUI();
-			m_pageModel.ShowWindow(SW_SHOW);
-			m_pageAnimation.ShowWindow(SW_HIDE);
+			m_pageModel.ShowWindow (SW_SHOW);
+			m_pageAnimation.ShowWindow (SW_HIDE);
 			break;
 
 		case CObjectTabPage::PAGE_TYPE_ANIMATION:
 			m_pageAnimation.UpdateUI();
-			m_pageModel.ShowWindow(SW_HIDE);
-			m_pageAnimation.ShowWindow(SW_SHOW);
+			m_pageModel.ShowWindow (SW_HIDE);
+			m_pageAnimation.ShowWindow (SW_SHOW);
 			break;
 	}
 }
@@ -82,42 +84,50 @@ void CObjectCtrlBar::UpdateAnimationPage()
 /////////////////////////////////////////////////////////////////////////////
 // CObjectCtrlBar message handlers
 
-int CObjectCtrlBar::OnCreate(LPCREATESTRUCT lpCreateStruct) 
+int CObjectCtrlBar::OnCreate (LPCREATESTRUCT lpCreateStruct)
 {
-	if (CSizingControlBar::OnCreate(lpCreateStruct) == -1)
+	if (CSizingControlBar::OnCreate (lpCreateStruct) == -1)
+	{
 		return -1;
+	}
 
-	if (!m_pageTab.Create(this))
+	if (!m_pageTab.Create (this))
+	{
 		return -1;
+	}
 
-	if (!m_pageModel.Create(this))
+	if (!m_pageModel.Create (this))
+	{
 		return -1;
+	}
 
-	if (!m_pageAnimation.Create(this))
+	if (!m_pageAnimation.Create (this))
+	{
 		return -1;
+	}
 
-	m_pageTab.SetTemporaryHeight(0);
-	m_pageModel.SetTemporaryHeight(c_iTemporaryHeight);
-	m_pageAnimation.SetTemporaryHeight(c_iTemporaryHeight);
+	m_pageTab.SetTemporaryHeight (0);
+	m_pageModel.SetTemporaryHeight (c_iTemporaryHeight);
+	m_pageAnimation.SetTemporaryHeight (c_iTemporaryHeight);
 
-	m_pageTab.ShowWindow(SW_SHOW);
-	m_pageModel.ShowWindow(SW_SHOW);
-	m_pageAnimation.ShowWindow(SW_HIDE);
+	m_pageTab.ShowWindow (SW_SHOW);
+	m_pageModel.ShowWindow (SW_SHOW);
+	m_pageAnimation.ShowWindow (SW_HIDE);
 
 	return 0;
 }
 
-void CObjectCtrlBar::OnSize(UINT nType, int cx, int cy) 
+void CObjectCtrlBar::OnSize (UINT nType, int cx, int cy)
 {
-	CSizingControlBar::OnSize(nType, cx, cy);
+	CSizingControlBar::OnSize (nType, cx, cy);
 
-	CPageCtrl *pWnd = (CPageCtrl*)GetWindow(GW_CHILD);
+	CPageCtrl *pWnd = (CPageCtrl*)GetWindow (GW_CHILD);
 	while (pWnd != NULL)
 	{
 		pWnd->CalcLayout();
 		pWnd = (CPageCtrl*)pWnd->GetNextWindow();
 	}
 
-	RepositioningWindow(m_pageModel, c_iTemporaryWidth, c_iTemporaryHeight);
-	RepositioningWindow(m_pageAnimation, c_iTemporaryWidth, c_iTemporaryHeight);
+	RepositioningWindow (m_pageModel, c_iTemporaryWidth, c_iTemporaryHeight);
+	RepositioningWindow (m_pageAnimation, c_iTemporaryWidth, c_iTemporaryHeight);
 }

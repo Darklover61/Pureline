@@ -2,7 +2,7 @@
 #define AFX_EFFECTTEXTUREPAGE_H__4D0B5194_467C_487F_9480_3A41BDB4DB2B__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
+	#pragma once
 #endif // _MSC_VER > 1000
 // EffectTexturePage.h : header file
 //
@@ -17,39 +17,39 @@
 
 class CEffectTexturePage : public CPageCtrl
 {
-// Construction
-public:
-	CEffectTexturePage(CWnd* pParent = NULL);   // standard constructor
-	BOOL Create(CWnd * pParent);
+		// Construction
+	public:
+		CEffectTexturePage (CWnd* pParent = NULL);  // standard constructor
+		BOOL Create (CWnd * pParent);
 
-	void UpdateUI();
+		void UpdateUI();
 
-	void SetData(DWORD dwIndex);
+		void SetData (DWORD dwIndex);
 
-// Dialog Data
-	//{{AFX_DATA(CEffectTexturePage)
-	enum { IDD = IDD_EFFECT_TEXTURE };
-	CBlendTypeComboBox	m_ctrlBlendDestType;
-	CBlendTypeComboBox	m_ctrlBlendSrcType;
-	//}}AFX_DATA
+		// Dialog Data
+		//{{AFX_DATA(CEffectTexturePage)
+		enum { IDD = IDD_EFFECT_TEXTURE };
+		CBlendTypeComboBox	m_ctrlBlendDestType;
+		CBlendTypeComboBox	m_ctrlBlendSrcType;
+		//}}AFX_DATA
 
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CEffectTexturePage)
+		// Overrides
+		// ClassWizard generated virtual function overrides
+		//{{AFX_VIRTUAL(CEffectTexturePage)
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	virtual BOOL OnCommand(WPARAM wParam, LPARAM lParam);
-	//}}AFX_VIRTUAL
+		virtual void DoDataExchange (CDataExchange* pDX);   // DDX/DDV support
+		virtual BOOL OnCommand (WPARAM wParam, LPARAM lParam);
+		//}}AFX_VIRTUAL
 
-// Implementation
-protected:
+		// Implementation
+	protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CEffectTexturePage)
+		// Generated message map functions
+		//{{AFX_MSG(CEffectTexturePage)
 		// NOTE: the ClassWizard will add member functions here
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+		//}}AFX_MSG
+		DECLARE_MESSAGE_MAP()
 };
 
 //{{AFX_INSERT_LOCATION}}

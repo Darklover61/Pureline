@@ -2,7 +2,7 @@
 #define AFX_MAPTERRAINTEXTUREPREVIEW_H__A32F6C16_3D24_4E79_BC88_7920DE141AB6__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
+	#pragma once
 #endif // _MSC_VER > 1000
 // mapterraintexturepreview.h : header file
 //
@@ -12,33 +12,33 @@
 
 class CMapTerrainTexturePreview : public CWnd, public CScreen
 {
-public:
-	CMapTerrainTexturePreview();           // protected constructor used by dynamic creation
+	public:
+		CMapTerrainTexturePreview();           // protected constructor used by dynamic creation
 
-// Operations
-public:
-	BOOL Create();
+		// Operations
+	public:
+		BOOL Create();
 
-protected:
-	ILuint m_ilImage;
-	CGraphicDib m_DIB;
+	protected:
+		ILuint m_ilImage;
+		CGraphicDib m_DIB;
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CMapTerrainTexturePreview)
-	//}}AFX_VIRTUAL
+		// Overrides
+		// ClassWizard generated virtual function overrides
+		//{{AFX_VIRTUAL(CMapTerrainTexturePreview)
+		//}}AFX_VIRTUAL
 
-// Implementation
-public:
-	void UpdatePreview(int nTexNum);
-	virtual ~CMapTerrainTexturePreview();
+		// Implementation
+	public:
+		void UpdatePreview (int nTexNum);
+		virtual ~CMapTerrainTexturePreview();
 
-	// Generated message map functions
-protected:
-	//{{AFX_MSG(CMapTerrainTexturePreview)
-	afx_msg void OnPaint();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+		// Generated message map functions
+	protected:
+		//{{AFX_MSG(CMapTerrainTexturePreview)
+		afx_msg void OnPaint();
+		//}}AFX_MSG
+		DECLARE_MESSAGE_MAP()
 };
 
 /////////////////////////////////////////////////////////////////////////////

@@ -32,19 +32,19 @@ class CCursorRenderer : public CScreen
 		~CCursorRenderer();
 
 		void ClearCursor();
-		void SetHeightObserver(CMapManagerAccessor::CHeightObserver * pHeightObserver);
+		void SetHeightObserver (CMapManagerAccessor::CHeightObserver * pHeightObserver);
 
-		void SetCenterPosition(D3DXVECTOR3 & rv3Position);
-		void SetCursorPosition(D3DXVECTOR3 & rv3Position);
+		void SetCenterPosition (D3DXVECTOR3 & rv3Position);
+		void SetCursorPosition (D3DXVECTOR3 & rv3Position);
 		DWORD GetCurrentCRC();
-		void SetCursor(DWORD dwCRC);
+		void SetCursor (DWORD dwCRC);
 		DWORD GetCursorRotation();
-		void SetCursorRotation(DWORD dwRotation);
+		void SetCursorRotation (DWORD dwRotation);
 
-		void SetCursorYaw(float fYaw);
-		void SetCursorPitch(float fPitch);
-		void SetCursorRoll(float fRoll);
-		void SetCursorScale(DWORD dwScale);
+		void SetCursorYaw (float fYaw);
+		void SetCursorPitch (float fPitch);
+		void SetCursorRoll (float fRoll);
+		void SetCursorScale (DWORD dwScale);
 
 		float GetCursorYaw();
 		float GetCursorPitch();
@@ -52,43 +52,43 @@ class CCursorRenderer : public CScreen
 		float GetObjectHeight();
 		DWORD GetCursorScale();
 
-		const D3DXVECTOR3 & GetCursorPosition();
+		const D3DXVECTOR3& GetCursorPosition();
 		DWORD GetSettingCursorCount();
-		bool GetSettingCursorPosition(DWORD dwIndex, int * px, int * py);
+		bool GetSettingCursorPosition (DWORD dwIndex, int* px, int* py);
 
 		// Normal
-		void SetObjectBrushType(int iType);
-		void SetObjectAreaSize(int iSize);
-		void SetObjectAreaDensity(int iDensity);
-		void SetObjectAreaRandom(int iRandom);
-		void SetGridMode(BOOL byGridMode);
-		void SetGridDistance(float fDistance);
-		void SetObjectHeight(float fHeight);
+		void SetObjectBrushType (int iType);
+		void SetObjectAreaSize (int iSize);
+		void SetObjectAreaDensity (int iDensity);
+		void SetObjectAreaRandom (int iRandom);
+		void SetGridMode (BOOL byGridMode);
+		void SetGridDistance (float fDistance);
+		void SetObjectHeight (float fHeight);
 
 		// Tree
-		void SetCursorTree(CProperty * pProperty);
+		void SetCursorTree (CProperty * pProperty);
 
 		// Building
-		void SetCursorBuilding(CProperty * pProperty);
+		void SetCursorBuilding (CProperty * pProperty);
 
 		// Effect
-		void SetCursorEffect(CProperty * pProperty);
+		void SetCursorEffect (CProperty * pProperty);
 
 		// Ambience
-		void SetCursorAmbience(CProperty * pProperty);
+		void SetCursorAmbience (CProperty * pProperty);
 
 		// Dungeon
-		void SetCursorDungeonBlock(CProperty * pProperty);
+		void SetCursorDungeonBlock (CProperty * pProperty);
 
 		// Mouse
-		void GetSelectArea(float * pfxStart, float * pfyStart, float * pfxEnd, float * pfyEnd);
+		void GetSelectArea (float* pfxStart, float* pfyStart, float* pfxEnd, float* pfyEnd);
 		bool IsSelecting();
 		void SelectStart();
 		void SelectEnd();
 		bool IsPicking();
 		void PickStart();
 		void PickEnd();
-		const D3DXVECTOR3 & GetPickedPosition();
+		const D3DXVECTOR3& GetPickedPosition();
 		void UpdatePickedPosition();
 		// Mouse
 
@@ -97,13 +97,13 @@ class CCursorRenderer : public CScreen
 		void RenderCursorArea();
 		void RefreshCursor();
 
-		void RenderCursorSquare(float fxStart, float fyStart, float fxEnd, float fyEnd, int iStep = 50);
-		void RenderCursorCircle(float fx, float fy, float fz, float fRadius, int iStep = 50);
+		void RenderCursorSquare (float fxStart, float fyStart, float fxEnd, float fyEnd, int iStep = 50);
+		void RenderCursorCircle (float fx, float fy, float fz, float fRadius, int iStep = 50);
 
 	protected:
 		void __Initialize();
 
-		void RenderPieceLine(float fxStart, float fyStart, float fxEnd, float fyEnd, int iStep);
+		void RenderPieceLine (float fxStart, float fyStart, float fxEnd, float fyEnd, int iStep);
 
 	protected:
 		int								m_iCursorType;
@@ -111,7 +111,7 @@ class CCursorRenderer : public CScreen
 		float							m_fYaw;
 		float							m_fPitch;
 		float							m_fRoll;
-		CMapManagerAccessor::CHeightObserver *		m_pHeightObserver;
+		CMapManagerAccessor::CHeightObserver* 		m_pHeightObserver;
 		D3DXVECTOR3						m_v3CenterPosition;
 		D3DXVECTOR3						m_v3CursorPosition;
 		DWORD							m_dwCurrentCRC;
@@ -130,7 +130,7 @@ class CCursorRenderer : public CScreen
 		float							m_fGridDistance;
 		float							m_fObjectHeight;
 
-		CSpeedTreeWrapper *				m_pTreeCursor;
+		CSpeedTreeWrapper* 				m_pTreeCursor;
 
 		// Building
 		CGraphicThingInstance			m_BuildingInstance;

@@ -7,38 +7,38 @@
 
 class CFlyCtrlBar : public CSizingControlBar
 {
-// Construction
-public:
-	CFlyCtrlBar();
+		// Construction
+	public:
+		CFlyCtrlBar();
 
-	BOOL Create(CWnd * pParent);
+		BOOL Create (CWnd * pParent);
 
-	void Initialize();
-	
-	void UpdatePage();
-// Attributes
-public:
+		void Initialize();
 
-// Operations
-public:
+		void UpdatePage();
+		// Attributes
+	public:
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CFlyCtrlBar)
+		// Operations
+	public:
+
+		// Overrides
+		// ClassWizard generated virtual function overrides
+		//{{AFX_VIRTUAL(CFlyCtrlBar)
 		// NOTE - the ClassWizard will add and remove member functions here.
-	//}}AFX_VIRTUAL
+		//}}AFX_VIRTUAL
 
-// Implementation
-public:
-	virtual ~CFlyCtrlBar();
+		// Implementation
+	public:
+		virtual ~CFlyCtrlBar();
 
-	// Generated message map functions
-protected:
-	CFlyTabPage m_pageTab;
-	//{{AFX_MSG(CFlyCtrlBar)
-	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+		// Generated message map functions
+	protected:
+		CFlyTabPage m_pageTab;
+		//{{AFX_MSG(CFlyCtrlBar)
+		afx_msg int OnCreate (LPCREATESTRUCT lpCreateStruct);
+		//}}AFX_MSG
+		DECLARE_MESSAGE_MAP()
 };
 
 /////////////////////////////////////////////////////////////////////////////

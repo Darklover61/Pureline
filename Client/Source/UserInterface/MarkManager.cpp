@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "MarkManager.h"
 
 #if _MSC_VER < 1200

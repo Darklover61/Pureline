@@ -5,11 +5,11 @@
 #define AFX_WORLDEDITOR_H__23A6089B_4D11_4492_BA3F_A18389CD231D__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
+	#pragma once
 #endif // _MSC_VER > 1000
 
 #ifndef __AFXWIN_H__
-	#error include 'stdafx.h' before including this file for PCH
+	#error include 'StdAfx.h' before including this file for PCH
 #endif
 
 #include "resource.h"       // main symbols
@@ -36,51 +36,54 @@
 
 class CWorldEditorApp : public CWinApp
 {
-public:
-	CWorldEditorApp();
-	~CWorldEditorApp();
-
-public:
-	CObjectData * GetObjectData();
-	CEffectAccessor * GetEffectAccessor();
-	CMapManagerAccessor * GetMapManagerAccessor();
-	CSceneObject * GetSceneObject();
-	CSceneEffect * GetSceneEffect();
-	CSceneMap * GetSceneMap();
-	CSceneFly * GetSceneFly();
-	
-	CGraphicDevice & GetGraphicDevice() { return m_GraphicDevice; }
-
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CWorldEditorApp)
 	public:
-	virtual BOOL InitInstance();
-	virtual int ExitInstance();
-	virtual BOOL OnIdle(LONG lCount);
-	//}}AFX_VIRTUAL
+		CWorldEditorApp();
+		~CWorldEditorApp();
 
-// Implementation
-	//{{AFX_MSG(CWorldEditorApp)
-	afx_msg void OnAppAbout();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+	public:
+		CObjectData* GetObjectData();
+		CEffectAccessor* GetEffectAccessor();
+		CMapManagerAccessor* GetMapManagerAccessor();
+		CSceneObject* GetSceneObject();
+		CSceneEffect* GetSceneEffect();
+		CSceneMap* GetSceneMap();
+		CSceneFly* GetSceneFly();
 
-protected:
-	CTimer m_Timer;
-	CPythonResource m_PythonResource;
+		CGraphicDevice& GetGraphicDevice()
+		{
+			return m_GraphicDevice;
+		}
 
-	CEterPackManager m_EterPackManager;
+		// Overrides
+		// ClassWizard generated virtual function overrides
+		//{{AFX_VIRTUAL(CWorldEditorApp)
+	public:
+		virtual BOOL InitInstance();
+		virtual int ExitInstance();
+		virtual BOOL OnIdle (LONG lCount);
+		//}}AFX_VIRTUAL
 
-	CGraphicDevice m_GraphicDevice;
-	CSoundManager m_SoundManager;
-	CEffectManager m_EffectManager;
-	CFlyingManager m_FlyingManager;
-	CLightManager m_LightManager;
-	CGameEventManager m_GameEventManager;
+		// Implementation
+		//{{AFX_MSG(CWorldEditorApp)
+		afx_msg void OnAppAbout();
+		//}}AFX_MSG
+		DECLARE_MESSAGE_MAP()
 
-	CCullingManager m_CullingManager;
-	CLZO m_lzo;
+	protected:
+		CTimer m_Timer;
+		CPythonResource m_PythonResource;
+
+		CEterPackManager m_EterPackManager;
+
+		CGraphicDevice m_GraphicDevice;
+		CSoundManager m_SoundManager;
+		CEffectManager m_EffectManager;
+		CFlyingManager m_FlyingManager;
+		CLightManager m_LightManager;
+		CGameEventManager m_GameEventManager;
+
+		CCullingManager m_CullingManager;
+		CLZO m_lzo;
 };
 
 /////////////////////////////////////////////////////////////////////////////

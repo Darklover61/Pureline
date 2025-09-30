@@ -2,7 +2,7 @@
 #define AFX_EFFECTPARTICLETEXTUREPREVIEW_H__15B021C0_F8BB_41E3_9B48_C67E6DE404F8__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
+	#pragma once
 #endif // _MSC_VER > 1000
 // effectparticletexturepreview.h : header file
 //
@@ -12,36 +12,36 @@
 
 class CEffectParticleTexturePreview : public CWnd, private CScreen
 {
-// Construction
-public:
-	CEffectParticleTexturePreview();
+		// Construction
+	public:
+		CEffectParticleTexturePreview();
 
-// Attributes
-public:
-protected:
-	 CGraphicImage * m_pImage;
-	 CGraphicImageInstance m_ImageInstance;
+		// Attributes
+	public:
+	protected:
+		CGraphicImage* m_pImage;
+		CGraphicImageInstance m_ImageInstance;
 
-// Operations
-public:
+		// Operations
+	public:
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CEffectParticleTexturePreview)
-	//}}AFX_VIRTUAL
+		// Overrides
+		// ClassWizard generated virtual function overrides
+		//{{AFX_VIRTUAL(CEffectParticleTexturePreview)
+		//}}AFX_VIRTUAL
 
-// Implementation
-public:
-	void UpdatePreview(CGraphicImage * pImage);
+		// Implementation
+	public:
+		void UpdatePreview (CGraphicImage * pImage);
 
-	virtual ~CEffectParticleTexturePreview();
+		virtual ~CEffectParticleTexturePreview();
 
-	// Generated message map functions
-protected:
-	//{{AFX_MSG(CEffectParticleTexturePreview)
-	afx_msg void OnPaint();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+		// Generated message map functions
+	protected:
+		//{{AFX_MSG(CEffectParticleTexturePreview)
+		afx_msg void OnPaint();
+		//}}AFX_MSG
+		DECLARE_MESSAGE_MAP()
 };
 
 /////////////////////////////////////////////////////////////////////////////

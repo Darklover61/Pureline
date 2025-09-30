@@ -2,7 +2,7 @@
 #define AFX_MAPOBJECTCREATEDIRECTORY_H__5AC43102_595A_4F7C_BB5F_D0D971B66B77__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
+	#pragma once
 #endif // _MSC_VER > 1000
 // MapObjectCreateDirectory.h : header file
 //
@@ -12,43 +12,43 @@
 
 class CMapObjectDirectory : public CDialog
 {
-// Construction
-public:
-	CMapObjectDirectory(CWnd* pParent = NULL);   // standard constructor
+		// Construction
+	public:
+		CMapObjectDirectory (CWnd* pParent = NULL);  // standard constructor
 
-// Dialog Data
-	//{{AFX_DATA(CMapObjectDirectory)
-	enum { IDD = IDD_MAP_OBJECT_CREATE_DIRECTORY };
+		// Dialog Data
+		//{{AFX_DATA(CMapObjectDirectory)
+		enum { IDD = IDD_MAP_OBJECT_CREATE_DIRECTORY };
 		// NOTE: the ClassWizard will add data members here
-	//}}AFX_DATA
+		//}}AFX_DATA
 
-// Operations
-public:
-	const char * GetDirectoryName();
+		// Operations
+	public:
+		const char* GetDirectoryName();
 
-// Overrides
-public:
+		// Overrides
+	public:
 
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CMapObjectDirectory)
+		// ClassWizard generated virtual function overrides
+		//{{AFX_VIRTUAL(CMapObjectDirectory)
 	protected:
-	virtual void OnOK();
-	virtual void OnCancel();
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+		virtual void OnOK();
+		virtual void OnCancel();
+		virtual void DoDataExchange (CDataExchange* pDX);   // DDX/DDV support
+		//}}AFX_VIRTUAL
 
-// Implementation
-protected:
+		// Implementation
+	protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CMapObjectDirectory)
-	afx_msg void OnDirectoryAccept();
-	afx_msg void OnDirectoryCancel();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+		// Generated message map functions
+		//{{AFX_MSG(CMapObjectDirectory)
+		afx_msg void OnDirectoryAccept();
+		afx_msg void OnDirectoryCancel();
+		//}}AFX_MSG
+		DECLARE_MESSAGE_MAP()
 
-protected:
-	char m_szFileName[64+1];
+	protected:
+		char m_szFileName[64 + 1];
 };
 
 //{{AFX_INSERT_LOCATION}}

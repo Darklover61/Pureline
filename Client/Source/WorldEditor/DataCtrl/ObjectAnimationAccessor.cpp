@@ -13,12 +13,12 @@ float CRaceMotionDataAccessor::GetMotionDuration()
 	return m_fMotionDuration;
 }
 
-void CRaceMotionDataAccessor::SetMotionDuration(float fDuration)
+void CRaceMotionDataAccessor::SetMotionDuration (float fDuration)
 {
 	m_fMotionDuration = fDuration;
 }
 
-DWORD CRaceMotionDataAccessor::MakeEvent(int iEventType)
+DWORD CRaceMotionDataAccessor::MakeEvent (int iEventType)
 {
 	switch (iEventType)
 	{
@@ -53,12 +53,12 @@ DWORD CRaceMotionDataAccessor::MakeEvent(int iEventType)
 			return MakeEventEffectToTarget();
 			break;
 		default:
-			assert(!" CRaceMotionDataAccessor::MakeEvent - Strange Event Index!");
-			Tracef(" CRaceMotionDataAccessor::MakeEvent - Strange Event Index!\n");
+			assert (!" CRaceMotionDataAccessor::MakeEvent - Strange Event Index!");
+			Tracef (" CRaceMotionDataAccessor::MakeEvent - Strange Event Index!\n");
 			break;
 	}
 
-	return DWORD(-1);
+	return DWORD (-1);
 }
 DWORD CRaceMotionDataAccessor::MakeEventScreenWaving()
 {
@@ -69,7 +69,7 @@ DWORD CRaceMotionDataAccessor::MakeEventScreenWaving()
 	pData->iPower = 0;
 
 	DWORD dwIndex = m_MotionEventDataVector.size();
-	m_MotionEventDataVector.push_back(pData);
+	m_MotionEventDataVector.push_back (pData);
 
 	return dwIndex;
 }
@@ -78,10 +78,10 @@ DWORD CRaceMotionDataAccessor::MakeEventScreenFlashing()
 	TScreenFlashingEventData * pData = new TScreenFlashingEventData;
 
 	pData->iType = MOTION_EVENT_TYPE_SCREEN_FLASHING;
-	pData->FlashingColor = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
+	pData->FlashingColor = D3DXCOLOR (1.0f, 1.0f, 1.0f, 1.0f);
 
 	DWORD dwIndex = m_MotionEventDataVector.size();
-	m_MotionEventDataVector.push_back(pData);
+	m_MotionEventDataVector.push_back (pData);
 
 	return dwIndex;
 }
@@ -89,17 +89,17 @@ DWORD CRaceMotionDataAccessor::MakeEventScreenFlashing()
 DWORD CRaceMotionDataAccessor::MakeEventFly()
 {
 	TMotionFlyEventData * pData = new TMotionFlyEventData;
-	
+
 	pData->iType = MOTION_EVENT_TYPE_FLY;
 	pData->isAttaching = FALSE;
 	pData->strAttachingBoneName = "";
 	pData->dwFlyIndex = 0;
 	pData->strFlyFileName = "";
-	pData->v3FlyPosition = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	
+	pData->v3FlyPosition = D3DXVECTOR3 (0.0f, 0.0f, 0.0f);
+
 	DWORD dwIndex = m_MotionEventDataVector.size();
-	m_MotionEventDataVector.push_back(pData);
-	
+	m_MotionEventDataVector.push_back (pData);
+
 	return dwIndex;
 }
 
@@ -114,10 +114,10 @@ DWORD CRaceMotionDataAccessor::MakeEventEffect()
 	pData->strAttachingBoneName = "";
 	pData->dwEffectIndex = 0;
 	pData->strEffectFileName = "";
-	pData->v3EffectPosition = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	pData->v3EffectPosition = D3DXVECTOR3 (0.0f, 0.0f, 0.0f);
 
 	DWORD dwIndex = m_MotionEventDataVector.size();
-	m_MotionEventDataVector.push_back(pData);
+	m_MotionEventDataVector.push_back (pData);
 
 	return dwIndex;
 }
@@ -128,7 +128,7 @@ DWORD CRaceMotionDataAccessor::MakeEventAttacking()
 	pAttackingData->iType = MOTION_EVENT_TYPE_SPECIAL_ATTACKING;
 
 	DWORD dwIndex = m_MotionEventDataVector.size();
-	m_MotionEventDataVector.push_back(pAttackingData);
+	m_MotionEventDataVector.push_back (pAttackingData);
 
 	return dwIndex;
 }
@@ -140,7 +140,7 @@ DWORD CRaceMotionDataAccessor::MakeEventSound()
 	pData->strSoundFileName = "";
 
 	DWORD dwIndex = m_MotionEventDataVector.size();
-	m_MotionEventDataVector.push_back(pData);
+	m_MotionEventDataVector.push_back (pData);
 
 	return dwIndex;
 }
@@ -152,7 +152,7 @@ DWORD CRaceMotionDataAccessor::MakeEventCharacterShow()
 	pData->iType = MOTION_EVENT_TYPE_CHARACTER_SHOW;
 
 	DWORD dwIndex = m_MotionEventDataVector.size();
-	m_MotionEventDataVector.push_back(pData);
+	m_MotionEventDataVector.push_back (pData);
 
 	return dwIndex;
 }
@@ -164,7 +164,7 @@ DWORD CRaceMotionDataAccessor::MakeEventCharacterHide()
 	pData->iType = MOTION_EVENT_TYPE_CHARACTER_HIDE;
 
 	DWORD dwIndex = m_MotionEventDataVector.size();
-	m_MotionEventDataVector.push_back(pData);
+	m_MotionEventDataVector.push_back (pData);
 
 	return dwIndex;
 }
@@ -176,7 +176,7 @@ DWORD CRaceMotionDataAccessor::MakeEventWarp()
 	pData->iType = MOTION_EVENT_TYPE_WARP;
 
 	DWORD dwIndex = m_MotionEventDataVector.size();
-	m_MotionEventDataVector.push_back(pData);
+	m_MotionEventDataVector.push_back (pData);
 
 	return dwIndex;
 }
@@ -188,35 +188,41 @@ DWORD CRaceMotionDataAccessor::MakeEventEffectToTarget()
 	pData->iType = MOTION_EVENT_TYPE_EFFECT_TO_TARGET;
 
 	DWORD dwIndex = m_MotionEventDataVector.size();
-	m_MotionEventDataVector.push_back(pData);
+	m_MotionEventDataVector.push_back (pData);
 
 	return dwIndex;
 }
 
-BOOL CRaceMotionDataAccessor::GetMotionEventDataPointer(DWORD dwIndex, TMotionEventData ** ppData)
+BOOL CRaceMotionDataAccessor::GetMotionEventDataPointer (DWORD dwIndex, TMotionEventData** ppData)
 {
 	if (dwIndex >= m_MotionEventDataVector.size())
+	{
 		return FALSE;
+	}
 
 	*ppData = m_MotionEventDataVector[dwIndex];
 
 	return TRUE;
 }
 
-void CRaceMotionDataAccessor::MovePosition(DWORD dwIndex, float fTime)
+void CRaceMotionDataAccessor::MovePosition (DWORD dwIndex, float fTime)
 {
 	if (dwIndex >= m_MotionEventDataVector.size())
+	{
 		return;
+	}
 
 	m_MotionEventDataVector[dwIndex]->fStartingTime = fTime;
 	const float c_fFrameTime = 1.0f / g_fGameFPS;
 	m_MotionEventDataVector[dwIndex]->dwFrame = fTime / c_fFrameTime;
 }
 
-void CRaceMotionDataAccessor::DeleteEvent(DWORD dwIndex)
+void CRaceMotionDataAccessor::DeleteEvent (DWORD dwIndex)
 {
 	if (dwIndex >= m_MotionEventDataVector.size())
+	{
 		return;
+	}
 
 	TMotionEventData * pData = m_MotionEventDataVector[dwIndex];
 	delete pData;
@@ -224,95 +230,103 @@ void CRaceMotionDataAccessor::DeleteEvent(DWORD dwIndex)
 	// Delete Event in the vector
 	TMotionEventDataVector::iterator itor = m_MotionEventDataVector.begin();
 	for (DWORD i = 0; i < dwIndex; ++i, ++itor);
-	m_MotionEventDataVector.erase(itor);
+	m_MotionEventDataVector.erase (itor);
 }
 
-void CRaceMotionDataAccessor::SetComboInputStartTime(float fTime)
+void CRaceMotionDataAccessor::SetComboInputStartTime (float fTime)
 {
 	m_ComboInputData.fInputStartTime = fTime;
 }
 
-void CRaceMotionDataAccessor::SetNextComboTime(float fTime)
+void CRaceMotionDataAccessor::SetNextComboTime (float fTime)
 {
 	m_ComboInputData.fNextComboTime = fTime;
 }
 
-void CRaceMotionDataAccessor::SetComboInputEndTime(float fTime)
+void CRaceMotionDataAccessor::SetComboInputEndTime (float fTime)
 {
 	m_ComboInputData.fInputEndTime = fTime;
 }
 
-void CRaceMotionDataAccessor::SetComboMotionEnable(BOOL bFlag)
+void CRaceMotionDataAccessor::SetComboMotionEnable (BOOL bFlag)
 {
 	m_isComboMotion = bFlag;
 }
-void CRaceMotionDataAccessor::SetAttackingMotionEnable(BOOL bFlag)
+void CRaceMotionDataAccessor::SetAttackingMotionEnable (BOOL bFlag)
 {
 	m_isAttackingMotion = bFlag;
 }
 
-void CRaceMotionDataAccessor::SetMotionType(int iType)
+void CRaceMotionDataAccessor::SetMotionType (int iType)
 {
 	m_MotionAttackData.iMotionType = iType;
 }
 
-void CRaceMotionDataAccessor::SetAttackType(int iType)
+void CRaceMotionDataAccessor::SetAttackType (int iType)
 {
 	m_MotionAttackData.iAttackType = iType;
 }
 
-void CRaceMotionDataAccessor::SetHittingType(int iType)
+void CRaceMotionDataAccessor::SetHittingType (int iType)
 {
 	m_MotionAttackData.iHittingType = iType;
 }
 
-void CRaceMotionDataAccessor::SetStiffenTime(float fTime)
+void CRaceMotionDataAccessor::SetStiffenTime (float fTime)
 {
 	m_MotionAttackData.fStiffenTime = fTime;
 }
-void CRaceMotionDataAccessor::SetInvisibleTime(float fTime)
+void CRaceMotionDataAccessor::SetInvisibleTime (float fTime)
 {
 	m_MotionAttackData.fInvisibleTime = fTime;
 }
-void CRaceMotionDataAccessor::SetExternalForceTime(float fForce)
+void CRaceMotionDataAccessor::SetExternalForceTime (float fForce)
 {
 	m_MotionAttackData.fExternalForce = fForce;
 }
 
-void CRaceMotionDataAccessor::SetAttackStartTime(DWORD dwIndex, float fTime)
+void CRaceMotionDataAccessor::SetAttackStartTime (DWORD dwIndex, float fTime)
 {
 	if (dwIndex >= m_MotionAttackData.HitDataContainer.size())
+	{
 		return;
+	}
 
 	NRaceData::THitData & rHitData = m_MotionAttackData.HitDataContainer[dwIndex];
 	rHitData.fAttackStartTime = fTime;
 	RefreshTimeHitPosition();
 }
 
-void CRaceMotionDataAccessor::SetAttackEndTime(DWORD dwIndex, float fTime)
+void CRaceMotionDataAccessor::SetAttackEndTime (DWORD dwIndex, float fTime)
 {
 	if (dwIndex >= m_MotionAttackData.HitDataContainer.size())
+	{
 		return;
+	}
 
 	NRaceData::THitData & rHitData = m_MotionAttackData.HitDataContainer[dwIndex];
 	rHitData.fAttackEndTime = fTime;
 	RefreshTimeHitPosition();
 }
 
-void CRaceMotionDataAccessor::SetAttackingBoneName(DWORD dwIndex, const std::string & strBoneName)
+void CRaceMotionDataAccessor::SetAttackingBoneName (DWORD dwIndex, const std::string & strBoneName)
 {
 	if (dwIndex >= m_MotionAttackData.HitDataContainer.size())
+	{
 		return;
+	}
 
 	NRaceData::THitData & rHitData = m_MotionAttackData.HitDataContainer[dwIndex];
 	rHitData.strBoneName = strBoneName;
 	RefreshTimeHitPosition();
 }
 
-void CRaceMotionDataAccessor::SetAttackingWeaponLength(DWORD dwIndex, float fWeaponLength)
+void CRaceMotionDataAccessor::SetAttackingWeaponLength (DWORD dwIndex, float fWeaponLength)
 {
 	if (dwIndex >= m_MotionAttackData.HitDataContainer.size())
+	{
 		return;
+	}
 
 	NRaceData::THitData & rHitDataContainer = m_MotionAttackData.HitDataContainer[dwIndex];
 	rHitDataContainer.fWeaponLength = fWeaponLength;
@@ -324,7 +338,7 @@ void CRaceMotionDataAccessor::RefreshTimeHitPosition()
 	CWorldEditorApp * pApp = (CWorldEditorApp*) AfxGetApp();
 	CSceneObject * pObject = pApp->GetSceneObject();
 
-	pObject->BuildTimeHitPosition(&m_MotionAttackData);
+	pObject->BuildTimeHitPosition (&m_MotionAttackData);
 }
 
 DWORD CRaceMotionDataAccessor::GetHitDataCount() const
@@ -333,18 +347,20 @@ DWORD CRaceMotionDataAccessor::GetHitDataCount() const
 	return pMotionAttackData->HitDataContainer.size();
 }
 
-const NRaceData::THitData * CRaceMotionDataAccessor::GetHitDataPtr(DWORD dwIndex) const
+const NRaceData::THitData* CRaceMotionDataAccessor::GetHitDataPtr (DWORD dwIndex) const
 {
 	const NRaceData::TMotionAttackData * pMotionAttackData = GetMotionAttackDataPointer();
 	if (dwIndex >= pMotionAttackData->HitDataContainer.size())
+	{
 		return NULL;
+	}
 	return &pMotionAttackData->HitDataContainer[dwIndex];
 }
 
 void CRaceMotionDataAccessor::InsertHitData()
 {
-	m_MotionAttackData.HitDataContainer.push_back(NRaceData::SHitData());
-	NRaceData::THitData & rHitData = *(m_MotionAttackData.HitDataContainer.rbegin());
+	m_MotionAttackData.HitDataContainer.push_back (NRaceData::SHitData());
+	NRaceData::THitData & rHitData = * (m_MotionAttackData.HitDataContainer.rbegin());
 	rHitData.fAttackStartTime = 0.0f;
 	rHitData.fAttackEndTime = 0.0f;
 	rHitData.fWeaponLength = 0.0f;
@@ -353,46 +369,48 @@ void CRaceMotionDataAccessor::InsertHitData()
 	RefreshTimeHitPosition();
 }
 
-void CRaceMotionDataAccessor::DeleteHitData(DWORD dwIndex)
+void CRaceMotionDataAccessor::DeleteHitData (DWORD dwIndex)
 {
 	if (dwIndex >= m_MotionAttackData.HitDataContainer.size())
+	{
 		return;
+	}
 
-	DeleteVectorItem<NRaceData::THitData>(&m_MotionAttackData.HitDataContainer, dwIndex);
+	DeleteVectorItem<NRaceData::THitData> (&m_MotionAttackData.HitDataContainer, dwIndex);
 	RefreshTimeHitPosition();
 }
 
-void CRaceMotionDataAccessor::SetHitLimitCount(int iCount)
+void CRaceMotionDataAccessor::SetHitLimitCount (int iCount)
 {
 	m_MotionAttackData.iHitLimitCount = iCount;
 }
 
-void CRaceMotionDataAccessor::SetMotionFileName(const char * c_szFileName)
+void CRaceMotionDataAccessor::SetMotionFileName (const char* c_szFileName)
 {
 	m_strMotionFileName = c_szFileName;
 }
 
-void CRaceMotionDataAccessor::SetLoopCount(int iLoopCount)
+void CRaceMotionDataAccessor::SetLoopCount (int iLoopCount)
 {
 	m_iLoopCount = iLoopCount;
 }
 
-void CRaceMotionDataAccessor::SetLoopMotionEnable(BOOL bFlag)
+void CRaceMotionDataAccessor::SetLoopMotionEnable (BOOL bFlag)
 {
 	m_isLoopMotion = bFlag;
 }
 
-void CRaceMotionDataAccessor::SetLoopStartTime(float fTime)
+void CRaceMotionDataAccessor::SetLoopStartTime (float fTime)
 {
 	m_fLoopStartTime = fTime;
 }
 
-void CRaceMotionDataAccessor::SetLoopEndTime(float fTime)
+void CRaceMotionDataAccessor::SetLoopEndTime (float fTime)
 {
 	m_fLoopEndTime = fTime;
 }
 
-void CRaceMotionDataAccessor::SetCancelEnable(BOOL bEnable)
+void CRaceMotionDataAccessor::SetCancelEnable (BOOL bEnable)
 {
 	m_bCancelEnableSkill = bEnable;
 }
@@ -423,7 +441,7 @@ void CRaceMotionDataAccessor::ClearAccessor()
 	m_bCancelEnableSkill = FALSE;
 
 	m_SoundInstanceVector.clear();
-	stl_wipe(m_MotionEventDataVector);
+	stl_wipe (m_MotionEventDataVector);
 }
 
 CRaceMotionDataAccessor::CRaceMotionDataAccessor()

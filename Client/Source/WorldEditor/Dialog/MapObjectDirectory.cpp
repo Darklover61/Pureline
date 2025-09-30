@@ -1,49 +1,49 @@
 // MapObjectCreateDirectory.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "..\WorldEditor.h"
 #include "MapObjectDirectory.h"
 
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+	#define new DEBUG_NEW
+	#undef THIS_FILE
+	static char THIS_FILE[] = __FILE__;
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
 // CMapObjectDirectory dialog
 
 
-CMapObjectDirectory::CMapObjectDirectory(CWnd* pParent /*=NULL*/)
-	: CDialog(CMapObjectDirectory::IDD, pParent)
+CMapObjectDirectory::CMapObjectDirectory (CWnd* pParent /*=NULL*/)
+	: CDialog (CMapObjectDirectory::IDD, pParent)
 {
 	//{{AFX_DATA_INIT(CMapObjectDirectory)
-		// NOTE: the ClassWizard will add member initialization here
+	// NOTE: the ClassWizard will add member initialization here
 	//}}AFX_DATA_INIT
 }
 
 
-void CMapObjectDirectory::DoDataExchange(CDataExchange* pDX)
+void CMapObjectDirectory::DoDataExchange (CDataExchange* pDX)
 {
-	CDialog::DoDataExchange(pDX);
+	CDialog::DoDataExchange (pDX);
 	//{{AFX_DATA_MAP(CMapObjectDirectory)
-		// NOTE: the ClassWizard will add DDX and DDV calls here
+	// NOTE: the ClassWizard will add DDX and DDV calls here
 	//}}AFX_DATA_MAP
 }
 
 
-BEGIN_MESSAGE_MAP(CMapObjectDirectory, CDialog)
+BEGIN_MESSAGE_MAP (CMapObjectDirectory, CDialog)
 	//{{AFX_MSG_MAP(CMapObjectDirectory)
-	ON_BN_CLICKED(IDC_ACCEPT, OnDirectoryAccept)
-	ON_BN_CLICKED(IDC_CANCEL, OnDirectoryCancel)
+	ON_BN_CLICKED (IDC_ACCEPT, OnDirectoryAccept)
+	ON_BN_CLICKED (IDC_CANCEL, OnDirectoryCancel)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // CMapObjectDirectory normal functions
 
-const char * CMapObjectDirectory::GetDirectoryName()
+const char* CMapObjectDirectory::GetDirectoryName()
 {
 	return m_szFileName;
 }
@@ -53,21 +53,21 @@ const char * CMapObjectDirectory::GetDirectoryName()
 
 void CMapObjectDirectory::OnOK()
 {
-	GetDlgItemText(IDC_MAP_OBJECT_CREATE_DIRECTORY_PATH_NAME, m_szFileName, 64);
-	EndDialog(TRUE);
+	GetDlgItemText (IDC_MAP_OBJECT_CREATE_DIRECTORY_PATH_NAME, m_szFileName, 64);
+	EndDialog (TRUE);
 }
 
 void CMapObjectDirectory::OnCancel()
 {
-	EndDialog(FALSE);
+	EndDialog (FALSE);
 }
 
-void CMapObjectDirectory::OnDirectoryAccept() 
+void CMapObjectDirectory::OnDirectoryAccept()
 {
 	OnOK();
 }
 
-void CMapObjectDirectory::OnDirectoryCancel() 
+void CMapObjectDirectory::OnDirectoryCancel()
 {
 	OnCancel();
 }

@@ -97,7 +97,7 @@ class CObjectData
 			std::string				strFileName;
 			CGraphicImageInstance	Texture;
 		} TTextureData;
-		
+
 		typedef struct SLightData
 		{
 			SLightData()
@@ -107,27 +107,27 @@ class CObjectData
 
 			void Clear()
 			{
-				memset(&Material, 0, sizeof(Material));
+				memset (&Material, 0, sizeof (Material));
 				bSpecularEnable = false;
 
-				memset(TextureState, 0, sizeof(TextureState));
+				memset (TextureState, 0, sizeof (TextureState));
 
 				TextureData[0].bEnable = false;
-				TextureData[0].strName.assign("");
-				TextureData[0].strFileName.assign("");
+				TextureData[0].strName.assign ("");
+				TextureData[0].strFileName.assign ("");
 				TextureData[0].Texture.Destroy();
 
 				TextureData[1].bEnable = false;
-				TextureData[1].strName.assign("");
-				TextureData[1].strFileName.assign("");
+				TextureData[1].strName.assign ("");
+				TextureData[1].strFileName.assign ("");
 				TextureData[1].Texture.Destroy();
 
 				for (int i = 0; i < LIGHT_MAX_NUM; ++i)
 				{
-					LightElementData[i].strName.assign("");
-					LightElementData[i].strFileName.assign("");
+					LightElementData[i].strName.assign ("");
+					LightElementData[i].strFileName.assign ("");
 					LightElementData[i].bLightEnable = false;
-					memset(&LightElementData[i].Light, 0, sizeof(LightElementData[i].Light));
+					memset (&LightElementData[i].Light, 0, sizeof (LightElementData[i].Light));
 				}
 			}
 
@@ -158,114 +158,114 @@ class CObjectData
 		void ClearModelData();
 
 		BOOL isModelThing();
-		BOOL SetModelThing(const char * c_szFileName);
-		BOOL GetModelThing(CGraphicThing ** ppThing);
+		BOOL SetModelThing (const char* c_szFileName);
+		BOOL GetModelThing (CGraphicThing** ppThing);
 
 		// Public
-		int & GetModelTypeReference();
+		int& GetModelTypeReference();
 		DWORD GetAttachingDataCount();
-		BOOL GetAttachingDataPointer(DWORD dwIndex, NRaceData::TAttachingData ** ppAttachingData);
-		BOOL GetCollisionDataPointer(DWORD dwIndex, NRaceData::TAttachingData ** ppAttachingData);
-		BOOL GetObjectDataPointer(DWORD dwIndex, NRaceData::TAttachingData ** ppAttachingData);
+		BOOL GetAttachingDataPointer (DWORD dwIndex, NRaceData::TAttachingData** ppAttachingData);
+		BOOL GetCollisionDataPointer (DWORD dwIndex, NRaceData::TAttachingData** ppAttachingData);
+		BOOL GetObjectDataPointer (DWORD dwIndex, NRaceData::TAttachingData** ppAttachingData);
 		DWORD CreateAttachingCollisionData();
 		DWORD CreateAttachingEffectData();
 		DWORD CreateAttachingObjectData();
-		void DeleteOneAttachingData(DWORD dwIndex);
+		void DeleteOneAttachingData (DWORD dwIndex);
 		void DeleteAllAttachingData();
 
-		const char * GetModelFileName();
+		const char* GetModelFileName();
 		// Model Type - Character
-		DWORD & GetModelPartCountReference();
+		DWORD& GetModelPartCountReference();
 		// Model Type - Equipment
-		DWORD & GetEquipmentTypeReference();
-		std::string & GetEquipmentIconImageFileNameReference();
-		std::string & GetEquipmentDropModelFileNameReference();
+		DWORD& GetEquipmentTypeReference();
+		std::string& GetEquipmentIconImageFileNameReference();
+		std::string& GetEquipmentDropModelFileNameReference();
 
-		BOOL LoadModelScript(const char * c_szFileName);
-		BOOL SaveModelScript(const char * c_szFileName);
+		BOOL LoadModelScript (const char* c_szFileName);
+		BOOL SaveModelScript (const char* c_szFileName);
 		///////////////////////////////////////////////////////
 
 		///////////////////////////////////////////////////////
 		// About Motion Data
 		BOOL isMotionThing();
-		BOOL SetMotionThing(const char * c_szFileName);
-		BOOL GetMotionThing(CGraphicThing ** ppThing);
-		CRaceMotionDataAccessor * GetMotionDataPointer();
+		BOOL SetMotionThing (const char* c_szFileName);
+		BOOL GetMotionThing (CGraphicThing** ppThing);
+		CRaceMotionDataAccessor* GetMotionDataPointer();
 		///////////////////////////////////////////////////////
 
 		///////////////////////////////////////////////////////
 		// About Light Data
-		void SaveLightScript(const char * c_szFileName);
-		bool LoadLightScript(const char * c_szFileName);
-		void SaveLightElementScript(DWORD dwIndex, const char * c_szFileName);
-		bool LoadLightElementScript(DWORD dwIndex, const char * c_szFileName);
-		void ClearLightElementData(DWORD dwIndex);
+		void SaveLightScript (const char* c_szFileName);
+		bool LoadLightScript (const char* c_szFileName);
+		void SaveLightElementScript (DWORD dwIndex, const char* c_szFileName);
+		bool LoadLightElementScript (DWORD dwIndex, const char* c_szFileName);
+		void ClearLightElementData (DWORD dwIndex);
 		void ClearAllLightData();
 
 		// Texturing
-		int GetTexturingOperation(int iStage, int iType);
-		int GetTexturingArgument(int iStage, int iType, int iIndex);
-		void SetTexturingOperation(int iStage, int iType, int iOperation);
-		void SetTexturingArgument(int iStage, int iType, int iIndex, int iArgument);
+		int GetTexturingOperation (int iStage, int iType);
+		int GetTexturingArgument (int iStage, int iType, int iIndex);
+		void SetTexturingOperation (int iStage, int iType, int iOperation);
+		void SetTexturingArgument (int iStage, int iType, int iIndex, int iArgument);
 
-		bool isEnableTexture(int iIndex);
-		void SetEnableTexture(int iIndex, BOOL bFlag);
-		void LoadTexture(int iIndex, const char * c_szFileName);
-		bool GetTexture(int iIndex, LPDIRECT3DTEXTURE8 * plpTexture);
-		const char * GetTextureName(int iIndex);
+		bool isEnableTexture (int iIndex);
+		void SetEnableTexture (int iIndex, BOOL bFlag);
+		void LoadTexture (int iIndex, const char* c_szFileName);
+		bool GetTexture (int iIndex, LPDIRECT3DTEXTURE8 * plpTexture);
+		const char* GetTextureName (int iIndex);
 
 		// Light
 		DWORD GetSelectedLightIndex();
-		void SelectLight(DWORD dwIndex);
+		void SelectLight (DWORD dwIndex);
 
-		bool GetLightName(DWORD dwIndex, std::string ** ppString);
-		void SetLightName(DWORD dwIndex, const char * pszLightName);
+		bool GetLightName (DWORD dwIndex, std::string** ppString);
+		void SetLightName (DWORD dwIndex, const char* pszLightName);
 
-		int GetLightType(DWORD dwIndex);
-		void SetLightType(DWORD dwIndex, int iType);
+		int GetLightType (DWORD dwIndex);
+		void SetLightType (DWORD dwIndex, int iType);
 
-		bool isLightEnable(DWORD dwIndex);
-		void SetLightEnable(DWORD dwIndex, bool bFlag);
+		bool isLightEnable (DWORD dwIndex);
+		void SetLightEnable (DWORD dwIndex, bool bFlag);
 
-		bool GetLight(DWORD dwIndex, const D3DLIGHT8 ** ppd3dLight);
-		void SetLightDirection(DWORD dwIndex, float fx, float fy, float fz);
-		void SetLightDiffuse(DWORD dwIndex, int iRed, int iGreen, int iBlue);
-		void SetLightAmbient(DWORD dwIndex, int iRed, int iGreen, int iBlue);
-		void SetLightSpecular(DWORD dwIndex, int iRed, int iGreen, int iBlue);
+		bool GetLight (DWORD dwIndex, const D3DLIGHT8** ppd3dLight);
+		void SetLightDirection (DWORD dwIndex, float fx, float fy, float fz);
+		void SetLightDiffuse (DWORD dwIndex, int iRed, int iGreen, int iBlue);
+		void SetLightAmbient (DWORD dwIndex, int iRed, int iGreen, int iBlue);
+		void SetLightSpecular (DWORD dwIndex, int iRed, int iGreen, int iBlue);
 
 		// Material
-		void GetMaterial(const D3DMATERIAL8 ** ppd3dMaterial);
+		void GetMaterial (const D3DMATERIAL8** ppd3dMaterial);
 		bool isSpecularEnable();
-		void SetSpecularEnable(bool bFlag);
-		void SetMaterialDiffuse(int iRed, int iGreen, int iBlue);
-		void SetMaterialAmbient(int iRed, int iGreen, int iBlue);
-		void SetMaterialSpecular(int iRed, int iGreen, int iBlue);
-		void SetMaterialEmissive(int iRed, int iGreen, int iBlue);
-		void SetMaterialDiffuseAlpha(float fAlpha);
-		void SetMaterialAmbientAlpha(float fAlpha);
-		void SetMaterialSpecularAlpha(float fAlpha);
-		void SetMaterialEmissiveAlpha(float fAlpha);
-		void SetMaterialPower(float fPower);
+		void SetSpecularEnable (bool bFlag);
+		void SetMaterialDiffuse (int iRed, int iGreen, int iBlue);
+		void SetMaterialAmbient (int iRed, int iGreen, int iBlue);
+		void SetMaterialSpecular (int iRed, int iGreen, int iBlue);
+		void SetMaterialEmissive (int iRed, int iGreen, int iBlue);
+		void SetMaterialDiffuseAlpha (float fAlpha);
+		void SetMaterialAmbientAlpha (float fAlpha);
+		void SetMaterialSpecularAlpha (float fAlpha);
+		void SetMaterialEmissiveAlpha (float fAlpha);
+		void SetMaterialPower (float fPower);
 		///////////////////////////////////////////////////////
 
 	protected:
-		bool CheckLightIndex(DWORD dwIndex);
-		bool GetLightDataPointer(DWORD dwIndex, TLightElementData ** ppData);
+		bool CheckLightIndex (DWORD dwIndex);
+		bool GetLightDataPointer (DWORD dwIndex, TLightElementData** ppData);
 
-		BOOL LoadRaceData(CTextFileLoader & rTextFileLoader);
-		BOOL SaveRaceData(const char * c_szFileName);
+		BOOL LoadRaceData (CTextFileLoader & rTextFileLoader);
+		BOOL SaveRaceData (const char* c_szFileName);
 
-		BOOL LoadItemData(CTextFileLoader & rTextFileLoader);
-		BOOL SaveItemData(const char * c_szFileName);
+		BOOL LoadItemData (CTextFileLoader & rTextFileLoader);
+		BOOL SaveItemData (const char* c_szFileName);
 
-		BOOL LoadObjectData(CTextFileLoader & rTextFileLoader);
-		BOOL SaveObjectData(const char * c_szFileName);
+		BOOL LoadObjectData (CTextFileLoader & rTextFileLoader);
+		BOOL SaveObjectData (const char* c_szFileName);
 
 	protected:
 		/////////////////////////////////////////////////////////////
 		//// Model Data
 		std::string m_strModelName;
-		CGraphicThing * m_pModelThing;
+		CGraphicThing* m_pModelThing;
 		// Public Data
 		int m_iModelType;
 		NRaceData::TAttachingDataVector m_AttachingDataVector;
@@ -287,7 +287,7 @@ class CObjectData
 		/////////////////////////////////////////////////////////////
 		//// Motion Data
 		std::string m_strMotionName;
-		CGraphicThing * m_pMotionThing;
+		CGraphicThing* m_pMotionThing;
 		CRaceMotionDataAccessor m_MotionData;
 
 		/////////////////////////////////////////////////////////////

@@ -20,42 +20,42 @@ class CSceneBase : public CScreen
 		virtual ~CSceneBase();
 
 		void		Update();
-		void		Render(BOOL bClear);
+		void		Render (BOOL bClear);
 		void		RenderUI();
 
-		void		KeyDown(int iChar);
-		void		KeyUp(int iChar);
-		void		MouseMove(long ix, long iy);
-		void		LButtonDown(UINT nFlags, CPoint point);
+		void		KeyDown (int iChar);
+		void		KeyUp (int iChar);
+		void		MouseMove (long ix, long iy);
+		void		LButtonDown (UINT nFlags, CPoint point);
 		void		LButtonUp();
 		void		RButtonDown();
 		void		RButtonUp();
-		BOOL		MouseWheel(short zDelta);
-		void		MovePosition(float fx, float fy);
+		BOOL		MouseWheel (short zDelta);
+		void		MovePosition (float fx, float fy);
 		void		UpdateStatusBar();
 
 		static void	CreateUI();
 
 		static int	GetRenderingMode();
-		static void	SetRenderingMode(ERenderingMode RenderingMode);
+		static void	SetRenderingMode (ERenderingMode RenderingMode);
 
 	protected:
 		void		RenderGrid();
 
 	protected:
 		virtual void	OnUpdate() = 0;
-		virtual void	OnRender(BOOL bClear) = 0;
-		virtual void	OnRenderUI(float fx, float fy) = 0;
+		virtual void	OnRender (BOOL bClear) = 0;
+		virtual void	OnRenderUI (float fx, float fy) = 0;
 
-		virtual void	OnKeyDown(int iChar) = 0;
-		virtual void	OnKeyUp(int iChar) = 0;
-		virtual void	OnMouseMove(LONG x, LONG y) = 0;
-		virtual void	OnLButtonDown(UINT nFlags, CPoint point) = 0;
+		virtual void	OnKeyDown (int iChar) = 0;
+		virtual void	OnKeyUp (int iChar) = 0;
+		virtual void	OnMouseMove (LONG x, LONG y) = 0;
+		virtual void	OnLButtonDown (UINT nFlags, CPoint point) = 0;
 		virtual void	OnLButtonUp() = 0;
 		virtual void	OnRButtonDown() = 0;
 		virtual void	OnRButtonUp() = 0;
-		virtual BOOL	OnMouseWheel(short zDelta) = 0;
-		virtual void	OnMovePosition(float fx, float fy) = 0;
+		virtual BOOL	OnMouseWheel (short zDelta) = 0;
+		virtual void	OnMovePosition (float fx, float fy) = 0;
 
 	protected:
 		static D3DXCOLOR		ms_GridLarge;
@@ -65,7 +65,7 @@ class CSceneBase : public CScreen
 
 		//////////////////////////////////
 		static ERenderingMode	ms_RenderingMode;
-		static CCamera *		ms_Camera;
+		static CCamera* 		ms_Camera;
 
 		//////////////////////////////////
 		static CGraphicTextInstance ms_TextInstanceFaceCount;

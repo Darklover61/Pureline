@@ -4,7 +4,7 @@
 /*
 	Modified 7/15/2002 by David Swigger (dwswigger@yahoo.com)
 
-    these functions were not static before...allowed me to do 
+    these functions were not static before...allowed me to do
 	GTDrawHelper:: without instantiating a class...
 
 	static int	HSV2RGB (double hue,double sat,double value,double *red,double *green,double *blue);
@@ -15,17 +15,17 @@
 #define AFX_GTDRAWHELPER_H__F818AFD1_4DE0_11D6_A56D_525400EA266C__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
+	#pragma once
 #endif // _MSC_VER > 1000
 
 #include "math.h"
 
 #if	!defined (MIN)
-#	define	MIN	min
+	#define	MIN	min
 #endif
 
 #if	!defined (MAX)
-#	define	MAX	max
+	#define	MAX	max
 #endif
 
 #define WM_FO_SELECTBULLETTYPEOK				WM_USER+270 // Select arrow ok.
@@ -134,82 +134,82 @@ enum max_values
 	max_hsv_value = 1000
 };
 
-class GTDrawHelper  
+class GTDrawHelper
 {
-public:
-	GTDrawHelper();
-	virtual ~GTDrawHelper();
+	public:
+		GTDrawHelper();
+		virtual ~GTDrawHelper();
 
-	// draw_panel flags bit mask
-	enum flags
-	{
-		raised = 1,
-		sunken = 2,
-		blackbox = 4
-	};
+		// draw_panel flags bit mask
+		enum flags
+		{
+			raised = 1,
+			sunken = 2,
+			blackbox = 4
+		};
 
-	enum types
-	{
-		left = 1,
-		top = 2,
-		right = 3,
-		bottom = 4,
-		left_top = 5,
-		left_bottom = 6,
-		right_top = 7,
-		right_bottom = 8
-	};
+		enum types
+		{
+			left = 1,
+			top = 2,
+			right = 3,
+			bottom = 4,
+			left_top = 5,
+			left_bottom = 6,
+			right_top = 7,
+			right_bottom = 8
+		};
 
-	// Draw panel border.
-	virtual void DrawPanel(HDC hdc,int left,int top,int right,int bottom,int flags);
+		// Draw panel border.
+		virtual void DrawPanel (HDC hdc, int left, int top, int right, int bottom, int flags);
 
-	// Draw panel border.
-	virtual void DrawPanel (HDC hdc,LPRECT rc,int flags)
-	{
-		DrawPanel(hdc, rc->left, rc->top, rc->right, rc->bottom, flags);
-	};
+		// Draw panel border.
+		virtual void DrawPanel (HDC hdc, LPRECT rc, int flags)
+		{
+			DrawPanel (hdc, rc->left, rc->top, rc->right, rc->bottom, flags);
+		};
 
-	// Draw triangle.
-	virtual void DrawTriangle(HDC hdc,int x,int y,enum types type,int size,COLORREF line_color,COLORREF fill_color);
+		// Draw triangle.
+		virtual void DrawTriangle (HDC hdc, int x, int y, enum types type, int size, COLORREF line_color, COLORREF fill_color);
 
-	// Convert from hsv to rgb value.
-	static int	HSV2RGB (double hue,double sat,double value,double *red,double *green,double *blue);
+		// Convert from hsv to rgb value.
+		static int	HSV2RGB (double hue, double sat, double value, double* red, double* green, double* blue);
 
-	// Convert from rgb to hsv value.
-	static int	RGB2HSV(double red,double green,double blue,double *hue,double *sat,double *value);
+		// Convert from rgb to hsv value.
+		static int	RGB2HSV (double red, double green, double blue, double* hue, double* sat, double* value);
 
-	// Convert from hsv to rgb value.
-	static COLORREF HSV2RGB(double hue,double sat,double value);
+		// Convert from hsv to rgb value.
+		static COLORREF HSV2RGB (double hue, double sat, double value);
 
-	// Get rgb value.
-	void GetRGB(DWORD *buffer,int samples,COLORREF start,COLORREF end);
+		// Get rgb value.
+		void GetRGB (DWORD *buffer, int samples, COLORREF start, COLORREF end);
 
-	// hsv from hue.
-	void HSV_HUE(DWORD *buffer,int samples,double sat,double val);
+		// hsv from hue.
+		void HSV_HUE (DWORD *buffer, int samples, double sat, double val);
 
-	// hsv from sat.
-	void HSV_SAT(DWORD *buffer,int samples,double hue,double val);
+		// hsv from sat.
+		void HSV_SAT (DWORD *buffer, int samples, double hue, double val);
 
-	// hsv value.
-	void HSV_VAL(DWORD *buffer,int samples,double hue,double sat);
+		// hsv value.
+		void HSV_VAL (DWORD *buffer, int samples, double hue, double sat);
 
-	// Set
-	void set(unsigned long *buffer,unsigned long value,size_t count);
+		// Set
+		void set (unsigned long* buffer, unsigned long value, size_t count);
 
-	// 
-	void set(unsigned long **buffer,unsigned long value,size_t count);
+		//
+		void set (unsigned long** buffer, unsigned long value, size_t count);
 
-	//
-	void copy(unsigned long *target,const unsigned long *source,size_t count);
+		//
+		void copy (unsigned long* target, const unsigned long* source, size_t count);
 
-	// 
-	void copy(unsigned long **target,const unsigned long *source,size_t count);
+		//
+		void copy (unsigned long** target, const unsigned long* source, size_t count);
 
-	//
-	void copy_reverse(unsigned long *target,const unsigned long *source,size_t count);
+		//
+		void copy_reverse (unsigned long* target, const unsigned long* source, size_t count);
 
-	//
-	void reverse(unsigned long *buffer,size_t count);
+		//
+		void reverse (unsigned long* buffer, size_t count);
 
 };
 
@@ -228,10 +228,16 @@ inline int scaled_blue (COLORREF c)
 	return (GetBValue (c) << int_extend);
 }
 
-template <class T, class T1> void in_range (T& x,T1 start,T1 end)
+template <class T, class T1> void in_range (T& x, T1 start, T1 end)
 {
-	if (x < static_cast <T> (start)) x = static_cast <T> (start);
-	if (x > static_cast <T> (end)) x = static_cast <T> (end);
+	if (x < static_cast <T> (start))
+	{
+		x = static_cast <T> (start);
+	}
+	if (x > static_cast <T> (end))
+	{
+		x = static_cast <T> (end);
+	}
 }
 
 #endif // !defined(AFX_GTDRAWHELPER_H__F818AFD1_4DE0_11D6_A56D_525400EA266C__INCLUDED_)

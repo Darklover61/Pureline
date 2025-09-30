@@ -2,7 +2,7 @@
 #define AFX_TOOLBARFILE_H__C9E365AF_0E65_4B36_931D_8688D8F549C9__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
+	#pragma once
 #endif // _MSC_VER > 1000
 // ToolBarFile.h : header file
 //
@@ -17,35 +17,35 @@
 
 class CToolBarFile : public CToolBar256
 {
-// Construction
-public:
-	CToolBarFile();
+		// Construction
+	public:
+		CToolBarFile();
 
-// Attributes
-public:
+		// Attributes
+	public:
 
-// Operations
-public:
-	void ShowButtonText(BOOL bShow = TRUE);
-	BOOL CN_UPDATE_HANDLER(UINT nID, CCmdUI *pCmdUI);
-	BOOL CN_COMMAND_HANDLER(UINT nID, CCmdUI *pCmdUI);
+		// Operations
+	public:
+		void ShowButtonText (BOOL bShow = TRUE);
+		BOOL CN_UPDATE_HANDLER (UINT nID, CCmdUI *pCmdUI);
+		BOOL CN_COMMAND_HANDLER (UINT nID, CCmdUI *pCmdUI);
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CToolBarFile)
-	//}}AFX_VIRTUAL
+		// Overrides
+		// ClassWizard generated virtual function overrides
+		//{{AFX_VIRTUAL(CToolBarFile)
+		//}}AFX_VIRTUAL
 
-// Implementation
-public:
-	virtual ~CToolBarFile();
+		// Implementation
+	public:
+		virtual ~CToolBarFile();
 
-	// Generated message map functions
-protected:
-	//{{AFX_MSG(CToolBarFile)
+		// Generated message map functions
+	protected:
+		//{{AFX_MSG(CToolBarFile)
 		// NOTE - the ClassWizard will add and remove member functions here.
-	//}}AFX_MSG
+		//}}AFX_MSG
 
-	DECLARE_MESSAGE_MAP()
+		DECLARE_MESSAGE_MAP()
 };
 
 /////////////////////////////////////////////////////////////////////////////

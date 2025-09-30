@@ -10,7 +10,7 @@
 #define AFX_GTCOLORDIALOGDLG_H__F818AFC9_4DE0_11D6_A56D_525400EA266C__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
+	#pragma once
 #endif // _MSC_VER > 1000
 
 /////////////////////////////////////////////////////////////////////////////
@@ -27,7 +27,7 @@ class CGTColorDialogDlg : public CDialog
 		class IObserver
 		{
 			public:
-				virtual void SendColor(COLORREF & rColor) = 0;
+				virtual void SendColor (COLORREF & rColor) = 0;
 		};
 
 		typedef struct SHSL
@@ -37,11 +37,11 @@ class CGTColorDialogDlg : public CDialog
 			float fLightness;
 		} THSL;
 
-	// Construction
+		// Construction
 	public:
-		CGTColorDialogDlg(CWnd* pParent = NULL);	// standard constructor
+		CGTColorDialogDlg (CWnd* pParent = NULL);	// standard constructor
 
-	// Dialog Data
+		// Dialog Data
 		//{{AFX_DATA(CGTColorDialogDlg)
 		enum { IDD = IDD_GTCOLORDIALOG_DIALOG };
 		CEdit	m_edtHex;
@@ -58,31 +58,31 @@ class CGTColorDialogDlg : public CDialog
 		CFont				m_hxFont;
 		// ClassWizard generated virtual function overrides
 		//{{AFX_VIRTUAL(CGTColorDialogDlg)
-		protected:
-		virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
+	protected:
+		virtual void DoDataExchange (CDataExchange* pDX);	// DDX/DDV support
 		//}}AFX_VIRTUAL
 
 	public:
 		// Set color.
-		void SetColor(COLORREF crColor);
+		void SetColor (COLORREF crColor);
 		void ColorChanged();// called by wellwnd
 
 		// Get color.
 		COLORREF GetColor();
 
 		// Return color by callback function.
-		void SetObserver(IObserver * pObserver);
+		void SetObserver (IObserver * pObserver);
 
-		void RGBToHSL(THSL * pHSL, COLORREF & rColor);
-		void HSLToRGB(COLORREF * pColor, THSL & rHSL);
-	// Implementation
+		void RGBToHSL (THSL * pHSL, COLORREF & rColor);
+		void HSLToRGB (COLORREF * pColor, THSL & rHSL);
+		// Implementation
 	protected:
 		HICON m_hIcon;
 
 		// Generated message map functions
 		//{{AFX_MSG(CGTColorDialogDlg)
 		virtual BOOL OnInitDialog();
-		afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
+		afx_msg void OnSysCommand (UINT nID, LPARAM lParam);
 		afx_msg void OnPaint();
 		afx_msg HCURSOR OnQueryDragIcon();
 		afx_msg void OnRadio1();
@@ -104,16 +104,16 @@ class CGTColorDialogDlg : public CDialog
 
 	protected:
 		// owner
-		IObserver *		m_pObserver;
+		IObserver* 		m_pObserver;
 
 		// funxtions
-		CString			ColorToString(COLORREF cr);
-		void			GetHSV(double& hue,double& sat,double& val);
+		CString			ColorToString (COLORREF cr);
+		void			GetHSV (double& hue, double& sat, double& val);
 		void			HandleHSVEdit();
 		void			HandleRGBEdit();
 
-		int				hex(char* szhex);
-		COLORREF		html2rgb(char* szHTMLColorValue);
+		int				hex (char* szhex);
+		COLORREF		html2rgb (char* szHTMLColorValue);
 
 		// data
 		COLORREF		m_crColor;

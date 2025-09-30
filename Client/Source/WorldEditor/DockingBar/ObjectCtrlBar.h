@@ -2,7 +2,7 @@
 #define AFX_OBJECTCTRLBAR_H__0B8DAE54_B592_4B83_B2B9_1EBD3C9B7E9F__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
+	#pragma once
 #endif // _MSC_VER > 1000
 // ObjectCtrlBar.h : header file
 //
@@ -20,39 +20,39 @@
 
 class CObjectCtrlBar : public CSizingControlBar
 {
-// Construction
-public:
-	CObjectCtrlBar();
-	BOOL Create(CWnd * pParent);
-	void Initialize();
+		// Construction
+	public:
+		CObjectCtrlBar();
+		BOOL Create (CWnd * pParent);
+		void Initialize();
 
-// Attributes
-public:
-	CObjectTabPage m_pageTab;
-	CObjectModelPage m_pageModel;
-	CObjectAnimationPage m_pageAnimation;
+		// Attributes
+	public:
+		CObjectTabPage m_pageTab;
+		CObjectModelPage m_pageModel;
+		CObjectAnimationPage m_pageAnimation;
 
-// Operations
-public:
-	void UpdatePage();
-	void UpdateAnimationPage();
+		// Operations
+	public:
+		void UpdatePage();
+		void UpdateAnimationPage();
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CObjectCtrlBar)
-	//}}AFX_VIRTUAL
+		// Overrides
+		// ClassWizard generated virtual function overrides
+		//{{AFX_VIRTUAL(CObjectCtrlBar)
+		//}}AFX_VIRTUAL
 
-// Implementation
-public:
-	virtual ~CObjectCtrlBar();
+		// Implementation
+	public:
+		virtual ~CObjectCtrlBar();
 
-	// Generated message map functions
-protected:
-	//{{AFX_MSG(CObjectCtrlBar)
-	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-	afx_msg void OnSize(UINT nType, int cx, int cy);
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+		// Generated message map functions
+	protected:
+		//{{AFX_MSG(CObjectCtrlBar)
+		afx_msg int OnCreate (LPCREATESTRUCT lpCreateStruct);
+		afx_msg void OnSize (UINT nType, int cx, int cy);
+		//}}AFX_MSG
+		DECLARE_MESSAGE_MAP()
 };
 
 /////////////////////////////////////////////////////////////////////////////

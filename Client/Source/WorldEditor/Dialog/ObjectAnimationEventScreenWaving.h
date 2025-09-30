@@ -2,7 +2,7 @@
 #define AFX_OBJECTANIMATIONEVENTSCREENWAVING_H__D17B8F49_A410_45A8_9E5B_E8DFD0D7C162__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
+	#pragma once
 #endif // _MSC_VER > 1000
 // ObjectAnimationEventScreenWaving.h : header file
 //
@@ -14,44 +14,44 @@
 
 class CObjectAnimationEventScreenWaving : public CObjectAnimationEventBase
 {
-// Construction
-public:
-	CObjectAnimationEventScreenWaving(CWnd* pParent = NULL);   // standard constructor
-	BOOL Create(CWnd * pParent, const CRect & c_rRect);
+		// Construction
+	public:
+		CObjectAnimationEventScreenWaving (CWnd* pParent = NULL);  // standard constructor
+		BOOL Create (CWnd * pParent, const CRect & c_rRect);
 
-// Dialog Data
-	//{{AFX_DATA(CObjectAnimationEventScreenWaving)
-	enum { IDD = IDD_OBJECT_ANIMATION_EVENT_SCREEN_WAVING };
+		// Dialog Data
+		//{{AFX_DATA(CObjectAnimationEventScreenWaving)
+		enum { IDD = IDD_OBJECT_ANIMATION_EVENT_SCREEN_WAVING };
 		// NOTE: the ClassWizard will add data members here
-	//}}AFX_DATA
+		//}}AFX_DATA
 
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CObjectAnimationEventScreenWaving)
+		// Overrides
+		// ClassWizard generated virtual function overrides
+		//{{AFX_VIRTUAL(CObjectAnimationEventScreenWaving)
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+		virtual void DoDataExchange (CDataExchange* pDX);   // DDX/DDV support
+		//}}AFX_VIRTUAL
 
-// Implementation
-public:
-	void Close();
+		// Implementation
+	public:
+		void Close();
 
-	void GetData(CRaceMotionDataAccessor::TMotionEventData * pData);
-	void SetData(const CRaceMotionDataAccessor::TMotionEventData * c_pData);
+		void GetData (CRaceMotionDataAccessor::TMotionEventData * pData);
+		void SetData (const CRaceMotionDataAccessor::TMotionEventData * c_pData);
 
-protected:
+	protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CObjectAnimationEventScreenWaving)
+		// Generated message map functions
+		//{{AFX_MSG(CObjectAnimationEventScreenWaving)
 		// NOTE: the ClassWizard will add member functions here
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+		//}}AFX_MSG
+		DECLARE_MESSAGE_MAP()
 
-protected:
-	CString m_strDurationTime;
-	CString m_strPower;
-	CString m_strAffectingRange;
+	protected:
+		CString m_strDurationTime;
+		CString m_strPower;
+		CString m_strAffectingRange;
 };
 
 //{{AFX_INSERT_LOCATION}}

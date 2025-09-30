@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "TextTag.h"
 
 int GetTextTag (const wchar_t* src, int maxLen, int& tagLen, std::wstring & extraInfo)

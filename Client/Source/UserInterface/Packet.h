@@ -1634,7 +1634,7 @@ enum EPointTypes
 	POINT_HIT_RATE,
 
 
-	//POINT_MAX_NUM = 255,=>stdafx.h ·Î/
+	//POINT_MAX_NUM = 255,=>StdAfx.h ·Î/
 };
 
 typedef struct packet_points

@@ -17,17 +17,17 @@ class CPickingArrows : public CScreen
 		CPickingArrows();
 		~CPickingArrows();
 
-		void SetCenterPosition(const D3DXVECTOR3 & rVector);
-		void SetScale(float fScale);
+		void SetCenterPosition (const D3DXVECTOR3 & rVector);
+		void SetScale (float fScale);
 
-		void GetCenterPosition(D3DXVECTOR3 * pv3Position);
+		void GetCenterPosition (D3DXVECTOR3 * pv3Position);
 
 		int Picking();
 		void Unpicking();
 		bool Move();
 		void Render();
 
-		static void SetArrowSets(int dwIndex);
+		static void SetArrowSets (int dwIndex);
 
 	protected:
 		float m_fScale;

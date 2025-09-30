@@ -13,19 +13,19 @@
 void CMapOutdoorAccessor::BackupObject()
 {
 	CMainFrame * pFrame = (CMainFrame*)AfxGetMainWnd();
-	CWorldEditorDoc * pDocument = (CWorldEditorDoc *)pFrame->GetActiveDocument();
+	CWorldEditorDoc * pDocument = (CWorldEditorDoc*)pFrame->GetActiveDocument();
 	CUndoBuffer * pUndoBuffer = pDocument->GetUndoBuffer();
 
-	pUndoBuffer->Backup(new CObjectUndoData(this));
+	pUndoBuffer->Backup (new CObjectUndoData (this));
 }
 
 void CMapOutdoorAccessor::BackupObjectCurrent()
 {
 	CMainFrame * pFrame = (CMainFrame*)AfxGetMainWnd();
-	CWorldEditorDoc * pDocument = (CWorldEditorDoc *)pFrame->GetActiveDocument();
+	CWorldEditorDoc * pDocument = (CWorldEditorDoc*)pFrame->GetActiveDocument();
 	CUndoBuffer * pUndoBuffer = pDocument->GetUndoBuffer();
 
-	pUndoBuffer->BackupCurrent(new CObjectUndoData(this));
+	pUndoBuffer->BackupCurrent (new CObjectUndoData (this));
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -34,7 +34,7 @@ void CMapOutdoorAccessor::CObjectUndoData::Backup()
 {
 	for (int i = 0; i < AROUND_AREA_NUM; ++i)
 	{
-		if (!m_pOwner->GetAreaAccessor(i, &m_pbackupArea[i]))
+		if (!m_pOwner->GetAreaAccessor (i, &m_pbackupArea[i]))
 		{
 			m_pbackupArea[i] = NULL;
 			continue;
@@ -46,14 +46,16 @@ void CMapOutdoorAccessor::CObjectUndoData::Backup()
 		DWORD dwObjectCount = pAreaAccessor->GetObjectDataCount();
 
 		rObjectDataVector.clear();
-		rObjectDataVector.resize(dwObjectCount);
+		rObjectDataVector.resize (dwObjectCount);
 
 		for (DWORD j = 0; j < dwObjectCount; ++j)
 		{
 			const CAreaAccessor::TObjectData * pObjectData;
 
-			if (!pAreaAccessor->CArea::GetObjectDataPointer(j, &pObjectData))
+			if (!pAreaAccessor->CArea::GetObjectDataPointer (j, &pObjectData))
+			{
 				continue;
+			}
 
 			rObjectDataVector[j] = *pObjectData;
 		}
@@ -65,14 +67,18 @@ void CMapOutdoorAccessor::CObjectUndoData::Restore()
 	for (int i = 0; i < AROUND_AREA_NUM; ++i)
 	{
 		if (!m_pbackupArea[i])
+		{
 			continue;
+		}
 
 		CAreaAccessor * pAreaAccessor = m_pbackupArea[i];
 		CAreaAccessor::TObjectDataVector & rObjectDataVector = m_backupObjectDataVector[i];
 
 		pAreaAccessor->Clear();
 		for (DWORD j = 0; j < rObjectDataVector.size(); ++j)
-			pAreaAccessor->AddObject(&rObjectDataVector[j]);
+		{
+			pAreaAccessor->AddObject (&rObjectDataVector[j]);
+		}
 	}
 }
 
@@ -86,7 +92,7 @@ void CMapOutdoorAccessor::CObjectUndoData::BackupStatement()
 	int iPickX, iPickY;
 	unsigned char ucSubCellX, ucSubCellY;
 	unsigned short usEditTerrainX, usEditTerrainY;
-	m_pOwner->GetPickingCoordinate(&v3PickingPoint, &iPickX, &iPickY, &ucSubCellX, &ucSubCellY, &usEditTerrainX, &usEditTerrainY);
+	m_pOwner->GetPickingCoordinate (&v3PickingPoint, &iPickX, &iPickY, &ucSubCellX, &ucSubCellY, &usEditTerrainX, &usEditTerrainY);
 	m_fCameraX = v3PickingPoint.x;
 	m_fCameraY = v3PickingPoint.y;
 }
@@ -94,16 +100,16 @@ void CMapOutdoorAccessor::CObjectUndoData::BackupStatement()
 void CMapOutdoorAccessor::CObjectUndoData::RestoreStatement()
 {
 	CMainFrame * pFrame = (CMainFrame*)AfxGetMainWnd();
-	CWorldEditorView * pView = (CWorldEditorView *)pFrame->GetActiveView();
+	CWorldEditorView * pView = (CWorldEditorView*)pFrame->GetActiveView();
 
 	D3DXVECTOR3 v3Target = CCameraManager::Instance().GetCurrentCamera()->GetTarget();
-	pView->UpdateTargetPosition(m_fCameraX - v3Target.x, m_fCameraY - v3Target.y);
+	pView->UpdateTargetPosition (m_fCameraX - v3Target.x, m_fCameraY - v3Target.y);
 	m_pOwner->SetTerrainModified();
-	m_pOwner->Update(m_fCameraX, m_fCameraY, 0.0f);
+	m_pOwner->Update (m_fCameraX, m_fCameraY, 0.0f);
 }
 
-CMapOutdoorAccessor::CObjectUndoData::CObjectUndoData(CMapOutdoorAccessor * pOutdoorAccessor)
- : m_pOwner(pOutdoorAccessor)
+CMapOutdoorAccessor::CObjectUndoData::CObjectUndoData (CMapOutdoorAccessor * pOutdoorAccessor)
+	: m_pOwner (pOutdoorAccessor)
 {
 	for (int i = 0; i < AROUND_AREA_NUM; ++i)
 	{
@@ -119,9 +125,9 @@ CMapOutdoorAccessor::CObjectUndoData::~CObjectUndoData()
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
 CMapOutdoorAccessor::CTerrainUndoData::CTerrainUndoDataSet::CTerrainUndoDataSet()
- : m_pRawHeightMap(NULL),
-   m_pbyTileMap(NULL),
-   m_pNormalMap(NULL)
+	: m_pRawHeightMap (NULL),
+	  m_pbyTileMap (NULL),
+	  m_pNormalMap (NULL)
 {
 	m_sCoordX = m_sCoordY = 0;
 }
@@ -158,36 +164,40 @@ void CMapOutdoorAccessor::CTerrainUndoData::CTerrainUndoDataSet::DeleteMaps()
 
 void CMapOutdoorAccessor::BackupTerrain()
 {
-	CWorldEditorApp * pApplication = (CWorldEditorApp *)AfxGetApp();
+	CWorldEditorApp * pApplication = (CWorldEditorApp*)AfxGetApp();
 	CMapManagerAccessor * pMapManagerAccessor = pApplication->GetMapManagerAccessor();
 
 	if (!pMapManagerAccessor->isHeightEditing() && !pMapManagerAccessor->isTextureEditing())
+	{
 		return;
+	}
 
 	CMainFrame * pFrame = (CMainFrame*)AfxGetMainWnd();
-	CWorldEditorDoc * pDocument = (CWorldEditorDoc *)pFrame->GetActiveDocument();
+	CWorldEditorDoc * pDocument = (CWorldEditorDoc*)pFrame->GetActiveDocument();
 	CUndoBuffer * pUndoBuffer = pDocument->GetUndoBuffer();
 
-	CTerrainUndoData * pTerrainUndoData = new CTerrainUndoData(this);
+	CTerrainUndoData * pTerrainUndoData = new CTerrainUndoData (this);
 	pTerrainUndoData->AddTerrainUndoDataSets();
-	pUndoBuffer->Backup(pTerrainUndoData);
+	pUndoBuffer->Backup (pTerrainUndoData);
 }
 
 void CMapOutdoorAccessor::BackupTerrainCurrent()
 {
-	CWorldEditorApp * pApplication = (CWorldEditorApp *)AfxGetApp();
+	CWorldEditorApp * pApplication = (CWorldEditorApp*)AfxGetApp();
 	CMapManagerAccessor * pMapManagerAccessor = pApplication->GetMapManagerAccessor();
 
 	if (!pMapManagerAccessor->isHeightEditing() && !pMapManagerAccessor->isTextureEditing())
+	{
 		return;
+	}
 
 	CMainFrame * pFrame = (CMainFrame*)AfxGetMainWnd();
-	CWorldEditorDoc * pDocument = (CWorldEditorDoc *)pFrame->GetActiveDocument();
+	CWorldEditorDoc * pDocument = (CWorldEditorDoc*)pFrame->GetActiveDocument();
 	CUndoBuffer * pUndoBuffer = pDocument->GetUndoBuffer();
 
-	CTerrainUndoData * pTerrainUndoData = new CTerrainUndoData(this);
+	CTerrainUndoData * pTerrainUndoData = new CTerrainUndoData (this);
 	pTerrainUndoData->AddTerrainUndoDataSets();
-	pUndoBuffer->BackupCurrent(pTerrainUndoData);
+	pUndoBuffer->BackupCurrent (pTerrainUndoData);
 }
 
 void CMapOutdoorAccessor::CTerrainUndoData::AddTerrainUndoDataSets()
@@ -196,7 +206,7 @@ void CMapOutdoorAccessor::CTerrainUndoData::AddTerrainUndoDataSets()
 	int iPickX, iPickY;
 	unsigned char ucSubCellX, ucSubCellY;
 	WORD usEditTerrainX, usEditTerrainY;
-	m_pOwner->GetPickingCoordinate(&v3PickingPoint, &iPickX, &iPickY, &ucSubCellX, &ucSubCellY, &usEditTerrainX, &usEditTerrainY);
+	m_pOwner->GetPickingCoordinate (&v3PickingPoint, &iPickX, &iPickY, &ucSubCellX, &ucSubCellY, &usEditTerrainX, &usEditTerrainY);
 
 	TOutdoorMapCoordinate aOutdoorMapCoordinate = m_pOwner->GetCurCoordinate();
 
@@ -207,29 +217,31 @@ void CMapOutdoorAccessor::CTerrainUndoData::AddTerrainUndoDataSets()
 	for (unsigned char i = 0; i < AROUND_AREA_NUM; ++i)
 	{
 		CTerrain * pTerrain;
-		if (m_pOwner->GetTerrainPointer(i, &pTerrain))
-			AddTerrainUndoDataSet(i);
+		if (m_pOwner->GetTerrainPointer (i, &pTerrain))
+		{
+			AddTerrainUndoDataSet (i);
+		}
 	}
 }
 
-void CMapOutdoorAccessor::CTerrainUndoData::AddTerrainUndoDataSet(BYTE byTerrainNum)
+void CMapOutdoorAccessor::CTerrainUndoData::AddTerrainUndoDataSet (BYTE byTerrainNum)
 {
-	if ( byTerrainNum < 0 || byTerrainNum > AROUND_AREA_NUM - 1 )
+	if (byTerrainNum < 0 || byTerrainNum > AROUND_AREA_NUM - 1)
 	{
-		LogBoxf("AddTerrainUndoDataSet : 터레인 번호[%u]가 유효하지 않아 언두 버퍼에 추가할 수 없습니다.", byTerrainNum);
+		LogBoxf ("AddTerrainUndoDataSet : 터레인 번호[%u]가 유효하지 않아 언두 버퍼에 추가할 수 없습니다.", byTerrainNum);
 		return;
 	}
 
 	CTerrain * pTerrain;
-	if (!m_pOwner->GetTerrainPointer(byTerrainNum, &pTerrain))
+	if (!m_pOwner->GetTerrainPointer (byTerrainNum, &pTerrain))
 	{
-		LogBoxf("AddTerrainUndoDataSet : 터레인의 포인터를 얻을 수 없습니다. 터레인 번호[%u]", byTerrainNum);
+		LogBoxf ("AddTerrainUndoDataSet : 터레인의 포인터를 얻을 수 없습니다. 터레인 번호[%u]", byTerrainNum);
 		return;
 	}
 
 	CTerrainUndoDataSet * pTerrainUndoDataSet = new CTerrainUndoDataSet;
-	unsigned short usCoordX, usCoordY; 
-	pTerrain->GetCoordinate(&usCoordX, &usCoordY);
+	unsigned short usCoordX, usCoordY;
+	pTerrain->GetCoordinate (&usCoordX, &usCoordY);
 
 	TOutdoorMapCoordinate aOutdoorMapCoordinate = m_pOwner->GetCurCoordinate();
 	D3DXVECTOR3 v3Target = CCameraManager::Instance().GetCurrentCamera()->GetTarget();
@@ -240,49 +252,50 @@ void CMapOutdoorAccessor::CTerrainUndoData::AddTerrainUndoDataSet(BYTE byTerrain
 	pTerrainUndoDataSet->m_fCameraY = v3Target.y;
 	pTerrainUndoDataSet->m_sCoordX = usCoordX;
 	pTerrainUndoDataSet->m_sCoordY = usCoordY;
-	m_TerrainUndoDataSetPtrVector.push_back(pTerrainUndoDataSet);
+	m_TerrainUndoDataSetPtrVector.push_back (pTerrainUndoDataSet);
 }
 
 void CMapOutdoorAccessor::CTerrainUndoData::Backup()
 {
-	for( unsigned long i = 0; i < m_TerrainUndoDataSetPtrVector.size(); ++i)
+	for (unsigned long i = 0; i < m_TerrainUndoDataSetPtrVector.size(); ++i)
 	{
 		CTerrainUndoDataSet * pTerrainUndoDataSet = m_TerrainUndoDataSetPtrVector[i];
 
 		pTerrainUndoDataSet->DeleteMaps();
 
-		pTerrainUndoDataSet->m_pRawHeightMap = new WORD[CTerrain::HEIGHTMAP_RAW_XSIZE*CTerrain::HEIGHTMAP_RAW_YSIZE];
-// 		pTerrainUndoDataSet->m_pTileMap = new WORD[CTerrain::TILEMAP_XSIZE * CTerrain::TILEMAP_YSIZE];
+		pTerrainUndoDataSet->m_pRawHeightMap = new WORD[CTerrain::HEIGHTMAP_RAW_XSIZE * CTerrain::HEIGHTMAP_RAW_YSIZE];
+		// 		pTerrainUndoDataSet->m_pTileMap = new WORD[CTerrain::TILEMAP_XSIZE * CTerrain::TILEMAP_YSIZE];
 		pTerrainUndoDataSet->m_pbyTileMap = new BYTE[CTerrain::TILEMAP_RAW_XSIZE * CTerrain::TILEMAP_RAW_YSIZE];
 		pTerrainUndoDataSet->m_pNormalMap = new char[CTerrain::NORMALMAP_XSIZE * CTerrain::NORMALMAP_YSIZE * 3];
 
-		const unsigned char byTerrainNum = (pTerrainUndoDataSet->m_sCoordY - pTerrainUndoDataSet->m_sCenterCoordY + 1) * 3 + (pTerrainUndoDataSet->m_sCoordX - pTerrainUndoDataSet->m_sCenterCoordX + 1);
+		const unsigned char byTerrainNum = (pTerrainUndoDataSet->m_sCoordY - pTerrainUndoDataSet->m_sCenterCoordY + 1) * 3 + (pTerrainUndoDataSet->m_sCoordX -
+																															  pTerrainUndoDataSet->m_sCenterCoordX + 1);
 
 		CTerrain * pTerrain;
 
-		if (!m_pOwner->GetTerrainPointer(byTerrainNum, &pTerrain))
+		if (!m_pOwner->GetTerrainPointer (byTerrainNum, &pTerrain))
 		{
-			LogBoxf("CTerrainUndoData::Backup : 터레인의 포인터를 얻을 수 없습니다.\n"
-					"찾는 터레인 위치[%u, %u]\n"
-					"현재 터레인 위치[%u, %u]",
-					pTerrainUndoDataSet->m_sCoordX,
-					pTerrainUndoDataSet->m_sCoordY,
-					pTerrainUndoDataSet->m_sCenterCoordX,
-					pTerrainUndoDataSet->m_sCenterCoordY);
+			LogBoxf ("CTerrainUndoData::Backup : 터레인의 포인터를 얻을 수 없습니다.\n"
+					 "찾는 터레인 위치[%u, %u]\n"
+					 "현재 터레인 위치[%u, %u]",
+					 pTerrainUndoDataSet->m_sCoordX,
+					 pTerrainUndoDataSet->m_sCoordY,
+					 pTerrainUndoDataSet->m_sCenterCoordX,
+					 pTerrainUndoDataSet->m_sCenterCoordY);
 			continue;
 		}
 
-		memcpy(pTerrainUndoDataSet->m_pRawHeightMap, pTerrain->GetHeightMap(), sizeof(unsigned short) * CTerrain::HEIGHTMAP_RAW_XSIZE*CTerrain::HEIGHTMAP_RAW_YSIZE);
-// 		memcpy(pTerrainUndoDataSet->m_pTileMap, pTerrain->GetTileMap(), sizeof(unsigned short) * CTerrain::TILEMAP_XSIZE * CTerrain::TILEMAP_YSIZE );
-		memcpy(pTerrainUndoDataSet->m_pbyTileMap, pTerrain->RAW_GetTileMap(), sizeof(BYTE) * CTerrain::TILEMAP_RAW_XSIZE * CTerrain::TILEMAP_RAW_YSIZE );
-		memcpy(pTerrainUndoDataSet->m_pNormalMap, pTerrain->GetNormalMap(), sizeof(char) * CTerrain::NORMALMAP_XSIZE * CTerrain::NORMALMAP_YSIZE * 3);
+		memcpy (pTerrainUndoDataSet->m_pRawHeightMap, pTerrain->GetHeightMap(), sizeof (unsigned short) * CTerrain::HEIGHTMAP_RAW_XSIZE * CTerrain::HEIGHTMAP_RAW_YSIZE);
+		// 		memcpy(pTerrainUndoDataSet->m_pTileMap, pTerrain->GetTileMap(), sizeof(unsigned short) * CTerrain::TILEMAP_XSIZE * CTerrain::TILEMAP_YSIZE );
+		memcpy (pTerrainUndoDataSet->m_pbyTileMap, pTerrain->RAW_GetTileMap(), sizeof (BYTE) * CTerrain::TILEMAP_RAW_XSIZE * CTerrain::TILEMAP_RAW_YSIZE);
+		memcpy (pTerrainUndoDataSet->m_pNormalMap, pTerrain->GetNormalMap(), sizeof (char) * CTerrain::NORMALMAP_XSIZE * CTerrain::NORMALMAP_YSIZE * 3);
 	}
 }
 
 void CMapOutdoorAccessor::CTerrainUndoData::Restore()
 {
 	CMainFrame * pFrame = (CMainFrame*)AfxGetMainWnd();
-	CWorldEditorView * pView = (CWorldEditorView *)pFrame->GetActiveView();
+	CWorldEditorView * pView = (CWorldEditorView*)pFrame->GetActiveView();
 	const TOutdoorMapCoordinate & c_rOutdoorMapCoordinate = m_pOwner->GetCurCoordinate();
 
 	for (DWORD i = 0; i < m_TerrainUndoDataSetPtrVector.size(); ++i)
@@ -293,38 +306,39 @@ void CMapOutdoorAccessor::CTerrainUndoData::Restore()
 		//if (pTerrainUndoDataSet->m_fCameraX != v3Target.x || pTerrainUndoDataSet->m_fCameraY != v3Target.y)
 		if (pTerrainUndoDataSet->m_sCenterCoordX != c_rOutdoorMapCoordinate.m_sTerrainCoordX || pTerrainUndoDataSet->m_sCenterCoordY != c_rOutdoorMapCoordinate.m_sTerrainCoordY)
 		{
-			pView->UpdateTargetPosition(pTerrainUndoDataSet->m_fCameraX - v3Target.x, pTerrainUndoDataSet->m_fCameraY - v3Target.y);
+			pView->UpdateTargetPosition (pTerrainUndoDataSet->m_fCameraX - v3Target.x, pTerrainUndoDataSet->m_fCameraY - v3Target.y);
 			m_pOwner->SetTerrainModified();
-			m_pOwner->Update(pTerrainUndoDataSet->m_fCameraX, pTerrainUndoDataSet->m_fCameraY, 0.0f);
+			m_pOwner->Update (pTerrainUndoDataSet->m_fCameraX, pTerrainUndoDataSet->m_fCameraY, 0.0f);
 		}
 
-		const unsigned char byTerrainNum = (pTerrainUndoDataSet->m_sCoordY - pTerrainUndoDataSet->m_sCenterCoordY + 1) * 3 + (pTerrainUndoDataSet->m_sCoordX - pTerrainUndoDataSet->m_sCenterCoordX + 1);
+		const unsigned char byTerrainNum = (pTerrainUndoDataSet->m_sCoordY - pTerrainUndoDataSet->m_sCenterCoordY + 1) * 3 + (pTerrainUndoDataSet->m_sCoordX -
+																															  pTerrainUndoDataSet->m_sCenterCoordX + 1);
 
 		CTerrain * pTerrain;
 
-		if (!m_pOwner->GetTerrainPointer(byTerrainNum, &pTerrain))
+		if (!m_pOwner->GetTerrainPointer (byTerrainNum, &pTerrain))
 		{
-			LogBoxf("Restore : 터레인의 포인터를 얻을 수 없습니다.\n찾는 터레인 위치[%u, %u], 현재 중심 터레인 위치[%u, %u]",
-				pTerrainUndoDataSet->m_sCoordX, pTerrainUndoDataSet->m_sCoordY, pTerrainUndoDataSet->m_sCenterCoordX, pTerrainUndoDataSet->m_sCenterCoordY);
+			LogBoxf ("Restore : 터레인의 포인터를 얻을 수 없습니다.\n찾는 터레인 위치[%u, %u], 현재 중심 터레인 위치[%u, %u]",
+					 pTerrainUndoDataSet->m_sCoordX, pTerrainUndoDataSet->m_sCoordY, pTerrainUndoDataSet->m_sCenterCoordX, pTerrainUndoDataSet->m_sCenterCoordY);
 			continue;
 		}
 
 		///////////////////////////////////////////////////////////////////////////////////////////
-		CTerrainAccessor * pTerrainAccessor = (CTerrainAccessor *) pTerrain;
+		CTerrainAccessor * pTerrainAccessor = (CTerrainAccessor*) pTerrain;
 
-// 		pTerrainAccessor->RestoreMaps(pTerrainUndoDataSet->m_pRawHeightMap, pTerrainUndoDataSet->m_pTileMap, pTerrainUndoDataSet->m_pNormalMap);
-		pTerrainAccessor->RAW_RestoreMaps(pTerrainUndoDataSet->m_pRawHeightMap, pTerrainUndoDataSet->m_pbyTileMap, pTerrainUndoDataSet->m_pNormalMap);
+		// 		pTerrainAccessor->RestoreMaps(pTerrainUndoDataSet->m_pRawHeightMap, pTerrainUndoDataSet->m_pTileMap, pTerrainUndoDataSet->m_pNormalMap);
+		pTerrainAccessor->RAW_RestoreMaps (pTerrainUndoDataSet->m_pRawHeightMap, pTerrainUndoDataSet->m_pbyTileMap, pTerrainUndoDataSet->m_pNormalMap);
 
 		CArea * pArea;
 
-		if (!m_pOwner->GetAreaPointer(byTerrainNum, &pArea))
+		if (!m_pOwner->GetAreaPointer (byTerrainNum, &pArea))
 		{
-			LogBoxf("Restore : Area의 포인터를 얻을 수 없습니다.\n찾는 Area 위치[%u, %u], 현재 중심 터레인 위치[%u, %u]",
-				pTerrainUndoDataSet->m_sCoordX, pTerrainUndoDataSet->m_sCoordY, pTerrainUndoDataSet->m_sCenterCoordX, pTerrainUndoDataSet->m_sCenterCoordY);
+			LogBoxf ("Restore : Area의 포인터를 얻을 수 없습니다.\n찾는 Area 위치[%u, %u], 현재 중심 터레인 위치[%u, %u]",
+					 pTerrainUndoDataSet->m_sCoordX, pTerrainUndoDataSet->m_sCoordY, pTerrainUndoDataSet->m_sCenterCoordX, pTerrainUndoDataSet->m_sCenterCoordY);
 			continue;
 		}
 
-		CAreaAccessor * pAreaAccessor = (CAreaAccessor * ) pArea;
+		CAreaAccessor * pAreaAccessor = (CAreaAccessor*) pArea;
 
 		// FIXME : 꼭 최적화를.. 꼭.. 꼭.. -_-
 		DWORD dwObjectCount = pArea->GetObjectDataCount();
@@ -333,12 +347,14 @@ void CMapOutdoorAccessor::CTerrainUndoData::Restore()
 		{
 			const CArea::TObjectData * c_pObjectData;
 
-			if (!pArea->GetObjectDataPointer(j, &c_pObjectData))
+			if (!pArea->GetObjectDataPointer (j, &c_pObjectData))
+			{
 				continue;
+			}
 
-// 			((CArea::TObjectData *) c_pObjectData)->Position.z = pTerrain->GetTerrainHeight(c_pObjectData->Position.x, -c_pObjectData->Position.y);
-			((CArea::TObjectData *) c_pObjectData)->Position.z = pTerrain->GetHeight((int)c_pObjectData->Position.x, (int)-c_pObjectData->Position.y);
-			pAreaAccessor->UpdateObject(j, c_pObjectData);
+			// 			((CArea::TObjectData *) c_pObjectData)->Position.z = pTerrain->GetTerrainHeight(c_pObjectData->Position.x, -c_pObjectData->Position.y);
+			((CArea::TObjectData*) c_pObjectData)->Position.z = pTerrain->GetHeight ((int)c_pObjectData->Position.x, (int) - c_pObjectData->Position.y);
+			pAreaAccessor->UpdateObject (j, c_pObjectData);
 		}
 	}
 
@@ -346,27 +362,29 @@ void CMapOutdoorAccessor::CTerrainUndoData::Restore()
 	{
 		CTerrainAccessor * pTerrainAccessor;
 
-		if (!m_pOwner->GetTerrainPointer(j, (CTerrain **) &pTerrainAccessor))
+		if (!m_pOwner->GetTerrainPointer (j, (CTerrain**) &pTerrainAccessor))
+		{
 			continue;
+		}
 
-// 		pTerrainAccessor->UpdateSplats();
+		// 		pTerrainAccessor->UpdateSplats();
 		pTerrainAccessor->RAW_GenerateSplat();
 	}
-	
+
 	m_pOwner->SetTerrainModified();
 }
 
 void CMapOutdoorAccessor::CTerrainUndoData::BackupStatement()
 {
-//	TOutdoorMapCoordinate OutdoorMapCoordinate = m_pOwner->GetCurCoordinate();
-//	m_sCenterCoordX = OutdoorMapCoordinate.m_sTerrainCoordX;
-//	m_sCenterCoordY = OutdoorMapCoordinate.m_sTerrainCoordY;
-//	
-//	D3DXVECTOR3 v3PickingPoint;
-//	int iPickX, iPickY;
-//	unsigned char ucSubCellX, ucSubCellY;
-//	unsigned short usEditTerrainX, usEditTerrainY;
-//	m_pOwner->GetPickingPoint(&v3PickingPoint, &iPickX, &iPickY, &ucSubCellX, &ucSubCellY, &usEditTerrainX, &usEditTerrainY);
+	//	TOutdoorMapCoordinate OutdoorMapCoordinate = m_pOwner->GetCurCoordinate();
+	//	m_sCenterCoordX = OutdoorMapCoordinate.m_sTerrainCoordX;
+	//	m_sCenterCoordY = OutdoorMapCoordinate.m_sTerrainCoordY;
+	//
+	//	D3DXVECTOR3 v3PickingPoint;
+	//	int iPickX, iPickY;
+	//	unsigned char ucSubCellX, ucSubCellY;
+	//	unsigned short usEditTerrainX, usEditTerrainY;
+	//	m_pOwner->GetPickingPoint(&v3PickingPoint, &iPickX, &iPickY, &ucSubCellX, &ucSubCellY, &usEditTerrainX, &usEditTerrainY);
 	D3DXVECTOR3 v3Target = CCameraManager::Instance().GetCurrentCamera()->GetTarget();
 	m_fCameraX = v3Target.x;
 	m_fCameraY = v3Target.y;
@@ -375,15 +393,15 @@ void CMapOutdoorAccessor::CTerrainUndoData::BackupStatement()
 void CMapOutdoorAccessor::CTerrainUndoData::RestoreStatement()
 {
 	CMainFrame * pFrame = (CMainFrame*)AfxGetMainWnd();
-	CWorldEditorView * pView = (CWorldEditorView *)pFrame->GetActiveView();
-	
+	CWorldEditorView * pView = (CWorldEditorView*)pFrame->GetActiveView();
+
 	D3DXVECTOR3 v3Target = CCameraManager::Instance().GetCurrentCamera()->GetTarget();
-	pView->UpdateTargetPosition(m_fCameraX - v3Target.x, m_fCameraY - v3Target.y);
+	pView->UpdateTargetPosition (m_fCameraX - v3Target.x, m_fCameraY - v3Target.y);
 	m_pOwner->SetTerrainModified();
-	m_pOwner->Update(m_fCameraX, m_fCameraY, 0.0f);
+	m_pOwner->Update (m_fCameraX, m_fCameraY, 0.0f);
 }
 
-CMapOutdoorAccessor::CTerrainUndoData::CTerrainUndoData(CMapOutdoorAccessor * pOwner) : m_pOwner(pOwner)
+CMapOutdoorAccessor::CTerrainUndoData::CTerrainUndoData (CMapOutdoorAccessor * pOwner) : m_pOwner (pOwner)
 {
 	Clear();
 }
@@ -395,10 +413,10 @@ CMapOutdoorAccessor::CTerrainUndoData::~CTerrainUndoData()
 
 void CMapOutdoorAccessor::CTerrainUndoData::Clear()
 {
-	for( unsigned long i = 0; i < m_TerrainUndoDataSetPtrVector.size(); ++i)
+	for (unsigned long i = 0; i < m_TerrainUndoDataSetPtrVector.size(); ++i)
 	{
 		CTerrainUndoDataSet * pTerrainUndoDataSet = m_TerrainUndoDataSetPtrVector[i];
-// 		pTerrainUndoDataSet->DeleteMaps();
+		// 		pTerrainUndoDataSet->DeleteMaps();
 		delete pTerrainUndoDataSet;
 		pTerrainUndoDataSet = NULL;
 	}

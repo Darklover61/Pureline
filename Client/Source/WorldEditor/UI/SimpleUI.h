@@ -11,7 +11,7 @@
 #define AFX_SIMPLEUI_H__7513B080_76E5_11D4_97FE_004F4C02CAF7__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
+	#pragma once
 #endif // _MSC_VER > 1000
 
 #include "GTColorDialogDlg.h"
@@ -21,59 +21,59 @@
 
 class CColorBox : public CStatic
 {
-// Construction
-public:
-	CColorBox();
-	virtual ~CColorBox();
+		// Construction
+	public:
+		CColorBox();
+		virtual ~CColorBox();
 
-// Attributes
-public:
+		// Attributes
+	public:
 
-// Operations
-public:
-	class CColorObserver : public CGTColorDialogDlg::IObserver
-	{
-		public:
-			void SendColor(COLORREF & rColor)
-			{
-				m_pOwner->RecvColor(rColor);
-			}
-			void SetOwner(CColorBox * pOwner)
-			{
-				m_pOwner = pOwner;
-			}
-			CColorBox * m_pOwner;
-	};
+		// Operations
+	public:
+		class CColorObserver : public CGTColorDialogDlg::IObserver
+		{
+			public:
+				void SendColor (COLORREF & rColor)
+				{
+					m_pOwner->RecvColor (rColor);
+				}
+				void SetOwner (CColorBox * pOwner)
+				{
+					m_pOwner = pOwner;
+				}
+				CColorBox* m_pOwner;
+		};
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CColorBox)
-	//}}AFX_VIRTUAL
+		// Overrides
+		// ClassWizard generated virtual function overrides
+		//{{AFX_VIRTUAL(CColorBox)
+		//}}AFX_VIRTUAL
 
-// Implementation
-public:
-	BOOL Create(CWnd * pParent);
-	void SetColor(const COLORREF & rColor);
-	void GetColor(COLORREF * pColor);
-	void Update();
-	void (*pfnCallBack)();
+		// Implementation
+	public:
+		BOOL Create (CWnd * pParent);
+		void SetColor (const COLORREF & rColor);
+		void GetColor (COLORREF * pColor);
+		void Update();
+		void (*pfnCallBack)();
 
-	COLORREF m_Color;
+		COLORREF m_Color;
 
-	CColorObserver m_Observer;
-	CGTColorDialogDlg * m_dlgLight;
+		CColorObserver m_Observer;
+		CGTColorDialogDlg* m_dlgLight;
 
-	void RecvColor(COLORREF & rColor);
+		void RecvColor (COLORREF & rColor);
 
-// Generated message map functions
-protected:
+		// Generated message map functions
+	protected:
 
-	//{{AFX_MSG(CColorBox)
-	afx_msg void OnPaint();
-	afx_msg void OnLButtonDown(UINT nHitTest, CPoint point);
-	//}}AFX_MSG
+		//{{AFX_MSG(CColorBox)
+		afx_msg void OnPaint();
+		afx_msg void OnLButtonDown (UINT nHitTest, CPoint point);
+		//}}AFX_MSG
 
-	DECLARE_MESSAGE_MAP()
+		DECLARE_MESSAGE_MAP()
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -83,37 +83,37 @@ protected:
 
 class CStatusProgress : public CProgressCtrl
 {
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CStatusProgress)
-	//}}AFX_VIRTUAL
+		// Overrides
+		// ClassWizard generated virtual function overrides
+		//{{AFX_VIRTUAL(CStatusProgress)
+		//}}AFX_VIRTUAL
 
-// Implementation
-public:
-	void SetText(CString s);
-	void SetCallbackDelay(int nDelay);
-	static void SetCallbackPos(int nPos);
-	void Destroy();
-	void Create();
+		// Implementation
+	public:
+		void SetText (CString s);
+		void SetCallbackDelay (int nDelay);
+		static void SetCallbackPos (int nPos);
+		void Destroy();
+		void Create();
 
-	~CStatusProgress()
-	{
-		if (IsWindow(m_hWnd)) 
+		~CStatusProgress()
 		{
-			SetText("");
-			Destroy();
+			if (IsWindow (m_hWnd))
+			{
+				SetText ("");
+				Destroy();
+			}
 		}
-	}
 
-	// Generated message map functions
-protected:
-	CWaitCursor *m_pWait;
+		// Generated message map functions
+	protected:
+		CWaitCursor* m_pWait;
 
-	//{{AFX_MSG(CStatusProgress)
-	afx_msg void OnDestroy();
-	//}}AFX_MSG
+		//{{AFX_MSG(CStatusProgress)
+		afx_msg void OnDestroy();
+		//}}AFX_MSG
 
-	DECLARE_MESSAGE_MAP()
+		DECLARE_MESSAGE_MAP()
 };
 
 #endif

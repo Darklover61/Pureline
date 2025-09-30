@@ -2,7 +2,7 @@
 #define AFX_EFFECTTIMEEVENTGRAPH_H__FEB08EC0_B265_4D09_9AC0_0D2C438B35EB__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
+	#pragma once
 #endif // _MSC_VER > 1000
 // EffectTimeBarGraph.h : header file
 //
@@ -16,209 +16,217 @@ class CFloatEditDialog;
 
 class CEffectTimeEventGraph : public CStatic
 {
-public:
-	class IValueAccessor
-	{
-		public:
-			IValueAccessor(){}
-			virtual ~IValueAccessor(){}
+	public:
+		class IValueAccessor
+		{
+			public:
+				IValueAccessor() {}
+				virtual ~IValueAccessor() {}
 
-			virtual DWORD GetValueCount() = 0;
+				virtual DWORD GetValueCount() = 0;
 
-			virtual void Insert(float fTime, float fValue) = 0;
-			virtual void Delete(DWORD dwIndex) = 0;
+				virtual void Insert (float fTime, float fValue) = 0;
+				virtual void Delete (DWORD dwIndex) = 0;
 
-			virtual bool GetTime(DWORD dwIndex, float * pfTime) = 0;
-			virtual bool GetValue(DWORD dwIndex, float * pfValue) = 0;
+				virtual bool GetTime (DWORD dwIndex, float* pfTime) = 0;
+				virtual bool GetValue (DWORD dwIndex, float* pfValue) = 0;
 
-			virtual void SetTime(DWORD dwIndex, float fTime) = 0;
-			virtual void SetValue(DWORD dwIndex, float fValue) = 0;
-	};
+				virtual void SetTime (DWORD dwIndex, float fTime) = 0;
+				virtual void SetValue (DWORD dwIndex, float fValue) = 0;
+		};
 
-	typedef struct SPoint
-	{
-		SPoint(int ix_ = 0, int iy_ = 0) : ix(ix_), iy(iy_) {}
+		typedef struct SPoint
+		{
+			SPoint (int ix_ = 0, int iy_ = 0) : ix (ix_), iy (iy_) {}
 
-		int ix;
-		int iy;
-	} TPoint;
-	typedef std::vector<TPoint> TPointVector;
+			int ix;
+			int iy;
+		} TPoint;
+		typedef std::vector<TPoint> TPointVector;
 
-	enum
-	{
-		POINT_NONE = 0xffffffff,
+		enum
+		{
+			POINT_NONE = 0xffffffff,
 
-		MAX_GRAPH_COUNT = 3,
-	};
+			MAX_GRAPH_COUNT = 3,
+		};
 
-// Construction
-public:
-	CEffectTimeEventGraph();
-	void Initialize(int iTimerID);
+		// Construction
+	public:
+		CEffectTimeEventGraph();
+		void Initialize (int iTimerID);
 
-// Attributes
-public:
+		// Attributes
+	public:
 
-// Operations
-public:
-	void Resizing(int iWidth, int iHeight);
-	void SetAccessorPointer(IValueAccessor * pAccessor);
+		// Operations
+	public:
+		void Resizing (int iWidth, int iHeight);
+		void SetAccessorPointer (IValueAccessor * pAccessor);
 
-	void SetMaxTime(float fMaxTime);
-	void SetMaxValue(float fMaxValue);
-	void SetStartValue(float fStartValue);
+		void SetMaxTime (float fMaxTime);
+		void SetMaxValue (float fMaxValue);
+		void SetStartValue (float fStartValue);
 
-protected:
-	void RenderGrid();
-	void RenderGraph();
-	void ConnectPoint(TPoint & rLeft, TPoint & rRight);
+	protected:
+		void RenderGrid();
+		void RenderGraph();
+		void ConnectPoint (TPoint & rLeft, TPoint & rRight);
 
-	bool isCreatingMode();
+		bool isCreatingMode();
 
-	void TimeToScreen(float fTime, int * px);
-	void ScreenToTime(int ix, float * pfTime);
+		void TimeToScreen (float fTime, int* px);
+		void ScreenToTime (int ix, float* pfTime);
 
-	void ValueToScreen(float fValue, int * piy);
-	void ScreenToValue(int iy, float * pfValue);
+		void ValueToScreen (float fValue, int* piy);
+		void ScreenToValue (int iy, float* pfValue);
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CEffectTimeEventGraph)
-	//}}AFX_VIRTUAL
+		// Overrides
+		// ClassWizard generated virtual function overrides
+		//{{AFX_VIRTUAL(CEffectTimeEventGraph)
+		//}}AFX_VIRTUAL
 
-// Implementation
-public:
-	virtual ~CEffectTimeEventGraph();
+		// Implementation
+	public:
+		virtual ~CEffectTimeEventGraph();
 
-	// Generated message map functions
-protected:
-	//{{AFX_MSG(CEffectTimeEventGraph)
-	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
-	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
-	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
-	afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
-	afx_msg void OnRButtonUp(UINT nFlags, CPoint point);
-	afx_msg void OnTimer(UINT nIDEvent);
-	afx_msg void OnMButtonDown(UINT nFlags, CPoint point);
-	afx_msg void OnMButtonUp(UINT nFlags, CPoint point);
-	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
-	//}}AFX_MSG
+		// Generated message map functions
+	protected:
+		//{{AFX_MSG(CEffectTimeEventGraph)
+		afx_msg void OnLButtonDown (UINT nFlags, CPoint point);
+		afx_msg void OnLButtonUp (UINT nFlags, CPoint point);
+		afx_msg void OnMouseMove (UINT nFlags, CPoint point);
+		afx_msg void OnRButtonDown (UINT nFlags, CPoint point);
+		afx_msg void OnRButtonUp (UINT nFlags, CPoint point);
+		afx_msg void OnTimer (UINT nIDEvent);
+		afx_msg void OnMButtonDown (UINT nFlags, CPoint point);
+		afx_msg void OnMButtonUp (UINT nFlags, CPoint point);
+		afx_msg void OnLButtonDblClk (UINT nFlags, CPoint point);
+		//}}AFX_MSG
 
-	DECLARE_MESSAGE_MAP()
+		DECLARE_MESSAGE_MAP()
 
-protected:
-	// Mouse
-	bool m_isLButtonDown;
-	bool m_isMButtonDown;
-	CPoint m_LastPoint;
+	protected:
+		// Mouse
+		bool m_isLButtonDown;
+		bool m_isMButtonDown;
+		CPoint m_LastPoint;
 
-	float m_fMaxTime;
-	float m_fMaxValue;
-	float m_fStartValue;
+		float m_fMaxTime;
+		float m_fMaxValue;
+		float m_fStartValue;
 
-	DWORD m_dwSelectedTableIndex;
-	DWORD m_dwSelectedIndex;
-	DWORD m_dwGrippedIndex;
+		DWORD m_dwSelectedTableIndex;
+		DWORD m_dwSelectedIndex;
+		DWORD m_dwGrippedIndex;
 
-	int m_iWidth;
-	int m_iHeight;
-	int m_ixTemporary;
-	int m_iyTemporary;
-	int m_ixGridCount;
-	int m_iyGridCount;
-	float m_fxGridStep;
-	float m_fyGridStep;
+		int m_iWidth;
+		int m_iHeight;
+		int m_ixTemporary;
+		int m_iyTemporary;
+		int m_ixGridCount;
+		int m_iyGridCount;
+		float m_fxGridStep;
+		float m_fyGridStep;
 
-	IValueAccessor * m_pAccessor;
-	TPointVector m_PointVector;
+		IValueAccessor* m_pAccessor;
+		TPointVector m_PointVector;
 
-	CScreen m_Screen;
+		CScreen m_Screen;
 
-	static CFloatEditDialog * ms_pFloatEditDialog;
+		static CFloatEditDialog* ms_pFloatEditDialog;
 };
 
 /////////////////////////////////////////////////////////////////////////////
 // template class for IValueAccessor
 
 
-template <typename T> 
+template <typename T>
 class CTimeEventTableAccessor : public CEffectTimeEventGraph::IValueAccessor
 {
-public:
-	CTimeEventTableAccessor(){}
-	~CTimeEventTableAccessor(){}
+	public:
+		CTimeEventTableAccessor() {}
+		~CTimeEventTableAccessor() {}
 
-	typedef std::vector<CTimeEvent<T> > TTimeEventTableType;
+		typedef std::vector<CTimeEvent<T>> TTimeEventTableType;
 
-	TTimeEventTableType * m_pTimeEventTable;
+		TTimeEventTableType* m_pTimeEventTable;
 
-	void SetTablePointer(TTimeEventTableType * pTimeEventTable)
-	{
-		m_pTimeEventTable = pTimeEventTable;
-	}
+		void SetTablePointer (TTimeEventTableType * pTimeEventTable)
+		{
+			m_pTimeEventTable = pTimeEventTable;
+		}
 
-	DWORD GetValueCount()
-	{
-		return m_pTimeEventTable->size();
-	}
-	
-	void GetTimeValue(float fTime, T * pfValue)
-	{
-		//m_pTimeEventTable->
-		GetTimeEventBlendValue(fTime, *m_pTimeEventTable, pfValue);
-	}
+		DWORD GetValueCount()
+		{
+			return m_pTimeEventTable->size();
+		}
 
-	bool GetTime(DWORD dwIndex, float * pfTime)
-	{
-		if (dwIndex >= m_pTimeEventTable->size())
-			return false;
+		void GetTimeValue (float fTime, T * pfValue)
+		{
+			//m_pTimeEventTable->
+			GetTimeEventBlendValue (fTime, *m_pTimeEventTable, pfValue);
+		}
 
-		*pfTime = m_pTimeEventTable->at(dwIndex).m_fTime;
+		bool GetTime (DWORD dwIndex, float* pfTime)
+		{
+			if (dwIndex >= m_pTimeEventTable->size())
+			{
+				return false;
+			}
 
-		return true;
-	}
+			*pfTime = m_pTimeEventTable->at (dwIndex).m_fTime;
 
-	bool GetValue(DWORD dwIndex, T * pfValue)
-	{
-		if (dwIndex >= m_pTimeEventTable->size())
-			return false;
+			return true;
+		}
 
-		*pfValue = m_pTimeEventTable->at(dwIndex).m_Value;
+		bool GetValue (DWORD dwIndex, T * pfValue)
+		{
+			if (dwIndex >= m_pTimeEventTable->size())
+			{
+				return false;
+			}
 
-		return true;
-	}
+			*pfValue = m_pTimeEventTable->at (dwIndex).m_Value;
 
-	void SetTime(DWORD dwIndex, float fTime)
-	{
-		if (dwIndex >= m_pTimeEventTable->size())
-			return;
+			return true;
+		}
 
-		m_pTimeEventTable->at(dwIndex).m_fTime = fTime;
-	}
-	void SetValue(DWORD dwIndex, T fValue)
-	{
-		if (dwIndex >= m_pTimeEventTable->size())
-			return;
+		void SetTime (DWORD dwIndex, float fTime)
+		{
+			if (dwIndex >= m_pTimeEventTable->size())
+			{
+				return;
+			}
 
-		m_pTimeEventTable->at(dwIndex).m_Value = fValue;
-	}
+			m_pTimeEventTable->at (dwIndex).m_fTime = fTime;
+		}
+		void SetValue (DWORD dwIndex, T fValue)
+		{
+			if (dwIndex >= m_pTimeEventTable->size())
+			{
+				return;
+			}
 
-	void Insert(float fTime, T fValue)
-	{
-		InsertItemTimeEvent(m_pTimeEventTable, fTime, fValue);
-	}
-	
-	void InsertBlend(float fTime)
-	{
-		T fValue;
-		GetTimeValue(fTime, &fValue);
-		Insert(fTime, fValue);
-	}
+			m_pTimeEventTable->at (dwIndex).m_Value = fValue;
+		}
 
-	void Delete(DWORD dwIndex)
-	{
-		DeleteVectorItem<CTimeEvent<T> >(m_pTimeEventTable, dwIndex);
-	}
+		void Insert (float fTime, T fValue)
+		{
+			InsertItemTimeEvent (m_pTimeEventTable, fTime, fValue);
+		}
+
+		void InsertBlend (float fTime)
+		{
+			T fValue;
+			GetTimeValue (fTime, &fValue);
+			Insert (fTime, fValue);
+		}
+
+		void Delete (DWORD dwIndex)
+		{
+			DeleteVectorItem<CTimeEvent<T>> (m_pTimeEventTable, dwIndex);
+		}
 };
 
 typedef CTimeEventTableAccessor<float> CTimeEventFloatAccessor;

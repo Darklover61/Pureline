@@ -6,41 +6,41 @@
 #define AFX_NEWMAPDLG_H__9B3FC717_E363_4831_9E12_B1410BA80BD0__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
+	#pragma once
 #endif // _MSC_VER > 1000
 
-class CNewMapDlg : public CDialog  
+class CNewMapDlg : public CDialog
 {
-public:
-	CNewMapDlg(CWnd* pParent = NULL);
-	// Dialog Data
-	//{{AFX_DATA(CNewMapDlg)
-	enum { IDD = IDD_DIALOG_NEWMAP };
-	CString	m_StringName;
-	UINT	m_uiSizeX;
-	UINT	m_uiSizeY;
-	//}}AFX_DATA
+	public:
+		CNewMapDlg (CWnd* pParent = NULL);
+		// Dialog Data
+		//{{AFX_DATA(CNewMapDlg)
+		enum { IDD = IDD_DIALOG_NEWMAP };
+		CString	m_StringName;
+		UINT	m_uiSizeX;
+		UINT	m_uiSizeY;
+		//}}AFX_DATA
 
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CTexturePropertyDlg)
-protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
-	
-	// Implementation
-protected:
+		// Overrides
+		// ClassWizard generated virtual function overrides
+		//{{AFX_VIRTUAL(CTexturePropertyDlg)
+	protected:
+		virtual void DoDataExchange (CDataExchange* pDX);   // DDX/DDV support
+		//}}AFX_VIRTUAL
 
-	// Generated message map functions
-	//{{AFX_MSG(CTexturePropertyDlg)
-	virtual BOOL OnInitDialog();
-	virtual void OnOK();
-	afx_msg void OnUpdateName();
-	afx_msg void OnUpdateSizeX();
-	afx_msg void OnUpdateSizeY();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+		// Implementation
+	protected:
+
+		// Generated message map functions
+		//{{AFX_MSG(CTexturePropertyDlg)
+		virtual BOOL OnInitDialog();
+		virtual void OnOK();
+		afx_msg void OnUpdateName();
+		afx_msg void OnUpdateSizeX();
+		afx_msg void OnUpdateSizeY();
+		//}}AFX_MSG
+		DECLARE_MESSAGE_MAP()
 };
 
 //{{AFX_INSERT_LOCATION}}

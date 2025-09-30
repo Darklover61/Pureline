@@ -11,21 +11,21 @@
 class CEffectElementBaseAccessor : public CEffectElementBase
 {
 	public:
-		CEffectElementBaseAccessor(){}
-		virtual ~CEffectElementBaseAccessor(){}
+		CEffectElementBaseAccessor() {}
+		virtual ~CEffectElementBaseAccessor() {}
 
-		void SaveScript(int iBaseTab, FILE * File);
+		void SaveScript (int iBaseTab, FILE * File);
 
-		void SetStartTime(float fTime);
+		void SetStartTime (float fTime);
 
 		DWORD GetPositionCount();
-		void DeletePosition(DWORD dwIndex);
-		void InsertPosition(float fTime);
-		bool GetTimePosition(DWORD dwIndex, float * pTime);
-		void SetTimePosition(DWORD dwIndex, float fTime);
-		bool GetValuePosition(DWORD dwIndex, TEffectPosition ** ppEffectPosition);
-		void SetValuePosition(DWORD dwIndex, const D3DXVECTOR3 & c_rVector);
-		void SetValueControlPoint(DWORD dwIndex, const D3DXVECTOR3 & c_rVector);
+		void DeletePosition (DWORD dwIndex);
+		void InsertPosition (float fTime);
+		bool GetTimePosition (DWORD dwIndex, float* pTime);
+		void SetTimePosition (DWORD dwIndex, float fTime);
+		bool GetValuePosition (DWORD dwIndex, TEffectPosition** ppEffectPosition);
+		void SetValuePosition (DWORD dwIndex, const D3DXVECTOR3 & c_rVector);
+		void SetValueControlPoint (DWORD dwIndex, const D3DXVECTOR3 & c_rVector);
 };
 class CParticleAccessor : public CParticleSystemData
 {
@@ -35,71 +35,71 @@ class CParticleAccessor : public CParticleSystemData
 
 		void ClearAccessor();
 		void SetDefaultData();
-		void SaveScript(int iBaseTab, FILE * File, const char * c_szGlobalPath);
+		void SaveScript (int iBaseTab, FILE * File, const char* c_szGlobalPath);
 
-		void InsertTexture(const char * c_szFileName);
-		void ClearOneTexture(DWORD dwIndex);
+		void InsertTexture (const char* c_szFileName);
+		void ClearOneTexture (DWORD dwIndex);
 		void ClearAllTexture();
 
 		// Emitter Property
-		DWORD & GetMaxEmissionCountReference();
+		DWORD& GetMaxEmissionCountReference();
 
-		float & GetCycleLengthReference();
-		BOOL & GetCycleLoopFlagReference();
-		int & GetLoopCountReference();
+		float& GetCycleLengthReference();
+		BOOL& GetCycleLoopFlagReference();
+		int& GetLoopCountReference();
 
-		BYTE & GetEmitterShapeReference();
-		BYTE & GetEmitterAdvancedTypeReference();
-		BOOL & GetEmitFromEdgeFlagReference();
-		D3DXVECTOR3 & GetEmittingSizeReference();
-		float & GetEmittingRadiusReference();
+		BYTE& GetEmitterShapeReference();
+		BYTE& GetEmitterAdvancedTypeReference();
+		BOOL& GetEmitFromEdgeFlagReference();
+		D3DXVECTOR3& GetEmittingSizeReference();
+		float& GetEmittingRadiusReference();
 
-		D3DXVECTOR3 & GetEmittingDirectionReference();
+		D3DXVECTOR3& GetEmittingDirectionReference();
 
-		TTimeEventTableFloat * GetEmitterTimeEventTableEmittingSize();
-		TTimeEventTableFloat * GetEmitterTimeEventTableEmittingAngularVelocity();
-		TTimeEventTableFloat * GetEmitterTimeEventTableEmittingDirectionX();
-		TTimeEventTableFloat * GetEmitterTimeEventTableEmittingDirectionY();
-		TTimeEventTableFloat * GetEmitterTimeEventTableEmittingDirectionZ();
-		TTimeEventTableFloat * GetEmitterTimeEventTableEmittingVelocity();
-		TTimeEventTableFloat * GetEmitterTimeEventTableEmissionCount();
-		TTimeEventTableFloat * GetEmitterTimeEventTableLifeTime();
-		TTimeEventTableFloat * GetEmitterTimeEventTableSizeX();
-		TTimeEventTableFloat * GetEmitterTimeEventTableSizeY();
+		TTimeEventTableFloat* GetEmitterTimeEventTableEmittingSize();
+		TTimeEventTableFloat* GetEmitterTimeEventTableEmittingAngularVelocity();
+		TTimeEventTableFloat* GetEmitterTimeEventTableEmittingDirectionX();
+		TTimeEventTableFloat* GetEmitterTimeEventTableEmittingDirectionY();
+		TTimeEventTableFloat* GetEmitterTimeEventTableEmittingDirectionZ();
+		TTimeEventTableFloat* GetEmitterTimeEventTableEmittingVelocity();
+		TTimeEventTableFloat* GetEmitterTimeEventTableEmissionCount();
+		TTimeEventTableFloat* GetEmitterTimeEventTableLifeTime();
+		TTimeEventTableFloat* GetEmitterTimeEventTableSizeX();
+		TTimeEventTableFloat* GetEmitterTimeEventTableSizeY();
 
 		// Particle Property
-		BYTE & GetSrcBlendTypeReference();
-		BYTE & GetDestBlendTypeReference();
-		BYTE & GetColorOperationTypeReference();
-		BYTE & GetBillboardTypeReference();
+		BYTE& GetSrcBlendTypeReference();
+		BYTE& GetDestBlendTypeReference();
+		BYTE& GetColorOperationTypeReference();
+		BYTE& GetBillboardTypeReference();
 
-		BYTE & GetTexAniTypeReference();
-		BOOL & GetTexAniRandomStartFrameFlagReference();
-		float & GetTexAniDelayReference();
+		BYTE& GetTexAniTypeReference();
+		BOOL& GetTexAniRandomStartFrameFlagReference();
+		float& GetTexAniDelayReference();
 
-		BOOL & GetStretchFlagReference();
-		BOOL & GetAttachFlagReference();
+		BOOL& GetStretchFlagReference();
+		BOOL& GetAttachFlagReference();
 
-		BYTE & GetRotationTypeReference();
-		float & GetRotationSpeedReference();
-		WORD & GetRotationRandomStartBeginReference();
-		WORD & GetRotationRandomStartEndReference();
+		BYTE& GetRotationTypeReference();
+		float& GetRotationSpeedReference();
+		WORD& GetRotationRandomStartBeginReference();
+		WORD& GetRotationRandomStartEndReference();
 
-		TTimeEventTableFloat * GetParticleTimeEventGravity();
-		TTimeEventTableFloat * GetParticleTimeEventAirResistance();
+		TTimeEventTableFloat* GetParticleTimeEventGravity();
+		TTimeEventTableFloat* GetParticleTimeEventAirResistance();
 
-		TTimeEventTableFloat * GetParticleTimeEventScaleX();
-		TTimeEventTableFloat * GetParticleTimeEventScaleY();
-		TTimeEventTableFloat * GetParticleTimeEventColorRed();
-		TTimeEventTableFloat * GetParticleTimeEventColorGreen();
-		TTimeEventTableFloat * GetParticleTimeEventColorBlue();
-		TTimeEventTableFloat * GetParticleTimeEventAlpha();
-		TTimeEventTableFloat * GetParticleTimeEventRotation();
-		TTimeEventTableFloat * GetParticleTimeEventStretch();
+		TTimeEventTableFloat* GetParticleTimeEventScaleX();
+		TTimeEventTableFloat* GetParticleTimeEventScaleY();
+		TTimeEventTableFloat* GetParticleTimeEventColorRed();
+		TTimeEventTableFloat* GetParticleTimeEventColorGreen();
+		TTimeEventTableFloat* GetParticleTimeEventColorBlue();
+		TTimeEventTableFloat* GetParticleTimeEventAlpha();
+		TTimeEventTableFloat* GetParticleTimeEventRotation();
+		TTimeEventTableFloat* GetParticleTimeEventStretch();
 
 		DWORD GetTextureCount();
-		BOOL GetImagePointer(DWORD dwIndex, CGraphicImage ** ppImage);
-		BOOL GetTextureName(DWORD dwIndex, const char ** pszTextureName);
+		BOOL GetImagePointer (DWORD dwIndex, CGraphicImage** ppImage);
+		BOOL GetTextureName (DWORD dwIndex, const char** pszTextureName);
 };
 class CMeshAccessor : public CEffectMeshScript
 {
@@ -108,19 +108,19 @@ class CMeshAccessor : public CEffectMeshScript
 		virtual ~CMeshAccessor();
 
 		void ClearAccessor();
-		void SaveScript(int iBaseTab, FILE * File, const char * c_szGlobalPath);
+		void SaveScript (int iBaseTab, FILE * File, const char* c_szGlobalPath);
 
-		void SetMeshAnimationFlag(bool bFlag);
-		void SetMeshAnimationLoopCount(int iNewCount);
-		void SetMeshAnimationFrameDelay(float fDelay);
-		void SetMeshFileName(const char * c_szFileName);
+		void SetMeshAnimationFlag (bool bFlag);
+		void SetMeshAnimationLoopCount (int iNewCount);
+		void SetMeshAnimationFrameDelay (float fDelay);
+		void SetMeshFileName (const char* c_szFileName);
 
 		void LoadMeshInstance();
 		DWORD GetMeshElementCount();
-		BOOL GetMeshElementDataPointer(DWORD dwIndex, CEffectMesh::TEffectMeshData ** ppMeshElementData);
+		BOOL GetMeshElementDataPointer (DWORD dwIndex, CEffectMesh::TEffectMeshData** ppMeshElementData);
 
 	protected:
-		CEffectMesh * m_pEffectMesh;
+		CEffectMesh* m_pEffectMesh;
 };
 
 class CLightAccessor : public CLightData
@@ -130,26 +130,27 @@ class CLightAccessor : public CLightData
 		virtual ~CLightAccessor();
 
 		void ClearAccessor();
-		void SaveScript(int iBaseTab, FILE * File);
-		
-		BOOL & GetLoopFlagReference();
-		int & GetLoopCountReference(){
+		void SaveScript (int iBaseTab, FILE * File);
+
+		BOOL& GetLoopFlagReference();
+		int& GetLoopCountReference()
+		{
 			return m_iLoopCount;
 		}
 
-		float & GetMaxRangeReference();
-		float & GetDurationReference();
+		float& GetMaxRangeReference();
+		float& GetDurationReference();
 
-		float & GetAttenuation0Reference();
-		float & GetAttenuation1Reference();
-		float & GetAttenuation2Reference();
-		
-		TTimeEventTableFloat * GetEmitterTimeEventTableRange();
+		float& GetAttenuation0Reference();
+		float& GetAttenuation1Reference();
+		float& GetAttenuation2Reference();
 
-		D3DXCOLOR & GetAmbientColorReference();
-		D3DXCOLOR & GetDiffuseColorReference();
-		void SetAmbientColor(float fr, float fg, float fb);
-		void SetDiffuseColor(float fr, float fg, float fb);
+		TTimeEventTableFloat* GetEmitterTimeEventTableRange();
+
+		D3DXCOLOR& GetAmbientColorReference();
+		D3DXCOLOR& GetDiffuseColorReference();
+		void SetAmbientColor (float fr, float fg, float fb);
+		void SetDiffuseColor (float fr, float fg, float fb);
 };
 
 class CEffectAccessor : public CEffectData
@@ -169,38 +170,38 @@ class CEffectAccessor : public CEffectData
 			int iType;
 			std::string strName;
 
-			CEffectElementBaseAccessor * pBase;
+			CEffectElementBaseAccessor* pBase;
 
-			CParticleAccessor * pParticle;
-			CMeshAccessor * pMesh;
-			CLightAccessor * pLight;
-			NSound::TSoundData * pSound;
+			CParticleAccessor* pParticle;
+			CMeshAccessor* pMesh;
+			CLightAccessor* pLight;
+			NSound::TSoundData* pSound;
 		} TEffectElement;
 
 		typedef std::vector<TEffectElement> TEffectElementVector;
 
 	public:
-		CEffectAccessor() : m_fLifeTime(5.0f){}
+		CEffectAccessor() : m_fLifeTime (5.0f) {}
 		virtual ~CEffectAccessor();
 
 		void					Clear();
 
-		CParticleSystemData *	AllocParticle();
-		CEffectMeshScript *		AllocMesh();
-		CLightData *			AllocLight();
+		CParticleSystemData* 	AllocParticle();
+		CEffectMeshScript* 		AllocMesh();
+		CLightData* 			AllocLight();
 
-		void					SetVisible(DWORD dwIndex, BOOL bVisible);
-		BOOL					GetVisible(DWORD dwIndex);
+		void					SetVisible (DWORD dwIndex, BOOL bVisible);
+		BOOL					GetVisible (DWORD dwIndex);
 
 		float					GetLifeTime();
-		void					SetLifeTime(float fLifeTime);
-		void					SetBoundingSphereRadius(float fRadius);
-		void					SetBoundingSpherePosition(const D3DXVECTOR3 & c_rv3Pos);
+		void					SetLifeTime (float fLifeTime);
+		void					SetBoundingSphereRadius (float fRadius);
+		void					SetBoundingSpherePosition (const D3DXVECTOR3 & c_rv3Pos);
 		DWORD					GetElementCount();
-		BOOL					GetElement(DWORD dwIndex, TEffectElement ** ppElement);
-		BOOL					GetElementParticle(DWORD dwIndex, CParticleAccessor ** ppParticleAccessor);
-		void					DeleteElement(DWORD dwIndex);
-		void					SwapElement(DWORD dwIndex1, DWORD dwIndex2);
+		BOOL					GetElement (DWORD dwIndex, TEffectElement** ppElement);
+		BOOL					GetElementParticle (DWORD dwIndex, CParticleAccessor** ppParticleAccessor);
+		void					DeleteElement (DWORD dwIndex);
+		void					SwapElement (DWORD dwIndex1, DWORD dwIndex2);
 
 	protected:
 		float					m_fLifeTime;
@@ -210,8 +211,8 @@ class CEffectAccessor : public CEffectData
 class CEffectInstanceAccessor : public CEffectInstance
 {
 	public:
-		CEffectInstanceAccessor(){}
-		virtual ~CEffectInstanceAccessor(){}
+		CEffectInstanceAccessor() {}
+		virtual ~CEffectInstanceAccessor() {}
 
-		void SetEffectDataAccessorPointer(CEffectAccessor * pAccessor);
+		void SetEffectDataAccessorPointer (CEffectAccessor * pAccessor);
 };

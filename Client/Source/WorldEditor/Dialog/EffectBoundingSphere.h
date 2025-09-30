@@ -2,7 +2,7 @@
 #define AFX_EFFECTBOUNDINGSPHERE_H__0657AEB6_B286_4BCB_980C_254043818736__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
+	#pragma once
 #endif // _MSC_VER > 1000
 // EffectBoundingSphere.h : header file
 //
@@ -12,46 +12,46 @@
 
 class CEffectBoundingSphere : public CDialog
 {
-// Construction
-public:
-	CEffectBoundingSphere(CWnd* pParent = NULL);   // standard constructor
+		// Construction
+	public:
+		CEffectBoundingSphere (CWnd* pParent = NULL);  // standard constructor
 
-// Functions
-	void RefreshInfo();
-	void SetBoundingSphereData();
+		// Functions
+		void RefreshInfo();
+		void SetBoundingSphereData();
 
-// Dialog Data
-	//{{AFX_DATA(CEffectBoundingSphere)
-	enum { IDD = IDD_EFFECT_BOUNDING_SPHERE };
+		// Dialog Data
+		//{{AFX_DATA(CEffectBoundingSphere)
+		enum { IDD = IDD_EFFECT_BOUNDING_SPHERE };
 		// NOTE: the ClassWizard will add data members here
-	//}}AFX_DATA
+		//}}AFX_DATA
 
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CEffectBoundingSphere)
+		// Overrides
+		// ClassWizard generated virtual function overrides
+		//{{AFX_VIRTUAL(CEffectBoundingSphere)
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+		virtual void DoDataExchange (CDataExchange* pDX);   // DDX/DDV support
+		//}}AFX_VIRTUAL
 
-// Implementation
-protected:
+		// Implementation
+	protected:
 
-	void OnOK();
-	void OnCancel();
+		void OnOK();
+		void OnCancel();
 
-	// Generated message map functions
-	//{{AFX_MSG(CEffectBoundingSphere)
-	virtual BOOL OnInitDialog();
-	afx_msg void OnChangeEffectBoundingSphereRadius();
-	afx_msg void OnChangeEffectBoundingSpherePosX();
-	afx_msg void OnChangeEffectBoundingSpherePosY();
-	afx_msg void OnChangeEffectBoundingSpherePosZ();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+		// Generated message map functions
+		//{{AFX_MSG(CEffectBoundingSphere)
+		virtual BOOL OnInitDialog();
+		afx_msg void OnChangeEffectBoundingSphereRadius();
+		afx_msg void OnChangeEffectBoundingSpherePosX();
+		afx_msg void OnChangeEffectBoundingSpherePosY();
+		afx_msg void OnChangeEffectBoundingSpherePosZ();
+		//}}AFX_MSG
+		DECLARE_MESSAGE_MAP()
 
-protected:
-	BOOL m_bCallBackEnable;
+	protected:
+		BOOL m_bCallBackEnable;
 };
 
 //{{AFX_INSERT_LOCATION}}

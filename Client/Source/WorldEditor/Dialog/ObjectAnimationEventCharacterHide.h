@@ -2,7 +2,7 @@
 #define AFX_OBJECTANIMATIONEVENTCHARACTERHIDE_H__0FAE249A_60CF_4B97_A255_FB3478DE9ACB__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
+	#pragma once
 #endif // _MSC_VER > 1000
 // ObjectAnimationEventCharacterHide.h : header file
 //
@@ -14,38 +14,38 @@
 
 class CObjectAnimationEventCharacterHide : public CObjectAnimationEventBase
 {
-// Construction
-public:
-	CObjectAnimationEventCharacterHide(CWnd* pParent = NULL);   // standard constructor
-	BOOL Create(CWnd * pParent, const CRect & c_rRect);
+		// Construction
+	public:
+		CObjectAnimationEventCharacterHide (CWnd* pParent = NULL);  // standard constructor
+		BOOL Create (CWnd * pParent, const CRect & c_rRect);
 
-// Dialog Data
-	//{{AFX_DATA(CObjectAnimationEventCharacterHide)
-	enum { IDD = IDD_OBJECT_ANIMATION_EVENT_CHARACTER_HIDE };
+		// Dialog Data
+		//{{AFX_DATA(CObjectAnimationEventCharacterHide)
+		enum { IDD = IDD_OBJECT_ANIMATION_EVENT_CHARACTER_HIDE };
 		// NOTE: the ClassWizard will add data members here
-	//}}AFX_DATA
+		//}}AFX_DATA
 
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CObjectAnimationEventCharacterHide)
+		// Overrides
+		// ClassWizard generated virtual function overrides
+		//{{AFX_VIRTUAL(CObjectAnimationEventCharacterHide)
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+		virtual void DoDataExchange (CDataExchange* pDX);   // DDX/DDV support
+		//}}AFX_VIRTUAL
 
-// Implementation
-public:
-	void Close();
-	void GetData(CRaceMotionDataAccessor::TMotionEventData * pData);
-	void SetData(const CRaceMotionDataAccessor::TMotionEventData * c_pData);
+		// Implementation
+	public:
+		void Close();
+		void GetData (CRaceMotionDataAccessor::TMotionEventData * pData);
+		void SetData (const CRaceMotionDataAccessor::TMotionEventData * c_pData);
 
-protected:
+	protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CObjectAnimationEventCharacterHide)
+		// Generated message map functions
+		//{{AFX_MSG(CObjectAnimationEventCharacterHide)
 		// NOTE: the ClassWizard will add member functions here
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+		//}}AFX_MSG
+		DECLARE_MESSAGE_MAP()
 };
 
 //{{AFX_INSERT_LOCATION}}

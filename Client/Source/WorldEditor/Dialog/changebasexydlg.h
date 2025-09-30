@@ -2,7 +2,7 @@
 #define AFX_CHANGEBASEXYDLG_H__30125D1A_E543_4FF5_90D1_6ED5EDCE6139__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
+	#pragma once
 #endif // _MSC_VER > 1000
 // changebasexydlg.h : header file
 //
@@ -12,36 +12,36 @@
 
 class CChangeBaseXYDlg : public CDialog
 {
-// Construction
-public:
-	CChangeBaseXYDlg(CWnd* pParent = NULL);   // standard constructor
+		// Construction
+	public:
+		CChangeBaseXYDlg (CWnd* pParent = NULL);  // standard constructor
 
-// Dialog Data
-	//{{AFX_DATA(CChangeBaseXYDlg)
-	enum { IDD = IDD_DIALOG_CHANGE_BASEXY };
-	CEdit	m_EditBaseY;
-	CEdit	m_EditBaseX;
-	long	m_lBaseX;
-	long	m_lBaseY;
-	//}}AFX_DATA
+		// Dialog Data
+		//{{AFX_DATA(CChangeBaseXYDlg)
+		enum { IDD = IDD_DIALOG_CHANGE_BASEXY };
+		CEdit	m_EditBaseY;
+		CEdit	m_EditBaseX;
+		long	m_lBaseX;
+		long	m_lBaseY;
+		//}}AFX_DATA
 
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CChangeBaseXYDlg)
+		// Overrides
+		// ClassWizard generated virtual function overrides
+		//{{AFX_VIRTUAL(CChangeBaseXYDlg)
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+		virtual void DoDataExchange (CDataExchange* pDX);   // DDX/DDV support
+		//}}AFX_VIRTUAL
 
-// Implementation
-protected:
+		// Implementation
+	protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CChangeBaseXYDlg)
-	virtual void OnOK();
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+		// Generated message map functions
+		//{{AFX_MSG(CChangeBaseXYDlg)
+		virtual void OnOK();
+		virtual BOOL OnInitDialog();
+		//}}AFX_MSG
+		DECLARE_MESSAGE_MAP()
 };
 
 //{{AFX_INSERT_LOCATION}}

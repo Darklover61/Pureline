@@ -5,9 +5,9 @@
 #include "EffectUI.h"
 
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+	#define new DEBUG_NEW
+	#undef THIS_FILE
+	static char THIS_FILE[] = __FILE__;
 #endif
 
 const char c_szBlendTypeCount = 13;
@@ -38,9 +38,9 @@ CBlendTypeComboBox::~CBlendTypeComboBox()
 {
 }
 
-BEGIN_MESSAGE_MAP(CBlendTypeComboBox, CComboBox)
+BEGIN_MESSAGE_MAP (CBlendTypeComboBox, CComboBox)
 	//{{AFX_MSG_MAP(CBlendTypeComboBox)
-		// NOTE - the ClassWizard will add and remove mapping macros here.
+	// NOTE - the ClassWizard will add and remove mapping macros here.
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -51,21 +51,23 @@ BOOL CBlendTypeComboBox::Create()
 {
 	for (DWORD i = 0; i < c_szBlendTypeCount; ++i)
 	{
-		InsertString(i, c_szBlendTypeName[i]);
+		InsertString (i, c_szBlendTypeName[i]);
 	}
-	SelectString(0, c_szBlendTypeName[0]);
+	SelectString (0, c_szBlendTypeName[0]);
 
 	return TRUE;
 }
 
-void CBlendTypeComboBox::SelectBlendType(DWORD dwIndex)
+void CBlendTypeComboBox::SelectBlendType (DWORD dwIndex)
 {
 	dwIndex -= 1;
 
 	if (dwIndex >= c_szBlendTypeCount)
+	{
 		return;
+	}
 
-	SelectString(0, c_szBlendTypeName[dwIndex]);
+	SelectString (0, c_szBlendTypeName[dwIndex]);
 }
 
 int CBlendTypeComboBox::GetBlendType() const
@@ -123,9 +125,9 @@ COperationTypeComboBox::~COperationTypeComboBox()
 {
 }
 
-BEGIN_MESSAGE_MAP(COperationTypeComboBox, CComboBox)
+BEGIN_MESSAGE_MAP (COperationTypeComboBox, CComboBox)
 	//{{AFX_MSG_MAP(COperationTypeComboBox)
-		// NOTE - the ClassWizard will add and remove mapping macros here.
+	// NOTE - the ClassWizard will add and remove mapping macros here.
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -136,21 +138,23 @@ BOOL COperationTypeComboBox::Create()
 {
 	for (DWORD i = 0; i < c_szOperationTypeCount; ++i)
 	{
-		InsertString(i, c_szOperationTypeName[i]);
+		InsertString (i, c_szOperationTypeName[i]);
 	}
-	SelectString(0, c_szOperationTypeName[0]);
+	SelectString (0, c_szOperationTypeName[0]);
 
 	return TRUE;
 }
 
-void COperationTypeComboBox::SelectOperationType(DWORD dwIndex)
+void COperationTypeComboBox::SelectOperationType (DWORD dwIndex)
 {
 	dwIndex -= 1;
 
 	if (dwIndex >= c_szOperationTypeCount)
+	{
 		return;
+	}
 
-	SelectString(0, c_szOperationTypeName[dwIndex]);
+	SelectString (0, c_szOperationTypeName[dwIndex]);
 }
 
 int COperationTypeComboBox::GetOperationType() const

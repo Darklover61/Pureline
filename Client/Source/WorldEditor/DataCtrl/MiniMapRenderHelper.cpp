@@ -2,16 +2,16 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "../worldeditor.h"
 #include "MiniMapRenderHelper.h"
 #include "MapAccessorOutdoor.h"
 #include "../../EterLib/Camera.h"
 
 #ifdef _DEBUG
-#undef THIS_FILE
-static char THIS_FILE[]=__FILE__;
-#define new DEBUG_NEW
+	#undef THIS_FILE
+	static char THIS_FILE[] = __FILE__;
+	#define new DEBUG_NEW
 #endif
 
 CMiniMapRenderHelper aMiniMapRenderHelper;
@@ -21,15 +21,15 @@ CMiniMapRenderHelper aMiniMapRenderHelper;
 //////////////////////////////////////////////////////////////////////
 
 CMiniMapRenderHelper::CMiniMapRenderHelper() :
-m_lpMiniMapRenderTargetSurface(NULL),
-m_lpMiniMapDepthSurface(NULL),
-m_lpMiniMapRenderTargetTexture(NULL),
-m_lpBackupRenderTargetSurface(NULL),
-m_lpBackupDepthSurface(NULL),
-m_pMapOutdoorAccessor(NULL)
+	m_lpMiniMapRenderTargetSurface (NULL),
+	m_lpMiniMapDepthSurface (NULL),
+	m_lpMiniMapRenderTargetTexture (NULL),
+	m_lpBackupRenderTargetSurface (NULL),
+	m_lpBackupDepthSurface (NULL),
+	m_pMapOutdoorAccessor (NULL)
 {
 	m_wCurCoordX = m_wCurCoordY = 0;
-	SetMiniMapPower(8);
+	SetMiniMapPower (8);
 	m_eMiniMapTextureFilter = D3DTEXF_LINEAR;
 }
 
@@ -38,12 +38,12 @@ CMiniMapRenderHelper::~CMiniMapRenderHelper()
 	ReleaseTextures();
 }
 
-void CMiniMapRenderHelper::SetMiniMapPower(BYTE byMiniMapPower)
+void CMiniMapRenderHelper::SetMiniMapPower (BYTE byMiniMapPower)
 {
 	m_byMiniMapPower = byMiniMapPower;
-	
+
 	m_dwMiniMapSize = 1 << m_byMiniMapPower;
-	
+
 	m_MiniMapViewport.X = 0;
 	m_MiniMapViewport.Y = 0;
 	m_MiniMapViewport.Width = m_dwMiniMapSize;
@@ -58,128 +58,136 @@ bool CMiniMapRenderHelper::StartRendering()
 	const TOutdoorMapCoordinate & rOutdoorMapCoordinate = m_pMapOutdoorAccessor->GetCurCoordinate();
 
 	BYTE byTerrainNum;
-	if (!m_pMapOutdoorAccessor->GetTerrainNumFromCoord(m_wCurCoordX, m_wCurCoordY, &byTerrainNum))
+	if (!m_pMapOutdoorAccessor->GetTerrainNumFromCoord (m_wCurCoordX, m_wCurCoordY, &byTerrainNum))
+	{
 		return false;
-	
-	if (!m_pMapOutdoorAccessor->GetTerrainPointer(byTerrainNum, &pTerrain))
+	}
+
+	if (!m_pMapOutdoorAccessor->GetTerrainPointer (byTerrainNum, &pTerrain))
+	{
 		return false;
-	
+	}
+
 	bool bSuccess = true;
 
-				
-	D3DXVECTOR3 v3Target = D3DXVECTOR3(
-					((float) m_wCurCoordX * 2.0f + 1.0f) * 12800.0f,
-					-((float) m_wCurCoordY * 2.0f + 1.0f) * 12800.0f,
-					pTerrain->GetHeight((m_wCurCoordX * 2 + 1) * 12800, (m_wCurCoordY * 2 + 1) * 12800));
-				
-	D3DXVECTOR3 v3Eye(v3Target.x, v3Target.y, v3Target.z + 32767.5f);
-				
+
+	D3DXVECTOR3 v3Target = D3DXVECTOR3 (
+							   ((float) m_wCurCoordX * 2.0f + 1.0f) * 12800.0f,
+							   - ((float) m_wCurCoordY * 2.0f + 1.0f) * 12800.0f,
+							   pTerrain->GetHeight ((m_wCurCoordX * 2 + 1) * 12800, (m_wCurCoordY * 2 + 1) * 12800));
+
+	D3DXVECTOR3 v3Eye (v3Target.x, v3Target.y, v3Target.z + 32767.5f);
+
 	D3DXMATRIX matTopProj;
-	D3DXMatrixOrthoRH(&matTopProj, 25600.0f, 25600.0f, 0.0f, 65535.0f);
+	D3DXMatrixOrthoRH (&matTopProj, 25600.0f, 25600.0f, 0.0f, 65535.0f);
 
 	m_matBackupProj = ms_matProj;
 
-	CCameraManager::Instance().SetCurrentCamera(CCameraManager::DEFAULT_ORTHO_CAMERA);
-	CCameraManager::Instance().GetCurrentCamera()->SetViewParams(v3Eye, v3Target, D3DXVECTOR3(0.0f, 1.0f, 0.0f));
+	CCameraManager::Instance().SetCurrentCamera (CCameraManager::DEFAULT_ORTHO_CAMERA);
+	CCameraManager::Instance().GetCurrentCamera()->SetViewParams (v3Eye, v3Target, D3DXVECTOR3 (0.0f, 1.0f, 0.0f));
 	ms_matProj = matTopProj;
 	UpdatePipeLineMatrix();
 
-	CSpeedTreeForestDirectX8::Instance().UpdateCompundMatrix(v3Eye, ms_matView, ms_matProj);
+	CSpeedTreeForestDirectX8::Instance().UpdateCompundMatrix (v3Eye, ms_matView, ms_matProj);
 
 	SaveRenderTarget();
-				
-	if (FAILED(ms_lpd3dDevice->SetRenderTarget(m_lpMiniMapRenderTargetSurface, m_lpMiniMapDepthSurface)))
+
+	if (FAILED (ms_lpd3dDevice->SetRenderTarget (m_lpMiniMapRenderTargetSurface, m_lpMiniMapDepthSurface)))
 	{
-		LogBox("CMiniMapRenderHelper::StartRenderingPhase Unable to Set Mini Map Render Target");
+		LogBox ("CMiniMapRenderHelper::StartRenderingPhase Unable to Set Mini Map Render Target");
 		bSuccess = false;
 	}
-				
-	if (FAILED(ms_lpd3dDevice->Clear(0L, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB(0x00, 0x00, 0x00), 1.0f, 0)))
+
+	if (FAILED (ms_lpd3dDevice->Clear (0L, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB (0x00, 0x00, 0x00), 1.0f, 0)))
 	{
-		LogBox("CMiniMapRenderHelper::StartRenderingPhase Unable to Clear Render Target");
+		LogBox ("CMiniMapRenderHelper::StartRenderingPhase Unable to Clear Render Target");
 		bSuccess = false;
 	}
-				
-	if (FAILED(ms_lpd3dDevice->GetViewport(&m_BackupViewport)))
+
+	if (FAILED (ms_lpd3dDevice->GetViewport (&m_BackupViewport)))
 	{
-		LogBox("Unable to Save Window Viewport\n");
+		LogBox ("Unable to Save Window Viewport\n");
 		return false;
 	}
-				
-	if (FAILED(ms_lpd3dDevice->SetViewport(&m_MiniMapViewport)))
+
+	if (FAILED (ms_lpd3dDevice->SetViewport (&m_MiniMapViewport)))
 	{
-		Trace("SetViewport Error : Phase 2\n");
+		Trace ("SetViewport Error : Phase 2\n");
 		bSuccess = false;
 	}
-				
+
 	return bSuccess;
 }
 
 void CMiniMapRenderHelper::EndRendering()
 {
-	ms_lpd3dDevice->SetViewport(&m_BackupViewport);
+	ms_lpd3dDevice->SetViewport (&m_BackupViewport);
 	RestoreRenderTarget();
 
 	CCameraManager::Instance().ResetToPreviousCamera();
 	ms_matProj = m_matBackupProj;
 	UpdatePipeLineMatrix();
 
-	CSpeedTreeForestDirectX8::Instance().UpdateCompundMatrix(CCameraManager::Instance().GetCurrentCamera()->GetEye(), ms_matView, ms_matProj);
+	CSpeedTreeForestDirectX8::Instance().UpdateCompundMatrix (CCameraManager::Instance().GetCurrentCamera()->GetEye(), ms_matView, ms_matProj);
 }
 
 bool CMiniMapRenderHelper::SaveRenderTarget()
 {
-	if (FAILED(ms_lpd3dDevice->GetRenderTarget(&m_lpBackupRenderTargetSurface)))
+	if (FAILED (ms_lpd3dDevice->GetRenderTarget (&m_lpBackupRenderTargetSurface)))
 	{
-		LogBox("Unable to Save Window Render Target\n");
+		LogBox ("Unable to Save Window Render Target\n");
 		return false;
 	}
-	
-	if (FAILED(ms_lpd3dDevice->GetDepthStencilSurface(&m_lpBackupDepthSurface)))
+
+	if (FAILED (ms_lpd3dDevice->GetDepthStencilSurface (&m_lpBackupDepthSurface)))
 	{
-		LogBox("Unable to Save Window Depth Surface\n");
+		LogBox ("Unable to Save Window Depth Surface\n");
 		return false;
 	}
-	
+
 	return true;
 }
 
 void CMiniMapRenderHelper::RestoreRenderTarget()
 {
 	if (m_lpBackupRenderTargetSurface == NULL && m_lpBackupDepthSurface == NULL)
+	{
 		return;
-	
-	ms_lpd3dDevice->SetRenderTarget(m_lpBackupRenderTargetSurface, m_lpBackupDepthSurface);
+	}
 
-	SAFE_RELEASE(m_lpBackupDepthSurface);
-	SAFE_RELEASE(m_lpBackupRenderTargetSurface);
+	ms_lpd3dDevice->SetRenderTarget (m_lpBackupRenderTargetSurface, m_lpBackupDepthSurface);
+
+	SAFE_RELEASE (m_lpBackupDepthSurface);
+	SAFE_RELEASE (m_lpBackupRenderTargetSurface);
 }
 
 bool CMiniMapRenderHelper::CreateTextures()
 {
 	// 처음 한번만 만든다.
 	if (m_lpMiniMapRenderTargetTexture)
+	{
 		return true;
+	}
 
 	// Release any old textures
 	ReleaseTextures();
 
 	// Mini Map
-	if (FAILED(ms_lpd3dDevice->CreateTexture(m_dwMiniMapSize, m_dwMiniMapSize, 1, D3DUSAGE_RENDERTARGET, D3DFMT_X8R8G8B8, D3DPOOL_DEFAULT, &m_lpMiniMapRenderTargetTexture)))
+	if (FAILED (ms_lpd3dDevice->CreateTexture (m_dwMiniMapSize, m_dwMiniMapSize, 1, D3DUSAGE_RENDERTARGET, D3DFMT_X8R8G8B8, D3DPOOL_DEFAULT, &m_lpMiniMapRenderTargetTexture)))
 	{
-		LogBox("Unable to create MiniMap render target texture");
+		LogBox ("Unable to create MiniMap render target texture");
 		return false;
 	}
 
-	if (FAILED(m_lpMiniMapRenderTargetTexture->GetSurfaceLevel(0, &m_lpMiniMapRenderTargetSurface)))
+	if (FAILED (m_lpMiniMapRenderTargetTexture->GetSurfaceLevel (0, &m_lpMiniMapRenderTargetSurface)))
 	{
-		LogBox("Unable to GetSurfaceLevel MiniMap render target texture");
+		LogBox ("Unable to GetSurfaceLevel MiniMap render target texture");
 		return false;
 	}
-	
-	if (FAILED(ms_lpd3dDevice->CreateDepthStencilSurface(m_dwMiniMapSize, m_dwMiniMapSize, D3DFMT_D16, D3DMULTISAMPLE_NONE, &m_lpMiniMapDepthSurface)))
+
+	if (FAILED (ms_lpd3dDevice->CreateDepthStencilSurface (m_dwMiniMapSize, m_dwMiniMapSize, D3DFMT_D16, D3DMULTISAMPLE_NONE, &m_lpMiniMapDepthSurface)))
 	{
-		LogBox("Unable to create Output MiniMap depth Surface");
+		LogBox ("Unable to create Output MiniMap depth Surface");
 		return false;
 	}
 
@@ -188,7 +196,7 @@ bool CMiniMapRenderHelper::CreateTextures()
 
 void CMiniMapRenderHelper::ReleaseTextures()
 {
-	SAFE_RELEASE(m_lpMiniMapDepthSurface);
-	SAFE_RELEASE(m_lpMiniMapRenderTargetTexture);
-	SAFE_RELEASE(m_lpMiniMapRenderTargetSurface);
+	SAFE_RELEASE (m_lpMiniMapDepthSurface);
+	SAFE_RELEASE (m_lpMiniMapRenderTargetTexture);
+	SAFE_RELEASE (m_lpMiniMapRenderTargetSurface);
 }

@@ -2,7 +2,7 @@
 #define AFX_MAPOBJECTPROPERTYPAGEEFFECT_H__3C31F9B8_D921_4A26_9261_271B0FC110C4__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
+	#pragma once
 #endif // _MSC_VER > 1000
 // MapObjectPropertyPageEffect.h : header file
 //
@@ -14,46 +14,46 @@ class CMapObjectProperty;
 
 class CMapObjectPropertyPageEffect : public CMapObjectPropertyPageBase
 {
-// Construction
-public:
-	CMapObjectPropertyPageEffect(CWnd* pParent = NULL);   // standard constructor
-	BOOL Create(CMapObjectProperty * pParent, const CRect & c_rRect);
+		// Construction
+	public:
+		CMapObjectPropertyPageEffect (CWnd* pParent = NULL);  // standard constructor
+		BOOL Create (CMapObjectProperty * pParent, const CRect & c_rRect);
 
-// Dialog Data
-	//{{AFX_DATA(CMapObjectPropertyPageEffect)
-	enum { IDD = IDD_MAP_OBJECT_PROPERTY_PAGE_EFFECT };
+		// Dialog Data
+		//{{AFX_DATA(CMapObjectPropertyPageEffect)
+		enum { IDD = IDD_MAP_OBJECT_PROPERTY_PAGE_EFFECT };
 		// NOTE: the ClassWizard will add data members here
-	//}}AFX_DATA
+		//}}AFX_DATA
 
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CMapObjectPropertyPageEffect)
+		// Overrides
+		// ClassWizard generated virtual function overrides
+		//{{AFX_VIRTUAL(CMapObjectPropertyPageEffect)
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	virtual void OnOK();
-	virtual void OnCancel();
-	//}}AFX_VIRTUAL
+		virtual void DoDataExchange (CDataExchange* pDX);   // DDX/DDV support
+		virtual void OnOK();
+		virtual void OnCancel();
+		//}}AFX_VIRTUAL
 
-// Implementation
-protected:
+		// Implementation
+	protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CMapObjectPropertyPageEffect)
-	afx_msg void OnLoadEffectFile();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+		// Generated message map functions
+		//{{AFX_MSG(CMapObjectPropertyPageEffect)
+		afx_msg void OnLoadEffectFile();
+		//}}AFX_MSG
+		DECLARE_MESSAGE_MAP()
 
-	void OnUpdateUI(CProperty * pProperty);
-	void OnUpdatePropertyData(const char * c_szPropertyName);
-	bool OnSave(const char * c_szPathName, CProperty * pProperty);
-	void OnRender(HWND hWnd);
+		void OnUpdateUI (CProperty * pProperty);
+		void OnUpdatePropertyData (const char* c_szPropertyName);
+		bool OnSave (const char* c_szPathName, CProperty * pProperty);
+		void OnRender (HWND hWnd);
 
-	CScreen m_Screen;
-	
-	prt::TPropertyEffect m_propertyEffect;
-	
-	CMapObjectProperty * m_pParent;
+		CScreen m_Screen;
+
+		prt::TPropertyEffect m_propertyEffect;
+
+		CMapObjectProperty* m_pParent;
 
 
 };

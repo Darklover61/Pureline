@@ -2,7 +2,7 @@
 #define AFX_MAPTERRAINTEXLISTCTRL_H__998FD766_C0FF_4AC5_B3FB_DC835041DEDB__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
+	#pragma once
 #endif // _MSC_VER > 1000
 // mapterraintexlistctrl.h : header file
 //
@@ -14,32 +14,32 @@ class CMapTerrainTexturePreview;
 
 class CMapTerrainTexListCtrl : public CListCtrl
 {
-// Construction
-public:
-	CMapTerrainTexListCtrl();
+		// Construction
+	public:
+		CMapTerrainTexListCtrl();
 
-// Attributes
-public:
+		// Attributes
+	public:
 
-// Operations
-public:
+		// Operations
+	public:
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CMapTerrainTexListCtrl)
-	//}}AFX_VIRTUAL
+		// Overrides
+		// ClassWizard generated virtual function overrides
+		//{{AFX_VIRTUAL(CMapTerrainTexListCtrl)
+		//}}AFX_VIRTUAL
 
-// Implementation
-	void LoadList();
-public:
-	virtual ~CMapTerrainTexListCtrl();
+		// Implementation
+		void LoadList();
+	public:
+		virtual ~CMapTerrainTexListCtrl();
 
-	// Generated message map functions
-protected:
-	//{{AFX_MSG(CMapTerrainTexListCtrl)
-	//}}AFX_MSG
+		// Generated message map functions
+	protected:
+		//{{AFX_MSG(CMapTerrainTexListCtrl)
+		//}}AFX_MSG
 
-	DECLARE_MESSAGE_MAP()
+		DECLARE_MESSAGE_MAP()
 };
 
 /////////////////////////////////////////////////////////////////////////////

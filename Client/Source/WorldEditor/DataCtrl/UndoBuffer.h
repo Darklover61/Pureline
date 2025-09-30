@@ -6,8 +6,8 @@ class CUndoBuffer
 		class IUndoData
 		{
 			public:
-				IUndoData(){}
-				virtual ~IUndoData(){}
+				IUndoData() {}
+				virtual ~IUndoData() {}
 
 				virtual void Backup() = 0;
 				virtual void Restore() = 0;
@@ -22,22 +22,22 @@ class CUndoBuffer
 		CUndoBuffer();
 		~CUndoBuffer();
 
-		void ClearTail(DWORD dwIndex);
+		void ClearTail (DWORD dwIndex);
 
-		void Backup(IUndoData * pData);
-		void BackupCurrent(IUndoData * pData);
+		void Backup (IUndoData * pData);
+		void BackupCurrent (IUndoData * pData);
 
 		void Undo();
 		void Redo();
 
 	protected:
-		bool GetUndoData(DWORD dwIndex, IUndoData ** ppUndoData);
+		bool GetUndoData (DWORD dwIndex, IUndoData** ppUndoData);
 
 	protected:
 		DWORD m_dwCurrentStackPosition;
 		TUndoDataDeque m_UndoDataDeque;
 
-		IUndoData * m_pTopData;
+		IUndoData* m_pTopData;
 
 		const unsigned char m_ucMAXBufferCount;
 };

@@ -9,7 +9,7 @@ class CViewportManager
 
 		void Initialize();
 
-		void MouseMove(CPoint Mouse);
+		void MouseMove (CPoint Mouse);
 
 		void ModeButtonDown();
 		void ModeButtonUp();
@@ -17,23 +17,26 @@ class CViewportManager
 		void ControlKeyDown();
 		void ControlKeyUp();
 
-		void LeftButtonDown(CPoint Mouse);
-		void LeftButtonUp(CPoint Mouse);
+		void LeftButtonDown (CPoint Mouse);
+		void LeftButtonUp (CPoint Mouse);
 
-		void TranslateStart(float x, float y);
-		void MiddleButtonDown(CPoint Mouse);
-		void MiddleButtonUp(CPoint Mouse);
+		void TranslateStart (float x, float y);
+		void MiddleButtonDown (CPoint Mouse);
+		void MiddleButtonUp (CPoint Mouse);
 
-		void RightButtonDown(CPoint Mouse);
-		void RightButtonUp(CPoint Mouse);
+		void RightButtonDown (CPoint Mouse);
+		void RightButtonUp (CPoint Mouse);
 
-		void MouseWheel(float Wheel);
+		void MouseWheel (float Wheel);
 
 		// Data Accessor
-		void SetCursorPosition(int ix, int iy);
-		void SetScreenStatus(int iWidth, int iHeight);
+		void SetCursorPosition (int ix, int iy);
+		void SetScreenStatus (int iWidth, int iHeight);
 		float GetFrustumFarDistance();
-		float GetFrustumNearDistance() {return m_fFrustumNear;}
+		float GetFrustumNearDistance()
+		{
+			return m_fFrustumNear;
+		}
 		float GetDistance();
 		float GetPitch();
 		float GetRotation();
@@ -45,13 +48,13 @@ class CViewportManager
 		bool isMiddleButton();
 		bool isRightButton();
 
-		void MoveMousePosition(float x, float y, float & xMove, float & yMove);
+		void MoveMousePosition (float x, float y, float& xMove, float& yMove);
 
 	protected:
 		enum
 		{
 			TranslateMode,
-//			RotationMode,
+			//			RotationMode,
 		};
 
 	protected:

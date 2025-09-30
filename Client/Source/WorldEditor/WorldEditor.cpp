@@ -20,14 +20,14 @@
 #pragma comment( lib, "mss32.lib" )
 
 #ifdef _DEBUG
-#pragma comment( lib, "DevIL-1.7.8d.lib" )
+	#pragma comment( lib, "DevIL-1.7.8d.lib" )
 #else
-#pragma comment( lib, "DevIL-1.7.8.lib" )
+	#pragma comment( lib, "DevIL-1.7.8.lib" )
 #endif
 #ifdef _DEBUG
-#pragma comment( lib, "DevILU-1.7.8d.lib" )
+	#pragma comment( lib, "DevILU-1.7.8d.lib" )
 #else
-#pragma comment( lib, "DevILU-1.7.8.lib" )
+	#pragma comment( lib, "DevILU-1.7.8.lib" )
 #endif
 
 #pragma comment( lib, "oldnames.lib" )
@@ -43,24 +43,24 @@
 #pragma comment( lib, "imm32.lib" )
 
 #ifdef _DEBUG
-#pragma comment( lib, "SpeedTreeRT_MTd.lib" )
+	#pragma comment( lib, "SpeedTreeRT_MTd.lib" )
 #else
-#pragma comment( lib, "SpeedTreeRT_MT.lib" )
+	#pragma comment( lib, "SpeedTreeRT_MT.lib" )
 #endif
 
 //#pragma comment( lib, "ws2_32.lib" )
 //#pragma comment( lib, "wsock32.lib" )
 
 #ifdef _DEBUG
-#pragma comment( lib, "cryptlib-8.9.0MTd.lib" )
+	#pragma comment( lib, "cryptlib-8.9.0MTd.lib" )
 #else
-#pragma comment( lib, "cryptlib-8.9.0MT.lib" )
+	#pragma comment( lib, "cryptlib-8.9.0MT.lib" )
 #endif
 
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+	#define new DEBUG_NEW
+	#undef THIS_FILE
+	static char THIS_FILE[] = __FILE__;
 #endif
 
 bool __IS_TEST_SERVER_MODE__ = false;
@@ -73,15 +73,15 @@ float CCamera::CAMERA_MAX_DISTANCE = 2500.0f;
 /////////////////////////////////////////////////////////////////////////////
 // CWorldEditorApp
 
-BEGIN_MESSAGE_MAP(CWorldEditorApp, CWinApp)
+BEGIN_MESSAGE_MAP (CWorldEditorApp, CWinApp)
 	//{{AFX_MSG_MAP(CWorldEditorApp)
-	ON_COMMAND(ID_APP_ABOUT, OnAppAbout)
+	ON_COMMAND (ID_APP_ABOUT, OnAppAbout)
 	//}}AFX_MSG_MAP
 	// Standard file based document commands
-	ON_COMMAND(ID_FILE_NEW, CWinApp::OnFileNew)
-	ON_COMMAND(ID_FILE_OPEN, CWinApp::OnFileOpen)
+	ON_COMMAND (ID_FILE_NEW, CWinApp::OnFileNew)
+	ON_COMMAND (ID_FILE_OPEN, CWinApp::OnFileOpen)
 	// Standard print setup command
-	ON_COMMAND(ID_FILE_PRINT_SETUP, CWinApp::OnFilePrintSetup)
+	ON_COMMAND (ID_FILE_PRINT_SETUP, CWinApp::OnFilePrintSetup)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -89,12 +89,12 @@ END_MESSAGE_MAP()
 
 CWorldEditorApp::CWorldEditorApp()
 {
-	timeBeginPeriod(1);
+	timeBeginPeriod (1);
 }
 
 CWorldEditorApp::~CWorldEditorApp()
 {
-	timeEndPeriod(1);
+	timeEndPeriod (1);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -105,115 +105,117 @@ CWorldEditorApp theApp;
 /////////////////////////////////////////////////////////////////////////////
 // CWorldEditorApp initialization
 
-void PackInitialize(const char * c_pszFolder)
+void PackInitialize (const char* c_pszFolder)
 {
-	if (access(c_pszFolder, 0) != 0)
+	if (access (c_pszFolder, 0) != 0)
 	{
 		return;
 	}
 
-	std::string stFolder(c_pszFolder);
+	std::string stFolder (c_pszFolder);
 	stFolder += "/";
 
-	std::string stFileName(stFolder);
+	std::string stFileName (stFolder);
 	stFileName += "Index";
 
 	CMappedFile file;
 	LPCVOID pvData;
 
-	if (!file.Create(stFileName.c_str(), &pvData, 0, 0))
+	if (!file.Create (stFileName.c_str(), &pvData, 0, 0))
 	{
-		LogBoxf("FATAL ERROR! File not exist: %s", stFileName.c_str());
-		TraceError("FATAL ERROR! File not exist: %s", stFileName.c_str());
+		LogBoxf ("FATAL ERROR! File not exist: %s", stFileName.c_str());
+		TraceError ("FATAL ERROR! File not exist: %s", stFileName.c_str());
 		return;
 	}
 
 	CMemoryTextFileLoader TextLoader;
-	TextLoader.Bind(file.Size(), pvData);
+	TextLoader.Bind (file.Size(), pvData);
 
 	for (DWORD i = 1; i < TextLoader.GetLineCount() - 1; i += 2)
 	{
-		const std::string & c_rstFolder = TextLoader.GetLineString(i);
-		const std::string & c_rstName = TextLoader.GetLineString(i + 1);
+		const std::string & c_rstFolder = TextLoader.GetLineString (i);
+		const std::string & c_rstName = TextLoader.GetLineString (i + 1);
 
-		CEterPackManager::Instance().RegisterPack((stFolder + c_rstName).c_str(), c_rstFolder.c_str());
+		CEterPackManager::Instance().RegisterPack ((stFolder + c_rstName).c_str(), c_rstFolder.c_str());
 	}
 
-	CEterPackManager::Instance().RegisterRootPack((stFolder + std::string("root")).c_str());
-	CEterPackManager::Instance().SetSearchMode(CEterPackManager::SEARCH_FILE_FIRST);
+	CEterPackManager::Instance().RegisterRootPack ((stFolder + std::string ("root")).c_str());
+	CEterPackManager::Instance().SetSearchMode (CEterPackManager::SEARCH_FILE_FIRST);
 	//CEterPackManager::Instance().SetRelativePathMode();
 	CSoundData::SetPackMode();	// Miles 파일 콜백을 셋팅해 줘야 한다.
 }
 
 BOOL CWorldEditorApp::InitInstance()
 {
-#ifdef _DEBUG
+	#ifdef _DEBUG
 	OpenConsoleWindow();
 	OpenLogFile();
-#endif
+	#endif
 
-	PackInitialize("pack");
+	PackInitialize ("pack");
 
 	AfxEnableControlContainer();
 
 	// Standard initialization
 
-#ifdef _AFXDLL
+	#ifdef _AFXDLL
 	Enable3dControls();			// Call this when using MFC in a shared DLL
-#else
+	#else
 	Enable3dControlsStatic();	// Call this when linking to MFC statically
-#endif
+	#endif
 
 	// Change the registry key under which our settings are stored.
-	SetRegistryKey(_T("WorldEditor Renewal by Kaptan Yosun"));
+	SetRegistryKey (_T ("WorldEditor Renewal by Kaptan Yosun"));
 
 	LoadStdProfileSettings();  // Load standard INI file options (including MRU)
 
 	// Register document templates
 	CSingleDocTemplate * pDocTemplate;
-	pDocTemplate = new CSingleDocTemplate(IDR_MAINFRAME,
-										  RUNTIME_CLASS(CWorldEditorDoc),
-										  RUNTIME_CLASS(CMainFrame),       // main SDI frame window
-										  RUNTIME_CLASS(CWorldEditorView));
-	AddDocTemplate(pDocTemplate);
+	pDocTemplate = new CSingleDocTemplate (IDR_MAINFRAME,
+										   RUNTIME_CLASS (CWorldEditorDoc),
+										   RUNTIME_CLASS (CMainFrame),      // main SDI frame window
+										   RUNTIME_CLASS (CWorldEditorView));
+	AddDocTemplate (pDocTemplate);
 
 	// Parse command line for standard shell commands, DDE, file open
 	CCommandLineInfo cmdInfo;
-	ParseCommandLine(cmdInfo);
+	ParseCommandLine (cmdInfo);
 
 	// Dispatch commands specified on the command line
-	if (!ProcessShellCommand(cmdInfo))
+	if (!ProcessShellCommand (cmdInfo))
+	{
 		return FALSE;
+	}
 
 	////////////////////////////////////////////////////////////////////
 	//// Specialize Code Start
 	// NOTE : PropertyManager에 USE_PACK 모드인지 설정한다. - [levites]
 	if (CEterPackManager::SEARCH_FILE_FIRST == CEterPackManager::Instance().GetSearchMode())
 	{
-		CPropertyManager::Instance().Initialize(NULL);
+		CPropertyManager::Instance().Initialize (NULL);
 	}
 	else
 	{
-		CPropertyManager::Instance().Initialize("pack/property");
+		CPropertyManager::Instance().Initialize ("pack/property");
 	}
 
-	CNonPlayerCharacterInfo::Instance().LoadNonPlayerData("locale/en/mob_proto");
+	CNonPlayerCharacterInfo::Instance().LoadNonPlayerData ("locale/en/mob_proto");
 	//CNonPlayerCharacterInfo::Instance().LoadNPCGroupData("group.txt");
 
-	getcwd(g_szProgramPath, PROGRAM_PATH_LENGTH);
-	getcwd(g_szProgramWindowPath, PROGRAM_PATH_LENGTH);
-	StringPath(g_szProgramPath);
+	getcwd (g_szProgramPath, PROGRAM_PATH_LENGTH);
+	getcwd (g_szProgramWindowPath, PROGRAM_PATH_LENGTH);
+	StringPath (g_szProgramPath);
 
-	m_GraphicDevice.Create(m_pMainWnd->GetSafeHwnd(), 1024, 768);
+	m_GraphicDevice.Create (m_pMainWnd->GetSafeHwnd(), 1024, 768);
 	CreateUtilData();
 
 	g_PopupHwnd = m_pMainWnd->GetSafeHwnd();
 
 	// Initialize
-	CMainFrame * pFrame = (CMainFrame *) m_pMainWnd;
+	CMainFrame * pFrame = (CMainFrame*) m_pMainWnd;
 	pFrame->Initialize();
 
-	srandom(time(0));
+	srandom (time (0));
 
 	m_SoundManager.Create();
 
@@ -221,15 +223,15 @@ BOOL CWorldEditorApp::InitInstance()
 	//// Specialize Code End
 	////////////////////////////////////////////////////////////////////
 
-	m_pMainWnd->ShowWindow(SW_SHOW);
+	m_pMainWnd->ShowWindow (SW_SHOW);
 	m_pMainWnd->UpdateWindow();
 
 	/////
-	CWorldEditorApp * pApplication = (CWorldEditorApp *) AfxGetApp();
-	CWorldEditorView * pView = (CWorldEditorView *)pFrame->GetActiveView();
+	CWorldEditorApp * pApplication = (CWorldEditorApp*) AfxGetApp();
+	CWorldEditorView * pView = (CWorldEditorView*)pFrame->GetActiveView();
 	CRect Rect;
-	pView->GetClientRect(&Rect);
-	pApplication->GetGraphicDevice().ResizeBackBuffer(Rect.Width(), Rect.Height());
+	pView->GetClientRect (&Rect);
+	pApplication->GetGraphicDevice().ResizeBackBuffer (Rect.Width(), Rect.Height());
 
 	return TRUE;
 }
@@ -249,44 +251,44 @@ int CWorldEditorApp::ExitInstance()
 
 class CAboutDlg : public CDialog
 {
-public:
-	CAboutDlg();
+	public:
+		CAboutDlg();
 
-// Dialog Data
-	//{{AFX_DATA(CAboutDlg)
-	enum { IDD = IDD_ABOUTBOX };
-	//}}AFX_DATA
+		// Dialog Data
+		//{{AFX_DATA(CAboutDlg)
+		enum { IDD = IDD_ABOUTBOX };
+		//}}AFX_DATA
 
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CAboutDlg)
+		// ClassWizard generated virtual function overrides
+		//{{AFX_VIRTUAL(CAboutDlg)
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+		virtual void DoDataExchange (CDataExchange* pDX);   // DDX/DDV support
+		//}}AFX_VIRTUAL
 
-// Implementation
-protected:
-	//{{AFX_MSG(CAboutDlg)
+		// Implementation
+	protected:
+		//{{AFX_MSG(CAboutDlg)
 		// No message handlers
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+		//}}AFX_MSG
+		DECLARE_MESSAGE_MAP()
 };
 
-CAboutDlg::CAboutDlg() : CDialog(CAboutDlg::IDD)
+CAboutDlg::CAboutDlg() : CDialog (CAboutDlg::IDD)
 {
 	//{{AFX_DATA_INIT(CAboutDlg)
 	//}}AFX_DATA_INIT
 }
 
-void CAboutDlg::DoDataExchange(CDataExchange* pDX)
+void CAboutDlg::DoDataExchange (CDataExchange* pDX)
 {
-	CDialog::DoDataExchange(pDX);
+	CDialog::DoDataExchange (pDX);
 	//{{AFX_DATA_MAP(CAboutDlg)
 	//}}AFX_DATA_MAP
 }
 
-BEGIN_MESSAGE_MAP(CAboutDlg, CDialog)
+BEGIN_MESSAGE_MAP (CAboutDlg, CDialog)
 	//{{AFX_MSG_MAP(CAboutDlg)
-		// No message handlers
+	// No message handlers
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -300,98 +302,114 @@ void CWorldEditorApp::OnAppAbout()
 /////////////////////////////////////////////////////////////////////////////
 // CWorldEditorApp normal functions
 
-CObjectData * CWorldEditorApp::GetObjectData()
+CObjectData* CWorldEditorApp::GetObjectData()
 {
-	CMainFrame * pFrame = (CMainFrame *)AfxGetMainWnd();
-	CWorldEditorDoc * pDocument = (CWorldEditorDoc *)pFrame->GetActiveDocument();
+	CMainFrame * pFrame = (CMainFrame*)AfxGetMainWnd();
+	CWorldEditorDoc * pDocument = (CWorldEditorDoc*)pFrame->GetActiveDocument();
 
 	if (!pDocument)
+	{
 		return NULL;
+	}
 
 	return pDocument->GetObjectData();
 }
 
-CEffectAccessor * CWorldEditorApp::GetEffectAccessor()
+CEffectAccessor* CWorldEditorApp::GetEffectAccessor()
 {
-	CMainFrame * pFrame = (CMainFrame *)AfxGetMainWnd();
-	CWorldEditorDoc * pDocument = (CWorldEditorDoc *)pFrame->GetActiveDocument();
+	CMainFrame * pFrame = (CMainFrame*)AfxGetMainWnd();
+	CWorldEditorDoc * pDocument = (CWorldEditorDoc*)pFrame->GetActiveDocument();
 
 	if (!pDocument)
+	{
 		return NULL;
+	}
 
 	return pDocument->GetEffectAccessor();
 }
 
-CMapManagerAccessor * CWorldEditorApp::GetMapManagerAccessor()
+CMapManagerAccessor* CWorldEditorApp::GetMapManagerAccessor()
 {
-	CMainFrame * pFrame = (CMainFrame *)AfxGetMainWnd();
+	CMainFrame * pFrame = (CMainFrame*)AfxGetMainWnd();
 
 	// Temporary
 	if (!pFrame->IsWindowVisible())
+	{
 		return NULL;
+	}
 	// Temporary
 
-	CWorldEditorDoc * pDocument = (CWorldEditorDoc *)pFrame->GetActiveDocument();
+	CWorldEditorDoc * pDocument = (CWorldEditorDoc*)pFrame->GetActiveDocument();
 
 	if (!pDocument)
+	{
 		return NULL;
+	}
 
 	return pDocument->GetMapManagerAccessor();
 }
 
-CSceneObject * CWorldEditorApp::GetSceneObject()
+CSceneObject* CWorldEditorApp::GetSceneObject()
 {
-	CMainFrame * pFrame = (CMainFrame *)AfxGetMainWnd();
-	CWorldEditorDoc * pDocument = (CWorldEditorDoc *)pFrame->GetActiveDocument();
+	CMainFrame * pFrame = (CMainFrame*)AfxGetMainWnd();
+	CWorldEditorDoc * pDocument = (CWorldEditorDoc*)pFrame->GetActiveDocument();
 
 	if (!pDocument)
+	{
 		return NULL;
+	}
 
 	return pDocument->GetSceneObject();
 }
 
-CSceneEffect * CWorldEditorApp::GetSceneEffect()
+CSceneEffect* CWorldEditorApp::GetSceneEffect()
 {
-	CMainFrame * pFrame = (CMainFrame *)AfxGetMainWnd();
-	CWorldEditorDoc * pDocument = (CWorldEditorDoc *)pFrame->GetActiveDocument();
+	CMainFrame * pFrame = (CMainFrame*)AfxGetMainWnd();
+	CWorldEditorDoc * pDocument = (CWorldEditorDoc*)pFrame->GetActiveDocument();
 
 	if (!pDocument)
+	{
 		return NULL;
+	}
 
 	return pDocument->GetSceneEffect();
 }
 
-CSceneMap * CWorldEditorApp::GetSceneMap()
+CSceneMap* CWorldEditorApp::GetSceneMap()
 {
-	CMainFrame * pFrame = (CMainFrame *)AfxGetMainWnd();
-	CWorldEditorDoc * pDocument = (CWorldEditorDoc *)pFrame->GetActiveDocument();
+	CMainFrame * pFrame = (CMainFrame*)AfxGetMainWnd();
+	CWorldEditorDoc * pDocument = (CWorldEditorDoc*)pFrame->GetActiveDocument();
 
 	if (!pDocument)
+	{
 		return NULL;
+	}
 
 	return pDocument->GetSceneMap();
 }
 
-CSceneFly * CWorldEditorApp::GetSceneFly()
+CSceneFly* CWorldEditorApp::GetSceneFly()
 {
-	CMainFrame * pFrame = (CMainFrame *)AfxGetMainWnd();
-	CWorldEditorDoc * pDocument = (CWorldEditorDoc *)pFrame->GetActiveDocument();
-	
+	CMainFrame * pFrame = (CMainFrame*)AfxGetMainWnd();
+	CWorldEditorDoc * pDocument = (CWorldEditorDoc*)pFrame->GetActiveDocument();
+
 	if (!pDocument)
+	{
 		return NULL;
-	
+	}
+
 	return pDocument->GetSceneFly();
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // CWorldEditorApp message handlers
 
-BOOL CWorldEditorApp::OnIdle(LONG lCount) 
+BOOL CWorldEditorApp::OnIdle (LONG lCount)
 {
 	CMainFrame * pFrame = (CMainFrame*)AfxGetMainWnd();
-	CWorldEditorView * pView = (CWorldEditorView *)pFrame->GetActiveView();
+	CWorldEditorView * pView = (CWorldEditorView*)pFrame->GetActiveView();
 
 	pView->Process();
 
-	return CWinApp::OnIdle(lCount);
+	return CWinApp::OnIdle (lCount);
 }

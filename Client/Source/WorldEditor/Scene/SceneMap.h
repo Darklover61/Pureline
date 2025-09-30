@@ -33,34 +33,34 @@ class CSceneMap : public CSceneBase
 
 		void Initialize();
 		void CreateEnvironment();
-		void SetMapManagerAccessor(CMapManagerAccessor * pMapManagerAccessor);
+		void SetMapManagerAccessor (CMapManagerAccessor * pMapManagerAccessor);
 
-		void SetEditingMode(int iMode);
+		void SetEditingMode (int iMode);
 
 		void RefreshArea();
 
 		/////////////////////////////////////////////////////////////////
 		// Set Cursor
-		CCursorRenderer * GetCursorRenererPointer();
-		void SetObjectBrushType(int iType);
-		void SetObjectBrushScale(int iScale);
-		void SetObjectBrushDensity(int iDensity);
-		void SetObjectBrushRandom(int iRandom);
-		void SetCheckingNearObject(bool bFlag);
-		void SetRandomRotation(bool bFlag);
+		CCursorRenderer* GetCursorRenererPointer();
+		void SetObjectBrushType (int iType);
+		void SetObjectBrushScale (int iScale);
+		void SetObjectBrushDensity (int iDensity);
+		void SetObjectBrushRandom (int iRandom);
+		void SetCheckingNearObject (bool bFlag);
+		void SetRandomRotation (bool bFlag);
 
-		void SetCursorYaw(float fYaw);
-		void SetCursorPitch(float fPitch);
-		void SetCursorRoll(float fRoll);
-		void SetCursorScale(DWORD dwScale);
+		void SetCursorYaw (float fYaw);
+		void SetCursorPitch (float fPitch);
+		void SetCursorRoll (float fRoll);
+		void SetCursorScale (DWORD dwScale);
 
-		void SetGridMode(BYTE byGridMode);
-		void SetGridDistance(float fDistance);
-		void SetObjectHeight(float fHeight);
+		void SetGridMode (BYTE byGridMode);
+		void SetGridDistance (float fDistance);
+		void SetObjectHeight (float fHeight);
 
 		void RefreshCursor();
 		void ClearCursor();
-		void ChangeCursor(DWORD dwCRC);
+		void ChangeCursor (DWORD dwCRC);
 
 		float GetCursorYaw();
 		float GetCursorPitch();
@@ -72,62 +72,95 @@ class CSceneMap : public CSceneBase
 		void UpdateSelecting();
 		void RenderSelectedObject();
 
-		void SetPatchGrid(bool bOn)					{ m_bPatchGridOn = bOn;					}
-		bool GetPatchGrid()							{ return m_bPatchGridOn;				}
-		void SetMapBoundGrid(bool bOn)				{ m_bMapBoundGridOn = bOn;				}
-		bool GetMapBoundGrid()						{ return m_bMapBoundGridOn;				}
+		void SetPatchGrid (bool bOn)
+		{
+			m_bPatchGridOn = bOn;
+		}
+		bool GetPatchGrid()
+		{
+			return m_bPatchGridOn;
+		}
+		void SetMapBoundGrid (bool bOn)
+		{
+			m_bMapBoundGridOn = bOn;
+		}
+		bool GetMapBoundGrid()
+		{
+			return m_bMapBoundGridOn;
+		}
 
-		void SetCompass(bool bOn)					{ m_bCompassOn = bOn;					}
-		void SetMeterGrid(bool bOn)					{ m_bMeterGridOn = bOn;					}
+		void SetCompass (bool bOn)
+		{
+			m_bCompassOn = bOn;
+		}
+		void SetMeterGrid (bool bOn)
+		{
+			m_bMeterGridOn = bOn;
+		}
 
-		void SetCharacterRendering(bool bOn)		{ m_bCharacterRenderingOn = bOn;		}
-		void SetWaterRendering(bool bOn)			{ m_bWaterRenderingOn = bOn;			}
-		void SetObjectRendering(bool bOn)			{ m_bObjectRenderingOn = bOn;			}
-		void SetObjectCollisionRendering(bool bOn)	{ m_bObjectCollisionRenderingOn = bOn;	}
-		void SetTerrainRendering(bool bOn)			{ m_bTerrainRenderingOn = bOn;			}
-		void SetObjectShadowRendering(bool bOn);
-		void SetGuildAreaRendering(bool bOn);
+		void SetCharacterRendering (bool bOn)
+		{
+			m_bCharacterRenderingOn = bOn;
+		}
+		void SetWaterRendering (bool bOn)
+		{
+			m_bWaterRenderingOn = bOn;
+		}
+		void SetObjectRendering (bool bOn)
+		{
+			m_bObjectRenderingOn = bOn;
+		}
+		void SetObjectCollisionRendering (bool bOn)
+		{
+			m_bObjectCollisionRenderingOn = bOn;
+		}
+		void SetTerrainRendering (bool bOn)
+		{
+			m_bTerrainRenderingOn = bOn;
+		}
+		void SetObjectShadowRendering (bool bOn);
+		void SetGuildAreaRendering (bool bOn);
 
 		D3DXVECTOR3 GetMouseMapIntersect();
-		void OnMovePosition(float fx, float fy);
+		void OnMovePosition (float fx, float fy);
 
 		void LightPositionEditingStart()
 		{
-			m_bLightPositionEditingInProgress = true; 
+			m_bLightPositionEditingInProgress = true;
 		}
 		void LightPositionEditingEnd()
 		{
-			m_bLightPositionEditingInProgress = false; 
+			m_bLightPositionEditingInProgress = false;
 		}
 		void SetLightPositionEditingOn()
 		{
-			m_bLightPositionEditingOn = true; 
+			m_bLightPositionEditingOn = true;
 		}
 		void SetLightPositionEditingOff()
 		{
-			m_bLightPositionEditingOn = false; 
+			m_bLightPositionEditingOn = false;
 		}
 
 	protected:
 		void OnUpdate();
-		void OnRender(BOOL bClear);
-		void OnRenderUI(float fx, float fy);
+		void OnRender (BOOL bClear);
+		void OnRenderUI (float fx, float fy);
 		void OnRenderLightDirection();
 		void OnRenderEnvironmentMap();
 
 		void OnRenderSceneAttribute();
-		void OnRenderMonsterAreaInfo(CMonsterAreaInfo * pMonsterAreaInfo);
+		void OnRenderMonsterAreaInfo (CMonsterAreaInfo * pMonsterAreaInfo);
 
 		void OnSetCamera();
 
-		void OnKeyDown(int iChar);
-		void OnKeyUp(int iChar);
-		void OnMouseMove(long x, long y);
-		void OnLButtonDown(UINT nFlags, CPoint point);
+		void OnKeyDown (int iChar);
+		void OnKeyUp (int iChar);
+		void OnMouseMove (long x, long y);
+		void OnLButtonDown (UINT nFlags, CPoint point);
 		void OnLButtonUp();
 		void OnRButtonDown();
 		void OnRButtonUp();
-		BOOL OnMouseWheel(short zDelta);
+		BOOL OnMouseWheel (short zDelta);
 
 		void OnRenderCenterCursor();
 		void OnRenderCompass();
@@ -141,16 +174,16 @@ class CSceneMap : public CSceneBase
 		void OnRenderCharacter();
 		void OnRenderObjectCollision();
 
-		void OnLightMove(const long & c_rlx, const long & c_rly);
+		void OnLightMove (const long& c_rlx, const long& c_rly);
 
 		void SaveMiniMapWithMonsterAreaInfo();
 
 		void __ClearCursor();
 
 	protected:
-		CMapManagerAccessor *					m_pMapManagerAccessor;
-		CMapManagerAccessor::CHeightObserver *	m_pHeightObserver;
-		CMapOutdoorAccessor *		m_pMapAccessor;
+		CMapManagerAccessor* 					m_pMapManagerAccessor;
+		CMapManagerAccessor::CHeightObserver* 	m_pHeightObserver;
+		CMapOutdoorAccessor* 		m_pMapAccessor;
 		D3DXCOLOR					m_ClearColor;
 
 		int							m_iEditingMode;

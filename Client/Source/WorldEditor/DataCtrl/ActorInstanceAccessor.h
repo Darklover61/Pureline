@@ -15,34 +15,34 @@ class CActorInstanceAccessor : public CActorInstance
 		BOOL IsModelThing();
 		BOOL IsMotionThing();
 
-		BOOL SetAccessorModel(CGraphicThing * pThing);
-		BOOL SetAccessorMotion(CGraphicThing * pThing);
+		BOOL SetAccessorModel (CGraphicThing * pThing);
+		BOOL SetAccessorMotion (CGraphicThing * pThing);
 
 		void SetMotion();
-		void SetMotionData(CRaceMotionData * pMotionData);
+		void SetMotionData (CRaceMotionData * pMotionData);
 		float GetMotionDuration();
 
 		DWORD GetBoneCount();
-		void SetLocalTime(float fLocalTime);
-		BOOL GetBoneName(DWORD dwIndex, std::string * pstrBoneName);
+		void SetLocalTime (float fLocalTime);
+		BOOL GetBoneName (DWORD dwIndex, std::string * pstrBoneName);
 
-		BOOL GetBoneMatrix(DWORD dwBoneIndex, D3DXMATRIX ** ppMatrix);
-		BOOL GetBoneIndexByName(const char * c_szBoneName, int * pBoneIndex) const;
+		BOOL GetBoneMatrix (DWORD dwBoneIndex, D3DXMATRIX** ppMatrix);
+		BOOL GetBoneIndexByName (const char* c_szBoneName, int* pBoneIndex) const;
 
 		void ClearAttachingObject();
-		void AttachObject(const char * c_szFileName, const char * c_szBoneName);
+		void AttachObject (const char* c_szFileName, const char* c_szBoneName);
 		void UpdateAttachingObject();
 		void RenderAttachingObject();
 
 	protected:
-		CGraphicThing * m_pModelThing;
-		CGraphicThing * m_pMotionThing;
+		CGraphicThing* m_pModelThing;
+		CGraphicThing* m_pMotionThing;
 
 		struct SAttachingModelInstance
 		{
 			std::string strBoneName;
-			CGraphicThing * pThing;
-			CGrannyModelInstance * pModelInstance;
+			CGraphicThing* pThing;
+			CGrannyModelInstance* pModelInstance;
 		};
 		std::list<SAttachingModelInstance> m_AttachingObjectList;
 };

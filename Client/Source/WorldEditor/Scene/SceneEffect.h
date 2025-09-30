@@ -34,48 +34,48 @@ class CSceneEffect : public CSceneBase
 		void Stop();
 
 		DWORD GetStartTimeCount();
-		bool GetStartTime(DWORD dwIndex, float * pTime);
+		bool GetStartTime (DWORD dwIndex, float* pTime);
 
-		void SelectEffectElement(DWORD dwIndex);
-		void SetEffectAccessor(CEffectAccessor * pData);
+		void SelectEffectElement (DWORD dwIndex);
+		void SetEffectAccessor (CEffectAccessor * pData);
 
 		void UpdatePreviewInstance();
 
 		DWORD GetSelectedPositionIndex();
-		void SetSelectedPositionIndex(DWORD dwNewIndex);
+		void SetSelectedPositionIndex (DWORD dwNewIndex);
 
-		void UsingSceneObject(BOOL bUsing);
+		void UsingSceneObject (BOOL bUsing);
 		void DeselectGrippedPosition();
 
-		void SetCursorVisibility(BOOL bShow);
-		void SetCharacterVisibility(BOOL bShow);
-		void SetBoundingSphereVisibility(BOOL bShow);
+		void SetCursorVisibility (BOOL bShow);
+		void SetCharacterVisibility (BOOL bShow);
+		void SetBoundingSphereVisibility (BOOL bShow);
 
 		void RefreshTranslationDialog();
 		void OnChangeEffectPosition();
 
 	protected:
 		void OnUpdate();
-		void OnRender(BOOL bClear);
-		void OnRenderUI(float fx, float fy);
+		void OnRender (BOOL bClear);
+		void OnRenderUI (float fx, float fy);
 
 		void RenderEffectPosition();
 		void RenderPositionGraph();
 		void RenderBoundingSphere();
 		void PickingPositionGraph();
 
-		void OnKeyDown(int iChar);
-		void OnKeyUp(int iChar);
-		void OnMouseMove(long x, long y);
-		void OnLButtonDown(UINT nFlags, CPoint point);
+		void OnKeyDown (int iChar);
+		void OnKeyUp (int iChar);
+		void OnMouseMove (long x, long y);
+		void OnLButtonDown (UINT nFlags, CPoint point);
 		void OnLButtonUp();
 		void OnRButtonDown();
 		void OnRButtonUp();
-		BOOL OnMouseWheel(short zDelta);
-		void OnMovePosition(float fx, float fy);
+		BOOL OnMouseWheel (short zDelta);
+		void OnMovePosition (float fx, float fy);
 
 	protected:
-		CEffectAccessor * m_pEffectAccessor;
+		CEffectAccessor* m_pEffectAccessor;
 
 		DWORD m_dwSelectedIndex;
 
@@ -93,7 +93,7 @@ class CSceneEffect : public CSceneBase
 		bool m_isLoop;
 		DWORD m_dwLoopStartTimeIndex;
 
-		CEffectTranslationDialog * m_pEffectTranslationDialog;
+		CEffectTranslationDialog* m_pEffectTranslationDialog;
 
 		///////////////////////////////////////////////////////////////////////////
 

@@ -6,7 +6,7 @@
 #define AFX_WORLDEDITORDOC_H__9635693F_AA8E_4775_9F20_82F7B6933B3B__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
+	#pragma once
 #endif // _MSC_VER > 1000
 
 // Test Code
@@ -21,20 +21,20 @@ class CWorldEditorDoc : public CDocument
 
 	protected: // create from serialization only
 		CWorldEditorDoc();
-		DECLARE_DYNCREATE(CWorldEditorDoc)
+		DECLARE_DYNCREATE (CWorldEditorDoc)
 
-	// Attributes
+		// Attributes
 	public:
 		CMapManagerAccessor m_MapManagerAccessor;
 		CObjectData m_ObjectData;
 		CEffectAccessor m_EffectAccessor;
 
-		CSceneBase * m_pActiveScene;
+		CSceneBase* m_pActiveScene;
 		CSceneMap m_SceneMap;
 		CSceneObject m_SceneObject;
 		CSceneEffect m_SceneEffect;
 		CSceneFly m_SceneFly;
-		
+
 		CUndoBuffer m_UndoBuffer;
 
 		int m_iActiveMode;
@@ -44,50 +44,62 @@ class CWorldEditorDoc : public CDocument
 		bool	m_bIsEditingMapAttribute;
 		bool	m_bIsEditingDirectionalLight;
 
-	// Operations
+		// Operations
 	public:
-		void SetActiveMode(int iMode);
+		void SetActiveMode (int iMode);
 		int GetActiveMode();
-		CSceneBase * GetActiveScene();
+		CSceneBase* GetActiveScene();
 
-		CMapManagerAccessor * GetMapManagerAccessor();
-		CObjectData * GetObjectData();
-		CEffectAccessor * GetEffectAccessor();
+		CMapManagerAccessor* GetMapManagerAccessor();
+		CObjectData* GetObjectData();
+		CEffectAccessor* GetEffectAccessor();
 
-		CSceneMap * GetSceneMap();
-		CSceneObject * GetSceneObject();
-		CSceneEffect * GetSceneEffect();
-		CSceneFly *	GetSceneFly();
+		CSceneMap* GetSceneMap();
+		CSceneObject* GetSceneObject();
+		CSceneEffect* GetSceneEffect();
+		CSceneFly* 	GetSceneFly();
 
-		CUndoBuffer * GetUndoBuffer();
+		CUndoBuffer* GetUndoBuffer();
 
-		BOOL CreateSceneIterator(TSceneIterator & itor);
-		BOOL NextSceneIterator(TSceneIterator & itor);
+		BOOL CreateSceneIterator (TSceneIterator & itor);
+		BOOL NextSceneIterator (TSceneIterator & itor);
 
-		bool	IsEditingMapAttribute() const		{ return m_bIsEditingMapAttribute; }
-		bool	IsEditingDirectionalLight() const	{ return m_bIsEditingDirectionalLight; }
+		bool	IsEditingMapAttribute() const
+		{
+			return m_bIsEditingMapAttribute;
+		}
+		bool	IsEditingDirectionalLight() const
+		{
+			return m_bIsEditingDirectionalLight;
+		}
 
-		void	SetEditingMapAttribute(bool enable)		{ m_bIsEditingMapAttribute = enable; }
-		void	SetEditingDirectionalLight(bool enable) { m_bIsEditingDirectionalLight = enable; }
+		void	SetEditingMapAttribute (bool enable)
+		{
+			m_bIsEditingMapAttribute = enable;
+		}
+		void	SetEditingDirectionalLight (bool enable)
+		{
+			m_bIsEditingDirectionalLight = enable;
+		}
 
 
-	// Overrides
+		// Overrides
 		// ClassWizard generated virtual function overrides
 		//{{AFX_VIRTUAL(CWorldEditorDoc)
-		public:
+	public:
 		virtual BOOL OnNewDocument();
-		virtual void Serialize(CArchive& ar);
+		virtual void Serialize (CArchive& ar);
 		//}}AFX_VIRTUAL
 
-	// Implementation
+		// Implementation
 	public:
 		virtual ~CWorldEditorDoc();
-	#ifdef _DEBUG
+		#ifdef _DEBUG
 		virtual void AssertValid() const;
-		virtual void Dump(CDumpContext& dc) const;
-	#endif
+		virtual void Dump (CDumpContext& dc) const;
+		#endif
 
-	// Generated message map functions
+		// Generated message map functions
 	protected:
 		//{{AFX_MSG(CWorldEditorDoc)
 		//}}AFX_MSG

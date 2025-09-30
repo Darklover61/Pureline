@@ -2,7 +2,7 @@
 #define AFX_OBJECTMODELATTACHEFFECTSUBPAGE_H__9B0C04ED_0E79_4FB2_9882_12078809C911__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
+	#pragma once
 #endif // _MSC_VER > 1000
 // objectmodelattacheffectsubpage.h : header file
 //
@@ -12,39 +12,39 @@
 
 class CObjectModelAttachEffectSubPage : public CDialog
 {
-// Construction
-public:
-	CObjectModelAttachEffectSubPage(CWnd* pParent = NULL);   // standard constructor
-	BOOL Create(CWnd * pParent, const CRect & c_rRect);
-	void SetAttachingIndex(DWORD dwIndex);
-	void UpdateUI();
+		// Construction
+	public:
+		CObjectModelAttachEffectSubPage (CWnd* pParent = NULL);  // standard constructor
+		BOOL Create (CWnd * pParent, const CRect & c_rRect);
+		void SetAttachingIndex (DWORD dwIndex);
+		void UpdateUI();
 
-// Dialog Data
-	//{{AFX_DATA(CObjectModelAttachEffectSubPage)
-	enum { IDD = IDD_OBJECT_MODEL_ATTACH_EFFECT_PAGE };
+		// Dialog Data
+		//{{AFX_DATA(CObjectModelAttachEffectSubPage)
+		enum { IDD = IDD_OBJECT_MODEL_ATTACH_EFFECT_PAGE };
 		// NOTE: the ClassWizard will add data members here
-	//}}AFX_DATA
+		//}}AFX_DATA
 
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CObjectModelAttachEffectSubPage)
+		// Overrides
+		// ClassWizard generated virtual function overrides
+		//{{AFX_VIRTUAL(CObjectModelAttachEffectSubPage)
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+		virtual void DoDataExchange (CDataExchange* pDX);   // DDX/DDV support
+		//}}AFX_VIRTUAL
 
-// Implementation
-protected:
+		// Implementation
+	protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CObjectModelAttachEffectSubPage)
-	afx_msg void OnEffectPageLoadEffect();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+		// Generated message map functions
+		//{{AFX_MSG(CObjectModelAttachEffectSubPage)
+		afx_msg void OnEffectPageLoadEffect();
+		//}}AFX_MSG
+		DECLARE_MESSAGE_MAP()
 
-		
-protected:
-	DWORD m_dwAttachingIndex;
+
+	protected:
+		DWORD m_dwAttachingIndex;
 };
 
 //{{AFX_INSERT_LOCATION}}

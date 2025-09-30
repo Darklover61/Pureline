@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "../EterPack/EterPackManager.h"
 #include "pythonnonplayer.h"
 #include "InstanceBase.h"

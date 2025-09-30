@@ -2,7 +2,7 @@
 #define AFX_MAPCTRLBAR_H__DA86BDBF_B4DA_4886_A7A2_472078EAD79D__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
+	#pragma once
 #endif // _MSC_VER > 1000
 // MapCtrlBar.h : header file
 //
@@ -23,43 +23,43 @@
 
 class CMapCtrlBar : public CSizingControlBar
 {
-// Construction
-public:
-	CMapCtrlBar();
-	BOOL Create(CWnd * pParent);
-	void Initialize();
-	void RunLoadMapEvent();
+		// Construction
+	public:
+		CMapCtrlBar();
+		BOOL Create (CWnd * pParent);
+		void Initialize();
+		void RunLoadMapEvent();
 
-// Attributes
-public:
-	CMapTabPage m_pageTab;
-	CMapFilePage m_pageFile;
-	CMapTerrainPage m_pageTerrain;
-	CMapObjectPage m_pageObject;
-	CMapEnvironmentPage m_pageEnvironment;
-	CMapAttributePage m_pageAttribute;
+		// Attributes
+	public:
+		CMapTabPage m_pageTab;
+		CMapFilePage m_pageFile;
+		CMapTerrainPage m_pageTerrain;
+		CMapObjectPage m_pageObject;
+		CMapEnvironmentPage m_pageEnvironment;
+		CMapAttributePage m_pageAttribute;
 
-// Operations
-public:
-	// Map Editing Mode를 리턴한다.
-	unsigned char UpdatePage();
+		// Operations
+	public:
+		// Map Editing Mode를 리턴한다.
+		unsigned char UpdatePage();
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CMapCtrlBar)
-	//}}AFX_VIRTUAL
+		// Overrides
+		// ClassWizard generated virtual function overrides
+		//{{AFX_VIRTUAL(CMapCtrlBar)
+		//}}AFX_VIRTUAL
 
-// Implementation
-public:
-	virtual ~CMapCtrlBar();
+		// Implementation
+	public:
+		virtual ~CMapCtrlBar();
 
-	// Generated message map functions
-protected:
-	//{{AFX_MSG(CMapCtrlBar)
-	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-	afx_msg void OnSize(UINT nType, int cx, int cy);
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+		// Generated message map functions
+	protected:
+		//{{AFX_MSG(CMapCtrlBar)
+		afx_msg int OnCreate (LPCREATESTRUCT lpCreateStruct);
+		afx_msg void OnSize (UINT nType, int cx, int cy);
+		//}}AFX_MSG
+		DECLARE_MESSAGE_MAP()
 };
 
 /////////////////////////////////////////////////////////////////////////////

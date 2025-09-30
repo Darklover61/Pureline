@@ -15,49 +15,57 @@ void CActorInstanceAccessor::ClearAttachingObject()
 	m_AttachingObjectList.clear();
 }
 
-void CActorInstanceAccessor::AttachObject(const char * c_szFileName, const char * c_szBoneName)
+void CActorInstanceAccessor::AttachObject (const char* c_szFileName, const char* c_szBoneName)
 {
-	if (0 == strlen(c_szFileName))
+	if (0 == strlen (c_szFileName))
+	{
 		return;
+	}
 
 	SAttachingModelInstance ModelInstance;
 
-	ModelInstance.pThing = (CGraphicThing *)CResourceManager::Instance().GetResourcePointer(c_szFileName);
+	ModelInstance.pThing = (CGraphicThing*)CResourceManager::Instance().GetResourcePointer (c_szFileName);
 	ModelInstance.pThing->AddReference();
 	if (1 != ModelInstance.pThing->GetModelCount())
+	{
 		return;
+	}
 
 	ModelInstance.strBoneName = c_szBoneName;
 	ModelInstance.pModelInstance = new CModelInstanceAccessor;
 
 	CGraphicVertexBuffer m_kSharedDeformableVertexBuffer;
-		m_kSharedDeformableVertexBuffer.Destroy();
-		m_kSharedDeformableVertexBuffer.Create(
-		ModelInstance.pModelInstance->GetDeformableVertexCount(), 
-		D3DFVF_XYZ|D3DFVF_NORMAL|D3DFVF_TEX1, 
-		D3DUSAGE_WRITEONLY, 
+	m_kSharedDeformableVertexBuffer.Destroy();
+	m_kSharedDeformableVertexBuffer.Create (
+		ModelInstance.pModelInstance->GetDeformableVertexCount(),
+		D3DFVF_XYZ | D3DFVF_NORMAL | D3DFVF_TEX1,
+		D3DUSAGE_WRITEONLY,
 		D3DPOOL_MANAGED);
-		ModelInstance.pModelInstance->SetMainModelPointer(ModelInstance.pThing->GetModelPointer(0),&m_kSharedDeformableVertexBuffer);
+	ModelInstance.pModelInstance->SetMainModelPointer (ModelInstance.pThing->GetModelPointer (0), &m_kSharedDeformableVertexBuffer);
 	//ModelInstance.pModelInstance->SetModelPointer(ModelInstance.pThing->GetModelPointer(0));
 
-	m_AttachingObjectList.push_back(ModelInstance);
+	m_AttachingObjectList.push_back (ModelInstance);
 }
 
 void CActorInstanceAccessor::UpdateAttachingObject()
 {
-	CGrannyLODController * pLODController = CGraphicThingInstance::GetLODControllerPointer(0);
+	CGrannyLODController * pLODController = CGraphicThingInstance::GetLODControllerPointer (0);
 	if (!pLODController)
+	{
 		return;
+	}
 	CGrannyModelInstance * pModelInstance = pLODController->GetModelInstance();
 	if (!pModelInstance)
+	{
 		return;
+	}
 
 	for (std::list<SAttachingModelInstance>::iterator itor = m_AttachingObjectList.begin(); itor != m_AttachingObjectList.end(); ++itor)
 	{
 		SAttachingModelInstance & rInstance = *itor;
-		rInstance.pModelInstance->Update(CGrannyModelInstance::ANIFPS_MAX);
-		rInstance.pModelInstance->Deform(&GetIdentityMatrix());
-		rInstance.pModelInstance->SetParentModelInstance(pModelInstance, rInstance.strBoneName.c_str());
+		rInstance.pModelInstance->Update (CGrannyModelInstance::ANIFPS_MAX);
+		rInstance.pModelInstance->Deform (&GetIdentityMatrix());
+		rInstance.pModelInstance->SetParentModelInstance (pModelInstance, rInstance.strBoneName.c_str());
 	}
 }
 
@@ -78,17 +86,17 @@ void CActorInstanceAccessor::SetMotion()
 	m_kCurMotNode.fEndTime = 0.0f;
 	m_kCurMotNode.fSpeedRatio = 1.0f;
 	m_kCurMotNode.dwcurFrame = 0;
-	m_kCurMotNode.dwFrameCount = CActorInstance::GetMotionDuration(0) / (1.0f / g_fGameFPS);
-	CGraphicThingInstance::SetMotion(0, 0.0f, 1);
+	m_kCurMotNode.dwFrameCount = CActorInstance::GetMotionDuration (0) / (1.0f / g_fGameFPS);
+	CGraphicThingInstance::SetMotion (0, 0.0f, 1);
 }
 
-void CActorInstanceAccessor::SetLocalTime(float fLocalTime)
+void CActorInstanceAccessor::SetLocalTime (float fLocalTime)
 {
-	CGraphicThingInstance::__SetLocalTime(fLocalTime);
-	m_kCurMotNode.dwcurFrame = fLocalTime*g_fGameFPS;
+	CGraphicThingInstance::__SetLocalTime (fLocalTime);
+	m_kCurMotNode.dwcurFrame = fLocalTime * g_fGameFPS;
 }
 
-void CActorInstanceAccessor::SetMotionData(CRaceMotionData * pMotionData)
+void CActorInstanceAccessor::SetMotionData (CRaceMotionData * pMotionData)
 {
 	m_pkCurRaceMotionData = pMotionData;
 
@@ -96,67 +104,75 @@ void CActorInstanceAccessor::SetMotionData(CRaceMotionData * pMotionData)
 	for (DWORD i = 0; i < pMotionData->GetMotionEventDataCount(); ++i)
 	{
 		const CRaceMotionData::TMotionEventData * c_pData;
-		if (!pMotionData->GetMotionEventDataPointer(i, &c_pData))
+		if (!pMotionData->GetMotionEventDataPointer (i, &c_pData))
+		{
 			continue;
+		}
 
 		if (CRaceMotionData::MOTION_EVENT_TYPE_EFFECT == c_pData->iType)
 		{
-			const CRaceMotionData::TMotionEffectEventData * c_pEffectData = (const CRaceMotionData::TMotionEffectEventData *)c_pData;
-			CEffectManager::Instance().RegisterEffect(c_pEffectData->strEffectFileName.c_str());
+			const CRaceMotionData::TMotionEffectEventData * c_pEffectData = (const CRaceMotionData::TMotionEffectEventData*)c_pData;
+			CEffectManager::Instance().RegisterEffect (c_pEffectData->strEffectFileName.c_str());
 		}
 		else if (CRaceMotionData::MOTION_EVENT_TYPE_FLY == c_pData->iType)
 		{
-			const CRaceMotionData::TMotionFlyEventData * c_pFlyData = (const CRaceMotionData::TMotionFlyEventData *)c_pData;
-			CFlyingManager::Instance().RegisterFlyingData(c_pFlyData->strFlyFileName.c_str());
+			const CRaceMotionData::TMotionFlyEventData * c_pFlyData = (const CRaceMotionData::TMotionFlyEventData*)c_pData;
+			CFlyingManager::Instance().RegisterFlyingData (c_pFlyData->strFlyFileName.c_str());
 		}
 	}
 }
 
 float CActorInstanceAccessor::GetMotionDuration()
 {
-	return CActorInstance::GetMotionDuration(0);
+	return CActorInstance::GetMotionDuration (0);
 }
 
 DWORD CActorInstanceAccessor::GetBoneCount()
 {
-	CGrannyModel * pModel = m_pModelThing->GetModelPointer(0);
+	CGrannyModel * pModel = m_pModelThing->GetModelPointer (0);
 	granny_model * pgrnModel = pModel->GetGrannyModelPointer();
 	return pgrnModel->Skeleton->BoneCount;
 }
 
-BOOL CActorInstanceAccessor::GetBoneName(DWORD dwIndex, std::string * pstrBoneName)
+BOOL CActorInstanceAccessor::GetBoneName (DWORD dwIndex, std::string * pstrBoneName)
 {
-	CGrannyModel * pModel = m_pModelThing->GetModelPointer(0);
+	CGrannyModel * pModel = m_pModelThing->GetModelPointer (0);
 	granny_model * pgrnModel = pModel->GetGrannyModelPointer();
 
-	if (dwIndex >= DWORD(pgrnModel->Skeleton->BoneCount))
+	if (dwIndex >= DWORD (pgrnModel->Skeleton->BoneCount))
+	{
 		return FALSE;
+	}
 
 	*pstrBoneName = pgrnModel->Skeleton->Bones[dwIndex].Name;
 	return TRUE;
 }
 
-BOOL CActorInstanceAccessor::GetBoneMatrix(DWORD dwBoneIndex, D3DXMATRIX ** ppMatrix)
+BOOL CActorInstanceAccessor::GetBoneMatrix (DWORD dwBoneIndex, D3DXMATRIX** ppMatrix)
 {
-	return CGraphicThingInstance::GetBoneMatrix(0, dwBoneIndex, ppMatrix);
+	return CGraphicThingInstance::GetBoneMatrix (0, dwBoneIndex, ppMatrix);
 }
 
-BOOL CActorInstanceAccessor::GetBoneIndexByName(const char * c_szBoneName, int * pBoneIndex) const
+BOOL CActorInstanceAccessor::GetBoneIndexByName (const char* c_szBoneName, int* pBoneIndex) const
 {
 	if (m_LODControllerVector.empty())
+	{
 		return FALSE;
+	}
 
 	const CGrannyModelInstance * c_pModelInstance = m_LODControllerVector[0]->GetModelInstance();
-	c_pModelInstance->GetBoneIndexByName(c_szBoneName, pBoneIndex);
+	c_pModelInstance->GetBoneIndexByName (c_szBoneName, pBoneIndex);
 
 	return TRUE;
 }
 
-BOOL CActorInstanceAccessor::SetAccessorModel(CGraphicThing * pThing)
+BOOL CActorInstanceAccessor::SetAccessorModel (CGraphicThing * pThing)
 {
-	assert(pThing);
+	assert (pThing);
 	if (!pThing)
+	{
 		return FALSE;
+	}
 
 	ClearModel();
 
@@ -164,55 +180,59 @@ BOOL CActorInstanceAccessor::SetAccessorModel(CGraphicThing * pThing)
 
 	if (0 == pThing->GetModelCount())
 	{
-		LogBox("모델 파일이 아닙니다", "Error");
+		LogBox ("모델 파일이 아닙니다", "Error");
 		pThing->Release();
 		return FALSE;
 	}
 
-	CGrannyModel * pModel = pThing->GetModelPointer(0);
+	CGrannyModel * pModel = pThing->GetModelPointer (0);
 	if (!pModel)
 	{
-		LogBox("정상적인 모델 파일이 아닙니다", "Error");
+		LogBox ("정상적인 모델 파일이 아닙니다", "Error");
 		pThing->Release();
 		return FALSE;
 	}
 
-	CGraphicThingInstance::ReserveModelThing(2);
-	CGraphicThingInstance::ReserveModelInstance(2);
-	CGraphicThingInstance::RegisterModelThing(0, pThing);
-	CGraphicThingInstance::SetModelInstance(0, 0, 0);
+	CGraphicThingInstance::ReserveModelThing (2);
+	CGraphicThingInstance::ReserveModelInstance (2);
+	CGraphicThingInstance::RegisterModelThing (0, pThing);
+	CGraphicThingInstance::SetModelInstance (0, 0, 0);
 
 	m_pModelThing = pThing;
 
 	return TRUE;
 }
 
-BOOL CActorInstanceAccessor::SetAccessorMotion(CGraphicThing * pThing)
+BOOL CActorInstanceAccessor::SetAccessorMotion (CGraphicThing * pThing)
 {
 	if (!pThing)
+	{
 		return FALSE;
+	}
 
 	ClearMotion();
 
 	if (pThing->IsEmpty())
+	{
 		pThing->AddReference();
+	}
 
 	if (0 == pThing->GetMotionCount())
 	{
-		LogBox("모션 파일이 아닙니다", "Error");
+		LogBox ("모션 파일이 아닙니다", "Error");
 		pThing->Release();
 		return FALSE;
 	}
 
-	CGrannyMotion * pMotion = pThing->GetMotionPointer(0);
+	CGrannyMotion * pMotion = pThing->GetMotionPointer (0);
 	if (!pMotion)
 	{
-		LogBox("정상적인 모션 파일이 아닙니다", "Error");
+		LogBox ("정상적인 모션 파일이 아닙니다", "Error");
 		pThing->Release();
 		return FALSE;
 	}
 
-	CGraphicThingInstance::RegisterMotionThing(0, pThing);
+	CGraphicThingInstance::RegisterMotionThing (0, pThing);
 	SetMotion();
 
 	m_pMotionThing = pThing;

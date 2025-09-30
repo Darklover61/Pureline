@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "SoundManager3D.h"
 #include "../EterBase/Timer.h"
 

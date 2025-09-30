@@ -1,15 +1,15 @@
 // MapObjectPropertyPageBuilding.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "..\WorldEditor.h"
 #include "MapObjectPropertyPageBuilding.h"
 #include "../../GameLib/Property.h"
 
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+	#define new DEBUG_NEW
+	#undef THIS_FILE
+	static char THIS_FILE[] = __FILE__;
 #endif
 
 // Test Code
@@ -19,41 +19,43 @@ static char THIS_FILE[] = __FILE__;
 // CMapObjectPropertyPageBuilding dialog
 
 
-CMapObjectPropertyPageBuilding::CMapObjectPropertyPageBuilding(CWnd* pParent /*=NULL*/)
-	: CMapObjectPropertyPageBase(CMapObjectPropertyPageBuilding::IDD, pParent)
+CMapObjectPropertyPageBuilding::CMapObjectPropertyPageBuilding (CWnd* pParent /*=NULL*/)
+	: CMapObjectPropertyPageBase (CMapObjectPropertyPageBuilding::IDD, pParent)
 {
 	//{{AFX_DATA_INIT(CMapObjectPropertyPageBuilding)
-		// NOTE: the ClassWizard will add member initialization here
+	// NOTE: the ClassWizard will add member initialization here
 	//}}AFX_DATA_INIT
 }
 
 
-void CMapObjectPropertyPageBuilding::DoDataExchange(CDataExchange* pDX)
+void CMapObjectPropertyPageBuilding::DoDataExchange (CDataExchange* pDX)
 {
-	CDialog::DoDataExchange(pDX);
+	CDialog::DoDataExchange (pDX);
 	//{{AFX_DATA_MAP(CMapObjectPropertyPageBuilding)
-		// NOTE: the ClassWizard will add DDX and DDV calls here
+	// NOTE: the ClassWizard will add DDX and DDV calls here
 	//}}AFX_DATA_MAP
 }
 
 
-BEGIN_MESSAGE_MAP(CMapObjectPropertyPageBuilding, CDialog)
+BEGIN_MESSAGE_MAP (CMapObjectPropertyPageBuilding, CDialog)
 	//{{AFX_MSG_MAP(CMapObjectPropertyPageBuilding)
-	ON_BN_CLICKED(IDC_MAP_OBJECT_PROPERTY_BUILDING_LOAD, OnLoadBuildingFile)
-	ON_BN_CLICKED(IDC_MAP_OBJECT_PROPERTY_BUILDING_SHADOW_FLAG, OnCheckShadowFlag)
+	ON_BN_CLICKED (IDC_MAP_OBJECT_PROPERTY_BUILDING_LOAD, OnLoadBuildingFile)
+	ON_BN_CLICKED (IDC_MAP_OBJECT_PROPERTY_BUILDING_SHADOW_FLAG, OnCheckShadowFlag)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // CMapObjectPropertyPageBuilding normal functions
 
-BOOL CMapObjectPropertyPageBuilding::Create(CMapObjectProperty * pParent, const CRect & c_rRect)
+BOOL CMapObjectPropertyPageBuilding::Create (CMapObjectProperty * pParent, const CRect & c_rRect)
 {
-	if (!CDialog::Create(CMapObjectPropertyPageBuilding::IDD, (CWnd*)pParent))
+	if (!CDialog::Create (CMapObjectPropertyPageBuilding::IDD, (CWnd*)pParent))
+	{
 		return FALSE;
+	}
 
-	SetWindowPos(NULL, c_rRect.left, c_rRect.top, c_rRect.Width(), c_rRect.Height(), TRUE);
-	ShowWindow(SW_HIDE);
+	SetWindowPos (NULL, c_rRect.left, c_rRect.top, c_rRect.Width(), c_rRect.Height(), TRUE);
+	ShowWindow (SW_HIDE);
 
 	m_pParent = pParent;
 
@@ -64,49 +66,59 @@ BOOL CMapObjectPropertyPageBuilding::Create(CMapObjectProperty * pParent, const 
 	return TRUE;
 }
 
-void CMapObjectPropertyPageBuilding::OnUpdateUI(CProperty * pProperty)
+void CMapObjectPropertyPageBuilding::OnUpdateUI (CProperty * pProperty)
 {
-	const char * c_szPropertyType;
-	const char * c_szPropertyName;
-	if (!pProperty->GetString("PropertyType", &c_szPropertyType))
-		return;
-	if (!pProperty->GetString("PropertyName", &c_szPropertyName))
-		return;
-	if (prt::PROPERTY_TYPE_BUILDING != prt::GetPropertyType(c_szPropertyType))
-		return;
-
-	const char * c_szBuildingFile;
-	if (pProperty->GetString("BuildingFile", &c_szBuildingFile))
+	const char* c_szPropertyType;
+	const char* c_szPropertyName;
+	if (!pProperty->GetString ("PropertyType", &c_szPropertyType))
 	{
-		SetDlgItemText(IDC_MAP_OBJECT_PROPERTY_BUILDING_FILE, c_szBuildingFile);
+		return;
+	}
+	if (!pProperty->GetString ("PropertyName", &c_szPropertyName))
+	{
+		return;
+	}
+	if (prt::PROPERTY_TYPE_BUILDING != prt::GetPropertyType (c_szPropertyType))
+	{
+		return;
 	}
 
-	const char * c_szShadowFlag;
-	if (!pProperty->GetString("ShadowFlag", &c_szShadowFlag))
+	const char* c_szBuildingFile;
+	if (pProperty->GetString ("BuildingFile", &c_szBuildingFile))
 	{
-		CheckDlgButton(IDC_MAP_OBJECT_PROPERTY_BUILDING_SHADOW_FLAG, TRUE);
+		SetDlgItemText (IDC_MAP_OBJECT_PROPERTY_BUILDING_FILE, c_szBuildingFile);
+	}
+
+	const char* c_szShadowFlag;
+	if (!pProperty->GetString ("ShadowFlag", &c_szShadowFlag))
+	{
+		CheckDlgButton (IDC_MAP_OBJECT_PROPERTY_BUILDING_SHADOW_FLAG, TRUE);
 	}
 	else
 	{
-		if (atoi(c_szShadowFlag))
-			CheckDlgButton(IDC_MAP_OBJECT_PROPERTY_BUILDING_SHADOW_FLAG, TRUE);
+		if (atoi (c_szShadowFlag))
+		{
+			CheckDlgButton (IDC_MAP_OBJECT_PROPERTY_BUILDING_SHADOW_FLAG, TRUE);
+		}
 		else
-			CheckDlgButton(IDC_MAP_OBJECT_PROPERTY_BUILDING_SHADOW_FLAG, FALSE);
+		{
+			CheckDlgButton (IDC_MAP_OBJECT_PROPERTY_BUILDING_SHADOW_FLAG, FALSE);
+		}
 	}
 
-	OnUpdatePropertyData(c_szPropertyName);
+	OnUpdatePropertyData (c_szPropertyName);
 }
 
-void CMapObjectPropertyPageBuilding::OnUpdatePropertyData(const char * c_szPropertyName)
+void CMapObjectPropertyPageBuilding::OnUpdatePropertyData (const char* c_szPropertyName)
 {
 	CString strBuildingFileName;
-	GetDlgItemText(IDC_MAP_OBJECT_PROPERTY_BUILDING_FILE, strBuildingFileName);
+	GetDlgItemText (IDC_MAP_OBJECT_PROPERTY_BUILDING_FILE, strBuildingFileName);
 
 	m_propertyBuilding.strName = c_szPropertyName;
-	m_propertyBuilding.strFileName = CFilename(strBuildingFileName);
+	m_propertyBuilding.strFileName = CFilename (strBuildingFileName);
 }
 
-bool CMapObjectPropertyPageBuilding::OnSave(const char * c_szPathName, CProperty * pProperty)
+bool CMapObjectPropertyPageBuilding::OnSave (const char* c_szPathName, CProperty * pProperty)
 {
 	std::string strFileName;
 	strFileName  = c_szPathName;
@@ -116,43 +128,43 @@ bool CMapObjectPropertyPageBuilding::OnSave(const char * c_szPathName, CProperty
 
 	if (m_propertyBuilding.strName.empty())
 	{
-		LogBox("이름을 입력 하셔야 합니다.", "Error", GetSafeHwnd());
+		LogBox ("이름을 입력 하셔야 합니다.", "Error", GetSafeHwnd());
 		return false;
 	}
 
 	if (m_propertyBuilding.strFileName.empty())
 	{
-		LogBox("모델 파일이름을 입력 하셔야 합니다.", "Error", GetSafeHwnd());
+		LogBox ("모델 파일이름을 입력 하셔야 합니다.", "Error", GetSafeHwnd());
 		return false;
 	}
 
 	if (!pProperty)
 	{
-		if (CPropertyManager::Instance().Get(strFileName.c_str(), &pProperty))
+		if (CPropertyManager::Instance().Get (strFileName.c_str(), &pProperty))
 		{
-			LogBox("같은 이름을 가진 프로퍼티가 존재합니다.", "Error", GetSafeHwnd());
+			LogBox ("같은 이름을 가진 프로퍼티가 존재합니다.", "Error", GetSafeHwnd());
 			return false;
 		}
 
-		pProperty = new CProperty(strFileName.c_str());
+		pProperty = new CProperty (strFileName.c_str());
 	}
 
-	prt::PropertyBuildingDataToString(&m_propertyBuilding, pProperty);
-	pProperty->Save(strFileName.c_str());
+	prt::PropertyBuildingDataToString (&m_propertyBuilding, pProperty);
+	pProperty->Save (strFileName.c_str());
 
 	m_dwCRC = pProperty->GetCRC();
 	return true;
 }
 
-void CMapObjectPropertyPageBuilding::OnRender(HWND hWnd)
+void CMapObjectPropertyPageBuilding::OnRender (HWND hWnd)
 {
 	m_Screen.Begin();
-	m_Screen.SetClearColor(0.0f, 0.0f, 0.0f);
+	m_Screen.SetClearColor (0.0f, 0.0f, 0.0f);
 	m_Screen.Clear();
 
 	// TODO : Please writing here code that renders preview
 
-	m_Screen.Show(hWnd);
+	m_Screen.Show (hWnd);
 	m_Screen.End();
 }
 
@@ -168,23 +180,23 @@ void CMapObjectPropertyPageBuilding::OnCancel()
 	m_pParent->OnCancel();
 }
 
-void CMapObjectPropertyPageBuilding::OnLoadBuildingFile() 
+void CMapObjectPropertyPageBuilding::OnLoadBuildingFile()
 {
 	DWORD dwFlag = OFN_ALLOWMULTISELECT | OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT | OFN_NOCHANGEDIR;
-	const char * c_szFilter = "Granny File (*.gr2) |*.gr2|All Files (*.*)|*.*|";
+	const char* c_szFilter = "Granny File (*.gr2) |*.gr2|All Files (*.*)|*.*|";
 
-	CFileDialog FileOpener(TRUE, "Load", "", dwFlag, c_szFilter, this);
+	CFileDialog FileOpener (TRUE, "Load", "", dwFlag, c_szFilter, this);
 
 	if (FileOpener.DoModal())
 	{
 		std::string strFullFileName;
-		StringPath(FileOpener.GetPathName(), strFullFileName);
+		StringPath (FileOpener.GetPathName(), strFullFileName);
 
-		SetDlgItemText(IDC_MAP_OBJECT_PROPERTY_BUILDING_FILE, strFullFileName.c_str());
+		SetDlgItemText (IDC_MAP_OBJECT_PROPERTY_BUILDING_FILE, strFullFileName.c_str());
 	}
 }
 
-void CMapObjectPropertyPageBuilding::OnCheckShadowFlag() 
+void CMapObjectPropertyPageBuilding::OnCheckShadowFlag()
 {
-	m_propertyBuilding.isShadowFlag = IsDlgButtonChecked(IDC_MAP_OBJECT_PROPERTY_BUILDING_SHADOW_FLAG);
+	m_propertyBuilding.isShadowFlag = IsDlgButtonChecked (IDC_MAP_OBJECT_PROPERTY_BUILDING_SHADOW_FLAG);
 }

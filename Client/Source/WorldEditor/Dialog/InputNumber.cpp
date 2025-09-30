@@ -1,39 +1,39 @@
 // InputNumber.cpp : implementation file
 //
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "..\worldeditor.h"
 #include "InputNumber.h"
 
 #ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
+	#define new DEBUG_NEW
+	#undef THIS_FILE
+	static char THIS_FILE[] = __FILE__;
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
 // CInputNumber dialog
 
 
-CInputNumber::CInputNumber(CWnd* pParent /*=NULL*/)
-	: CDialog(CInputNumber::IDD, pParent)
+CInputNumber::CInputNumber (CWnd* pParent /*=NULL*/)
+	: CDialog (CInputNumber::IDD, pParent)
 {
 	m_iNumber = 0;
 	//{{AFX_DATA_INIT(CInputNumber)
-		// NOTE: the ClassWizard will add member initialization here
+	// NOTE: the ClassWizard will add member initialization here
 	//}}AFX_DATA_INIT
 }
 
 
-void CInputNumber::DoDataExchange(CDataExchange* pDX)
+void CInputNumber::DoDataExchange (CDataExchange* pDX)
 {
-	CDialog::DoDataExchange(pDX);
+	CDialog::DoDataExchange (pDX);
 	//{{AFX_DATA_MAP(CInputNumber)
 	//}}AFX_DATA_MAP
 }
 
 
-BEGIN_MESSAGE_MAP(CInputNumber, CDialog)
+BEGIN_MESSAGE_MAP (CInputNumber, CDialog)
 	//{{AFX_MSG_MAP(CInputNumber)
 	ON_WM_CREATE()
 	//}}AFX_MSG_MAP
@@ -52,22 +52,24 @@ int CInputNumber::GetNumber()
 
 void CInputNumber::OnOK()
 {
-	m_iNumber = GetDialogIntegerText(GetSafeHwnd(), IDC_NUMBER);
-	EndDialog(TRUE);
+	m_iNumber = GetDialogIntegerText (GetSafeHwnd(), IDC_NUMBER);
+	EndDialog (TRUE);
 }
 
 void CInputNumber::OnCancel()
 {
-	EndDialog(FALSE);
+	EndDialog (FALSE);
 }
 
-int CInputNumber::OnCreate(LPCREATESTRUCT lpCreateStruct) 
+int CInputNumber::OnCreate (LPCREATESTRUCT lpCreateStruct)
 {
-	if (CDialog::OnCreate(lpCreateStruct) == -1)
+	if (CDialog::OnCreate (lpCreateStruct) == -1)
+	{
 		return -1;
+	}
 
-	SetDialogIntegerText(GetSafeHwnd(), IDC_NUMBER, 0);
-	::SetFocus(GetDlgItem(IDC_NUMBER)->GetSafeHwnd());
+	SetDialogIntegerText (GetSafeHwnd(), IDC_NUMBER, 0);
+	::SetFocus (GetDlgItem (IDC_NUMBER)->GetSafeHwnd());
 
 	return 0;
 }

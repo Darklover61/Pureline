@@ -2,7 +2,7 @@
 #define AFX_INPUTNUMBER_H__24E48670_A51A_444E_A417_B772143E71BE__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
+	#pragma once
 #endif // _MSC_VER > 1000
 // InputNumber.h : header file
 //
@@ -12,40 +12,40 @@
 
 class CInputNumber : public CDialog
 {
-// Construction
-public:
-	CInputNumber(CWnd* pParent = NULL);   // standard constructor
+		// Construction
+	public:
+		CInputNumber (CWnd* pParent = NULL);  // standard constructor
 
-// Operation
-public:
-	int GetNumber();
+		// Operation
+	public:
+		int GetNumber();
 
-// Dialog Data
-	//{{AFX_DATA(CInputNumber)
-	enum { IDD = IDD_INPUT_NUMBER };
-	//}}AFX_DATA
+		// Dialog Data
+		//{{AFX_DATA(CInputNumber)
+		enum { IDD = IDD_INPUT_NUMBER };
+		//}}AFX_DATA
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CInputNumber)
+		// Overrides
+		// ClassWizard generated virtual function overrides
+		//{{AFX_VIRTUAL(CInputNumber)
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+		virtual void DoDataExchange (CDataExchange* pDX);   // DDX/DDV support
+		//}}AFX_VIRTUAL
 
-// Implementation
-protected:
+		// Implementation
+	protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CInputNumber)
-	afx_msg void OnOK();
-	afx_msg void OnCancel();
-	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+		// Generated message map functions
+		//{{AFX_MSG(CInputNumber)
+		afx_msg void OnOK();
+		afx_msg void OnCancel();
+		afx_msg int OnCreate (LPCREATESTRUCT lpCreateStruct);
+		//}}AFX_MSG
+		DECLARE_MESSAGE_MAP()
 
-// Variables
-protected:
-	int m_iNumber;
+		// Variables
+	protected:
+		int m_iNumber;
 };
 
 //{{AFX_INSERT_LOCATION}}

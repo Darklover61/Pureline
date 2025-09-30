@@ -2,7 +2,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "StdAfx.h"
 #include "../EterLib/CullingManager.h"
 #include "../EterLib/Camera.h"
 #include "../EterPack/EterPackManager.h"

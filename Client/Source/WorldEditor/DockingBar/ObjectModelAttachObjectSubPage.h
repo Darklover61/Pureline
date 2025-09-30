@@ -2,7 +2,7 @@
 #define AFX_OBJECTMODELATTACHOBJECTSUBPAGE_H__884B2820_F3B9_4AF1_86B9_5D1CE8130B47__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
+	#pragma once
 #endif // _MSC_VER > 1000
 // ObjectModelAttachObjectSubPage.h : header file
 //
@@ -12,38 +12,38 @@
 
 class CObjectModelAttachObjectSubPage : public CDialog
 {
-// Construction
-public:
-	CObjectModelAttachObjectSubPage(CWnd* pParent = NULL);   // standard constructor
-	BOOL Create(CWnd * pParent, const CRect & c_rRect);
-	void SetAttachingIndex(DWORD dwIndex);
-	void UpdateUI();
+		// Construction
+	public:
+		CObjectModelAttachObjectSubPage (CWnd* pParent = NULL);  // standard constructor
+		BOOL Create (CWnd * pParent, const CRect & c_rRect);
+		void SetAttachingIndex (DWORD dwIndex);
+		void UpdateUI();
 
-// Dialog Data
-	//{{AFX_DATA(CObjectModelAttachObjectSubPage)
-	enum { IDD = IDD_OBJECT_MODEL_ATTACH_OBJECT_PAGE };
+		// Dialog Data
+		//{{AFX_DATA(CObjectModelAttachObjectSubPage)
+		enum { IDD = IDD_OBJECT_MODEL_ATTACH_OBJECT_PAGE };
 		// NOTE: the ClassWizard will add data members here
-	//}}AFX_DATA
+		//}}AFX_DATA
 
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CObjectModelAttachObjectSubPage)
+		// Overrides
+		// ClassWizard generated virtual function overrides
+		//{{AFX_VIRTUAL(CObjectModelAttachObjectSubPage)
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+		virtual void DoDataExchange (CDataExchange* pDX);   // DDX/DDV support
+		//}}AFX_VIRTUAL
 
-// Implementation
-protected:
+		// Implementation
+	protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CObjectModelAttachObjectSubPage)
-	afx_msg void OnLoadModel();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+		// Generated message map functions
+		//{{AFX_MSG(CObjectModelAttachObjectSubPage)
+		afx_msg void OnLoadModel();
+		//}}AFX_MSG
+		DECLARE_MESSAGE_MAP()
 
-protected:
-	DWORD m_dwAttachingIndex;
+	protected:
+		DWORD m_dwAttachingIndex;
 };
 
 //{{AFX_INSERT_LOCATION}}

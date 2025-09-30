@@ -2,7 +2,7 @@
 #define AFX_DLGGOTO_H__692712FF_116E_4F64_8A7B_ECA54C74471A__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
+	#pragma once
 #endif // _MSC_VER > 1000
 // DlgGoto.h : header file
 //
@@ -12,35 +12,35 @@
 
 class CDlgGoto : public CDialog
 {
-// Construction
-public:
-	CDlgGoto(CWnd* pParent = NULL);   // standard constructor
+		// Construction
+	public:
+		CDlgGoto (CWnd* pParent = NULL);  // standard constructor
 
-// Dialog Data
-	//{{AFX_DATA(CDlgGoto)
-	enum { IDD = IDD_DIALOG_GOTO };
+		// Dialog Data
+		//{{AFX_DATA(CDlgGoto)
+		enum { IDD = IDD_DIALOG_GOTO };
 		// NOTE: the ClassWizard will add data members here
-	//}}AFX_DATA
+		//}}AFX_DATA
 
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CDlgGoto)
+		// Overrides
+		// ClassWizard generated virtual function overrides
+		//{{AFX_VIRTUAL(CDlgGoto)
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+		virtual void DoDataExchange (CDataExchange* pDX);   // DDX/DDV support
+		//}}AFX_VIRTUAL
 
-// Implementation
-protected:
+		// Implementation
+	protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CDlgGoto)
-	virtual void OnOK();
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+		// Generated message map functions
+		//{{AFX_MSG(CDlgGoto)
+		virtual void OnOK();
+		virtual BOOL OnInitDialog();
+		//}}AFX_MSG
+		DECLARE_MESSAGE_MAP()
 
-	void Goto(DWORD dwxGoto, DWORD dwyGoto);
+		void Goto (DWORD dwxGoto, DWORD dwyGoto);
 };
 
 //{{AFX_INSERT_LOCATION}}

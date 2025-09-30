@@ -2,7 +2,7 @@
 #define AFX_TEST_H__EB65D28D_8CB5_43B5_9827_35EC3B77E29D__INCLUDED_
 
 #if _MSC_VER > 1000
-#pragma once
+	#pragma once
 #endif // _MSC_VER > 1000
 // Test.h : header file
 //
@@ -12,36 +12,36 @@
 
 class CBlendTypeComboBox : public CComboBox
 {
-// Construction
-public:
-	CBlendTypeComboBox();
-	BOOL Create();
+		// Construction
+	public:
+		CBlendTypeComboBox();
+		BOOL Create();
 
-	void SelectBlendType(DWORD dwIndex);
-	int GetBlendType() const;
+		void SelectBlendType (DWORD dwIndex);
+		int GetBlendType() const;
 
-// Attributes
-public:
+		// Attributes
+	public:
 
-// Operations
-public:
+		// Operations
+	public:
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CTest)
-	//}}AFX_VIRTUAL
+		// Overrides
+		// ClassWizard generated virtual function overrides
+		//{{AFX_VIRTUAL(CTest)
+		//}}AFX_VIRTUAL
 
-// Implementation
-public:
-	virtual ~CBlendTypeComboBox();
+		// Implementation
+	public:
+		virtual ~CBlendTypeComboBox();
 
-	// Generated message map functions
-protected:
-	//{{AFX_MSG(CTest)
+		// Generated message map functions
+	protected:
+		//{{AFX_MSG(CTest)
 		// NOTE - the ClassWizard will add and remove member functions here.
-	//}}AFX_MSG
+		//}}AFX_MSG
 
-	DECLARE_MESSAGE_MAP()
+		DECLARE_MESSAGE_MAP()
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -49,36 +49,36 @@ protected:
 
 class COperationTypeComboBox : public CComboBox
 {
-// Construction
-public:
-	COperationTypeComboBox();
-	BOOL Create();
+		// Construction
+	public:
+		COperationTypeComboBox();
+		BOOL Create();
 
-	void SelectOperationType(DWORD dwIndex);
-	int GetOperationType() const;
+		void SelectOperationType (DWORD dwIndex);
+		int GetOperationType() const;
 
-// Attributes
-public:
+		// Attributes
+	public:
 
-// Operations
-public:
+		// Operations
+	public:
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CTest)
-	//}}AFX_VIRTUAL
+		// Overrides
+		// ClassWizard generated virtual function overrides
+		//{{AFX_VIRTUAL(CTest)
+		//}}AFX_VIRTUAL
 
-// Implementation
-public:
-	virtual ~COperationTypeComboBox();
+		// Implementation
+	public:
+		virtual ~COperationTypeComboBox();
 
-	// Generated message map functions
-protected:
-	//{{AFX_MSG(CTest)
+		// Generated message map functions
+	protected:
+		//{{AFX_MSG(CTest)
 		// NOTE - the ClassWizard will add and remove member functions here.
-	//}}AFX_MSG
+		//}}AFX_MSG
 
-	DECLARE_MESSAGE_MAP()
+		DECLARE_MESSAGE_MAP()
 };
 
 /////////////////////////////////////////////////////////////////////////////
