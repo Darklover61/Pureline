@@ -48,6 +48,7 @@
 | BlockCountryIp                    | YES    | NO     | NO   |
 | Mobile - SMS                      | YES    | YES    | YES  |
 | Auth_Brazil & Auth_Japan          | YES    | NO     | NO   |
+| Virtual Keyboard                  | NO     | NO     | YES  |
 |                                   |        |        |      |
 +-----------------------------------+--------+--------+------+
 

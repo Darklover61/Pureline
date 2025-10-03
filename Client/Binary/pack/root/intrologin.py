@@ -27,22 +27,6 @@ FULL_BACK_IMAGE = False
 
 PASSPOD_MSG_DICT = {}
 
-VIRTUAL_KEYBOARD_NUM_KEYS = 46
-VIRTUAL_KEYBOARD_RAND_KEY = True
-
-def Suffle(src):
-	if VIRTUAL_KEYBOARD_RAND_KEY:
-		items = [item for item in src]
-
-		itemCount = len(items)
-		for oldPos in xrange(itemCount):
-			newPos = app.GetRandom(0, itemCount-1)
-			items[newPos], items[oldPos] = items[oldPos], items[newPos]
-
-		return "".join(items)
-	else:
-		return src
-
 if localeInfo.IsNEWCIBN() or localeInfo.IsCIBN10():
 	LOGIN_DELAY_SEC = 60.0
 	FULL_BACK_IMAGE = True
@@ -183,10 +167,6 @@ class LoginWindow(ui.ScriptWindow):
 		self.yServerBoard = 0
 		
 		self.loadingImage = None
-
-		self.virtualKeyboard = None
-		self.virtualKeyboardMode = "ALPHABET"
-		self.virtualKeyboardIsUpper = False
 		
 	def __del__(self):
 		net.ClearPhaseWindow(net.PHASE_WINDOW_LOGIN, self)
@@ -334,28 +314,6 @@ class LoginWindow(ui.ScriptWindow):
 		self.passpodAnswerCancel = None
 		# NEWCIBN_PASSPOD_AUTH_END
 
-		self.VIRTUAL_KEY_ALPHABET_LOWERS = None
-		self.VIRTUAL_KEY_ALPHABET_UPPERS = None
-		self.VIRTUAL_KEY_SYMBOLS = None
-		self.VIRTUAL_KEY_NUMBERS = None
-
-		# VIRTUAL_KEYBOARD_BUG_FIX
-		if self.virtualKeyboard:
-			for keyIndex in xrange(0, VIRTUAL_KEYBOARD_NUM_KEYS+1):
-				key = self.GetChild2("key_%d" % keyIndex)
-				if key:
-					key.SetEvent(None)
-
-			self.GetChild("key_space").SetEvent(None)
-			self.GetChild("key_backspace").SetEvent(None)
-			self.GetChild("key_enter").SetEvent(None)
-			self.GetChild("key_shift").SetToggleDownEvent(None)
-			self.GetChild("key_shift").SetToggleUpEvent(None)
-			self.GetChild("key_at").SetToggleDownEvent(None)
-			self.GetChild("key_at").SetToggleUpEvent(None)
-
-			self.virtualKeyboard = None
-
 		self.KillFocus()
 		self.Hide()
 
@@ -410,7 +368,7 @@ class LoginWindow(ui.ScriptWindow):
 				self.pwdEditLine.SetText("")
 		else:
 			if self.pwdEditLine != None:
-				self.pwdEditLine.SetFocus()								
+				self.pwdEditLine.SetFocus()
 
 	def OnEndCountDown(self):
 		self.isNowCountDown = False
@@ -527,11 +485,11 @@ class LoginWindow(ui.ScriptWindow):
 			self.selectConnectButton	= GetObject("SelectConnectButton")
 			self.loginButton			= GetObject("LoginButton")
 			self.loginExitButton		= GetObject("LoginExitButton")
-			
+
 			if localeInfo.IsVIETNAM():
-				self.checkButton = GetObject("CheckButton")				
+				self.checkButton = GetObject("CheckButton")
 				self.checkButton.Down()
-			
+
 			# RUNUP_MATRIX_AUTH
 			if IsRunupMatrixAuth():
 				self.matrixQuizBoard	= GetObject("RunupMatrixQuizBoard")
@@ -547,26 +505,6 @@ class LoginWindow(ui.ScriptWindow):
 				self.passpodAnswerOK	= GetObject("NEWCIBN_PASSPOD_OK")
 				self.passpodAnswerCancel= GetObject("NEWCIBN_PASSPOD_CANCEL")
 			# NEWCIBN_PASSPOD_AUTH_END
-
-			self.virtualKeyboard		= self.GetChild2("VirtualKeyboard")
-
-			if self.virtualKeyboard:
-				self.VIRTUAL_KEY_ALPHABET_UPPERS = Suffle(localeInfo.VIRTUAL_KEY_ALPHABET_UPPERS)
-				self.VIRTUAL_KEY_ALPHABET_LOWERS = "".join([localeInfo.VIRTUAL_KEY_ALPHABET_LOWERS[localeInfo.VIRTUAL_KEY_ALPHABET_UPPERS.index(e)] for e in self.VIRTUAL_KEY_ALPHABET_UPPERS])
-				if localeInfo.IsBRAZIL():
-					self.VIRTUAL_KEY_SYMBOLS_BR = Suffle(localeInfo.VIRTUAL_KEY_SYMBOLS_BR)
-				else:
-					self.VIRTUAL_KEY_SYMBOLS = Suffle(localeInfo.VIRTUAL_KEY_SYMBOLS)
-				self.VIRTUAL_KEY_NUMBERS = Suffle(localeInfo.VIRTUAL_KEY_NUMBERS)
-				self.__VirtualKeyboard_SetAlphabetMode()
-			
-				self.GetChild("key_space").SetEvent(lambda : self.__VirtualKeyboard_PressKey(' '))
-				self.GetChild("key_backspace").SetEvent(lambda : self.__VirtualKeyboard_PressBackspace())
-				self.GetChild("key_enter").SetEvent(lambda : self.__VirtualKeyboard_PressReturn())
-				self.GetChild("key_shift").SetToggleDownEvent(lambda : self.__VirtualKeyboard_SetUpperMode())
-				self.GetChild("key_shift").SetToggleUpEvent(lambda : self.__VirtualKeyboard_SetLowerMode())
-				self.GetChild("key_at").SetToggleDownEvent(lambda : self.__VirtualKeyboard_SetSymbolMode())
-				self.GetChild("key_at").SetToggleUpEvent(lambda : self.__VirtualKeyboard_SetAlphabetMode())
 
 		except:
 			import exception
@@ -615,83 +553,6 @@ class LoginWindow(ui.ScriptWindow):
 			self.GetChild("bg2").Hide()
 		return 1
 
-	def __VirtualKeyboard_SetKeys(self, keyCodes):
-		uiDefFontBackup = localeInfo.UI_DEF_FONT
-		localeInfo.UI_DEF_FONT = localeInfo.UI_DEF_FONT_LARGE
-
-		keyIndex = 1
-		for keyCode in keyCodes:					
-			key = self.GetChild2("key_%d" % keyIndex)
-			if key:
-				key.SetEvent(lambda x=keyCode: self.__VirtualKeyboard_PressKey(x))
-				key.SetText(keyCode)
-				key.ButtonText.SetFontColor(0, 0, 0)
-				keyIndex += 1
-			
-		for keyIndex in xrange(keyIndex, VIRTUAL_KEYBOARD_NUM_KEYS+1):
-			key = self.GetChild2("key_%d" % keyIndex)
-			if key:
-				key.SetEvent(lambda x=' ': self.__VirtualKeyboard_PressKey(x))
-				key.SetText(' ')
-		
-		localeInfo.UI_DEF_FONT = uiDefFontBackup
-
-	def __VirtualKeyboard_PressKey(self, code):
-		ime.PasteString(code)
-		
-		#if self.virtualKeyboardMode == "ALPHABET" and self.virtualKeyboardIsUpper:
-		#	self.__VirtualKeyboard_SetLowerMode()
-			
-	def __VirtualKeyboard_PressBackspace(self):
-		ime.PasteBackspace()
-		
-	def __VirtualKeyboard_PressReturn(self):
-		ime.PasteReturn()		
-
-	def __VirtualKeyboard_SetUpperMode(self):
-		self.virtualKeyboardIsUpper = True
-		
-		if self.virtualKeyboardMode == "ALPHABET":
-			self.__VirtualKeyboard_SetKeys(self.VIRTUAL_KEY_ALPHABET_UPPERS)
-		elif self.virtualKeyboardMode == "NUMBER":
-			if localeInfo.IsBRAZIL():
-				self.__VirtualKeyboard_SetKeys(self.VIRTUAL_KEY_SYMBOLS_BR)
-			else:	
-				self.__VirtualKeyboard_SetKeys(self.VIRTUAL_KEY_SYMBOLS)
-		else:
-			self.__VirtualKeyboard_SetKeys(self.VIRTUAL_KEY_NUMBERS)
-			
-	def __VirtualKeyboard_SetLowerMode(self):
-		self.virtualKeyboardIsUpper = False
-		
-		if self.virtualKeyboardMode == "ALPHABET":
-			self.__VirtualKeyboard_SetKeys(self.VIRTUAL_KEY_ALPHABET_LOWERS)
-		elif self.virtualKeyboardMode == "NUMBER":
-			self.__VirtualKeyboard_SetKeys(self.VIRTUAL_KEY_NUMBERS)			
-		else:
-			if localeInfo.IsBRAZIL():
-				self.__VirtualKeyboard_SetKeys(self.VIRTUAL_KEY_SYMBOLS_BR)
-			else:	
-				self.__VirtualKeyboard_SetKeys(self.VIRTUAL_KEY_SYMBOLS)
-			
-	def __VirtualKeyboard_SetAlphabetMode(self):
-		self.virtualKeyboardIsUpper = False
-		self.virtualKeyboardMode = "ALPHABET"		
-		self.__VirtualKeyboard_SetKeys(self.VIRTUAL_KEY_ALPHABET_LOWERS)	
-
-	def __VirtualKeyboard_SetNumberMode(self):			
-		self.virtualKeyboardIsUpper = False
-		self.virtualKeyboardMode = "NUMBER"
-		self.__VirtualKeyboard_SetKeys(self.VIRTUAL_KEY_NUMBERS)
-					
-	def __VirtualKeyboard_SetSymbolMode(self):		
-		self.virtualKeyboardIsUpper = False
-		self.virtualKeyboardMode = "SYMBOL"
-		if localeInfo.IsBRAZIL():
-			self.__VirtualKeyboard_SetKeys(self.VIRTUAL_KEY_SYMBOLS_BR)
-		else:	
-			self.__VirtualKeyboard_SetKeys(self.VIRTUAL_KEY_SYMBOLS)
-				
 	def Connect(self, id, pwd):
 
 		if constInfo.SEQUENCE_PACKET_ENABLE:
@@ -708,7 +569,7 @@ class LoginWindow(ui.ScriptWindow):
 		else:
 			self.stream.popupWindow.Close()
 			self.stream.popupWindow.Open(localeInfo.LOGIN_CONNETING, self.SetPasswordEditLineFocus, localeInfo.UI_CANCEL)
-            
+
 		self.stream.SetLoginInfo(id, pwd)
 		self.stream.Connect()
 
@@ -1061,9 +922,6 @@ class LoginWindow(ui.ScriptWindow):
 		self.connectBoard.Hide()
 		self.loginBoard.Hide()
 
-		if self.virtualKeyboard:
-			self.virtualKeyboard.Hide()
-
 		if app.loggined and not SKIP_LOGIN_PHASE_SUPPORT_CHANNEL:
 			self.serverList.SelectItem(self.loginnedServer-1)
 			self.channelList.SelectItem(self.loginnedChannel-1)
@@ -1086,9 +944,6 @@ class LoginWindow(ui.ScriptWindow):
 
 		self.serverBoard.SetPosition(self.xServerBoard, wndMgr.GetScreenHeight())
 		self.serverBoard.Hide()
-
-		if self.virtualKeyboard:
-			self.virtualKeyboard.Show()
 
 		if app.loggined:
 			self.Connect(self.id, self.pwd)

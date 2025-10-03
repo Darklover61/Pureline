@@ -6,6 +6,7 @@
 +------------+
 ~ Moved gm.mse and ymirred.tga to locale/common to avoid duplication.
 ~ Removed some duplicate code and some locale specific python locale code.
+~ Removed Virtual Keyboard from loginwindow
 
 +------------+
 | 30.09.2025 |

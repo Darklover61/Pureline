@@ -28,12 +28,6 @@ GUILD_MARK_NOT_ENOUGH_LEVEL = "±ÊµÂ∑π∫ß 3¿ÃªÛ ∫Œ≈Õ ∞°¥…«’¥œ¥Ÿ."
 ERROR_MARK_UPLOAD_NEED_RECONNECT = "UploadMark: Reconnect to game"
 ERROR_MARK_CHECK_NEED_RECONNECT = "CheckMark: Reconnect to game"
 
-VIRTUAL_KEY_ALPHABET_LOWERS  = r"[1234567890]/qwertyuiop\=asdfghjkl;`'zxcvbnm.,"
-VIRTUAL_KEY_ALPHABET_UPPERS  = r'{1234567890}?QWERTYUIOP|+ASDFGHJKL:~"ZXCVBNM<>'
-VIRTUAL_KEY_SYMBOLS    = '!@#$%^&*()_+|{}:"<>?~'
-VIRTUAL_KEY_NUMBERS    = "1234567890-=\[];',./`"
-VIRTUAL_KEY_SYMBOLS_BR    = '!@#$%^&*()_+|{}:"<>?~·‡„‚ÈËÍÌÏÛÚÙı˙˘Á'
-
 __IS_ENGLISH	= "ENGLISH" == app.GetLocaleServiceName()	
 __IS_HONGKONG	= "HONGKONG" == app.GetLocaleServiceName()
 __IS_NEWCIBN	= "locale/newcibn" == app.GetLocalePath()
