@@ -25,12 +25,12 @@ window = {
 		{
 			"name" : "bg1", "type" : "expanded_image", "x" : 0, "y" : 0,
 			"x_scale" : float(SCREEN_WIDTH) / 1024.0, "y_scale" : float(SCREEN_HEIGHT) / 768.0,
-			"image" : "locale/nl/ui/serverlist.sub",
+			"image" : "locale/common/ui/serverlist.sub",
 		},
 		{
 			"name" : "bg2", "type" : "expanded_image", "x" : 0, "y" : 0,
 			"x_scale" : float(SCREEN_WIDTH) / 1024.0, "y_scale" : float(SCREEN_HEIGHT) / 768.0,
-			"image" : "locale/nl/ui/login.sub",
+			"image" : "locale/common/ui/login.sub",
 		},
 
 		## ConnectBoard
