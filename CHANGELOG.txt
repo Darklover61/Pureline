@@ -2,6 +2,12 @@
 | Kaptan Yosun's Pureline                                        |
 +----------------------------------------------------------------+
 +------------+
+| 03.10.2025 |
++------------+
+~ Moved gm.mse and ymirred.tga to locale/common to avoid duplication.
+~ Removed some duplicate code and some locale specific python locale code.
+
++------------+
 | 30.09.2025 |
 +------------+
 ~ Pack simplified.
