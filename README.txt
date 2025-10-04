@@ -83,6 +83,7 @@
 [YOSUN_PACK_FIX_001]               : "Python int too large to convert to C long" error fix.
 
 [YOSUN_SERVER_FIX_001]             : Fixed a typo
+[YOSUN_SERVER_FIX_002]             : Blocked private shop creation while riding which causes a visual bug.
 
 [YOSUN_WORLDEDITOR_FIX_001]        : Fixes crash when a .spt SpeedTree model is selected on brush.
 

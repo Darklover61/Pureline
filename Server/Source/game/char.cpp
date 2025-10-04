@@ -577,6 +577,14 @@ const char* CHARACTER::GetName() const
 
 void CHARACTER::OpenMyShop (const char* c_pszSign, TShopItemTable * pTable, BYTE bItemCount)
 {
+	/* - YOSUN_SERVER_FIX_002 ------------------------------ */
+	if (IsRiding())
+	{
+		ChatPacket(CHAT_TYPE_INFO, LC_TEXT("Cannot open shop while riding."));
+		return;
+	}
+	/* ----------------------------------------------------- */
+
 	if (GetPart (PART_MAIN) > 2)
 	{
 		ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("갑옷을 벗어야 개인 상점을 열 수 있습니다."));
