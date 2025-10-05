@@ -10,6 +10,7 @@
 	* passworddialog.py
 ~ Moved some ui elements to locale/common to avoid duplication.
 	* costume_bg.jpg
+	* new_cube_bg.jpg
 
 +------------+
 | 04.10.2025 |
