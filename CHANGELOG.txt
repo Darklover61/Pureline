@@ -2,6 +2,12 @@
 | Kaptan Yosun's Pureline                                        |
 +----------------------------------------------------------------+
 +------------+
+| 06.10.2025 |
++------------+
+~ Moved some ui scripts to uiscript from locale/xx to avoid duplication.
+	* webwindow.py
+
++------------+
 | 05.10.2025 |
 +------------+
 ~ Removed some locale specific code.
