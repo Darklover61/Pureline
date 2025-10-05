@@ -11,6 +11,7 @@
 	* EnergyBar.py
 ~ Moved some ui elements to locale/common to avoid duplication.
 	* systemdialog.py
+	* inventorywindow.py
 
 +------------+
 | 05.10.2025 |

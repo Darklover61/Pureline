@@ -290,7 +290,7 @@ class InventoryWindow(ui.ScriptWindow):
 			pyScrLoader = ui.PythonScriptLoader()
 
 			if ITEM_MALL_BUTTON_ENABLE:
-				pyScrLoader.LoadScriptFile(self, uiScriptLocale.LOCALE_UISCRIPT_PATH + "InventoryWindow.py")
+				pyScrLoader.LoadScriptFile(self, "locale/common/ui/InventoryWindow.py")
 			else:
 				pyScrLoader.LoadScriptFile(self, "UIScript/InventoryWindow.py")
 		except:
