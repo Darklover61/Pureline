@@ -8,6 +8,8 @@
 ~ Moved some ui scripts to uiscript from locale/xx to avoid duplication.
 	* createcharacterwindow.py
 	* passworddialog.py
+	* dragonsoulwindow.py
+	* dragonsoulrefinewindow.py
 ~ Moved some ui elements to locale/common to avoid duplication.
 	* taskbar.py
 	* taskbar_easter.py
