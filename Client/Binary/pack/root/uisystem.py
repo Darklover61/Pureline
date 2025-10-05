@@ -34,7 +34,7 @@ class SystemDialog(ui.ScriptWindow):
 	def __LoadSystemMenu_Default(self):
 		pyScrLoader = ui.PythonScriptLoader()
 		if constInfo.IN_GAME_SHOP_ENABLE:
-			pyScrLoader.LoadScriptFile(self, uiScriptLocale.LOCALE_UISCRIPT_PATH + "SystemDialog.py")
+			pyScrLoader.LoadScriptFile(self, "locale/common/ui/SystemDialog.py")
 		else:
 			pyScrLoader.LoadScriptFile(self, "uiscript/systemdialog.py")
 

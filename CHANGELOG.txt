@@ -9,6 +9,8 @@
 	* selectempirewindow.py
 	* loginwindow.py
 	* EnergyBar.py
+~ Moved some ui elements to locale/common to avoid duplication.
+	* systemdialog.py
 
 +------------+
 | 05.10.2025 |
