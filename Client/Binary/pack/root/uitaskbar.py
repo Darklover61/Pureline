@@ -78,7 +78,7 @@ class GiftBox(ui.ScriptWindow):
 	def LoadWindow(self):
 		try:
 			pyScrLoader = ui.PythonScriptLoader()
-			pyScrLoader.LoadScriptFile(self, uiScriptLocale.LOCALE_UISCRIPT_PATH + "giftbox.py")
+			pyScrLoader.LoadScriptFile(self, "uiscript/giftbox.py")
 		except:
 			import exception
 			exception.Abort("GiftBox.LoadWindow.LoadObject")		

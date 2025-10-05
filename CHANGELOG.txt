@@ -10,6 +10,7 @@
 	* passworddialog.py
 	* dragonsoulwindow.py
 	* dragonsoulrefinewindow.py
+	* giftbox.py
 ~ Moved some ui elements to locale/common to avoid duplication.
 	* taskbar.py
 	* taskbar_easter.py
