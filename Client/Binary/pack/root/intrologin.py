@@ -209,7 +209,7 @@ class LoginWindow(ui.ScriptWindow):
 		self.SetSize(wndMgr.GetScreenWidth(), wndMgr.GetScreenHeight())
 		self.SetWindowName("LoginWindow")
 
-		if not self.__LoadScript(uiScriptLocale.LOCALE_UISCRIPT_PATH + "LoginWindow.py"):
+		if not self.__LoadScript("UIScript/LoginWindow.py"):
 			dbg.TraceError("LoginWindow.Open - __LoadScript Error")
 			return
 		

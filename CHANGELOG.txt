@@ -7,6 +7,7 @@
 ~ Moved some ui scripts to uiscript from locale/xx to avoid duplication.
 	* webwindow.py
 	* selectempirewindow.py
+	* loginwindow.py
 
 +------------+
 | 05.10.2025 |
