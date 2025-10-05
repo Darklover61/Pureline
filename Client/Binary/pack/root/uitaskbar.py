@@ -127,7 +127,7 @@ class EnergyBar(ui.ScriptWindow):
 	def LoadWindow(self):
 		try:
 			pyScrLoader = ui.PythonScriptLoader()
-			pyScrLoader.LoadScriptFile(self, uiScriptLocale.LOCALE_UISCRIPT_PATH + "EnergyBar.py")
+			pyScrLoader.LoadScriptFile(self, "UIScript/EnergyBar.py")
 		except:
 			import exception
 			exception.Abort("EnergyBar.LoadWindow.LoadObject")

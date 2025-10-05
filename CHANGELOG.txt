@@ -8,6 +8,7 @@
 	* webwindow.py
 	* selectempirewindow.py
 	* loginwindow.py
+	* EnergyBar.py
 
 +------------+
 | 05.10.2025 |
