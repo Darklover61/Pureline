@@ -413,7 +413,7 @@ class TaskBar(ui.ScriptWindow):
 			pyScrLoader = ui.PythonScriptLoader()
 
 			if constInfo.IN_GAME_SHOP_ENABLE:
-				pyScrLoader.LoadScriptFile(self, uiScriptLocale.LOCALE_UISCRIPT_PATH + "TaskBar.py")
+				pyScrLoader.LoadScriptFile(self, "locale/common/ui/TaskBar.py")
 			else:
 				pyScrLoader.LoadScriptFile(self, "UIScript/TaskBar.py")
 			pyScrLoader.LoadScriptFile(self.mouseModeButtonList[self.MOUSE_BUTTON_LEFT], "UIScript/MouseButtonWindow.py")

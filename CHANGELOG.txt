@@ -9,8 +9,13 @@
 	* createcharacterwindow.py
 	* passworddialog.py
 ~ Moved some ui elements to locale/common to avoid duplication.
+	* taskbar.py
+	* taskbar_easter.py
+	* taskbar_halloween.py
+	* taskbar_valentine.py
 	* costume_bg.jpg
 	* new_cube_bg.jpg
+	* locale/xx/ui/Mall/
 
 +------------+
 | 04.10.2025 |
