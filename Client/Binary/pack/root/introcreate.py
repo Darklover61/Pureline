@@ -137,7 +137,7 @@ class CreateCharacterWindow(ui.Window):
 		try:
 			dlgBoard = ui.ScriptWindow()
 			pythonScriptLoader = ui.PythonScriptLoader()
-			pythonScriptLoader.LoadScriptFile(dlgBoard, uiScriptLocale.LOCALE_UISCRIPT_PATH + "createcharacterwindow.py")
+			pythonScriptLoader.LoadScriptFile(dlgBoard,"uiscript/createcharacterwindow.py")
 
 		except:
 			import exception

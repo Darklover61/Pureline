@@ -5,6 +5,8 @@
 | 05.10.2025 |
 +------------+
 ~ Removed some locale specific code.
+~ Moved some ui scripts to uiscript from locale/xx to avoid duplication.
+	* createcharacterwindow.py
 
 +------------+
 | 04.10.2025 |
