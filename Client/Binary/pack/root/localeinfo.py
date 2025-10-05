@@ -542,11 +542,11 @@ MODE_NAME_LIST = ( PVP_OPTION_NORMAL, PVP_OPTION_REVENGE, PVP_OPTION_KILL, PVP_O
 TITLE_NAME_LIST = ( PVP_LEVEL0, PVP_LEVEL1, PVP_LEVEL2, PVP_LEVEL3, PVP_LEVEL4, PVP_LEVEL5, PVP_LEVEL6, PVP_LEVEL7, PVP_LEVEL8, )
 
 def GetLetterImageName():
-	return "icon/scroll_close.tga"
+	return "locale/common/ui/highlighted_quest.tga"
 def GetLetterOpenImageName():
-	return "icon/scroll_open.tga"
+	return "locale/common/ui/highlighted_quest_r.tga"
 def GetLetterCloseImageName():
-	return "icon/scroll_close.tga"
+	return "locale/common/ui/highlighted_quest.tga"
 
 if IsEUROPE() and not IsWE_KOREA() and not IsYMIR():
 	def DO_YOU_SELL_ITEM(sellItemName, sellItemCount, sellItemPrice):

@@ -19,6 +19,9 @@
 	* costume_bg.jpg
 	* new_cube_bg.jpg
 	* locale/xx/ui/Mall/
+	* highlighted_quest.tga
+	* highlighted_quest_r.tga
+~ Quest scroll icons changed to highlighted ones.
 
 +------------+
 | 04.10.2025 |
