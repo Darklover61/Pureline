@@ -2,6 +2,11 @@
 | Kaptan Yosun's Pureline                                        |
 +----------------------------------------------------------------+
 +------------+
+| 05.10.2025 |
++------------+
+~ Removed some locale specific code.
+
++------------+
 | 04.10.2025 |
 +------------+
 ~ [YOSUN_SERVER_FIX_002] Blocked private shop creation while riding.
