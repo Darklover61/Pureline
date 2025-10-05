@@ -188,7 +188,7 @@ class ExpandedTaskBar(ui.ScriptWindow):
 	def LoadWindow(self):
 		try:
 			pyScrLoader = ui.PythonScriptLoader()
-			pyScrLoader.LoadScriptFile(self, uiScriptLocale.LOCALE_UISCRIPT_PATH + "ExpandedTaskBar.py")
+			pyScrLoader.LoadScriptFile(self, "locale/common/ui/ExpandedTaskBar.py")
 		except:
 			import exception
 			exception.Abort("ExpandedTaskBar.LoadWindow.LoadObject")

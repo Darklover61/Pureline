@@ -12,6 +12,7 @@
 ~ Moved some ui elements to locale/common to avoid duplication.
 	* systemdialog.py
 	* inventorywindow.py
+	* expandedtaskbar.py
 
 +------------+
 | 05.10.2025 |
