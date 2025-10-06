@@ -186,11 +186,6 @@ void CMemoryTextFileLoader::Bind (int bufSize, const void* c_pvBuf)
 			m_stLineVector.push_back (stLine);
 			stLine = "";
 		}
-		else if (c < 0)
-		{
-			stLine.append (c_pcBuf + (pos - 1), 2);
-			++pos;
-		}
 		else
 		{
 			stLine += c;

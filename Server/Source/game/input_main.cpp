@@ -39,7 +39,10 @@
 #include "OXEvent.h"
 #include "DragonSoul.h"
 
-extern void SendShout (const char* szText, BYTE bEmpire);
+/* - CLIENT_LOCALE_STRING ------------------------------ */
+extern void SendShout(const char* szText, BYTE bEmpire, bool bCanFormat);
+/* ----------------------------------------------------- */
+
 extern int g_nPortalLimitTime;
 
 static int __deposit_limit()
@@ -242,6 +245,66 @@ void GetTextTagInfo (const char* src, int src_len, int& hyperlinks, bool & color
 	}
 }
 
+/* - CLIENT_LOCALE_STRING ------------------------------ */
+static int htoi(const char* s)
+{
+	const char* t = s;
+	int x = 0, y = 1;
+	s += strlen(s);
+
+	while (t <= --s)
+	{
+		if ('0' <= *s && *s <= '9')
+		{
+			x += y * (*s - '0');
+		}
+		else if ('a' <= *s && *s <= 'f')
+		{
+			x += y * (*s - 'a' + 10);
+		}
+		else if ('A' <= *s && *s <= 'F')
+		{
+			x += y * (10 + *s - 'A');
+		}
+		else
+		{
+			return -1;    /* invalid input! */
+		}
+		y <<= 4;
+	}
+
+	return x;
+}
+
+static std::string __FormatHyperLinkItemString(std::string input)
+{
+	size_t startPos = input.find("|Hitem:");
+	while (startPos != std::string::npos)
+	{
+		const size_t endPos = input.find(":", startPos + 7);
+		if (endPos == std::string::npos)
+		{
+			break;
+		}
+
+		const size_t contentStartPos = input.find("|h[", endPos);
+		const size_t contentEndPos = input.find("]|h|", contentStartPos);
+		if (contentStartPos == std::string::npos || contentEndPos == std::string::npos)
+		{
+			break;
+		}
+
+		std::string itemVnum = input.substr(startPos + 7, endPos - (startPos + 7));
+		itemVnum = "[IN;" + std::to_string(htoi(itemVnum.c_str())) + "]";
+
+		input.replace(contentStartPos + 3, contentEndPos - (contentStartPos + 3), itemVnum);
+		startPos = input.find("|Hitem:", contentStartPos + itemVnum.length());
+	}
+
+	return input;
+}
+/* ----------------------------------------------------- */
+
 int ProcessTextTag (LPCHARACTER ch, const char* c_pszText, size_t len)
 {
 	//2012.05.17 김용욱
@@ -431,6 +494,18 @@ int CInputMain::Whisper (LPCHARACTER ch, const char* data, size_t uiBytes)
 
 			char buf[CHAT_MAX_LEN + 1];
 			strlcpy (buf, data + sizeof (TPacketCGWhisper), MIN (iExtraLen + 1, sizeof (buf)));
+
+			/* - CLIENT_LOCALE_STRING ------------------------------ */
+			int hyperlinks;
+			bool colored;
+			GetTextTagInfo(buf, strlen(buf), hyperlinks, colored);
+			if (hyperlinks)
+			{
+				const std::string formatStr = __FormatHyperLinkItemString(buf);
+				strlcpy(buf, formatStr.c_str(), sizeof(buf));
+			}
+			/* ----------------------------------------------------- */
+
 			const size_t buflen = strlen (buf);
 
 			if (true == SpamBlockCheck (ch, buf, buflen))
@@ -530,6 +605,10 @@ int CInputMain::Whisper (LPCHARACTER ch, const char* data, size_t uiBytes)
 				pack.wSize = sizeof (TPacketGCWhisper) + buflen;
 				pack.bType = bType;
 				strlcpy (pack.szNameFrom, ch->GetName(), sizeof (pack.szNameFrom));
+
+				/* - CLIENT_LOCALE_STRING ------------------------------ */
+				pack.bCanFormat = (hyperlinks > 0);
+				/* ----------------------------------------------------- */
 
 				// desc->BufferedPacket을 하지 않고 버퍼에 써야하는 이유는
 				// P2P relay되어 패킷이 캡슐화 될 수 있기 때문이다.
@@ -757,6 +836,18 @@ int CInputMain::Chat (LPCHARACTER ch, const char* data, size_t uiBytes)
 	char chatbuf[CHAT_MAX_LEN + 1];
 	int len = snprintf (chatbuf, sizeof (chatbuf), "%s : %s", ch->GetName(), buf);
 
+	/* - CLIENT_LOCALE_STRING ------------------------------ */
+	int hyperlinks;
+	bool colored;
+	GetTextTagInfo(chatbuf, len, hyperlinks, colored);
+	if (hyperlinks)
+	{
+		const std::string formatStr = __FormatHyperLinkItemString(chatbuf);
+		strlcpy(chatbuf, formatStr.c_str(), sizeof(chatbuf));
+		len = strlen(chatbuf);
+	}
+	/* ----------------------------------------------------- */
+
 	if (CHAT_TYPE_SHOUT == pinfo->type)
 	{
 		LogManager::instance().ShoutLog (g_bChannel, ch->GetEmpire(), chatbuf);
@@ -816,9 +907,17 @@ int CInputMain::Chat (LPCHARACTER ch, const char* data, size_t uiBytes)
 		p.bEmpire = ch->GetEmpire();
 		strlcpy (p.szText, chatbuf, sizeof (p.szText));
 
+		/* - CLIENT_LOCALE_STRING ------------------------------ */
+		p.bCanFormat = (hyperlinks > 0);
+		/* ----------------------------------------------------- */
+
 		P2P_MANAGER::instance().Send (&p, sizeof (TPacketGGShout));
 
-		SendShout (chatbuf, ch->GetEmpire());
+		/* - CLIENT_LOCALE_STRING ------------------------------
+		bCanFormat
+		*/
+		SendShout(chatbuf, ch->GetEmpire(), p.bCanFormat);
+		/* ----------------------------------------------------- */
 
 		return (iExtraLen);
 	}
@@ -829,6 +928,10 @@ int CInputMain::Chat (LPCHARACTER ch, const char* data, size_t uiBytes)
 	pack_chat.size = sizeof (TPacketGCChat) + len;
 	pack_chat.type = pinfo->type;
 	pack_chat.id = ch->GetVID();
+
+	/* - CLIENT_LOCALE_STRING ------------------------------ */
+	pack_chat.bCanFormat = (hyperlinks > 0);
+	/* ----------------------------------------------------- */
 
 	switch (pinfo->type)
 	{

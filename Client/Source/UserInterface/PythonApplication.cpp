@@ -1045,9 +1045,20 @@ bool LoadLocaleData (const char* localePath)
 	CPythonSkill&		rkSkillMgr	= CPythonSkill::Instance();
 	CPythonNetworkStream& rkNetStream = CPythonNetworkStream::Instance();
 
+	/* - CLIENT_LOCALE_STRING ------------------------------ */
+	CPythonLocale& rkLocale = CPythonLocale::Instance();
+	/* ----------------------------------------------------- */
+
 	char szItemList[256];
 	char szItemProto[256];
 	char szItemDesc[256];
+
+	/* - CLIENT_LOCALE_STRING ------------------------------ */
+	char szLocaleTextString[256];
+	char szLocaleQuestString[256];
+	char szLocaleQuizString[256];
+	/* ----------------------------------------------------- */
+
 	char szMobProto[256];
 	char szSkillDescFileName[256];
 	char szSkillTableFileName[256];
@@ -1055,6 +1066,13 @@ bool LoadLocaleData (const char* localePath)
 	snprintf (szItemList,	sizeof (szItemList),	"locale/common/item_list.txt");
 	snprintf (szItemProto,	sizeof (szItemProto),	"%s/item_proto",	localePath);
 	snprintf (szItemDesc,	sizeof (szItemDesc),	"%s/itemdesc.txt",	localePath);
+
+	/* - CLIENT_LOCALE_STRING ------------------------------ */
+	snprintf(szLocaleTextString, sizeof(szLocaleTextString), "%s/locale_string.txt", localePath);
+	snprintf(szLocaleQuestString, sizeof(szLocaleQuestString), "%s/locale_quest.txt", localePath);
+	snprintf(szLocaleQuizString, sizeof(szLocaleQuizString), "%s/locale_quiz.txt", localePath);
+	/* ----------------------------------------------------- */
+
 	snprintf (szMobProto,	sizeof (szMobProto),	"%s/mob_proto",		localePath);
 	snprintf (szSkillDescFileName, sizeof (szSkillDescFileName),	"%s/SkillDesc.txt", localePath);
 	snprintf (szSkillTableFileName, sizeof (szSkillTableFileName),	"locale/common/SkillTable.txt");
@@ -1079,6 +1097,26 @@ bool LoadLocaleData (const char* localePath)
 	{
 		Tracenf ("LoadLocaleData - LoadItemDesc(%s) Error", szItemDesc);
 	}
+
+	/* - CLIENT_LOCALE_STRING ------------------------------ */
+	if (!rkLocale.LoadLocaleString(szLocaleTextString))
+	{
+		TraceError("LoadLocaleData - LoadLocaleString(%s) Error", szLocaleTextString);
+		return false;
+	}
+
+	if (!rkLocale.LoadQuestLocaleString(szLocaleQuestString))
+	{
+		TraceError("LoadLocaleData - LoadQuestLocaleString(%s) Error", szLocaleQuestString);
+		return false;
+	}
+
+	if (!rkLocale.LoadOXQuizLocaleString(szLocaleQuizString))
+	{
+		TraceError("LoadLocaleData - LoadOXQuizLocaleString(%s) Error", szLocaleQuizString);
+		return false;
+	}
+	/* ----------------------------------------------------- */
 
 	if (!rkNPCMgr.LoadNonPlayerData (szMobProto))
 	{

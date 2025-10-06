@@ -1249,31 +1249,17 @@ PyObject* playerGetItemLink (PyObject * poSelf, PyObject * poArgs)
 				isAttr = true;
 			}
 
-
-		if (GetDefaultCodePage() == CP_ARABIC)
+		/* - CLIENT_LOCALE_STRING ------------------------------ */
+		if (isAttr)
+			//"item:锅龋:敲贰弊:家南0:家南1:家南2"
 		{
-			if (isAttr)
-				//"item:锅龋:敲贰弊:家南0:家南1:家南2"
-			{
-				snprintf (buf, sizeof (buf), " |h|r[%s]|cffffc700|H%s|h", pItemData->GetName(), itemlink);
-			}
-			else
-			{
-				snprintf (buf, sizeof (buf), " |h|r[%s]|cfff1e6c0|H%s|h", pItemData->GetName(), itemlink);
-			}
+			snprintf (buf, sizeof (buf), "|cffffc700|H%s|h[%s]|h|r", itemlink, pItemData->GetName());
 		}
 		else
 		{
-			if (isAttr)
-				//"item:锅龋:敲贰弊:家南0:家南1:家南2"
-			{
-				snprintf (buf, sizeof (buf), "|cffffc700|H%s|h[%s]|h|r", itemlink, pItemData->GetName());
-			}
-			else
-			{
-				snprintf (buf, sizeof (buf), "|cfff1e6c0|H%s|h[%s]|h|r", itemlink, pItemData->GetName());
-			}
+			snprintf (buf, sizeof (buf), "|cfff1e6c0|H%s|h[%s]|h|r", itemlink, pItemData->GetName());
 		}
+		/* ----------------------------------------------------- */
 	}
 	else
 	{

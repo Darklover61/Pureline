@@ -492,7 +492,11 @@ void CPythonChat::ArrangeShowingChat (DWORD dwID)
 	}
 }
 
-void CPythonChat::AppendChat (int iType, const char* c_szChat)
+/* - CLIENT_LOCALE_STRING ------------------------------
+bSpecialColorType
+*/
+void CPythonChat::AppendChat(int iType, const char* c_szChat, BYTE bSpecialColorType)
+/* ----------------------------------------------------- */
 {
 	// DEFAULT_FONT
 	//static CResource * s_pResource = CResourceManager::Instance().GetResourcePointer(g_strDefaultFontName.c_str());
@@ -515,7 +519,21 @@ void CPythonChat::AppendChat (int iType, const char* c_szChat)
 	// END_OF_DEFAULT_FONT
 
 	pChatLine->fAppendedTime = rApp.GetGlobalTime();
-	pChatLine->SetColorAll (GetChatColor (iType));
+
+	/* - CLIENT_LOCALE_STRING ------------------------------ */
+	switch (bSpecialColorType)
+	{
+	case IAbstractChat::ESpecialColorType::CHAT_SPECIAL_COLOR_DICE_0:
+		pChatLine->SetColorAll(D3DXCOLOR(1.0f, 0.97640002f, 0.6196f, 1.0f));
+		break;
+	case IAbstractChat::ESpecialColorType::CHAT_SPECIAL_COLOR_DICE_1:
+		pChatLine->SetColorAll(D3DXCOLOR(1.0f, 0.1058f, 0.73720002f, 1.0f));
+		break;
+	default:
+		pChatLine->SetColorAll(GetChatColor(iType));
+		break;
+	}
+	/* ----------------------------------------------------- */
 
 	m_ChatLineDeque.push_back (pChatLine);
 	if (m_ChatLineDeque.size() > CHAT_LINE_MAX_NUM)

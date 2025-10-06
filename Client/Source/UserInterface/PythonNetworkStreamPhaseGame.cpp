@@ -1359,6 +1359,20 @@ bool CPythonNetworkStream::RecvChatPacket()
 
 	buf[uChatSize] = '\0';
 
+	/* - CLIENT_LOCALE_STRING ------------------------------ */
+	TTokenVector vecMultiLine;
+
+	if (kChat.bCanFormat)
+	{
+		std::string sFormat{ buf };
+		CPythonLocale::Instance().FormatString(sFormat);
+		strncpy(buf, sFormat.c_str(), sizeof(buf));
+		buf[sizeof(buf) - 1] = '\0';
+
+		CPythonLocale::Instance().MultiLineSplit(sFormat, vecMultiLine);
+	}
+	/* ----------------------------------------------------- */
+
 	// 유럽 아랍 버전 처리
 	// "이름: 내용" 입력을 "내용: 이름" 순서로 출력하기 위해 탭(0x08)을 넣음
 	// 탭을 아랍어 기호로 처리해 (영어1) : (영어2) 로 입력되어도 (영어2) : (영어1) 로 출력하게 만든다
@@ -1463,14 +1477,37 @@ bool CPythonNetworkStream::RecvChatPacket()
 	}
 	else
 	{
+		/* - CLIENT_LOCALE_STRING ------------------------------ */
 		if (CHAT_TYPE_NOTICE == kChat.type)
 		{
-			PyCallClassMemberFunc (m_apoPhaseWnd[PHASE_WINDOW_GAME], "BINARY_SetTipMessage", Py_BuildValue ("(s)", buf));
+			if (!vecMultiLine.empty())
+			{
+				for (const std::string& sMessage : vecMultiLine)
+				{
+					PyCallClassMemberFunc(m_apoPhaseWnd[PHASE_WINDOW_GAME], "BINARY_SetTipMessage", Py_BuildValue("(s)", sMessage.c_str()));
+				}
+			}
+			else
+			{
+				PyCallClassMemberFunc(m_apoPhaseWnd[PHASE_WINDOW_GAME], "BINARY_SetTipMessage", Py_BuildValue("(s)", buf));
+			}
 		}
 		else if (CHAT_TYPE_BIG_NOTICE == kChat.type)
 		{
-			PyCallClassMemberFunc (m_apoPhaseWnd[PHASE_WINDOW_GAME], "BINARY_SetBigMessage", Py_BuildValue ("(s)", buf));
+			if (!vecMultiLine.empty())
+			{
+				for (const std::string& sMessage : vecMultiLine)
+				{
+					PyCallClassMemberFunc(m_apoPhaseWnd[PHASE_WINDOW_GAME], "BINARY_SetBigMessage", Py_BuildValue("(s)", sMessage.c_str()));
+				}
+			}
+			else
+			{
+				PyCallClassMemberFunc(m_apoPhaseWnd[PHASE_WINDOW_GAME], "BINARY_SetBigMessage", Py_BuildValue("(s)", buf));
+			}
 		}
+		/* ----------------------------------------------------- */
+
 		else if (CHAT_TYPE_SHOUT == kChat.type)
 		{
 			char* p = strchr (buf, ':');
@@ -1484,8 +1521,30 @@ bool CPythonNetworkStream::RecvChatPacket()
 			}
 		}
 
-		CPythonChat::Instance().AppendChat (kChat.type, buf);
-
+		/* - CLIENT_LOCALE_STRING ------------------------------ */
+		if (!vecMultiLine.empty())
+		{
+			for (const std::string& sMessage : vecMultiLine)
+			{
+				CPythonChat::Instance().AppendChat(kChat.type, sMessage.c_str());
+			}
+		}
+		else
+		{
+			if (buf[0] == '@')
+			{
+				CPythonChat::Instance().AppendChat(kChat.type, &buf[1], IAbstractChat::ESpecialColorType::CHAT_SPECIAL_COLOR_DICE_0);
+			}
+			else if (buf[0] == '$')
+			{
+				CPythonChat::Instance().AppendChat(kChat.type, &buf[1], IAbstractChat::ESpecialColorType::CHAT_SPECIAL_COLOR_DICE_1);
+			}
+			else
+			{
+				CPythonChat::Instance().AppendChat(kChat.type, buf);
+			}
+		}
+		/* ----------------------------------------------------- */
 	}
 	return true;
 }
@@ -1508,6 +1567,13 @@ bool CPythonNetworkStream::RecvWhisperPacket()
 	}
 
 	buf[whisperPacket.wSize - sizeof (whisperPacket)] = '\0';
+
+	/* - CLIENT_LOCALE_STRING ------------------------------ */
+	if (whisperPacket.bCanFormat)
+	{
+		CPythonLocale::Instance().FormatString(buf, sizeof(buf));
+	}
+	/* ----------------------------------------------------- */
 
 	static char line[256];
 	if (CPythonChat::WHISPER_TYPE_CHAT == whisperPacket.bType || CPythonChat::WHISPER_TYPE_GM == whisperPacket.bType)
@@ -2068,6 +2134,10 @@ bool CPythonNetworkStream::RecvQuestInfoPacket()
 		}
 
 		szTitle[30] = '\0';
+
+		/* - CLIENT_LOCALE_STRING ------------------------------ */
+		CPythonLocale::Instance().FormatString(szTitle, sizeof(szTitle));
+		/* ----------------------------------------------------- */
 	}
 	if (0 != (c_rFlag & QUEST_SEND_CLOCK_NAME))
 	{
@@ -2077,6 +2147,10 @@ bool CPythonNetworkStream::RecvQuestInfoPacket()
 		}
 
 		szClockName[16] = '\0';
+
+		/* - CLIENT_LOCALE_STRING ------------------------------ */
+		CPythonLocale::Instance().FormatString(szClockName, sizeof(szClockName));
+		/* ----------------------------------------------------- */
 	}
 	if (0 != (c_rFlag & QUEST_SEND_CLOCK_VALUE))
 	{
@@ -2093,6 +2167,10 @@ bool CPythonNetworkStream::RecvQuestInfoPacket()
 		}
 
 		szCounterName[16] = '\0';
+
+		/* - CLIENT_LOCALE_STRING ------------------------------ */
+		CPythonLocale::Instance().FormatString(szCounterName, sizeof(szCounterName));
+		/* ----------------------------------------------------- */
 	}
 	if (0 != (c_rFlag & QUEST_SEND_COUNTER_VALUE))
 	{
@@ -2178,6 +2256,10 @@ bool CPythonNetworkStream::RecvQuestConfirmPacket()
 		Tracen ("RecvQuestConfirmPacket Error");
 		return false;
 	}
+
+	/* - CLIENT_LOCALE_STRING ------------------------------ */
+	CPythonLocale::Instance().FormatString(kQuestConfirmPacket.msg, sizeof(kQuestConfirmPacket.msg));
+	/* ----------------------------------------------------- */
 
 	PyObject * poArg = Py_BuildValue ("(sii)", kQuestConfirmPacket.msg, kQuestConfirmPacket.timeout, kQuestConfirmPacket.requestPID);
 	PyCallClassMemberFunc (m_apoPhaseWnd[PHASE_WINDOW_GAME], "BINARY_OnQuestConfirm", poArg);
@@ -2390,6 +2472,10 @@ bool CPythonNetworkStream::RecvScriptPacket()
 	}
 
 	str[str.size() - 1] = '\0';
+
+	/* - CLIENT_LOCALE_STRING ------------------------------ */
+	CPythonLocale::Instance().FormatString(str);
+	/* ----------------------------------------------------- */
 
 	int iIndex = CPythonEventManager::Instance().RegisterEventSetFromString (str);
 
@@ -3747,6 +3833,10 @@ bool CPythonNetworkStream::RecvGuild()
 					return false;
 				}
 
+				/* - CLIENT_LOCALE_STRING ------------------------------ */
+				CPythonLocale::Instance().FormatString(GradePacket.grade_name, sizeof(GradePacket.grade_name));
+				/* ----------------------------------------------------- */
+
 				auto data = CPythonGuild::SGuildGradeData (GradePacket.auth_flag, GradePacket.grade_name);
 				CPythonGuild::Instance().SetGradeData (byIndex, data);
 				//Tracef(" <Grade> [%d/%d] : %s, %d\n", byIndex, byCount, GradePacket.grade_name, GradePacket.auth_flag);
@@ -3768,6 +3858,10 @@ bool CPythonNetworkStream::RecvGuild()
 			{
 				return false;
 			}
+
+			/* - CLIENT_LOCALE_STRING ------------------------------ */
+			CPythonLocale::Instance().FormatString(szGradeName, sizeof(szGradeName));
+			/* ----------------------------------------------------- */
 
 			CPythonGuild::Instance().SetGradeName (byGradeNumber, szGradeName);
 			PyCallClassMemberFunc (m_apoPhaseWnd[PHASE_WINDOW_GAME], "RefreshGuildGrade", Py_BuildValue ("()"));
@@ -4713,6 +4807,10 @@ bool CPythonNetworkStream::RecvTargetCreatePacket()
 	{
 		return false;
 	}
+
+	/* - CLIENT_LOCALE_STRING ------------------------------ */
+	CPythonLocale::Instance().FormatString(kTargetCreate.szTargetName, sizeof(kTargetCreate.szTargetName));
+	/* ----------------------------------------------------- */
 
 	CPythonMiniMap & rkpyMiniMap = CPythonMiniMap::Instance();
 	rkpyMiniMap.CreateTarget (kTargetCreate.lID, kTargetCreate.szTargetName);

@@ -420,6 +420,10 @@ typedef struct SPacketGGShout
 	BYTE	bHeader;
 	BYTE	bEmpire;
 	char	szText[CHAT_MAX_LEN + 1];
+
+	/* - CLIENT_LOCALE_STRING ------------------------------ */
+	bool	bCanFormat;
+	/* ----------------------------------------------------- */
 } TPacketGGShout;
 
 typedef struct SPacketGGXmasWarpSanta
@@ -1001,6 +1005,11 @@ typedef struct packet_chat	// 가변 패킷
 	BYTE	type;
 	DWORD	id;
 	BYTE	bEmpire;
+
+	/* - CLIENT_LOCALE_STRING ------------------------------ */
+	bool	bCanFormat;
+	packet_chat() : bCanFormat(true) {}
+	/* ----------------------------------------------------- */
 } TPacketGCChat;
 
 typedef struct packet_whisper	// 가변 패킷
@@ -1009,6 +1018,11 @@ typedef struct packet_whisper	// 가변 패킷
 	WORD	wSize;
 	BYTE	bType;
 	char	szNameFrom[CHARACTER_NAME_MAX_LEN + 1];
+
+	/* - CLIENT_LOCALE_STRING ------------------------------ */
+	bool	bCanFormat;
+	packet_whisper() : bCanFormat(true) {}
+	/* ----------------------------------------------------- */
 } TPacketGCWhisper;
 
 typedef struct packet_main_character

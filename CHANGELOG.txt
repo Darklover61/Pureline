@@ -2,6 +2,12 @@
 | Kaptan Yosun's Pureline                                        |
 +----------------------------------------------------------------+
 +------------+
+| 07.10.2025 |
++------------+
+~ Added Some Code
+    * [REVERSED] CLIENT_LOCALE_STRING
+
++------------+
 | 06.10.2025 |
 +------------+
 ~ Moved some ui scripts to uiscript from locale/xx to avoid duplication.

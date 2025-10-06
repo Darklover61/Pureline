@@ -42,6 +42,10 @@
 #include "AbstractApplication.h"
 #include "MovieMan.h"
 
+/* - CLIENT_LOCALE_STRING ------------------------------ */
+#include "PythonLocale.h"
+/* ----------------------------------------------------- */
+
 class CPythonApplication : public CMSApplication, public CInputKeyboard, public IAbstractApplication
 {
 	public:
@@ -367,6 +371,10 @@ class CPythonApplication : public CMSApplication, public CInputKeyboard, public 
 		CPythonMessenger			m_pyManager;
 		CPythonSafeBox				m_pySafeBox;
 		CPythonGuild				m_pyGuild;
+
+		/* - CLIENT_LOCALE_STRING ------------------------------ */
+		CPythonLocale				m_pyLocale;
+		/* ----------------------------------------------------- */
 
 		CGuildMarkManager			m_kGuildMarkManager;
 		CGuildMarkDownloader		m_kGuildMarkDownloader;

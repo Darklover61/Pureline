@@ -225,6 +225,7 @@
     <ClInclude Include="PythonGuild.h" />
     <ClInclude Include="PythonIME.h" />
     <ClInclude Include="PythonItem.h" />
+    <ClInclude Include="PythonLocale.h" />
     <ClInclude Include="PythonMessenger.h" />
     <ClInclude Include="PythonMiniMap.h" />
     <ClInclude Include="PythonNetworkDatagram.h" />
@@ -294,6 +295,7 @@
     <ClCompile Include="PythonIMEModule.cpp" />
     <ClCompile Include="PythonItem.cpp" />
     <ClCompile Include="PythonItemModule.cpp" />
+    <ClCompile Include="PythonLocale.cpp" />
     <ClCompile Include="PythonMessenger.cpp" />
     <ClCompile Include="PythonMiniMap.cpp" />
     <ClCompile Include="PythonMiniMapModule.cpp" />

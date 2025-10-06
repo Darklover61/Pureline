@@ -196,7 +196,12 @@ class CPythonChat : public CSingleton<CPythonChat>, public IAbstractChat
 		int  GetLineStep (DWORD dwID);
 
 		// Chat
-		void AppendChat (int iType, const char* c_szChat);
+		/* - CLIENT_LOCALE_STRING ------------------------------
+		bSpecialColorType
+		*/
+		void AppendChat(int iType, const char* c_szChat, BYTE bSpecialColorType = IAbstractChat::ESpecialColorType::CHAT_SPECIAL_COLOR_NORMAL);
+		/* ----------------------------------------------------- */
+
 		void AppendChatWithDelay (int iType, const char* c_szChat, int iDelay);
 		void ArrangeShowingChat (DWORD dwID);
 

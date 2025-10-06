@@ -196,6 +196,12 @@ void CGraphicTextInstance::Update()
 				wchar_t* wArabicText = (wchar_t*)_alloca (sizeof (wchar_t) * wTextLen);
 				int wArabicTextLen = Arabic_MakeShape (wText, wTextLen, wArabicText, wTextLen);
 
+				/* - CLIENT_LOCALE_STRING ------------------------------ */
+				std::wstring hyperlinkText = Arabic_MakeReverseHyperlink(wArabicText, wArabicTextLen);
+				wArabicText = hyperlinkText.data();
+				wArabicTextLen = hyperlinkText.size();
+				/* ----------------------------------------------------- */
+
 				bool isEnglish = true;
 				int nEnglishBase = wArabicTextLen - 1;
 
