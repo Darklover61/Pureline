@@ -939,7 +939,7 @@ void DESC::DisconnectOfSameLogin()
 			return;
 		}
 
-		GetCharacter()->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("다른 컴퓨터에서 로그인 하여 접속을 종료 합니다."));
+		GetCharacter()->ChatPacket (CHAT_TYPE_INFO, "[LS;486]"/* "Someone has logged into your account. You will be disconnected from the server." */);
 		DelayedDisconnect (5);
 	}
 	else

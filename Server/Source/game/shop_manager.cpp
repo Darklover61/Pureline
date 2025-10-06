@@ -122,7 +122,7 @@ bool CShopManager::StartShopping (LPCHARACTER pkChr, LPCHARACTER pkChrShopKeeper
 	//PREVENT_TRADE_WINDOW
 	if (pkChr->IsOpenSafebox() || pkChr->GetExchange() || pkChr->GetMyShop() || pkChr->IsCubeOpen())
 	{
-		pkChr->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("다른 거래창이 열린상태에서는 상점거래를 할수 가 없습니다."));
+		pkChr->ChatPacket (CHAT_TYPE_INFO, "[LS;876]"/* "You cannot trade in the shop while another window is open." */);
 		return false;
 	}
 	//END_PREVENT_TRADE_WINDOW
@@ -242,7 +242,7 @@ void CShopManager::Buy (LPCHARACTER ch, BYTE pos)
 
 	if (DISTANCE_APPROX (ch->GetX() - ch->GetShopOwner()->GetX(), ch->GetY() - ch->GetShopOwner()->GetY()) > 2000)
 	{
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("상점과의 거리가 너무 멀어 물건을 살 수 없습니다."));
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;877]"/* "You are too far away from the shop to buy something." */);
 		return;
 	}
 
@@ -307,7 +307,7 @@ void CShopManager::Sell (LPCHARACTER ch, BYTE bCell, BYTE bCount)
 
 	if (DISTANCE_APPROX (ch->GetX() - ch->GetShopOwner()->GetX(), ch->GetY() - ch->GetShopOwner()->GetY()) > 2000)
 	{
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("상점과의 거리가 너무 멀어 물건을 팔 수 없습니다."));
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;878]"/* "You are too far away from the shop to sell something." */);
 		return;
 	}
 
@@ -386,7 +386,7 @@ void CShopManager::Sell (LPCHARACTER ch, BYTE bCell, BYTE bCount)
 	if (GOLD_MAX <= nTotalMoney)
 	{
 		sys_err ("[OVERFLOW_GOLD] id %u name %s gold %u", ch->GetPlayerID(), ch->GetName(), ch->GetGold());
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("20억냥이 초과하여 물품을 팔수 없습니다."));
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;879]"/* "You cannot trade because you are carrying more than 2 billion Yang." */);
 		return;
 	}
 

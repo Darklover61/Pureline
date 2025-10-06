@@ -11,12 +11,12 @@
 
 static const char* GetEmpireName (int priv)
 {
-	return LC_TEXT (c_apszEmpireNames[priv]);
+	return c_apszEmpireNames[priv];
 }
 
 static const char* GetPrivName (int priv)
 {
-	return LC_TEXT (c_apszPrivNames[priv]);
+	return c_apszPrivNames[priv];
 }
 
 CPrivManager::CPrivManager()
@@ -105,13 +105,13 @@ void CPrivManager::GiveGuildPriv (DWORD guild_id, BYTE type, int value, BYTE bLo
 		if (value)
 		{
 			char buf[100];
-			snprintf (buf, sizeof (buf), LC_TEXT ("%s 길드의 %s이 %d%% 증가했습니다!"), g->GetName(), GetPrivName (type), value);
+			snprintf (buf, sizeof (buf), "[LS;722;%s;%s;%d]"/* "%s of the Guild %s raised up to %d%% !" */, g->GetName(), GetPrivName (type), value);
 			SendNotice (buf);
 		}
 		else
 		{
 			char buf[100];
-			snprintf (buf, sizeof (buf), LC_TEXT ("%s 길드의 %s이 정상으로 돌아왔습니다."), g->GetName(), GetPrivName (type));
+			snprintf (buf, sizeof (buf), "[LS;723;%s;%s]"/* "%s of the Guild %s normal again." */, g->GetName(), GetPrivName (type));
 			SendNotice (buf);
 		}
 
@@ -162,7 +162,7 @@ void CPrivManager::GiveEmpirePriv (BYTE empire, BYTE type, int value, BYTE bLog,
 	if (value)
 	{
 		char buf[100];
-		snprintf (buf, sizeof (buf), LC_TEXT ("%s의 %s이 %d%% 증가했습니다!"), GetEmpireName (empire), GetPrivName (type), value);
+		snprintf (buf, sizeof (buf), "[LS;724;%s;%s;%d]"/* "%s: %s has increased by %d%%!" */, GetEmpireName (empire), GetPrivName (type), value);
 
 		if (empire)
 		{
@@ -176,7 +176,7 @@ void CPrivManager::GiveEmpirePriv (BYTE empire, BYTE type, int value, BYTE bLog,
 	else
 	{
 		char buf[100];
-		snprintf (buf, sizeof (buf), LC_TEXT ("%s의 %s이 정상으로 돌아왔습니다."), GetEmpireName (empire), GetPrivName (type));
+		snprintf (buf, sizeof (buf), "[LS;726;%s;%s]"/* "%s 's %s normal again." */, GetEmpireName (empire), GetPrivName (type));
 
 		if (empire)
 		{

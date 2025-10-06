@@ -23,7 +23,7 @@ bool CHARACTER::StartRiding()
 
 	if (IsPolymorphed())
 	{
-		ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("변신 상태에서는 말에 탈 수 없습니다."));
+		ChatPacket (CHAT_TYPE_INFO, "[LS;882]"/* "You cannot ride a Horse while you are transformed." */);
 		return false;
 	}
 
@@ -32,7 +32,7 @@ bool CHARACTER::StartRiding()
 
 	if (armor && (armor->GetVnum() >= 11901 && armor->GetVnum() <= 11904))
 	{
-		ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("예복을 입은 상태에서 말을 탈 수 없습니다."));
+		ChatPacket (CHAT_TYPE_INFO, "[LS;883]"/* "You cannot ride while you are wearing a Wedding Dress or a Tuxedo." */);
 		return false;
 	}
 
@@ -51,15 +51,15 @@ bool CHARACTER::StartRiding()
 	{
 		if (GetHorseLevel() <= 0)
 		{
-			ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("말을 소유하고 있지 않습니다."));
+			ChatPacket (CHAT_TYPE_INFO, "[LS;884]"/* "You do not have a Horse." */);
 		}
 		else if (GetHorseHealth() <= 0)
 		{
-			ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("말이 죽어있는 상태 입니다."));
+			ChatPacket (CHAT_TYPE_INFO, "[LS;885]"/* "Your Horse is dead." */);
 		}
 		else if (GetHorseStamina() <= 0)
 		{
-			ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("말의 스테미너가 부족하여 말을 탈 수 없습니다."));
+			ChatPacket (CHAT_TYPE_INFO, "[LS;886]"/* "Your Horse's endurance is too low." */);
 		}
 
 		return false;
@@ -201,7 +201,7 @@ void CHARACTER::HorseSummon (bool bSummon, bool bFromFar, DWORD dwVnum, const ch
 
 		if (!m_chHorse)
 		{
-			ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("말 소환에 실패하였습니다."));
+			ChatPacket (CHAT_TYPE_INFO, "[LS;887]"/* "Calling the Horse has failed." */);
 			return;
 		}
 

@@ -235,7 +235,7 @@ namespace quest
 		int iPulse = thecore_pulse();
 		if ( pkChr->GetExchange() || pkChr->GetMyShop() || pkChr->GetShopOwner() || pkChr->IsOpenSafebox() )
 		{
-			pkChr->ChatPacket( CHAT_TYPE_INFO, LC_TEXT("거래창,창고 등을 연 상태에서는 다른곳으로 이동할수 없습니다" ));
+			pkChr->ChatPacket( CHAT_TYPE_INFO, "[LS;851]"///* "You cannot go elsewhere for a period of time after the trade." );
 
 			return;
 		}
@@ -243,7 +243,7 @@ namespace quest
 		//교환 후 시간체크
 		if ( iPulse - pkChr->GetExchangeTime()  < PASSES_PER_SEC(60) )
 		{
-			pkChr->ChatPacket( CHAT_TYPE_INFO, LC_TEXT("거래 후 1분 이내에는 다른지역으로 이동 할 수 없습니다." ) );
+			pkChr->ChatPacket( CHAT_TYPE_INFO, "[LS;851]"///* "You cannot go elsewhere for a period of time after the trade." );
 			return;
 		}
 		//END_PREVENT_PORTAL_AFTER_EXCHANGE
@@ -251,7 +251,7 @@ namespace quest
 		{
 			if ( iPulse - pkChr->GetMyShopTime() < PASSES_PER_SEC(60) )
 			{
-				pkChr->ChatPacket( CHAT_TYPE_INFO, LC_TEXT("거래 후 1분 이내에는 다른지역으로 이동 할 수 없습니다." ) );
+				pkChr->ChatPacket( CHAT_TYPE_INFO, "[LS;851]"///* "You cannot go elsewhere for a period of time after the trade." );
 				return;
 			}
 
@@ -418,12 +418,12 @@ namespace quest
 			{
 				if (dwVnums[i] == 1)
 				{
-					ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("돈 %d 냥을 획득했습니다."), dwCounts[i]);
+					ch->ChatPacket (CHAT_TYPE_INFO, "[LS;1269;%d]"/* "You have received %d Yang." */, dwCounts[i]);
 				}
 				else if (dwVnums[i] == 2)
 				{
-					ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("나무에서 부터 신비한 빛이 나옵니다."));
-					ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("%d의 경험치를 획득했습니다."), dwCounts[i]);
+					ch->ChatPacket (CHAT_TYPE_INFO, "[LS;487]"/* "A mysterious light appears from the tree." */);
+					ch->ChatPacket (CHAT_TYPE_INFO, "[LS;1290;%d]"/* "You have received %d experience points." */, dwCounts[i]);
 				}
 			}
 		}

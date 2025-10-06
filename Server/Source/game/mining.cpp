@@ -316,7 +316,7 @@ namespace mining
 		CItem& pick = *item;
 		Pick_MaxCurExp (pick);
 
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("곡괭이 수련도가 최대(%d)가 되었습니다."), Pick_GetCurExp (pick));
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;727;%d]"/* "Your mining points have reached their maximum. (%d)" */, Pick_GetCurExp (pick));
 	}
 
 	void PracticePick (LPCHARACTER ch, LPITEM item)
@@ -342,20 +342,20 @@ namespace mining
 
 			if (Pick_Refinable (pick))
 			{
-				ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("곡괭이가 최대 수련도에 도달하였습니다."));
-				ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("나무꾼를 통해 다음 레벨의 곡괭이로 업그레이드 할 수 있습니다."));
+				ch->ChatPacket (CHAT_TYPE_INFO, "[LS;728]"/* "Your mining points have reached their maximum level." */);
+				ch->ChatPacket (CHAT_TYPE_INFO, "[LS;729]"/* "You can get lumberjack Deokbae to upgrade your Pickaxe." */);
 			}
 			else
 			{
 				Pick_IncCurExp (pick);
 
-				ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("곡괭이의 수련도가 증가하였습니다! (%d/%d)"),
-								Pick_GetCurExp (pick), Pick_GetMaxExp (pick));
+				ch->ChatPacket (CHAT_TYPE_INFO, "[LS;730;%d;%d]"/* "Your Mining Points have increased! (%d/%d)" */),
+				Pick_GetCurExp (pick), Pick_GetMaxExp (pick);
 
 				if (Pick_Refinable (pick))
 				{
-					ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("곡괭이가 최대 수련도에 도달하였습니다."));
-					ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("나무꾼를 통해 다음 레벨의 곡괭이로 업그레이드 할 수 있습니다."));
+					ch->ChatPacket (CHAT_TYPE_INFO, "[LS;728]"/* "Your mining points have reached their maximum level." */);
+					ch->ChatPacket (CHAT_TYPE_INFO, "[LS;729]"/* "You can get lumberjack Deokbae to upgrade your Pickaxe." */);
 				}
 			}
 		}
@@ -387,14 +387,14 @@ namespace mining
 		// REFINE_PICK
 		if (!pick || !Pick_Check (*pick))
 		{
-			ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("곡괭이를 들고 있지 않아서 캘 수 없습니다."));
+			ch->ChatPacket (CHAT_TYPE_INFO, "[LS;731]"/* "You cannot mine without a Pick." */);
 			return 0;
 		}
 		// END_OF_REFINE_PICK
 
 		if (!load)
 		{
-			ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("더이상 캐낼 수 없습니다."));
+			ch->ChatPacket (CHAT_TYPE_INFO, "[LS;732]"/* "Nothing to mine here." */);
 			return 0;
 		}
 
@@ -403,11 +403,11 @@ namespace mining
 		if (number (1, 100) <= iPct)
 		{
 			OreDrop (ch, load->GetRaceNum());
-			ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("채광에 성공하였습니다."));
+			ch->ChatPacket (CHAT_TYPE_INFO, "[LS;733]"/* "The mining has been successful." */);
 		}
 		else
 		{
-			ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("채광에 실패하였습니다."));
+			ch->ChatPacket (CHAT_TYPE_INFO, "[LS;734]"/* "The mining has failed." */);
 		}
 
 		PracticePick (ch, pick);

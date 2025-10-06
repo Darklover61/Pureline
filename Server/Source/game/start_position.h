@@ -13,7 +13,7 @@ extern DWORD arena_return_position[4][2];
 
 inline const char* EMPIRE_NAME (BYTE e)
 {
-	return LC_TEXT (g_nation_name[e]);
+	return g_nation_name[e];
 }
 
 inline DWORD EMPIRE_START_MAP (BYTE e)

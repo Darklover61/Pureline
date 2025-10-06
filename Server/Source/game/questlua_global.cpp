@@ -618,7 +618,7 @@ namespace quest
 					os << ", ";
 				}
 
-				os << LC_TEXT (c_apszPrivNames[type]) << " : " <<
+				os << c_apszPrivNames[type] << " : " <<
 				   pkPrivEmpireData->m_value << "%" << " (" <<
 				   ((pkPrivEmpireData->m_end_time_sec - get_global_time()) / 3600.0f) << " hours)" << endl;
 				found = true;
@@ -665,7 +665,7 @@ namespace quest
 					os << ", ";
 				}
 
-				os << LC_TEXT (c_apszPrivNames[type]) << " : " << pPrivGuildData->value << "%"
+				os << c_apszPrivNames[type] << " : " << pPrivGuildData->value << "%"
 				   << " (" << ((pPrivGuildData->end_time_sec - get_global_time()) / 3600.0f) << " hours)" << endl;
 				found = true;
 			}
@@ -1073,7 +1073,7 @@ namespace quest
 
 		event_create (warp_all_to_village_event, info, PASSES_PER_SEC (iSec));
 
-		SendNoticeMap (LC_TEXT ("잠시후 모두 마을로 이동됩니다."), iMapIndex, false);
+		SendNoticeMap ("[LS;1]"/* "Everyone will be teleported into the city shortly." */, iMapIndex, false);
 
 		return 0;
 	}

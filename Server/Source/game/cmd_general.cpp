@@ -59,13 +59,13 @@ ACMD (do_user_horse_ride)
 		// 말이 아닌 다른탈것을 타고있다.
 		if (ch->GetMountVnum())
 		{
-			ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("이미 탈것을 이용중입니다."));
+			ch->ChatPacket (CHAT_TYPE_INFO, "[LS;1054]"/* "You're already riding. Get off first." */);
 			return;
 		}
 
 		if (ch->GetHorse() == NULL)
 		{
-			ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("말을 먼저 소환해주세요."));
+			ch->ChatPacket (CHAT_TYPE_INFO, "[LS;501]"/* "Please call your Horse first." */);
 			return;
 		}
 
@@ -82,15 +82,15 @@ ACMD (do_user_horse_back)
 	if (ch->GetHorse() != NULL)
 	{
 		ch->HorseSummon (false);
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("말을 돌려보냈습니다."));
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;502]"/* "You have sent your horse away." */);
 	}
 	else if (ch->IsHorseRiding() == true)
 	{
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("말에서 먼저 내려야 합니다."));
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;504]"/* "You have to get off your Horse." */);
 	}
 	else
 	{
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("말을 먼저 소환해주세요."));
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;501]"/* "Please call your Horse first." */);
 	}
 }
 
@@ -106,11 +106,11 @@ ACMD (do_user_horse_feed)
 	{
 		if (ch->IsHorseRiding() == false)
 		{
-			ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("말을 먼저 소환해주세요."));
+			ch->ChatPacket (CHAT_TYPE_INFO, "[LS;501]"/* "Please call your Horse first." */);
 		}
 		else
 		{
-			ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("말을 탄 상태에서는 먹이를 줄 수 없습니다."));
+			ch->ChatPacket (CHAT_TYPE_INFO, "[LS;505]"/* "You cannot feed your Horse whilst sitting on it." */);
 		}
 		return;
 	}
@@ -121,13 +121,12 @@ ACMD (do_user_horse_feed)
 	{
 		ch->RemoveSpecifyItem (dwFood, 1);
 		ch->FeedHorse();
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("말에게 %s%s 주었습니다."),
-						ITEM_MANAGER::instance().GetTable (dwFood)->szName,
-						g_iUseLocale ? "" : under_han (ITEM_MANAGER::instance().GetTable (dwFood)->szName) ? LC_TEXT ("을") : LC_TEXT ("를"));
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;506;%s;%s]"/* "You have fed the Horse with %s%s." */,
+						ITEM_MANAGER::instance().GetTable (dwFood)->szName); /* [yosun_fixme] make this multilang and where is the second %s? */
 	}
 	else
 	{
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("%s 아이템이 필요합니다"), ITEM_MANAGER::instance().GetTable (dwFood)->szName);
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;507;%s]"/* "You need %s." */, ITEM_MANAGER::instance().GetTable (dwFood)->szName); /* [KaptanYosun TODO] make this multilang */
 	}
 }
 
@@ -236,7 +235,7 @@ EVENTFUNC (shutdown_event)
 	else
 	{
 		char buf[64];
-		snprintf (buf, sizeof (buf), LC_TEXT ("셧다운이 %d초 남았습니다."), *pSec);
+		snprintf (buf, sizeof (buf), "[LS;508;%d]"/* "%d seconds until Exit." */, *pSec);
 		SendNotice (buf);
 
 		--*pSec;
@@ -255,7 +254,7 @@ void Shutdown (int iSec)
 	CWarMapManager::instance().OnShutdown();
 
 	char buf[64];
-	snprintf (buf, sizeof (buf), LC_TEXT ("%d초 후 게임이 셧다운 됩니다."), iSec);
+	snprintf (buf, sizeof (buf), "[LS;509;%d]"/* "The game will be closed in %d seconds." */, iSec);
 
 	SendNotice (buf);
 
@@ -347,7 +346,7 @@ EVENTFUNC (timed_event)
 	}
 	else
 	{
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("%d초 남았습니다."), info->left_second);
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;510;%d]"/* "%d seconds until Exit." */, info->left_second);
 		--info->left_second;
 	}
 
@@ -359,7 +358,7 @@ ACMD (do_cmd)
 	/* RECALL_DELAY
 	   if (ch->m_pkRecallEvent != NULL)
 	   {
-	   ch->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("취소 되었습니다."));
+	   ch->ChatPacket(CHAT_TYPE_INFO, "[LS;511]") // "Your logout has been cancelled.";
 	   event_cancel(&ch->m_pkRecallEvent);
 	   return;
 	   }
@@ -367,7 +366,7 @@ ACMD (do_cmd)
 
 	if (ch->m_pkTimedEvent)
 	{
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("취소 되었습니다."));
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;511]"/* "Your logout has been cancelled." */);
 		event_cancel (&ch->m_pkTimedEvent);
 		return;
 	}
@@ -375,15 +374,15 @@ ACMD (do_cmd)
 	switch (subcmd)
 	{
 		case SCMD_LOGOUT:
-			ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("로그인 화면으로 돌아 갑니다. 잠시만 기다리세요."));
+			ch->ChatPacket (CHAT_TYPE_INFO, "[LS;512]"/* "Back to login window. Please wait." */);
 			break;
 
 		case SCMD_QUIT:
-			ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("게임을 종료 합니다. 잠시만 기다리세요."));
+			ch->ChatPacket (CHAT_TYPE_INFO, "[LS;513]"/* "You have been disconnected from the server. Please wait." */);
 			break;
 
 		case SCMD_PHASE_SELECT:
-			ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("캐릭터를 전환 합니다. 잠시만 기다리세요."));
+			ch->ChatPacket (CHAT_TYPE_INFO, "[LS;515]"/* "You are changing character. Please wait." */);
 			break;
 	}
 
@@ -529,14 +528,14 @@ ACMD (do_restart)
 				//성지 맵일경우에는 체크 하지 않는다.
 				if (false == CThreeWayWar::instance().IsSungZiMapIndex (ch->GetMapIndex()))
 				{
-					ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("아직 재시작 할 수 없습니다. (%d초 남음)"), iTimeToDead - (180 - g_nPortalLimitTime));
+					ch->ChatPacket (CHAT_TYPE_INFO, "[LS;516;%d]"/* "A new start is not possible at the moment. Please wait %d seconds." */, iTimeToDead - (180 - g_nPortalLimitTime));
 					return;
 				}
 			}
 
 			if (iTimeToDead > 170)
 			{
-				ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("아직 재시작 할 수 없습니다. (%d초 남음)"), iTimeToDead - 170);
+				ch->ChatPacket (CHAT_TYPE_INFO, "[LS;516;%d]"/* "A new start is not possible at the moment. Please wait %d seconds." */, iTimeToDead - 170);
 				return;
 			}
 		}
@@ -553,14 +552,14 @@ ACMD (do_restart)
 			if ((!ch->GetWarMap() || ch->GetWarMap()->GetType() == GUILD_WAR_TYPE_FLAG) ||
 			false == CThreeWayWar::instance().IsSungZiMapIndex (ch->GetMapIndex()))
 			{
-				ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("아직 재시작 할 수 없습니다. (%d초 남음)"), iTimeToDead - (180 - g_nPortalLimitTime));
+				ch->ChatPacket (CHAT_TYPE_INFO, "[LS;516;%d]"/* "A new start is not possible at the moment. Please wait %d seconds." */, iTimeToDead - (180 - g_nPortalLimitTime));
 				return;
 			}
 		}
 
 		if (iTimeToDead > 173)
 		{
-			ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("아직 마을에서 재시작 할 수 없습니다. (%d 초 남음)"), iTimeToDead - 173);
+			ch->ChatPacket (CHAT_TYPE_INFO, "[LS;519;%d]"/* "You cannot restart in the city yet. Wait another %d seconds." */, iTimeToDead - 173);
 			return;
 		}
 	}
@@ -708,7 +707,7 @@ ACMD (do_stat_minus)
 
 	if (ch->IsPolymorphed())
 	{
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("둔갑 중에는 능력을 올릴 수 없습니다."));
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;521]"/* "You cannot change your status while you are transformed." */);
 		return;
 	}
 
@@ -789,7 +788,7 @@ ACMD (do_stat)
 
 	if (ch->IsPolymorphed())
 	{
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("둔갑 중에는 능력을 올릴 수 없습니다."));
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;521]"/* "You cannot change your status while you are transformed." */);
 		return;
 	}
 
@@ -848,7 +847,7 @@ ACMD (do_pvp)
 {
 	if (ch->GetArena() != NULL || CArenaManager::instance().IsArenaMap (ch->GetMapIndex()) == true)
 	{
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("대련장에서 사용하실 수 없습니다."));
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;403]"/* "You cannot use this in the duel arena." */);
 		return;
 	}
 
@@ -871,7 +870,7 @@ ACMD (do_pvp)
 
 	if (pkVictim->GetArena() != NULL)
 	{
-		pkVictim->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("상대방이 대련중입니다."));
+		pkVictim->ChatPacket (CHAT_TYPE_INFO, "[LS;522]"/* "This player is currently fighting." */);
 		return;
 	}
 
@@ -890,7 +889,7 @@ ACMD (do_guildskillup)
 
 	if (!ch->GetGuild())
 	{
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("<길드> 길드에 속해있지 않습니다."));
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;523]"/* "[Guild] It does not belong to the guild." */);
 		return;
 	}
 
@@ -904,7 +903,7 @@ ACMD (do_guildskillup)
 	}
 	else
 	{
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("<길드> 길드 스킬 레벨을 변경할 권한이 없습니다."));
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;524]"/* "[Guild] You do not have the authority to change the level of the guild skills." */);
 	}
 }
 
@@ -979,13 +978,13 @@ ACMD (do_safebox_change_password)
 
 	if (!*arg1 || strlen (arg1) > 6)
 	{
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("<창고> 잘못된 암호를 입력하셨습니다."));
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;526]"/* "[Storeroom] You have entered an incorrect password." */);
 		return;
 	}
 
 	if (!*arg2 || strlen (arg2) > 6)
 	{
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("<창고> 잘못된 암호를 입력하셨습니다."));
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;526]"/* "[Storeroom] You have entered an incorrect password." */);
 		return;
 	}
 
@@ -1000,7 +999,7 @@ ACMD (do_safebox_change_password)
 
 			if (isalpha (arg2[i]) == false)
 			{
-				ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("<창고> 비밀번호는 영문자만 가능합니다."));
+				ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("[Storeroom] Password must contain only English letters."));
 				return;
 			}
 		}
@@ -1022,7 +1021,7 @@ ACMD (do_mall_password)
 
 	if (!*arg1 || strlen (arg1) > 6)
 	{
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("<창고> 잘못된 암호를 입력하셨습니다."));
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;526]"/* "[Storeroom] You have entered an incorrect password." */);
 		return;
 	}
 
@@ -1030,13 +1029,13 @@ ACMD (do_mall_password)
 
 	if (ch->GetMall())
 	{
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("<창고> 창고가 이미 열려있습니다."));
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;527]"/* "[Storeroom] The Storeroom is already open." */);
 		return;
 	}
 
 	if (iPulse - ch->GetMallLoadTime() < passes_per_sec * 10) // 10초에 한번만 요청 가능
 	{
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("<창고> 창고를 닫은지 10초 안에는 열 수 없습니다."));
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;528]"/* "[Storeroom] You have to wait 10 seconds before you can open the Storeroom again." */);
 		return;
 	}
 
@@ -1069,13 +1068,13 @@ ACMD (do_ungroup)
 
 	if (!CPartyManager::instance().IsEnablePCParty())
 	{
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("<파티> 서버 문제로 파티 관련 처리를 할 수 없습니다."));
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;530]"/* "[Group] The server cannot execute this group request." */);
 		return;
 	}
 
 	if (ch->GetDungeon())
 	{
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("<파티> 던전 안에서는 파티에서 나갈 수 없습니다."));
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;531]"/* "[Group] You cannot leave a group while you are in a dungeon." */);
 		return;
 	}
 
@@ -1088,7 +1087,7 @@ ACMD (do_ungroup)
 	}
 	else
 	{
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("<파티> 파티에서 나가셨습니다."));
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;532]"/* "[Group] You have left the group." */);
 		//pParty->SendPartyRemoveOneToAll(ch);
 		pParty->Quit (ch->GetPlayerID());
 		//pParty->SendPartyRemoveAllToOne(ch);
@@ -1129,7 +1128,7 @@ ACMD (do_war)
 	//전쟁중인지 체크한번!
 	if (g->UnderAnyWar())
 	{
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("<길드> 이미 다른 전쟁에 참전 중 입니다."));
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;533]"/* "[Guild] Your guild is already participating in another war." */);
 		return;
 	}
 
@@ -1159,7 +1158,7 @@ ACMD (do_war)
 	//마스터인지 체크(길전은 길드장만이 가능)
 	if (gm_pid != ch->GetPlayerID())
 	{
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("<길드> 길드전에 대한 권한이 없습니다."));
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;534]"/* "[Guild] No one is entitled to a guild war." */);
 		return;
 	}
 
@@ -1168,7 +1167,7 @@ ACMD (do_war)
 
 	if (!opp_g)
 	{
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("<길드> 그런 길드가 없습니다."));
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;535]"/* "[Guild] No guild with this name exists." */);
 		return;
 	}
 
@@ -1179,7 +1178,7 @@ ACMD (do_war)
 		{
 			if (opp_g->UnderAnyWar())
 			{
-				ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("<길드> 상대방 길드가 이미 전쟁 중 입니다."));
+				ch->ChatPacket (CHAT_TYPE_INFO, "[LS;541]"/* "[Guild] This guild is already participating in another war." */);
 				return;
 			}
 
@@ -1187,13 +1186,13 @@ ACMD (do_war)
 
 			if (g->GetGuildMoney() < iWarPrice)
 			{
-				ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("<길드> 전비가 부족하여 길드전을 할 수 없습니다."));
+				ch->ChatPacket (CHAT_TYPE_INFO, "[LS;538]"/* "[Guild] Not enough Yang to participate in a guild war." */);
 				return;
 			}
 
 			if (opp_g->GetGuildMoney() < iWarPrice)
 			{
-				ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("<길드> 상대방 길드의 전비가 부족하여 길드전을 할 수 없습니다."));
+				ch->ChatPacket (CHAT_TYPE_INFO, "[LS;539]"/* "[Guild] The guild does not have enough Yang to participate in a guild war." */);
 				return;
 			}
 		}
@@ -1201,7 +1200,7 @@ ACMD (do_war)
 
 		case GUILD_WAR_SEND_DECLARE:
 		{
-			ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("이미 선전포고 중인 길드입니다."));
+			ch->ChatPacket (CHAT_TYPE_INFO, "[LS;537]"/* "[Guild] This guild is already participating in a war." */);
 			return;
 		}
 		break;
@@ -1210,7 +1209,7 @@ ACMD (do_war)
 		{
 			if (opp_g->UnderAnyWar())
 			{
-				ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("<길드> 상대방 길드가 이미 전쟁 중 입니다."));
+				ch->ChatPacket (CHAT_TYPE_INFO, "[LS;541]"/* "[Guild] This guild is already participating in another war." */);
 				g->RequestRefuseWar (opp_g->GetID());
 				return;
 			}
@@ -1219,7 +1218,7 @@ ACMD (do_war)
 
 		case GUILD_WAR_RESERVE:
 		{
-			ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("<길드> 이미 전쟁이 예약된 길드 입니다."));
+			ch->ChatPacket (CHAT_TYPE_INFO, "[LS;540]"/* "[Guild] This Guild is already scheduled for another war." */);
 			return;
 		}
 		break;
@@ -1228,7 +1227,7 @@ ACMD (do_war)
 			return;
 
 		default:
-			ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("<길드> 이미 전쟁 중인 길드입니다."));
+			ch->ChatPacket (CHAT_TYPE_INFO, "[LS;1050]"/* "[Guild] This guild is taking part in a battle at the moment." */);
 			g->RequestRefuseWar (opp_g->GetID());
 			return;
 	}
@@ -1238,12 +1237,12 @@ ACMD (do_war)
 		// 길드전을 할 수 있는 조건을 만족하지않는다.
 		if (g->GetLadderPoint() == 0)
 		{
-			ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("<길드> 레더 점수가 모자라서 길드전을 할 수 없습니다."));
+			ch->ChatPacket (CHAT_TYPE_INFO, "[LS;1308]"/* "[Guild] The guild level is too low." */);
 			sys_log (0, "GuildWar.StartError.NEED_LADDER_POINT");
 		}
 		else if (g->GetMemberCount() < GUILD_WAR_MIN_MEMBER_COUNT)
 		{
-			ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("<길드> 길드전을 하기 위해선 최소한 %d명이 있어야 합니다."), GUILD_WAR_MIN_MEMBER_COUNT);
+			ch->ChatPacket (CHAT_TYPE_INFO, "[LS;543;%d]"/* "[Guild] A minimum of %d players are needed to participate in a guild war." */, GUILD_WAR_MIN_MEMBER_COUNT);
 			sys_log (0, "GuildWar.StartError.NEED_MINIMUM_MEMBER[%d]", GUILD_WAR_MIN_MEMBER_COUNT);
 		}
 		else
@@ -1258,11 +1257,11 @@ ACMD (do_war)
 	{
 		if (opp_g->GetLadderPoint() == 0)
 		{
-			ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("<길드> 상대방 길드의 레더 점수가 모자라서 길드전을 할 수 없습니다."));
+			ch->ChatPacket (CHAT_TYPE_INFO, "[LS;544]"/* "[Guild] The guild does not have enough points to participate in a guild war." */);
 		}
 		else if (opp_g->GetMemberCount() < GUILD_WAR_MIN_MEMBER_COUNT)
 		{
-			ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("<길드> 상대방 길드의 길드원 수가 부족하여 길드전을 할 수 없습니다."));
+			ch->ChatPacket (CHAT_TYPE_INFO, "[LS;545]"/* "[Guild] The guild does not have enough members to participate in a guild war." */);
 		}
 		return;
 	}
@@ -1281,7 +1280,7 @@ ACMD (do_war)
 			break;
 		}
 
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("<길드> 상대방 길드의 길드장이 접속중이 아닙니다."));
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;1048]"/* "[Guild] The enemy's guild leader is offline." */);
 		g->RequestRefuseWar (opp_g->GetID());
 		return;
 
@@ -1302,7 +1301,7 @@ ACMD (do_war)
 			break;
 		}
 
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("<길드> 상대방 길드의 길드장이 접속중이 아닙니다."));
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;1048]"/* "[Guild] The enemy's guild leader is offline." */);
 		g->RequestRefuseWar (opp_g->GetID());
 		return;
 
@@ -1332,7 +1331,7 @@ ACMD (do_nowar)
 
 	if (gm_pid != ch->GetPlayerID())
 	{
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("<길드> 길드전에 대한 권한이 없습니다."));
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;534]"/* "[Guild] No one is entitled to a guild war." */);
 		return;
 	}
 
@@ -1340,7 +1339,7 @@ ACMD (do_nowar)
 
 	if (!opp_g)
 	{
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("<길드> 그런 길드가 없습니다."));
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;535]"/* "[Guild] No guild with this name exists." */);
 		return;
 	}
 
@@ -1387,7 +1386,7 @@ ACMD (do_messenger_auth)
 {
 	if (ch->GetArena())
 	{
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("대련장에서 사용하실 수 없습니다."));
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;403]"/* "You cannot use this in the duel arena." */);
 		return;
 	}
 
@@ -1407,7 +1406,7 @@ ACMD (do_messenger_auth)
 
 		if (tch)
 		{
-			tch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("%s 님으로 부터 친구 등록을 거부 당했습니다."), ch->GetName());
+			tch->ChatPacket (CHAT_TYPE_INFO, "[LS;548;%s]"/* "%s declined the invitation." */, ch->GetName());
 		}
 	}
 
@@ -1518,13 +1517,13 @@ ACMD (do_party_request)
 {
 	if (ch->GetArena())
 	{
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("대련장에서 사용하실 수 없습니다."));
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;403]"/* "You cannot use this in the duel arena." */);
 		return;
 	}
 
 	if (ch->GetParty())
 	{
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("이미 파티에 속해 있으므로 가입신청을 할 수 없습니다."));
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;549]"/* "You cannot accept the invitation because you are already in the group." */);
 		return;
 	}
 
@@ -2092,85 +2091,85 @@ static const char* FN_point_string (int apply_number)
 	switch (apply_number)
 	{
 		case POINT_MAX_HP:
-			return LC_TEXT ("최대 생명력 +%d");
+			return "[LS;568;%d]"/* "Hit Points +%d" */;
 		case POINT_MAX_SP:
-			return LC_TEXT ("최대 정신력 +%d");
+			return "[LS;569;%d]"/* "Spell Points +%d" */;
 		case POINT_HT:
-			return LC_TEXT ("체력 +%d");
+			return "[LS;571;%d]"/* "Endurance +%d" */;
 		case POINT_IQ:
-			return LC_TEXT ("지능 +%d");
+			return "[LS;572;%d]"/* "Intelligence +%d" */;
 		case POINT_ST:
-			return LC_TEXT ("근력 +%d");
+			return "[LS;573;%d]"/* "Strength +%d" */;
 		case POINT_DX:
-			return LC_TEXT ("민첩 +%d");
+			return "[LS;574;%d]"/* "Dexterity +%d" */;
 		case POINT_ATT_SPEED:
-			return LC_TEXT ("공격속도 +%d");
+			return "[LS;575;%d]"/* "Attack Speed +%d" */;
 		case POINT_MOV_SPEED:
-			return LC_TEXT ("이동속도 %d");
+			return "[LS;576;%d]"/* "Movement Speed %d" */;
 		case POINT_CASTING_SPEED:
-			return LC_TEXT ("쿨타임 -%d");
+			return "[LS;577;%d]"/* "Cooldown Time -%d" */;
 		case POINT_HP_REGEN:
-			return LC_TEXT ("생명력 회복 +%d");
+			return "[LS;578;%d]"/* "Energy Recovery +%d" */;
 		case POINT_SP_REGEN:
-			return LC_TEXT ("정신력 회복 +%d");
+			return "[LS;579;%d]"/* "Spell Point Recovery +%d" */;
 		case POINT_POISON_PCT:
-			return LC_TEXT ("독공격 %d");
+			return "[LS;580;%d]"/* "Poison Attack %d" */;
 		case POINT_STUN_PCT:
-			return LC_TEXT ("스턴 +%d");
+			return "[LS;582;%d]"/* "Star +%d" */;
 		case POINT_SLOW_PCT:
-			return LC_TEXT ("슬로우 +%d");
+			return "[LS;583;%d]"/* "Speed Reduction +%d" */;
 		case POINT_CRITICAL_PCT:
-			return LC_TEXT ("%d%% 확률로 치명타 공격");
+			return "[LS;584;%d]"/* "Critical Attack with a chance of %d%%" */;
 		case POINT_RESIST_CRITICAL:
 			return LC_TEXT ("상대의 치명타 확률 %d%% 감소");
 		case POINT_PENETRATE_PCT:
-			return LC_TEXT ("%d%% 확률로 관통 공격");
+			return "[LS;585;%d]"/* "Chance of a Speared Attack of %d%%" */;
 		case POINT_RESIST_PENETRATE:
 			return LC_TEXT ("상대의 관통 공격 확률 %d%% 감소");
 		case POINT_ATTBONUS_HUMAN:
-			return LC_TEXT ("인간류 몬스터 타격치 +%d%%");
+			return "[LS;586;%d]"/* "Player's Attack Power against Monsters +%d%%" */;
 		case POINT_ATTBONUS_ANIMAL:
-			return LC_TEXT ("동물류 몬스터 타격치 +%d%%");
+			return "[LS;587;%d]"/* "Horse's Attack Power against Monsters +%d%%" */;
 		case POINT_ATTBONUS_ORC:
-			return LC_TEXT ("웅귀족 타격치 +%d%%");
+			return "[LS;588;%d]"/* "Attack Boost against Wonggui + %d%%" */;
 		case POINT_ATTBONUS_MILGYO:
-			return LC_TEXT ("밀교류 타격치 +%d%%");
+			return "[LS;589;%d]"/* "Attack Boost against Milgyo + %d%%" */;
 		case POINT_ATTBONUS_UNDEAD:
-			return LC_TEXT ("시체류 타격치 +%d%%");
+			return "[LS;590;%d]"/* "Attack boost against zombies + %d%%" */;
 		case POINT_ATTBONUS_DEVIL:
-			return LC_TEXT ("악마류 타격치 +%d%%");
+			return "[LS;591;%d]"/* "Attack boost against devils + %d%%" */;
 		case POINT_STEAL_HP:
-			return LC_TEXT ("타격치 %d%% 를 생명력으로 흡수");
+			return "[LS;593;%d]"/* "Absorbing of Energy %d%% while attacking." */;
 		case POINT_STEAL_SP:
-			return LC_TEXT ("타력치 %d%% 를 정신력으로 흡수");
+			return "[LS;594;%d]"/* "Absorption of Spell Points (SP) %d%% while attacking." */;
 		case POINT_MANA_BURN_PCT:
-			return LC_TEXT ("%d%% 확률로 타격시 상대 전신력 소모");
+			return "[LS;595;%d]"/* "With a chance of %d%% Spell Points (SP) will be taken from the enemy." */;
 		case POINT_DAMAGE_SP_RECOVER:
-			return LC_TEXT ("%d%% 확률로 피해시 정신력 회복");
+			return "[LS;596;%d]"/* "Absorbing of Spell Points (SP) with a chance of %d%%" */;
 		case POINT_BLOCK:
-			return LC_TEXT ("물리타격시 블럭 확률 %d%%");
+			return "[LS;597;%d]"/* "%d%% Chance of blocking a close-combat attack" */;
 		case POINT_DODGE:
-			return LC_TEXT ("활 공격 회피 확률 %d%%");
+			return "[LS;598;%d]"/* "%d%% Chance of blocking a long range attack" */;
 		case POINT_RESIST_SWORD:
-			return LC_TEXT ("한손검 방어 %d%%");
+			return "[LS;599;%d]"/* "One-Handed Sword defence %d%%" */;
 		case POINT_RESIST_TWOHAND:
-			return LC_TEXT ("양손검 방어 %d%%");
+			return "[LS;600;%d]"/* "Two-Handed Sword Defence %d%%" */;
 		case POINT_RESIST_DAGGER:
-			return LC_TEXT ("두손검 방어 %d%%");
+			return "[LS;601;%d]"/* "Two-Handed Sword Defence %d%%" */;
 		case POINT_RESIST_BELL:
-			return LC_TEXT ("방울 방어 %d%%");
+			return "[LS;602;%d]"/* "Bell Defence %d%%" */;
 		case POINT_RESIST_FAN:
-			return LC_TEXT ("부채 방어 %d%%");
+			return "[LS;604;%d]"/* "Fan Defence %d%%" */;
 		case POINT_RESIST_BOW:
-			return LC_TEXT ("활공격 저항 %d%%");
+			return "[LS;605;%d]"/* "Distant Attack Resistance %d%%" */;
 		case POINT_RESIST_FIRE:
-			return LC_TEXT ("화염 저항 %d%%");
+			return "[LS;606;%d]"/* "Fire Resistance %d%%" */;
 		case POINT_RESIST_ELEC:
-			return LC_TEXT ("전기 저항 %d%%");
+			return "[LS;607;%d]"/* "Lightning Resistance %d%%" */;
 		case POINT_RESIST_MAGIC:
-			return LC_TEXT ("마법 저항 %d%%");
+			return "[LS;608;%d]"/* "Magic Resistance %d%%" */;
 		case POINT_RESIST_WIND:
-			return LC_TEXT ("바람 저항 %d%%");
+			return "[LS;609;%d]"/* "Wind Resistance %d%%" */;
 		case POINT_RESIST_ICE:
 			return LC_TEXT ("냉기 저항 %d%%");
 		case POINT_RESIST_EARTH:
@@ -2178,80 +2177,83 @@ static const char* FN_point_string (int apply_number)
 		case POINT_RESIST_DARK:
 			return LC_TEXT ("어둠 저항 %d%%");
 		case POINT_REFLECT_MELEE:
-			return LC_TEXT ("직접 타격치 반사 확률 : %d%%");
+			return "[LS;610;%d]"/* "Reflect Direct Hit: %d%%" */;
 		case POINT_REFLECT_CURSE:
-			return LC_TEXT ("저주 되돌리기 확률 %d%%");
+			return "[LS;611;%d]"/* "Reflect Curse: %d%%" */;
 		case POINT_POISON_REDUCE:
-			return LC_TEXT ("독 저항 %d%%");
+			return "[LS;612;%d]"/* "Poison Resistance %d%%" */;
 		case POINT_KILL_SP_RECOVER:
-			return LC_TEXT ("%d%% 확률로 적퇴치시 정신력 회복");
+			return "[LS;613;%d]"/* "Spell Points (SP) will be increased by %d%% if you win." */;
 		case POINT_EXP_DOUBLE_BONUS:
-			return LC_TEXT ("%d%% 확률로 적퇴치시 경험치 추가 상승");
+			return "[LS;615;%d]"/* "Experience increases by %d%% if you win against an opponent." */;
 		case POINT_GOLD_DOUBLE_BONUS:
-			return LC_TEXT ("%d%% 확률로 적퇴치시 돈 2배 드롭");
+			return "[LS;616;%d]"/* "Increase of Yang up to %d%% if you win." */;
 		case POINT_ITEM_DROP_BONUS:
-			return LC_TEXT ("%d%% 확률로 적퇴치시 아이템 2배 드롭");
+			return "[LS;617;%d]"/* "Increase of captured Items up to %d%% if you win." */;
 		case POINT_POTION_BONUS:
-			return LC_TEXT ("물약 사용시 %d%% 성능 증가");
+			return "[LS;618;%d]"/* "Power increase of up to %d%% after taking the potion." */;
 		case POINT_KILL_HP_RECOVERY:
-			return LC_TEXT ("%d%% 확률로 적퇴치시 생명력 회복");
-		//		case POINT_IMMUNE_STUN:	return LC_TEXT("기절하지 않음 %d%%");
-		//		case POINT_IMMUNE_SLOW:	return LC_TEXT("느려지지 않음 %d%%");
-		//		case POINT_IMMUNE_FALL:	return LC_TEXT("넘어지지 않음 %d%%");
+			return "[LS;619;%d]"/* "%d%% Chance of filling up Hit Points after a victory." */;
+		case POINT_IMMUNE_STUN:
+			return "[LS;620;%d]"/* "No Dizziness %d%%" */;
+		case POINT_IMMUNE_SLOW:
+			return "[LS;621;%d]"/* "No Slowing Down %d%%" */;
+		case POINT_IMMUNE_FALL:
+			return "[LS;622;%d]"/* "No falling down %d%%" */;
 		//		case POINT_SKILL:	return LC_TEXT("");
 		//		case POINT_BOW_DISTANCE:	return LC_TEXT("");
 		case POINT_ATT_GRADE_BONUS:
-			return LC_TEXT ("공격력 +%d");
+			return "[LS;623;%d]"/* "Attack Power + %d" */;
 		case POINT_DEF_GRADE_BONUS:
-			return LC_TEXT ("방어력 +%d");
+			return "[LS;624;%d]"/* "Armour + %d" */;
 		case POINT_MAGIC_ATT_GRADE:
-			return LC_TEXT ("마법 공격력 +%d");
+			return "[LS;626;%d]"/* "Magical Attack + %d" */;
 		case POINT_MAGIC_DEF_GRADE:
-			return LC_TEXT ("마법 방어력 +%d");
+			return "[LS;627;%d]"/* "Magical Defence + %d" */;
 		//		case POINT_CURSE_PCT:	return LC_TEXT("");
 		case POINT_MAX_STAMINA:
-			return LC_TEXT ("최대 지구력 +%d");
+			return "[LS;628;%d]"/* "Maximum Endurance + %d" */;
 		case POINT_ATTBONUS_WARRIOR:
-			return LC_TEXT ("무사에게 강함 +%d%%");
+			return "[LS;629;%d]"/* "Strong against Warriors + %d%%" */;
 		case POINT_ATTBONUS_ASSASSIN:
-			return LC_TEXT ("자객에게 강함 +%d%%");
+			return "[LS;630;%d]"/* "Strong against Ninjas + %d%%" */;
 		case POINT_ATTBONUS_SURA:
-			return LC_TEXT ("수라에게 강함 +%d%%");
+			return "[LS;631;%d]"/* "Strong against Sura + %d%%" */;
 		case POINT_ATTBONUS_SHAMAN:
-			return LC_TEXT ("무당에게 강함 +%d%%");
+			return "[LS;632;%d]"/* "Strong against Shamans + %d%%" */;
 		case POINT_ATTBONUS_MONSTER:
-			return LC_TEXT ("몬스터에게 강함 +%d%%");
+			return "[LS;633;%d]"/* "Strength against monsters + %d%%" */;
 		case POINT_MALL_ATTBONUS:
-			return LC_TEXT ("공격력 +%d%%");
+			return "[LS;634;%d]"/* "Attack + %d%%" */;
 		case POINT_MALL_DEFBONUS:
-			return LC_TEXT ("방어력 +%d%%");
+			return "[LS;635;%d]"/* "Defence + %d%%" */;
 		case POINT_MALL_EXPBONUS:
-			return LC_TEXT ("경험치 %d%%");
+			return "[LS;637;%d]"/* "Experience %d%%" */;
 		case POINT_MALL_ITEMBONUS:
-			return LC_TEXT ("아이템 드롭율 %.1f배");
+			return "[LS;638;%d]"/* "Chance to find an Item %. 1f" */;
 		case POINT_MALL_GOLDBONUS:
-			return LC_TEXT ("돈 드롭율 %.1f배");
+			return "[LS;639;%d]"/* "Chance to find Yang %. 1f" */;
 		case POINT_MAX_HP_PCT:
-			return LC_TEXT ("최대 생명력 +%d%%");
+			return "[LS;640;%d]"/* "Maximum Energy +%d%%" */;
 		case POINT_MAX_SP_PCT:
-			return LC_TEXT ("최대 정신력 +%d%%");
+			return "[LS;641;%d]"/* "Maximum Energy +%d%%" */;
 		case POINT_SKILL_DAMAGE_BONUS:
-			return LC_TEXT ("스킬 데미지 %d%%");
+			return "[LS;642;%d]"/* "Skill Damage %d%%" */;
 		case POINT_NORMAL_HIT_DAMAGE_BONUS:
-			return LC_TEXT ("평타 데미지 %d%%");
+			return "[LS;643;%d]"/* "Hit Damage %d%%" */;
 		case POINT_SKILL_DEFEND_BONUS:
-			return LC_TEXT ("스킬 데미지 저항 %d%%");
+			return "[LS;644;%d]"/* "Resistance against Skill Damage %d%%" */;
 		case POINT_NORMAL_HIT_DEFEND_BONUS:
-			return LC_TEXT ("평타 데미지 저항 %d%%");
+			return "[LS;645;%d]"/* "Resistance against Hits %d%%" */;
 		//		case POINT_EXTRACT_HP_PCT:	return LC_TEXT("");
 		case POINT_RESIST_WARRIOR:
-			return LC_TEXT ("무사공격에 %d%% 저항");
+			return "[LS;646;%d]"/* "%d%% Resistance against Warrior Attacks" */;
 		case POINT_RESIST_ASSASSIN:
-			return LC_TEXT ("자객공격에 %d%% 저항");
+			return "[LS;648;%d]"/* "%d%% Resistance against Ninja Attacks" */;
 		case POINT_RESIST_SURA:
-			return LC_TEXT ("수라공격에 %d%% 저항");
+			return "[LS;649;%d]"/* "%d%% Resistance against Sura Attacks" */;
 		case POINT_RESIST_SHAMAN:
-			return LC_TEXT ("무당공격에 %d%% 저항");
+			return "[LS;650;%d]"/* "%d%% Resistance against Shaman Attacks" */;
 		default:
 			return NULL;
 	}
@@ -2298,7 +2300,7 @@ static bool FN_hair_affect_string (LPCHARACTER ch, char* buf, size_t bufsiz)
 	mon		= ltm.tm_mon + 1;
 	day		= ltm.tm_mday;
 
-	snprintf (buf + offset, bufsiz - offset, LC_TEXT (" (만료일 : %d년 %d월 %d일)"), year, mon, day);
+	snprintf (buf + offset, bufsiz - offset, "[LS;651;%d;%d;%d]"/* " (Procedure: %d y- %d m - %d d)" */, year, mon, day);
 
 	return true;
 }
@@ -2660,7 +2662,7 @@ ACMD (do_ride)
 
 
 	// 타거나 내릴 수 없을때
-	ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("말을 먼저 소환해주세요."));
+	ch->ChatPacket (CHAT_TYPE_INFO, "[LS;501]"/* "Please call your Horse first." */);
 }
 
 #ifdef __AUCTION__

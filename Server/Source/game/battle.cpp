@@ -181,12 +181,12 @@ int battle_melee_attack (LPCHARACTER ch, LPCHARACTER victim)
 
 	if (timed_event_cancel (ch))
 	{
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("전투가 시작 되어 취소 되었습니다."));
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;485]"/* "Action cancelled. You have entered a battle." */);
 	}
 
 	if (timed_event_cancel (victim))
 	{
-		victim->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("전투가 시작 되어 취소 되었습니다."));
+		victim->ChatPacket (CHAT_TYPE_INFO, "[LS;485]"/* "Action cancelled. You have entered a battle." */);
 	}
 
 	ch->SetPosition (POS_FIGHTING);

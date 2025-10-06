@@ -5,14 +5,10 @@
 char g_nation_name[4][32] =
 {
 	"",
-	"신수국",
-	"천조국",
-	"진노국",
+	"[LS;793]"/* "Shinsoo Kingdom" */,
+	"[LS;794]"/* "Chunjo Kingdom" */,
+	"[LS;795]"/* "Jinno Kingdom" */,
 };
-
-//	LC_TEXT("신수국")
-//	LC_TEXT("천조국")
-//	LC_TEXT("진노국")
 
 long g_start_map[4] =
 {

@@ -490,11 +490,11 @@ namespace fishing
 			if (rod->GetRefinedVnum() > 0 && rod->GetSocket (0) < rod->GetValue (2) && number (1, rod->GetValue (1)) == 1)
 			{
 				rod->SetSocket (0, rod->GetSocket (0) + 1);
-				ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("낚시대의 수련도가 증가하였습니다! (%d/%d)"), rod->GetSocket (0), rod->GetValue (2));
+				ch->ChatPacket (CHAT_TYPE_INFO, "[LS;796;%d;%d]"/* "Your fishing points have increased! (%d/%d)" */, rod->GetSocket (0), rod->GetValue (2));
 				if (rod->GetSocket (0) == rod->GetValue (2))
 				{
-					ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("낚시대가 최대 수련도에 도달하였습니다."));
-					ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("어부를 통해 다음 레벨의 낚시대로 업그레이드 할 수 있습니다."));
+					ch->ChatPacket (CHAT_TYPE_INFO, "[LS;797]"/* "You have reached the maximum number of fishing points." */);
+					ch->ChatPacket (CHAT_TYPE_INFO, "[LS;798]"/* "Go to the Fisherman and get your Fishing Pole upgraded!" */);
 				}
 			}
 		}
@@ -675,7 +675,7 @@ namespace fishing
 				case -2: // 잡히지 않은 경우
 				case -3: // 난이도 때문에 실패
 				case -1: // 시간 확률 때문에 실패
-					//ch->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("고기가 미끼만 빼먹고 잽싸게 도망칩니다."));
+					ch->ChatPacket (CHAT_TYPE_INFO, "[LS;799]"/* "You lost your bait to the fish." */);
 				{
 					int map_idx = ch->GetMapIndex();
 					int prob_idx = GetProbIndexByMapIndex (map_idx);
@@ -691,7 +691,7 @@ namespace fishing
 				break;
 
 				case 0:
-					//ch->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("고기가 잡혔습니다! (%s)"), fish_info[info->fish_id].name);
+					ch->ChatPacket (CHAT_TYPE_INFO, "[LS;800;%s]"/* "You have caught a fish! (%s)" */, fish_info[info->fish_id].name);
 					if (item_vnum)
 					{
 						FishingSuccess (ch);
@@ -708,7 +708,7 @@ namespace fishing
 							item->SetSocket (0, GetFishLength (info->fish_id));
 							if (test_server)
 							{
-								ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("이번에 잡은 물고기의 길이는 %.2fcm"), item->GetSocket (0) / 100.f);
+								ch->ChatPacket (CHAT_TYPE_INFO, "[LS;801;%.2f]"/* "The length of the captured fish is %.2fcm." */, item->GetSocket (0) / 100.f);
 							}
 
 							if (quest::CQuestManager::instance().GetEventFlag ("fishevent") > 0 && (info->fish_id == 5 || info->fish_id == 6))
@@ -721,11 +721,11 @@ namespace fishing
 
 								if (info->fish_id == 5)
 								{
-									strlcpy (p.szBoard, LC_TEXT ("낚시이벤트월척붕어"), sizeof (p.szBoard));
+									strlcpy (p.szBoard, "[LS;802]"/* "Fishing Event 'Great Zander'" */, sizeof (p.szBoard));
 								}
 								else if (info->fish_id == 6)
 								{
-									strlcpy (p.szBoard, LC_TEXT ("낚시이벤트잉어"), sizeof (p.szBoard));
+									strlcpy (p.szBoard, "[LS;804]"/* "Fishing Event 'Carp'" */, sizeof (p.szBoard));
 								}
 
 								db_clientdesc->DBPacket (HEADER_GD_HIGHSCORE_REGISTER, 0, &p, sizeof (TPacketGDHighscore));
@@ -772,7 +772,7 @@ namespace fishing
 				info->fish_id,
 				GetFishingLevel (ch),
 				7000);
-			//ch->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("고기가 미끼만 빼먹고 잽싸게 도망칩니다."));
+			ch->ChatPacket (CHAT_TYPE_INFO, "[LS;799]"/* "You lost your bait to the fish." */);
 			FishingFail (ch);
 		}
 		else
@@ -811,10 +811,10 @@ namespace fishing
 
 		for (std::map<std::string, int>::iterator it = fished.begin(); it != fished.end(); ++it)
 		{
-			ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("%s : %d 마리"), it->first.c_str(), it->second);
+			ch->ChatPacket (CHAT_TYPE_INFO, "[LS;805;%s;%d]"/* "[Fishing Event] %s: %d" */, it->first.c_str(), it->second);
 		}
 
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("%d 종류 %d 마리 낚음"), fished.size(), total_count);
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;806;%d;%d]"/* "You have caught %d of %d ." */, fished.size(), total_count);
 	}
 
 	void UseFish (LPCHARACTER ch, LPITEM item)
@@ -853,7 +853,7 @@ namespace fishing
 				case USED_TREASURE_MAP:	// 3
 				case USED_NONE:		// 0
 				case USED_WATER_STONE:	// 2
-					ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("고기가 흔적도 없이 사라집니다."));
+					ch->ChatPacket (CHAT_TYPE_INFO, "[LS;807]"/* "The fish vanished in the depths of the water." */);
 					break;
 
 				case USED_SHELLFISH:	// 1
@@ -865,12 +865,12 @@ namespace fishing
 						}
 					}
 
-					ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("배 속에서 조개가 나왔습니다."));
+					ch->ChatPacket (CHAT_TYPE_INFO, "[LS;808]"/* "There is a Clam inside the Fish." */);
 					ch->AutoGiveItem (SHELLFISH_VNUM);
 					break;
 
 				case USED_EARTHWARM:	// 4
-					ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("배 속에서 지렁이가 나왔습니다."));
+					ch->ChatPacket (CHAT_TYPE_INFO, "[LS;809]"/* "There is a Worm inside the Fish." */);
 					ch->AutoGiveItem (EARTHWORM_VNUM);
 					break;
 
@@ -907,7 +907,7 @@ namespace fishing
 
 		int count = item->GetCount();
 
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("%s를 구웠습니다."), item->GetName());
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;810;%s]"/* "You are roasting %s over the fire." */, item->GetName());
 		item->SetCount (0);
 		ch->AutoGiveItem (fish_info[idx].grill_vnum, count);
 	}

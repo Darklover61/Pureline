@@ -634,7 +634,7 @@ namespace quest
 
 				if (ch)
 				{
-					ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("퀘스트를 로드하는 중입니다. 잠시만 기다려 주십시오."));
+					ch->ChatPacket (CHAT_TYPE_INFO, "[LS;772]"/* "Your request is loading. Please wait." */);
 				}
 
 				return;
@@ -660,7 +660,7 @@ namespace quest
 				LPCHARACTER ch = CHARACTER_MANAGER::instance().FindByPID (pc);
 				if (ch)
 				{
-					ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("퀘스트를 로드하는 중입니다. 잠시만 기다려 주십시오."));
+					ch->ChatPacket (CHAT_TYPE_INFO, "[LS;772]"/* "Your request is loading. Please wait." */);
 				}
 				return;
 			}
@@ -685,7 +685,7 @@ namespace quest
 				LPCHARACTER ch = CHARACTER_MANAGER::instance().FindByPID (pc);
 				if (ch)
 				{
-					ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("퀘스트를 로드하는 중입니다. 잠시만 기다려 주십시오."));
+					ch->ChatPacket (CHAT_TYPE_INFO, "[LS;772]"/* "Your request is loading. Please wait." */);
 				}
 				return false;
 			}
@@ -715,7 +715,7 @@ namespace quest
 				LPCHARACTER ch = CHARACTER_MANAGER::instance().FindByPID (pc);
 				if (ch)
 				{
-					ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("퀘스트를 로드하는 중입니다. 잠시만 기다려 주십시오."));
+					ch->ChatPacket (CHAT_TYPE_INFO, "[LS;772]"/* "Your request is loading. Please wait." */);
 				}
 				return false;
 			}
@@ -761,7 +761,7 @@ namespace quest
 				LPCHARACTER ch = CHARACTER_MANAGER::instance().FindByPID (pc);
 				if (ch)
 				{
-					ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("퀘스트를 로드하는 중입니다. 잠시만 기다려 주십시오."));
+					ch->ChatPacket (CHAT_TYPE_INFO, "[LS;772]"/* "Your request is loading. Please wait." */);
 				}
 				return false;
 			}
@@ -822,7 +822,7 @@ namespace quest
 
 				if (ch)
 				{
-					ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("퀘스트를 로드하는 중입니다. 잠시만 기다려 주십시오."));
+					ch->ChatPacket (CHAT_TYPE_INFO, "[LS;772]"/* "Your request is loading. Please wait." */);
 				}
 
 				return false;
@@ -1897,7 +1897,7 @@ namespace quest
 				LPCHARACTER ch = CHARACTER_MANAGER::instance().FindByPID (pc);
 				if (ch)
 				{
-					ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("퀘스트를 로드하는 중입니다. 잠시만 기다려 주십시오."));
+					ch->ChatPacket (CHAT_TYPE_INFO, "[LS;772]"/* "Your request is loading. Please wait." */);
 				}
 				return false;
 			}
@@ -1942,7 +1942,7 @@ namespace quest
 	{
 		if (m_vecPCStack.size() == 0)
 		{
-			sys_err ("m_vecPCStack is alread empty. CurrentQuest{Name(%s), State(%s)}", GetCurrentQuestName().c_str(), GetCurrentState()->_title.c_str());
+			sys_err ("m_vecPCStack is already empty. CurrentQuest{Name(%s), State(%s)}", GetCurrentQuestName().c_str(), GetCurrentState()->_title.c_str());
 			return;
 		}
 		DWORD pc = m_vecPCStack.back();

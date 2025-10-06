@@ -44,22 +44,22 @@ static void _send_bonus_info (LPCHARACTER ch)
 	if (item_drop_bonus)
 	{
 		ch->ChatPacket (CHAT_TYPE_NOTICE,
-						LC_TEXT ("아이템 드롭률  %d%% 추가 이벤트 중입니다."), item_drop_bonus);
+						"[LS;871;%d]"/* "The quota of the Item Drop is at the moment plus %d%%" */, item_drop_bonus);
 	}
 	if (gold_drop_bonus)
 	{
 		ch->ChatPacket (CHAT_TYPE_NOTICE,
-						LC_TEXT ("골드 드롭률 %d%% 추가 이벤트 중입니다."), gold_drop_bonus);
+						"[LS;872;%d]"/* "The quota of the Yang Drop is at the moment plus %d%%" */, gold_drop_bonus);
 	}
 	if (gold10_drop_bonus)
 	{
 		ch->ChatPacket (CHAT_TYPE_NOTICE,
-						LC_TEXT ("대박골드 드롭률 %d%% 추가 이벤트 중입니다."), gold10_drop_bonus);
+						"[LS;873;%d]"/* "The drop rate for Yang rain is currently %d%% higher." */, gold10_drop_bonus);
 	}
 	if (exp_bonus)
 	{
 		ch->ChatPacket (CHAT_TYPE_NOTICE,
-						LC_TEXT ("경험치 %d%% 추가 획득 이벤트 중입니다."), exp_bonus);
+						"[LS;874;%d]"/* "The experience bonus is currently an additional %d%%." */, exp_bonus);
 	}
 }
 

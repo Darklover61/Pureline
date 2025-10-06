@@ -1192,7 +1192,7 @@ void CInputDB::SafeboxLoad (LPDESC d, const char* c_pData)
 	//PREVENT_TRADE_WINDOW
 	if (ch->GetShopOwner() || ch->GetExchange() || ch->GetMyShop() || ch->IsCubeOpen())
 	{
-		d->GetCharacter()->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("다른거래창이 열린상태에서는 창고를 열수가 없습니다."));
+		d->GetCharacter()->ChatPacket (CHAT_TYPE_INFO, "[LS;773]"/* "You cannot open a Storeroom while another window is open." */);
 		d->GetCharacter()->CancelSafeboxLoad();
 		return;
 	}
@@ -1267,11 +1267,11 @@ void CInputDB::SafeboxChangePasswordAnswer (LPDESC d, const char* c_pData)
 	TSafeboxChangePasswordPacketAnswer* p = (TSafeboxChangePasswordPacketAnswer*) c_pData;
 	if (p->flag)
 	{
-		d->GetCharacter()->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("<창고> 창고 비밀번호가 변경되었습니다."));
+		d->GetCharacter()->ChatPacket (CHAT_TYPE_INFO, "[LS;774]"/* "[Storeroom] Storeroom password has been changed." */);
 	}
 	else
 	{
-		d->GetCharacter()->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("<창고> 기존 비밀번호가 틀렸습니다."));
+		d->GetCharacter()->ChatPacket (CHAT_TYPE_INFO, "[LS;775]"/* "[Storeroom] You have entered the wrong password." */);
 	}
 }
 
@@ -2022,7 +2022,7 @@ void CInputDB::BillingExpire (const char* c_pData)
 
 			if (ch)
 			{
-				ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("결재기간이 %d분 후 만료 됩니다."), (p->dwRemainSeconds / 60));
+				ch->ChatPacket (CHAT_TYPE_INFO, "[LS;776;%d]"/* "Your playing time is going to run out in %d minutes." */, (p->dwRemainSeconds / 60));
 			}
 		}
 	}

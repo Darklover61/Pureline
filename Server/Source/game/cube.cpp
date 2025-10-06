@@ -356,12 +356,12 @@ void Cube_open (LPCHARACTER ch)
 
 	if (ch->IsCubeOpen())
 	{
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("이미 제조창이 열려있습니다."));
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;989]"/* "The Build window is already open." */);
 		return;
 	}
 	if (ch->GetExchange() || ch->GetMyShop() || ch->GetShopOwner() || ch->IsOpenSafebox() || ch->IsCubeOpen())
 	{
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("다른 거래중(창고,교환,상점)에는 사용할 수 없습니다."));
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;990]"/* "You cannot build something while another trade/storeroom window is open." */);
 		return;
 	}
 
@@ -591,7 +591,7 @@ bool Cube_make (LPCHARACTER ch)
 
 	if (! (ch)->IsCubeOpen())
 	{
-		(ch)->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("제조창이 열려있지 않습니다"));
+		(ch)->ChatPacket (CHAT_TYPE_INFO, "[LS;992]"/* "The build window is not open." */);
 		return false;
 	}
 
@@ -606,13 +606,13 @@ bool Cube_make (LPCHARACTER ch)
 
 	if (NULL == cube_proto)
 	{
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("제조 재료가 부족합니다"));
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;993]"/* "You do not have the right material." */);
 		return false;
 	}
 
 	if (ch->GetGold() < cube_proto->gold)
 	{
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("돈이 부족하거나 아이템이 제자리에 없습니다."));	// 이 텍스트는 이미 널리 쓰이는거라 추가번역 필요 없음
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;897]"/* "Not enough Yang or not enough space in the inventory." */);	// ? ???? ?? ?? ????? ???? ?? ??
 		return false;
 	}
 

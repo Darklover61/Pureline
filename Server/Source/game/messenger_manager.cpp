@@ -189,7 +189,7 @@ void MessengerManager::__AddToList (MessengerManager::keyA account, MessengerMan
 
 	if (d)
 	{
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("<메신져> %s 님을 친구로 추가하였습니다."), companion.c_str());
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;735;%s]"/* "[Friends] You have added %s as a friend." */, companion.c_str());
 	}
 
 	LPCHARACTER tch = CHARACTER_MANAGER::instance().FindPC (companion.c_str());
@@ -240,7 +240,7 @@ void MessengerManager::__RemoveFromList (MessengerManager::keyA account, Messeng
 
 	if (d)
 	{
-		ch->ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("<메신져> %s 님을 메신저에서 삭제하였습니다."), companion.c_str());
+		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;737;%s]"/* "[Friends] You have deleted %s from the list." */, companion.c_str());
 	}
 }
 
