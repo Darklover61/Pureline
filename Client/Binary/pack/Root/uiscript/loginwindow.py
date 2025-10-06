@@ -73,6 +73,79 @@ window = {
 			),
 		},
 
+		## Alert
+		{
+			"name" : "AlertBoard",
+			"type" : "thinboard",
+
+			"x" : SCREEN_HEIGHT * 0.1,
+			"y" : SCREEN_HEIGHT * 0.1,
+
+			"width" : 228,
+			"height" : 111,
+
+			"children" :
+			(
+				{
+					"name" : "AlertText",
+					"type" : "text",
+
+					"x" : 0,
+					"y" : 10,
+
+					"outline" : 1,
+
+					"horizontal_align" : "center",
+					"text_horizontal_align" : "center",
+
+					"text" : "Healthy gaming advice",
+					"color" : CTOA("ffffa500"),
+				},
+				{
+					"name" : "AlertText2",
+					"type" : "text",
+
+					"x" : 10,
+					"y" : 30,
+
+					"outline" : 1,
+
+					"horizontal_align" : "left",
+					"text_horizontal_align" : "left",
+
+					"text" : "Beware of scammers",
+				},
+				{
+					"name" : "AlertText3",
+					"type" : "text",
+
+					"x" : 10,
+					"y" : 50,
+
+					"outline" : 1,
+
+					"horizontal_align" : "left",
+					"text_horizontal_align" : "left",
+
+					"text" : "Avoid spending too much time in game.",
+				},
+				{
+					"name" : "AlertText4",
+					"type" : "text",
+
+					"x" : 10,
+					"y" : 70,
+
+					"outline" : 1,
+
+					"horizontal_align" : "left",
+					"text_horizontal_align" : "left",
+
+					"text" : "Enjoy Pureline",
+				},
+			),
+		},
+
 		## LoginBoard
 		{
 			"name" : "LoginBoard",

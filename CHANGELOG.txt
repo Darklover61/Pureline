@@ -13,6 +13,7 @@
 	* systemdialog.py
 	* inventorywindow.py
 	* expandedtaskbar.py
+~ Updated login background.
 
 +------------+
 | 05.10.2025 |
