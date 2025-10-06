@@ -2989,7 +2989,6 @@ bool CHARACTER::UseItemEx (LPITEM item, TItemPos DestCell)
 									{ 27600,  1,  0 },
 									{ 25100,  1,  0 },
 
-									{ 50001,  1,  0 },
 									{ 50003,  1,  1 },
 								};
 								TEventStoneInfo info_7[EVENT_STONE_MAX_INFO] =
@@ -3010,7 +3009,6 @@ bool CHARACTER::UseItemEx (LPITEM item, TItemPos DestCell)
 									{ 27600,  1,  5 },
 									{ 25100,  1,  5 },
 
-									{ 50001,  1,  0 },
 									{ 50003,  1,  5 },
 
 								};
@@ -3032,7 +3030,6 @@ bool CHARACTER::UseItemEx (LPITEM item, TItemPos DestCell)
 									{ 27600,  1,  0 },
 									{ 25100,  1, 15 },
 
-									{ 50001,  1, 10 },
 									{ 50003,  1, 50 },
 
 								};
