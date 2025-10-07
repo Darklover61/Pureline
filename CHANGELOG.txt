@@ -5,7 +5,8 @@
 | 07.10.2025 |
 +------------+
 ~ Added Some Code
-    * [REVERSED] CLIENT_LOCALE_STRING
+	* [REVERSED] CLIENT_LOCALE_STRING
+	* MULTI_LANGUAGE_MINIMAL
 
 +------------+
 | 06.10.2025 |

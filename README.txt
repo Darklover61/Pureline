@@ -26,6 +26,7 @@
 | [REVERSED] SAVE_CAMERA_MODE       | NO     | YES    | YES  | Save near or far camera mode on exit.
 | [REVERSED] ATLAS_MARK_INFO        | YES    | YES    | YES  | Pull NPC positions from Client instead of ServerFiles.
 | [REVERSED] CLIENT_LOCALE_STRING   | YES    | YES    | NO   | This system is the basis of Multilanguage.
+| MULTI_LANGUAGE_MINIMAL            | YES    | YES    | NO   | Additions to Client locale string to make many aspects of the game multi language.
 |                                   |        |        |      |
 +-----------------------------------+--------+--------+------+
 

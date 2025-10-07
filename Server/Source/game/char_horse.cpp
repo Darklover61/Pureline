@@ -227,7 +227,9 @@ void CHARACTER::HorseSummon (bool bSummon, bool bFromFar, DWORD dwVnum, const ch
 		else
 		{
 			m_chHorse->m_stName = GetName();
-			m_chHorse->m_stName += LC_TEXT ("´ÔÀÇ ¸»");
+			/* - MULTI_LANGUAGE_MINIMAL ---------------------------- */
+			m_chHorse->m_stName += " - @NPCNAME@";
+			/* ----------------------------------------------------- */
 		}
 
 		if (!m_chHorse->Show (GetMapIndex(), x, y, GetZ()))
