@@ -197,7 +197,7 @@ void CGraphicTextInstance::Update()
 				int wArabicTextLen = Arabic_MakeShape (wText, wTextLen, wArabicText, wTextLen);
 
 				/* - CLIENT_LOCALE_STRING ------------------------------ */
-				std::wstring hyperlinkText = Arabic_MakeReverseHyperlink(wArabicText, wArabicTextLen);
+				std::wstring hyperlinkText = Arabic_MakeReverseHyperlink (wArabicText, wArabicTextLen);
 				wArabicText = hyperlinkText.data();
 				wArabicTextLen = hyperlinkText.size();
 				/* ----------------------------------------------------- */

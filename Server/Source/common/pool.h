@@ -19,13 +19,13 @@ class CPoolNode : public T
 		}
 
 	public:
-		CPoolNode<T> * m_pNext;	
-		CPoolNode<T> * m_pPrev;
+		CPoolNode<T>* m_pNext;
+		CPoolNode<T>* m_pPrev;
 };
 
 template<typename T>
 class CDynamicPool
-{	
+{
 	public:
 		typedef CPoolNode<T> TNode;
 
@@ -37,8 +37,8 @@ class CDynamicPool
 
 		virtual ~CDynamicPool()
 		{
-			assert(m_pFreeList==NULL && "CDynamicPool::~CDynamicPool() - NOT Clear");
-			assert(m_pUsedList==NULL && "CDynamicPool::~CDynamicPool() - NOT Clear");
+			assert (m_pFreeList == NULL && "CDynamicPool::~CDynamicPool() - NOT Clear");
+			assert (m_pUsedList == NULL && "CDynamicPool::~CDynamicPool() - NOT Clear");
 			Clear();
 		}
 
@@ -51,7 +51,7 @@ class CDynamicPool
 			m_pUsedList = NULL;
 		}
 
-		void SetName(const char* c_szName)
+		void SetName (const char* c_szName)
 		{
 			m_stName = c_szName;
 		}
@@ -65,7 +65,7 @@ class CDynamicPool
 		{
 			TNode* pnewNode;
 
-			if (m_pFreeList) 
+			if (m_pFreeList)
 			{
 				pnewNode = m_pFreeList;
 				m_pFreeList = m_pFreeList->m_pNext;
@@ -76,7 +76,9 @@ class CDynamicPool
 			}
 
 			if (!pnewNode)
-				return NULL;		
+			{
+				return NULL;
+			}
 
 			if (!m_pUsedList)
 			{
@@ -94,22 +96,28 @@ class CDynamicPool
 			return (T*) pnewNode;
 		}
 
-		void Free(T * pdata)
+		void Free (T * pdata)
 		{
 			TNode* pfreeNode = (TNode*) pdata;
 
 			if (pfreeNode == m_pUsedList)
 			{
 				if (NULL != (m_pUsedList = m_pUsedList->m_pNext))
+				{
 					m_pUsedList->m_pPrev = NULL;
+				}
 			}
 			else
 			{
 				if (pfreeNode->m_pNext)
+				{
 					pfreeNode->m_pNext->m_pPrev = pfreeNode->m_pPrev;
+				}
 
 				if (pfreeNode->m_pPrev)
+				{
 					pfreeNode->m_pPrev->m_pNext = pfreeNode->m_pNext;
+				}
 			}
 
 			pfreeNode->m_pPrev = NULL;
@@ -128,7 +136,7 @@ class CDynamicPool
 			while (pcurNode)
 			{
 				pnextNode = pcurNode->m_pNext;
-				Free(pcurNode);
+				Free (pcurNode);
 				pcurNode = pnextNode;
 			}
 		}
@@ -161,9 +169,9 @@ class CDynamicPool
 
 			m_pUsedList = NULL;
 
-			assert(count==m_nodeCount && "CDynamicPool::Clear()");
+			assert (count == m_nodeCount && "CDynamicPool::Clear()");
 
-			m_nodeCount=0;
+			m_nodeCount = 0;
 		}
 
 	protected:
@@ -174,9 +182,9 @@ class CDynamicPool
 		}
 
 	protected:
-		TNode *		m_nodes;
-		TNode *		m_pFreeList;
-		TNode *		m_pUsedList;
+		TNode* 		m_nodes;
+		TNode* 		m_pFreeList;
+		TNode* 		m_pUsedList;
 
 		DWORD		m_nodeCount;
 		std::string	m_stName;

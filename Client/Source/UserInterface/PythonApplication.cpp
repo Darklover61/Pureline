@@ -1068,9 +1068,9 @@ bool LoadLocaleData (const char* localePath)
 	snprintf (szItemDesc,	sizeof (szItemDesc),	"%s/itemdesc.txt",	localePath);
 
 	/* - CLIENT_LOCALE_STRING ------------------------------ */
-	snprintf(szLocaleTextString, sizeof(szLocaleTextString), "%s/locale_string.txt", localePath);
-	snprintf(szLocaleQuestString, sizeof(szLocaleQuestString), "%s/locale_quest.txt", localePath);
-	snprintf(szLocaleQuizString, sizeof(szLocaleQuizString), "%s/locale_quiz.txt", localePath);
+	snprintf (szLocaleTextString, sizeof (szLocaleTextString), "%s/locale_string.txt", localePath);
+	snprintf (szLocaleQuestString, sizeof (szLocaleQuestString), "%s/locale_quest.txt", localePath);
+	snprintf (szLocaleQuizString, sizeof (szLocaleQuizString), "%s/locale_quiz.txt", localePath);
 	/* ----------------------------------------------------- */
 
 	snprintf (szMobProto,	sizeof (szMobProto),	"%s/mob_proto",		localePath);
@@ -1099,21 +1099,21 @@ bool LoadLocaleData (const char* localePath)
 	}
 
 	/* - CLIENT_LOCALE_STRING ------------------------------ */
-	if (!rkLocale.LoadLocaleString(szLocaleTextString))
+	if (!rkLocale.LoadLocaleString (szLocaleTextString))
 	{
-		TraceError("LoadLocaleData - LoadLocaleString(%s) Error", szLocaleTextString);
+		TraceError ("LoadLocaleData - LoadLocaleString(%s) Error", szLocaleTextString);
 		return false;
 	}
 
-	if (!rkLocale.LoadQuestLocaleString(szLocaleQuestString))
+	if (!rkLocale.LoadQuestLocaleString (szLocaleQuestString))
 	{
-		TraceError("LoadLocaleData - LoadQuestLocaleString(%s) Error", szLocaleQuestString);
+		TraceError ("LoadLocaleData - LoadQuestLocaleString(%s) Error", szLocaleQuestString);
 		return false;
 	}
 
-	if (!rkLocale.LoadOXQuizLocaleString(szLocaleQuizString))
+	if (!rkLocale.LoadOXQuizLocaleString (szLocaleQuizString))
 	{
-		TraceError("LoadLocaleData - LoadOXQuizLocaleString(%s) Error", szLocaleQuizString);
+		TraceError ("LoadLocaleData - LoadOXQuizLocaleString(%s) Error", szLocaleQuizString);
 		return false;
 	}
 	/* ----------------------------------------------------- */

@@ -5,18 +5,18 @@
 
 struct TGA_HEADER
 {
-    char idLen;		// 0
-    char palType;	// 파레트있으면 1, 없음 0
-    char imgType;	// 파레트있으면 1, 없음 2
-    WORD colorBegin;	// 0
-    WORD colorCount;	// 파레트 있으면 256, 없음 0
-    char palEntrySize;	// 파레트 있으면 24, 없음 0
-    WORD left;
-    WORD top;
-    WORD width;
-    WORD height;
-    char colorBits;
-    char desc;
+	char idLen;		// 0
+	char palType;	// 파레트있으면 1, 없음 0
+	char imgType;	// 파레트있으면 1, 없음 2
+	WORD colorBegin;	// 0
+	WORD colorCount;	// 파레트 있으면 256, 없음 0
+	char palEntrySize;	// 파레트 있으면 24, 없음 0
+	WORD left;
+	WORD top;
+	WORD width;
+	WORD height;
+	char colorBits;
+	char desc;
 };
 
 #define IMAGEDESC_ORIGIN_MASK	0x30
@@ -33,13 +33,13 @@ class CTargaImage
 		CTargaImage();
 		~CTargaImage();
 
-		void	Create(int x, int y);
-		char *	GetBasePointer(int line = 0);
-		bool	Save(const char * filename);
+		void	Create (int x, int y);
+		char* 	GetBasePointer (int line = 0);
+		bool	Save (const char* filename);
 
 	protected:
 		TGA_HEADER	m_header;
-		char *		m_pbuf;
+		char* 		m_pbuf;
 		int		m_x, m_y;
 };
 

@@ -676,19 +676,19 @@ namespace fishing
 				case -3: // 난이도 때문에 실패
 				case -1: // 시간 확률 때문에 실패
 					ch->ChatPacket (CHAT_TYPE_INFO, "[LS;799]"/* "You lost your bait to the fish." */);
-				{
-					int map_idx = ch->GetMapIndex();
-					int prob_idx = GetProbIndexByMapIndex (map_idx);
+					{
+						int map_idx = ch->GetMapIndex();
+						int prob_idx = GetProbIndexByMapIndex (map_idx);
 
-					LogManager::instance().FishLog (
-						ch->GetPlayerID(),
-						prob_idx,
-						info->fish_id,
-						GetFishingLevel (ch),
-						ms);
-				}
-				FishingFail (ch);
-				break;
+						LogManager::instance().FishLog (
+							ch->GetPlayerID(),
+							prob_idx,
+							info->fish_id,
+							GetFishingLevel (ch),
+							ms);
+					}
+					FishingFail (ch);
+					break;
 
 				case 0:
 					ch->ChatPacket (CHAT_TYPE_INFO, "[LS;800;%s]"/* "You have caught a fish! (%s)" */, fish_info[info->fish_id].name);

@@ -14,5 +14,5 @@ size_t Arabic_MakeShape (wchar_t* src, size_t srcLen, wchar_t* dst, size_t dstLe
 wchar_t Arabic_ConvEnglishModeSymbol (wchar_t code);
 
 /* - CLIENT_LOCALE_STRING ------------------------------ */
-std::wstring Arabic_MakeReverseHyperlink(wchar_t* dst, size_t size);
+std::wstring Arabic_MakeReverseHyperlink (wchar_t* dst, size_t size);
 /* ----------------------------------------------------- */

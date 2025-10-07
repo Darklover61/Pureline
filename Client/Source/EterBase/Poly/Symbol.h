@@ -20,20 +20,20 @@
 #define SY_OPEN		'('
 #define SY_CLOSE	')'
 
-class CSymbol : public CBase   
+class CSymbol : public CBase
 {
-    private:
-	int	iType;
+	private:
+		int	iType;
 
-    public:
-	CSymbol();
-	virtual ~CSymbol();
+	public:
+		CSymbol();
+		virtual ~CSymbol();
 
-	static int	issymbol(int ch);
-	void		SetType(int Type);
-	int		GetType();
-	bool		Equal(CSymbol dif);
-	bool		Less(CSymbol dif);
+		static int	issymbol (int ch);
+		void		SetType (int Type);
+		int		GetType();
+		bool		Equal (CSymbol dif);
+		bool		Less (CSymbol dif);
 };
 
-#endif 
+#endif

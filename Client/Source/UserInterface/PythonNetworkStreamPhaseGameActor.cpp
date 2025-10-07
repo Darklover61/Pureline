@@ -173,14 +173,18 @@ bool CPythonNetworkStream::RecvCharacterAdditionalInfo()
 		if (kNetActorData.m_bType == CActorInstance::TYPE_NPC)
 		{
 			const char* c_szName{};
-			if (CPythonNonPlayer::Instance().GetName(kNetActorData.m_dwRace, &c_szName))
+			if (CPythonNonPlayer::Instance().GetName (kNetActorData.m_dwRace, &c_szName))
 			{
 				const std::string_view target = "@NPCNAME@";
-				const size_t pos = kNetActorData.m_stName.find(target);
+				const size_t pos = kNetActorData.m_stName.find (target);
 				if (pos != std::string::npos)
-					kNetActorData.m_stName.replace(pos, target.size(), c_szName);
+				{
+					kNetActorData.m_stName.replace (pos, target.size(), c_szName);
+				}
 				else
+				{
 					kNetActorData.m_stName = c_szName;
+				}
 			}
 		}
 		/* ----------------------------------------------------- */

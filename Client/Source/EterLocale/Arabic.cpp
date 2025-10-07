@@ -480,31 +480,31 @@ wchar_t Arabic_ConvSymbol (wchar_t c)
 }
 
 /* - CLIENT_LOCALE_STRING ------------------------------ */
-std::wstring Arabic_MakeReverseHyperlink(wchar_t* dst, size_t size)
+std::wstring Arabic_MakeReverseHyperlink (wchar_t* dst, size_t size)
 {
-	std::wstring inputString = std::wstring(dst, size);
+	std::wstring inputString = std::wstring (dst, size);
 
-	size_t start = inputString.find(L"|c");
+	size_t start = inputString.find (L"|c");
 	while (start != std::string::npos)
 	{
-		const size_t end = inputString.find(L"|h|r", start);
+		const size_t end = inputString.find (L"|h|r", start);
 		if (end == std::string::npos)
 		{
 			break;
 		}
 
-		const size_t itemStart = inputString.find(L"[", start);
-		const size_t itemEnd = inputString.find(L"]", itemStart);
+		const size_t itemStart = inputString.find (L"[", start);
+		const size_t itemEnd = inputString.find (L"]", itemStart);
 		if (itemStart == std::string::npos || itemEnd == std::string::npos)
 		{
 			break;
 		}
 
-		const std::wstring part_1 = inputString.substr(itemStart, itemEnd - itemStart + 1);
-		const std::wstring part_2 = inputString.substr(start, itemStart - start);
-		inputString.replace(start, end - start + 4, L" |h|r" + part_1 + part_2);
+		const std::wstring part_1 = inputString.substr (itemStart, itemEnd - itemStart + 1);
+		const std::wstring part_2 = inputString.substr (start, itemStart - start);
+		inputString.replace (start, end - start + 4, L" |h|r" + part_1 + part_2);
 
-		start = inputString.find(L"|c", itemEnd + 4);
+		start = inputString.find (L"|c", itemEnd + 4);
 	}
 
 	return inputString;

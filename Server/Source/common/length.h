@@ -45,7 +45,7 @@ enum EMisc
 	CHARACTER_PATH_MAX_NUM	= 64,
 	SKILL_MAX_NUM			= 255,
 	SKILLBOOK_DELAY_MIN		= 64800,
-	SKILLBOOK_DELAY_MAX		= 108000, 
+	SKILLBOOK_DELAY_MAX		= 108000,
 	SKILL_MAX_LEVEL			= 40,
 
 	APPLY_NAME_MAX_LEN		= 32,
@@ -53,7 +53,7 @@ enum EMisc
 
 	MOB_SKILL_MAX_NUM		= 5,
 
-    POINT_MAX_NUM = 255,
+	POINT_MAX_NUM = 255,
 	DRAGON_SOUL_BOX_SIZE = 32,
 	DRAGON_SOUL_BOX_COLUMN_NUM = 8,
 	DRAGON_SOUL_BOX_ROW_NUM = DRAGON_SOUL_BOX_SIZE / DRAGON_SOUL_BOX_COLUMN_NUM,
@@ -65,38 +65,38 @@ enum EMisc
 	//LIMIT_GOLD
 	GOLD_MAX = 2000000000,
 
-	MAX_PASSPOD = 8 ,
+	MAX_PASSPOD = 8,
 
-		
+
 	//END_LIMIT_GOLD
 
-	OPENID_AUTHKEY_LEN = 32, 
+	OPENID_AUTHKEY_LEN = 32,
 
 	SHOP_TAB_NAME_MAX = 32,
 	SHOP_TAB_COUNT_MAX = 3,
 
 	BELT_INVENTORY_SLOT_WIDTH = 4,
-	BELT_INVENTORY_SLOT_HEIGHT= 4,
+	BELT_INVENTORY_SLOT_HEIGHT = 4,
 
 	BELT_INVENTORY_SLOT_COUNT = BELT_INVENTORY_SLOT_WIDTH * BELT_INVENTORY_SLOT_HEIGHT,
 
 
-/**
-	 **** 현재까지 할당 된 아이템 영역 정리 (DB상 Item Position) ****
-	+------------------------------------------------------+ 0
-	| 캐릭터 기본 인벤토리 (45칸 * 2페이지) 90칸           | 
-	+------------------------------------------------------+ 90 = INVENTORY_MAX_NUM(90)
-	| 캐릭터 장비 창 (착용중인 아이템) 32칸                |
-	+------------------------------------------------------+ 122 = INVENTORY_MAX_NUM(90) + WEAR_MAX_NUM(32)
-	| 용혼석 장비 창 (착용중인 용혼석) 12칸                | 
-	+------------------------------------------------------+ 134 = 122 + DS_SLOT_MAX(6) * DRAGON_SOUL_DECK_MAX_NUM(2)
-	| 용혼석 장비 창 예약 (아직 미사용) 18칸               | 
-	+------------------------------------------------------+ 152 = 134 + DS_SLOT_MAX(6) * DRAGON_SOUL_DECK_RESERVED_MAX_NUM(3)
-	| 벨트 인벤토리 (벨트 착용시에만 벨트 레벨에 따라 활성)|
-	+------------------------------------------------------+ 168 = 152 + BELT_INVENTORY_SLOT_COUNT(16) = INVENTORY_AND_EQUIP_CELL_MAX
-	| 미사용                                               |
-	+------------------------------------------------------+ ??
-*/
+	/**
+		 **** 현재까지 할당 된 아이템 영역 정리 (DB상 Item Position) ****
+		+------------------------------------------------------+ 0
+		| 캐릭터 기본 인벤토리 (45칸 * 2페이지) 90칸           |
+		+------------------------------------------------------+ 90 = INVENTORY_MAX_NUM(90)
+		| 캐릭터 장비 창 (착용중인 아이템) 32칸                |
+		+------------------------------------------------------+ 122 = INVENTORY_MAX_NUM(90) + WEAR_MAX_NUM(32)
+		| 용혼석 장비 창 (착용중인 용혼석) 12칸                |
+		+------------------------------------------------------+ 134 = 122 + DS_SLOT_MAX(6) * DRAGON_SOUL_DECK_MAX_NUM(2)
+		| 용혼석 장비 창 예약 (아직 미사용) 18칸               |
+		+------------------------------------------------------+ 152 = 134 + DS_SLOT_MAX(6) * DRAGON_SOUL_DECK_RESERVED_MAX_NUM(3)
+		| 벨트 인벤토리 (벨트 착용시에만 벨트 레벨에 따라 활성)|
+		+------------------------------------------------------+ 168 = 152 + BELT_INVENTORY_SLOT_COUNT(16) = INVENTORY_AND_EQUIP_CELL_MAX
+		| 미사용                                               |
+		+------------------------------------------------------+ ??
+	*/
 };
 
 enum EMatrixCard
@@ -118,23 +118,23 @@ enum EWearPositions
 	WEAR_UNIQUE2,	// 8
 	WEAR_ARROW,		// 9
 	WEAR_SHIELD,	// 10
-    WEAR_ABILITY1,  // 11
-    WEAR_ABILITY2,  // 12
-    WEAR_ABILITY3,  // 13
-    WEAR_ABILITY4,  // 14
-    WEAR_ABILITY5,  // 15
-    WEAR_ABILITY6,  // 16
-    WEAR_ABILITY7,  // 17
-    WEAR_ABILITY8,  // 18
+	WEAR_ABILITY1,  // 11
+	WEAR_ABILITY2,  // 12
+	WEAR_ABILITY3,  // 13
+	WEAR_ABILITY4,  // 14
+	WEAR_ABILITY5,  // 15
+	WEAR_ABILITY6,  // 16
+	WEAR_ABILITY7,  // 17
+	WEAR_ABILITY8,  // 18
 	WEAR_COSTUME_BODY,	// 19
 	WEAR_COSTUME_HAIR,	// 20
-	
+
 	WEAR_RING1,			// 21	: 신규 반지슬롯1 (왼쪽)
 	WEAR_RING2,			// 22	: 신규 반지슬롯2 (오른쪽)
 
 	WEAR_BELT,			// 23	: 신규 벨트슬롯
 
-	WEAR_MAX = 32	// 
+	WEAR_MAX = 32	//
 };
 
 enum EDragonSoulDeckType
@@ -422,7 +422,7 @@ enum EApplyTypes
 	APPLY_COSTUME_ATTR_BONUS,		// 84 코스튬 아이템에 붙은 속성치 보너스
 	APPLY_MAGIC_ATTBONUS_PER,		// 85 마법 공격력 +x%
 	APPLY_MELEE_MAGIC_ATTBONUS_PER,			// 86 마법 + 밀리 공격력 +x%
-	
+
 	APPLY_RESIST_ICE,		// 87 냉기 저항
 	APPLY_RESIST_EARTH,		// 88 대지 저항
 	APPLY_RESIST_DARK,		// 89 어둠 저항
@@ -431,7 +431,7 @@ enum EApplyTypes
 	APPLY_ANTI_PENETRATE_PCT,	//91 관통타격 저항
 
 
-	MAX_APPLY_NUM,              // 
+	MAX_APPLY_NUM,              //
 };
 
 enum EOnClickEvents
@@ -458,9 +458,9 @@ enum EWindows
 	MALL,
 	DRAGON_SOUL_INVENTORY,
 	BELT_INVENTORY,
-#ifdef __AUCTION__
+	#ifdef __AUCTION__
 	AUCTION,
-#endif
+	#endif
 	GROUND
 };
 
@@ -480,7 +480,7 @@ enum EAIFlags
 	AIFLAG_NOATTACKSHINSU	= (1 << 3),
 	AIFLAG_NOATTACKJINNO	= (1 << 4),
 	AIFLAG_NOATTACKCHUNJO	= (1 << 5),
-	AIFLAG_ATTACKMOB = (1 << 6 ),
+	AIFLAG_ATTACKMOB = (1 << 6),
 	AIFLAG_BERSERK	= (1 << 7),
 	AIFLAG_STONESKIN	= (1 << 8),
 	AIFLAG_GODSPEED	= (1 << 9),
@@ -543,12 +543,12 @@ enum
 	SKILL_ATTR_TYPE_MELEE,
 	SKILL_ATTR_TYPE_RANGE,
 	SKILL_ATTR_TYPE_MAGIC
-		/*
-		   SKILL_ATTR_TYPE_FIRE,
-		   SKILL_ATTR_TYPE_ICE,
-		   SKILL_ATTR_TYPE_ELEC,
-		   SKILL_ATTR_TYPE_DARK,
-		   */
+	/*
+	   SKILL_ATTR_TYPE_FIRE,
+	   SKILL_ATTR_TYPE_ICE,
+	   SKILL_ATTR_TYPE_ELEC,
+	   SKILL_ATTR_TYPE_DARK,
+	   */
 };
 
 enum
@@ -580,23 +580,23 @@ enum EGuildWarState
 	GUILD_WAR_OVER,
 	GUILD_WAR_RESERVE,
 
-	GUILD_WAR_DURATION = 30*60, // 1시간
+	GUILD_WAR_DURATION = 30 * 60, // 1시간
 	GUILD_WAR_WIN_POINT = 1000,
-	GUILD_WAR_LADDER_HALF_PENALTY_TIME = 12*60*60,
+	GUILD_WAR_LADDER_HALF_PENALTY_TIME = 12 * 60 * 60,
 };
 
-enum EAttributeSet 
-{            
+enum EAttributeSet
+{
 	ATTRIBUTE_SET_WEAPON,
-	ATTRIBUTE_SET_BODY, 
-	ATTRIBUTE_SET_WRIST, 
+	ATTRIBUTE_SET_BODY,
+	ATTRIBUTE_SET_WRIST,
 	ATTRIBUTE_SET_FOOTS,
 	ATTRIBUTE_SET_NECK,
 	ATTRIBUTE_SET_HEAD,
 	ATTRIBUTE_SET_SHIELD,
 	ATTRIBUTE_SET_EAR,
 	ATTRIBUTE_SET_MAX_NUM
-};  
+};
 
 enum EPrivType
 {
@@ -696,44 +696,44 @@ typedef struct SItemPos
 {
 	BYTE window_type;
 	WORD cell;
-    SItemPos ()
-    {
-        window_type = INVENTORY;
+	SItemPos()
+	{
+		window_type = INVENTORY;
 		cell = WORD_MAX;
-    }
+	}
 
 	SItemPos (BYTE _window_type, WORD _cell)
-    {
-        window_type = _window_type;
-        cell = _cell;
-    }
+	{
+		window_type = _window_type;
+		cell = _cell;
+	}
 
 	bool IsValidItemPosition() const
 	{
 		switch (window_type)
 		{
-		case RESERVED_WINDOW:
-			return false;
-		case INVENTORY:
-		case EQUIPMENT:
-		case BELT_INVENTORY:
-			return cell < INVENTORY_AND_EQUIP_SLOT_MAX;
-		case DRAGON_SOUL_INVENTORY:
-			return cell < (DRAGON_SOUL_INVENTORY_MAX_NUM);
-		// 동적으로 크기가 정해지는 window는 valid 체크를 할 수가 없다.
-		case SAFEBOX:
-		case MALL:
-			return false;
-		default:
-			return false;
+			case RESERVED_WINDOW:
+				return false;
+			case INVENTORY:
+			case EQUIPMENT:
+			case BELT_INVENTORY:
+				return cell < INVENTORY_AND_EQUIP_SLOT_MAX;
+			case DRAGON_SOUL_INVENTORY:
+				return cell < (DRAGON_SOUL_INVENTORY_MAX_NUM);
+			// 동적으로 크기가 정해지는 window는 valid 체크를 할 수가 없다.
+			case SAFEBOX:
+			case MALL:
+				return false;
+			default:
+				return false;
 		}
 		return false;
 	}
-	
+
 	bool IsEquipPosition() const
 	{
 		return ((INVENTORY == window_type || EQUIPMENT == window_type) && cell >= INVENTORY_MAX_NUM && cell < INVENTORY_MAX_NUM + WEAR_MAX_NUM)
-			|| IsDragonSoulEquipPosition();
+			   || IsDragonSoulEquipPosition();
 	}
 
 	bool IsDragonSoulEquipPosition() const
@@ -751,11 +751,11 @@ typedef struct SItemPos
 		return INVENTORY == window_type && cell < INVENTORY_MAX_NUM;
 	}
 
-	bool operator==(const struct SItemPos& rhs) const
+	bool operator== (const struct SItemPos& rhs) const
 	{
 		return (window_type == rhs.window_type) && (cell == rhs.cell);
 	}
-	bool operator<(const struct SItemPos& rhs) const
+	bool operator< (const struct SItemPos& rhs) const
 	{
 		return (window_type < rhs.window_type) || ((window_type == rhs.window_type) && (cell < rhs.cell));
 	}

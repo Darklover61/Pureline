@@ -40,7 +40,7 @@
 #include "DragonSoul.h"
 
 /* - CLIENT_LOCALE_STRING ------------------------------ */
-extern void SendShout(const char* szText, BYTE bEmpire, bool bCanFormat);
+extern void SendShout (const char* szText, BYTE bEmpire, bool bCanFormat);
 /* ----------------------------------------------------- */
 
 extern int g_nPortalLimitTime;
@@ -246,11 +246,11 @@ void GetTextTagInfo (const char* src, int src_len, int& hyperlinks, bool & color
 }
 
 /* - CLIENT_LOCALE_STRING ------------------------------ */
-static int htoi(const char* s)
+static int htoi (const char* s)
 {
 	const char* t = s;
 	int x = 0, y = 1;
-	s += strlen(s);
+	s += strlen (s);
 
 	while (t <= --s)
 	{
@@ -276,29 +276,29 @@ static int htoi(const char* s)
 	return x;
 }
 
-static std::string __FormatHyperLinkItemString(std::string input)
+static std::string __FormatHyperLinkItemString (std::string input)
 {
-	size_t startPos = input.find("|Hitem:");
+	size_t startPos = input.find ("|Hitem:");
 	while (startPos != std::string::npos)
 	{
-		const size_t endPos = input.find(":", startPos + 7);
+		const size_t endPos = input.find (":", startPos + 7);
 		if (endPos == std::string::npos)
 		{
 			break;
 		}
 
-		const size_t contentStartPos = input.find("|h[", endPos);
-		const size_t contentEndPos = input.find("]|h|", contentStartPos);
+		const size_t contentStartPos = input.find ("|h[", endPos);
+		const size_t contentEndPos = input.find ("]|h|", contentStartPos);
 		if (contentStartPos == std::string::npos || contentEndPos == std::string::npos)
 		{
 			break;
 		}
 
-		std::string itemVnum = input.substr(startPos + 7, endPos - (startPos + 7));
-		itemVnum = "[IN;" + std::to_string(htoi(itemVnum.c_str())) + "]";
+		std::string itemVnum = input.substr (startPos + 7, endPos - (startPos + 7));
+		itemVnum = "[IN;" + std::to_string (htoi (itemVnum.c_str())) + "]";
 
-		input.replace(contentStartPos + 3, contentEndPos - (contentStartPos + 3), itemVnum);
-		startPos = input.find("|Hitem:", contentStartPos + itemVnum.length());
+		input.replace (contentStartPos + 3, contentEndPos - (contentStartPos + 3), itemVnum);
+		startPos = input.find ("|Hitem:", contentStartPos + itemVnum.length());
 	}
 
 	return input;
@@ -498,11 +498,11 @@ int CInputMain::Whisper (LPCHARACTER ch, const char* data, size_t uiBytes)
 			/* - CLIENT_LOCALE_STRING ------------------------------ */
 			int hyperlinks;
 			bool colored;
-			GetTextTagInfo(buf, strlen(buf), hyperlinks, colored);
+			GetTextTagInfo (buf, strlen (buf), hyperlinks, colored);
 			if (hyperlinks)
 			{
-				const std::string formatStr = __FormatHyperLinkItemString(buf);
-				strlcpy(buf, formatStr.c_str(), sizeof(buf));
+				const std::string formatStr = __FormatHyperLinkItemString (buf);
+				strlcpy (buf, formatStr.c_str(), sizeof (buf));
 			}
 			/* ----------------------------------------------------- */
 
@@ -839,12 +839,12 @@ int CInputMain::Chat (LPCHARACTER ch, const char* data, size_t uiBytes)
 	/* - CLIENT_LOCALE_STRING ------------------------------ */
 	int hyperlinks;
 	bool colored;
-	GetTextTagInfo(chatbuf, len, hyperlinks, colored);
+	GetTextTagInfo (chatbuf, len, hyperlinks, colored);
 	if (hyperlinks)
 	{
-		const std::string formatStr = __FormatHyperLinkItemString(chatbuf);
-		strlcpy(chatbuf, formatStr.c_str(), sizeof(chatbuf));
-		len = strlen(chatbuf);
+		const std::string formatStr = __FormatHyperLinkItemString (chatbuf);
+		strlcpy (chatbuf, formatStr.c_str(), sizeof (chatbuf));
+		len = strlen (chatbuf);
 	}
 	/* ----------------------------------------------------- */
 
@@ -916,7 +916,7 @@ int CInputMain::Chat (LPCHARACTER ch, const char* data, size_t uiBytes)
 		/* - CLIENT_LOCALE_STRING ------------------------------
 		bCanFormat
 		*/
-		SendShout(chatbuf, ch->GetEmpire(), p.bCanFormat);
+		SendShout (chatbuf, ch->GetEmpire(), p.bCanFormat);
 		/* ----------------------------------------------------- */
 
 		return (iExtraLen);

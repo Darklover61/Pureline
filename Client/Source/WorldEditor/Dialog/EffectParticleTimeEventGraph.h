@@ -147,7 +147,7 @@ class CTimeEventTableAccessor : public CEffectTimeEventGraph::IValueAccessor
 		CTimeEventTableAccessor() {}
 		~CTimeEventTableAccessor() {}
 
-		typedef std::vector<CTimeEvent<T>> TTimeEventTableType;
+		typedef std::vector<CTimeEvent<T >> TTimeEventTableType;
 
 		TTimeEventTableType* m_pTimeEventTable;
 
@@ -224,7 +224,7 @@ class CTimeEventTableAccessor : public CEffectTimeEventGraph::IValueAccessor
 
 		void Delete (DWORD dwIndex)
 		{
-			DeleteVectorItem<CTimeEvent<T>> (m_pTimeEventTable, dwIndex);
+			DeleteVectorItem<CTimeEvent<T >> (m_pTimeEventTable, dwIndex);
 		}
 };
 

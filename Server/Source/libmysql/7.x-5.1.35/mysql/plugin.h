@@ -17,19 +17,19 @@
 #define _my_plugin_h
 
 #ifdef __cplusplus
-class THD;
-class Item;
-#define MYSQL_THD THD*
+	class THD;
+	class Item;
+	#define MYSQL_THD THD*
 #else
-#define MYSQL_THD void*
+	#define MYSQL_THD void*
 #endif
 
 #ifndef _m_string_h
 /* This definition must match the one given in m_string.h */
 struct st_mysql_lex_string
 {
-  char *str;
-  unsigned int length;
+	char* str;
+	unsigned int length;
 };
 #endif /* _m_string_h */
 typedef struct st_mysql_lex_string MYSQL_LEX_STRING;
@@ -43,11 +43,12 @@ typedef struct st_mysql_lex_string MYSQL_LEX_STRING;
 
   @see XID in sql/handler.h
 */
-struct st_mysql_xid {
-  long formatID;
-  long gtrid_length;
-  long bqual_length;
-  char data[MYSQL_XIDDATASIZE];  /* Not \0-terminated */
+struct st_mysql_xid
+{
+	long formatID;
+	long gtrid_length;
+	long bqual_length;
+	char data[MYSQL_XIDDATASIZE];  /* Not \0-terminated */
 };
 typedef struct st_mysql_xid MYSQL_XID;
 
@@ -85,21 +86,21 @@ typedef struct st_mysql_xid MYSQL_XID;
 
 #ifndef MYSQL_DYNAMIC_PLUGIN
 #define __MYSQL_DECLARE_PLUGIN(NAME, VERSION, PSIZE, DECLS)                   \
-int VERSION= MYSQL_PLUGIN_INTERFACE_VERSION;                                  \
-int PSIZE= sizeof(struct st_mysql_plugin);                                    \
-struct st_mysql_plugin DECLS[]= {
+	int VERSION= MYSQL_PLUGIN_INTERFACE_VERSION;                                  \
+	int PSIZE= sizeof(struct st_mysql_plugin);                                    \
+	struct st_mysql_plugin DECLS[]= {
 #else
 #define __MYSQL_DECLARE_PLUGIN(NAME, VERSION, PSIZE, DECLS)                   \
-int _mysql_plugin_interface_version_= MYSQL_PLUGIN_INTERFACE_VERSION;         \
-int _mysql_sizeof_struct_st_plugin_= sizeof(struct st_mysql_plugin);          \
-struct st_mysql_plugin _mysql_plugin_declarations_[]= {
+	int _mysql_plugin_interface_version_= MYSQL_PLUGIN_INTERFACE_VERSION;         \
+	int _mysql_sizeof_struct_st_plugin_= sizeof(struct st_mysql_plugin);          \
+	struct st_mysql_plugin _mysql_plugin_declarations_[]= {
 #endif
 
 #define mysql_declare_plugin(NAME) \
-__MYSQL_DECLARE_PLUGIN(NAME, \
-                 builtin_ ## NAME ## _plugin_interface_version, \
-                 builtin_ ## NAME ## _sizeof_struct_st_plugin, \
-                 builtin_ ## NAME ## _plugin)
+	__MYSQL_DECLARE_PLUGIN(NAME, \
+						   builtin_ ## NAME ## _plugin_interface_version, \
+						   builtin_ ## NAME ## _sizeof_struct_st_plugin, \
+						   builtin_ ## NAME ## _plugin)
 
 #define mysql_declare_plugin_end ,{0,0,0,0,0,0,0,0,0,0,0,0}}
 
@@ -108,19 +109,20 @@ __MYSQL_DECLARE_PLUGIN(NAME, \
 */
 enum enum_mysql_show_type
 {
-  SHOW_UNDEF, SHOW_BOOL, SHOW_INT, SHOW_LONG,
-  SHOW_LONGLONG, SHOW_CHAR, SHOW_CHAR_PTR,
-  SHOW_ARRAY, SHOW_FUNC, SHOW_DOUBLE
+	SHOW_UNDEF, SHOW_BOOL, SHOW_INT, SHOW_LONG,
+	SHOW_LONGLONG, SHOW_CHAR, SHOW_CHAR_PTR,
+	SHOW_ARRAY, SHOW_FUNC, SHOW_DOUBLE
 };
 
-struct st_mysql_show_var {
-  const char *name;
-  char *value;
-  enum enum_mysql_show_type type;
+struct st_mysql_show_var
+{
+	const char* name;
+	char* value;
+	enum enum_mysql_show_type type;
 };
 
 #define SHOW_VAR_FUNC_BUFF_SIZE 1024
-typedef int (*mysql_show_var_func)(MYSQL_THD, struct st_mysql_show_var*, char *);
+typedef int (*mysql_show_var_func) (MYSQL_THD, struct st_mysql_show_var*, char*);
 
 
 /*
@@ -158,7 +160,7 @@ struct st_mysql_value;
   RETURN
     0   user provided value is OK and the update func may be called.
     any other value indicates error.
-  
+
   This function should parse the user provided value and store in the
   provided temporary storage any data as required by the update func.
   There is sufficient space in the temporary storage to store a double.
@@ -167,9 +169,9 @@ struct st_mysql_value;
   automatically at the end of the statement.
 */
 
-typedef int (*mysql_var_check_func)(MYSQL_THD thd,
-                                    struct st_mysql_sys_var *var,
-                                    void *save, struct st_mysql_value *value);
+typedef int (*mysql_var_check_func) (MYSQL_THD thd,
+									 struct st_mysql_sys_var *var,
+									 void* save, struct st_mysql_value *value);
 
 /*
   SYNOPSIS
@@ -180,34 +182,34 @@ typedef int (*mysql_var_check_func)(MYSQL_THD thd,
       save              pointer to temporary storage
    RETURN
      NONE
-   
+
    This function should use the validated value stored in the temporary store
    and persist it in the provided pointer to the dynamic variable.
    For example, strings may require memory to be allocated.
 */
-typedef void (*mysql_var_update_func)(MYSQL_THD thd,
-                                      struct st_mysql_sys_var *var,
-                                      void *var_ptr, const void *save);
+typedef void (*mysql_var_update_func) (MYSQL_THD thd,
+									   struct st_mysql_sys_var *var,
+									   void* var_ptr, const void* save);
 
 
 /* the following declarations are for internal use only */
 
 
 #define PLUGIN_VAR_MASK \
-        (PLUGIN_VAR_READONLY | PLUGIN_VAR_NOSYSVAR | \
-         PLUGIN_VAR_NOCMDOPT | PLUGIN_VAR_NOCMDARG | \
-         PLUGIN_VAR_OPCMDARG | PLUGIN_VAR_RQCMDARG | PLUGIN_VAR_MEMALLOC)
+	(PLUGIN_VAR_READONLY | PLUGIN_VAR_NOSYSVAR | \
+	 PLUGIN_VAR_NOCMDOPT | PLUGIN_VAR_NOCMDARG | \
+	 PLUGIN_VAR_OPCMDARG | PLUGIN_VAR_RQCMDARG | PLUGIN_VAR_MEMALLOC)
 
 #define MYSQL_PLUGIN_VAR_HEADER \
-  int flags;                    \
-  const char *name;             \
-  const char *comment;          \
-  mysql_var_check_func check;   \
-  mysql_var_update_func update
+	int flags;                    \
+	const char *name;             \
+	const char *comment;          \
+	mysql_var_check_func check;   \
+	mysql_var_update_func update
 
 #define MYSQL_SYSVAR_NAME(name) mysql_sysvar_ ## name
 #define MYSQL_SYSVAR(name) \
-  ((struct st_mysql_sys_var *)&(MYSQL_SYSVAR_NAME(name)))
+	((struct st_mysql_sys_var *)&(MYSQL_SYSVAR_NAME(name)))
 
 /*
   for global variables, the value pointer is the first
@@ -215,52 +217,52 @@ typedef void (*mysql_var_update_func)(MYSQL_THD thd,
   for thread variables, the value offset is the first
   element after the header, the default value is the second.
 */
-   
+
 
 #define DECLARE_MYSQL_SYSVAR_BASIC(name, type) struct { \
-  MYSQL_PLUGIN_VAR_HEADER;      \
-  type *value;                  \
-  const type def_val;           \
-} MYSQL_SYSVAR_NAME(name)
+		MYSQL_PLUGIN_VAR_HEADER;      \
+		type *value;                  \
+		const type def_val;           \
+	} MYSQL_SYSVAR_NAME(name)
 
 #define DECLARE_MYSQL_SYSVAR_SIMPLE(name, type) struct { \
-  MYSQL_PLUGIN_VAR_HEADER;      \
-  type *value; type def_val;    \
-  type min_val; type max_val;   \
-  type blk_sz;                  \
-} MYSQL_SYSVAR_NAME(name)
+		MYSQL_PLUGIN_VAR_HEADER;      \
+		type *value; type def_val;    \
+		type min_val; type max_val;   \
+		type blk_sz;                  \
+	} MYSQL_SYSVAR_NAME(name)
 
 #define DECLARE_MYSQL_SYSVAR_TYPELIB(name, type) struct { \
-  MYSQL_PLUGIN_VAR_HEADER;      \
-  type *value; type def_val;    \
-  TYPELIB *typelib;             \
-} MYSQL_SYSVAR_NAME(name)
+		MYSQL_PLUGIN_VAR_HEADER;      \
+		type *value; type def_val;    \
+		TYPELIB *typelib;             \
+	} MYSQL_SYSVAR_NAME(name)
 
 #define DECLARE_THDVAR_FUNC(type) \
-  type *(*resolve)(MYSQL_THD thd, int offset)
+	type *(*resolve)(MYSQL_THD thd, int offset)
 
 #define DECLARE_MYSQL_THDVAR_BASIC(name, type) struct { \
-  MYSQL_PLUGIN_VAR_HEADER;      \
-  int offset;                   \
-  const type def_val;           \
-  DECLARE_THDVAR_FUNC(type);    \
-} MYSQL_SYSVAR_NAME(name)
+		MYSQL_PLUGIN_VAR_HEADER;      \
+		int offset;                   \
+		const type def_val;           \
+		DECLARE_THDVAR_FUNC(type);    \
+	} MYSQL_SYSVAR_NAME(name)
 
 #define DECLARE_MYSQL_THDVAR_SIMPLE(name, type) struct { \
-  MYSQL_PLUGIN_VAR_HEADER;      \
-  int offset;                   \
-  type def_val; type min_val;   \
-  type max_val; type blk_sz;    \
-  DECLARE_THDVAR_FUNC(type);    \
-} MYSQL_SYSVAR_NAME(name)
+		MYSQL_PLUGIN_VAR_HEADER;      \
+		int offset;                   \
+		type def_val; type min_val;   \
+		type max_val; type blk_sz;    \
+		DECLARE_THDVAR_FUNC(type);    \
+	} MYSQL_SYSVAR_NAME(name)
 
 #define DECLARE_MYSQL_THDVAR_TYPELIB(name, type) struct { \
-  MYSQL_PLUGIN_VAR_HEADER;      \
-  int offset;                   \
-  type def_val;                 \
-  DECLARE_THDVAR_FUNC(type);    \
-  TYPELIB *typelib;             \
-} MYSQL_SYSVAR_NAME(name)
+		MYSQL_PLUGIN_VAR_HEADER;      \
+		int offset;                   \
+		type def_val;                 \
+		DECLARE_THDVAR_FUNC(type);    \
+		TYPELIB *typelib;             \
+	} MYSQL_SYSVAR_NAME(name)
 
 
 /*
@@ -268,113 +270,113 @@ typedef void (*mysql_var_update_func)(MYSQL_THD thd,
 */
 
 #define MYSQL_SYSVAR_BOOL(name, varname, opt, comment, check, update, def) \
-DECLARE_MYSQL_SYSVAR_BASIC(name, char) = { \
-  PLUGIN_VAR_BOOL | ((opt) & PLUGIN_VAR_MASK), \
-  #name, comment, check, update, &varname, def}
+	DECLARE_MYSQL_SYSVAR_BASIC(name, char) = { \
+		PLUGIN_VAR_BOOL | ((opt) & PLUGIN_VAR_MASK), \
+		#name, comment, check, update, &varname, def}
 
 #define MYSQL_SYSVAR_STR(name, varname, opt, comment, check, update, def) \
-DECLARE_MYSQL_SYSVAR_BASIC(name, char *) = { \
-  PLUGIN_VAR_STR | ((opt) & PLUGIN_VAR_MASK), \
-  #name, comment, check, update, &varname, def}
+	DECLARE_MYSQL_SYSVAR_BASIC(name, char *) = { \
+		PLUGIN_VAR_STR | ((opt) & PLUGIN_VAR_MASK), \
+		#name, comment, check, update, &varname, def}
 
 #define MYSQL_SYSVAR_INT(name, varname, opt, comment, check, update, def, min, max, blk) \
-DECLARE_MYSQL_SYSVAR_SIMPLE(name, int) = { \
-  PLUGIN_VAR_INT | ((opt) & PLUGIN_VAR_MASK), \
-  #name, comment, check, update, &varname, def, min, max, blk }
+	DECLARE_MYSQL_SYSVAR_SIMPLE(name, int) = { \
+		PLUGIN_VAR_INT | ((opt) & PLUGIN_VAR_MASK), \
+		#name, comment, check, update, &varname, def, min, max, blk }
 
 #define MYSQL_SYSVAR_UINT(name, varname, opt, comment, check, update, def, min, max, blk) \
-DECLARE_MYSQL_SYSVAR_SIMPLE(name, unsigned int) = { \
-  PLUGIN_VAR_INT | PLUGIN_VAR_UNSIGNED | ((opt) & PLUGIN_VAR_MASK), \
-  #name, comment, check, update, &varname, def, min, max, blk }
+	DECLARE_MYSQL_SYSVAR_SIMPLE(name, unsigned int) = { \
+		PLUGIN_VAR_INT | PLUGIN_VAR_UNSIGNED | ((opt) & PLUGIN_VAR_MASK), \
+		#name, comment, check, update, &varname, def, min, max, blk }
 
 #define MYSQL_SYSVAR_LONG(name, varname, opt, comment, check, update, def, min, max, blk) \
-DECLARE_MYSQL_SYSVAR_SIMPLE(name, long) = { \
-  PLUGIN_VAR_LONG | ((opt) & PLUGIN_VAR_MASK), \
-  #name, comment, check, update, &varname, def, min, max, blk }
+	DECLARE_MYSQL_SYSVAR_SIMPLE(name, long) = { \
+		PLUGIN_VAR_LONG | ((opt) & PLUGIN_VAR_MASK), \
+		#name, comment, check, update, &varname, def, min, max, blk }
 
 #define MYSQL_SYSVAR_ULONG(name, varname, opt, comment, check, update, def, min, max, blk) \
-DECLARE_MYSQL_SYSVAR_SIMPLE(name, unsigned long) = { \
-  PLUGIN_VAR_LONG | PLUGIN_VAR_UNSIGNED | ((opt) & PLUGIN_VAR_MASK), \
-  #name, comment, check, update, &varname, def, min, max, blk }
+	DECLARE_MYSQL_SYSVAR_SIMPLE(name, unsigned long) = { \
+		PLUGIN_VAR_LONG | PLUGIN_VAR_UNSIGNED | ((opt) & PLUGIN_VAR_MASK), \
+		#name, comment, check, update, &varname, def, min, max, blk }
 
 #define MYSQL_SYSVAR_LONGLONG(name, varname, opt, comment, check, update, def, min, max, blk) \
-DECLARE_MYSQL_SYSVAR_SIMPLE(name, long long) = { \
-  PLUGIN_VAR_LONGLONG | ((opt) & PLUGIN_VAR_MASK), \
-  #name, comment, check, update, &varname, def, min, max, blk }
+	DECLARE_MYSQL_SYSVAR_SIMPLE(name, long long) = { \
+		PLUGIN_VAR_LONGLONG | ((opt) & PLUGIN_VAR_MASK), \
+		#name, comment, check, update, &varname, def, min, max, blk }
 
 #define MYSQL_SYSVAR_ULONGLONG(name, varname, opt, comment, check, update, def, min, max, blk) \
-DECLARE_MYSQL_SYSVAR_SIMPLE(name, unsigned long long) = { \
-  PLUGIN_VAR_LONGLONG | PLUGIN_VAR_UNSIGNED | ((opt) & PLUGIN_VAR_MASK), \
-  #name, comment, check, update, &varname, def, min, max, blk }
+	DECLARE_MYSQL_SYSVAR_SIMPLE(name, unsigned long long) = { \
+		PLUGIN_VAR_LONGLONG | PLUGIN_VAR_UNSIGNED | ((opt) & PLUGIN_VAR_MASK), \
+		#name, comment, check, update, &varname, def, min, max, blk }
 
 #define MYSQL_SYSVAR_ENUM(name, varname, opt, comment, check, update, def, typelib) \
-DECLARE_MYSQL_SYSVAR_TYPELIB(name, unsigned long) = { \
-  PLUGIN_VAR_ENUM | ((opt) & PLUGIN_VAR_MASK), \
-  #name, comment, check, update, &varname, def, typelib }
+	DECLARE_MYSQL_SYSVAR_TYPELIB(name, unsigned long) = { \
+		PLUGIN_VAR_ENUM | ((opt) & PLUGIN_VAR_MASK), \
+		#name, comment, check, update, &varname, def, typelib }
 
 #define MYSQL_SYSVAR_SET(name, varname, opt, comment, check, update, def, typelib) \
-DECLARE_MYSQL_SYSVAR_TYPELIB(name, unsigned long long) = { \
-  PLUGIN_VAR_SET | ((opt) & PLUGIN_VAR_MASK), \
-  #name, comment, check, update, &varname, def, typelib }
+	DECLARE_MYSQL_SYSVAR_TYPELIB(name, unsigned long long) = { \
+		PLUGIN_VAR_SET | ((opt) & PLUGIN_VAR_MASK), \
+		#name, comment, check, update, &varname, def, typelib }
 
 #define MYSQL_THDVAR_BOOL(name, opt, comment, check, update, def) \
-DECLARE_MYSQL_THDVAR_BASIC(name, char) = { \
-  PLUGIN_VAR_BOOL | PLUGIN_VAR_THDLOCAL | ((opt) & PLUGIN_VAR_MASK), \
-  #name, comment, check, update, -1, def, NULL}
+	DECLARE_MYSQL_THDVAR_BASIC(name, char) = { \
+		PLUGIN_VAR_BOOL | PLUGIN_VAR_THDLOCAL | ((opt) & PLUGIN_VAR_MASK), \
+		#name, comment, check, update, -1, def, NULL}
 
 #define MYSQL_THDVAR_STR(name, opt, comment, check, update, def) \
-DECLARE_MYSQL_THDVAR_BASIC(name, char *) = { \
-  PLUGIN_VAR_STR | PLUGIN_VAR_THDLOCAL | ((opt) & PLUGIN_VAR_MASK), \
-  #name, comment, check, update, -1, def, NULL}
+	DECLARE_MYSQL_THDVAR_BASIC(name, char *) = { \
+		PLUGIN_VAR_STR | PLUGIN_VAR_THDLOCAL | ((opt) & PLUGIN_VAR_MASK), \
+		#name, comment, check, update, -1, def, NULL}
 
 #define MYSQL_THDVAR_INT(name, opt, comment, check, update, def, min, max, blk) \
-DECLARE_MYSQL_THDVAR_SIMPLE(name, int) = { \
-  PLUGIN_VAR_INT | PLUGIN_VAR_THDLOCAL | ((opt) & PLUGIN_VAR_MASK), \
-  #name, comment, check, update, -1, def, min, max, blk, NULL }
+	DECLARE_MYSQL_THDVAR_SIMPLE(name, int) = { \
+		PLUGIN_VAR_INT | PLUGIN_VAR_THDLOCAL | ((opt) & PLUGIN_VAR_MASK), \
+		#name, comment, check, update, -1, def, min, max, blk, NULL }
 
 #define MYSQL_THDVAR_UINT(name, opt, comment, check, update, def, min, max, blk) \
-DECLARE_MYSQL_THDVAR_SIMPLE(name, unsigned int) = { \
-  PLUGIN_VAR_INT | PLUGIN_VAR_THDLOCAL | PLUGIN_VAR_UNSIGNED | ((opt) & PLUGIN_VAR_MASK), \
-  #name, comment, check, update, -1, def, min, max, blk, NULL }
+	DECLARE_MYSQL_THDVAR_SIMPLE(name, unsigned int) = { \
+		PLUGIN_VAR_INT | PLUGIN_VAR_THDLOCAL | PLUGIN_VAR_UNSIGNED | ((opt) & PLUGIN_VAR_MASK), \
+		#name, comment, check, update, -1, def, min, max, blk, NULL }
 
 #define MYSQL_THDVAR_LONG(name, opt, comment, check, update, def, min, max, blk) \
-DECLARE_MYSQL_THDVAR_SIMPLE(name, long) = { \
-  PLUGIN_VAR_LONG | PLUGIN_VAR_THDLOCAL | ((opt) & PLUGIN_VAR_MASK), \
-  #name, comment, check, update, -1, def, min, max, blk, NULL }
+	DECLARE_MYSQL_THDVAR_SIMPLE(name, long) = { \
+		PLUGIN_VAR_LONG | PLUGIN_VAR_THDLOCAL | ((opt) & PLUGIN_VAR_MASK), \
+		#name, comment, check, update, -1, def, min, max, blk, NULL }
 
 #define MYSQL_THDVAR_ULONG(name, opt, comment, check, update, def, min, max, blk) \
-DECLARE_MYSQL_THDVAR_SIMPLE(name, unsigned long) = { \
-  PLUGIN_VAR_LONG | PLUGIN_VAR_THDLOCAL | PLUGIN_VAR_UNSIGNED | ((opt) & PLUGIN_VAR_MASK), \
-  #name, comment, check, update, -1, def, min, max, blk, NULL }
+	DECLARE_MYSQL_THDVAR_SIMPLE(name, unsigned long) = { \
+		PLUGIN_VAR_LONG | PLUGIN_VAR_THDLOCAL | PLUGIN_VAR_UNSIGNED | ((opt) & PLUGIN_VAR_MASK), \
+		#name, comment, check, update, -1, def, min, max, blk, NULL }
 
 #define MYSQL_THDVAR_LONGLONG(name, opt, comment, check, update, def, min, max, blk) \
-DECLARE_MYSQL_THDVAR_SIMPLE(name, long long) = { \
-  PLUGIN_VAR_LONGLONG | PLUGIN_VAR_THDLOCAL | ((opt) & PLUGIN_VAR_MASK), \
-  #name, comment, check, update, -1, def, min, max, blk, NULL }
+	DECLARE_MYSQL_THDVAR_SIMPLE(name, long long) = { \
+		PLUGIN_VAR_LONGLONG | PLUGIN_VAR_THDLOCAL | ((opt) & PLUGIN_VAR_MASK), \
+		#name, comment, check, update, -1, def, min, max, blk, NULL }
 
 #define MYSQL_THDVAR_ULONGLONG(name, opt, comment, check, update, def, min, max, blk) \
-DECLARE_MYSQL_THDVAR_SIMPLE(name, unsigned long long) = { \
-  PLUGIN_VAR_LONGLONG | PLUGIN_VAR_THDLOCAL | PLUGIN_VAR_UNSIGNED | ((opt) & PLUGIN_VAR_MASK), \
-  #name, comment, check, update, -1, def, min, max, blk, NULL }
+	DECLARE_MYSQL_THDVAR_SIMPLE(name, unsigned long long) = { \
+		PLUGIN_VAR_LONGLONG | PLUGIN_VAR_THDLOCAL | PLUGIN_VAR_UNSIGNED | ((opt) & PLUGIN_VAR_MASK), \
+		#name, comment, check, update, -1, def, min, max, blk, NULL }
 
 #define MYSQL_THDVAR_ENUM(name, opt, comment, check, update, def, typelib) \
-DECLARE_MYSQL_THDVAR_TYPELIB(name, unsigned long) = { \
-  PLUGIN_VAR_ENUM | PLUGIN_VAR_THDLOCAL | ((opt) & PLUGIN_VAR_MASK), \
-  #name, comment, check, update, -1, def, NULL, typelib }
+	DECLARE_MYSQL_THDVAR_TYPELIB(name, unsigned long) = { \
+		PLUGIN_VAR_ENUM | PLUGIN_VAR_THDLOCAL | ((opt) & PLUGIN_VAR_MASK), \
+		#name, comment, check, update, -1, def, NULL, typelib }
 
 #define MYSQL_THDVAR_SET(name, opt, comment, check, update, def, typelib) \
-DECLARE_MYSQL_THDVAR_TYPELIB(name, unsigned long long) = { \
-  PLUGIN_VAR_SET | PLUGIN_VAR_THDLOCAL | ((opt) & PLUGIN_VAR_MASK), \
-  #name, comment, check, update, -1, def, NULL, typelib }
+	DECLARE_MYSQL_THDVAR_TYPELIB(name, unsigned long long) = { \
+		PLUGIN_VAR_SET | PLUGIN_VAR_THDLOCAL | ((opt) & PLUGIN_VAR_MASK), \
+		#name, comment, check, update, -1, def, NULL, typelib }
 
 /* accessor macros */
 
 #define SYSVAR(name) \
-  (*(MYSQL_SYSVAR_NAME(name).value))
+	(*(MYSQL_SYSVAR_NAME(name).value))
 
 /* when thd == null, result points to global value */
 #define THDVAR(thd, name) \
-  (*(MYSQL_SYSVAR_NAME(name).resolve(thd, MYSQL_SYSVAR_NAME(name).offset)))
+	(*(MYSQL_SYSVAR_NAME(name).resolve(thd, MYSQL_SYSVAR_NAME(name).offset)))
 
 
 /*
@@ -383,18 +385,18 @@ DECLARE_MYSQL_THDVAR_TYPELIB(name, unsigned long long) = { \
 
 struct st_mysql_plugin
 {
-  int type;             /* the plugin type (a MYSQL_XXX_PLUGIN value)   */
-  void *info;           /* pointer to type-specific plugin descriptor   */
-  const char *name;     /* plugin name                                  */
-  const char *author;   /* plugin author (for SHOW PLUGINS)             */
-  const char *descr;    /* general descriptive text (for SHOW PLUGINS ) */
-  int license;          /* the plugin license (PLUGIN_LICENSE_XXX)      */
-  int (*init)(void *);  /* the function to invoke when plugin is loaded */
-  int (*deinit)(void *);/* the function to invoke when plugin is unloaded */
-  unsigned int version; /* plugin version (for SHOW PLUGINS)            */
-  struct st_mysql_show_var *status_vars;
-  struct st_mysql_sys_var **system_vars;
-  void * __reserved1;   /* reserved for dependency checking             */
+	int type;             /* the plugin type (a MYSQL_XXX_PLUGIN value)   */
+	void* info;           /* pointer to type-specific plugin descriptor   */
+	const char* name;     /* plugin name                                  */
+	const char* author;   /* plugin author (for SHOW PLUGINS)             */
+	const char* descr;    /* general descriptive text (for SHOW PLUGINS ) */
+	int license;          /* the plugin license (PLUGIN_LICENSE_XXX)      */
+	int (*init) (void*);  /* the function to invoke when plugin is loaded */
+	int (*deinit) (void*);/* the function to invoke when plugin is unloaded */
+	unsigned int version; /* plugin version (for SHOW PLUGINS)            */
+	struct st_mysql_show_var* status_vars;
+	struct st_mysql_sys_var** system_vars;
+	void* __reserved1;    /* reserved for dependency checking             */
 };
 
 /*************************************************************************
@@ -406,39 +408,39 @@ struct st_mysql_plugin
 /* Parsing modes. Set in  MYSQL_FTPARSER_PARAM::mode */
 enum enum_ftparser_mode
 {
-/*
-  Fast and simple mode.  This mode is used for indexing, and natural
-  language queries.
+	/*
+	  Fast and simple mode.  This mode is used for indexing, and natural
+	  language queries.
 
-  The parser is expected to return only those words that go into the
-  index. Stopwords or too short/long words should not be returned. The
-  'boolean_info' argument of mysql_add_word() does not have to be set.
-*/
-  MYSQL_FTPARSER_SIMPLE_MODE= 0,
+	  The parser is expected to return only those words that go into the
+	  index. Stopwords or too short/long words should not be returned. The
+	  'boolean_info' argument of mysql_add_word() does not have to be set.
+	*/
+	MYSQL_FTPARSER_SIMPLE_MODE = 0,
 
-/*
-  Parse with stopwords mode.  This mode is used in boolean searches for
-  "phrase matching."
+	/*
+	  Parse with stopwords mode.  This mode is used in boolean searches for
+	  "phrase matching."
 
-  The parser is not allowed to ignore words in this mode.  Every word
-  should be returned, including stopwords and words that are too short
-  or long.  The 'boolean_info' argument of mysql_add_word() does not
-  have to be set.
-*/
-  MYSQL_FTPARSER_WITH_STOPWORDS= 1,
+	  The parser is not allowed to ignore words in this mode.  Every word
+	  should be returned, including stopwords and words that are too short
+	  or long.  The 'boolean_info' argument of mysql_add_word() does not
+	  have to be set.
+	*/
+	MYSQL_FTPARSER_WITH_STOPWORDS = 1,
 
-/*
-  Parse in boolean mode.  This mode is used to parse a boolean query string.
+	/*
+	  Parse in boolean mode.  This mode is used to parse a boolean query string.
 
-  The parser should provide a valid MYSQL_FTPARSER_BOOLEAN_INFO
-  structure in the 'boolean_info' argument to mysql_add_word().
-  Usually that means that the parser should recognize boolean operators
-  in the parsing stream and set appropriate fields in
-  MYSQL_FTPARSER_BOOLEAN_INFO structure accordingly.  As for
-  MYSQL_FTPARSER_WITH_STOPWORDS mode, no word should be ignored.
-  Instead, use FT_TOKEN_STOPWORD for the token type of such a word.
-*/
-  MYSQL_FTPARSER_FULL_BOOLEAN_INFO= 2
+	  The parser should provide a valid MYSQL_FTPARSER_BOOLEAN_INFO
+	  structure in the 'boolean_info' argument to mysql_add_word().
+	  Usually that means that the parser should recognize boolean operators
+	  in the parsing stream and set appropriate fields in
+	  MYSQL_FTPARSER_BOOLEAN_INFO structure accordingly.  As for
+	  MYSQL_FTPARSER_WITH_STOPWORDS mode, no word should be ignored.
+	  Instead, use FT_TOKEN_STOPWORD for the token type of such a word.
+	*/
+	MYSQL_FTPARSER_FULL_BOOLEAN_INFO = 2
 };
 
 /*
@@ -454,11 +456,11 @@ enum enum_ftparser_mode
 
 enum enum_ft_token_type
 {
-  FT_TOKEN_EOF= 0,
-  FT_TOKEN_WORD= 1,
-  FT_TOKEN_LEFT_PAREN= 2,
-  FT_TOKEN_RIGHT_PAREN= 3,
-  FT_TOKEN_STOPWORD= 4
+	FT_TOKEN_EOF = 0,
+	FT_TOKEN_WORD = 1,
+	FT_TOKEN_LEFT_PAREN = 2,
+	FT_TOKEN_RIGHT_PAREN = 3,
+	FT_TOKEN_STOPWORD = 4
 };
 
 /*
@@ -494,14 +496,14 @@ enum enum_ft_token_type
 
 typedef struct st_mysql_ftparser_boolean_info
 {
-  enum enum_ft_token_type type;
-  int yesno;
-  int weight_adjust;
-  char wasign;
-  char trunc;
-  /* These are parser state and must be removed. */
-  char prev;
-  char *quot;
+	enum enum_ft_token_type type;
+	int yesno;
+	int weight_adjust;
+	char wasign;
+	char trunc;
+	/* These are parser state and must be removed. */
+	char prev;
+	char* quot;
 } MYSQL_FTPARSER_BOOLEAN_INFO;
 
 /*
@@ -556,18 +558,18 @@ typedef struct st_mysql_ftparser_boolean_info
 
 typedef struct st_mysql_ftparser_param
 {
-  int (*mysql_parse)(struct st_mysql_ftparser_param *,
-                     char *doc, int doc_len);
-  int (*mysql_add_word)(struct st_mysql_ftparser_param *,
-                        char *word, int word_len,
-                        MYSQL_FTPARSER_BOOLEAN_INFO *boolean_info);
-  void *ftparser_state;
-  void *mysql_ftparam;
-  struct charset_info_st *cs;
-  char *doc;
-  int length;
-  int flags;
-  enum enum_ftparser_mode mode;
+	int (*mysql_parse) (struct st_mysql_ftparser_param*,
+						char* doc, int doc_len);
+	int (*mysql_add_word) (struct st_mysql_ftparser_param*,
+						   char* word, int word_len,
+						   MYSQL_FTPARSER_BOOLEAN_INFO *boolean_info);
+	void* ftparser_state;
+	void* mysql_ftparam;
+	struct charset_info_st* cs;
+	char* doc;
+	int length;
+	int flags;
+	enum enum_ftparser_mode mode;
 } MYSQL_FTPARSER_PARAM;
 
 /*
@@ -580,10 +582,10 @@ typedef struct st_mysql_ftparser_param
 
 struct st_mysql_ftparser
 {
-  int interface_version;
-  int (*parse)(MYSQL_FTPARSER_PARAM *param);
-  int (*init)(MYSQL_FTPARSER_PARAM *param);
-  int (*deinit)(MYSQL_FTPARSER_PARAM *param);
+	int interface_version;
+	int (*parse) (MYSQL_FTPARSER_PARAM *param);
+	int (*init) (MYSQL_FTPARSER_PARAM *param);
+	int (*deinit) (MYSQL_FTPARSER_PARAM *param);
 };
 
 /*************************************************************************
@@ -615,7 +617,7 @@ struct st_mysql_ftparser
 
 struct st_mysql_storage_engine
 {
-  int interface_version;
+	int interface_version;
 };
 
 struct handlerton;
@@ -627,7 +629,7 @@ struct handlerton;
 
 struct st_mysql_daemon
 {
-  int interface_version;
+	int interface_version;
 };
 
 /*
@@ -637,7 +639,7 @@ struct st_mysql_daemon
 
 struct st_mysql_information_schema
 {
-  int interface_version;
+	int interface_version;
 };
 
 
@@ -657,10 +659,10 @@ struct st_mysql_information_schema
 
 struct st_mysql_value
 {
-  int (*value_type)(struct st_mysql_value *);
-  const char *(*val_str)(struct st_mysql_value *, char *buffer, int *length);
-  int (*val_real)(struct st_mysql_value *, double *realbuf);
-  int (*val_int)(struct st_mysql_value *, long long *intbuf);
+	int (*value_type) (struct st_mysql_value*);
+	const char* (*val_str) (struct st_mysql_value*, char* buffer, int* length);
+	int (*val_real) (struct st_mysql_value*, double* realbuf);
+	int (*val_int) (struct st_mysql_value*, long long* intbuf);
 };
 
 
@@ -672,17 +674,17 @@ struct st_mysql_value
 extern "C" {
 #endif
 
-int thd_in_lock_tables(const MYSQL_THD thd);
-int thd_tablespace_op(const MYSQL_THD thd);
-long long thd_test_options(const MYSQL_THD thd, long long test_options);
-int thd_sql_command(const MYSQL_THD thd);
-const char *thd_proc_info(MYSQL_THD thd, const char *info);
-void **thd_ha_data(const MYSQL_THD thd, const struct handlerton *hton);
-int thd_tx_isolation(const MYSQL_THD thd);
-char *thd_security_context(MYSQL_THD thd, char *buffer, unsigned int length,
-                           unsigned int max_query_len);
+int thd_in_lock_tables (const MYSQL_THD thd);
+int thd_tablespace_op (const MYSQL_THD thd);
+long long thd_test_options (const MYSQL_THD thd, long long test_options);
+int thd_sql_command (const MYSQL_THD thd);
+const char* thd_proc_info (MYSQL_THD thd, const char* info);
+void** thd_ha_data (const MYSQL_THD thd, const struct handlerton *hton);
+int thd_tx_isolation (const MYSQL_THD thd);
+char* thd_security_context (MYSQL_THD thd, char* buffer, unsigned int length,
+							unsigned int max_query_len);
 /* Increments the row counter, see THD::row_count */
-void thd_inc_row_count(MYSQL_THD thd);
+void thd_inc_row_count (MYSQL_THD thd);
 
 /**
   Create a temporary file.
@@ -696,7 +698,7 @@ void thd_inc_row_count(MYSQL_THD thd);
   @retval -1    error
   @retval >= 0  a file handle that can be passed to dup or my_close
 */
-int mysql_tmpfile(const char *prefix);
+int mysql_tmpfile (const char* prefix);
 
 /**
   Check the killed state of a connection
@@ -712,7 +714,7 @@ int mysql_tmpfile(const char *prefix);
   @retval 0  the connection is active
   @retval 1  the connection has been killed
 */
-int thd_killed(const MYSQL_THD thd);
+int thd_killed (const MYSQL_THD thd);
 
 
 /**
@@ -721,7 +723,7 @@ int thd_killed(const MYSQL_THD thd);
   @param thd  user thread connection handle
   @return  thread id
 */
-unsigned long thd_get_thread_id(const MYSQL_THD thd);
+unsigned long thd_get_thread_id (const MYSQL_THD thd);
 
 
 /**
@@ -736,23 +738,23 @@ unsigned long thd_get_thread_id(const MYSQL_THD thd);
 
   @see alloc_root()
 */
-void *thd_alloc(MYSQL_THD thd, unsigned int size);
+void* thd_alloc (MYSQL_THD thd, unsigned int size);
 /**
   @see thd_alloc()
 */
-void *thd_calloc(MYSQL_THD thd, unsigned int size);
+void* thd_calloc (MYSQL_THD thd, unsigned int size);
 /**
   @see thd_alloc()
 */
-char *thd_strdup(MYSQL_THD thd, const char *str);
+char* thd_strdup (MYSQL_THD thd, const char* str);
 /**
   @see thd_alloc()
 */
-char *thd_strmake(MYSQL_THD thd, const char *str, unsigned int size);
+char* thd_strmake (MYSQL_THD thd, const char* str, unsigned int size);
 /**
   @see thd_alloc()
 */
-void *thd_memdup(MYSQL_THD thd, const void* str, unsigned int size);
+void* thd_memdup (MYSQL_THD thd, const void* str, unsigned int size);
 
 /**
   Create a LEX_STRING in this connection's local memory pool
@@ -767,9 +769,9 @@ void *thd_memdup(MYSQL_THD thd, const void* str, unsigned int size);
 
   @see thd_alloc()
 */
-MYSQL_LEX_STRING *thd_make_lex_string(MYSQL_THD thd, MYSQL_LEX_STRING *lex_str,
-                                      const char *str, unsigned int size,
-                                      int allocate_lex_string);
+MYSQL_LEX_STRING* thd_make_lex_string (MYSQL_THD thd, MYSQL_LEX_STRING *lex_str,
+									   const char* str, unsigned int size,
+									   int allocate_lex_string);
 
 /**
   Get the XID for this connection's transaction
@@ -777,7 +779,7 @@ MYSQL_LEX_STRING *thd_make_lex_string(MYSQL_THD thd, MYSQL_LEX_STRING *lex_str,
   @param thd  user thread connection handle
   @param xid  location where identifier is stored
 */
-void thd_get_xid(const MYSQL_THD thd, MYSQL_XID *xid);
+void thd_get_xid (const MYSQL_THD thd, MYSQL_XID *xid);
 
 /**
   Invalidate the query cache for a given table.
@@ -787,9 +789,9 @@ void thd_get_xid(const MYSQL_THD thd, MYSQL_XID *xid);
   @param key_length  length of key in bytes, including the NUL bytes
   @param using_trx   flag: TRUE if using transactions, FALSE otherwise
 */
-void mysql_query_cache_invalidate4(MYSQL_THD thd,
-                                   const char *key, unsigned int key_length,
-                                   int using_trx);
+void mysql_query_cache_invalidate4 (MYSQL_THD thd,
+									const char* key, unsigned int key_length,
+									int using_trx);
 
 #ifdef __cplusplus
 }
@@ -800,10 +802,10 @@ void mysql_query_cache_invalidate4(MYSQL_THD thd,
   Provide a handler data getter to simplify coding
 */
 inline
-void *
-thd_get_ha_data(const MYSQL_THD thd, const struct handlerton *hton)
+void*
+thd_get_ha_data (const MYSQL_THD thd, const struct handlerton *hton)
 {
-  return *thd_ha_data(thd, hton);
+	return *thd_ha_data (thd, hton);
 }
 
 /**
@@ -811,10 +813,10 @@ thd_get_ha_data(const MYSQL_THD thd, const struct handlerton *hton)
 */
 inline
 void
-thd_set_ha_data(const MYSQL_THD thd, const struct handlerton *hton,
-                const void *ha_data)
+thd_set_ha_data (const MYSQL_THD thd, const struct handlerton *hton,
+				 const void* ha_data)
 {
-  *thd_ha_data(thd, hton)= (void*) ha_data;
+	*thd_ha_data (thd, hton) = (void*) ha_data;
 }
 #endif
 

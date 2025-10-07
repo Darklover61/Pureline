@@ -236,8 +236,8 @@ struct FuncShout
 	m_bCanFormat
 	*/
 	bool m_bCanFormat;
-	FuncShout(const char* str, BYTE bEmpire, bool bCanFormat) : m_str(str), m_bEmpire(bEmpire), m_bCanFormat(bCanFormat)
-	/* ----------------------------------------------------- */
+	FuncShout (const char* str, BYTE bEmpire, bool bCanFormat) : m_str (str), m_bEmpire (bEmpire), m_bCanFormat (bCanFormat)
+		/* ----------------------------------------------------- */
 	{
 	}
 
@@ -251,21 +251,21 @@ struct FuncShout
 		/* - CLIENT_LOCALE_STRING ------------------------------ */
 		struct packet_chat pack_chat;
 		pack_chat.header = HEADER_GC_CHAT;
-		pack_chat.size = sizeof(struct packet_chat) + strlen(m_str);
+		pack_chat.size = sizeof (struct packet_chat) + strlen (m_str);
 		pack_chat.type = CHAT_TYPE_SHOUT;
 		pack_chat.id = 0;
 		pack_chat.bEmpire = m_bEmpire;
 		pack_chat.bCanFormat = m_bCanFormat;
 
 		TEMP_BUFFER buf;
-		buf.write(&pack_chat, sizeof(struct packet_chat));
-		buf.write(m_str, strlen(m_str));
+		buf.write (&pack_chat, sizeof (struct packet_chat));
+		buf.write (m_str, strlen (m_str));
 
-		d->Packet(buf.read_peek(), buf.size());
+		d->Packet (buf.read_peek(), buf.size());
 
 		if (test_server)
 		{
-			sys_log(0, "SEND_COMMAND %s %s", d->GetCharacter()->GetName(), m_str);
+			sys_log (0, "SEND_COMMAND %s %s", d->GetCharacter()->GetName(), m_str);
 		}
 		/* ----------------------------------------------------- */
 	}
@@ -274,7 +274,7 @@ struct FuncShout
 /* - CLIENT_LOCALE_STRING ------------------------------
 bCanFormat
 */
-void SendShout(const char* szText, BYTE bEmpire, bool bCanFormat)
+void SendShout (const char* szText, BYTE bEmpire, bool bCanFormat)
 /* ----------------------------------------------------- */
 {
 	const DESC_MANAGER::DESC_SET & c_ref_set = DESC_MANAGER::instance().GetClientSet();
@@ -282,7 +282,7 @@ void SendShout(const char* szText, BYTE bEmpire, bool bCanFormat)
 	/* - CLIENT_LOCALE_STRING ------------------------------
 	bCanFormat
 	*/
-	std::for_each(c_ref_set.begin(), c_ref_set.end(), FuncShout(szText, bEmpire, bCanFormat));
+	std::for_each (c_ref_set.begin(), c_ref_set.end(), FuncShout (szText, bEmpire, bCanFormat));
 	/* ----------------------------------------------------- */
 }
 
@@ -293,7 +293,7 @@ void CInputP2P::Shout (const char* c_pData)
 	/* - CLIENT_LOCALE_STRING ------------------------------
 	bCanFormat
 	*/
-	SendShout(p->szText, p->bEmpire, p->bCanFormat);
+	SendShout (p->szText, p->bEmpire, p->bCanFormat);
 	/* ----------------------------------------------------- */
 }
 

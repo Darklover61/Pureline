@@ -5,9 +5,9 @@
 extern "C"
 {
 #endif
-    extern void signal_setup();
-    extern void signal_timer_disable();
-    extern void signal_timer_enable(int timeout_seconds);
+extern void signal_setup();
+extern void signal_timer_disable();
+extern void signal_timer_enable (int timeout_seconds);
 
 #ifdef __cplusplus
 };

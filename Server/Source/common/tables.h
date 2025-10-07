@@ -112,8 +112,8 @@ enum
 	HEADER_GD_BREAK_MARRIAGE		= 116,			///< 결혼 파기
 	HEADER_GD_ELECT_MONARCH			= 117,			///< 군주 투표
 	HEADER_GD_CANDIDACY				= 118,			///< 군주 등록
-	HEADER_GD_ADD_MONARCH_MONEY		= 119,			///< 군주 돈 증가 
-	HEADER_GD_TAKE_MONARCH_MONEY	= 120,			///< 군주 돈 감소 
+	HEADER_GD_ADD_MONARCH_MONEY		= 119,			///< 군주 돈 증가
+	HEADER_GD_TAKE_MONARCH_MONEY	= 120,			///< 군주 돈 감소
 	HEADER_GD_COME_TO_VOTE			= 121,			///< 표결
 	HEADER_GD_RMCANDIDACY			= 122,			///< 후보 제거 (운영자)
 	HEADER_GD_SETMONARCH			= 123,			///<군주설정 (운영자)
@@ -134,15 +134,15 @@ enum
 	HEADER_GD_VALID_LOGOUT			= 134,
 
 	// AUCTION
-#ifdef __AUCTION__
+	#ifdef __AUCTION__
 	HEADER_GD_GET_AUCTION_LIST		= 135,
 	HEADER_GD_COMMAND_AUCTION		= 136,
-#endif
+	#endif
 
 	HEADER_GD_REQUEST_CHARGE_CASH	= 137,
 
 	HEADER_GD_DELETE_AWARDID	= 138,	// delete gift notify icon
-	
+
 	HEADER_GD_UPDATE_CHANNELSTATUS	= 139,
 	HEADER_GD_REQUEST_CHANNELSTATUS	= 140,
 
@@ -248,12 +248,12 @@ enum
 	HEADER_DG_WEDDING_END		= 156,
 
 	HEADER_DG_MYSHOP_PRICELIST_RES	= 157,		///< 가격정보 리스트 응답
-	HEADER_DG_RELOAD_ADMIN = 158, 				///< 운영자 정보 리로드 
+	HEADER_DG_RELOAD_ADMIN = 158, 				///< 운영자 정보 리로드
 	HEADER_DG_BREAK_MARRIAGE = 159,				///< 결혼 파기
 	HEADER_DG_ELECT_MONARCH			= 160,			///< 군주 투표
 	HEADER_DG_CANDIDACY				= 161,			///< 군주 등록
-	HEADER_DG_ADD_MONARCH_MONEY		= 162,			///< 군주 돈 증가 
-	HEADER_DG_TAKE_MONARCH_MONEY	= 163,			///< 군주 돈 감소 
+	HEADER_DG_ADD_MONARCH_MONEY		= 162,			///< 군주 돈 증가
+	HEADER_DG_TAKE_MONARCH_MONEY	= 163,			///< 군주 돈 감소
 	HEADER_DG_COME_TO_VOTE			= 164,			///< 표결
 	HEADER_DG_RMCANDIDACY			= 165,			///< 후보 제거 (운영자)
 	HEADER_DG_SETMONARCH			= 166,			///<군주설정 (운영자)
@@ -271,9 +271,9 @@ enum
 	HEADER_DG_ACK_HORSE_NAME		= 176,
 
 	HEADER_DG_NEED_LOGIN_LOG		= 177,
-#ifdef __AUCTION__
+	#ifdef __AUCTION__
 	HEADER_DG_AUCTION_RESULT	=	178,
-#endif
+	#endif
 	HEADER_DG_RESULT_CHARGE_CASH	= 179,
 	HEADER_DG_ITEMAWARD_INFORMER	= 180,	//gift notify
 	HEADER_DG_RESPOND_CHANNELSTATUS		= 181,
@@ -574,7 +574,7 @@ typedef struct SSkillTable
 	DWORD	preSkillVnum;
 	BYTE	preSkillLevel;
 
-	long	lMaxHit; 
+	long	lMaxHit;
 	char	szSplashAroundDamageAdjustPoly[100 + 1];
 
 	BYTE	bSkillAttrType;
@@ -587,7 +587,7 @@ typedef struct SShopItemTable
 	DWORD		vnum;
 	BYTE		count;
 
-    TItemPos	pos;			// PC 상점에만 이용
+	TItemPos	pos;			// PC 상점에만 이용
 	DWORD		price;	// PC, shop_table_ex.txt 상점에만 이용
 	BYTE		display_pos; // PC, shop_table_ex.txt 상점에만 이용, 보일 위치.
 } TShopItemTable;
@@ -657,19 +657,19 @@ typedef struct SItemTable : public SEntityTable
 	// 아래 limit flag들은 realtime에 체크 할 일이 많고, 아이템 VNUM당 고정된 값인데,
 	// 현재 구조대로 매번 아이템마다 필요한 경우에 LIMIT_MAX_NUM까지 루프돌면서 체크하는 부하가 커서 미리 저장 해 둠.
 	char		cLimitRealTimeFirstUseIndex;		// 아이템 limit 필드값 중에서 LIMIT_REAL_TIME_FIRST_USE 플래그의 위치 (없으면 -1)
-	char		cLimitTimerBasedOnWearIndex;		// 아이템 limit 필드값 중에서 LIMIT_TIMER_BASED_ON_WEAR 플래그의 위치 (없으면 -1) 
+	char		cLimitTimerBasedOnWearIndex;		// 아이템 limit 필드값 중에서 LIMIT_TIMER_BASED_ON_WEAR 플래그의 위치 (없으면 -1)
 
 } TItemTable;
 
 struct TItemAttrTable
 {
 	TItemAttrTable() :
-		dwApplyIndex(0),
-		dwProb(0)
+		dwApplyIndex (0),
+		dwProb (0)
 	{
 		szApply[0] = 0;
-		memset(&lValues, 0, sizeof(lValues));
-		memset(&bMaxLevelBySet, 0, sizeof(bMaxLevelBySet));
+		memset (&lValues, 0, sizeof (lValues));
+		memset (&bMaxLevelBySet, 0, sizeof (bMaxLevelBySet));
 	}
 
 	char    szApply[APPLY_NAME_MAX_LEN + 1];
@@ -913,7 +913,7 @@ typedef struct SPacketPartySetMemberLevel
 
 typedef struct SPacketGDBoot
 {
-    DWORD	dwItemIDRange[2];
+	DWORD	dwItemIDRange[2];
 	char	szIP[16];
 } TPacketGDBoot;
 
@@ -1279,8 +1279,8 @@ typedef struct
 
 /// 개인상점 가격정보의 헤더. 가변 패킷으로 이 뒤에 byCount 만큼의 TItemPriceInfo 가 온다.
 typedef struct SPacketMyshopPricelistHeader
-{ 
-	DWORD	dwOwnerID;	///< 가격정보를 가진 플레이어 ID 
+{
+	DWORD	dwOwnerID;	///< 가격정보를 가진 플레이어 ID
 	BYTE	byCount;	///< 가격정보 갯수
 } TPacketMyshopPricelistHeader;
 
@@ -1336,8 +1336,8 @@ typedef struct SPacketReloadAdmin
 typedef struct TMonarchInfo
 {
 	DWORD pid[4];  // 군주의 PID
-	int64_t money[4];  // 군주의 별개 돈	
-	char name[4][32];  // 군주의 이름	
+	int64_t money[4];  // 군주의 별개 돈
+	char name[4][32];  // 군주의 이름
 	char date[4][32];  // 군주 등록 날짜
 } MonarchInfo;
 

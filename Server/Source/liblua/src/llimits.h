@@ -19,17 +19,17 @@
 ** try to find number of bits in an integer
 */
 #ifndef BITS_INT
-/* avoid overflows in comparison */
-#if INT_MAX-20 < 32760
-#define	BITS_INT	16
-#else
-#if INT_MAX > 2147483640L
-/* machine has at least 32 bits */
-#define BITS_INT	32
-#else
-#error "you must define BITS_INT with number of bits in an integer"
-#endif
-#endif
+	/* avoid overflows in comparison */
+	#if INT_MAX-20 < 32760
+		#define	BITS_INT	16
+	#else
+		#if INT_MAX > 2147483640L
+			/* machine has at least 32 bits */
+			#define BITS_INT	32
+		#else
+			#error "you must define BITS_INT with number of bits in an integer"
+		#endif
+	#endif
 #endif
 
 
@@ -72,10 +72,14 @@ typedef unsigned char lu_byte;
 #define IntPoint(p)  ((lu_hash)(p))
 
 
-
 /* type to ensure maximum alignment */
 #ifndef LUSER_ALIGNMENT_T
-typedef union { double u; void *s; long l; } L_Umaxalign;
+typedef union
+{
+	double u;
+	void* s;
+	long l;
+} L_Umaxalign;
 #else
 typedef LUSER_ALIGNMENT_T L_Umaxalign;
 #endif
@@ -83,31 +87,30 @@ typedef LUSER_ALIGNMENT_T L_Umaxalign;
 
 /* result of `usual argument conversion' over lua_Number */
 #ifndef LUA_UACNUMBER
-typedef double l_uacNumber;
+	typedef double l_uacNumber;
 #else
-typedef LUA_UACNUMBER l_uacNumber;
+	typedef LUA_UACNUMBER l_uacNumber;
 #endif
 
 
 #ifndef lua_assert
-#define lua_assert(c)		/* empty */
+	#define lua_assert(c)		/* empty */
 #endif
 
 
 #ifndef check_exp
-#define check_exp(c,e)	(e)
+	#define check_exp(c,e)	(e)
 #endif
 
 
 #ifndef UNUSED
-#define UNUSED(x)	((void)(x))	/* to avoid warnings */
+	#define UNUSED(x)	((void)(x))	/* to avoid warnings */
 #endif
 
 
 #ifndef cast
-#define cast(t, exp)	((t)(exp))
+	#define cast(t, exp)	((t)(exp))
 #endif
-
 
 
 /*
@@ -119,7 +122,7 @@ typedef unsigned long Instruction;
 
 /* maximum depth for calls (unsigned short) */
 #ifndef LUA_MAXCALLS
-#define LUA_MAXCALLS        4096
+	#define LUA_MAXCALLS        4096
 #endif
 
 
@@ -129,13 +132,13 @@ typedef unsigned long Instruction;
 */
 
 #ifndef LUA_MAXCCALLS
-#define LUA_MAXCCALLS        200
+	#define LUA_MAXCCALLS        200
 #endif
 
 
 /* maximum size for the C stack */
 #ifndef LUA_MAXCSTACK
-#define LUA_MAXCSTACK        2048
+	#define LUA_MAXCSTACK        2048
 #endif
 
 
@@ -145,31 +148,31 @@ typedef unsigned long Instruction;
 
 /* maximum number of variables declared in a function */
 #ifndef MAXVARS
-#define MAXVARS 200           /* arbitrary limit (<MAXSTACK) */
+	#define MAXVARS 200           /* arbitrary limit (<MAXSTACK) */
 #endif
 
 
 /* maximum number of upvalues per function */
 #ifndef MAXUPVALUES
-#define MAXUPVALUES	32
+	#define MAXUPVALUES	32
 #endif
 
 
 /* maximum number of parameters in a function */
 #ifndef MAXPARAMS
-#define MAXPARAMS 100           /* arbitrary limit (<MAXLOCALS) */
+	#define MAXPARAMS 100           /* arbitrary limit (<MAXLOCALS) */
 #endif
 
 
 /* minimum size for the string table (must be power of 2) */
 #ifndef MINSTRTABSIZE
-#define MINSTRTABSIZE	32
+	#define MINSTRTABSIZE	32
 #endif
 
 
 /* minimum size for string buffer */
 #ifndef LUA_MINBUFFER
-#define LUA_MINBUFFER	32
+	#define LUA_MINBUFFER	32
 #endif
 
 
@@ -178,7 +181,7 @@ typedef unsigned long Instruction;
 ** or may overflow the C stack...
 */
 #ifndef LUA_MAXPARSERLEVEL
-#define LUA_MAXPARSERLEVEL	200
+	#define LUA_MAXPARSERLEVEL	200
 #endif
 
 

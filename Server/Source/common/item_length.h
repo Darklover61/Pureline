@@ -41,32 +41,32 @@ enum EItemUniqueSockets
 
 enum EItemTypes
 {
-    ITEM_NONE,              //0
-    ITEM_WEAPON,            //1//무기
-    ITEM_ARMOR,             //2//갑옷
-    ITEM_USE,               //3//아이템 사용
-    ITEM_AUTOUSE,           //4
-    ITEM_MATERIAL,          //5
-    ITEM_SPECIAL,           //6 //스페셜 아이템
-    ITEM_TOOL,              //7
-    ITEM_ELK,               //9//돈
-    ITEM_METIN,             //10
-    ITEM_CONTAINER,         //11
-    ITEM_FISH,              //12//낚시
-    ITEM_ROD,               //13
-    ITEM_RESOURCE,          //14
-    ITEM_CAMPFIRE,          //15
-    ITEM_UNIQUE,            //16
-    ITEM_SKILLBOOK,         //17
-    ITEM_QUEST,             //18
-    ITEM_POLYMORPH,         //19
-    ITEM_TREASURE_BOX,      //20//보물상자
-    ITEM_TREASURE_KEY,      //21//보물상자 열쇠
-    ITEM_SKILLFORGET,       //22
-    ITEM_GIFTBOX,           //23
-    ITEM_PICK,              //24
-    ITEM_HAIR,              //25//머리
-    ITEM_TOTEM,             //26//토템
+	ITEM_NONE,              //0
+	ITEM_WEAPON,            //1//무기
+	ITEM_ARMOR,             //2//갑옷
+	ITEM_USE,               //3//아이템 사용
+	ITEM_AUTOUSE,           //4
+	ITEM_MATERIAL,          //5
+	ITEM_SPECIAL,           //6 //스페셜 아이템
+	ITEM_TOOL,              //7
+	ITEM_ELK,               //9//돈
+	ITEM_METIN,             //10
+	ITEM_CONTAINER,         //11
+	ITEM_FISH,              //12//낚시
+	ITEM_ROD,               //13
+	ITEM_RESOURCE,          //14
+	ITEM_CAMPFIRE,          //15
+	ITEM_UNIQUE,            //16
+	ITEM_SKILLBOOK,         //17
+	ITEM_QUEST,             //18
+	ITEM_POLYMORPH,         //19
+	ITEM_TREASURE_BOX,      //20//보물상자
+	ITEM_TREASURE_KEY,      //21//보물상자 열쇠
+	ITEM_SKILLFORGET,       //22
+	ITEM_GIFTBOX,           //23
+	ITEM_PICK,              //24
+	ITEM_HAIR,              //25//머리
+	ITEM_TOTEM,             //26//토템
 	ITEM_BLEND,				//27//생성될때 랜덤하게 속성이 붙는 약물
 	ITEM_COSTUME,			//28//코스츔 아이템 (2011년 8월 추가된 코스츔 시스템용 아이템)
 	ITEM_DS,				//29 //용혼석
@@ -214,7 +214,7 @@ enum EUseSubTypes
 	USE_UNBIND,
 	USE_TIME_CHARGE_PER,
 	USE_TIME_CHARGE_FIX,				// 28
-	USE_PUT_INTO_BELT_SOCKET,			// 29 벨트 소켓에 사용할 수 있는 아이템 
+	USE_PUT_INTO_BELT_SOCKET,			// 29 벨트 소켓에 사용할 수 있는 아이템
 	USE_PUT_INTO_RING_SOCKET,			// 30 반지 소켓에 사용할 수 있는 아이템 (유니크 반지 말고, 새로 추가된 반지 슬롯)
 };
 
@@ -241,8 +241,8 @@ enum EMaterialSubTypes
 	MATERIAL_ROOT,
 	MATERIAL_NEEDLE,
 	MATERIAL_JEWEL,
-	MATERIAL_DS_REFINE_NORMAL, 
-	MATERIAL_DS_REFINE_BLESSED, 
+	MATERIAL_DS_REFINE_NORMAL,
+	MATERIAL_DS_REFINE_BLESSED,
 	MATERIAL_DS_REFINE_HOLLY,
 };
 
@@ -284,7 +284,7 @@ enum EItemAntiFlag
 	ITEM_ANTIFLAG_MALE		= (1 << 1), // 남성 사용 불가
 	ITEM_ANTIFLAG_WARRIOR	= (1 << 2), // 무사 사용 불가
 	ITEM_ANTIFLAG_ASSASSIN	= (1 << 3), // 자객 사용 불가
-	ITEM_ANTIFLAG_SURA		= (1 << 4), // 수라 사용 불가 
+	ITEM_ANTIFLAG_SURA		= (1 << 4), // 수라 사용 불가
 	ITEM_ANTIFLAG_SHAMAN	= (1 << 5), // 무당 사용 불가
 	ITEM_ANTIFLAG_GET		= (1 << 6), // 집을 수 없음
 	ITEM_ANTIFLAG_DROP		= (1 << 7), // 버릴 수 없음
@@ -328,10 +328,10 @@ enum ELimitTypes
 	LIMIT_CON,
 
 	/// 착용 여부와 상관 없이 실시간으로 시간 차감 (socket0에 소멸 시간이 박힘: unix_timestamp 타입)
-	LIMIT_REAL_TIME,						
+	LIMIT_REAL_TIME,
 
-	/// 아이템을 맨 처음 사용(혹은 착용) 한 순간부터 리얼타임 타이머 시작 
-	/// 최초 사용 전에는 socket0에 사용가능시간(초단위, 0이면 프로토의 limit value값 사용) 값이 쓰여있다가 
+	/// 아이템을 맨 처음 사용(혹은 착용) 한 순간부터 리얼타임 타이머 시작
+	/// 최초 사용 전에는 socket0에 사용가능시간(초단위, 0이면 프로토의 limit value값 사용) 값이 쓰여있다가
 	/// 아이템 사용시 socket1에 사용 횟수가 박히고 socket0에 unix_timestamp 타입의 소멸시간이 박힘.
 	LIMIT_REAL_TIME_START_FIRST_USE,
 

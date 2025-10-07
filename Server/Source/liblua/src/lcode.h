@@ -23,13 +23,14 @@
 /*
 ** grep "ORDER OPR" if you change these enums
 */
-typedef enum BinOpr {
-  OPR_ADD, OPR_SUB, OPR_MULT, OPR_DIV, OPR_POW,
-  OPR_CONCAT,
-  OPR_NE, OPR_EQ,
-  OPR_LT, OPR_LE, OPR_GT, OPR_GE,
-  OPR_AND, OPR_OR,
-  OPR_NOBINOPR
+typedef enum BinOpr
+{
+	OPR_ADD, OPR_SUB, OPR_MULT, OPR_DIV, OPR_POW,
+	OPR_CONCAT,
+	OPR_NE, OPR_EQ,
+	OPR_LT, OPR_LE, OPR_GT, OPR_GE,
+	OPR_AND, OPR_OR,
+	OPR_NOBINOPR
 } BinOpr;
 
 #define binopistest(op)	((op) >= OPR_NE)
@@ -64,7 +65,7 @@ void luaK_setcallreturns (FuncState *fs, expdesc *var, int nresults);
 int luaK_jump (FuncState *fs);
 void luaK_patchlist (FuncState *fs, int list, int target);
 void luaK_patchtohere (FuncState *fs, int list);
-void luaK_concat (FuncState *fs, int *l1, int l2);
+void luaK_concat (FuncState *fs, int* l1, int l2);
 int luaK_getlabel (FuncState *fs);
 void luaK_prefix (FuncState *fs, UnOpr op, expdesc *v);
 void luaK_infix (FuncState *fs, BinOpr op, expdesc *v);

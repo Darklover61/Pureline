@@ -19,9 +19,9 @@
 #ifdef	__cplusplus
 extern "C" {
 #endif
-void	init_client_errs(void);
-void	finish_client_errs(void);
-extern const char *client_errors[];	/* Error messages */
+void	init_client_errs (void);
+void	finish_client_errs (void);
+extern const char* client_errors[];	/* Error messages */
 #ifdef	__cplusplus
 }
 #endif
@@ -29,7 +29,7 @@ extern const char *client_errors[];	/* Error messages */
 #define CR_MIN_ERROR		2000	/* For easier client code */
 #define CR_MAX_ERROR		2999
 #if !defined(ER)
-#define ER(X) client_errors[(X)-CR_MIN_ERROR]
+	#define ER(X) client_errors[(X)-CR_MIN_ERROR]
 #endif
 #define CLIENT_ERRMAP		2	/* Errormap used by my_error() */
 

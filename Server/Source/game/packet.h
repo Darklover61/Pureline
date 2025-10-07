@@ -1008,7 +1008,7 @@ typedef struct packet_chat	// 가변 패킷
 
 	/* - CLIENT_LOCALE_STRING ------------------------------ */
 	bool	bCanFormat;
-	packet_chat() : bCanFormat(true) {}
+	packet_chat() : bCanFormat (true) {}
 	/* ----------------------------------------------------- */
 } TPacketGCChat;
 
@@ -1021,7 +1021,7 @@ typedef struct packet_whisper	// 가변 패킷
 
 	/* - CLIENT_LOCALE_STRING ------------------------------ */
 	bool	bCanFormat;
-	packet_whisper() : bCanFormat(true) {}
+	packet_whisper() : bCanFormat (true) {}
 	/* ----------------------------------------------------- */
 } TPacketGCWhisper;
 

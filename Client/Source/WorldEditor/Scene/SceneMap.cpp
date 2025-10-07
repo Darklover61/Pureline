@@ -356,20 +356,20 @@ void CSceneMap::OnRenderUI (float fx, float fy)
 	WORD wPatchNum = dwCoordY * CTerrainImpl::PATCH_XCOUNT + dwCoordX;
 
 	std::ostringstream aStream;
-	std::vector<std::pair<DWORD, int>> aTilecountVector;
+	std::vector<std::pair<DWORD, int >> aTilecountVector;
 
 	for (BYTE byTextureIndex = 0; byTextureIndex <= pTerrain->GetTextureSet()->GetTextureCount(); ++byTextureIndex)
 	{
 		DWORD dwTileCount = rTerrainSplatPatch.PatchTileCount[wPatchNum][byTextureIndex];
 		if (dwTileCount > 0)
 		{
-			aTilecountVector.push_back (std::vector<std::pair<DWORD, BYTE>>::value_type (dwTileCount, (int)byTextureIndex));
+			aTilecountVector.push_back (std::vector<std::pair<DWORD, BYTE >>::value_type (dwTileCount, (int)byTextureIndex));
 		}
 	}
 	std::sort (aTilecountVector.begin(), aTilecountVector.end());
 
 	aStream << "( Total " << aTilecountVector.size() << " sheets ) : ";
-	std::vector<std::pair<DWORD, int>>::reverse_iterator aIterator = aTilecountVector.rbegin();
+	std::vector<std::pair<DWORD, int >>::reverse_iterator aIterator = aTilecountVector.rbegin();
 	while (aTilecountVector.rend() != aIterator)
 	{
 		std::pair<DWORD, int> aPair = *aIterator;

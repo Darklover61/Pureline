@@ -29,9 +29,9 @@ extern "C" {
 #pragma comment( lib, "python27.lib" )
 #pragma comment( lib, "imagehlp.lib" )
 #ifdef _DEBUG
-#pragma comment( lib, "DevIL-1.7.8d.lib" )
+	#pragma comment( lib, "DevIL-1.7.8d.lib" )
 #else
-#pragma comment( lib, "DevIL-1.7.8.lib" )
+	#pragma comment( lib, "DevIL-1.7.8.lib" )
 #endif
 #pragma comment( lib, "granny2.lib" )
 #pragma comment( lib, "mss32.lib" )

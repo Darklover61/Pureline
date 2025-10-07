@@ -2,9 +2,9 @@
 #define __INC_LIBTHECORE_STDAFX_H__
 
 #if defined(__GNUC__)
-#define INLINE __inline__
+	#define INLINE __inline__
 #elif defined(_MSC_VER)
-#define INLINE inline
+	#define INLINE inline
 #endif
 
 #ifdef __WIN32__
@@ -63,26 +63,28 @@
 #define SIGUSR1     30  /* user defined signal 1 */
 #define SIGUSR2     31  /* user defined signal 2 */
 
-inline void usleep(unsigned long usec) {
-	::Sleep(usec / 1000);
+inline void usleep (unsigned long usec)
+{
+	::Sleep (usec / 1000);
 }
-inline unsigned sleep(unsigned sec) {
-	::Sleep(sec * 1000);
+inline unsigned sleep (unsigned sec)
+{
+	::Sleep (sec * 1000);
 	return 0;
 }
-inline double rint(double x)
+inline double rint (double x)
 {
-	return ::floor(x+.5);
+	return ::floor (x + .5);
 }
 
 
 #else
 
 #ifndef __FreeBSD__
-#define __USE_SELECT__
-#ifdef __CYGWIN__
-#define _POSIX_SOURCE 1
-#endif
+	#define __USE_SELECT__
+	#ifdef __CYGWIN__
+		#define _POSIX_SOURCE 1
+	#endif
 #endif
 
 #include <stdio.h>
@@ -113,7 +115,7 @@ inline double rint(double x)
 #include <semaphore.h>
 
 #ifdef __FreeBSD__
-#include <sys/event.h>
+	#include <sys/event.h>
 #endif
 
 #endif
@@ -124,8 +126,8 @@ inline double rint(double x)
 //#endif
 
 #ifndef FALSE
-#define FALSE	0
-#define TRUE	1
+	#define FALSE	0
+	#define TRUE	1
 #endif
 
 #include "typedef.h"

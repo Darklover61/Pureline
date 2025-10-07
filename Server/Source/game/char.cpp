@@ -580,7 +580,7 @@ void CHARACTER::OpenMyShop (const char* c_pszSign, TShopItemTable * pTable, BYTE
 	/* - YOSUN_SERVER_FIX_002 ------------------------------ */
 	if (IsRiding())
 	{
-		ChatPacket(CHAT_TYPE_INFO, LC_TEXT("Cannot open shop while riding."));
+		ChatPacket (CHAT_TYPE_INFO, LC_TEXT ("Cannot open shop while riding."));
 		return;
 	}
 	/* ----------------------------------------------------- */

@@ -20,7 +20,7 @@ typedef struct Edge
 {
 	ILint	yUpper;
 	ILfloat	xIntersect, dxPerScan;
-	struct	Edge *next;
+	struct	Edge* next;
 } Edge;
 
 

@@ -375,7 +375,7 @@ void CCursorRenderer::SetCursorTree (CProperty * pProperty)
 
 	/*
 	------------------------------------------------------------
-	 [YOSUN_WORLDEDITOR_FIX_001] Load .spt into a memory buffer 
+	 [YOSUN_WORLDEDITOR_FIX_001] Load .spt into a memory buffer
 	 first, because CSpeedTreeWrapper::LoadTree() tries the
 	 in-memory overload before the filename overload. Supplying
 	 a nullptr/0 triggers SpeedTree's assert, so we give it
@@ -383,17 +383,17 @@ void CCursorRenderer::SetCursorTree (CProperty * pProperty)
 	------------------------------------------------------------
 	*/
 
-	std::ifstream file(pszTreeName, std::ios::binary);
+	std::ifstream file (pszTreeName, std::ios::binary);
 	if (!file)
 	{
-		TraceError("[WorldEditor] Failed to open spt '%s'", pszTreeName);
+		TraceError ("[WorldEditor] Failed to open spt '%s'", pszTreeName);
 		return;
 	}
-	std::vector<char> vSpt{ std::istreambuf_iterator<char>(file), std::istreambuf_iterator<char>() };
+	std::vector<char> vSpt{ std::istreambuf_iterator<char> (file), std::istreambuf_iterator<char>() };
 
 	m_pTreeCursor = new CSpeedTreeWrapper;
-	TraceError("[WorldEditor] LoadTree() path = %s", pszTreeName);
-	if (!m_pTreeCursor->LoadTree(pszTreeName, reinterpret_cast<const BYTE*>(vSpt.data()), vSpt.size()))
+	TraceError ("[WorldEditor] LoadTree() path = %s", pszTreeName);
+	if (!m_pTreeCursor->LoadTree (pszTreeName, reinterpret_cast<const BYTE*> (vSpt.data()), vSpt.size()))
 	{
 		delete m_pTreeCursor;
 		m_pTreeCursor = nullptr;

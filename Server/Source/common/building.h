@@ -1,7 +1,7 @@
 #ifndef __METIN_II_COMMON_BUILDING_H__
 #define __METIN_II_COMMON_BUILDING_H__
 
-namespace building 
+namespace building
 {
 	enum
 	{

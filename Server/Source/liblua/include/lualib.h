@@ -12,7 +12,7 @@
 
 
 #ifndef LUALIB_API
-#define LUALIB_API	LUA_API
+	#define LUALIB_API	LUA_API
 #endif
 
 
@@ -41,7 +41,7 @@ LUALIB_API int luaopen_loadlib (lua_State *L);
 
 /* to help testing the libraries */
 #ifndef lua_assert
-#define lua_assert(c)		/* empty */
+	#define lua_assert(c)		/* empty */
 #endif
 
 
