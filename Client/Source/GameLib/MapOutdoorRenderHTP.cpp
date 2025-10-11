@@ -672,10 +672,10 @@ void CMapOutdoor::__HardwareTransformPatch_RenderPatchSplat (long patchnum, WORD
 
 		/* - DYNAMIC_TREE_SHADOWS ------------------------------ */
 		/* - DYNAMIC_OBJECT_SHADOWS ---------------------------- */
-		// Stage 0: disabled
+		// Stage 0: just pass current color
 		STATEMANAGER.SetTexture(0, nullptr);
-		STATEMANAGER.SetTextureStageState(0, D3DTSS_COLORARG1, D3DTOP_DISABLE);
-		STATEMANAGER.SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_DISABLE);
+		STATEMANAGER.SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_CURRENT);
+		STATEMANAGER.SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_SELECTARG1);
 		/* ----------------------------------------------------- */
 
 		if (m_bDrawChrShadow)
