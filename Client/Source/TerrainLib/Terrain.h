@@ -98,13 +98,6 @@ class CTerrainImpl
 		bool					LoadWaterMap (const char* c_szWaterMapName);
 		bool					LoadWaterMapFile (const char* c_szWaterMapName);
 
-		LPDIRECT3DTEXTURE8		GetShadowTexture()
-		{
-			return m_lpShadowTexture;
-		}
-
-		DWORD					GetShadowMapColor (float fx, float fy);
-
 	protected:
 		void					Initialize();
 		virtual void			Clear();
@@ -146,11 +139,6 @@ class CTerrainImpl
 		//////////////////////////////////////////////////////////////////////////
 		// TileMap°ú HeightMap ºñÀ²
 		// 		int						m_iHeightTileRatio;
-
-		//////////////////////////////////////////////////////////////////////////
-		// Shadow Map
-		LPDIRECT3DTEXTURE8		m_lpShadowTexture;
-		WORD					m_awShadowMap[SHADOWMAP_YSIZE * SHADOWMAP_XSIZE];	// 16bit R5 G6 B5
 
 	protected:
 		long					m_lSplatTilesX;

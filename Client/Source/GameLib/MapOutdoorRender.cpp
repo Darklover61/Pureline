@@ -259,13 +259,27 @@ void CMapOutdoor::RenderCloud()
 	}
 }
 
-void CMapOutdoor::RenderTree()
+/* - DYNAMIC_TREE_SHADOWS ------------------------------ */
+void CMapOutdoor::RenderTree(unsigned long flags)
 {
 	if (IsVisiblePart (PART_TREE))
 	{
-		CSpeedTreeForestDirectX8::Instance().Render();
+		CSpeedTreeForestDirectX8::Instance().Render(flags);
 	}
 }
+/* ----------------------------------------------------- */
+
+/* - DYNAMIC_OBJECT_SHADOWS ---------------------------- */
+void CMapOutdoor::RenderObjectShadowsToTexture()
+{
+	for (int i = 0; i < AROUND_AREA_NUM; ++i)
+	{
+		CArea* pArea;
+		if (GetAreaPointer(i, &pArea) && pArea)
+			pArea->RenderShadowObjects();
+	}
+}
+/* ----------------------------------------------------- */
 
 void CMapOutdoor::SetInverseViewAndDynamicShaodwMatrices()
 {
@@ -304,7 +318,9 @@ void CMapOutdoor::OnRender()
 		RenderTerrain();
 	}
 	DWORD t4 = ELTimer_GetMSec();
-	RenderTree();
+	/* - DYNAMIC_TREE_SHADOWS ------------------------------ */
+	RenderTree(Forest_RenderAll);
+	/* ----------------------------------------------------- */
 	DWORD t5 = ELTimer_GetMSec();
 	DWORD tEnd = ELTimer_GetMSec();
 
@@ -325,7 +341,9 @@ void CMapOutdoor::OnRender()
 
 	SetBlendOperation();
 	RenderArea();
-	RenderTree();
+	/* - DYNAMIC_TREE_SHADOWS ------------------------------ */
+	RenderTree(Forest_RenderAll);
+	/* ----------------------------------------------------- */
 	if (!m_bEnableTerrainOnlyForHeight)
 	{
 		RenderTerrain();
@@ -1026,7 +1044,6 @@ void CMapOutdoor::DrawPatchAttr (long patchnum)
 
 	D3DXMATRIX matTexTransform, matTexTransformTemp;
 	D3DXMatrixMultiply (&matTexTransform, &m_matViewInverse, &m_matWorldForCommonUse);
-	D3DXMatrixMultiply (&matTexTransform, &matTexTransform, &m_matStaticShadow);
 	STATEMANAGER.SetTransform (D3DTS_TEXTURE1, &matTexTransform);
 
 	TTerrainSplatPatch & rAttrSplatPatch = pTerrain->GetMarkedSplatPatch();

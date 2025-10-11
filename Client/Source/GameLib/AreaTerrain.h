@@ -91,12 +91,6 @@ class CTerrain : public CTerrainImpl, public CGraphicBase
 		void			GetWaterHeight (BYTE byWaterNum, long* plWaterHeight);
 		bool			GetWaterHeight (WORD wCoordX, WORD wCoordY, long* plWaterHeight);
 
-		// Shadow Texture
-		void				LoadShadowTexture (const char* c_pszFileName);
-
-		// Shadow Map
-		bool				LoadShadowMap (const char* c_pszFileName);
-
 		// MiniMap
 		void						LoadMiniMapTexture (const char* c_pszFileName);
 		inline LPDIRECT3DTEXTURE8	GetMiniMapTexture()

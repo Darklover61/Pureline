@@ -239,6 +239,11 @@ class CArea
 		void			RenderCollision();
 		void			RenderAmbience();
 		void			RenderDungeon();
+
+		/* - DYNAMIC_OBJECT_SHADOWS ---------------------------- */
+		void			RenderShadowObjects();
+		/* ----------------------------------------------------- */
+
 		void			Refresh();
 
 		//////////////////////////////////////////////////////////////////////////

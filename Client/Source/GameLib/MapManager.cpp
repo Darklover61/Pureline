@@ -472,17 +472,6 @@ BOOL CMapManager::LoadEnvironmentData (const char* c_szFileName, TEnvironmentDat
 	return (BOOL)Environment_Load (*pEnvironmentData, c_szFileName);
 }
 
-DWORD CMapManager::GetShadowMapColor (float fx, float fy)
-{
-	if (!IsMapReady())
-	{
-		return 0xFFFFFFFF;
-	}
-
-	CMapOutdoor& rkMap = GetMapOutdoorRef();
-	return rkMap.GetShadowMapColor (fx, fy);
-}
-
 std::vector<int>& CMapManager::GetRenderedSplatNum (int* piPatch, int* piSplat, float* pfSplatRatio)
 {
 	if (!m_pkMap)

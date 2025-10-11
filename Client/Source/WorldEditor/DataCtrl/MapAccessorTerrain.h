@@ -81,7 +81,6 @@ class CTerrainAccessor : public CTerrain
 		bool SaveWaterMap (const std::string & c_rstrMapName);
 		bool SaveShadowFromD3DTexture8 (const std::string & c_rstrMapName, LPDIRECT3DTEXTURE8 lpShadowTexture);
 		bool SaveMiniMapFromD3DTexture8 (const std::string & c_rstrMapName, LPDIRECT3DTEXTURE8 lpShadowTexture);
-		bool ReloadShadowTexture (const std::string & c_rstrMapName);
 
 		//////////////////////////////////////////////////////////////////////////
 		// 유틸리티

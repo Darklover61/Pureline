@@ -147,8 +147,6 @@ class CMapOutdoor : public CMapBase
 		void			SetDrawShadow (bool bDrawShadow);
 		void			SetDrawCharacterShadow (bool bDrawChrShadow);
 
-		DWORD			GetShadowMapColor (float fx, float fy);
-
 	protected:
 		bool			__PickTerrainHeight (float& fPos, const D3DXVECTOR3& v3Start, const D3DXVECTOR3& v3End, float fStep, float fRayRange, float fLimitRange, D3DXVECTOR3* pv3Pick);
 
@@ -304,7 +302,14 @@ class CMapOutdoor : public CMapBase
 		void			RenderDungeon();
 		void			RenderEffect();
 		void			RenderPCBlocker();
-		void			RenderTree();
+
+		/* - DYNAMIC_TREE_SHADOWS ------------------------------ */
+		void			RenderTree(unsigned long flags = 0);
+		/* ----------------------------------------------------- */
+
+		/* - DYNAMIC_OBJECT_SHADOWS ---------------------------- */
+		void			RenderObjectShadowsToTexture();
+		/* ----------------------------------------------------- */
 
 	public:
 		//////////////////////////////////////////////////////////////////////////
@@ -477,7 +482,6 @@ class CMapOutdoor : public CMapBase
 		D3DXMATRIX m_matViewInverse;
 
 		D3DXMATRIX m_matSplatAlpha;
-		D3DXMATRIX m_matStaticShadow;
 		D3DXMATRIX m_matDynamicShadow;
 		D3DXMATRIX m_matDynamicShadowScale;
 		D3DXMATRIX m_matLightView;

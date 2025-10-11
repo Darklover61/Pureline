@@ -1559,7 +1559,6 @@ void CMapManagerAccessor::ReloadTerrainShadowTexture()
 		{
 			continue;
 		}
-		pTerrainAccessor->ReloadShadowTexture (m_pMapAccessor->GetName());
 	}
 }
 

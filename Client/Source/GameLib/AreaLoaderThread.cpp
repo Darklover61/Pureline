@@ -320,8 +320,6 @@ void TEMP_CAreaLoaderThread::ProcessTerrain()	// called in loader thread
 	char szRawHeightFieldname[64 + 1];
 	char szWaterMapName[64 + 1];
 	char szAttrMapName[64 + 1];
-	char szShadowTexName[64 + 1];
-	char szShadowMapName[64 + 1];
 	char szMiniMapTexName[64 + 1];
 	char szSplatName[64 + 1];
 
@@ -329,8 +327,6 @@ void TEMP_CAreaLoaderThread::ProcessTerrain()	// called in loader thread
 	_snprintf (szSplatName, sizeof (szSplatName), "%s\\%06u\\tile.raw", c_rStrMapName.c_str(), dwID);
 	_snprintf (szAttrMapName, sizeof (szAttrMapName), "%s\\%06u\\attr.atr", c_rStrMapName.c_str(), dwID);
 	_snprintf (szWaterMapName, sizeof (szWaterMapName), "%s\\%06u\\water.wtr", c_rStrMapName.c_str(), dwID);
-	_snprintf (szShadowTexName, sizeof (szShadowTexName), "%s\\%06u\\shadowmap.dds", c_rStrMapName.c_str(), dwID);
-	_snprintf (szShadowMapName, sizeof (szShadowMapName), "%s\\%06u\\shadowmap.raw", c_rStrMapName.c_str(), dwID);
 	_snprintf (szMiniMapTexName,	sizeof (szMiniMapTexName), "%s\\%06u\\minimap.dds", c_rStrMapName.c_str(), dwID);
 
 	pTerrain->CopySettingFromGlobalSetting();
@@ -342,10 +338,6 @@ void TEMP_CAreaLoaderThread::ProcessTerrain()	// called in loader thread
 	pTerrain->LoadAttrMap (szAttrMapName);
 	Sleep (g_iLoadingDelayTime);
 	pTerrain->RAW_LoadTileMap (szSplatName, true);
-	Sleep (g_iLoadingDelayTime);
-	pTerrain->LoadShadowTexture (szShadowTexName);
-	Sleep (g_iLoadingDelayTime);
-	pTerrain->LoadShadowMap (szShadowMapName);
 	Sleep (g_iLoadingDelayTime);
 	pTerrain->LoadMiniMapTexture (szMiniMapTexName);
 	Sleep (g_iLoadingDelayTime);

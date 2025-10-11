@@ -1098,7 +1098,6 @@ void CMapOutdoorAccessor::DrawPatchAttr (long patchnum, BYTE byAttrFlag)
 
 	D3DXMATRIX matTexTransform, matTexTransformTemp;
 	D3DXMatrixMultiply (&matTexTransform, &m_matViewInverse, &m_matWorldForCommonUse);
-	D3DXMatrixMultiply (&matTexTransform, &matTexTransform, &m_matStaticShadow);
 	STATEMANAGER.SetTransform (D3DTS_TEXTURE1, &matTexTransform);
 
 	TTerrainSplatPatch & rAttrSplatPatch = pTerrainAccessor->RAW_GetAttrSplatPatch();
@@ -1393,8 +1392,6 @@ bool CMapOutdoorAccessor::LoadTerrain (WORD wX, WORD wY, WORD wCellCoordX, WORD 
 	char szRAWTileMapName[64];
 	char szWaterMapName[64];
 	char szAttrMapName[64];
-	char szShadowTexName[64];
-	char szShadowMapName[64];
 	char szRawHeightFilename[64];
 
 	_snprintf (szRawHeightFilename, 64, "%s\\%06u\\height.raw", m_strName.c_str(), ulID);
@@ -1402,8 +1399,6 @@ bool CMapOutdoorAccessor::LoadTerrain (WORD wX, WORD wY, WORD wCellCoordX, WORD 
 	_snprintf (szTileMapName,	64, "%s\\%06u\\color.cmp", m_strName.c_str(), ulID);
 	_snprintf (szAttrMapName,	64, "%s\\%06u\\attr.atr", m_strName.c_str(), ulID);
 	_snprintf (szWaterMapName,	64, "%s\\%06u\\water.wtr", m_strName.c_str(), ulID);
-	_snprintf (szShadowTexName,	64, "%s\\%06u\\shadowmap.dds", m_strName.c_str(), ulID);
-	_snprintf (szShadowMapName,	64, "%s\\%06u\\shadowmap.raw", m_strName.c_str(), ulID);
 
 	pTerrainAccessor->Clear();
 
@@ -1415,8 +1410,6 @@ bool CMapOutdoorAccessor::LoadTerrain (WORD wX, WORD wY, WORD wCellCoordX, WORD 
 	pTerrainAccessor->LoadHeightMap (szRawHeightFilename);
 	pTerrainAccessor->LoadAttrMap (szAttrMapName);
 	pTerrainAccessor->RAW_LoadTileMap (szRAWTileMapName);
-	pTerrainAccessor->LoadShadowTexture (szShadowTexName);
-	pTerrainAccessor->LoadShadowMap (szShadowMapName);
 	pTerrainAccessor->SetName (c_rstrAreaName.c_str());
 	pTerrainAccessor->CalculateTerrainPatch();
 

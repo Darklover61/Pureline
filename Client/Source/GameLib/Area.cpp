@@ -395,6 +395,15 @@ void CArea::RenderDungeon()
 	STATEMANAGER.SetTextureStageState (1, D3DTSS_ALPHAOP,	D3DTOP_DISABLE);
 }
 
+/* - DYNAMIC_OBJECT_SHADOWS ---------------------------- */
+void CArea::RenderShadowObjects()
+{
+	for (CGraphicThingInstance* pInst : m_ShadowThingCloneInstaceVector)
+		if (pInst && pInst->isShow())
+			pInst->RenderToShadowMap();    // depth-only, alpha-tested
+}
+/* ----------------------------------------------------- */
+
 void CArea::Refresh()
 {
 	m_TreeCloneInstaceVector.clear();

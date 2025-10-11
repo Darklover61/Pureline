@@ -481,12 +481,6 @@ void CInstanceBase::__DisableSkipCollision()
 	m_GraphicThingInstance.DisableSkipCollision();
 }
 
-DWORD CInstanceBase::__GetShadowMapColor (float x, float y)
-{
-	CPythonBackground& rkBG = CPythonBackground::Instance();
-	return rkBG.GetShadowMapColor (x, y);
-}
-
 float CInstanceBase::__GetBackgroundHeight (float x, float y)
 {
 	CPythonBackground& rkBG = CPythonBackground::Instance();
@@ -2076,12 +2070,6 @@ void CInstanceBase::Update()
 			m_dwNextUpdateHeightTime = dwCurTime;
 			kPPosCur.z = __GetBackgroundHeight (kPPosCur.x, kPPosCur.y);
 			NEW_SetPixelPosition (kPPosCur);
-		}
-
-		// SetMaterialColor
-		{
-			DWORD dwMtrlColor = __GetShadowMapColor (kPPosCur.x, kPPosCur.y);
-			m_GraphicThingInstance.SetMaterialColor (dwMtrlColor);
 		}
 	}
 

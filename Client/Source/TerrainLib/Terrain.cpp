@@ -49,7 +49,6 @@ void CTerrainImpl::Initialize()
 
 	m_byNumWater = 0;
 	memset (&m_HeightMapHeader, 0, sizeof (TGA_HEADER));
-	memset (&m_awShadowMap, 0xFFFF, sizeof (m_awShadowMap));
 	memset (&m_lpAlphaTexture, NULL, sizeof (m_lpAlphaTexture));
 
 	m_lViewRadius = 0;
@@ -57,8 +56,6 @@ void CTerrainImpl::Initialize()
 	m_wTileMapVersion = 8976;
 
 	m_fHeightScale = 0.0f;
-
-	m_lpShadowTexture = NULL;
 
 	m_lSplatTilesX = 0;
 	m_lSplatTilesY = 0;
@@ -309,33 +306,4 @@ bool CTerrainImpl::LoadWaterMapFile (const char* c_szFileName)
 	}
 
 	return true;
-}
-
-DWORD CTerrainImpl::GetShadowMapColor (float fx, float fy)
-{
-	float fMapSize = (float) (TERRAIN_XSIZE);
-	float fooMapSize = 1.0f / fMapSize;
-	if (fx < 0 || fy < 0 || fx >= fMapSize || fy >= fMapSize)
-	{
-		return 0xFFFFFFFF;
-	}
-
-	fx = fx * fooMapSize * (float) (SHADOWMAP_XSIZE - 1);
-	fy = fy * fooMapSize * (float) (SHADOWMAP_YSIZE - 1);
-	int ix, iy;
-	PR_FLOAT_TO_INT (fx, ix);
-	PR_FLOAT_TO_INT (fy, iy);
-
-	WORD w = * (m_awShadowMap + (iy * SHADOWMAP_XSIZE) + ix);
-
-	int b = w & 0x1f;
-	w >>= 5;
-	b <<= 3;
-	int g = w & 0x1f;
-	w >>= 5;
-	g <<= 3;
-	int r = w & 0x1f;
-	r <<= 3;
-
-	return (DWORD) (0xff << 24) | (g << 16) | (g << 8) | r;
 }

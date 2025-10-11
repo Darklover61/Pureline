@@ -810,7 +810,7 @@ BEGIN
         CONTROL         "Render Character",         IDC_CHECK_CHARACTER,                        "Button",   BS_AUTOCHECKBOX | WS_TABSTOP,   9,    482,     95,    10
         CONTROL         "Render Object",            IDC_MAP_TERRAIN_OPTION_OBJECT,              "Button",   BS_AUTOCHECKBOX | WS_TABSTOP,   9,    493,     95,    10
         CONTROL         "Render Object Collisions", IDC_MAP_TERRAIN_OPTION_OBJECT_COLLISION,    "Button",   BS_AUTOCHECKBOX | WS_TABSTOP,   9,    504,     95,    10
-        CONTROL         "Render Object Shadows",    IDC_MAP_TERRAIN_OPTION_OBJECT_SHADOW,       "Button",   BS_AUTOCHECKBOX | WS_TABSTOP,   9,    515,     95,    10
+        CONTROL         "Render Shadows",    IDC_MAP_TERRAIN_OPTION_OBJECT_SHADOW,       "Button",   BS_AUTOCHECKBOX | WS_TABSTOP,   9,    515,     95,    10
         CONTROL         "Apply Fake Portal",        IDC_MAP_TERRAIN_OPTION_FAKE_PORTAL_ENABLE,  "Button",   BS_AUTOCHECKBOX | WS_TABSTOP,   9,    526,     95,    10
         CONTROL         "View Fake Portal ID List", IDC_MAP_TERRAIN_OPTION_FAKE_PORTAL_ID_LIST, "Button",   BS_AUTOCHECKBOX | WS_TABSTOP,   9,    537,     95,    10
         CONTROL         "View Guild Area",          IDC_MAP_TERRAIN_GUILD_AREA,                 "Button",   BS_AUTOCHECKBOX | WS_TABSTOP,   9,    548,     95,    10

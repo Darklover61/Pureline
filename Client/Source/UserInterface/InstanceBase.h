@@ -1078,7 +1078,6 @@ class CInstanceBase
 
 	protected:
 		static float __GetBackgroundHeight (float x, float y);
-		static DWORD __GetShadowMapColor (float x, float y);
 
 	public:
 		static void ResetPerformanceCounter();

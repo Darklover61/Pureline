@@ -186,7 +186,7 @@ bool CMapOutdoor::LoadArea (WORD wAreaCoordX, WORD wAreaCoordY, WORD wCellCoordX
 	pArea->SetCoordinate (wAreaCoordX, wAreaCoordY);
 	if (!pArea->Load (szAreaPathName))
 	{
-		TraceError (" CMapOutdoor::LoadArea(%d, %d) LoadShadowMap ERROR", wAreaCoordX, wAreaCoordY);
+		TraceError (" CMapOutdoor::LoadArea(%d, %d) ERROR", wAreaCoordX, wAreaCoordY);
 	}
 	#ifdef _DEBUG
 	Tracef ("CMapOutdoor::LoadArea2 %d\n", ELTimer_GetMSec() - dwStartTime);
@@ -258,8 +258,6 @@ bool CMapOutdoor::LoadTerrain (WORD wTerrainCoordX, WORD wTerrainCoordY, WORD wC
 	char szRawHeightFieldname[64 + 1];
 	char szWaterMapName[64 + 1];
 	char szAttrMapName[64 + 1];
-	char szShadowTexName[64 + 1];
-	char szShadowMapName[64 + 1];
 	char szMiniMapTexName[64 + 1];
 	char szSplatName[64 + 1];
 
@@ -267,8 +265,6 @@ bool CMapOutdoor::LoadTerrain (WORD wTerrainCoordX, WORD wTerrainCoordY, WORD wC
 	_snprintf (szSplatName, sizeof (szSplatName), "%s\\%06u\\tile.raw", GetMapDataDirectory().c_str(), ulID);
 	_snprintf (szAttrMapName, sizeof (szAttrMapName), "%s\\%06u\\attr.atr", GetMapDataDirectory().c_str(), ulID);
 	_snprintf (szWaterMapName, sizeof (szWaterMapName), "%s\\%06u\\water.wtr", GetMapDataDirectory().c_str(), ulID);
-	_snprintf (szShadowTexName, sizeof (szShadowTexName), "%s\\%06u\\shadowmap.dds", GetMapDataDirectory().c_str(), ulID);
-	_snprintf (szShadowMapName, sizeof (szShadowMapName), "%s\\%06u\\shadowmap.raw", GetMapDataDirectory().c_str(), ulID);
 	_snprintf (szMiniMapTexName, sizeof (szMiniMapTexName), "%s\\%06u\\minimap.dds", GetMapDataDirectory().c_str(), ulID);
 
 	if (!pTerrain->LoadWaterMap (szWaterMapName))
@@ -289,13 +285,6 @@ bool CMapOutdoor::LoadTerrain (WORD wTerrainCoordX, WORD wTerrainCoordY, WORD wC
 	if (!pTerrain->RAW_LoadTileMap (szSplatName))
 	{
 		TraceError (" CMapOutdoor::LoadTerrain(%d, %d) RAW_LoadTileMap ERROR", wTerrainCoordX, wTerrainCoordY);
-	}
-
-	pTerrain->LoadShadowTexture (szShadowTexName);
-
-	if (!pTerrain->LoadShadowMap (szShadowMapName))
-	{
-		TraceError (" CMapOutdoor::LoadTerrain(%d, %d) LoadShadowMap ERROR", wTerrainCoordX, wTerrainCoordY);
 	}
 
 	pTerrain->LoadMiniMapTexture (szMiniMapTexName);
@@ -454,13 +443,6 @@ bool CMapOutdoor::LoadSetting (const char* c_szFileName)
 					   0.0f);
 	m_matSplatAlpha._41 = m_fTerrainTexCoordBase * 4.6f;
 	m_matSplatAlpha._42 = m_fTerrainTexCoordBase * 4.6f;
-
-	D3DXMatrixScaling (&m_matStaticShadow,
-					   +m_fTerrainTexCoordBase * ((float) CTerrainImpl::PATCH_XSIZE / static_cast<float> (CTerrainImpl::XSIZE)),
-					   -m_fTerrainTexCoordBase * ((float) CTerrainImpl::PATCH_YSIZE / static_cast<float> (CTerrainImpl::XSIZE)),
-					   0.0f);
-	m_matStaticShadow._41 = 0.0f;
-	m_matStaticShadow._42 = 0.0f;
 
 	D3DXMatrixScaling (&m_matDynamicShadowScale, 1.0f / 2550.0f, -1.0f / 2550.0f, 1.0f);
 	m_matDynamicShadowScale._41 = 0.5f;

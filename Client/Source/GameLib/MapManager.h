@@ -72,8 +72,6 @@ class CMapManager : public CScreen, public IPhysicsWorld
 		// External interface
 		void					LoadProperty();
 
-		DWORD					GetShadowMapColor (float fx, float fy);
-
 		// VICITM_COLLISION_TEST
 		virtual bool isPhysicalCollision (const D3DXVECTOR3 & c_rvCheckPosition);
 		// VICITM_COLLISION_TEST_END
