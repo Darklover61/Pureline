@@ -128,7 +128,7 @@ BOOL CRaceData::GetMotionKey (WORD wMotionModeIndex, WORD wMotionIndex, MOTION_K
 		return FALSE;
 	}
 
-	if (pMotionModeData->MotionVectorMap.end() == pMotionModeData->MotionVectorMap.find (wMotionIndex))
+	if (!pMotionModeData->MotionVectorMap.contains(wMotionIndex))
 	{
 		WORD wGeneralMode = CRaceMotionData::MODE_GENERAL;
 
@@ -154,7 +154,7 @@ BOOL CRaceData::GetMotionKey (WORD wMotionModeIndex, WORD wMotionIndex, MOTION_K
 			return FALSE;
 		}
 
-		if (pMotionModeGeneralData->MotionVectorMap.end() == pMotionModeGeneralData->MotionVectorMap.find (wMotionIndex))
+		if (!pMotionModeGeneralData->MotionVectorMap.contains(wMotionIndex))
 		{
 			return FALSE;
 		}
@@ -315,7 +315,7 @@ void CRaceData::SetRace (DWORD dwRaceIndex)
 
 void CRaceData::RegisterAttachingBoneName (DWORD dwPartIndex, const char* c_szBoneName)
 {
-	m_AttachingBoneNameMap.insert (TAttachingBoneNameMap::value_type (dwPartIndex, c_szBoneName));
+	m_AttachingBoneNameMap.try_emplace (dwPartIndex, c_szBoneName);
 }
 
 void CRaceData::RegisterMotionMode (WORD wMotionModeIndex)
@@ -334,7 +334,7 @@ CGraphicThing* CRaceData::NEW_RegisterMotion (CRaceMotionData* pkMotionData, WOR
 	if (!GetMotionModeDataPointer (wMotionModeIndex, &pMotionModeData))
 	{
 		AssertLog ("Failed getting motion mode data!");
-		return NULL;
+		return nullptr;
 	}
 
 	TMotion	kMotion;
@@ -353,8 +353,8 @@ CGraphicThing* CRaceData::RegisterMotionData (WORD wMotionMode, WORD wMotionInde
 	{
 		TraceError ("CRaceData::RegisterMotionData - LoadMotionData(c_szFileName=%s) ERROR", c_szFileName);
 		CRaceMotionData::Delete (pRaceMotionData);
-		pRaceMotionData = NULL;
-		return NULL;
+		pRaceMotionData = nullptr;
+		return nullptr;
 	}
 
 	// 2004. 3. 15. myevan. 원래는 모션내 인덱스 정보가 있어야 한다.
@@ -384,7 +384,7 @@ void CRaceData::OLD_RegisterMotion (WORD wMotionModeIndex, WORD wMotionIndex, co
 	TMotion	Motion;
 	Motion.byPercentage	= byPercentage;
 	Motion.pMotion		= pThing;
-	Motion.pMotionData	= NULL;
+	Motion.pMotionData	= nullptr;
 	__OLD_RegisterMotion (wMotionModeIndex, wMotionIndex, Motion);
 }
 
@@ -403,7 +403,7 @@ void CRaceData::__OLD_RegisterMotion (WORD wMotionMode, WORD wMotionIndex, const
 		TMotionVector MotionVector;
 		MotionVector.push_back (rMotion);
 
-		pMotionModeData->MotionVectorMap.insert (TMotionVectorMap::value_type (wMotionIndex, MotionVector));
+		pMotionModeData->MotionVectorMap.try_emplace (wMotionIndex, MotionVector);
 	}
 	else
 	{
@@ -471,7 +471,7 @@ void CRaceData::ReserveComboAttack (WORD wMotionModeIndex, WORD wComboType, DWOR
 	TComboData ComboData;
 	ComboData.ComboIndexVector.clear();
 	ComboData.ComboIndexVector.resize (dwComboCount);
-	m_ComboAttackDataMap.insert (TComboAttackDataMap::value_type (MAKE_COMBO_KEY (wMotionModeIndex, wComboType), ComboData));
+	m_ComboAttackDataMap.try_emplace (MAKE_COMBO_KEY (wMotionModeIndex, wComboType), ComboData);
 }
 
 void CRaceData::RegisterComboAttack (WORD wMotionModeIndex, WORD wComboType, DWORD dwComboIndex, WORD wMotionIndex)
@@ -548,12 +548,12 @@ CAttributeData* CRaceData::GetAttributeDataPtr()
 {
 	if (m_strAttributeFileName.empty())
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	if (!CResourceManager::Instance().IsFileExist (m_strAttributeFileName.c_str()))
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	return (CAttributeData*)CResourceManager::Instance().GetResourcePointer (m_strAttributeFileName.c_str());
@@ -600,12 +600,12 @@ void CRaceData::Destroy()
 	m_NormalAttackIndexMap.clear();
 	m_ComboAttackDataMap.clear();
 
-	TMotionModeDataMap::iterator itorMode = m_pMotionModeDataMap.begin();
+	auto itorMode = m_pMotionModeDataMap.begin();
 	for (; itorMode != m_pMotionModeDataMap.end(); ++itorMode)
 	{
 		TMotionModeData * pMotionModeData = itorMode->second;
 
-		TMotionVectorMap::iterator itorMotion = pMotionModeData->MotionVectorMap.begin();
+		auto itorMotion = pMotionModeData->MotionVectorMap.begin();
 		for (; itorMotion != pMotionModeData->MotionVectorMap.end(); ++itorMotion)
 		{
 			TMotionVector & rMotionVector = itorMotion->second;
@@ -626,8 +626,8 @@ void CRaceData::__Initialize()
 {
 	m_strMotionListFileName = "motlist.txt";
 
-	m_pBaseModelThing = NULL;
-	m_pLODModelThing = NULL;
+	m_pBaseModelThing = nullptr;
+	m_pLODModelThing = nullptr;
 
 	m_dwRaceIndex = 0;
 

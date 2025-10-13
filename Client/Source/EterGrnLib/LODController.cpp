@@ -215,7 +215,7 @@ void CGrannyLODController::Clear()
 	std::for_each (m_que_pkModelInst.begin(), m_que_pkModelInst.end(), CGrannyModelInstance::Delete);
 	m_que_pkModelInst.clear();
 
-	std::vector<TAttachingModelData>::iterator itor = m_AttachedModelDataVector.begin();
+	auto itor = m_AttachedModelDataVector.begin();
 	for (; m_AttachedModelDataVector.end() != itor; ++itor)
 	{
 		TAttachingModelData & rData = *itor;
@@ -341,7 +341,7 @@ void CGrannyLODController::AttachModelInstance (CGrannyLODController * pSrcLODCo
 	pSrcLODController->m_pAttachedParentModel = this;
 
 	// Link Child Data
-	std::vector<TAttachingModelData>::iterator itor = m_AttachedModelDataVector.begin();
+	auto itor = m_AttachedModelDataVector.begin();
 	for (; m_AttachedModelDataVector.end() != itor;)
 	{
 		TAttachingModelData & rData = *itor;
@@ -379,7 +379,7 @@ void CGrannyLODController::DetachModelInstance (CGrannyLODController * pSrcLODCo
 	//		return;
 
 	// Unlink Child Data
-	std::vector<TAttachingModelData>::iterator itor = m_AttachedModelDataVector.begin();
+	auto itor = m_AttachedModelDataVector.begin();
 	for (; m_AttachedModelDataVector.end() != itor;)
 	{
 		TAttachingModelData & rData = *itor;

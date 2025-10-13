@@ -2326,7 +2326,7 @@ PyObject* playerGetEmotionIconImage (PyObject* poSelf, PyObject* poArgs)
 		return Py_BuildException();
 	}
 
-	if (m_kMap_iEmotionIndex_pkIconImage.end() == m_kMap_iEmotionIndex_pkIconImage.find (iIndex))
+	if (!m_kMap_iEmotionIndex_pkIconImage.contains(iIndex))
 	{
 		return Py_BuildValue ("i", 0);
 	}

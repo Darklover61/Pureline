@@ -33,7 +33,7 @@ long CPythonPlayer::SPlayerStatus::GetPoint (UINT ePoint)
 
 bool CPythonPlayer::AffectIndexToSkillIndex (DWORD dwAffectIndex, DWORD * pdwSkillIndex)
 {
-	if (m_kMap_dwAffectIndexToSkillIndex.end() == m_kMap_dwAffectIndexToSkillIndex.find (dwAffectIndex))
+	if (!m_kMap_dwAffectIndexToSkillIndex.contains(dwAffectIndex))
 	{
 		return false;
 	}
@@ -575,7 +575,7 @@ const TItemData* CPythonPlayer::GetItemData (TItemPos Cell) const
 {
 	if (!Cell.IsValidCell())
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	switch (Cell.window_type)
@@ -586,7 +586,7 @@ const TItemData* CPythonPlayer::GetItemData (TItemPos Cell) const
 		case DRAGON_SOUL_INVENTORY:
 			return &m_playerStatus.aDSItem[Cell.cell];
 		default:
-			return NULL;
+			return nullptr;
 	}
 }
 
@@ -636,7 +636,7 @@ DWORD CPythonPlayer::GetItemFlags (TItemPos Cell)
 		return 0;
 	}
 	const TItemData * pItem = GetItemData (Cell);
-	assert (pItem != NULL);
+	assert (pItem != nullptr);
 	return pItem->flags;
 }
 
@@ -647,7 +647,7 @@ DWORD CPythonPlayer::GetItemCount (TItemPos Cell)
 		return 0;
 	}
 	const TItemData * pItem = GetItemData (Cell);
-	if (pItem == NULL)
+	if (pItem == nullptr)
 	{
 		return 0;
 	}
@@ -982,7 +982,7 @@ bool CPythonPlayer::IsEquipItemInSlot (TItemPos Cell)
 
 	const TItemData * pData = GetItemData (Cell);
 
-	if (NULL == pData)
+	if (nullptr == pData)
 	{
 		return false;
 	}
@@ -1410,7 +1410,7 @@ void CPythonPlayer::ExitParty()
 
 void CPythonPlayer::AppendPartyMember (DWORD dwPID, const char* c_szName)
 {
-	m_PartyMemberMap.insert (std::make_pair (dwPID, TPartyMemberInfo (dwPID, c_szName)));
+	m_PartyMemberMap.try_emplace (dwPID, dwPID, c_szName);
 }
 
 void CPythonPlayer::LinkPartyMember (DWORD dwPID, DWORD dwVID)
@@ -1497,7 +1497,7 @@ void CPythonPlayer::RemovePartyMember (DWORD dwPID)
 
 bool CPythonPlayer::IsPartyMemberByVID (DWORD dwVID)
 {
-	std::map<DWORD, TPartyMemberInfo>::iterator itor = m_PartyMemberMap.begin();
+	auto itor = m_PartyMemberMap.begin();
 	for (; itor != m_PartyMemberMap.end(); ++itor)
 	{
 		TPartyMemberInfo & rPartyMemberInfo = itor->second;
@@ -1512,7 +1512,7 @@ bool CPythonPlayer::IsPartyMemberByVID (DWORD dwVID)
 
 bool CPythonPlayer::IsPartyMemberByName (const char* c_szName)
 {
-	std::map<DWORD, TPartyMemberInfo>::iterator itor = m_PartyMemberMap.begin();
+	auto itor = m_PartyMemberMap.begin();
 	for (; itor != m_PartyMemberMap.end(); ++itor)
 	{
 		TPartyMemberInfo & rPartyMemberInfo = itor->second;
@@ -1556,7 +1556,7 @@ bool CPythonPlayer::PartyMemberPIDToVID (DWORD dwPID, DWORD * pdwVID)
 
 bool CPythonPlayer::PartyMemberVIDToPID (DWORD dwVID, DWORD * pdwPID)
 {
-	std::map<DWORD, TPartyMemberInfo>::iterator itor = m_PartyMemberMap.begin();
+	auto itor = m_PartyMemberMap.begin();
 	for (; itor != m_PartyMemberMap.end(); ++itor)
 	{
 		TPartyMemberInfo & rPartyMemberInfo = itor->second;
@@ -1599,15 +1599,15 @@ void CPythonPlayer::ForgetInstance (DWORD dwVID)
 
 bool CPythonPlayer::IsChallengeInstance (DWORD dwVID)
 {
-	return m_ChallengeInstanceSet.end() != m_ChallengeInstanceSet.find (dwVID);
+	return m_ChallengeInstanceSet.contains(dwVID);
 }
 bool CPythonPlayer::IsRevengeInstance (DWORD dwVID)
 {
-	return m_RevengeInstanceSet.end() != m_RevengeInstanceSet.find (dwVID);
+	return m_RevengeInstanceSet.contains(dwVID);
 }
 bool CPythonPlayer::IsCantFightInstance (DWORD dwVID)
 {
-	return m_CantFightInstanceSet.end() != m_CantFightInstanceSet.find (dwVID);
+	return m_CantFightInstanceSet.contains(dwVID);
 }
 
 void CPythonPlayer::OpenPrivateShop()
@@ -1827,7 +1827,7 @@ CPythonPlayer::CPythonPlayer (void)
 	m_kMap_dwAffectIndexToSkillIndex.insert (std::make_pair (int (CInstanceBase::AFFECT_MUYEONG), 78));
 	m_kMap_dwAffectIndexToSkillIndex.insert (std::make_pair (int (CInstanceBase::AFFECT_HEUKSIN), 79));
 
-	m_ppyGameWindow = NULL;
+	m_ppyGameWindow = nullptr;
 
 	m_sysIsCoolTime = TRUE;
 	m_sysIsLevelLimit = TRUE;

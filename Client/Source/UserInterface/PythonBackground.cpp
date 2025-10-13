@@ -880,7 +880,7 @@ void CPythonBackground::Warp (DWORD dwX, DWORD dwY)
 
 	SetXMaxTree (m_iXMasTreeGrade);
 
-	if (m_kSet_strDungeonMapName.end() != m_kSet_strDungeonMapName.find (m_strMapName))
+	if (m_kSet_strDungeonMapName.contains(m_strMapName))
 	{
 		EnableTerrainOnlyForHeight();
 
@@ -998,7 +998,7 @@ void CPythonBackground::CreateTargetEffect (DWORD dwID, DWORD dwChrVID)
 
 void CPythonBackground::CreateTargetEffect (DWORD dwID, long lx, long ly)
 {
-	if (m_kMap_dwTargetID_dwChrID.end() != m_kMap_dwTargetID_dwChrID.find (dwID))
+	if (m_kMap_dwTargetID_dwChrID.contains(dwID))
 	{
 		return;
 	}
@@ -1019,7 +1019,7 @@ void CPythonBackground::CreateTargetEffect (DWORD dwID, long lx, long ly)
 		SReserveTargetEffect ReserveTargetEffect;
 		ReserveTargetEffect.ilx = ilx;
 		ReserveTargetEffect.ily = ily;
-		m_kMap_dwID_kReserveTargetEffect.insert (std::make_pair (dwID, ReserveTargetEffect));
+		m_kMap_dwID_kReserveTargetEffect.try_emplace (dwID, ReserveTargetEffect);
 		return;
 	}
 
@@ -1028,11 +1028,11 @@ void CPythonBackground::CreateTargetEffect (DWORD dwID, long lx, long ly)
 
 void CPythonBackground::DeleteTargetEffect (DWORD dwID)
 {
-	if (m_kMap_dwID_kReserveTargetEffect.end() != m_kMap_dwID_kReserveTargetEffect.find (dwID))
+	if (m_kMap_dwID_kReserveTargetEffect.contains(dwID))
 	{
 		m_kMap_dwID_kReserveTargetEffect.erase (dwID);
 	}
-	if (m_kMap_dwTargetID_dwChrID.end() != m_kMap_dwTargetID_dwChrID.find (dwID))
+	if (m_kMap_dwTargetID_dwChrID.contains(dwID))
 	{
 		m_kMap_dwTargetID_dwChrID.erase (dwID);
 	}

@@ -1646,7 +1646,7 @@ CMonsterAreaInfo* CMapManagerAccessor::AddNewMonsterAreaInfo (long lOriginX, lon
 {
 	if (!IsMapReady())
 	{
-		return NULL;
+		return nullptr;
 	}
 	return m_pMapAccessor->AddNewMonsterAreaInfo (lOriginX, lOriginY, lSizeX, lSizeY, eMonsterAreaInfoType, dwVID, dwCount, eNewMonsterDir);
 }
@@ -1737,7 +1737,7 @@ CMonsterAreaInfo* CMapManagerAccessor::GetSelectedMonsterAreaInfo()
 {
 	if (m_pSelectedMonsterAreaInfoVector.empty())
 	{
-		return NULL;
+		return nullptr;
 	}
 	else if (1 == m_pSelectedMonsterAreaInfoVector.size())
 	{
@@ -1765,7 +1765,7 @@ void CMapManagerAccessor::__AddMapInfo()
 		return;
 	}
 
-	TMapInfoVectorIterator MapInfoVectorIterator = std::find_if (m_kVct_kMapInfo.begin(), m_kVct_kMapInfo.end(), FFindMapName (m_pMapAccessor->GetName()));
+	auto MapInfoVectorIterator = std::find_if (m_kVct_kMapInfo.begin(), m_kVct_kMapInfo.end(), FFindMapName (m_pMapAccessor->GetName()));
 	if (m_kVct_kMapInfo.end() != MapInfoVectorIterator)
 	{
 		UpdateMapInfo();
@@ -1796,7 +1796,7 @@ void CMapManagerAccessor::UpdateMapInfo()
 	}
 
 	const std::string & c_rMapName = m_pMapAccessor->GetName();
-	TMapInfoVectorIterator MapInfoVectorIterator = std::find_if (m_kVct_kMapInfo.begin(), m_kVct_kMapInfo.end(), FFindMapName (c_rMapName));
+	auto MapInfoVectorIterator = std::find_if (m_kVct_kMapInfo.begin(), m_kVct_kMapInfo.end(), FFindMapName (c_rMapName));
 	if (m_kVct_kMapInfo.end() == MapInfoVectorIterator)
 	{
 		return;
@@ -1811,7 +1811,7 @@ void CMapManagerAccessor::__RefreshMapID (const char* c_szMapName)
 {
 	std::string strMapName = c_szMapName;
 	stl_lowers (strMapName);
-	if (m_kMap_strMapName_iID.end() != m_kMap_strMapName_iID.find (strMapName))
+	if (m_kMap_strMapName_iID.contains(strMapName))
 	{
 		int iID = m_kMap_strMapName_iID[strMapName];
 		m_pMapAccessor->SetMapID (iID);

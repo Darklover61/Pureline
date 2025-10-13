@@ -232,7 +232,7 @@ void CClientManager::RESULT_PLAYER_INDEX_CREATE (CPeer * pkPeer, SQLMsg * msg)
 TAccountTable* CreateAccountTableFromRes (MYSQL_RES * res)
 {
 	char input_pwd[PASSWD_MAX_LEN + 1];
-	MYSQL_ROW row = NULL;
+	MYSQL_ROW row = nullptr;
 	DWORD col;
 
 	row = mysql_fetch_row (res);
@@ -259,7 +259,7 @@ TAccountTable* CreateAccountTableFromRes (MYSQL_RES * res)
 	if (strcmp (pkTab->passwd, input_pwd))
 	{
 		delete pkTab;
-		return NULL;
+		return nullptr;
 	}
 
 	return pkTab;
@@ -292,7 +292,7 @@ void CreateAccountPlayerDataFromRes (MYSQL_RES * pRes, TAccountTable * pkTab)
 			if (pkTab->players[j].dwID == player_id)
 			{
 				CPlayerTableCache * pc = CClientManager::instance().GetPlayerCache (player_id);
-				TPlayerTable * pt = pc ? pc->Get (false) : NULL;
+				TPlayerTable * pt = pc ? pc->Get (false) : nullptr;
 
 				if (pt)
 				{
@@ -455,7 +455,7 @@ void CClientManager::RESULT_LOGIN (CPeer * peer, SQLMsg * msg)
 		}
 
 		delete info->pAccountTable;
-		info->pAccountTable = NULL;
+		info->pAccountTable = nullptr;
 		delete info;
 	}
 }
@@ -471,7 +471,7 @@ void CClientManager::QUERY_LOGOUT (CPeer * peer, DWORD dwHandle, const char* dat
 
 	CLoginData * pLoginData = GetLoginDataByLogin (packet->login);
 
-	if (pLoginData == NULL)
+	if (pLoginData == nullptr)
 	{
 		return;
 	}

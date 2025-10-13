@@ -134,8 +134,8 @@ void CArea::RenderEffect()
 	__UpdateEffectList();
 
 	// Effect
-	STATEMANAGER.SetTexture (0, NULL);
-	STATEMANAGER.SetTexture (1, NULL);
+	STATEMANAGER.SetTexture (0, nullptr);
+	STATEMANAGER.SetTexture (1, nullptr);
 
 	bool m_isDisableSortRendering = false;
 
@@ -219,7 +219,7 @@ void CArea::Render()
 	{
 		CGraphicThingInstance* pkThingInst;
 
-		TThingInstanceVector::iterator i = m_AniThingCloneInstanceVector.begin();
+		auto i = m_AniThingCloneInstanceVector.begin();
 		while (i != m_AniThingCloneInstanceVector.end())
 		{
 			pkThingInst = *i++;
@@ -229,7 +229,7 @@ void CArea::Render()
 
 	CGraphicThingInstance* pkThingInst;
 
-	TThingInstanceVector::iterator i = m_ThingCloneInstaceVector.begin();
+	auto i = m_ThingCloneInstaceVector.begin();
 
 	m_kRenderedThingInstanceCRCWithNumberVector.clear();
 	m_kRenderedGrapphicThingInstanceVector.clear();
@@ -953,13 +953,13 @@ bool CArea::__Load_LoadObject (const char* c_szFileName)
 		return false;
 	}
 
-	if (stTokenVectorMap.end() == stTokenVectorMap.find ("areadatafile"))
+	if (!stTokenVectorMap.contains("areadatafile"))
 	{
 		TraceError (" CArea::__LoadObject File Format %s ERROR 1", c_szFileName);
 		return false;
 	}
 
-	if (stTokenVectorMap.end() == stTokenVectorMap.find ("objectcount"))
+	if (!stTokenVectorMap.contains("objectcount"))
 	{
 		TraceError (" CArea::__LoadObject File Format %s ERROR 2", c_szFileName);
 		return false;
@@ -975,7 +975,7 @@ bool CArea::__Load_LoadObject (const char* c_szFileName)
 	{
 		_snprintf (szObjectName, sizeof (szObjectName), "object%03d", i);
 
-		if (stTokenVectorMap.end() == stTokenVectorMap.find (szObjectName))
+		if (!stTokenVectorMap.contains(szObjectName))
 		{
 			continue;
 		}
@@ -1053,13 +1053,13 @@ bool CArea::__Load_LoadAmbience (const char* c_szFileName)
 		return false;
 	}
 
-	if (stTokenVectorMap.end() == stTokenVectorMap.find ("areaambiencedatafile"))
+	if (!stTokenVectorMap.contains("areaambiencedatafile"))
 	{
 		TraceError (" CArea::__LoadAmbience File Format %s ERROR 1", c_szFileName);
 		return false;
 	}
 
-	if (stTokenVectorMap.end() == stTokenVectorMap.find ("objectcount"))
+	if (!stTokenVectorMap.contains("objectcount"))
 	{
 		TraceError (" CArea::__LoadAmbience File Format %s ERROR 2", c_szFileName);
 		return false;
@@ -1075,7 +1075,7 @@ bool CArea::__Load_LoadAmbience (const char* c_szFileName)
 	{
 		_snprintf (szObjectName, sizeof (szObjectName), "object%03d", i);
 
-		if (stTokenVectorMap.end() == stTokenVectorMap.find (szObjectName))
+		if (!stTokenVectorMap.contains(szObjectName))
 		{
 			continue;
 		}
@@ -1203,7 +1203,7 @@ void CArea::RefreshPortal()
 				break;
 			}
 
-			if (m_kSet_ShowingPortalID.end() == m_kSet_ShowingPortalID.find (byPortalID))
+			if (!m_kSet_ShowingPortalID.contains(byPortalID))
 			{
 				continue;
 			}
@@ -1226,7 +1226,7 @@ void CArea::RefreshPortal()
 
 		if (m_bPortalEnable)
 		{
-			if (kSet_ShowingObjectInstance.end() == kSet_ShowingObjectInstance.find (pObjectInstance))
+			if (!kSet_ShowingObjectInstance.contains(pObjectInstance))
 			{
 				continue;
 			}
@@ -1311,32 +1311,32 @@ void CArea::__Clear_DestroyObjectInstance (TObjectInstance * pObjectInstance)
 	{
 		pObjectInstance->pAttributeInstance->Clear();
 		ms_AttributeInstancePool.Free (pObjectInstance->pAttributeInstance);
-		pObjectInstance->pAttributeInstance = NULL;
+		pObjectInstance->pAttributeInstance = nullptr;
 	}
 
 	if (pObjectInstance->pTree)
 	{
 		pObjectInstance->pTree->Clear();
 		CSpeedTreeForestDirectX8::Instance().DeleteInstance (pObjectInstance->pTree);
-		pObjectInstance->pTree = NULL;
+		pObjectInstance->pTree = nullptr;
 	}
 
 	if (pObjectInstance->pThingInstance)
 	{
 		CGraphicThingInstance::Delete (pObjectInstance->pThingInstance);
-		pObjectInstance->pThingInstance = NULL;
+		pObjectInstance->pThingInstance = nullptr;
 	}
 
 	if (pObjectInstance->pAmbienceInstance)
 	{
 		ms_AmbienceInstancePool.Free (pObjectInstance->pAmbienceInstance);
-		pObjectInstance->pAmbienceInstance = NULL;
+		pObjectInstance->pAmbienceInstance = nullptr;
 	}
 
 	if (pObjectInstance->pDungeonBlock)
 	{
 		ms_DungeonBlockInstancePool.Free (pObjectInstance->pDungeonBlock);
-		pObjectInstance->pDungeonBlock = NULL;
+		pObjectInstance->pDungeonBlock = nullptr;
 	}
 
 	pObjectInstance->Clear();
@@ -1497,8 +1497,8 @@ void CArea::TAmbienceInstance::Render()
 	STATEMANAGER.SetRenderState (D3DRS_TEXTUREFACTOR, 0xff00ff00);
 	RenderCube (fx - fBoxSize, fy - fBoxSize, fz - fBoxSize, fx + fBoxSize, fy + fBoxSize, fz + fBoxSize);
 	STATEMANAGER.SetRenderState (D3DRS_TEXTUREFACTOR, 0xffffffff);
-	RenderSphere (NULL, fx, fy, fz, float (dwRange) * fMaxVolumeAreaPercentage, D3DFILL_POINT);
-	RenderSphere (NULL, fx, fy, fz, float (dwRange), D3DFILL_POINT);
+	RenderSphere (nullptr, fx, fy, fz, float (dwRange) * fMaxVolumeAreaPercentage, D3DFILL_POINT);
+	RenderSphere (nullptr, fx, fy, fz, float (dwRange), D3DFILL_POINT);
 	RenderCircle2d (fx, fy, fz, float (dwRange) * fMaxVolumeAreaPercentage);
 	RenderCircle2d (fx, fy, fz, float (dwRange));
 

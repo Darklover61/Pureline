@@ -84,9 +84,9 @@ static const char* GetMotionFileName (TMobTable* mobTable, EPublicMotion motion)
 	FILE * fp = fopen (buf, "rt");
 	char* v[4];
 
-	if (fp != NULL)
+	if (fp != nullptr)
 	{
-		const char* field = NULL;
+		const char* field = nullptr;
 
 		switch (motion)
 		{
@@ -124,11 +124,11 @@ static const char* GetMotionFileName (TMobTable* mobTable, EPublicMotion motion)
 		while (fgets (buf, 1024, fp))
 		{
 			v[0] = strtok (buf,  " \t\r\n");
-			v[1] = strtok (NULL, " \t\r\n");
-			v[2] = strtok (NULL, " \t\r\n");
-			v[3] = strtok (NULL, " \t\r\n");
+			v[1] = strtok (nullptr, " \t\r\n");
+			v[2] = strtok (nullptr, " \t\r\n");
+			v[3] = strtok (nullptr, " \t\r\n");
 
-			if (NULL != v[0] && NULL != v[1] && NULL != v[2] && NULL != v[3] && !strcasecmp (v[1], field))
+			if (nullptr != v[0] && nullptr != v[1] && nullptr != v[2] && nullptr != v[3] && !strcasecmp (v[1], field))
 			{
 				fclose (fp);
 
@@ -149,14 +149,14 @@ static const char* GetMotionFileName (TMobTable* mobTable, EPublicMotion motion)
 		sys_err ("Motion: %s have not motlist.txt vnum(%d) folder(%s)", folder, mobTable->dwVnum, mobTable->szFolder);
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 static void LoadMotion (CMotionSet* pMotionSet, TMobTable* mob_table, EPublicMotion motion)
 {
 	const char* cpFileName = GetMotionFileName (mob_table, motion);
 
-	if (cpFileName == NULL)
+	if (cpFileName == nullptr)
 	{
 		return;
 	}
@@ -214,7 +214,7 @@ static void LoadSkillMotion (CMotionSet* pMotionSet, CMob* pMob, EPublicMotion m
 	}
 
 	const char* cpFileName = GetMotionFileName (mob_table, motion);
-	if (cpFileName == NULL)
+	if (cpFileName == nullptr)
 	{
 		return;
 	}
@@ -255,7 +255,7 @@ const CMotionSet* CMotionManager::GetMotionSet (DWORD dwVnum)
 
 	if (m_map_pkMotionSet.end() == it)
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	return it->second;

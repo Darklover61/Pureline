@@ -837,13 +837,13 @@ bool CAreaAccessor::SaveCollisionData (const char* c_szLoadingAreaFileName, FILE
 		return false;
 	}
 
-	if (stTokenVectorMap.end() == stTokenVectorMap.find ("areadatafile"))
+	if (!stTokenVectorMap.contains("areadatafile"))
 	{
 		fwrite (&dwPlaneCount, 1, sizeof (DWORD), SavingFile);
 		return false;
 	}
 
-	if (stTokenVectorMap.end() == stTokenVectorMap.find ("objectcount"))
+	if (!stTokenVectorMap.contains("objectcount"))
 	{
 		fwrite (&dwPlaneCount, 1, sizeof (DWORD), SavingFile);
 		return false;
@@ -862,7 +862,7 @@ bool CAreaAccessor::SaveCollisionData (const char* c_szLoadingAreaFileName, FILE
 	{
 		_snprintf (szObjectName, 32, "object%03d", i);
 
-		if (stTokenVectorMap.end() == stTokenVectorMap.find (szObjectName))
+		if (!stTokenVectorMap.contains(szObjectName))
 		{
 			continue;
 		}
@@ -1004,7 +1004,7 @@ bool CAreaAccessor::SaveCollisionData (const char* c_szLoadingAreaFileName, FILE
 				const char* c_szBuildingfileName;
 				if (!pProperty->GetString ("buildingfile", &c_szBuildingfileName))
 				{
-					ms_NonAttributeObjectSet.insert (pProperty->GetFileName());
+					ms_NonAttributeObjectSet.emplace ();
 					break;
 				}
 
@@ -1013,7 +1013,7 @@ bool CAreaAccessor::SaveCollisionData (const char* c_szLoadingAreaFileName, FILE
 
 				if (!CResourceManager::Instance().IsFileExist (strAttributeFileName.c_str()))
 				{
-					ms_NonAttributeObjectSet.insert (pProperty->GetFileName());
+					ms_NonAttributeObjectSet.emplace ();
 					break;
 				}
 
@@ -1157,7 +1157,7 @@ struct FCompareSelectObjectList
 
 BOOL CAreaAccessor::IsSelectedObject (DWORD dwIndex)
 {
-	TSelectObjectList::iterator itor = std::find_if (m_SelectObjectList.begin(), m_SelectObjectList.end(), FCompareSelectObjectList (dwIndex));
+	auto itor = std::find_if (m_SelectObjectList.begin(), m_SelectObjectList.end(), FCompareSelectObjectList (dwIndex));
 	return itor != m_SelectObjectList.end();
 }
 
@@ -1201,7 +1201,7 @@ void CAreaAccessor::SelectObject (DWORD dwIndex)
 
 void CAreaAccessor::__DeselectObject (DWORD dwIndex)
 {
-	for (TSelectObjectList::iterator itor = m_SelectObjectList.begin(); itor != m_SelectObjectList.end(); ++itor)
+	for (auto itor = m_SelectObjectList.begin(); itor != m_SelectObjectList.end(); ++itor)
 	{
 		SSelectObject & rSelectObject = *itor;
 		if (dwIndex == rSelectObject.dwIndex)
@@ -1256,7 +1256,7 @@ void CAreaAccessor::__RefreshSelectedInfo()
 
 		// Portal Number
 		std::map<DWORD, DWORD> kMap_iPortalNumber;
-		for (TSelectObjectList::iterator itor = m_SelectObjectList.begin(); itor != m_SelectObjectList.end(); ++itor)
+		for (auto itor = m_SelectObjectList.begin(); itor != m_SelectObjectList.end(); ++itor)
 		{
 			SSelectObject & rSelectObject = *itor;
 			TObjectData & rObjectData = m_ObjectDataVector[rSelectObject.dwIndex];
@@ -1274,7 +1274,7 @@ void CAreaAccessor::__RefreshSelectedInfo()
 					continue;
 				}
 
-				if (kMap_iPortalNumber.end() == kMap_iPortalNumber.find (byNumber))
+				if (!kMap_iPortalNumber.contains(byNumber))
 				{
 					kMap_iPortalNumber[byNumber] = 0;
 				}
@@ -1283,7 +1283,7 @@ void CAreaAccessor::__RefreshSelectedInfo()
 			}
 		}
 
-		std::map<DWORD, DWORD>::iterator itorNum = kMap_iPortalNumber.begin();
+		auto itorNum = kMap_iPortalNumber.begin();
 		for (; itorNum != kMap_iPortalNumber.end(); ++itorNum)
 		{
 			if (itorNum->second >= m_SelectObjectList.size())
@@ -1300,7 +1300,7 @@ const CArea::TObjectData* CAreaAccessor::GetLastSelectedObjectData() const
 {
 	if (m_SelectObjectList.empty())
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	const SSelectObject& rSelectObject = m_SelectObjectList.back();
@@ -1390,7 +1390,7 @@ void CAreaAccessor::CloseCollisionDataCountMapLog()
 	fprintf (ms_LogFile, "\n");
 
 	fprintf (ms_LogFile, " << Non Attribute Object List >>\n");
-	std::set<std::string>::iterator itor = ms_NonAttributeObjectSet.begin();
+	auto itor = ms_NonAttributeObjectSet.begin();
 	for (; itor != ms_NonAttributeObjectSet.end(); ++itor)
 	{
 		fprintf (ms_LogFile, "%s\n", (*itor).c_str());
@@ -1416,7 +1416,7 @@ void CAreaAccessor::RenderToShadowMap()
 void CAreaAccessor::ReloadBuildingTexture()
 {
 	CGraphicThingInstance* pkThingInst;
-	TThingInstanceVector::iterator i = m_ThingCloneInstaceVector.begin();
+	auto i = m_ThingCloneInstaceVector.begin();
 	while (i != m_ThingCloneInstaceVector.end())
 	{
 		pkThingInst = *i++;

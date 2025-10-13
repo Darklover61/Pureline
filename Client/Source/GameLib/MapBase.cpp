@@ -15,7 +15,7 @@ void CMapBase::Clear()
 {
 	m_strName = "";
 	m_eType = MAPTYPE_INVALID;
-	mc_pEnvironmentData = NULL;
+	mc_pEnvironmentData = nullptr;
 	Leave();
 }
 
@@ -63,13 +63,13 @@ bool CMapBase::LoadProperty()
 		return false;
 	}
 
-	if (stTokenVectorMap.end() == stTokenVectorMap.find ("scripttype"))
+	if (!stTokenVectorMap.contains("scripttype"))
 	{
 		TraceError ("CMapBase::LoadProperty(FileName=%s) - FIND 'scripttype' - FAILED", strFileName.c_str());
 		return false;
 	}
 
-	if (stTokenVectorMap.end() == stTokenVectorMap.find ("maptype"))
+	if (!stTokenVectorMap.contains("maptype"))
 	{
 		TraceError ("CMapBase::LoadProperty(FileName=%s) - FIND 'maptype' - FAILED", strFileName.c_str());
 		return false;
@@ -78,7 +78,7 @@ bool CMapBase::LoadProperty()
 	// NOTE: 이미 존재하는 맵 데이터와 동일한 데이터를 사용하는 맵을 새로 추가할 때, 맵 배포 용량을 줄이기 위한 작업.
 	// MapProperty.txt 파일에 ParentMapName 값이 설정되어 있다면, 실제 모든 데이터는 ParentMap에서 읽어온다.
 	// 데이터의 부분공유(부분 오버라이트?) 기능은 필요 없대서, Parent Map에서 모든 데이터를 읽어옴.
-	if (stTokenVectorMap.end() != stTokenVectorMap.find ("parentmapname"))
+	if (stTokenVectorMap.contains("parentmapname"))
 	{
 		m_strParentMapName = stTokenVectorMap["parentmapname"][0];
 	}

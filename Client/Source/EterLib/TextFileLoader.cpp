@@ -18,7 +18,7 @@ CTokenVector* CTextFileLoader::SGroupNode::GetTokenVector (const std::string& c_
 	std::map<DWORD, CTokenVector>::iterator f = m_kMap_dwKey_kVct_stToken.find (dwGroupNameKey);
 	if (m_kMap_dwKey_kVct_stToken.end() == f)
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	return &f->second;
@@ -28,7 +28,7 @@ bool CTextFileLoader::SGroupNode::IsExistTokenVector (const std::string& c_rstGr
 {
 	DWORD dwGroupNameKey = GenNameKey (c_rstGroupName.c_str(), c_rstGroupName.length());
 
-	if (m_kMap_dwKey_kVct_stToken.end() == m_kMap_dwKey_kVct_stToken.find (dwGroupNameKey))
+	if (!m_kMap_dwKey_kVct_stToken.contains(dwGroupNameKey))
 	{
 		return false;
 	}
@@ -40,7 +40,7 @@ void CTextFileLoader::SGroupNode::InsertTokenVector (const std::string& c_rstGro
 {
 	DWORD dwGroupNameKey = GenNameKey (c_rstGroupName.c_str(), c_rstGroupName.length());
 
-	m_kMap_dwKey_kVct_stToken.insert (std::map<DWORD, CTokenVector>::value_type (dwGroupNameKey, c_rkVct_stToken));
+	m_kMap_dwKey_kVct_stToken.try_emplace (dwGroupNameKey, c_rkVct_stToken);
 }
 
 DWORD CTextFileLoader::SGroupNode::GenNameKey (const char* c_szGroupName, UINT uGroupNameLen)
@@ -146,12 +146,12 @@ CTextFileLoader::CTextFileLoader()
 {
 	SetTop();
 
-	m_acBufData = NULL;
+	m_acBufData = nullptr;
 	m_dwBufSize = 0;
 	m_dwBufCapacity = 0;
 
 	m_GlobalNode.m_strGroupName = "global";
-	m_GlobalNode.pParentNode = NULL;
+	m_GlobalNode.pParentNode = nullptr;
 
 	m_kVct_pkNode.reserve (128);
 }

@@ -6,11 +6,11 @@
 extern int test_server;
 
 //ADMIN_MANAGER
-typedef struct
+using tGM = struct
 {
 	tAdminInfo Info;
 	std::set<std::string>* pset_Host;
-} tGM;
+};
 
 std::set<std::string> g_set_Host;
 std::map<std::string, tGM> g_map_GM;
@@ -39,7 +39,7 @@ void gm_new_insert (const tAdminInfo &rAdminInfo)
 	}
 	else
 	{
-		t.pset_Host = NULL;
+		t.pset_Host = nullptr;
 		sys_log (0, "GM Use Default Host List");
 	}
 
@@ -51,7 +51,7 @@ void gm_new_insert (const tAdminInfo &rAdminInfo)
 
 void gm_new_host_inert (const char* host)
 {
-	g_set_Host.insert (host);
+	g_set_Host.emplace (host);
 	sys_log (0, "InsertGMHost(ip:%s)", host);
 }
 
@@ -92,7 +92,7 @@ BYTE gm_new_get_level (const char* name, const char* host, const char* account)
 		{
 			if (it->second.pset_Host)
 			{
-				if (it->second.pset_Host->end() == it->second.pset_Host->find (host))
+				if (!it->second.pset_Host->contains(host))
 				{
 					sys_log (0, "GM_NEW_GET_LEVEL : BAD HOST IN HOST_LIST");
 					return GM_PLAYER;

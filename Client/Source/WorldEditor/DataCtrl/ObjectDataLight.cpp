@@ -392,8 +392,7 @@ bool CObjectData::LoadLightScript (const char* c_szFileName)
 		return false;
 	}
 
-	if (stTokenVectorMap.find ("title") == stTokenVectorMap.end() ||
-	stTokenVectorMap.find ("version") == stTokenVectorMap.end())
+	if (!stTokenVectorMap.contains("title") || !stTokenVectorMap.contains("version"))
 	{
 		return false;
 	}
@@ -544,8 +543,7 @@ bool CObjectData::LoadLightElementScript (DWORD dwIndex, const char* c_szFileNam
 		return false;
 	}
 
-	if (stTokenVectorMap.find ("title") == stTokenVectorMap.end() ||
-	stTokenVectorMap.find ("version") == stTokenVectorMap.end())
+	if (!stTokenVectorMap.contains("title") || !stTokenVectorMap.contains("version"))
 	{
 		return false;
 	}

@@ -550,10 +550,10 @@ void CPythonTextTail::RegisterCharacterTextTail (DWORD dwGuildID, DWORD dwVirtua
 	pTextInstance->SetOutline (true);
 	pTextInstance->SetVerticalAlign (CGraphicTextInstance::VERTICAL_ALIGN_BOTTOM);
 
-	pTextTail->pMarkInstance = NULL;
-	pTextTail->pGuildNameTextInstance = NULL;
-	pTextTail->pTitleTextInstance = NULL;
-	pTextTail->pLevelTextInstance = NULL;
+	pTextTail->pMarkInstance = nullptr;
+	pTextTail->pGuildNameTextInstance = nullptr;
+	pTextTail->pTitleTextInstance = nullptr;
+	pTextTail->pLevelTextInstance = nullptr;
 
 	if (0 != dwGuildID)
 	{
@@ -780,7 +780,7 @@ void CPythonTextTail::SetItemTextTailOwner (DWORD dwVID, const char* c_szName)
 		if (pTextTail->pOwnerTextInstance)
 		{
 			CGraphicTextInstance::Delete (pTextTail->pOwnerTextInstance);
-			pTextTail->pOwnerTextInstance = NULL;
+			pTextTail->pOwnerTextInstance = nullptr;
 		}
 
 		int xSize, ySize;
@@ -836,7 +836,7 @@ CPythonTextTail::TTextTail* CPythonTextTail::RegisterTextTail (DWORD dwVirtualID
 	pTextTail->dwVirtualID = dwVirtualID;
 	pTextTail->pOwner = pOwner;
 	pTextTail->pTextInstance = CGraphicTextInstance::New();
-	pTextTail->pOwnerTextInstance = NULL;
+	pTextTail->pOwnerTextInstance = nullptr;
 	pTextTail->fHeight = fHeight;
 
 	pTextTail->pTextInstance->SetTextPointer (ms_pFont);
@@ -856,10 +856,10 @@ CPythonTextTail::TTextTail* CPythonTextTail::RegisterTextTail (DWORD dwVirtualID
 	pTextTail->x = -100.0f;
 	pTextTail->y = -100.0f;
 	pTextTail->z = 0.0f;
-	pTextTail->pMarkInstance = NULL;
-	pTextTail->pGuildNameTextInstance = NULL;
-	pTextTail->pTitleTextInstance = NULL;
-	pTextTail->pLevelTextInstance = NULL;
+	pTextTail->pMarkInstance = nullptr;
+	pTextTail->pGuildNameTextInstance = nullptr;
+	pTextTail->pTitleTextInstance = nullptr;
+	pTextTail->pLevelTextInstance = nullptr;
 	return pTextTail;
 }
 
@@ -868,32 +868,32 @@ void CPythonTextTail::DeleteTextTail (TTextTail * pTextTail)
 	if (pTextTail->pTextInstance)
 	{
 		CGraphicTextInstance::Delete (pTextTail->pTextInstance);
-		pTextTail->pTextInstance = NULL;
+		pTextTail->pTextInstance = nullptr;
 	}
 	if (pTextTail->pOwnerTextInstance)
 	{
 		CGraphicTextInstance::Delete (pTextTail->pOwnerTextInstance);
-		pTextTail->pOwnerTextInstance = NULL;
+		pTextTail->pOwnerTextInstance = nullptr;
 	}
 	if (pTextTail->pMarkInstance)
 	{
 		CGraphicMarkInstance::Delete (pTextTail->pMarkInstance);
-		pTextTail->pMarkInstance = NULL;
+		pTextTail->pMarkInstance = nullptr;
 	}
 	if (pTextTail->pGuildNameTextInstance)
 	{
 		CGraphicTextInstance::Delete (pTextTail->pGuildNameTextInstance);
-		pTextTail->pGuildNameTextInstance = NULL;
+		pTextTail->pGuildNameTextInstance = nullptr;
 	}
 	if (pTextTail->pTitleTextInstance)
 	{
 		CGraphicTextInstance::Delete (pTextTail->pTitleTextInstance);
-		pTextTail->pTitleTextInstance = NULL;
+		pTextTail->pTitleTextInstance = nullptr;
 	}
 	if (pTextTail->pLevelTextInstance)
 	{
 		CGraphicTextInstance::Delete (pTextTail->pLevelTextInstance);
-		pTextTail->pLevelTextInstance = NULL;
+		pTextTail->pLevelTextInstance = nullptr;
 	}
 
 	m_TextTailPool.Free (pTextTail);
@@ -901,7 +901,7 @@ void CPythonTextTail::DeleteTextTail (TTextTail * pTextTail)
 
 int CPythonTextTail::Pick (int ixMouse, int iyMouse)
 {
-	for (TTextTailMap::iterator itor = m_ItemTextTailMap.begin(); itor != m_ItemTextTailMap.end(); ++itor)
+	for (auto itor = m_ItemTextTailMap.begin(); itor != m_ItemTextTailMap.end(); ++itor)
 	{
 		TTextTail * pTextTail = itor->second;
 
@@ -985,7 +985,7 @@ void CPythonTextTail::DetachTitle (DWORD dwVID)
 	if (pTextTail->pTitleTextInstance)
 	{
 		CGraphicTextInstance::Delete (pTextTail->pTitleTextInstance);
-		pTextTail->pTitleTextInstance = NULL;
+		pTextTail->pTitleTextInstance = nullptr;
 	}
 }
 
@@ -1043,7 +1043,7 @@ void CPythonTextTail::DetachLevel (DWORD dwVID)
 	if (pTextTail->pLevelTextInstance)
 	{
 		CGraphicTextInstance::Delete (pTextTail->pLevelTextInstance);
-		pTextTail->pLevelTextInstance = NULL;
+		pTextTail->pLevelTextInstance = nullptr;
 	}
 }
 

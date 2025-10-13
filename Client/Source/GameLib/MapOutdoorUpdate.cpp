@@ -365,7 +365,7 @@ struct FGetShadowReceiverFromHeightData
 	{
 		if (uIndex >= m_dwCollectCount)
 		{
-			return NULL;
+			return nullptr;
 		}
 
 		return m_apkShadowReceiver[uIndex];
@@ -804,7 +804,7 @@ void CMapOutdoor::UpdateTerrain (float fX, float fY)
 
 void CMapOutdoor::FPushTerrainToDeleteVector::operator() (CTerrain * pTerrain)
 {
-	TTerrainPtrVectorIterator aIterator = std::find (m_ReturnTerrainVector.begin(), m_ReturnTerrainVector.end(), pTerrain);
+	auto aIterator = std::find (m_ReturnTerrainVector.begin(), m_ReturnTerrainVector.end(), pTerrain);
 	if (aIterator != m_ReturnTerrainVector.end())
 	{
 		return;
@@ -858,7 +858,7 @@ void CMapOutdoor::FPushTerrainToDeleteVector::operator() (CTerrain * pTerrain)
 
 void CMapOutdoor::FPushAreaToDeleteVector::operator() (CArea * pArea)
 {
-	TAreaPtrVectorIterator aIterator = std::find (m_ReturnAreaVector.begin(), m_ReturnAreaVector.end(), pArea);
+	auto aIterator = std::find (m_ReturnAreaVector.begin(), m_ReturnAreaVector.end(), pArea);
 	if (aIterator != m_ReturnAreaVector.end())
 	{
 		return;

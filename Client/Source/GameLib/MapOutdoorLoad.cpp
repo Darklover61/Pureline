@@ -225,13 +225,13 @@ bool CMapOutdoor::LoadTerrain (WORD wTerrainCoordX, WORD wTerrainCoordY, WORD wC
 		return false;
 	}
 
-	if (stTokenVectorMap.end() == stTokenVectorMap.find ("scripttype"))
+	if (!stTokenVectorMap.contains("scripttype"))
 	{
 		TraceError ("CMapOutdoor::LoadTerrain AreaProperty FileFormat Error 1\n");
 		return false;
 	}
 
-	if (stTokenVectorMap.end() == stTokenVectorMap.find ("areaname"))
+	if (!stTokenVectorMap.contains("areaname"))
 	{
 		TraceError ("CMapOutdoor::LoadTerrain AreaProperty FileFormat Error 2\n");
 		return false;
@@ -311,45 +311,45 @@ bool CMapOutdoor::LoadSetting (const char* c_szFileName)
 		return false;
 	}
 
-	if (stTokenVectorMap.end() == stTokenVectorMap.find ("scripttype"))
+	if (!stTokenVectorMap.contains("scripttype"))
 	{
 		TraceError ("MapOutdoor::LoadSetting(c_szFileName=%s) - FIND 'scripttype' - FAILED", c_szFileName);
 		return false;
 	}
 
-	if (stTokenVectorMap.end() == stTokenVectorMap.find ("viewradius"))
+	if (!stTokenVectorMap.contains("viewradius"))
 	{
 		TraceError ("MapOutdoor::LoadSetting(c_szFileName=%s) - FIND 'viewradius' - FAILED", c_szFileName);
 		return false;
 	}
 
-	if (stTokenVectorMap.end() == stTokenVectorMap.find ("cellscale"))
+	if (!stTokenVectorMap.contains("cellscale"))
 	{
 		TraceError ("MapOutdoor::LoadSetting(c_szFileName=%s) - FIND 'cellscale' - FAILED", c_szFileName);
 		return false;
 	}
 
-	if (stTokenVectorMap.end() == stTokenVectorMap.find ("heightscale"))
+	if (!stTokenVectorMap.contains("heightscale"))
 	{
 		TraceError ("MapOutdoor::LoadSetting(c_szFileName=%s) - FIND 'heightscale' - FAILED", c_szFileName);
 		return false;
 	}
 
-	if (stTokenVectorMap.end() == stTokenVectorMap.find ("mapsize"))
+	if (!stTokenVectorMap.contains("mapsize"))
 	{
 		TraceError ("MapOutdoor::LoadSetting(c_szFileName=%s) - FIND 'mapsize' - FAILED", c_szFileName);
 		return false;
 	}
 
-	if (stTokenVectorMap.end() == stTokenVectorMap.find ("textureset"))
+	if (!stTokenVectorMap.contains("textureset"))
 	{
 		TraceError ("MapOutdoor::LoadSetting(c_szFileName=%s) - FIND 'textureset' - FAILED", c_szFileName);
 		return false;
 	}
 
-	if (stTokenVectorMap.end() != stTokenVectorMap.find ("terrainvisible"))
+	if (stTokenVectorMap.contains("terrainvisible"))
 	{
-		m_bSettingTerrainVisible = (bool) (atoi (stTokenVectorMap["terrainvisible"][0].c_str()) != 0);
+		m_bSettingTerrainVisible = (atoi (stTokenVectorMap["terrainvisible"][0].c_str()) != 0);
 	}
 	else
 	{
@@ -394,7 +394,7 @@ bool CMapOutdoor::LoadSetting (const char* c_szFileName)
 
 	m_fTerrainTexCoordBase = 1.0f / (float) (CTerrainImpl::PATCH_XSIZE * CTerrainImpl::CELLSCALE);
 
-	if (stTokenVectorMap.end() != stTokenVectorMap.find ("baseposition"))
+	if (stTokenVectorMap.contains("baseposition"))
 	{
 		const std::string & c_rstrMapBaseX = stTokenVectorMap["baseposition"][0];
 		const std::string & c_rstrMapBaseY = stTokenVectorMap["baseposition"][1];
@@ -422,7 +422,7 @@ bool CMapOutdoor::LoadSetting (const char* c_szFileName)
 
 	CTerrain::SetTextureSet (&m_TextureSet);
 
-	if (stTokenVectorMap.end() != stTokenVectorMap.find ("environment"))
+	if (stTokenVectorMap.contains("environment"))
 	{
 		const CTokenVector & c_rEnvironmentVector = stTokenVectorMap["environment"];
 		if (!c_rEnvironmentVector.empty())

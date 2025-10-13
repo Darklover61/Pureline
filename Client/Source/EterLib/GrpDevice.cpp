@@ -29,14 +29,14 @@ void CGraphicDevice::__Initialize()
 	ms_iD3DDevInfo = D3DADAPTER_DEFAULT;
 	ms_iD3DModeInfo = D3DADAPTER_DEFAULT;
 
-	ms_lpd3d			= NULL;
-	ms_lpd3dDevice		= NULL;
-	ms_lpd3dMatStack	= NULL;
+	ms_lpd3d			= nullptr;
+	ms_lpd3dDevice		= nullptr;
+	ms_lpd3dMatStack	= nullptr;
 
 	ms_dwWavingEndTime = 0;
 	ms_dwFlashingEndTime = 0;
 
-	m_pStateManager		= NULL;
+	m_pStateManager		= nullptr;
 
 	__InitializeDefaultIndexBufferList();
 	__InitializePDTVertexBufferList();
@@ -49,7 +49,7 @@ void CGraphicDevice::RegisterWarningString (UINT uiMsg, const char* c_szString)
 
 void CGraphicDevice::__WarningMessage (HWND hWnd, UINT uiMsg)
 {
-	if (m_kMap_strWarningMessage.end() == m_kMap_strWarningMessage.find (uiMsg))
+	if (!m_kMap_strWarningMessage.contains(uiMsg))
 	{
 		return;
 	}
@@ -150,7 +150,7 @@ bool CGraphicDevice::ResizeBackBuffer (UINT uWidth, UINT uHeight)
 
 DWORD CGraphicDevice::CreatePNTStreamVertexShader()
 {
-	assert (ms_lpd3dDevice != NULL);
+	assert (ms_lpd3dDevice != nullptr);
 
 	DWORD declVector[] =
 	{
@@ -173,7 +173,7 @@ DWORD CGraphicDevice::CreatePNTStreamVertexShader()
 
 DWORD CGraphicDevice::CreatePNT2StreamVertexShader()
 {
-	assert (ms_lpd3dDevice != NULL);
+	assert (ms_lpd3dDevice != nullptr);
 
 	DWORD declVector[] =
 	{
@@ -198,7 +198,7 @@ DWORD CGraphicDevice::CreatePNT2StreamVertexShader()
 
 DWORD CGraphicDevice::CreatePTStreamVertexShader()
 {
-	assert (ms_lpd3dDevice != NULL);
+	assert (ms_lpd3dDevice != nullptr);
 
 	DWORD declVector[] =
 	{
@@ -211,7 +211,7 @@ DWORD CGraphicDevice::CreatePTStreamVertexShader()
 
 	DWORD ret;
 
-	if (FAILED (ms_lpd3dDevice->CreateVertexShader (&declVector[0], NULL, &ret, 0)))
+	if (FAILED (ms_lpd3dDevice->CreateVertexShader (&declVector[0], nullptr, &ret, 0)))
 	{
 		return 0;
 	}
@@ -221,7 +221,7 @@ DWORD CGraphicDevice::CreatePTStreamVertexShader()
 
 DWORD CGraphicDevice::CreateDoublePNTStreamVertexShader()
 {
-	assert (ms_lpd3dDevice != NULL);
+	assert (ms_lpd3dDevice != nullptr);
 
 	DWORD declVector[] =
 	{
@@ -238,7 +238,7 @@ DWORD CGraphicDevice::CreateDoublePNTStreamVertexShader()
 
 	DWORD ret;
 
-	if (FAILED (ms_lpd3dDevice->CreateVertexShader (&declVector[0], NULL, &ret, 0)))
+	if (FAILED (ms_lpd3dDevice->CreateVertexShader (&declVector[0], nullptr, &ret, 0)))
 	{
 		return 0;
 	}
@@ -590,8 +590,8 @@ RETRY:
 	ms_matScreen2._11 = (float) iHres / 2;
 	ms_matScreen2._22 = (float) iVres / 2;
 
-	D3DXCreateSphere (ms_lpd3dDevice, 1.0f, 32, 32, &ms_lpSphereMesh, NULL);
-	D3DXCreateCylinder (ms_lpd3dDevice, 1.0f, 1.0f, 1.0f, 8, 8, &ms_lpCylinderMesh, NULL);
+	D3DXCreateSphere (ms_lpd3dDevice, 1.0f, 32, 32, &ms_lpSphereMesh, nullptr);
+	D3DXCreateCylinder (ms_lpd3dDevice, 1.0f, 1.0f, 1.0f, 8, 8, &ms_lpCylinderMesh, nullptr);
 
 	ms_lpd3dDevice->Clear (0L, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, 0xff000000, 1.0f, 0);
 
@@ -656,7 +656,7 @@ void CGraphicDevice::__InitializePDTVertexBufferList()
 {
 	for (UINT i = 0; i < PDT_VERTEXBUFFER_NUM; ++i)
 	{
-		ms_alpd3dPDTVB[i] = NULL;
+		ms_alpd3dPDTVB[i] = nullptr;
 	}
 }
 
@@ -667,7 +667,7 @@ void CGraphicDevice::__DestroyPDTVertexBufferList()
 		if (ms_alpd3dPDTVB[i])
 		{
 			ms_alpd3dPDTVB[i]->Release();
-			ms_alpd3dPDTVB[i] = NULL;
+			ms_alpd3dPDTVB[i] = nullptr;
 		}
 	}
 }
@@ -695,7 +695,7 @@ void CGraphicDevice::__InitializeDefaultIndexBufferList()
 {
 	for (UINT i = 0; i < DEFAULT_IB_NUM; ++i)
 	{
-		ms_alpd3dDefIB[i] = NULL;
+		ms_alpd3dDefIB[i] = nullptr;
 	}
 }
 
@@ -705,13 +705,13 @@ void CGraphicDevice::__DestroyDefaultIndexBufferList()
 		if (ms_alpd3dDefIB[i])
 		{
 			ms_alpd3dDefIB[i]->Release();
-			ms_alpd3dDefIB[i] = NULL;
+			ms_alpd3dDefIB[i] = nullptr;
 		}
 }
 
 bool CGraphicDevice::__CreateDefaultIndexBuffer (UINT eDefIB, UINT uIdxCount, const WORD* c_awIndices)
 {
-	assert (ms_alpd3dDefIB[eDefIB] == NULL);
+	assert (ms_alpd3dDefIB[eDefIB] == nullptr);
 
 	if (FAILED (
 			ms_lpd3dDevice->CreateIndexBuffer (
@@ -808,13 +808,13 @@ void CGraphicDevice::Destroy()
 	if (ms_hDC)
 	{
 		ReleaseDC (ms_hWnd, ms_hDC);
-		ms_hDC = NULL;
+		ms_hDC = nullptr;
 	}
 
 	if (ms_ptVS)
 	{
 		ms_lpd3dDevice->DeleteVertexShader (ms_ptVS);
-		ms_ptVS = 0;;
+		ms_ptVS = 0;
 	}
 
 	if (ms_pntVS)
@@ -839,7 +839,7 @@ void CGraphicDevice::Destroy()
 	if (m_pStateManager)
 	{
 		delete m_pStateManager;
-		m_pStateManager = NULL;
+		m_pStateManager = nullptr;
 	}
 
 	__Initialize();

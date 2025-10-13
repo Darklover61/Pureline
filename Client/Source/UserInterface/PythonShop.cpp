@@ -116,11 +116,11 @@ void CPythonShop::AddPrivateShopItemStock (TItemPos ItemPos, BYTE dwDisplayPos, 
 	SellingItem.pos = ItemPos;
 	SellingItem.price = dwPrice;
 	SellingItem.display_pos = dwDisplayPos;
-	m_PrivateShopItemStock.insert (std::make_pair (ItemPos, SellingItem));
+	m_PrivateShopItemStock.try_emplace (ItemPos, SellingItem);
 }
 void CPythonShop::DelPrivateShopItemStock (TItemPos ItemPos)
 {
-	if (m_PrivateShopItemStock.end() == m_PrivateShopItemStock.find (ItemPos))
+	if (!m_PrivateShopItemStock.contains(ItemPos))
 	{
 		return;
 	}
@@ -151,7 +151,7 @@ void CPythonShop::BuildPrivateShop (const char* c_szName)
 	std::vector<TShopItemTable> ItemStock;
 	ItemStock.reserve (m_PrivateShopItemStock.size());
 
-	TPrivateShopItemStock::iterator itor = m_PrivateShopItemStock.begin();
+	auto itor = m_PrivateShopItemStock.begin();
 	for (; itor != m_PrivateShopItemStock.end(); ++itor)
 	{
 		ItemStock.push_back (itor->second);

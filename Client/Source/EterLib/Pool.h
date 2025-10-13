@@ -96,7 +96,7 @@ class CDynamicPool
 	protected:
 		bool __IsValidData (T* pkData)
 		{
-			if (m_kVct_pkData.end() == std::find (m_kVct_pkData.begin(), m_kVct_pkData.end(), pkData))
+			if (m_kVct_pkData.end() == std::ranges::find (m_kVct_pkData, pkData))
 			{
 				return false;
 			}
@@ -104,7 +104,7 @@ class CDynamicPool
 		}
 		bool __IsFreeData (T* pkData)
 		{
-			if (m_kVct_pkFree.end() == std::find (m_kVct_pkFree.begin(), m_kVct_pkFree.end(), pkData))
+			if (m_kVct_pkFree.end() == std::ranges::find (m_kVct_pkFree, pkData))
 			{
 				return false;
 			}
@@ -213,7 +213,7 @@ class CDynamicPoolEx
 	protected:
 		bool __IsValidData (T* pkData)
 		{
-			if (m_kVct_pkData.end() == std::find (m_kVct_pkData.begin(), m_kVct_pkData.end(), pkData))
+			if (m_kVct_pkData.end() == std::ranges::find (m_kVct_pkData, pkData))
 			{
 				return false;
 			}
@@ -221,7 +221,7 @@ class CDynamicPoolEx
 		}
 		bool __IsFreeData (T* pkData)
 		{
-			if (m_kVct_pkFree.end() == std::find (m_kVct_pkFree.begin(), m_kVct_pkFree.end(), pkData))
+			if (m_kVct_pkFree.end() == std::ranges::find (m_kVct_pkFree, pkData))
 			{
 				return false;
 			}

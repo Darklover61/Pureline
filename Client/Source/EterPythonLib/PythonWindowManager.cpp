@@ -4,13 +4,15 @@
 #include "PythonGridSlotWindow.h"
 #include "PythonWindowManager.h"
 
+#include <span>
+
 //#define __WINDOW_LEAK_CHECK__
 
 BOOL g_bShowOverInWindowName = FALSE;
 
 namespace UI
 {
-	static PyObject* gs_poEmptyTuple = NULL;
+	static PyObject* gs_poEmptyTuple = nullptr;
 
 	PyObject* BuildEmptyTuple()
 	{
@@ -22,33 +24,33 @@ namespace UI
 
 	CWindowManager::CWindowManager()
 		:
-		m_pActiveWindow (NULL),
-		m_pPointWindow (NULL),
-		m_pLeftCaptureWindow (NULL),
-		m_pMiddleCaptureWindow (NULL),
-		m_pRightCaptureWindow (NULL),
-		m_pLockWindow (NULL),
+		m_iVres (0),
+		m_iHres (0),
+		m_bOnceIgnoreMouseLeftButtonUpEventFlag (FALSE),
+		m_poMouseHandler (nullptr),
 		m_bAttachingFlag (FALSE),
 		m_dwAttachingType (0),
 		m_dwAttachingIndex (0),
 		m_dwAttachingSlotNumber (0),
-		m_poMouseHandler (NULL),
-		m_iHres (0),
-		m_iVres (0),
-		m_bOnceIgnoreMouseLeftButtonUpEventFlag (FALSE)
+		m_pActiveWindow (nullptr),
+		m_pLockWindow (nullptr),
+		m_pPointWindow (nullptr),
+		m_pLeftCaptureWindow (nullptr),
+		m_pRightCaptureWindow (nullptr),
+		m_pMiddleCaptureWindow (nullptr)
 	{
-		m_pRootWindow = new CWindow (NULL);
+		m_pRootWindow = new CWindow (nullptr);
 		m_pRootWindow->SetName ("root");
 		m_pRootWindow->Show();
 
 		const char* layerTbl[] = {"GAME", "UI_BOTTOM", "UI", "TOP_MOST", "CURTAIN"};
 
-		for (DWORD layer = 0; layer < sizeof (layerTbl) / sizeof (layerTbl[0]); layer++)
+		for (DWORD layer = 0; layer < std::size(layerTbl); layer++)
 		{
-			CWindow * pLayer = new CLayer (NULL);
+			CWindow * pLayer = new CLayer (nullptr);
 			pLayer->SetName (layerTbl[layer]);
 			pLayer->Show();
-			m_LayerWindowMap.insert (TLayerContainer::value_type (layerTbl[layer], pLayer));
+			m_LayerWindowMap.try_emplace (layerTbl[layer], pLayer);
 			m_pRootWindow->AddChild (pLayer);
 			m_LayerWindowList.push_back (pLayer);
 		}
@@ -387,32 +389,32 @@ namespace UI
 	{
 		if (pWindow == m_pActiveWindow)
 		{
-			m_pActiveWindow = NULL;
+			m_pActiveWindow = nullptr;
 		}
 
 		if (pWindow == m_pPointWindow)
 		{
-			m_pPointWindow = NULL;
+			m_pPointWindow = nullptr;
 		}
 
 		if (pWindow == m_pLeftCaptureWindow)
 		{
-			m_pLeftCaptureWindow = NULL;
+			m_pLeftCaptureWindow = nullptr;
 		}
 
 		if (pWindow == m_pMiddleCaptureWindow)
 		{
-			m_pMiddleCaptureWindow = NULL;
+			m_pMiddleCaptureWindow = nullptr;
 		}
 
 		if (pWindow == m_pRightCaptureWindow)
 		{
-			m_pRightCaptureWindow = NULL;
+			m_pRightCaptureWindow = nullptr;
 		}
 
 		if (pWindow == m_pLockWindow)
 		{
-			m_pLockWindow = NULL;
+			m_pLockWindow = nullptr;
 		}
 
 		m_LockWindowList.remove (pWindow);
@@ -576,7 +578,7 @@ namespace UI
 		{
 			if (m_LockWindowList.empty())
 			{
-				m_pLockWindow = NULL;
+				m_pLockWindow = nullptr;
 				if (m_pActiveWindow)
 				{
 					m_pActiveWindow->OnSetFocus();
@@ -622,7 +624,7 @@ namespace UI
 			if (m_ActiveWindowList.empty())
 			{
 				m_pActiveWindow->OnKillFocus();
-				m_pActiveWindow = NULL;
+				m_pActiveWindow = nullptr;
 			}
 			else
 			{
@@ -679,9 +681,9 @@ namespace UI
 
 	void CWindowManager::ResetCapture()
 	{
-		m_pLeftCaptureWindow = NULL;
-		m_pMiddleCaptureWindow = NULL;
-		m_pRightCaptureWindow = NULL;
+		m_pLeftCaptureWindow = nullptr;
+		m_pMiddleCaptureWindow = nullptr;
+		m_pRightCaptureWindow = nullptr;
 	}
 
 	void CWindowManager::SetResolution (int hres, int vres)
@@ -705,7 +707,7 @@ namespace UI
 		m_lWidth	= lWidth;
 		m_lHeight	= lHeight;
 
-		for (TLayerContainer::iterator itor = m_LayerWindowMap.begin(); itor != m_LayerWindowMap.end(); ++itor)
+		for (auto itor = m_LayerWindowMap.begin(); itor != m_LayerWindowMap.end(); ++itor)
 		{
 			itor->second->SetSize (lWidth, lHeight);
 		}
@@ -713,7 +715,7 @@ namespace UI
 
 	void CWindowManager::__ClearReserveDeleteWindowList()
 	{
-		for (TWindowContainer::iterator itor = m_ReserveDeleteWindowList.begin(); itor != m_ReserveDeleteWindowList.end(); ++itor)
+		for (auto itor = m_ReserveDeleteWindowList.begin(); itor != m_ReserveDeleteWindowList.end(); ++itor)
 		{
 			CWindow * pWin = *itor;
 			#ifdef __WINDOW_LEAK_CHECK__
@@ -744,7 +746,7 @@ namespace UI
 			return m_pLockWindow->PickWindow (x, y);
 		}
 
-		for (TWindowContainer::iterator itor = m_PickAlwaysWindowList.begin(); itor != m_PickAlwaysWindowList.end(); ++itor)
+		for (auto itor = m_PickAlwaysWindowList.begin(); itor != m_PickAlwaysWindowList.end(); ++itor)
 		{
 			CWindow * pWindow = *itor;
 			if (pWindow->IsRendering())
@@ -754,7 +756,7 @@ namespace UI
 				}
 		}
 
-		for (TWindowContainer::reverse_iterator ritor = m_LayerWindowList.rbegin(); ritor != m_LayerWindowList.rend(); ++ritor)
+		for (auto ritor = m_LayerWindowList.rbegin(); ritor != m_LayerWindowList.rend(); ++ritor)
 		{
 			CWindow * pLayer = *ritor;
 			CWindow * pPickedWindow = pLayer->PickWindow (x, y);
@@ -765,7 +767,7 @@ namespace UI
 			}
 		}
 
-		return NULL;
+		return nullptr;
 	}
 
 	void CWindowManager::SetMousePosition (long x, long y)
@@ -963,7 +965,7 @@ namespace UI
 			if (m_pLeftCaptureWindow->OnMouseLeftButtonUp())
 			{
 				// NOTE : 여기서 m_pLeftCaptureWindow가 NULL 일 수 있습니다!! - [levites]
-				m_pLeftCaptureWindow = NULL;
+				m_pLeftCaptureWindow = nullptr;
 				return;
 			}
 		}
@@ -974,7 +976,7 @@ namespace UI
 			pWin->OnMouseLeftButtonUp();
 		}
 
-		m_pLeftCaptureWindow = NULL;
+		m_pLeftCaptureWindow = nullptr;
 	}
 
 	void CWindowManager::RunMouseLeftButtonDoubleClick (long x, long y)
@@ -1024,7 +1026,7 @@ namespace UI
 		{
 			if (m_pRightCaptureWindow->OnMouseRightButtonUp())
 			{
-				m_pRightCaptureWindow = NULL;
+				m_pRightCaptureWindow = nullptr;
 				return;
 			}
 		}
@@ -1035,7 +1037,7 @@ namespace UI
 			pWin->OnMouseRightButtonUp();
 		}
 
-		m_pRightCaptureWindow = NULL;
+		m_pRightCaptureWindow = nullptr;
 		DeattachIcon();
 	}
 
@@ -1073,7 +1075,7 @@ namespace UI
 		{
 			if (m_pMiddleCaptureWindow->OnMouseMiddleButtonUp())
 			{
-				m_pMiddleCaptureWindow = NULL;
+				m_pMiddleCaptureWindow = nullptr;
 				return;
 			}
 		}
@@ -1085,7 +1087,7 @@ namespace UI
 		}
 
 		pWin->OnMouseMiddleButtonUp();
-		m_pMiddleCaptureWindow = NULL;
+		m_pMiddleCaptureWindow = nullptr;
 	}
 
 	// IME

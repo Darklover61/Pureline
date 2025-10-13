@@ -92,11 +92,11 @@ bool CMapOutdoor::Initialize()
 	BYTE i;
 	for (i = 0; i < AROUND_AREA_NUM; ++i)
 	{
-		m_pArea[i] = NULL;
-		m_pTerrain[i] = NULL;
+		m_pArea[i] = nullptr;
+		m_pTerrain[i] = nullptr;
 	}
 
-	m_pTerrainPatchProxyList = NULL;
+	m_pTerrainPatchProxyList = nullptr;
 
 	m_lViewRadius	= 0L;
 	m_fHeightScale	= 0.0f;
@@ -114,7 +114,7 @@ bool CMapOutdoor::Initialize()
 	m_lOldReadX = m_lOldReadY = -1;
 
 	#ifdef WORLD_EDITOR
-	m_pwIndices = NULL;
+	m_pwIndices = nullptr;
 	#else
 	memset (m_pwaIndices, 0, sizeof (m_pwaIndices));
 	for (i = 0; i < TERRAINPATCH_LODMAX; ++i)
@@ -132,16 +132,16 @@ bool CMapOutdoor::Initialize()
 
 	m_wPatchCount = 0;
 
-	m_pRootNode = NULL;
+	m_pRootNode = nullptr;
 
 	//////////////////////////////////////////////////////////////////////////
 	// Character Shadow
-	m_lpCharacterShadowMapTexture = NULL;
-	m_lpCharacterShadowMapRenderTargetSurface = NULL;
-	m_lpCharacterShadowMapDepthSurface = NULL;
+	m_lpCharacterShadowMapTexture = nullptr;
+	m_lpCharacterShadowMapRenderTargetSurface = nullptr;
+	m_lpCharacterShadowMapDepthSurface = nullptr;
 
-	m_lpBackupRenderTargetSurface = NULL;
-	m_lpBackupDepthSurface = NULL;
+	m_lpBackupRenderTargetSurface = nullptr;
+	m_lpBackupDepthSurface = nullptr;
 	// Character Shadow
 	//////////////////////////////////////////////////////////////////////////
 
@@ -388,7 +388,7 @@ void CMapOutdoor::DestroyTerrainPatchProxyList()
 	if (m_pTerrainPatchProxyList)
 	{
 		delete [] m_pTerrainPatchProxyList;
-		m_pTerrainPatchProxyList = NULL;
+		m_pTerrainPatchProxyList = nullptr;
 	}
 
 	#ifdef WORLD_EDITOR
@@ -425,7 +425,7 @@ void CMapOutdoor::DestroyArea()
 
 	for (int i = 0; i < AROUND_AREA_NUM; ++i)
 	{
-		m_pArea[i] = NULL;
+		m_pArea[i] = nullptr;
 	}
 }
 
@@ -441,7 +441,7 @@ void CMapOutdoor::DestroyTerrain()
 	CTerrain::ms_kPool.FreeAll();
 	for (int i = 0; i < AROUND_AREA_NUM; ++i)
 	{
-		m_pTerrain[i] = NULL;
+		m_pTerrain[i] = nullptr;
 	}
 }
 
@@ -673,7 +673,7 @@ void CMapOutdoor::GetHeightMap (const BYTE & c_rucTerrainNum, WORD** pwHeightMap
 {
 	if (c_rucTerrainNum < 0 || c_rucTerrainNum > AROUND_AREA_NUM - 1 || !m_pTerrain[c_rucTerrainNum])
 	{
-		*pwHeightMap = NULL;
+		*pwHeightMap = nullptr;
 		return;
 	}
 
@@ -684,7 +684,7 @@ void CMapOutdoor::GetNormalMap (const BYTE & c_rucTerrainNum, char** pucNormalMa
 {
 	if (c_rucTerrainNum < 0 || c_rucTerrainNum > AROUND_AREA_NUM - 1 || !m_pTerrain[c_rucTerrainNum])
 	{
-		*pucNormalMap = NULL;
+		*pucNormalMap = nullptr;
 		return;
 	}
 
@@ -695,7 +695,7 @@ void CMapOutdoor::GetWaterMap (const BYTE & c_rucTerrainNum, BYTE** pucWaterMap)
 {
 	if (c_rucTerrainNum < 0 || c_rucTerrainNum > AROUND_AREA_NUM - 1 || !m_pTerrain[c_rucTerrainNum])
 	{
-		*pucWaterMap = NULL;
+		*pucWaterMap = nullptr;
 		return;
 	}
 
@@ -1102,13 +1102,13 @@ BOOL CMapOutdoor::GetAreaPointer (const BYTE c_byAreaNum, CArea** ppArea)
 {
 	if (c_byAreaNum >= AROUND_AREA_NUM)
 	{
-		*ppArea = NULL;
+		*ppArea = nullptr;
 		return FALSE;
 	}
 
-	if (NULL == m_pArea[c_byAreaNum])
+	if (nullptr == m_pArea[c_byAreaNum])
 	{
-		*ppArea = NULL;
+		*ppArea = nullptr;
 		return FALSE;
 	}
 
@@ -1120,13 +1120,13 @@ BOOL CMapOutdoor::GetTerrainPointer (const BYTE c_byTerrainNum, CTerrain** ppTer
 {
 	if (c_byTerrainNum >= AROUND_AREA_NUM)
 	{
-		*ppTerrain = NULL;
+		*ppTerrain = nullptr;
 		return FALSE;
 	}
 
-	if (NULL == m_pTerrain[c_byTerrainNum])
+	if (nullptr == m_pTerrain[c_byTerrainNum])
 	{
-		*ppTerrain = NULL;
+		*ppTerrain = nullptr;
 		return FALSE;
 	}
 
@@ -1340,7 +1340,7 @@ void CMapOutdoor::SetEnvironmentDataName (const std::string& strEnvironmentDataN
 
 void CMapOutdoor::__XMasTree_Initialize()
 {
-	m_kXMas.m_pkTree = NULL;
+	m_kXMas.m_pkTree = nullptr;
 	m_kXMas.m_iEffectID = -1;
 }
 
@@ -1351,7 +1351,7 @@ void CMapOutdoor::XMasTree_Destroy()
 		CSpeedTreeForestDirectX8& rkForest = CSpeedTreeForestDirectX8::Instance();
 		m_kXMas.m_pkTree->Clear();
 		rkForest.DeleteInstance (m_kXMas.m_pkTree);
-		m_kXMas.m_pkTree = NULL;
+		m_kXMas.m_pkTree = nullptr;
 	}
 	if (-1 != m_kXMas.m_iEffectID)
 	{
@@ -1428,7 +1428,7 @@ void CMapOutdoor::SpecialEffect_Destroy()
 {
 	CEffectManager& rkEffMgr = CEffectManager::Instance();
 
-	TSpecialEffectMap::iterator itor = m_kMap_dwID_iEffectID.begin();
+	auto itor = m_kMap_dwID_iEffectID.begin();
 	for (; itor != m_kMap_dwID_iEffectID.end(); ++itor)
 	{
 		int iEffectID = itor->second;
@@ -1456,7 +1456,7 @@ void CMapOutdoor::VisibleMarkedArea()
 	std::map<int, BYTE*> kMap_pbyMarkBuf;
 	std::set<int> kSet_iProcessedMapIndex;
 
-	std::list<RECT>::iterator itorRect = m_rkList_kGuildArea.begin();
+	auto itorRect = m_rkList_kGuildArea.begin();
 	for (; itorRect != m_rkList_kGuildArea.end(); ++itorRect)
 	{
 		const RECT & rkRect = *itorRect;
@@ -1503,7 +1503,7 @@ void CMapOutdoor::VisibleMarkedArea()
 					continue;
 				}
 
-				if (kMap_pbyMarkBuf.end() == kMap_pbyMarkBuf.find (iTerrainNum))
+				if (!kMap_pbyMarkBuf.contains(iTerrainNum))
 				{
 					BYTE * pbyBuf = new BYTE[CTerrain::ATTRMAP_XSIZE * CTerrain::ATTRMAP_YSIZE];
 					ZeroMemory (pbyBuf, CTerrain::ATTRMAP_XSIZE * CTerrain::ATTRMAP_YSIZE);
@@ -1515,7 +1515,7 @@ void CMapOutdoor::VisibleMarkedArea()
 			}
 	}
 
-	std::map<int, BYTE*>::iterator itorTerrain = kMap_pbyMarkBuf.begin();
+	auto itorTerrain = kMap_pbyMarkBuf.begin();
 	for (; itorTerrain != kMap_pbyMarkBuf.end(); ++itorTerrain)
 	{
 		int iTerrainNum = itorTerrain->first;

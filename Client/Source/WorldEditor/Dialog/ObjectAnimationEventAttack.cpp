@@ -67,17 +67,17 @@ BOOL CObjectAnimationEventAttack::Create (CWnd * pParent, const CRect & c_rRect)
 	SetDialogFloatText (GetSafeHwnd(), IDC_OBJECT_ANIMATION_EVENT_ATTACK_POSITION_Z, 0.0f);
 	SetDialogFloatText (GetSafeHwnd(), IDC_OBJECT_ANIMATION_EVENT_ATTACK_RADIUS, 0.0f);
 
-	m_HitTypeNameMap.insert (make_pair (NRaceData::HIT_TYPE_NONE, std::string ("None")));
-	m_HitTypeNameMap.insert (make_pair (NRaceData::HIT_TYPE_GREAT, std::string ("Great")));
-	m_HitTypeNameMap.insert (make_pair (NRaceData::HIT_TYPE_GOOD, std::string ("Good")));
+	m_HitTypeNameMap.try_emplace (NRaceData::HIT_TYPE_NONE, "None");
+	m_HitTypeNameMap.try_emplace (NRaceData::HIT_TYPE_GREAT, "Great");
+	m_HitTypeNameMap.try_emplace (NRaceData::HIT_TYPE_GOOD, "Good");
 
 	m_ctrlHitType.InsertString (0, "None");
 	m_ctrlHitType.InsertString (1, "Great");
 	m_ctrlHitType.InsertString (2, "Good");
 	m_ctrlHitType.SelectString (0, "Great");
 
-	m_AttackTypeNameMap.insert (make_pair (NRaceData::ATTACK_TYPE_SPLASH, std::string ("Splash")));
-	m_AttackTypeNameMap.insert (make_pair (NRaceData::ATTACK_TYPE_SNIPE, std::string ("Snipe")));
+	m_AttackTypeNameMap.try_emplace (NRaceData::ATTACK_TYPE_SPLASH, "Splash");
+	m_AttackTypeNameMap.try_emplace (NRaceData::ATTACK_TYPE_SNIPE, "Snipe");
 
 	m_ctrlAttackType.InsertString (0, "Splash");
 	m_ctrlAttackType.InsertString (1, "Snipe");
@@ -143,11 +143,11 @@ void CObjectAnimationEventAttack::SetData (const CRaceMotionDataAccessor::TMotio
 	SetDialogFloatText (GetSafeHwnd(), IDC_OBJECT_ANIMATION_EVENT_ATTACK_RADIUS, c_rSphereData.fRadius);
 	CheckDlgButton (IDC_OBJECT_ANIMATION_EVENT_HIT_PROCESS, pAttackData->isEnableHitProcess);
 
-	if (m_HitTypeNameMap.end() != m_HitTypeNameMap.find (pAttackData->AttackData.iHittingType))
+	if (m_HitTypeNameMap.contains(pAttackData->AttackData.iHittingType))
 	{
 		m_ctrlHitType.SelectString (0, m_HitTypeNameMap[pAttackData->AttackData.iHittingType].c_str());
 	}
-	if (m_AttackTypeNameMap.end() != m_AttackTypeNameMap.find (pAttackData->AttackData.iAttackType))
+	if (m_AttackTypeNameMap.contains(pAttackData->AttackData.iAttackType))
 	{
 		m_ctrlAttackType.SelectString (0, m_AttackTypeNameMap[pAttackData->AttackData.iAttackType].c_str());
 	}

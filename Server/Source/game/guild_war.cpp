@@ -427,7 +427,7 @@ void CGuild::RequestDeclareWar (DWORD dwOppGID, BYTE type)
 
 bool CGuild::DeclareWar (DWORD dwOppGID, BYTE type, BYTE state)
 {
-	if (m_EnemyGuild.find (dwOppGID) != m_EnemyGuild.end())
+	if (m_EnemyGuild.contains(dwOppGID))
 	{
 		return false;
 	}
@@ -435,7 +435,7 @@ bool CGuild::DeclareWar (DWORD dwOppGID, BYTE type, BYTE state)
 	TGuildWar gw (type);
 	gw.state = state;
 
-	m_EnemyGuild.insert (std::make_pair (dwOppGID, gw));
+	m_EnemyGuild.try_emplace (dwOppGID, gw);
 
 	GuildWarPacket (dwOppGID, type, state);
 	return true;
@@ -639,7 +639,7 @@ void CGuild::ReserveWar (DWORD dwOppGID, BYTE type)
 	{
 		TGuildWar gw (type);
 		gw.state = GUILD_WAR_RESERVE;
-		m_EnemyGuild.insert (std::make_pair (dwOppGID, gw));
+		m_EnemyGuild.try_emplace (dwOppGID, gw);
 	}
 	else
 	{

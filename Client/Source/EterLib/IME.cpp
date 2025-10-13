@@ -589,7 +589,7 @@ int  CIME::GetCandidate (DWORD index, std::string & rstrText)
 	}
 
 	LPCWSTR wszText = ms_wszCandidate[index];
-	if (wszText == NULL)
+	if (wszText == nullptr)
 	{
 		return 0;
 	}
@@ -680,7 +680,7 @@ void CIME::PasteTextFromClipBoard()
 		return;
 	}
 
-	if (!OpenClipboard (NULL))
+	if (!OpenClipboard (nullptr))
 	{
 		return;
 	}

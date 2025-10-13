@@ -128,7 +128,7 @@ CGuild* CGuildManager::GetLinkedGuild (DWORD pid)
 
 void CGuildManager::Link (DWORD pid, CGuild* guild)
 {
-	if (m_map_pkGuildByPID.find (pid) == m_map_pkGuildByPID.end())
+	if (!m_map_pkGuildByPID.contains(pid))
 	{
 		m_map_pkGuildByPID.insert (std::make_pair (pid, guild));
 	}
@@ -221,7 +221,7 @@ void CGuildManager::Initialize()
 	for (uint i = 0; i < pmsg->Get()->uiNumRows; i++)
 	{
 		MYSQL_ROW row = mysql_fetch_row (pmsg->Get()->pSQLResult);
-		DWORD guild_id = strtoul (row[0], (char**) NULL, 10);
+		DWORD guild_id = strtoul (row[0], (char**) nullptr, 10);
 		LoadGuild (guild_id);
 
 		vecGuildID.push_back (guild_id);
@@ -272,7 +272,7 @@ void CGuildManager::DisbandGuild (DWORD guild_id)
 
 void CGuildManager::SkillRecharge()
 {
-	for (TGuildMap::iterator it = m_mapGuild.begin(); it != m_mapGuild.end(); ++it)
+	for (auto it = m_mapGuild.begin(); it != m_mapGuild.end(); ++it)
 	{
 		it->second->SkillRecharge();
 	}
@@ -661,12 +661,12 @@ void CGuildManager::RefuseWar (DWORD guild_id1, DWORD guild_id2)
 		}
 	}
 
-	if (g1 != NULL)
+	if (g1 != nullptr)
 	{
 		g1->RefuseWar (guild_id2);
 	}
 
-	if (g2 != NULL && g1 != NULL)
+	if (g2 != nullptr && g1 != nullptr)
 	{
 		g2->RefuseWar (g1->GetID());
 	}
@@ -1055,7 +1055,7 @@ bool CGuildManager::IsBet (DWORD dwID, const char* c_pszLogin)
 		return true;
 	}
 
-	return it->second->mapBet.end() != it->second->mapBet.find (c_pszLogin);
+	return it->second->mapBet.contains(c_pszLogin);
 }
 
 void CGuildManager::ReserveWarDelete (DWORD dwID)

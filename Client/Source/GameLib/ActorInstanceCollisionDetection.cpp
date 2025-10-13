@@ -326,11 +326,11 @@ BOOL CActorInstance::__SplashAttackProcess (CActorInstance & rVictim)
 
 		int iCurrentHitCount = rHittedInstanceMap.size();
 		int iMaxHitCount = (0 == c_rAttackData.iHitLimitCount ? 16 : c_rAttackData.iHitLimitCount);
-		//Tracef(" ------------------- Splash Hit : %d\n", iCurrentHitCount);
+		Tracef(" ------------------- Splash Hit : %d\n", iCurrentHitCount);
 
 		if (iCurrentHitCount > iMaxHitCount)
 		{
-			//Tracef(" ------------------- OVER FLOW :: Splash Hit Count : %d\n", iCurrentHitCount);
+			Tracef(" ------------------- OVER FLOW :: Splash Hit Count : %d\n", iCurrentHitCount);
 			return FALSE;
 		}
 

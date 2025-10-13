@@ -102,7 +102,7 @@ static bool IS_MONKEY_DUNGEON (int map_index)
 		case 45:
 		case 108:
 		case 109:
-			return true;;
+			return true;
 	}
 
 	return false;
@@ -245,7 +245,7 @@ bool CHARACTER::CanHandleItem (bool bSkipCheckRefine, bool bSkipObserver)
 			return false;
 		}
 
-	if (IsCubeOpen() || NULL != DragonSoul_RefineWindow_GetOpener())
+	if (IsCubeOpen() || nullptr != DragonSoul_RefineWindow_GetOpener())
 	{
 		return false;
 	}
@@ -266,7 +266,7 @@ LPITEM CHARACTER::GetItem (TItemPos Cell) const
 {
 	if (!IsValidItemPosition (Cell))
 	{
-		return NULL;
+		return nullptr;
 	}
 	WORD wCell = Cell.cell;
 	BYTE window_type = Cell.window_type;
@@ -277,21 +277,21 @@ LPITEM CHARACTER::GetItem (TItemPos Cell) const
 			if (wCell >= INVENTORY_AND_EQUIP_SLOT_MAX)
 			{
 				sys_err ("CHARACTER::GetInventoryItem: invalid item cell %d", wCell);
-				return NULL;
+				return nullptr;
 			}
 			return m_pointsInstant.pItems[wCell];
 		case DRAGON_SOUL_INVENTORY:
 			if (wCell >= DRAGON_SOUL_INVENTORY_MAX_NUM)
 			{
 				sys_err ("CHARACTER::GetInventoryItem: invalid DS item cell %d", wCell);
-				return NULL;
+				return nullptr;
 			}
 			return m_pointsInstant.pDSItems[wCell];
 
 		default:
-			return NULL;
+			return nullptr;
 	}
-	return NULL;
+	return nullptr;
 }
 
 void CHARACTER::SetItem (TItemPos Cell, LPITEM pItem)
@@ -512,7 +512,7 @@ LPITEM CHARACTER::GetWear (BYTE bCell) const
 	if (bCell >= WEAR_MAX_NUM + DRAGON_SOUL_DECK_MAX_NUM * DS_SLOT_MAX)
 	{
 		sys_err ("CHARACTER::GetWear: invalid wear cell %d", bCell);
-		return NULL;
+		return nullptr;
 	}
 
 	return m_pointsInstant.pItems[INVENTORY_MAX_NUM + bCell];
@@ -899,7 +899,7 @@ void NotifyRefineSuccess (LPCHARACTER ch, LPITEM item, const char* way)
 
 void NotifyRefineFail (LPCHARACTER ch, LPITEM item, const char* way, int success = 0)
 {
-	if (NULL != ch && NULL != item)
+	if (nullptr != ch && nullptr != item)
 	{
 		ch->ChatPacket (CHAT_TYPE_COMMAND, "RefineFailed");
 
@@ -909,7 +909,7 @@ void NotifyRefineFail (LPCHARACTER ch, LPITEM item, const char* way, int success
 
 void CHARACTER::SetRefineNPC (LPCHARACTER ch)
 {
-	if (ch != NULL)
+	if (ch != nullptr)
 	{
 		m_dwRefineNPCVID = ch->GetVID();
 	}

@@ -1367,12 +1367,12 @@ bool CMapOutdoorAccessor::LoadTerrain (WORD wX, WORD wY, WORD wCellCoordX, WORD 
 		return false;
 	}
 
-	if (stTokenVectorMap.end() == stTokenVectorMap.find ("scripttype"))
+	if (!stTokenVectorMap.contains("scripttype"))
 	{
 		return false;
 	}
 
-	if (stTokenVectorMap.end() == stTokenVectorMap.find ("areaname"))
+	if (!stTokenVectorMap.contains("areaname"))
 	{
 		return false;
 	}
@@ -1829,7 +1829,7 @@ struct FGetDungeonObjectHeight
 
 void CMapOutdoorAccessor::ArrangeTerrainHeight()
 {
-	int iRet = ::MessageBox (NULL, "Terrain will change and it can't be undone.\nDo you want to proceed?", "Warning", MB_YESNO);
+	int iRet = ::MessageBox (nullptr, "Terrain will change and it can't be undone.\nDo you want to proceed?", "Warning", MB_YESNO);
 	if (6 != iRet)
 	{
 		return;

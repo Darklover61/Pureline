@@ -1272,7 +1272,7 @@ void CGuildManager::ProcessReserveWar()
 				r.bStarted = true;
 
 				TGuildWaitStartInfo info (r.bType, r.dwGuildFrom, r.dwGuildTo, r.lWarPrice, r.lInitialScore, pk);
-				m_pqWaitStart.push (std::make_pair (dwCurTime + GetGuildWarWaitStartDuration(), info));
+				m_pqWaitStart.emplace (dwCurTime + GetGuildWarWaitStartDuration(), info);
 
 				TPacketGuildWar pck;
 
@@ -1447,7 +1447,7 @@ bool CGuildWarReserve::Bet (const char* pszLogin, DWORD dwGold, DWORD dwGuild)
 		return false;
 	}
 
-	if (mapBet.find (pszLogin) != mapBet.end())
+	if (mapBet.contains(pszLogin))
 	{
 		sys_log (0, "GuildWarReserve::Bet: failed. already bet");
 		return false;
@@ -1482,7 +1482,7 @@ bool CGuildWarReserve::Bet (const char* pszLogin, DWORD dwGold, DWORD dwGuild)
 	CDBManager::instance().AsyncQuery (szQuery);
 
 	sys_log (0, "GuildWarReserve::Bet: success. %s %u war_id %u bet %u : %u", pszLogin, dwGuild, m_data.dwID, m_data.dwBetFrom, m_data.dwBetTo);
-	mapBet.insert (std::make_pair (pszLogin, std::make_pair (dwGuild, dwGold)));
+	mapBet.try_emplace (pszLogin, dwGuild, dwGold);
 
 	TPacketGDGuildWarBet pckBet;
 	pckBet.dwWarID = m_data.dwID;

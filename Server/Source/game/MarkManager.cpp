@@ -302,7 +302,7 @@ void CGuildMarkManager::GetDiffBlocks (DWORD imgIdx, const DWORD * crcList, std:
 	mapDiffBlocks.clear();
 
 	// 클라이언트에서 서버에 없는 이미지를 요청할 수는 없다.
-	if (m_mapIdx_Image.end() == m_mapIdx_Image.find (imgIdx))
+	if (!m_mapIdx_Image.contains(imgIdx))
 	{
 		sys_err ("invalid idx %u", imgIdx);
 		return;
@@ -333,7 +333,7 @@ bool CGuildMarkManager::SaveBlockFromCompressedData (DWORD imgIdx, DWORD posBloc
 bool CGuildMarkManager::GetBlockCRCList (DWORD imgIdx, DWORD * crcList)
 {
 	// 클라이언트에서 서버에 없는 이미지를 요청할 수는 없다.
-	if (m_mapIdx_Image.end() == m_mapIdx_Image.find (imgIdx))
+	if (!m_mapIdx_Image.contains(imgIdx))
 	{
 		sys_err ("invalid idx %u", imgIdx);
 		return false;
@@ -358,7 +358,7 @@ const CGuildMarkManager::TGuildSymbol* CGuildMarkManager::GetGuildSymbol (DWORD 
 
 	if (it == m_mapSymbol.end())
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	return &it->second;
@@ -388,7 +388,7 @@ bool CGuildMarkManager::LoadSymbol (const char* filename)
 			gs.raw.resize (dwSize);
 			fread (&gs.raw[0], 1, dwSize, fp);
 			gs.crc = GetCRC32 (reinterpret_cast<const char*> (&gs.raw[0]), dwSize);
-			m_mapSymbol.insert (std::make_pair (guildID, gs));
+			m_mapSymbol.try_emplace (guildID, gs);
 		}
 	}
 
@@ -408,7 +408,7 @@ void CGuildMarkManager::SaveSymbol (const char* filename)
 	DWORD symbolCount = m_mapSymbol.size();
 	fwrite (&symbolCount, 4, 1, fp);
 
-	for (std::map<DWORD, TGuildSymbol>::iterator it = m_mapSymbol.begin(); it != m_mapSymbol.end(); ++it)
+	for (auto it = m_mapSymbol.begin(); it != m_mapSymbol.end(); ++it)
 	{
 		DWORD guildID = it->first;
 		DWORD dwSize = it->second.raw.size();
@@ -424,9 +424,9 @@ void CGuildMarkManager::UploadSymbol (DWORD guildID, int iSize, const BYTE* pbyD
 {
 	sys_log (0, "GuildSymbolUpload guildID %u Size %d", guildID, iSize);
 
-	if (m_mapSymbol.find (guildID) == m_mapSymbol.end())
+	if (!m_mapSymbol.contains(guildID))
 	{
-		m_mapSymbol.insert (std::make_pair (guildID, TGuildSymbol()));
+		m_mapSymbol.try_emplace (guildID /* emplacing a default constructed object */);
 	}
 
 	TGuildSymbol& rSymbol = m_mapSymbol[guildID];

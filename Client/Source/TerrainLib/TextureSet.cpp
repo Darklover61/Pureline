@@ -35,13 +35,13 @@ bool CTextureSet::Load (const char* c_szTextureSetFileName, float fTerrainTexCoo
 		return false;
 	}
 
-	if (stTokenVectorMap.end() == stTokenVectorMap.find ("textureset"))
+	if (!stTokenVectorMap.contains("textureset"))
 	{
 		TraceError ("TextureSet::Load : syntax error, TextureSet (filename: %s)", c_szTextureSetFileName);
 		return false;
 	}
 
-	if (stTokenVectorMap.end() == stTokenVectorMap.find ("texturecount"))
+	if (!stTokenVectorMap.contains("texturecount"))
 	{
 		TraceError ("TextureSet::Load : syntax error, TextureCount (filename: %s)", c_szTextureSetFileName);
 		return false;
@@ -60,7 +60,7 @@ bool CTextureSet::Load (const char* c_szTextureSetFileName, float fTerrainTexCoo
 	{
 		_snprintf (szTextureName, sizeof (szTextureName), "texture%03d", i + 1);
 
-		if (stTokenVectorMap.end() == stTokenVectorMap.find (szTextureName))
+		if (!stTokenVectorMap.contains(szTextureName))
 		{
 			continue;
 		}

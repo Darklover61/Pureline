@@ -299,12 +299,12 @@ void TEMP_CAreaLoaderThread::ProcessTerrain()	// called in loader thread
 
 	Sleep (g_iLoadingDelayTime);
 
-	if (stTokenVectorMap.end() == stTokenVectorMap.find ("scripttype"))
+	if (!stTokenVectorMap.contains("scripttype"))
 	{
 		return;
 	}
 
-	if (stTokenVectorMap.end() == stTokenVectorMap.find ("areaname"))
+	if (!stTokenVectorMap.contains("areaname"))
 	{
 		return;
 	}
