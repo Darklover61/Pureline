@@ -48,9 +48,9 @@ void CGrannyMesh::NEW_LoadVertices (void* dstBaseVertices)
 
 void CGrannyMesh::DeformPNTVertices (void* dstBaseVertices, D3DXMATRIX * boneMatrices, granny_mesh_binding* pgrnMeshBinding) const
 {
-	assert (dstBaseVertices != NULL);
-	assert (boneMatrices != NULL);
-	assert (m_pgrnMeshDeformer != NULL);
+	assert (dstBaseVertices != nullptr);
+	assert (boneMatrices != nullptr);
+	assert (m_pgrnMeshDeformer != nullptr);
 
 	const granny_mesh * pgrnMesh = GetGrannyMeshPointer();
 
@@ -89,7 +89,7 @@ const CGrannyMesh::TTriGroupNode* CGrannyMesh::GetTriGroupNodeList (CGrannyMater
 
 int CGrannyMesh::GetVertexCount() const
 {
-	assert (m_pgrnMesh != NULL);
+	assert (m_pgrnMesh != nullptr);
 	return GrannyGetMeshVertexCount (m_pgrnMesh);
 }
 
@@ -145,7 +145,7 @@ bool CGrannyMesh::CreateFromGrannyMeshPointer (granny_skeleton * pgrnSkeleton, g
 		granny_data_type_definition * pgrnOutputType = m_pgrnMeshType;
 
 		m_pgrnMeshDeformer = GrannyNewMeshDeformer (pgrnInputType, pgrnOutputType, GrannyDeformPositionNormal, GrannyAllowUncopiedTail);
-		assert (m_pgrnMeshDeformer != NULL && "Cannot create mesh deformer");
+		assert (m_pgrnMeshDeformer != nullptr && "Cannot create mesh deformer");
 	}
 
 	// Two Side Mesh
@@ -169,8 +169,8 @@ bool CGrannyMesh::CreateFromGrannyMeshPointer (granny_skeleton * pgrnSkeleton, g
 
 bool CGrannyMesh::LoadTriGroupNodeList (CGrannyMaterialPalette& rkMtrlPal)
 {
-	assert (m_pgrnMesh != NULL);
-	assert (m_triGroupNodes == NULL);
+	assert (m_pgrnMesh != nullptr);
+	assert (m_triGroupNodes == nullptr);
 
 	int mtrlCount		= m_pgrnMesh->MaterialBindingCount;
 	if (mtrlCount <= 0) // ÃµÀÇ µ¿±¼ 2Ãþ Å©·¡½¬ ¹ß»ý
@@ -248,7 +248,7 @@ void CGrannyMesh::RebuildTriGroupNodeList()
 
 bool CGrannyMesh::LoadMaterials (CGrannyMaterialPalette& rkMtrlPal)
 {
-	assert (m_pgrnMesh != NULL);
+	assert (m_pgrnMesh != nullptr);
 
 	if (m_pgrnMesh->MaterialBindingCount <= 0)
 	{
@@ -308,17 +308,17 @@ void CGrannyMesh::Initialize()
 {
 	for (int r = 0; r < CGrannyMaterial::TYPE_MAX_NUM; ++r)
 	{
-		m_triGroupNodeLists[r] = NULL;
+		m_triGroupNodeLists[r] = nullptr;
 	}
 
 	m_pgrnMeshType = GrannyPNT332VertexType;
-	m_pgrnMesh = NULL;
+	m_pgrnMesh = nullptr;
 	// WORK
-	m_pgrnMeshBindingTemp = NULL;
+	m_pgrnMeshBindingTemp = nullptr;
 	// END_OF_WORK
-	m_pgrnMeshDeformer = NULL;
+	m_pgrnMeshDeformer = nullptr;
 
-	m_triGroupNodes = NULL;
+	m_triGroupNodes = nullptr;
 
 	m_vtxBasePos = 0;
 	m_idxBasePos = 0;

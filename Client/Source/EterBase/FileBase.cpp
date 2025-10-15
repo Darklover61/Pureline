@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 #include "FileBase.h"
 
-CFileBase::CFileBase() : m_hFile (NULL), m_dwSize (0)
+CFileBase::CFileBase() : m_hFile (nullptr), m_dwSize (0)
 {
 }
 
@@ -26,7 +26,7 @@ void CFileBase::Close()
 	if (m_hFile)
 	{
 		CloseHandle (m_hFile);
-		m_hFile = NULL;
+		m_hFile = nullptr;
 	}
 }
 
@@ -51,14 +51,14 @@ BOOL CFileBase::Create (const char* filename, EFileMode mode)
 	m_hFile = CreateFile (filename,					// name of the file
 						  dwMode,					// desired access
 						  dwShareMode,				// share mode
-						  NULL,						// security attributes
+						  nullptr,						// security attributes
 						  mode == FILEMODE_READ ? OPEN_EXISTING : OPEN_ALWAYS, // creation disposition
 						  FILE_ATTRIBUTE_NORMAL,		// flags and attr
-						  NULL);						// template file
+						  nullptr);						// template file
 
 	if (m_hFile != INVALID_HANDLE_VALUE)
 	{
-		m_dwSize = GetFileSize (m_hFile, NULL);
+		m_dwSize = GetFileSize (m_hFile, nullptr);
 		m_mode = mode;
 		return true;
 	}
@@ -77,7 +77,7 @@ DWORD CFileBase::Size()
 
 void CFileBase::SeekCur (DWORD size)
 {
-	SetFilePointer (m_hFile, size, NULL, FILE_CURRENT);
+	SetFilePointer (m_hFile, size, nullptr, FILE_CURRENT);
 }
 
 void CFileBase::Seek (DWORD offset)
@@ -87,32 +87,32 @@ void CFileBase::Seek (DWORD offset)
 		offset = m_dwSize;
 	}
 
-	SetFilePointer (m_hFile, offset, NULL, FILE_BEGIN);
+	SetFilePointer (m_hFile, offset, nullptr, FILE_BEGIN);
 }
 
 DWORD CFileBase::GetPosition()
 {
-	return SetFilePointer (m_hFile, 0, NULL, FILE_CURRENT);
+	return SetFilePointer (m_hFile, 0, nullptr, FILE_CURRENT);
 }
 
 BOOL CFileBase::Write (const void* src, int bytes)
 {
 	DWORD dwUseless;
-	BOOL ret = WriteFile (m_hFile, src, bytes, &dwUseless, NULL);
+	BOOL ret = WriteFile (m_hFile, src, bytes, &dwUseless, nullptr);
 
 	if (!ret)
 	{
 		return false;
 	}
 
-	m_dwSize = GetFileSize (m_hFile, NULL);
+	m_dwSize = GetFileSize (m_hFile, nullptr);
 	return true;
 }
 
 BOOL CFileBase::Read (void* dest, int bytes)
 {
 	DWORD dwUseless;
-	return ReadFile (m_hFile, dest, bytes, &dwUseless, NULL);
+	return ReadFile (m_hFile, dest, bytes, &dwUseless, nullptr);
 }
 
 BOOL CFileBase::IsNull()

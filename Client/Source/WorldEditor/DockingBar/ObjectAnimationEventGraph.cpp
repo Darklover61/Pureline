@@ -2,7 +2,7 @@
 //
 
 #include "StdAfx.h"
-#include "..\WorldEditor.h"
+#include "../WorldEditor.h"
 #include "ObjectAnimationEventGraph.h"
 
 #ifdef _DEBUG
@@ -146,7 +146,7 @@ void CObjectAnimationEventGraph::Render()
 		}
 	}
 
-	for (TEventNodeList::iterator itor = m_EventNodeList.begin(); itor != m_EventNodeList.end(); ++itor)
+	for (auto itor = m_EventNodeList.begin(); itor != m_EventNodeList.end(); ++itor)
 	{
 		TEventNode * pEventNode = *itor;
 		RenderNodeOutline (NODE_TYPE_LEFT, pEventNode->fPosition);
@@ -508,8 +508,8 @@ void CObjectAnimationEventGraph::OnMouseMove (UINT nFlags, CPoint point)
 	}
 	else
 	{
-		m_pOverNode = NULL;
-		for (TEventNodeList::iterator itor = m_EventNodeList.begin(); itor != m_EventNodeList.end(); ++itor)
+		m_pOverNode = nullptr;
+		for (auto itor = m_EventNodeList.begin(); itor != m_EventNodeList.end(); ++itor)
 		{
 			TEventNode * pEventNode = *itor;
 			if (isOverNode (NODE_TYPE_LEFT, pEventNode->fPosition, point))
@@ -630,8 +630,8 @@ void CObjectAnimationEventGraph::OnLButtonDown (UINT nFlags, CPoint point)
 	BOOL isPickedNode = FALSE;
 
 	// Motion Event
-	m_pSelectedNode = NULL;
-	for (TEventNodeList::iterator itor = m_EventNodeList.begin(); itor != m_EventNodeList.end(); ++itor)
+	m_pSelectedNode = nullptr;
+	for (auto itor = m_EventNodeList.begin(); itor != m_EventNodeList.end(); ++itor)
 	{
 		TEventNode * pEventNode = *itor;
 		if (isOverNode (NODE_TYPE_LEFT, pEventNode->fPosition, point))
@@ -739,15 +739,15 @@ void CObjectAnimationEventGraph::OnRButtonDown (UINT nFlags, CPoint point)
 {
 	if (GetAsyncKeyState (VK_LCONTROL) & 0x8000)
 	{
-		for (TEventNodeList::iterator itor = m_EventNodeList.begin(); itor != m_EventNodeList.end(); ++itor)
+		for (auto itor = m_EventNodeList.begin(); itor != m_EventNodeList.end(); ++itor)
 		{
 			TEventNode * pEventNode = *itor;
 			if (isOverNode (NODE_TYPE_LEFT, pEventNode->fPosition, point))
 			{
 				DeleteEventNode (pEventNode);
 
-				m_pOverNode = NULL;
-				m_pPickedNode = NULL;
+				m_pOverNode = nullptr;
+				m_pPickedNode = nullptr;
 				break;
 			}
 		}

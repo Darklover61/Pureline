@@ -888,5 +888,6 @@
       <Filter>Source Files</Filter>
     </None>
     <None Include="Makefile" />
+    <None Include="cpp.hint" />
   </ItemGroup>
 </Project>

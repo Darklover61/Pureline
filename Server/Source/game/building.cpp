@@ -424,7 +424,7 @@ LPOBJECT CLand::FindObject (DWORD dwID)
 
 	if (it == m_map_pkObject.end())
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	return it->second;
@@ -432,8 +432,7 @@ LPOBJECT CLand::FindObject (DWORD dwID)
 
 LPOBJECT CLand::FindObjectByGroup (DWORD dwGroupVnum)
 {
-	std::map<DWORD, LPOBJECT>::iterator it;
-	for (it = m_map_pkObject.begin(); it != m_map_pkObject.end(); ++it)
+	for (auto it = m_map_pkObject.begin(); it != m_map_pkObject.end(); ++it)
 	{
 		LPOBJECT pObj = it->second;
 		if (pObj->GetGroup() == dwGroupVnum)
@@ -442,13 +441,12 @@ LPOBJECT CLand::FindObjectByGroup (DWORD dwGroupVnum)
 		}
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 LPOBJECT CLand::FindObjectByVnum (DWORD dwVnum)
 {
-	std::map<DWORD, LPOBJECT>::iterator it;
-	for (it = m_map_pkObject.begin(); it != m_map_pkObject.end(); ++it)
+	for (auto it = m_map_pkObject.begin(); it != m_map_pkObject.end(); ++it)
 	{
 		LPOBJECT pObj = it->second;
 		if (pObj->GetVnum() == dwVnum)
@@ -457,7 +455,7 @@ LPOBJECT CLand::FindObjectByVnum (DWORD dwVnum)
 		}
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 // BUILDING_NPC
@@ -465,11 +463,10 @@ LPOBJECT CLand::FindObjectByNPC (LPCHARACTER npc)
 {
 	if (!npc)
 	{
-		return NULL;
+		return nullptr;
 	}
 
-	std::map<DWORD, LPOBJECT>::iterator it;
-	for (it = m_map_pkObject.begin(); it != m_map_pkObject.end(); ++it)
+	for (auto it = m_map_pkObject.begin(); it != m_map_pkObject.end(); ++it)
 	{
 		LPOBJECT pObj = it->second;
 		if (pObj->GetNPC() == npc)
@@ -478,7 +475,7 @@ LPOBJECT CLand::FindObjectByNPC (LPCHARACTER npc)
 		}
 	}
 
-	return NULL;
+	return nullptr;
 }
 // END_OF_BUILDING_NPC
 
@@ -488,7 +485,7 @@ LPOBJECT CLand::FindObjectByVID (DWORD dwVID)
 
 	if (it == m_map_pkObjectByVID.end())
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	return it->second;
@@ -710,7 +707,7 @@ bool CManager::LoadObjectProto (const TObjectProto * pProto, int size) // from D
 				break;
 			}
 
-			if (NULL == ITEM_MANAGER::instance().GetTable (r.kMaterials[j].dwItemVnum))
+			if (nullptr == ITEM_MANAGER::instance().GetTable (r.kMaterials[j].dwItemVnum))
 			{
 				sys_err ("          mat: ERROR!! no item by vnum %u", r.kMaterials[j].dwItemVnum);
 				return false;
@@ -731,7 +728,7 @@ TObjectProto* CManager::GetObjectProto (DWORD dwVnum)
 
 	if (it == m_map_pkObjectProto.end())
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	return it->second;
@@ -809,7 +806,7 @@ CLand* CManager::FindLand (DWORD dwID)
 
 	if (it == m_map_pkLand.end())
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	return it->second;
@@ -823,7 +820,7 @@ CLand* CManager::FindLand (long lMapIndex, long x, long y)
 
 	if (!r)
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	x -= r->sx;
@@ -854,7 +851,7 @@ CLand* CManager::FindLand (long lMapIndex, long x, long y)
 		return pkLand;
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 CLand* CManager::FindLandByGuild (DWORD GID)
@@ -871,7 +868,7 @@ CLand* CManager::FindLandByGuild (DWORD GID)
 		}
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 bool CManager::LoadObject (TObject * pTable, bool isBoot) // from DB

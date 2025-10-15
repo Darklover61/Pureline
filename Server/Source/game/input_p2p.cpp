@@ -282,7 +282,7 @@ void SendShout (const char* szText, BYTE bEmpire, bool bCanFormat)
 	/* - CLIENT_LOCALE_STRING ------------------------------
 	bCanFormat
 	*/
-	std::for_each (c_ref_set.begin(), c_ref_set.end(), FuncShout (szText, bEmpire, bCanFormat));
+	std::ranges::for_each (c_ref_set, FuncShout (szText, bEmpire, bCanFormat));
 	/* ----------------------------------------------------- */
 }
 

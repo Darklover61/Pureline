@@ -381,7 +381,7 @@ void CSlotWindow::SetSlotBaseImage (const char* c_szFileName, float fr, float fg
 
 void CSlotWindow::AppendSlotButton (const char* c_szUpImageName, const char* c_szOverImageName, const char* c_szDownImageName)
 {
-	for (TSlotListIterator itor = m_SlotList.begin(); itor != m_SlotList.end(); ++itor)
+	for (auto itor = m_SlotList.begin(); itor != m_SlotList.end(); ++itor)
 	{
 		TSlot & rSlot = *itor;
 		CSlotButton*& rpSlotButton = rSlot.pSlotButton;
@@ -403,14 +403,14 @@ void CSlotWindow::AppendSlotButton (const char* c_szUpImageName, const char* c_s
 
 void CSlotWindow::AppendRequirementSignImage (const char* c_szImageName)
 {
-	for (TSlotListIterator itor = m_SlotList.begin(); itor != m_SlotList.end(); ++itor)
+	for (auto itor = m_SlotList.begin(); itor != m_SlotList.end(); ++itor)
 	{
 		TSlot & rSlot = *itor;
 		CImageBox*& rpSignImage = rSlot.pSignImage;
 
 		if (!rpSignImage)
 		{
-			rpSignImage = new CImageBox (NULL);
+			rpSignImage = new CImageBox (nullptr);
 			CWindowManager::Instance().SetParent (rpSignImage, this);
 		}
 
@@ -737,7 +737,7 @@ void CSlotWindow::DisableSlot (DWORD dwIndex)
 
 void CSlotWindow::SelectSlot (DWORD dwSelectingIndex)
 {
-	std::list<DWORD>::iterator itor = m_dwSelectedSlotIndexList.begin();
+	auto itor = m_dwSelectedSlotIndexList.begin();
 	for (; itor != m_dwSelectedSlotIndexList.end();)
 	{
 		if (dwSelectingIndex == *itor)
@@ -765,7 +765,7 @@ void CSlotWindow::SelectSlot (DWORD dwSelectingIndex)
 
 BOOL CSlotWindow::isSelectedSlot (DWORD dwIndex)
 {
-	std::list<DWORD>::iterator itor = m_dwSelectedSlotIndexList.begin();
+	auto itor = m_dwSelectedSlotIndexList.begin();
 	for (; itor != m_dwSelectedSlotIndexList.end(); ++itor)
 	{
 		if (dwIndex == *itor)
@@ -795,7 +795,7 @@ DWORD CSlotWindow::GetSelectedSlotNumber (DWORD dwIndex)
 	}
 
 	DWORD dwCount = 0;
-	std::list<DWORD>::iterator itor = m_dwSelectedSlotIndexList.begin();
+	auto itor = m_dwSelectedSlotIndexList.begin();
 	for (; itor != m_dwSelectedSlotIndexList.end(); ++itor)
 	{
 		if (dwIndex == dwCount)
@@ -825,7 +825,7 @@ void CSlotWindow::ShowSlotButton (DWORD dwSlotNumber)
 
 void CSlotWindow::HideAllSlotButton()
 {
-	for (TSlotListIterator itor = m_SlotList.begin(); itor != m_SlotList.end(); ++itor)
+	for (auto itor = m_SlotList.begin(); itor != m_SlotList.end(); ++itor)
 	{
 		TSlot & rSlot = *itor;
 
@@ -1069,7 +1069,7 @@ void CSlotWindow::OnPressedSlotButton (DWORD dwType, DWORD dwSlotNumber, BOOL is
 
 void CSlotWindow::OnUpdate()
 {
-	for (std::deque<DWORD>::iterator itor = m_ReserveDestroyEffectDeque.begin(); itor != m_ReserveDestroyEffectDeque.end(); ++itor)
+	for (auto itor = m_ReserveDestroyEffectDeque.begin(); itor != m_ReserveDestroyEffectDeque.end(); ++itor)
 	{
 		DWORD dwSlotIndex = *itor;
 
@@ -1103,7 +1103,7 @@ void CSlotWindow::OnRender()
 			break;
 	}
 
-	std::for_each (m_pChildList.begin(), m_pChildList.end(), std::mem_fn (&CWindow::OnRender));
+	std::ranges::for_each (m_pChildList, std::mem_fn (&CWindow::OnRender));
 
 	TSlotListIterator itor;
 
@@ -1226,7 +1226,7 @@ void CSlotWindow::RenderSlotBaseImage()
 		return;
 	}
 
-	for (TSlotListIterator itor = m_SlotList.begin(); itor != m_SlotList.end(); ++itor)
+	for (auto itor = m_SlotList.begin(); itor != m_SlotList.end(); ++itor)
 	{
 		TSlot & rSlot = *itor;
 
@@ -1262,7 +1262,7 @@ void CSlotWindow::OnRenderPickingSlot()
 
 void CSlotWindow::OnRenderSelectedSlot()
 {
-	std::list<DWORD>::iterator itor = m_dwSelectedSlotIndexList.begin();
+	auto itor = m_dwSelectedSlotIndexList.begin();
 	for (; itor != m_dwSelectedSlotIndexList.end(); ++itor)
 	{
 		TSlot * pSlot;
@@ -1282,7 +1282,7 @@ void CSlotWindow::OnRenderSelectedSlot()
 void CSlotWindow::RenderLockedSlot()
 {
 	CPythonGraphic::Instance().SetDiffuseColor (0.0f, 0.0f, 0.0f, 0.5f);
-	for (TSlotListIterator itor = m_SlotList.begin(); itor != m_SlotList.end(); ++itor)
+	for (auto itor = m_SlotList.begin(); itor != m_SlotList.end(); ++itor)
 	{
 		TSlot & rSlot = *itor;
 
@@ -1305,7 +1305,7 @@ void CSlotWindow::RenderLockedSlot()
 
 BOOL CSlotWindow::GetSlotPointer (DWORD dwIndex, TSlot** ppSlot)
 {
-	for (TSlotListIterator itor = m_SlotList.begin(); itor != m_SlotList.end(); ++itor)
+	for (auto itor = m_SlotList.begin(); itor != m_SlotList.end(); ++itor)
 	{
 		TSlot & rSlot = *itor;
 
@@ -1324,7 +1324,7 @@ BOOL CSlotWindow::GetSelectedSlotPointer (TSlot** ppSlot)
 	long lx, ly;
 	GetMouseLocalPosition (lx, ly);
 
-	for (TSlotListIterator itor = m_SlotList.begin(); itor != m_SlotList.end(); ++itor)
+	for (auto itor = m_SlotList.begin(); itor != m_SlotList.end(); ++itor)
 	{
 		TSlot & rSlot = *itor;
 
@@ -1351,7 +1351,7 @@ BOOL CSlotWindow::GetPickedSlotPointer (TSlot** ppSlot)
 
 	// NOTE : 왼쪽 맨위 상단 한곳이 기준 이라는 점을 이용해 왼쪽 위에서부터 오른쪽 아래로
 	//        차례로 검색해 감으로써 덮혀 있는 Slot은 자동 무시 된다는 특성을 이용한다. - [levites]
-	for (TSlotListIterator itor = m_SlotList.begin(); itor != m_SlotList.end(); ++itor)
+	for (auto itor = m_SlotList.begin(); itor != m_SlotList.end(); ++itor)
 	{
 		TSlot & rSlot = *itor;
 
@@ -1422,7 +1422,7 @@ void CSlotWindow::__CreateSlotEnableEffect()
 {
 	__DestroySlotEnableEffect();
 
-	m_pSlotActiveEffect = new CAniImageBox (NULL);
+	m_pSlotActiveEffect = new CAniImageBox (nullptr);
 	m_pSlotActiveEffect->AppendImage ("d:/ymir work/ui/public/slotactiveeffect/00.sub");
 	m_pSlotActiveEffect->AppendImage ("d:/ymir work/ui/public/slotactiveeffect/01.sub");
 	m_pSlotActiveEffect->AppendImage ("d:/ymir work/ui/public/slotactiveeffect/02.sub");
@@ -1479,7 +1479,7 @@ void CSlotWindow::__DestroyToggleSlotImage()
 	if (m_pToggleSlotImage)
 	{
 		delete m_pToggleSlotImage;
-		m_pToggleSlotImage = NULL;
+		m_pToggleSlotImage = nullptr;
 	}
 }
 
@@ -1488,7 +1488,7 @@ void CSlotWindow::__DestroySlotEnableEffect()
 	if (m_pSlotActiveEffect)
 	{
 		delete m_pSlotActiveEffect;
-		m_pSlotActiveEffect = NULL;
+		m_pSlotActiveEffect = nullptr;
 	}
 }
 
@@ -1497,7 +1497,7 @@ void CSlotWindow::__DestroyFinishCoolTimeEffect (TSlot * pSlot)
 	if (pSlot->pFinishCoolTimeEffect)
 	{
 		delete pSlot->pFinishCoolTimeEffect;
-		pSlot->pFinishCoolTimeEffect = NULL;
+		pSlot->pFinishCoolTimeEffect = nullptr;
 	}
 }
 
@@ -1506,7 +1506,7 @@ void CSlotWindow::__DestroyBaseImage()
 	if (m_pBaseImageInstance)
 	{
 		CGraphicImageInstance::Delete (m_pBaseImageInstance);
-		m_pBaseImageInstance = NULL;
+		m_pBaseImageInstance = nullptr;
 	}
 }
 
@@ -1519,14 +1519,14 @@ void CSlotWindow::__Initialize()
 	m_isUseMode = FALSE;
 	m_isUsableItem = FALSE;
 
-	m_pToggleSlotImage = NULL;
-	m_pSlotActiveEffect = NULL;
-	m_pBaseImageInstance = NULL;
+	m_pToggleSlotImage = nullptr;
+	m_pSlotActiveEffect = nullptr;
+	m_pBaseImageInstance = nullptr;
 }
 
 void CSlotWindow::Destroy()
 {
-	for (TSlotListIterator itor = m_SlotList.begin(); itor != m_SlotList.end(); ++itor)
+	for (auto itor = m_SlotList.begin(); itor != m_SlotList.end(); ++itor)
 	{
 		TSlot & rSlot = *itor;
 
@@ -1535,7 +1535,7 @@ void CSlotWindow::Destroy()
 		if (rSlot.pNumberLine)
 		{
 			delete rSlot.pNumberLine;
-			rSlot.pNumberLine = NULL;
+			rSlot.pNumberLine = nullptr;
 		}
 		if (rSlot.pCoverButton)
 		{

@@ -332,13 +332,13 @@ void heartbeat (LPHEART ht, int pulse)
 		if (thecore_pulse() > g_shutdown_disconnect_pulse)
 		{
 			const DESC_MANAGER::DESC_SET & c_set_desc = DESC_MANAGER::instance().GetClientSet();
-			std::for_each (c_set_desc.begin(), c_set_desc.end(), ::SendDisconnectFunc());
+			std::ranges::for_each (c_set_desc, ::SendDisconnectFunc());
 			g_shutdown_disconnect_pulse = INT_MAX;
 		}
 		else if (thecore_pulse() > g_shutdown_disconnect_force_pulse)
 		{
 			const DESC_MANAGER::DESC_SET & c_set_desc = DESC_MANAGER::instance().GetClientSet();
-			std::for_each (c_set_desc.begin(), c_set_desc.end(), ::DisconnectFunc());
+			std::ranges::for_each (c_set_desc, ::DisconnectFunc());
 		}
 		else if (thecore_pulse() > g_shutdown_disconnect_force_pulse + PASSES_PER_SEC (5))
 		{
@@ -575,7 +575,7 @@ int start (int argc, char** argv)
 
 	while (false /*(ch = getopt(argc, argv, "npverltI")) != -1*/)
 	{
-		char* ep = NULL;
+		char* ep = nullptr;
 
 		switch (ch)
 		{

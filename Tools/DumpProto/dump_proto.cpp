@@ -4,9 +4,9 @@
                 ((DWORD)(BYTE)(ch0) | ((DWORD)(BYTE)(ch1) << 8) |   \
                 ((DWORD)(BYTE)(ch2) << 16) | ((DWORD)(BYTE)(ch3) << 24 ))
 
-typedef unsigned char BYTE;
-typedef unsigned short WORD;
-typedef unsigned long DWORD;
+using BYTE = unsigned char;
+using WORD = unsigned short;
+using DWORD = unsigned long;
 
 enum EMisc
 {
@@ -43,15 +43,15 @@ enum EMobResists
 
 
 #pragma pack(1)
-typedef struct SMobSkillLevel
+using TMobSkillLevel = struct SMobSkillLevel
 {
 	DWORD	dwVnum;
 	BYTE	bLevel;
-} TMobSkillLevel;
+};
 #pragma pack()
 
 #pragma pack(1)
-typedef struct SMobTable
+using TMobTable = struct SMobTable
 {
 	DWORD	dwVnum;
 	char	szName[CHARACTER_NAME_MAX_LEN + 1];
@@ -109,13 +109,13 @@ typedef struct SMobTable
 	BYTE	bGodSpeedPoint;
 	BYTE	bDeathBlowPoint;
 	BYTE	bRevivePoint;
-} TMobTable;
+};
 #pragma pack()
 
 
 using namespace std;
 
-TMobTable* m_pMobTable = NULL;
+TMobTable* m_pMobTable = nullptr;
 int m_iMobTableSize = 0;
 
 enum EItemMisc
@@ -136,23 +136,23 @@ enum EItemMisc
 	ITEM_ELK_VNUM = 50026,
 };
 #pragma pack(1)
-typedef struct SItemLimit
+using TItemLimit = struct SItemLimit
 {
 	BYTE	bType;
 	long	lValue;
-} TItemLimit;
+};
 #pragma pack()
 
 #pragma pack(1)
-typedef struct SItemApply
+using TItemApply = struct SItemApply
 {
 	BYTE	bType;
 	long	lValue;
-} TItemApply;
+};
 #pragma pack()
 
 #pragma pack(1)
-typedef struct
+using TClientItemTable = struct
 {
 	DWORD       dwVnum;
 	DWORD		dwVnumRange;
@@ -180,14 +180,14 @@ typedef struct
 	BYTE	bAlterToMagicItemPct;
 	BYTE	bSpecular;
 	BYTE	bGainSocketPct;
-} TClientItemTable;
+};
 #pragma pack()
 bool	operator < (const TClientItemTable& lhs, const TClientItemTable& rhs)
 {
 	return lhs.dwVnum < rhs.dwVnum;
 }
 
-TClientItemTable* m_pItemTable = NULL;
+TClientItemTable* m_pItemTable = nullptr;
 int m_iItemTableSize = 0;
 
 
@@ -439,7 +439,7 @@ bool BuildMobTable()
 	if (m_pMobTable)
 	{
 		delete m_pMobTable;
-		m_pMobTable = NULL;
+		m_pMobTable = nullptr;
 	}
 
 	//새로 추가되는 갯수를 파악한다.
@@ -865,7 +865,7 @@ bool BuildItemTable()
 	if (m_pItemTable)
 	{
 		free(m_pItemTable);
-		m_pItemTable = NULL;
+		m_pItemTable = nullptr;
 	}
 
 	//===== 아이템 테이블 생성 =====//

@@ -44,31 +44,31 @@ void CImage::PutImage (int x, int y, CImage* pImage)
 
 DWORD* CImage::GetBasePointer()
 {
-	assert (m_pdwColors != NULL);
+	assert (m_pdwColors != nullptr);
 	return m_pdwColors;
 }
 
 DWORD* CImage::GetLinePointer (int line)
 {
-	assert (m_pdwColors != NULL);
+	assert (m_pdwColors != nullptr);
 	return m_pdwColors + line * m_width;
 }
 
 int CImage::GetWidth() const
 {
-	assert (m_pdwColors != NULL);
+	assert (m_pdwColors != nullptr);
 	return m_width;
 }
 
 int CImage::GetHeight() const
 {
-	assert (m_pdwColors != NULL);
+	assert (m_pdwColors != nullptr);
 	return m_height;
 }
 
 void CImage::Clear (DWORD color)
 {
-	assert (m_pdwColors != NULL);
+	assert (m_pdwColors != nullptr);
 
 	for (int y = 0; y < m_height; ++y)
 	{
@@ -95,20 +95,20 @@ void CImage::Destroy()
 	if (m_pdwColors)
 	{
 		delete [] m_pdwColors;
-		m_pdwColors = NULL;
+		m_pdwColors = nullptr;
 	}
 }
 
 void CImage::Initialize()
 {
-	m_pdwColors = NULL;
+	m_pdwColors = nullptr;
 	m_width = 0;
 	m_height = 0;
 }
 
 bool CImage::IsEmpty() const
 {
-	return (m_pdwColors == NULL) ? true : false;
+	return (m_pdwColors == nullptr) ? true : false;
 }
 
 void CImage::FlipTopToBottom()

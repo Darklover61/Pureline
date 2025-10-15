@@ -120,7 +120,7 @@ void CMapOutdoor::RenderWater()
 		}
 	}
 
-	STATEMANAGER.SetTexture (0, NULL);
+	STATEMANAGER.SetTexture (0, nullptr);
 	STATEMANAGER.SetRenderState (D3DRS_ALPHABLENDENABLE, FALSE);
 
 	for (i = m_PatchVector.begin(); i != m_PatchVector.end(); ++i)

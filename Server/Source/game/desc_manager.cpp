@@ -391,12 +391,12 @@ struct FuncTryConnect
 void DESC_MANAGER::TryConnect()
 {
 	FuncTryConnect f;
-	std::for_each (m_set_pkClientDesc.begin(), m_set_pkClientDesc.end(), f);
+	std::ranges::for_each (m_set_pkClientDesc, f);
 }
 
 bool DESC_MANAGER::IsP2PDescExist (const char* szHost, WORD wPort)
 {
-	CLIENT_DESC_SET::iterator it = m_set_pkClientDesc.begin();
+	auto it = m_set_pkClientDesc.begin();
 
 	while (it != m_set_pkClientDesc.end())
 	{
@@ -417,7 +417,7 @@ LPDESC DESC_MANAGER::FindByHandshake (DWORD dwHandshake)
 
 	if (it == m_map_handshake.end())
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	return (it->second);
@@ -499,7 +499,7 @@ LPDESC DESC_MANAGER::FindByLoginKey (DWORD dwKey)
 
 	if (it == m_map_pkLoginKey.end())
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	return it->second->m_pkDesc;
@@ -514,7 +514,7 @@ DWORD DESC_MANAGER::CreateLoginKey (LPDESC d)
 	{
 		dwKey = number (1, INT_MAX);
 
-		if (m_map_pkLoginKey.find (dwKey) != m_map_pkLoginKey.end())
+		if (m_map_pkLoginKey.contains(dwKey))
 		{
 			continue;
 		}

@@ -26,9 +26,7 @@ CTokenVector* CTextFileLoader::SGroupNode::GetTokenVector (const std::string& c_
 
 bool CTextFileLoader::SGroupNode::IsExistTokenVector (const std::string& c_rstGroupName)
 {
-	DWORD dwGroupNameKey = GenNameKey (c_rstGroupName.c_str(), c_rstGroupName.length());
-
-	if (!m_kMap_dwKey_kVct_stToken.contains(dwGroupNameKey))
+	if (DWORD dwGroupNameKey = GenNameKey (c_rstGroupName.c_str(), c_rstGroupName.length()); !m_kMap_dwKey_kVct_stToken.contains(dwGroupNameKey))
 	{
 		return false;
 	}
@@ -96,8 +94,7 @@ void CTextFileLoader::SGroupNode::DestroySystem()
 CTextFileLoader* CTextFileLoader::Cache (const char* c_szFileName)
 {
 	DWORD dwNameKey = GetCRC32 (c_szFileName, strlen (c_szFileName));
-	std::map<DWORD, CTextFileLoader*>::iterator f = ms_kMap_dwNameKey_pkTextFileLoader.find (dwNameKey);
-	if (ms_kMap_dwNameKey_pkTextFileLoader.end() != f)
+	if (std::map<DWORD, CTextFileLoader*>::iterator f = ms_kMap_dwNameKey_pkTextFileLoader.find (dwNameKey); ms_kMap_dwNameKey_pkTextFileLoader.end() != f)
 	{
 		if (!ms_isCacheMode)
 		{
@@ -126,8 +123,7 @@ void CTextFileLoader::SetCacheMode()
 void CTextFileLoader::DestroySystem()
 {
 	{
-		std::map<DWORD, CTextFileLoader*>::iterator i;
-		for (i = ms_kMap_dwNameKey_pkTextFileLoader.begin(); i != ms_kMap_dwNameKey_pkTextFileLoader.end(); ++i)
+		for (auto i = ms_kMap_dwNameKey_pkTextFileLoader.begin(); i != ms_kMap_dwNameKey_pkTextFileLoader.end(); ++i)
 		{
 			delete i->second;
 		}
@@ -168,8 +164,7 @@ CTextFileLoader::~CTextFileLoader()
 
 void CTextFileLoader::__DestroyGroupNodeVector()
 {
-	std::vector<SGroupNode*>::iterator i;
-	for (i = m_kVct_pkNode.begin(); i != m_kVct_pkNode.end(); ++i)
+	for (auto i = m_kVct_pkNode.begin(); i != m_kVct_pkNode.end(); ++i)
 	{
 		SGroupNode::Delete (*i);
 	}
@@ -226,9 +221,7 @@ bool CTextFileLoader::LoadGroup (TGroupNode * pGroupNode)
 
 	for (; m_dwcurLineIndex < m_textFileLoader.GetLineCount(); ++m_dwcurLineIndex)
 	{
-		int iRet;
-
-		if ((iRet = m_textFileLoader.SplitLine2 (m_dwcurLineIndex, &stTokenVector)) != 0)
+		if (int iRet; (iRet = m_textFileLoader.SplitLine2 (m_dwcurLineIndex, &stTokenVector)) != 0)
 		{
 			if (iRet == -2)
 			{
@@ -411,7 +404,7 @@ BOOL CTextFileLoader::SetParentNode()
 		return FALSE;
 	}
 
-	if (NULL == m_pcurNode->pParentNode)
+	if (nullptr == m_pcurNode->pParentNode)
 	{
 		assert (!"Current group node is already top!");
 		return FALSE;
@@ -428,7 +421,7 @@ BOOL CTextFileLoader::GetCurrentNodeName (std::string * pstrName)
 	{
 		return FALSE;
 	}
-	if (NULL == m_pcurNode->pParentNode)
+	if (nullptr == m_pcurNode->pParentNode)
 	{
 		return FALSE;
 	}

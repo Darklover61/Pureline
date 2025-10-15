@@ -131,7 +131,7 @@ DWORD GetHFILECRC32 (HANDLE hFile)
 {
 	DWORD dwRetCRC32 = 0;
 
-	DWORD dwFileSize = GetFileSize (hFile, NULL);
+	DWORD dwFileSize = GetFileSize (hFile, nullptr);
 
 	DWORD dataOffset = 0;
 	DWORD mapSize = dwFileSize;
@@ -145,11 +145,11 @@ DWORD GetHFILECRC32 (HANDLE hFile)
 	//INT iViewDelta = dataOffset - dwFileMapStart;
 
 	HANDLE hFM = CreateFileMapping (hFile,				// handle
-									NULL,					// security
+									nullptr,					// security
 									PAGE_READONLY,		// flProtect
 									0,					// high
 									dataOffset + mapSize,	// low
-									NULL);				// name
+									nullptr);				// name
 	if (hFM)
 	{
 		LPVOID lpMapData = MapViewOfFile (hFM,
@@ -178,10 +178,10 @@ DWORD GetFileCRC32 (const char* c_szFileName)
 	HANDLE hFile = CreateFile (c_szFileName,					// name of the file
 							   GENERIC_READ,					// desired access
 							   FILE_SHARE_READ,			// share mode
-							   NULL,						// security attributes
+							   nullptr,						// security attributes
 							   OPEN_EXISTING,			// creation disposition
 							   FILE_ATTRIBUTE_NORMAL,		// flags and attr
-							   NULL);						// template file
+							   nullptr);						// template file
 
 	if (INVALID_HANDLE_VALUE == hFile)
 	{
@@ -201,17 +201,17 @@ DWORD GetFileSize (const char* c_szFileName)
 	HANDLE hFile = CreateFile (c_szFileName,					// name of the file
 							   GENERIC_READ,					// desired access
 							   FILE_SHARE_READ,			// share mode
-							   NULL,						// security attributes
+							   nullptr,						// security attributes
 							   OPEN_EXISTING,			// creation disposition
 							   FILE_ATTRIBUTE_NORMAL,		// flags and attr
-							   NULL);						// template file
+							   nullptr);						// template file
 
 	if (INVALID_HANDLE_VALUE == hFile)
 	{
 		return 0;
 	}
 
-	DWORD dwSize = GetFileSize (hFile, NULL);
+	DWORD dwSize = GetFileSize (hFile, nullptr);
 
 	CloseHandle (hFile);
 

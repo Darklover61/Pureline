@@ -9,12 +9,12 @@
 const DWORD DEBUG_STRING_MAX_LEN = 1024;
 
 static int isLogFile = false;
-HWND g_PopupHwnd = NULL;
+HWND g_PopupHwnd = nullptr;
 
 class CLogFile : public CSingleton<CLogFile>
 {
 	public:
-		CLogFile() : m_fp (NULL)
+		CLogFile() : m_fp (nullptr)
 		{
 		}
 
@@ -25,7 +25,7 @@ class CLogFile : public CSingleton<CLogFile>
 				fclose (m_fp);
 			}
 
-			m_fp = NULL;
+			m_fp = nullptr;
 		}
 
 		void Initialize()
@@ -237,7 +237,7 @@ void TraceError (const char* c_szFormat, ...)
 	szBuf[len] = '\n';
 	szBuf[len + 1] = '\0';
 
-	time_t ct = time (0);
+	time_t ct = time (nullptr);
 	struct tm ctm = *localtime (&ct);
 
 	fprintf (stderr, "%02d%02d %02d:%02d:%05d :: %s",

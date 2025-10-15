@@ -9,8 +9,13 @@
 	* auto
 	* contains
 	* insert -> try_emplace
+	* push_back -> emplace_back
 	* null -> nullptr
 	* typedef -> using
+	* 1.732f -> std::numbers::sqrt3_v<float>
+	* std::ranges
+	* .empty()
+	* std::size
 
 +------------+
 | 11.10.2025 |

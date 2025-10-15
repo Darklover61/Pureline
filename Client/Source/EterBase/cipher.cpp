@@ -153,7 +153,7 @@ class DH2KeyAgreement : public KeyAgreement
 };
 
 Cipher::Cipher()
-	: activated_ (false), encoder_ (NULL), decoder_ (NULL), key_agreement_ (NULL)
+	: activated_ (false), encoder_ (nullptr), decoder_ (nullptr), key_agreement_ (nullptr)
 {
 }
 
@@ -167,20 +167,20 @@ Cipher::~Cipher()
 
 void Cipher::CleanUp()
 {
-	if (encoder_ != NULL)
+	if (encoder_ != nullptr)
 	{
 		delete encoder_;
-		encoder_ = NULL;
+		encoder_ = nullptr;
 	}
-	if (decoder_ != NULL)
+	if (decoder_ != nullptr)
 	{
 		delete decoder_;
-		decoder_ = NULL;
+		decoder_ = nullptr;
 	}
-	if (key_agreement_ != NULL)
+	if (key_agreement_ != nullptr)
 	{
 		delete key_agreement_;
-		key_agreement_ = NULL;
+		key_agreement_ = nullptr;
 	}
 	activated_ = false;
 }
@@ -191,14 +191,14 @@ size_t Cipher::Prepare (void* buffer, size_t* length)
 	VM_START
 	#endif
 
-	assert (key_agreement_ == NULL);
+	assert (key_agreement_ == nullptr);
 	key_agreement_ = new DH2KeyAgreement();
-	assert (key_agreement_ != NULL);
+	assert (key_agreement_ != nullptr);
 	size_t agreed_length = key_agreement_->Prepare (buffer, length);
 	if (agreed_length == 0)
 	{
 		delete key_agreement_;
-		key_agreement_ = NULL;
+		key_agreement_ = nullptr;
 	}
 	#ifdef __THEMIDA__
 	VM_END
@@ -215,14 +215,14 @@ bool Cipher::Activate (bool polarity, size_t agreed_length,
 	#endif
 
 	assert (activated_ == false);
-	assert (key_agreement_ != NULL);
+	assert (key_agreement_ != nullptr);
 	bool result = false;
 	if (key_agreement_->Agree (agreed_length, buffer, length))
 	{
 		result = SetUp (polarity);
 	}
 	delete key_agreement_;
-	key_agreement_ = NULL;
+	key_agreement_ = nullptr;
 	#ifdef __THEMIDA__
 	VM_END
 	#endif
@@ -236,7 +236,7 @@ bool Cipher::SetUp (bool polarity)
 	VM_START
 	#endif
 
-	assert (key_agreement_ != NULL);
+	assert (key_agreement_ != nullptr);
 	const SecByteBlock& shared = key_agreement_->shared();
 
 	// Pick a block cipher algorithm
@@ -250,8 +250,8 @@ bool Cipher::SetUp (bool polarity)
 	int hint_1 = shared.BytePtr()[* (shared.BytePtr() + 1) % shared.size()];
 	BlockCipherAlgorithm* detail_0 = BlockCipherAlgorithm::Pick (hint_0);
 	BlockCipherAlgorithm* detail_1 = BlockCipherAlgorithm::Pick (hint_1);
-	assert (detail_0 != NULL);
-	assert (detail_1 != NULL);
+	assert (detail_0 != nullptr);
+	assert (detail_1 != nullptr);
 	std::unique_ptr<BlockCipherAlgorithm> algorithm_0 (detail_0);
 	std::unique_ptr<BlockCipherAlgorithm> algorithm_1 (detail_1);
 
@@ -301,8 +301,8 @@ bool Cipher::SetUp (bool polarity)
 		decoder_ = algorithm_1->CreateDecoder (key_1, key_1.size(), iv_1);
 	}
 
-	assert (encoder_ != NULL);
-	assert (decoder_ != NULL);
+	assert (encoder_ != nullptr);
+	assert (decoder_ != nullptr);
 	#ifdef __THEMIDA__
 	VM_END
 	#endif

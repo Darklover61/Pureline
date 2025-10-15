@@ -2,7 +2,7 @@
 //
 
 #include "StdAfx.h"
-#include "..\worldeditor.h"
+#include "../WorldEditor.h"
 #include "MapObjectProperty.h"
 #include "MapObjectPropertyPageEffect.h"
 #include "../../GameLib/Property.h"

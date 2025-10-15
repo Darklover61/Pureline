@@ -52,7 +52,7 @@ LONG __stdcall EterExceptionFilter (_EXCEPTION_POINTERS* pExceptionInfo)
 		char module_name[256];
 		time_t module_time;
 
-		HMODULE hModule = GetModuleHandle (NULL);
+		HMODULE hModule = GetModuleHandle (nullptr);
 
 		GetModuleFileName (hModule, module_name, sizeof (module_name));
 		module_time = (time_t)GetTimestampForLoadedLibrary (hModule);
@@ -100,7 +100,7 @@ LONG __stdcall EterExceptionFilter (_EXCEPTION_POINTERS* pExceptionInfo)
 
 		for (int i = 0; i < 512 && stackFrame.AddrPC.Offset; ++i)
 		{
-			if (StackWalk (IMAGE_FILE_MACHINE_I386, hProcess, hThread, &stackFrame, &context, NULL, NULL, NULL, NULL) != FALSE)
+			if (StackWalk (IMAGE_FILE_MACHINE_I386, hProcess, hThread, &stackFrame, &context, nullptr, nullptr, nullptr, nullptr) != FALSE)
 			{
 				fprintf (fException, "0x%08x\t", stackFrame.AddrPC.Offset);
 				//__idx+=sprintf(__msg+__idx, "0x%08x\t", stackFrame.AddrPC.Offset);
@@ -143,7 +143,7 @@ LONG __stdcall EterExceptionFilter (_EXCEPTION_POINTERS* pExceptionInfo)
 		fflush (fException);
 
 		fclose (fException);
-		fException = NULL;
+		fException = nullptr;
 
 		//WinExec()
 		/*CreateProcess("cmd.exe",NULL,NULL,NULL,FALSE,

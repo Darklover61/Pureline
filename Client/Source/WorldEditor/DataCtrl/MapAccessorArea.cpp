@@ -1157,7 +1157,7 @@ struct FCompareSelectObjectList
 
 BOOL CAreaAccessor::IsSelectedObject (DWORD dwIndex)
 {
-	auto itor = std::find_if (m_SelectObjectList.begin(), m_SelectObjectList.end(), FCompareSelectObjectList (dwIndex));
+	auto itor = std::ranges::find_if (m_SelectObjectList, FCompareSelectObjectList (dwIndex));
 	return itor != m_SelectObjectList.end();
 }
 
@@ -1310,8 +1310,7 @@ const CArea::TObjectData* CAreaAccessor::GetLastSelectedObjectData() const
 
 void CAreaAccessor::__RefreshObjectPosition (float fx, float fy, float fz)
 {
-	TSelectObjectList::iterator itor;
-	for (itor = m_SelectObjectList.begin(); itor != m_SelectObjectList.end(); ++itor)
+	for (auto itor = m_SelectObjectList.begin(); itor != m_SelectObjectList.end(); ++itor)
 	{
 		SSelectObject & rSelectObject = *itor;
 
@@ -1385,8 +1384,8 @@ static bool CountCompare (const CAreaAccessor::TCollisionDataCounter & lhs, cons
 void CAreaAccessor::CloseCollisionDataCountMapLog()
 {
 	fprintf (ms_LogFile, " << Collision Count List >>\n");
-	std::sort (ms_CollisionDataCountVec.begin(), ms_CollisionDataCountVec.end(), CountCompare);
-	std::for_each (ms_CollisionDataCountVec.begin(), ms_CollisionDataCountVec.end(), PrintCounter);
+	std::ranges::sort (ms_CollisionDataCountVec, CountCompare);
+	std::ranges::for_each (ms_CollisionDataCountVec, PrintCounter);
 	fprintf (ms_LogFile, "\n");
 
 	fprintf (ms_LogFile, " << Non Attribute Object List >>\n");

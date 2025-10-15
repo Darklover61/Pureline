@@ -3,16 +3,16 @@
 #include "Debug.h"
 
 CMappedFile::CMappedFile() :
-	m_hFM (NULL),
-	m_lpMapData (NULL),
+	m_pbBufLinkData (nullptr),
+	m_dwBufLinkSize (0),
+	m_pbAppendResultDataBlock (nullptr),
+	m_dwAppendResultDataSize (0),
+	m_seekPosition (0),
+	m_hFM (nullptr),
 	m_dataOffset (0),
 	m_mapSize (0),
-	m_seekPosition (0),
-	m_pLZObj (NULL),
-	m_pbBufLinkData (NULL),
-	m_dwBufLinkSize (0),
-	m_pbAppendResultDataBlock (NULL),
-	m_dwAppendResultDataSize (0)
+	m_lpMapData (nullptr),
+	m_pLZObj (nullptr)
 {
 }
 
@@ -51,7 +51,7 @@ void CMappedFile::Link (DWORD dwBufSize, const void* c_pvBufData)
 
 void CMappedFile::BindLZObject (CLZObject * pLZObj)
 {
-	assert (m_pLZObj == NULL);
+	assert (m_pLZObj == nullptr);
 	m_pLZObj = pLZObj;
 
 	Link (m_pLZObj->GetSize(), m_pLZObj->GetBuffer());
@@ -59,7 +59,7 @@ void CMappedFile::BindLZObject (CLZObject * pLZObj)
 
 void CMappedFile::BindLZObjectWithBufferedSize (CLZObject * pLZObj)
 {
-	assert (m_pLZObj == NULL);
+	assert (m_pLZObj == nullptr);
 	m_pLZObj = pLZObj;
 
 	Link (m_pLZObj->GetBufferSize(), m_pLZObj->GetBuffer());
@@ -90,30 +90,30 @@ void CMappedFile::Destroy()
 	if (m_pLZObj)	// 압축된 데이터가 이 포인터로 연결 된다
 	{
 		delete m_pLZObj;
-		m_pLZObj = NULL;
+		m_pLZObj = nullptr;
 	}
 
-	if (NULL != m_lpMapData)
+	if (nullptr != m_lpMapData)
 	{
 		Unmap (m_lpMapData);
-		m_lpMapData = NULL;
+		m_lpMapData = nullptr;
 	}
 
-	if (NULL != m_hFM)
+	if (nullptr != m_hFM)
 	{
 		CloseHandle (m_hFM);
-		m_hFM = NULL;
+		m_hFM = nullptr;
 	}
 
 	if (m_pbAppendResultDataBlock)
 	{
 		delete []m_pbAppendResultDataBlock;
-		m_pbAppendResultDataBlock = NULL;
+		m_pbAppendResultDataBlock = nullptr;
 	}
 
 	m_dwAppendResultDataSize = 0;
 
-	m_pbBufLinkData = NULL;
+	m_pbBufLinkData = nullptr;
 	m_dwBufLinkSize = 0;
 
 	m_seekPosition = 0;
@@ -178,11 +178,11 @@ int CMappedFile::Map (const void** dest, int offset, int size)
 
 
 	m_hFM = CreateFileMapping (m_hFile,				// handle
-							   NULL,					// security
+		nullptr,					// security
 							   PAGE_READONLY,		// flProtect
 							   0,					// high
 							   m_dataOffset + m_mapSize,	// low
-							   NULL);				// name
+		nullptr);				// name
 
 	if (!m_hFM)
 	{
@@ -267,5 +267,5 @@ void CMappedFile::Unmap (LPCVOID data)
 	{
 		TraceError ("CMappedFile::Unmap - Error");
 	}
-	m_lpData = NULL;
+	m_lpData = nullptr;
 }

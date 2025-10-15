@@ -31,7 +31,7 @@ void CPythonMiniMap::AddObserver (DWORD dwVID, float fSrcX, float fSrcY)
 		kObserver.fDstY = fSrcY;
 		kObserver.fCurX = fSrcX;
 		kObserver.fCurY = fSrcY;
-		m_kMap_dwVID_kObserver.insert (std::map<DWORD, SObserver>::value_type (dwVID, kObserver));
+		m_kMap_dwVID_kObserver.try_emplace (dwVID, kObserver);
 	}
 	else
 	{
@@ -77,7 +77,7 @@ void CPythonMiniMap::SetCenterPosition (float fCenterX, float fCenterY)
 	CMapOutdoor& rkMap = CPythonBackground::Instance().GetMapOutdoorRef();
 	for (BYTE byTerrainNum = 0; byTerrainNum < AROUND_AREA_NUM; ++byTerrainNum)
 	{
-		m_lpMiniMapTexture[byTerrainNum] = NULL;
+		m_lpMiniMapTexture[byTerrainNum] = nullptr;
 		CTerrain * pTerrain;
 		if (rkMap.GetTerrainPointer (byTerrainNum, &pTerrain))
 		{
@@ -95,8 +95,7 @@ void CPythonMiniMap::SetCenterPosition (float fCenterX, float fCenterY)
 
 void CPythonMiniMap::Update (float fCenterX, float fCenterY)
 {
-	CPythonBackground& rkBG = CPythonBackground::Instance();
-	if (!rkBG.IsMapOutdoor())
+	if (CPythonBackground& rkBG = CPythonBackground::Instance(); !rkBG.IsMapOutdoor())
 	{
 		return;
 	}
@@ -118,14 +117,12 @@ void CPythonMiniMap::Update (float fCenterX, float fCenterY)
 
 	CPythonCharacterManager& rkChrMgr = CPythonCharacterManager::Instance();
 
-	CInstanceBase* pkInstMain = rkChrMgr.GetMainInstancePtr();
-	if (!pkInstMain)
+	if (CInstanceBase* pkInstMain = rkChrMgr.GetMainInstancePtr(); !pkInstMain)
 	{
 		return;
 	}
 
-	CPythonCharacterManager::CharacterIterator i;
-	for (i = rkChrMgr.CharacterInstanceBegin(); i != rkChrMgr.CharacterInstanceEnd(); ++i)
+	for (CPythonCharacterManager::CharacterIterator i = rkChrMgr.CharacterInstanceBegin(); i != rkChrMgr.CharacterInstanceEnd(); ++i)
 	{
 		CInstanceBase* pkInstEach = *i;
 
@@ -138,8 +135,7 @@ void CPythonMiniMap::Update (float fCenterX, float fCenterY)
 			continue;
 		}
 
-		float fDistanceFromCenter = sqrtf (fDistanceFromCenterX * fDistanceFromCenterX + fDistanceFromCenterY * fDistanceFromCenterY);
-		if (fDistanceFromCenter >= m_fMiniMapRadius)
+		if (float fDistanceFromCenter = sqrtf (fDistanceFromCenterX * fDistanceFromCenterX + fDistanceFromCenterY * fDistanceFromCenterY); fDistanceFromCenter >= m_fMiniMapRadius)
 		{
 			continue;
 		}
@@ -191,8 +187,7 @@ void CPythonMiniMap::Update (float fCenterX, float fCenterY)
 	{
 		DWORD dwCurTime = ELTimer_GetMSec();
 
-		std::map<DWORD, SObserver>::iterator i;
-		for (i = m_kMap_dwVID_kObserver.begin(); i != m_kMap_dwVID_kObserver.end(); ++i)
+		for (auto i = m_kMap_dwVID_kObserver.begin(); i != m_kMap_dwVID_kObserver.end(); ++i)
 		{
 			SObserver& rkObserver = i->second;
 
@@ -221,8 +216,7 @@ void CPythonMiniMap::Update (float fCenterX, float fCenterY)
 				continue;
 			}
 
-			float fDistanceFromCenter = sqrtf (fDistanceFromCenterX * fDistanceFromCenterX + fDistanceFromCenterY * fDistanceFromCenterY);
-			if (fDistanceFromCenter >= m_fMiniMapRadius)
+			if (float fDistanceFromCenter = sqrtf (fDistanceFromCenterX * fDistanceFromCenterX + fDistanceFromCenterY * fDistanceFromCenterY); fDistanceFromCenter >= m_fMiniMapRadius)
 			{
 				continue;
 			}
@@ -236,7 +230,7 @@ void CPythonMiniMap::Update (float fCenterX, float fCenterY)
 	}
 
 	{
-		TAtlasMarkInfoVector::iterator itor = m_AtlasWayPointInfoVector.begin();
+		auto itor = m_AtlasWayPointInfoVector.begin();
 		for (; itor != m_AtlasWayPointInfoVector.end(); ++itor)
 		{
 			TAtlasMarkInfo & rAtlasMarkInfo = *itor;
@@ -498,7 +492,7 @@ void CPythonMiniMap::Render (float fScreenX, float fScreenY)
 
 	// Target
 	{
-		TAtlasMarkInfoVector::iterator itor = m_AtlasWayPointInfoVector.begin();
+		auto itor = m_AtlasWayPointInfoVector.begin();
 		for (; itor != m_AtlasWayPointInfoVector.end(); ++itor)
 		{
 			TAtlasMarkInfo & rAtlasMarkInfo = *itor;
@@ -575,11 +569,12 @@ void CPythonMiniMap::SetMiniMapSize (float fWidth, float fHeight)
 
 #pragma pack(push)
 #pragma pack(1)
-typedef struct _MINIMAPVERTEX
+using MINIMAPVERTEX = struct _MINIMAPVERTEX
 {
 	float x, y, z;          // position
 	float u, v;       // normal
-} MINIMAPVERTEX, * LPMINIMAPVERTEX;
+};
+using LPMINIMAPVERTEX = MINIMAPVERTEX *;
 #pragma pack(pop)
 
 bool CPythonMiniMap::Create()
@@ -715,9 +710,7 @@ bool CPythonMiniMap::Create()
 		32, 33, 34, 34, 33, 35
 	};
 
-	void* pIndices;
-
-	if (m_IndexBuffer.Lock (&pIndices))
+	if (void* pIndices; m_IndexBuffer.Lock (&pIndices))
 	{
 		memcpy (pIndices, pwIndices, 54 * sizeof (WORD));
 		m_IndexBuffer.Unlock();
@@ -809,7 +802,7 @@ void CPythonMiniMap::RegisterGuildArea (DWORD dwID, DWORD dwGuildID, long x, lon
 
 DWORD CPythonMiniMap::GetGuildAreaID (DWORD x, DWORD y)
 {
-	TGuildAreaInfoVectorIterator itor = m_GuildAreaInfoVector.begin();
+	auto itor = m_GuildAreaInfoVector.begin();
 	for (; itor != m_GuildAreaInfoVector.end(); ++itor)
 	{
 		TGuildAreaInfo & rAreaInfo = *itor;
@@ -908,7 +901,7 @@ void CPythonMiniMap::__LoadAtlasMarkInfo()
 		char szMarkInfoName[32 + 1];
 		_snprintf (szMarkInfoName, sizeof (szMarkInfoName), "%lu", i);
 
-		if (stTokenVectorMap.end() == stTokenVectorMap.find (szMarkInfoName))
+		if (!stTokenVectorMap.contains(szMarkInfoName))
 		{
 			continue;
 		}
@@ -985,8 +978,7 @@ bool CPythonMiniMap::LoadAtlas()
 
 	m_AtlasImageInstance.Destroy();
 	m_AtlasPlayerMark.Destroy();
-	CGraphicImage* pkGrpImgAtlas = (CGraphicImage*) CResourceManager::Instance().GetResourcePointer (atlasFileName);
-	if (pkGrpImgAtlas)
+	if (CGraphicImage* pkGrpImgAtlas = (CGraphicImage*) CResourceManager::Instance().GetResourcePointer (atlasFileName))
 	{
 		m_AtlasImageInstance.SetImagePointer (pkGrpImgAtlas);
 
@@ -1031,9 +1023,7 @@ void CPythonMiniMap::__GlobalPositionToAtlasPosition (long lx, long ly, float* p
 
 void CPythonMiniMap::UpdateAtlas()
 {
-	CInstanceBase * pkInst = CPythonCharacterManager::Instance().GetMainInstancePtr();
-
-	if (pkInst)
+	if (CInstanceBase * pkInst = CPythonCharacterManager::Instance().GetMainInstancePtr())
 	{
 		TPixelPosition kInstPos;
 		pkInst->NEW_GetPixelPosition (&kInstPos);
@@ -1055,7 +1045,7 @@ void CPythonMiniMap::UpdateAtlas()
 	}
 
 	{
-		TGuildAreaInfoVectorIterator itor = m_GuildAreaInfoVector.begin();
+		auto itor = m_GuildAreaInfoVector.begin();
 		for (; itor != m_GuildAreaInfoVector.end(); ++itor)
 		{
 			TGuildAreaInfo & rInfo = *itor;
@@ -1153,7 +1143,7 @@ void CPythonMiniMap::RenderAtlas (float fScreenX, float fScreenY)
 	STATEMANAGER.SetTransform (D3DTS_WORLD, &m_matIdentity);
 
 	{
-		TGuildAreaInfoVectorIterator itor = m_GuildAreaInfoVector.begin();
+		auto itor = m_GuildAreaInfoVector.begin();
 		for (; itor != m_GuildAreaInfoVector.end(); ++itor)
 		{
 			TGuildAreaInfo & rInfo = *itor;
@@ -1207,8 +1197,7 @@ bool CPythonMiniMap::GetPickedInstanceInfo (float fScreenX, float fScreenY, std:
 	}
 
 	CPythonCharacterManager& rkChrMgr = CPythonCharacterManager::Instance();
-	CPythonCharacterManager::CharacterIterator i;
-	for (i = rkChrMgr.CharacterInstanceBegin(); i != rkChrMgr.CharacterInstanceEnd(); ++i)
+	for (CPythonCharacterManager::CharacterIterator i = rkChrMgr.CharacterInstanceBegin(); i != rkChrMgr.CharacterInstanceEnd(); ++i)
 	{
 		CInstanceBase* pkInstEach = *i;
 		if (pkInstEach->IsInvisibility())
@@ -1300,8 +1289,7 @@ bool CPythonMiniMap::GetAtlasInfo (float fScreenX, float fScreenY, std::string &
 	m_AtlasMarkInfoVectorIterator = m_AtlasWayPointInfoVector.begin();
 	while (m_AtlasMarkInfoVectorIterator != m_AtlasWayPointInfoVector.end())
 	{
-		TAtlasMarkInfo & rAtlasMarkInfo = *m_AtlasMarkInfoVectorIterator;
-		if (rAtlasMarkInfo.m_fScreenX > 0.0f)
+		if (TAtlasMarkInfo & rAtlasMarkInfo = *m_AtlasMarkInfoVectorIterator; rAtlasMarkInfo.m_fScreenX > 0.0f)
 			if (rAtlasMarkInfo.m_fScreenY > 0.0f)
 				if (rAtlasMarkInfo.m_fX - fCheckWidth / 2 < fRealX && rAtlasMarkInfo.m_fX + fCheckWidth > fRealX &&
 					rAtlasMarkInfo.m_fY - fCheckWidth / 2 < fRealY && rAtlasMarkInfo.m_fY + fCheckHeight > fRealY)
@@ -1315,7 +1303,7 @@ bool CPythonMiniMap::GetAtlasInfo (float fScreenX, float fScreenY, std::string &
 		++m_AtlasMarkInfoVectorIterator;
 	}
 
-	TGuildAreaInfoVector::iterator itor = m_GuildAreaInfoVector.begin();
+	auto itor = m_GuildAreaInfoVector.begin();
 	for (; itor != m_GuildAreaInfoVector.end(); ++itor)
 	{
 		TGuildAreaInfo & rInfo = *itor;
@@ -1345,8 +1333,7 @@ bool CPythonMiniMap::GetAtlasInfo (float fScreenX, float fScreenY, std::string &
 
 bool CPythonMiniMap::GetAtlasSize (float* pfSizeX, float* pfSizeY)
 {
-	CPythonBackground& rkBG = CPythonBackground::Instance();
-	if (!rkBG.IsMapOutdoor())
+	if (CPythonBackground& rkBG = CPythonBackground::Instance(); !rkBG.IsMapOutdoor())
 	{
 		return false;
 	}
@@ -1367,8 +1354,7 @@ void CPythonMiniMap::AddWayPoint (BYTE byType, DWORD dwID, float fX, float fY, s
 	m_AtlasMarkInfoVectorIterator = m_AtlasWayPointInfoVector.begin();
 	while (m_AtlasMarkInfoVectorIterator != m_AtlasWayPointInfoVector.end())
 	{
-		TAtlasMarkInfo & rAtlasMarkInfo = *m_AtlasMarkInfoVectorIterator;
-		if (rAtlasMarkInfo.m_dwID == dwID)
+		if (TAtlasMarkInfo & rAtlasMarkInfo = *m_AtlasMarkInfoVectorIterator; rAtlasMarkInfo.m_dwID == dwID)
 		{
 			return;
 		}
@@ -1396,8 +1382,7 @@ void CPythonMiniMap::RemoveWayPoint (DWORD dwID)
 	m_AtlasMarkInfoVectorIterator = m_AtlasWayPointInfoVector.begin();
 	while (m_AtlasMarkInfoVectorIterator != m_AtlasWayPointInfoVector.end())
 	{
-		TAtlasMarkInfo & rAtlasMarkInfo = *m_AtlasMarkInfoVectorIterator;
-		if (rAtlasMarkInfo.m_dwID == dwID)
+		if (TAtlasMarkInfo & rAtlasMarkInfo = *m_AtlasMarkInfoVectorIterator; rAtlasMarkInfo.m_dwID == dwID)
 		{
 			m_AtlasMarkInfoVectorIterator = m_AtlasWayPointInfoVector.erase (m_AtlasMarkInfoVectorIterator);
 			return;
@@ -1408,7 +1393,7 @@ void CPythonMiniMap::RemoveWayPoint (DWORD dwID)
 
 bool CPythonMiniMap::__GetWayPoint (DWORD dwID, TAtlasMarkInfo** ppkInfo)
 {
-	TAtlasMarkInfoVectorIterator itor = m_AtlasWayPointInfoVector.begin();
+	auto itor = m_AtlasWayPointInfoVector.begin();
 	for (; itor != m_AtlasWayPointInfoVector.end(); ++itor)
 	{
 		TAtlasMarkInfo & rInfo = *itor;
@@ -1478,8 +1463,7 @@ void CPythonMiniMap::AddSignalPoint (float fX, float fY)
 
 void CPythonMiniMap::ClearAllSignalPoint()
 {
-	std::vector<TSignalPoint>::iterator it;
-	for (it = m_SignalPointVector.begin(); it != m_SignalPointVector.end(); ++it)
+	for (auto it = m_SignalPointVector.begin(); it != m_SignalPointVector.end(); ++it)
 	{
 		RemoveWayPoint (it->id);
 	}
@@ -1493,7 +1477,7 @@ void CPythonMiniMap::RegisterAtlasWindow (PyObject* poHandler)
 
 void CPythonMiniMap::UnregisterAtlasWindow()
 {
-	m_poHandler = 0;
+	m_poHandler = nullptr;
 }
 
 void CPythonMiniMap::OpenAtlasWindow()

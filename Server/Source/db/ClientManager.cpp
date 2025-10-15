@@ -1387,9 +1387,7 @@ void CClientManager::QUERY_ITEM_SAVE (CPeer * pkPeer, const char* c_pData)
 
 		if (c)
 		{
-			TItemCacheSetPtrMap::iterator it = m_map_pkItemCacheSetPtr.find (c->Get()->owner);
-
-			if (it != m_map_pkItemCacheSetPtr.end())
+			if (TItemCacheSetPtrMap::iterator it = m_map_pkItemCacheSetPtr.find (c->Get()->owner); it != m_map_pkItemCacheSetPtr.end())
 			{
 				if (g_test_server)
 				{
@@ -1459,7 +1457,7 @@ CClientManager::TItemCacheSet* CClientManager::GetItemCacheSet (DWORD pid)
 
 	if (it == m_map_pkItemCacheSetPtr.end())
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	return it->second;
@@ -1492,7 +1490,7 @@ void CClientManager::FlushItemCacheSet (DWORD pid)
 	}
 
 	TItemCacheSet * pSet = it->second;
-	TItemCacheSet::iterator it_set = pSet->begin();
+	auto it_set = pSet->begin();
 
 	while (it_set != pSet->end())
 	{
@@ -1520,7 +1518,7 @@ CItemCache* CClientManager::GetItemCache (DWORD id)
 
 	if (it == m_map_itemCache.end())
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	return it->second;
@@ -1642,7 +1640,7 @@ void CClientManager::PutItemPriceListCache (const TItemPriceListTable* pItemPric
 
 void CClientManager::UpdatePlayerCache()
 {
-	TPlayerTableCacheMap::iterator it = m_map_playerCache.begin();
+	auto it = m_map_playerCache.begin();
 
 	while (it != m_map_playerCache.end())
 	{
@@ -1681,7 +1679,7 @@ void CClientManager::UpdateItemCache()
 		return;
 	}
 
-	TItemCacheMap::iterator it = m_map_itemCache.begin();
+	auto it = m_map_itemCache.begin();
 
 	while (it != m_map_itemCache.end())
 	{
@@ -1707,7 +1705,7 @@ void CClientManager::UpdateItemCache()
 
 void CClientManager::UpdateItemPriceListCache()
 {
-	TItemPriceListCacheMap::iterator it = m_mapItemPriceListCache.begin();
+	auto it = m_mapItemPriceListCache.begin();
 
 	while (it != m_mapItemPriceListCache.end())
 	{
@@ -1781,7 +1779,7 @@ void CClientManager::QUERY_RELOAD_PROTO()
 		return;
 	}
 
-	for (TPeerList::iterator i = m_peerList.begin(); i != m_peerList.end(); ++i)
+	for (auto i = m_peerList.begin(); i != m_peerList.end(); ++i)
 	{
 		CPeer * tmp = *i;
 
@@ -1841,7 +1839,7 @@ CLoginData* CClientManager::GetLoginData (DWORD dwKey)
 
 	if (it == m_map_pkLoginData.end())
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	return it->second;
@@ -1856,7 +1854,7 @@ CLoginData* CClientManager::GetLoginDataByLogin (const char* c_pszLogin)
 
 	if (it == m_map_pkLoginDataByLogin.end())
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	return it->second;
@@ -1868,7 +1866,7 @@ CLoginData* CClientManager::GetLoginDataByAID (DWORD dwAID)
 
 	if (it == m_map_pkLoginDataByAID.end())
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	return it->second;
@@ -1906,9 +1904,8 @@ void CClientManager::QUERY_AUTH_LOGIN (CPeer * pkPeer, DWORD dwHandle, TPacketGD
 	{
 		sys_log (0, "QUERY_AUTH_LOGIN %d %d %s", p->dwID, p->dwLoginKey, p->szLogin);
 	}
-	CLoginData * pkLD = GetLoginDataByLogin (p->szLogin);
 
-	if (pkLD)
+	if (CLoginData * pkLD = GetLoginDataByLogin (p->szLogin))
 	{
 		DeleteLoginData (pkLD);
 	}
@@ -1966,7 +1963,7 @@ void CClientManager::BillingExpire (TPacketBillingExpire * p)
 			DWORD dwIPID = 0;
 			str_to_number (dwIPID, p->szLogin);
 
-			TLogonAccountMap::iterator it = m_map_kLogonAccount.begin();
+			auto it = m_map_kLogonAccount.begin();
 
 			while (it != m_map_kLogonAccount.end())
 			{

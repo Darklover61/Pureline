@@ -240,7 +240,7 @@ void CMapOutdoor::__RenderTerrain_RenderHardwareTransformPatch()
 	STATEMANAGER.SetRenderState (D3DRS_FOGENABLE, dwFogEnable);
 	STATEMANAGER.SetRenderState (D3DRS_LIGHTING, TRUE);
 
-	std::sort (m_RenderedTextureNumVector.begin(), m_RenderedTextureNumVector.end());
+	std::ranges::sort (m_RenderedTextureNumVector);
 
 	//////////////////////////////////////////////////////////////////////////
 	// Render State & TextureStageState

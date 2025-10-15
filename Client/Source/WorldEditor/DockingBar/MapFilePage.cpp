@@ -2,7 +2,7 @@
 //
 
 #include "StdAfx.h"
-#include "..\WorldEditor.h"
+#include "../WorldEditor.h"
 #include "MapFilePage.h"
 #include "../Dialog/NewMapDlg.h"
 #include "../Dialog/DlgGoto.h"

@@ -148,14 +148,12 @@ BOOL CActorInstance::IsClickableDistanceDestInstance (CActorInstance & rkInstDst
 	D3DXVECTOR3 kD3DVct3Src (kPPosSrc);
 
 	TCollisionPointInstanceList& rkLstkDefPtInst = rkInstDst.m_DefendingPointInstanceList;
-	TCollisionPointInstanceList::iterator i;
 
-	for (i = rkLstkDefPtInst.begin(); i != rkLstkDefPtInst.end(); ++i)
+	for (auto i = rkLstkDefPtInst.begin(); i != rkLstkDefPtInst.end(); ++i)
 	{
 		CDynamicSphereInstanceVector& rkVctkDefSphere = (*i).SphereInstanceVector;
 
-		CDynamicSphereInstanceVector::iterator j;
-		for (j = rkVctkDefSphere.begin(); j != rkVctkDefSphere.end(); ++j)
+		for (auto j = rkVctkDefSphere.begin(); j != rkVctkDefSphere.end(); ++j)
 		{
 			CDynamicSphereInstance& rkSphere = (*j);
 
@@ -345,7 +343,7 @@ void CActorInstance::__ClearCombo()
 {
 	m_dwcurComboIndex = 0;
 	m_isPreInput = FALSE;
-	m_pkCurRaceMotionData = NULL;
+	m_pkCurRaceMotionData = nullptr;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -384,7 +382,7 @@ BOOL CActorInstance::isValidAttacking()
 
 	const NRaceData::TMotionAttackData * c_pData = m_pkCurRaceMotionData->GetMotionAttackDataPointer();
 	float fElapsedTime = GetAttackingElapsedTime();
-	NRaceData::THitDataContainer::const_iterator itor = c_pData->HitDataContainer.begin();
+	auto itor = c_pData->HitDataContainer.begin();
 	for (; itor != c_pData->HitDataContainer.end(); ++itor)
 	{
 		const NRaceData::THitData & c_rHitData = *itor;
@@ -777,7 +775,7 @@ void CActorInstance::__ProcessDataAttackSuccess (const NRaceData::TAttackData & 
 		}
 		if (m_dwBattleAttachEffectID)
 		{
-			rVictim.AttachEffectByID (0, NULL, m_dwBattleAttachEffectID);
+			rVictim.AttachEffectByID (0, nullptr, m_dwBattleAttachEffectID);
 		}
 	}
 

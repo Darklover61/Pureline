@@ -2,7 +2,7 @@
 //
 
 #include "StdAfx.h"
-#include "..\WorldEditor.h"
+#include "../WorldEditor.h"
 #include "texturepropertydlg.h"
 #include "../DataCtrl/MapAccessorOutdoor.h"
 

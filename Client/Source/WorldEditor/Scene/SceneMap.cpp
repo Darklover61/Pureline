@@ -346,7 +346,7 @@ void CSceneMap::OnRenderUI (float fx, float fy)
 	std::vector<int>& aVector = m_pMapManagerAccessor->GetRenderedSplatNum (&iRenderedPatchNum, &iRenderedSplatNum, &fSplatRatio);
 
 	std::ostringstream ostr;
-	std::copy (aVector.begin(), aVector.end(), std::ostream_iterator<int> (ostr, " "));
+	std::ranges::copy (aVector, std::ostream_iterator<int> (ostr, " "));
 
 	char szMsg[128 + 1];
 
@@ -396,7 +396,7 @@ void CSceneMap::OnRenderUI (float fx, float fy)
 			aTilecountVector.push_back (std::vector<std::pair<DWORD, BYTE >>::value_type (dwTileCount, (int)byTextureIndex));
 		}
 	}
-	std::sort (aTilecountVector.begin(), aTilecountVector.end());
+	std::ranges::sort (aTilecountVector);
 
 	aStream << "( Total " << aTilecountVector.size() << " sheets ) : ";
 	std::vector<std::pair<DWORD, int >>::reverse_iterator aIterator = aTilecountVector.rbegin();

@@ -204,8 +204,7 @@ void CFlyingInstance::UpdateAttachInstance()
 	D3DXQuaternionMultiply (&q, &m_qAttachRotation, &m_qRot);
 
 	CEffectManager & rem = CEffectManager::Instance();
-	TAttachEffectInstanceVector::iterator it;
-	for (it = m_vecAttachEffectInstance.begin(); it != m_vecAttachEffectInstance.end(); ++it)
+	for (auto it = m_vecAttachEffectInstance.begin(); it != m_vecAttachEffectInstance.end(); ++it)
 	{
 		CFlyingData::TFlyingAttachData & rfad = m_pData->GetAttachDataReference (it->iAttachIndex);
 		assert (rfad.iType == CFlyingData::FLY_ATTACH_EFFECT);
@@ -520,8 +519,7 @@ void CFlyingInstance::ClearAttachInstance()
 {
 	CEffectManager & rkEftMgr = CEffectManager::Instance();
 
-	TAttachEffectInstanceVector::iterator i;
-	for (i = m_vecAttachEffectInstance.begin(); i != m_vecAttachEffectInstance.end(); ++i)
+	for (auto i = m_vecAttachEffectInstance.begin(); i != m_vecAttachEffectInstance.end(); ++i)
 	{
 		rkEftMgr.DestroyEffectInstance (i->dwEffectInstanceIndex);
 
@@ -532,7 +530,7 @@ void CFlyingInstance::ClearAttachInstance()
 
 		i->iAttachIndex = 0;
 		i->dwEffectInstanceIndex = 0;
-		i->pFlyTrace = NULL;
+		i->pFlyTrace = nullptr;
 	}
 	m_vecAttachEffectInstance.clear();
 }
@@ -584,8 +582,7 @@ void CFlyingInstance::Render()
 
 void CFlyingInstance::RenderAttachInstance()
 {
-	TAttachEffectInstanceVector::iterator it;
-	for (it = m_vecAttachEffectInstance.begin(); it != m_vecAttachEffectInstance.end(); ++it)
+	for (auto it = m_vecAttachEffectInstance.begin(); it != m_vecAttachEffectInstance.end(); ++it)
 	{
 		if (it->pFlyTrace)
 		{

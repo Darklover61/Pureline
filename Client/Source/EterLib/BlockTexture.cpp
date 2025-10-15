@@ -100,7 +100,7 @@ void CBlockTexture::Render (int ix, int iy)
 		CGraphicBase::SetDefaultIndexBuffer (CGraphicBase::DEFAULT_IB_FILL_RECT);
 
 		STATEMANAGER.SetTexture (0, m_lpd3dTexture);
-		STATEMANAGER.SetTexture (1, NULL);
+		STATEMANAGER.SetTexture (1, nullptr);
 		STATEMANAGER.SetVertexShader (D3DFVF_XYZ | D3DFVF_TEX1 | D3DFVF_DIFFUSE);
 		STATEMANAGER.DrawIndexedPrimitive (D3DPT_TRIANGLELIST, 0, 4, 0, 2);
 	}
@@ -185,12 +185,12 @@ bool CBlockTexture::Create (CGraphicDib * pDIB, const RECT & c_rRect, DWORD dwWi
 
 CBlockTexture::CBlockTexture()
 {
-	m_pDIB = NULL;
-	m_lpd3dTexture = NULL;
+	m_pDIB = nullptr;
+	m_lpd3dTexture = nullptr;
 }
 
 CBlockTexture::~CBlockTexture()
 {
 	safe_release (m_lpd3dTexture);
-	m_lpd3dTexture = NULL;
+	m_lpd3dTexture = nullptr;
 }

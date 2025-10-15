@@ -68,7 +68,7 @@ CLight* CLightManager::GetLight (TLightID LightID)
 	if (m_LightMap.end() == itor)
 	{
 		assert (!"CLightManager::SetLightData - Failed to find light ID!");
-		return NULL;
+		return nullptr;
 	}
 
 	return itor->second;
@@ -109,7 +109,7 @@ void CLightManager::FlushLight()
 	//		 다시 Flush 하는 식으로 최적화 할 수 있다. - [levites]
 
 	// light들의 거리를 추출해 정렬한다.
-	TLightMap::iterator itor = m_LightMap.begin();
+	auto itor = m_LightMap.begin();
 
 	for (; itor != m_LightMap.end(); ++itor)
 	{
@@ -122,7 +122,7 @@ void CLightManager::FlushLight()
 	}
 
 	// quick sort lights
-	std::sort (m_LightSortVector.begin(), m_LightSortVector.end(), LightComp());
+	std::ranges::sort (m_LightSortVector, LightComp());
 
 	// NOTE - 거리로 정렬된 라이트를 Limit 갯수 만큼 제한해서 켜준다.
 	STATEMANAGER.SaveRenderState (D3DRS_LIGHTING, TRUE);
@@ -151,7 +151,7 @@ TLightID CLightManager::NewLightID()
 	{
 		TLightID id = m_NonUsingLightIDDeque.back();
 		m_NonUsingLightIDDeque.pop_back();
-		return (id);
+		return id;
 	}
 
 	return m_dwSkipIndex + m_LightMap.size();

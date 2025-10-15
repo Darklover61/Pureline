@@ -71,7 +71,7 @@ namespace UI
 		m_KeyCaptureWindowMap.clear();
 
 		delete m_pRootWindow;
-		m_pRootWindow = NULL;
+		m_pRootWindow = nullptr;
 	}
 
 	void CWindowManager::Destroy()
@@ -421,7 +421,7 @@ namespace UI
 		m_ActiveWindowList.remove (pWindow);
 		m_PickAlwaysWindowList.remove (pWindow);
 
-		TKeyCaptureWindowMap::iterator itor = m_KeyCaptureWindowMap.begin();
+		auto itor = m_KeyCaptureWindowMap.begin();
 		for (; itor != m_KeyCaptureWindowMap.end();)
 		{
 			if (pWindow == itor->second)

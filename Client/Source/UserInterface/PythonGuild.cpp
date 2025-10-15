@@ -134,9 +134,7 @@ void CPythonGuild::ChangeGuildMemberGeneralFlag (DWORD dwPID, BYTE byFlag)
 void CPythonGuild::RemoveMember (DWORD dwPID)
 {
 	TGuildMemberDataVector::iterator itor;
-	itor = std::find_if (m_GuildMemberDataVector.begin(),
-						 m_GuildMemberDataVector.end(),
-						 CPythonGuild_FFindGuildMemberByPID (dwPID));
+	itor = std::ranges::find_if (m_GuildMemberDataVector, CPythonGuild_FFindGuildMemberByPID (dwPID));
 
 	if (m_GuildMemberDataVector.end() == itor)
 	{
@@ -211,9 +209,7 @@ BOOL CPythonGuild::GetMemberDataPtr (DWORD dwIndex, TGuildMemberData** ppData)
 BOOL CPythonGuild::GetMemberDataPtrByPID (DWORD dwPID, TGuildMemberData** ppData)
 {
 	TGuildMemberDataVector::iterator itor;
-	itor = std::find_if (m_GuildMemberDataVector.begin(),
-						 m_GuildMemberDataVector.end(),
-						 CPythonGuild_FFindGuildMemberByPID (dwPID));
+	itor = std::ranges::find_if (m_GuildMemberDataVector, CPythonGuild_FFindGuildMemberByPID (dwPID));
 
 	if (m_GuildMemberDataVector.end() == itor)
 	{
@@ -227,9 +223,7 @@ BOOL CPythonGuild::GetMemberDataPtrByPID (DWORD dwPID, TGuildMemberData** ppData
 BOOL CPythonGuild::GetMemberDataPtrByName (const char* c_szName, TGuildMemberData** ppData)
 {
 	TGuildMemberDataVector::iterator itor;
-	itor = std::find_if (m_GuildMemberDataVector.begin(),
-						 m_GuildMemberDataVector.end(),
-						 CPythonGuild_FFindGuildMemberByName (c_szName));
+	itor = std::ranges::find_if (m_GuildMemberDataVector, CPythonGuild_FFindGuildMemberByName (c_szName));
 
 	if (m_GuildMemberDataVector.end() == itor)
 	{
@@ -262,7 +256,7 @@ CPythonGuild::TGuildSkillData& CPythonGuild::GetGuildSkillDataRef()
 
 bool CPythonGuild::GetGuildName (DWORD dwID, std::string * pstrGuildName)
 {
-	if (m_GuildNameMap.end() == m_GuildNameMap.find (dwID))
+	if (!m_GuildNameMap.contains(dwID))
 	{
 		return false;
 	}
@@ -371,12 +365,12 @@ struct CPythonGuild_SLessMemberGrade
 
 void CPythonGuild::__SortMember()
 {
-	std::sort (m_GuildMemberDataVector.begin(), m_GuildMemberDataVector.end(), CPythonGuild_SLessMemberGrade());
+	std::ranges::sort (m_GuildMemberDataVector, CPythonGuild_SLessMemberGrade());
 }
 
 BOOL CPythonGuild::__IsGradeData (BYTE byGradeNumber)
 {
-	return m_GradeDataMap.end() != m_GradeDataMap.find (byGradeNumber);
+	return m_GradeDataMap.contains(byGradeNumber);
 }
 
 void CPythonGuild::__Initialize()
@@ -753,8 +747,7 @@ PyObject* guildIsMemberByName (PyObject * poSelf, PyObject * poArgs)
 		return Py_BuildException();
 	}
 
-	CPythonGuild::TGuildMemberData * pData;
-	if (CPythonGuild::Instance().GetMemberDataPtrByName (szName, &pData))
+	if (CPythonGuild::TGuildMemberData * pData; CPythonGuild::Instance().GetMemberDataPtrByName (szName, &pData))
 	{
 		return Py_BuildValue ("i", TRUE);
 	}
@@ -888,7 +881,7 @@ void initguild()
 		// Guild
 		{ "Destroy",						guildDestroy,						METH_VARARGS },
 
-		{ NULL,								NULL,								NULL },
+		{ nullptr,							nullptr,							NULL },
 	};
 
 	PyObject * poModule = Py_InitModule ("guild", s_methods);

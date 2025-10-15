@@ -157,7 +157,7 @@ void CPythonShop::BuildPrivateShop (const char* c_szName)
 		ItemStock.push_back (itor->second);
 	}
 
-	std::sort (ItemStock.begin(), ItemStock.end(), ItemStockSortFunc());
+	std::ranges::sort (ItemStock, ItemStockSortFunc());
 
 	CPythonNetworkStream::Instance().SendBuildPrivateShopPacket (c_szName, ItemStock);
 }

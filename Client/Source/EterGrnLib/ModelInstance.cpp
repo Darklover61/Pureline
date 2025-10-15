@@ -91,24 +91,24 @@ void CGrannyModelInstance::__Initialize()
 	{
 		m_pModel->Release();
 	}
-	m_pModel = NULL;
-	mc_pParentInstance = NULL;
+	m_pModel = nullptr;
+	mc_pParentInstance = nullptr;
 	m_iParentBoneIndex = 0;
 
-	m_pgrnModelInstance = NULL;
+	m_pgrnModelInstance = nullptr;
 
 	// WORK
-	m_pgrnWorldPoseReal = NULL;
+	m_pgrnWorldPoseReal = nullptr;
 	// END_OF_WORK
 
 	// TEST
 	// m_pgrnWorldPose = NULL;
-	m_ppkSkeletonInst = NULL;
+	m_ppkSkeletonInst = nullptr;
 	// END_OF_TEST
 
-	m_meshMatrices = NULL;
-	m_pgrnCtrl = NULL;
-	m_pgrnAni = NULL;
+	m_meshMatrices = nullptr;
+	m_pgrnCtrl = nullptr;
+	m_pgrnAni = nullptr;
 
 	m_dwOldUpdateFrame = 0;
 
@@ -116,7 +116,7 @@ void CGrannyModelInstance::__Initialize()
 
 CGrannyModelInstance::CGrannyModelInstance()
 {
-	m_pModel = NULL;
+	m_pModel = nullptr;
 	__Initialize();
 }
 

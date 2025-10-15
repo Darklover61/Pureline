@@ -24,7 +24,7 @@ struct FQuestInstanceCompare
 
 void CPythonQuest::DeleteQuestInstance (DWORD dwIndex)
 {
-	TQuestInstanceContainer::iterator itor = std::find_if (m_QuestInstanceContainer.begin(), m_QuestInstanceContainer.end(), FQuestInstanceCompare (dwIndex));
+	auto itor = std::ranges::find_if (m_QuestInstanceContainer, FQuestInstanceCompare (dwIndex));
 	if (itor == m_QuestInstanceContainer.end())
 	{
 		return;
@@ -35,14 +35,14 @@ void CPythonQuest::DeleteQuestInstance (DWORD dwIndex)
 
 bool CPythonQuest::IsQuest (DWORD dwIndex)
 {
-	TQuestInstanceContainer::iterator itor = std::find_if (m_QuestInstanceContainer.begin(), m_QuestInstanceContainer.end(), FQuestInstanceCompare (dwIndex));
+	auto itor = std::ranges::find_if (m_QuestInstanceContainer, FQuestInstanceCompare (dwIndex));
 	return itor != m_QuestInstanceContainer.end();
 }
 
 void CPythonQuest::MakeQuest (DWORD dwIndex)
 {
 	DeleteQuestInstance (dwIndex);
-	m_QuestInstanceContainer.push_back (SQuestInstance());
+	m_QuestInstanceContainer.emplace_back ();
 
 	/////
 
@@ -137,7 +137,7 @@ bool CPythonQuest::GetQuestInstancePtr (DWORD dwArrayIndex, SQuestInstance** ppQ
 
 bool CPythonQuest::__GetQuestInstancePtr (DWORD dwQuestIndex, SQuestInstance** ppQuestInstance)
 {
-	TQuestInstanceContainer::iterator itor = std::find_if (m_QuestInstanceContainer.begin(), m_QuestInstanceContainer.end(), FQuestInstanceCompare (dwQuestIndex));
+	auto itor = std::ranges::find_if (m_QuestInstanceContainer, FQuestInstanceCompare (dwQuestIndex));
 	if (itor == m_QuestInstanceContainer.end())
 	{
 		return false;
@@ -207,7 +207,7 @@ PyObject* questGetQuestData (PyObject * poSelf, PyObject * poArgs)
 		return Py_BuildException ("Failed to find quest by index %d", iIndex);
 	}
 
-	CGraphicImage * pImage = NULL;
+	CGraphicImage * pImage = nullptr;
 	if (!pQuestInstance->strIconFileName.empty())
 	{
 		std::string strIconFileName;
@@ -292,7 +292,7 @@ void initquest()
 		{ "GetQuestIndex",				questGetQuestIndex,				METH_VARARGS },
 		{ "GetQuestLastTime",			questGetQuestLastTime,			METH_VARARGS },
 		{ "Clear",						questClear,						METH_VARARGS },
-		{ NULL,							NULL,							NULL },
+		{ nullptr,						nullptr,						NULL },
 	};
 
 	PyObject * poModule = Py_InitModule ("quest", s_methods);

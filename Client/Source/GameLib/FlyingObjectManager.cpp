@@ -8,7 +8,7 @@
 
 CFlyingManager::CFlyingManager()
 {
-	m_pMapManager = 0;
+	m_pMapManager = nullptr;
 }
 
 CFlyingManager::~CFlyingManager()
@@ -18,8 +18,7 @@ CFlyingManager::~CFlyingManager()
 
 void CFlyingManager::__DestroyFlyingInstanceList()
 {
-	TFlyingInstanceList::iterator i;
-	for (i = m_kLst_pkFlyInst.begin(); i != m_kLst_pkFlyInst.end(); ++i)
+	for (auto i = m_kLst_pkFlyInst.begin(); i != m_kLst_pkFlyInst.end(); ++i)
 	{
 		CFlyingInstance* pkFlyInst = *i;
 		CFlyingInstance::Delete (pkFlyInst);
@@ -29,8 +28,7 @@ void CFlyingManager::__DestroyFlyingInstanceList()
 
 void CFlyingManager::__DestroyFlyingDataMap()
 {
-	TFlyingDataMap::iterator i;
-	for (i = m_kMap_pkFlyData.begin(); i != m_kMap_pkFlyData.end(); ++i)
+	for (auto i = m_kMap_pkFlyData.begin(); i != m_kMap_pkFlyData.end(); ++i)
 	{
 		CFlyingData* pkFlyData = i->second;
 		CFlyingData::Delete (pkFlyData);
@@ -58,7 +56,7 @@ bool CFlyingManager::RegisterFlyingData (const char* c_szFilename)
 	StringPath (c_szFilename, s);
 	DWORD dwRetCRC = GetCaseCRC32 (s.c_str(), s.size());
 
-	if (m_kMap_pkFlyData.find (dwRetCRC) != m_kMap_pkFlyData.end())
+	if (m_kMap_pkFlyData.contains(dwRetCRC))
 	{
 		return false;
 	}
@@ -81,7 +79,7 @@ bool CFlyingManager::RegisterFlyingData (const char* c_szFilename, DWORD & r_dwR
 	StringPath (c_szFilename, s);
 	r_dwRetCRC = GetCaseCRC32 (s.c_str(), s.size());
 
-	if (m_kMap_pkFlyData.find (r_dwRetCRC) != m_kMap_pkFlyData.end())
+	if (m_kMap_pkFlyData.contains(r_dwRetCRC))
 	{
 		TraceError ("CFlyingManager::RegisterFlyingData - Already exists flying data named [%s]", c_szFilename);
 		return false;
@@ -105,10 +103,10 @@ CFlyingInstance* CFlyingManager::CreateFlyingInstanceFlyTarget (const DWORD dwID
 																const CFlyTarget & cr_FlyTarget,
 																bool canAttack)
 {
-	if (m_kMap_pkFlyData.find (dwID) == m_kMap_pkFlyData.end())
+	if (!m_kMap_pkFlyData.contains(dwID))
 	{
 		//TraceError("CFlyingManager::CreateFlyingInstanceFlyTarget - No data with CRC [%d]", dwID);
-		return NULL;
+		return nullptr;
 	}
 
 	CFlyingInstance * pFlyingInstance = CFlyingInstance::New();
@@ -122,7 +120,7 @@ CFlyingInstance* CFlyingManager::CreateFlyingInstanceFlyTarget (const DWORD dwID
 
 void CFlyingManager::Update()
 {
-	TFlyingInstanceList::iterator i = m_kLst_pkFlyInst.begin();
+	auto i = m_kLst_pkFlyInst.begin();
 
 	while (i != m_kLst_pkFlyInst.end())
 	{
@@ -141,7 +139,7 @@ void CFlyingManager::Update()
 
 void CFlyingManager::Render()
 {
-	std::for_each (m_kLst_pkFlyInst.begin(), m_kLst_pkFlyInst.end(), std::mem_fn (&CFlyingInstance::Render));
+	std::ranges::for_each (m_kLst_pkFlyInst, std::mem_fn (&CFlyingInstance::Render));
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -160,14 +158,14 @@ bool CFlyingManager::RegisterIndexedFlyData (DWORD dwIndex, BYTE byType, const c
 	TIndexFlyData IndexFlyData;
 	IndexFlyData.byType = byType;
 	IndexFlyData.dwCRC = dwCRC;
-	m_kMap_dwIndexFlyData.insert (std::make_pair (dwIndex, IndexFlyData));
+	m_kMap_dwIndexFlyData.try_emplace (dwIndex, IndexFlyData);
 
 	return true;
 }
 
 void CFlyingManager::CreateIndexedFly (DWORD dwIndex, CActorInstance * pStartActor, CActorInstance * pEndActor)
 {
-	if (m_kMap_dwIndexFlyData.end() == m_kMap_dwIndexFlyData.find (dwIndex))
+	if (!m_kMap_dwIndexFlyData.contains(dwIndex))
 	{
 		TraceError ("CFlyingManager::CreateIndexedFly(dwIndex=%d) - Not registered index", dwIndex);
 		return;

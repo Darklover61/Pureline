@@ -2,7 +2,7 @@
 //
 
 #include "StdAfx.h"
-#include "..\worldeditor.h"
+#include "../WorldEditor.h"
 #include "dlginitbasetexture.h"
 #include "../DataCtrl/MapAccessorTerrain.h"
 

@@ -27,7 +27,7 @@ void CEffectManager::GetInfo (std::string* pstInfo)
 
 void CEffectManager::UpdateSound()
 {
-	for (TEffectInstanceMap::iterator itor = m_kEftInstMap.begin(); itor != m_kEftInstMap.end(); ++itor)
+	for (auto itor = m_kEftInstMap.begin(); itor != m_kEftInstMap.end(); ++itor)
 	{
 		CEffectInstance * pEffectInstance = itor->second;
 
@@ -64,7 +64,7 @@ void CEffectManager::Update()
 	}
 	*/
 
-	for (TEffectInstanceMap::iterator itor = m_kEftInstMap.begin(); itor != m_kEftInstMap.end();)
+	for (auto itor = m_kEftInstMap.begin(); itor != m_kEftInstMap.end();)
 	{
 		CEffectInstance * pEffectInstance = itor->second;
 
@@ -102,12 +102,12 @@ struct CEffectManager_FEffectInstanceRender
 
 void CEffectManager::Render()
 {
-	STATEMANAGER.SetTexture (0, NULL);
-	STATEMANAGER.SetTexture (1, NULL);
+	STATEMANAGER.SetTexture (0, nullptr);
+	STATEMANAGER.SetTexture (1, nullptr);
 
 	if (m_isDisableSortRendering)
 	{
-		for (TEffectInstanceMap::iterator itor = m_kEftInstMap.begin(); itor != m_kEftInstMap.end();)
+		for (auto itor = m_kEftInstMap.begin(); itor != m_kEftInstMap.end();)
 		{
 			CEffectInstance * pEffectInstance = itor->second;
 			pEffectInstance->Render();
@@ -120,14 +120,13 @@ void CEffectManager::Render()
 		s_kVct_pkEftInstSort.clear();
 
 		TEffectInstanceMap& rkMap_pkEftInstSrc = m_kEftInstMap;
-		TEffectInstanceMap::iterator i;
-		for (i = rkMap_pkEftInstSrc.begin(); i != rkMap_pkEftInstSrc.end(); ++i)
+		for (auto i = rkMap_pkEftInstSrc.begin(); i != rkMap_pkEftInstSrc.end(); ++i)
 		{
 			s_kVct_pkEftInstSort.push_back (i->second);
 		}
 
-		std::sort (s_kVct_pkEftInstSort.begin(), s_kVct_pkEftInstSort.end(), CEffectManager_LessEffectInstancePtrRenderOrder());
-		std::for_each (s_kVct_pkEftInstSort.begin(), s_kVct_pkEftInstSort.end(), CEffectManager_FEffectInstanceRender());
+		std::ranges::sort (s_kVct_pkEftInstSort, CEffectManager_LessEffectInstancePtrRenderOrder());
+		std::ranges::for_each (s_kVct_pkEftInstSort, CEffectManager_FEffectInstanceRender());
 	}
 }
 
@@ -137,8 +136,7 @@ BOOL CEffectManager::RegisterEffect (const char* c_szFileName, bool isExistDelet
 	StringPath (c_szFileName, strFileName);
 	DWORD dwCRC = GetCaseCRC32 (strFileName.c_str(), strFileName.length());
 
-	TEffectDataMap::iterator itor = m_kEftDataMap.find (dwCRC);
-	if (m_kEftDataMap.end() != itor)
+	if (TEffectDataMap::iterator itor = m_kEftDataMap.find (dwCRC); m_kEftDataMap.end() != itor)
 	{
 		if (isExistDelete)
 		{
@@ -166,7 +164,7 @@ BOOL CEffectManager::RegisterEffect (const char* c_szFileName, bool isExistDelet
 
 	if (isNeedCache)
 	{
-		if (m_kEftCacheMap.find (dwCRC) == m_kEftCacheMap.end())
+		if (!m_kEftCacheMap.contains(dwCRC))
 		{
 			CEffectInstance* pkNewEftInst = CEffectInstance::New();
 			pkNewEftInst->SetEffectDataPointer (pkEftData);
@@ -292,7 +290,7 @@ BOOL CEffectManager::SelectEffectInstance (DWORD dwInstanceIndex)
 {
 	TEffectInstanceMap::iterator itor = m_kEftInstMap.find (dwInstanceIndex);
 
-	m_pSelectedEffectInstance = NULL;
+	m_pSelectedEffectInstance = nullptr;
 
 	if (m_kEftInstMap.end() == itor)
 	{
@@ -404,7 +402,7 @@ DWORD CEffectManager::GetRandomEffect()
 {
 	int iIndex = random() % m_kEftDataMap.size();
 
-	TEffectDataMap::iterator itor = m_kEftDataMap.begin();
+	auto itor = m_kEftDataMap.begin();
 	for (int i = 0; i < iIndex; ++i, ++itor);
 
 	return itor->first;
@@ -420,7 +418,7 @@ int CEffectManager::GetEmptyIndex()
 	}
 
 	int iNextIndex = iMaxIndex++;
-	while (m_kEftInstMap.find (iNextIndex) != m_kEftInstMap.end())
+	while (m_kEftInstMap.contains(iNextIndex))
 	{
 		iNextIndex++;
 	}
@@ -435,7 +433,7 @@ void CEffectManager::DeleteAllInstances()
 
 void CEffectManager::__DestroyEffectInstanceMap()
 {
-	for (TEffectInstanceMap::iterator i = m_kEftInstMap.begin(); i != m_kEftInstMap.end(); ++i)
+	for (auto i = m_kEftInstMap.begin(); i != m_kEftInstMap.end(); ++i)
 	{
 		CEffectInstance * pkEftInst = i->second;
 		CEffectInstance::Delete (pkEftInst);
@@ -446,7 +444,7 @@ void CEffectManager::__DestroyEffectInstanceMap()
 
 void CEffectManager::__DestroyEffectCacheMap()
 {
-	for (TEffectInstanceMap::iterator i = m_kEftCacheMap.begin(); i != m_kEftCacheMap.end(); ++i)
+	for (auto i = m_kEftCacheMap.begin(); i != m_kEftCacheMap.end(); ++i)
 	{
 		CEffectInstance * pkEftInst = i->second;
 		CEffectInstance::Delete (pkEftInst);
@@ -457,7 +455,7 @@ void CEffectManager::__DestroyEffectCacheMap()
 
 void CEffectManager::__DestroyEffectDataMap()
 {
-	for (TEffectDataMap::iterator i = m_kEftDataMap.begin(); i != m_kEftDataMap.end(); ++i)
+	for (auto i = m_kEftDataMap.begin(); i != m_kEftDataMap.end(); ++i)
 	{
 		CEffectData * pData = i->second;
 		CEffectData::Delete (pData);
@@ -477,7 +475,7 @@ void CEffectManager::Destroy()
 
 void CEffectManager::__Initialize()
 {
-	m_pSelectedEffectInstance = NULL;
+	m_pSelectedEffectInstance = nullptr;
 	m_isDisableSortRendering = false;
 }
 

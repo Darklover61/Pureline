@@ -841,7 +841,7 @@ void CPythonBackground::RegisterDungeonMapName (const char* c_szMapName)
 
 CPythonBackground::TMapInfo* CPythonBackground::GlobalPositionToMapInfo (DWORD dwGlobalX, DWORD dwGlobalY)
 {
-	TMapInfoVector::iterator f = std::find_if (m_kVct_kMapInfo.begin(), m_kVct_kMapInfo.end(), FFindWarpMapName (dwGlobalX, dwGlobalY));
+	TMapInfoVector::iterator f = std::ranges::find_if (m_kVct_kMapInfo, FFindWarpMapName (dwGlobalX, dwGlobalY));
 	if (f == m_kVct_kMapInfo.end())
 	{
 		return NULL;

@@ -941,7 +941,7 @@ int CInputMain::Chat (LPCHARACTER ch, const char* data, size_t uiBytes)
 
 			if (false)
 			{
-				std::for_each (c_ref_set.begin(), c_ref_set.end(),
+				std::ranges::for_each (c_ref_set,
 							   FYmirChatPacket (pack_chat,
 												buf,
 												strlen (buf),
@@ -953,7 +953,7 @@ int CInputMain::Chat (LPCHARACTER ch, const char* data, size_t uiBytes)
 			}
 			else
 			{
-				std::for_each (c_ref_set.begin(), c_ref_set.end(),
+				std::ranges::for_each (c_ref_set,
 							   FEmpireChatPacket (pack_chat,
 												  chatbuf,
 												  len,

@@ -194,9 +194,7 @@ bool CGraphicCollisionObject::IntersectSphere (const D3DXVECTOR3 & c_rv3Position
 	float b = 2 * D3DXVec3Dot (&v3RayOriginal, &c_rv3RayDirection);
 	float c = D3DXVec3Dot (&v3RayOriginal, &v3RayOriginal) - fRadius * fRadius;
 
-	float D = b * b - 4 * a * c;
-
-	if (D >= 0)
+	if (float D = b * b - 4 * a * c; D >= 0)
 	{
 		return true;
 	}
@@ -213,28 +211,26 @@ bool CGraphicCollisionObject::IntersectCylinder (const D3DXVECTOR3 & c_rv3Positi
 	float b = 2 * (v3RayOriginal.x * c_rv3RayDirection.x + v3RayOriginal.y * c_rv3RayDirection.y);
 	float c = v3RayOriginal.x * v3RayOriginal.x + v3RayOriginal.y * v3RayOriginal.y - fRadius * fRadius;
 
-	float D = b * b - 4 * a * c;
-	if (D > 0)
-		if (0.0f != a)
-		{
-			float tPlus = (-b + sqrtf (D)) / (2 * a);
-			float tMinus = (-b - sqrtf (D)) / (2 * a);
-			float fzPlus = v3RayOriginal.z + tPlus * c_rv3RayDirection.z;
-			float fzMinus = v3RayOriginal.z + tMinus * c_rv3RayDirection.z;
+	if (float D = b * b - 4 * a * c; D > 0 && (0.0f != a))
+	{
+		float tPlus = (-b + sqrtf (D)) / (2 * a);
+		float tMinus = (-b - sqrtf (D)) / (2 * a);
+		float fzPlus = v3RayOriginal.z + tPlus * c_rv3RayDirection.z;
+		float fzMinus = v3RayOriginal.z + tMinus * c_rv3RayDirection.z;
 
-			if (fzPlus > 0.0f && fzPlus <= fHeight)
-			{
-				return true;
-			}
-			if (fzMinus > 0.0f && fzMinus <= fHeight)
-			{
-				return true;
-			}
-			if (fzMinus * fzPlus < 0.0f)
-			{
-				return true;
-			}
+		if (fzPlus > 0.0f && fzPlus <= fHeight)
+		{
+			return true;
 		}
+		if (fzMinus > 0.0f && fzMinus <= fHeight)
+		{
+			return true;
+		}
+		if (fzMinus * fzPlus < 0.0f)
+		{
+			return true;
+		}
+	}
 
 	return false;
 }

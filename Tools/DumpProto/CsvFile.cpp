@@ -70,7 +70,7 @@ const char* cCsvAlias::operator [] (size_t index) const
     {
         LogToFile(NULL, "cannot find suitable conversion for %d", index);
         Assert(false && "cannot find suitable conversion");
-        return NULL;
+        return nullptr;
     }
 
     return itr->second.c_str();
@@ -110,7 +110,7 @@ bool cCsvFile::Load(const char* fileName, const char seperator, const char quote
 
     Destroy(); // 기존의 데이터를 삭제
 
-    cCsvRow* row = NULL;
+    cCsvRow* row = nullptr;
     ParseState state = STATE_NORMAL;
     std::string token = "";
     char buf[2048+1] = {0,};
@@ -196,7 +196,7 @@ bool cCsvFile::Load(const char* fileName, const char seperator, const char quote
             row->push_back(token.substr(0, token.size()-2));
             m_Rows.push_back(row);
             token.clear();
-            row = NULL;
+            row = nullptr;
         }
         else
         {
@@ -280,7 +280,7 @@ bool cCsvFile::Save(const char* fileName, bool append, char seperator, char quot
 ////////////////////////////////////////////////////////////////////////////////
 void cCsvFile::Destroy()
 {
-    for (ROWS::iterator itr(m_Rows.begin()); itr != m_Rows.end(); ++itr)
+    for (auto itr(m_Rows.begin()); itr != m_Rows.end(); ++itr)
         delete *itr;
 
     m_Rows.clear();
@@ -416,12 +416,12 @@ const cCsvRow* const cCsvTable::CurRow() const
     if (m_CurRow < 0)
     {
         Assert(false && "call Next() first!");
-        return NULL;
+        return nullptr;
     }
     else if (m_CurRow >= (int)m_File.GetRowCount())
     {
         Assert(false && "no more rows!");
-        return NULL;
+        return nullptr;
     }
 
     return m_File[m_CurRow];

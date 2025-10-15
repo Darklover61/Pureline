@@ -75,8 +75,8 @@ struct RangeTester : public SpherePackCallback
 class CCullingManager : public CSingleton<CCullingManager>, public SpherePackCallback, private CScreen
 {
 	public:
-		typedef SpherePack* CullingHandle;
-		typedef std::vector<CGraphicObjectInstance*> TRangeList;
+		using CullingHandle = SpherePack *;
+		using TRangeList = std::vector<CGraphicObjectInstance *>;
 
 		CCullingManager();
 		virtual ~CCullingManager();

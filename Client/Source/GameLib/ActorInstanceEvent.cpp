@@ -136,7 +136,7 @@ void CActorInstance::__OnResetAffect (UINT uAffect)
 
 CActorInstance::IEventHandler& CActorInstance::__GetEventHandlerRef()
 {
-	assert (m_pkEventHandler != NULL && "CActorInstance::GetEventHandlerRef");
+	assert (m_pkEventHandler != nullptr && "CActorInstance::GetEventHandlerRef");
 	return *m_pkEventHandler;
 }
 

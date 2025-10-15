@@ -286,7 +286,7 @@ void CGraphicObjectInstance::Initialize()
 	}
 	m_CullingHandle = 0;
 
-	m_pHeightAttributeInstance = NULL;
+	m_pHeightAttributeInstance = nullptr;
 
 	m_isVisible = TRUE;
 
@@ -342,8 +342,7 @@ void CGraphicObjectInstance::AddCollision (const CStaticCollisionData * pscd, co
 
 void CGraphicObjectInstance::ClearCollision()
 {
-	CCollisionInstanceVector::iterator it;
-	for (it = m_StaticCollisionInstanceVector.begin(); it != m_StaticCollisionInstanceVector.end(); ++it)
+	for (auto it = m_StaticCollisionInstanceVector.begin(); it != m_StaticCollisionInstanceVector.end(); ++it)
 	{
 		(*it)->Destroy();
 	}
@@ -352,8 +351,7 @@ void CGraphicObjectInstance::ClearCollision()
 
 bool CGraphicObjectInstance::CollisionDynamicSphere (const CDynamicSphereInstance & s) const
 {
-	CCollisionInstanceVector::const_iterator it;
-	for (it = m_StaticCollisionInstanceVector.begin(); it != m_StaticCollisionInstanceVector.end(); ++it)
+	for (auto it = m_StaticCollisionInstanceVector.begin(); it != m_StaticCollisionInstanceVector.end(); ++it)
 	{
 		if ((*it)->CollisionDynamicSphere (s))
 		{
@@ -365,8 +363,7 @@ bool CGraphicObjectInstance::CollisionDynamicSphere (const CDynamicSphereInstanc
 
 bool CGraphicObjectInstance::MovementCollisionDynamicSphere (const CDynamicSphereInstance & s) const
 {
-	CCollisionInstanceVector::const_iterator it;
-	for (it = m_StaticCollisionInstanceVector.begin(); it != m_StaticCollisionInstanceVector.end(); ++it)
+	for (auto it = m_StaticCollisionInstanceVector.begin(); it != m_StaticCollisionInstanceVector.end(); ++it)
 	{
 		if ((*it)->MovementCollisionDynamicSphere (s))
 		{
@@ -378,8 +375,7 @@ bool CGraphicObjectInstance::MovementCollisionDynamicSphere (const CDynamicSpher
 
 D3DXVECTOR3 CGraphicObjectInstance::GetCollisionMovementAdjust (const CDynamicSphereInstance & s) const
 {
-	CCollisionInstanceVector::const_iterator it;
-	for (it = m_StaticCollisionInstanceVector.begin(); it != m_StaticCollisionInstanceVector.end(); ++it)
+	for (auto it = m_StaticCollisionInstanceVector.begin(); it != m_StaticCollisionInstanceVector.end(); ++it)
 	{
 		if ((*it)->MovementCollisionDynamicSphere (s))
 		{
@@ -420,7 +416,7 @@ void CGraphicObjectInstance::SetHeightInstance (CAttributeInstance * pAttributeI
 
 void CGraphicObjectInstance::ClearHeightInstance()
 {
-	m_pHeightAttributeInstance = NULL;
+	m_pHeightAttributeInstance = nullptr;
 }
 
 void CGraphicObjectInstance::UpdateHeightInstance (CAttributeInstance * pAttributeInstance)

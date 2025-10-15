@@ -114,7 +114,7 @@ VOID D3D_CAdapterDisplayModeList::Build (IDirect3D8& rkD3D, D3DFORMAT eD3DFmtDef
 
 		// FindDisplayMode
 		D3DDISPLAYMODE* pkD3DDMEnd = akD3DDM + uD3DDMNum;
-		D3DDISPLAYMODE* pkD3DDMFind = std::find_if (akD3DDM, pkD3DDMEnd, FIsEqualD3DDisplayMode (&kD3DDMCur));
+		auto* pkD3DDMFind = std::find_if (akD3DDM, pkD3DDMEnd, FIsEqualD3DDisplayMode (&kD3DDMCur));
 
 		// IsNewDisplayMode
 		if (pkD3DDMFind == pkD3DDMEnd && uD3DDMNum < D3DDISPLAYMODE_MAX)
@@ -126,7 +126,7 @@ VOID D3D_CAdapterDisplayModeList::Build (IDirect3D8& rkD3D, D3DFORMAT eD3DFmtDef
 
 			// FindFormat
 			D3DFORMAT* peD3DFmtEnd = aeD3DFmt + uD3DFmtNum;
-			D3DFORMAT* peD3DFmtFind = std::find (aeD3DFmt, peD3DFmtEnd, kD3DDMCur.Format);
+			auto* peD3DFmtFind = std::find (aeD3DFmt, peD3DFmtEnd, kD3DDMCur.Format);
 
 			// IsNewFormat
 			if (peD3DFmtFind == peD3DFmtEnd && uD3DFmtNum < D3DFORMAT_MAX)
@@ -199,7 +199,7 @@ D3D_SModeInfo* D3D_CDeviceInfo::GetD3DModeInfop (UINT iD3D_SModeInfo)
 {
 	if (iD3D_SModeInfo >= m_uD3DModeInfoNum)
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	return &m_akD3DModeInfo[iD3D_SModeInfo];
@@ -558,7 +558,7 @@ D3D_SModeInfo* D3D_CAdapterInfo::GetD3DModeInfop (UINT iD3DDevInfo, UINT iD3D_SM
 			return pkD3DModeInfo;
 		}
 	}
-	return NULL;
+	return nullptr;
 }
 
 BOOL D3D_CAdapterInfo::Find (UINT uScrWidth, UINT uScrHeight, UINT uScrDepthBits, BOOL isWindowed, UINT* piD3DModeInfo, UINT* piD3DDevInfo)

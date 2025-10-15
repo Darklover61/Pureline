@@ -878,7 +878,7 @@ void CWhisper::__Initialize()
 
 void CWhisper::Destroy()
 {
-	std::for_each (m_ChatLineDeque.begin(), m_ChatLineDeque.end(), SChatLine::Delete);
+	std::ranges::for_each (m_ChatLineDeque, SChatLine::Delete);
 	m_ChatLineDeque.clear();
 	m_ShowingChatLineList.clear();
 }

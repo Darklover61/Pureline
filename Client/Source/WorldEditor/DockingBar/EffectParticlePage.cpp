@@ -2,7 +2,7 @@
 //
 
 #include "StdAfx.h"
-#include "..\WorldEditor.h"
+#include "../WorldEditor.h"
 #include "EffectParticlePage.h"
 #include "../Dialog/ColorAnimationDlg.h"
 

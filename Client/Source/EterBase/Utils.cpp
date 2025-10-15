@@ -516,7 +516,7 @@ void MyCreateDirectory (const char* path)
 		{
 			memset (dir, 0, len);
 			strncpy (dir, path, p - path);
-			CreateDirectory (dir, NULL);
+			CreateDirectory (dir, nullptr);
 		}
 
 		++p;
@@ -564,7 +564,7 @@ class CDirRemover : public CDir
 
 		static void RemoveAllDirectory()
 		{
-			for (std::deque<std::string>::iterator itor = ms_strDirectoryDeque.begin(); itor != ms_strDirectoryDeque.end(); ++itor)
+			for (auto itor = ms_strDirectoryDeque.begin(); itor != ms_strDirectoryDeque.end(); ++itor)
 			{
 				const std::string & c_rstrDirectory = *itor;
 				RemoveDirectory (c_rstrDirectory.c_str());

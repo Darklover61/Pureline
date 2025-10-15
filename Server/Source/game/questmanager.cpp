@@ -27,9 +27,9 @@ namespace quest
 	using namespace std;
 
 	CQuestManager::CQuestManager()
-		: m_pSelectedDungeon (NULL), m_dwServerTimerArg (0), m_iRunningEventIndex (0), L (NULL), m_bNoSend (false),
-		  m_CurrentRunningState (NULL), m_pCurrentCharacter (NULL), m_pCurrentNPCCharacter (NULL), m_pCurrentPartyMember (NULL),
-		  m_pCurrentPC (NULL),  m_iCurrentSkin (0), m_bError (false), m_pOtherPCBlockRootPC (NULL)
+		: m_pSelectedDungeon (nullptr), m_dwServerTimerArg (0), m_iRunningEventIndex (0), L (nullptr), m_bNoSend (false),
+		  m_CurrentRunningState (nullptr), m_pCurrentCharacter (nullptr), m_pCurrentNPCCharacter (nullptr), m_pCurrentPartyMember (nullptr),
+		  m_pCurrentPC (nullptr),  m_iCurrentSkin (0), m_bError (false), m_pOtherPCBlockRootPC (nullptr)
 	{
 	}
 
@@ -43,7 +43,7 @@ namespace quest
 		if (L)
 		{
 			lua_close (L);
-			L = NULL;
+			L = nullptr;
 		}
 	}
 
@@ -59,31 +59,31 @@ namespace quest
 			return false;
 		}
 
-		m_pSelectedDungeon = NULL;
+		m_pSelectedDungeon = nullptr;
 
-		m_mapEventName.insert (TEventNameMap::value_type ("click", QUEST_CLICK_EVENT));		// NPC를 클릭
-		m_mapEventName.insert (TEventNameMap::value_type ("kill", QUEST_KILL_EVENT));		// Mob을 사냥
-		m_mapEventName.insert (TEventNameMap::value_type ("timer", QUEST_TIMER_EVENT));		// 미리 지정해둔 시간이 지남
-		m_mapEventName.insert (TEventNameMap::value_type ("levelup", QUEST_LEVELUP_EVENT));	// 레벨업을 함
-		m_mapEventName.insert (TEventNameMap::value_type ("login", QUEST_LOGIN_EVENT));		// 로그인 시
-		m_mapEventName.insert (TEventNameMap::value_type ("logout", QUEST_LOGOUT_EVENT));		// 로그아웃 시
-		m_mapEventName.insert (TEventNameMap::value_type ("button", QUEST_BUTTON_EVENT));		// 퀘스트 버튼을 누름
-		m_mapEventName.insert (TEventNameMap::value_type ("info", QUEST_INFO_EVENT));		// 퀘스트 정보창을 염
-		m_mapEventName.insert (TEventNameMap::value_type ("chat", QUEST_CHAT_EVENT));		// 특정 키워드로 대화를 함
-		m_mapEventName.insert (TEventNameMap::value_type ("in", QUEST_ATTR_IN_EVENT));		// 맵의 특정 속성에 들어감
-		m_mapEventName.insert (TEventNameMap::value_type ("out", QUEST_ATTR_OUT_EVENT));		// 맵의 특정 속성에서 나옴
-		m_mapEventName.insert (TEventNameMap::value_type ("use", QUEST_ITEM_USE_EVENT));		// 퀘스트 아이템을 사용
-		m_mapEventName.insert (TEventNameMap::value_type ("server_timer", QUEST_SERVER_TIMER_EVENT));	// 서버 타이머 (아직 테스트 안됐음)
-		m_mapEventName.insert (TEventNameMap::value_type ("enter", QUEST_ENTER_STATE_EVENT));	// 현재 스테이트가 됨
-		m_mapEventName.insert (TEventNameMap::value_type ("leave", QUEST_LEAVE_STATE_EVENT));	// 현재 스테이트에서 다른 스테이트로 바뀜
-		m_mapEventName.insert (TEventNameMap::value_type ("letter", QUEST_LETTER_EVENT));		// 로긴 하거나 스테이트가 바껴 새로 정보를 세팅해줘야함
-		m_mapEventName.insert (TEventNameMap::value_type ("take", QUEST_ITEM_TAKE_EVENT));	// 아이템을 받음
-		m_mapEventName.insert (TEventNameMap::value_type ("target", QUEST_TARGET_EVENT));		// 타겟
-		m_mapEventName.insert (TEventNameMap::value_type ("party_kill", QUEST_PARTY_KILL_EVENT));	// 파티 멤버가 몬스터를 사냥 (리더에게 옴)
-		m_mapEventName.insert (TEventNameMap::value_type ("unmount", QUEST_UNMOUNT_EVENT));
-		m_mapEventName.insert (TEventNameMap::value_type ("pick", QUEST_ITEM_PICK_EVENT));	// 떨어져있는 아이템을 습득함.
-		m_mapEventName.insert (TEventNameMap::value_type ("sig_use", QUEST_SIG_USE_EVENT));		// Special item group에 속한 아이템을 사용함.
-		m_mapEventName.insert (TEventNameMap::value_type ("item_informer", QUEST_ITEM_INFORMER_EVENT));	// 독일선물기능테스트
+		m_mapEventName.try_emplace ("click", QUEST_CLICK_EVENT);		// NPC를 클릭
+		m_mapEventName.try_emplace ("kill", QUEST_KILL_EVENT);		// Mob을 사냥
+		m_mapEventName.try_emplace ("timer", QUEST_TIMER_EVENT);		// 미리 지정해둔 시간이 지남
+		m_mapEventName.try_emplace ("levelup", QUEST_LEVELUP_EVENT);	// 레벨업을 함
+		m_mapEventName.try_emplace ("login", QUEST_LOGIN_EVENT);		// 로그인 시
+		m_mapEventName.try_emplace ("logout", QUEST_LOGOUT_EVENT);		// 로그아웃 시
+		m_mapEventName.try_emplace ("button", QUEST_BUTTON_EVENT);		// 퀘스트 버튼을 누름
+		m_mapEventName.try_emplace ("info", QUEST_INFO_EVENT);		// 퀘스트 정보창을 염
+		m_mapEventName.try_emplace ("chat", QUEST_CHAT_EVENT);		// 특정 키워드로 대화를 함
+		m_mapEventName.try_emplace ("in", QUEST_ATTR_IN_EVENT);		// 맵의 특정 속성에 들어감
+		m_mapEventName.try_emplace ("out", QUEST_ATTR_OUT_EVENT);		// 맵의 특정 속성에서 나옴
+		m_mapEventName.try_emplace ("use", QUEST_ITEM_USE_EVENT);		// 퀘스트 아이템을 사용
+		m_mapEventName.try_emplace ("server_timer", QUEST_SERVER_TIMER_EVENT);	// 서버 타이머 (아직 테스트 안됐음)
+		m_mapEventName.try_emplace ("enter", QUEST_ENTER_STATE_EVENT);	// 현재 스테이트가 됨
+		m_mapEventName.try_emplace ("leave", QUEST_LEAVE_STATE_EVENT);	// 현재 스테이트에서 다른 스테이트로 바뀜
+		m_mapEventName.try_emplace ("letter", QUEST_LETTER_EVENT);		// 로긴 하거나 스테이트가 바껴 새로 정보를 세팅해줘야함
+		m_mapEventName.try_emplace ("take", QUEST_ITEM_TAKE_EVENT);	// 아이템을 받음
+		m_mapEventName.try_emplace ("target", QUEST_TARGET_EVENT);		// 타겟
+		m_mapEventName.try_emplace ("party_kill", QUEST_PARTY_KILL_EVENT);	// 파티 멤버가 몬스터를 사냥 (리더에게 옴)
+		m_mapEventName.try_emplace ("unmount", QUEST_UNMOUNT_EVENT);
+		m_mapEventName.try_emplace ("pick", QUEST_ITEM_PICK_EVENT);	// 떨어져있는 아이템을 습득함.
+		m_mapEventName.try_emplace ("sig_use", QUEST_SIG_USE_EVENT);		// Special item group에 속한 아이템을 사용함.
+		m_mapEventName.try_emplace ("item_informer", QUEST_ITEM_INFORMER_EVENT);	// 독일선물기능테스트
 
 		m_bNoSend = false;
 
@@ -394,9 +394,7 @@ namespace quest
 
 	void CQuestManager::LogoutPC (LPCHARACTER ch)
 	{
-		PC * pPC = GetPC (ch->GetPlayerID());
-
-		if (pPC && pPC->IsRunning())
+		if (PC * pPC = GetPC (ch->GetPlayerID()); pPC && pPC->IsRunning())
 		{
 			CloseState (*pPC->GetRunningQuestState());
 			pPC->CancelRunning();
@@ -407,8 +405,8 @@ namespace quest
 
 		if (ch == m_pCurrentCharacter)
 		{
-			m_pCurrentCharacter = NULL;
-			m_pCurrentPC = NULL;
+			m_pCurrentCharacter = nullptr;
+			m_pCurrentPC = nullptr;
 		}
 	}
 
@@ -514,8 +512,8 @@ namespace quest
 		SetServerTimerArg (arg);
 		sys_log (0, "XXX ServerTimer Call NPC %p", GetPCForce (0));
 		m_pCurrentPC = GetPCForce (0);
-		m_pCurrentCharacter = NULL;
-		m_pSelectedDungeon = NULL;
+		m_pCurrentCharacter = nullptr;
+		m_pSelectedDungeon = nullptr;
 		return m_mapNPC[npc].OnServerTimer (*m_pCurrentPC);
 	}
 
@@ -605,9 +603,7 @@ namespace quest
 
 	bool CQuestManager::Target (unsigned int pc, DWORD dwQuestIndex, const char* c_pszTargetName, const char* c_pszVerb)
 	{
-		PC * pPC;
-
-		if ((pPC = GetPC (pc)))
+		if (PC * pPC; (pPC = GetPC (pc)))
 		{
 			if (!CheckQuestLoaded (pPC))
 			{
@@ -630,9 +626,7 @@ namespace quest
 			// call script
 			if (!CheckQuestLoaded (pPC))
 			{
-				LPCHARACTER ch = CHARACTER_MANAGER::instance().FindByPID (pc);
-
-				if (ch)
+				if (LPCHARACTER ch = CHARACTER_MANAGER::instance().FindByPID (pc))
 				{
 					ch->ChatPacket (CHAT_TYPE_INFO, "[LS;772]"/* "Your request is loading. Please wait." */);
 				}
@@ -657,8 +651,7 @@ namespace quest
 			// call script
 			if (!CheckQuestLoaded (pPC))
 			{
-				LPCHARACTER ch = CHARACTER_MANAGER::instance().FindByPID (pc);
-				if (ch)
+				if (LPCHARACTER ch = CHARACTER_MANAGER::instance().FindByPID (pc))
 				{
 					ch->ChatPacket (CHAT_TYPE_INFO, "[LS;772]"/* "Your request is loading. Please wait." */);
 				}
@@ -682,8 +675,7 @@ namespace quest
 		{
 			if (!CheckQuestLoaded (pPC))
 			{
-				LPCHARACTER ch = CHARACTER_MANAGER::instance().FindByPID (pc);
-				if (ch)
+				if (LPCHARACTER ch = CHARACTER_MANAGER::instance().FindByPID (pc))
 				{
 					ch->ChatPacket (CHAT_TYPE_INFO, "[LS;772]"/* "Your request is loading. Please wait." */);
 				}
@@ -712,8 +704,7 @@ namespace quest
 		{
 			if (!CheckQuestLoaded (pPC))
 			{
-				LPCHARACTER ch = CHARACTER_MANAGER::instance().FindByPID (pc);
-				if (ch)
+				if (LPCHARACTER ch = CHARACTER_MANAGER::instance().FindByPID (pc))
 				{
 					ch->ChatPacket (CHAT_TYPE_INFO, "[LS;772]"/* "Your request is loading. Please wait." */);
 				}
@@ -758,8 +749,7 @@ namespace quest
 		{
 			if (!CheckQuestLoaded (pPC))
 			{
-				LPCHARACTER ch = CHARACTER_MANAGER::instance().FindByPID (pc);
-				if (ch)
+				if (LPCHARACTER ch = CHARACTER_MANAGER::instance().FindByPID (pc))
 				{
 					ch->ChatPacket (CHAT_TYPE_INFO, "[LS;772]"/* "Your request is loading. Please wait." */);
 				}
@@ -785,9 +775,7 @@ namespace quest
 			return false;
 		}
 
-		PC * pPC = GetPC (pc);
-
-		if (pPC)
+		if (PC * pPC = GetPC (pc))
 		{
 			if (!CheckQuestLoaded (pPC))
 			{
@@ -818,9 +806,7 @@ namespace quest
 		{
 			if (!CheckQuestLoaded (pPC))
 			{
-				LPCHARACTER ch = CHARACTER_MANAGER::instance().FindByPID (pc);
-
-				if (ch)
+				if (LPCHARACTER ch = CHARACTER_MANAGER::instance().FindByPID (pc))
 				{
 					ch->ChatPacket (CHAT_TYPE_INFO, "[LS;772]"/* "Your request is loading. Please wait." */);
 				}
@@ -1001,12 +987,12 @@ namespace quest
 
 		if (!pkChr)
 		{
-			return NULL;
+			return nullptr;
 		}
 
 		m_pCurrentPC = GetPCForce (pc);
 		m_pCurrentCharacter = pkChr;
-		m_pSelectedDungeon = NULL;
+		m_pSelectedDungeon = nullptr;
 		return (m_pCurrentPC);
 	}
 
@@ -1127,7 +1113,7 @@ namespace quest
 			unsigned int new_id = UINT_MAX - m_mapTimerID.size();
 
 			m_mapNPC[new_id].Set (new_id, name);
-			m_mapTimerID.insert (make_pair (name, new_id));
+			m_mapTimerID.try_emplace (name, new_id);
 
 			return new_id;
 		}
@@ -1179,7 +1165,7 @@ namespace quest
 			{
 				return m_pSelectedDungeon;
 			}
-			return NULL;
+			return nullptr;
 		}
 
 		return ch->GetDungeonForce();
@@ -1196,9 +1182,9 @@ namespace quest
 			return;
 		}
 
-		m_hmQuestName.insert (make_pair (stQuestName, idx));
+		m_hmQuestName.try_emplace (stQuestName, idx);
 		LoadStartQuest (stQuestName, idx);
-		m_mapQuestNameByIndex.insert (make_pair (idx, stQuestName));
+		m_mapQuestNameByIndex.try_emplace (idx, stQuestName);
 
 		sys_log (0, "QUEST: Register %4u %s", idx, stQuestName.c_str());
 	}
@@ -1437,7 +1423,7 @@ namespace quest
 
 				if (CHARACTER_MANAGER::instance().GetCharactersByRaceNum (xmas::MOB_XMAS_FIRWORK_SELLER_VNUM, i))
 				{
-					CharacterVectorInteractor::iterator it = i.begin();
+					auto it = i.begin();
 
 					while (it != i.end())
 					{
@@ -1491,7 +1477,7 @@ namespace quest
 
 				if (CHARACTER_MANAGER::instance().GetCharactersByRaceNum (EventNPC, i))
 				{
-					CharacterVectorInteractor::iterator it = i.begin();
+					auto it = i.begin();
 
 					while (it != i.end())
 					{
@@ -1534,7 +1520,7 @@ namespace quest
 
 				if (CHARACTER_MANAGER::instance().GetCharactersByRaceNum (new_santa, i))
 				{
-					CharacterVectorInteractor::iterator it = i.begin();
+					auto it = i.begin();
 
 					while (it != i.end())
 					{
@@ -1576,7 +1562,7 @@ namespace quest
 				CharacterVectorInteractor i;
 				CHARACTER_MANAGER::instance().GetCharactersByRaceNum (new_santa, i);
 
-				for (CharacterVectorInteractor::iterator it = i.begin(); it != i.end(); it++)
+				for (auto it = i.begin(); it != i.end(); it++)
 				{
 					M2_DESTROY_CHARACTER (*it);
 				}
@@ -1651,7 +1637,7 @@ namespace quest
 		m_mapTimerID.clear();
 		m_hmQuestStartScript.clear();
 		m_mapEventName.clear();
-		L = NULL;
+		L = nullptr;
 		Initialize();
 
 		for (itertype (m_registeredNPCVnum) it = m_registeredNPCVnum.begin(); it != m_registeredNPCVnum.end(); ++it)
@@ -1723,8 +1709,7 @@ namespace quest
 		pc.SetQuest (quest_name, qs);
 
 		// 실행
-		QuestState& rqs = *pc.GetRunningQuestState();
-		if (!CQuestManager::instance().RunState (rqs))
+		if (QuestState& rqs = *pc.GetRunningQuestState(); !CQuestManager::instance().RunState (rqs))
 		{
 			CQuestManager::instance().CloseState (rqs);
 			pc.EndRunning();
@@ -1735,7 +1720,7 @@ namespace quest
 
 	void CQuestManager::RegisterNPCVnum (DWORD dwVnum)
 	{
-		if (m_registeredNPCVnum.find (dwVnum) != m_registeredNPCVnum.end())
+		if (m_registeredNPCVnum.contains(dwVnum))
 		{
 			return;
 		}
@@ -1830,12 +1815,12 @@ namespace quest
 	void CQuestManager::AddServerTimer (const std::string& name, DWORD arg, LPEVENT event)
 	{
 		sys_log (0, "XXX AddServerTimer %s %d %p", name.c_str(), arg, get_pointer (event));
-		if (m_mapServerTimer.find (make_pair (name, arg)) != m_mapServerTimer.end())
+		if (m_mapServerTimer.contains(make_pair (name, arg)))
 		{
 			sys_err ("already registered server timer name:%s arg:%u", name.c_str(), arg);
 			return;
 		}
-		m_mapServerTimer.insert (make_pair (make_pair (name, arg), event));
+		m_mapServerTimer.try_emplace (make_pair (name, arg), event);
 	}
 
 	void CQuestManager::ClearServerTimerNotCancel (const std::string& name, DWORD arg)
@@ -1914,8 +1899,7 @@ namespace quest
 	}
 	void CQuestManager::BeginOtherPCBlock (DWORD pid)
 	{
-		LPCHARACTER ch = GetCurrentCharacterPtr();
-		if (NULL == ch)
+		if (LPCHARACTER ch = GetCurrentCharacterPtr(); nullptr == ch)
 		{
 			sys_err ("NULL?");
 			return;
@@ -1940,7 +1924,7 @@ namespace quest
 
 	void CQuestManager::EndOtherPCBlock()
 	{
-		if (m_vecPCStack.size() == 0)
+		if (m_vecPCStack.empty())
 		{
 			sys_err ("m_vecPCStack is already empty. CurrentQuest{Name(%s), State(%s)}", GetCurrentQuestName().c_str(), GetCurrentState()->_title.c_str());
 			return;
@@ -1951,7 +1935,7 @@ namespace quest
 
 		if (m_vecPCStack.empty())
 		{
-			m_pOtherPCBlockRootPC = NULL;
+			m_pOtherPCBlockRootPC = nullptr;
 		}
 	}
 

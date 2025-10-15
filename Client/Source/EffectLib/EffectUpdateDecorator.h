@@ -107,8 +107,8 @@ namespace NEffectUpdateDecorator
 	template <class T> class CTimeEventDecorator : public CBaseDecorator, public CPooledObject<CTimeEventDecorator<T >>
 	{
 		public:
-			typedef CTimeEvent<T> TTimeEventType;
-			typedef std::vector<TTimeEventType> TTimeEventContainerType;
+			using TTimeEventType = CTimeEvent<T>;
+			using TTimeEventContainerType = std::vector<TTimeEventType>;
 			CTimeEventDecorator (const TTimeEventContainerType& TimeEventContainer, T * pValue = 0)
 				:	it_start (TimeEventContainer.begin()),
 				  it_cur (TimeEventContainer.begin()),
@@ -190,12 +190,12 @@ namespace NEffectUpdateDecorator
 			T* pData;
 	};
 
-	typedef CTimeEventDecorator<float> CScaleValueDecorator;
-	typedef CTimeEventDecorator<float> CColorValueDecorator;
-	typedef CTimeEventDecorator<DWORDCOLOR> CColorAllDecorator;
-	typedef CTimeEventDecorator<float> CAirResistanceValueDecorator;
-	typedef CTimeEventDecorator<float> CGravityValueDecorator;
-	typedef CTimeEventDecorator<float> CRotationSpeedValueDecorator;
+	using CScaleValueDecorator = CTimeEventDecorator<float>;
+	using CColorValueDecorator = CTimeEventDecorator<float>;
+	using CColorAllDecorator = CTimeEventDecorator<DWORDCOLOR>;
+	using CAirResistanceValueDecorator = CTimeEventDecorator<float>;
+	using CGravityValueDecorator = CTimeEventDecorator<float>;
+	using CRotationSpeedValueDecorator = CTimeEventDecorator<float>;
 
 	class CTextureAnimationCWDecorator : public CBaseDecorator, public CPooledObject<CTextureAnimationCWDecorator>
 	{

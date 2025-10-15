@@ -1,6 +1,6 @@
 #include "StdAfx.h"
 
-#include "..\WorldEditor.h"
+#include "../WorldEditor.h"
 #include "../../EterLib/Camera.h"
 #include "../MainFrm.h"
 

@@ -549,7 +549,7 @@ static void __LocaleService_Init_JAPAN()
 	g_stServiceMapPath = "locale/japan/map";
 
 	g_setQuestObjectDir.clear();
-	g_setQuestObjectDir.insert ("locale/japan/quest/object");
+	g_setQuestObjectDir.emplace ("locale/japan/quest/object");
 	g_stLocaleFilename = "locale/japan/sjis_string.txt";
 
 	g_iUseLocale = TRUE;
@@ -567,7 +567,7 @@ static void __LocaleService_Init_English()
 	g_stServiceMapPath = "locale/english/map";
 
 	g_setQuestObjectDir.clear();
-	g_setQuestObjectDir.insert ("locale/english/quest/object");
+	g_setQuestObjectDir.emplace ("locale/english/quest/object");
 	g_stLocaleFilename = "locale/english/eng_string.txt";
 
 	g_iUseLocale = TRUE;
@@ -582,7 +582,7 @@ static void __LocaleService_Init_HongKong()
 	g_stServiceMapPath = "locale/hongkong/map";
 
 	g_setQuestObjectDir.clear();
-	g_setQuestObjectDir.insert ("locale/hongkong/quest/object");
+	g_setQuestObjectDir.emplace ("locale/hongkong/quest/object");
 	g_stLocaleFilename = "locale/hongkong/big5_string.txt";
 
 	g_iUseLocale = TRUE;
@@ -599,7 +599,7 @@ static void __LocaleService_Init_NewCIBN()
 	g_stServiceMapPath = "locale/newcibn/map";
 
 	g_setQuestObjectDir.clear();
-	g_setQuestObjectDir.insert ("locale/newcibn/quest/object");
+	g_setQuestObjectDir.emplace ("locale/newcibn/quest/object");
 	g_stLocaleFilename = "locale/newcibn/locale_string.txt";
 
 	g_iUseLocale = TRUE;
@@ -617,7 +617,7 @@ static void __LocaleService_Init_Germany()
 	g_stServiceMapPath = "locale/germany/map";
 
 	g_setQuestObjectDir.clear();
-	g_setQuestObjectDir.insert ("locale/germany/quest/object");
+	g_setQuestObjectDir.emplace ("locale/germany/quest/object");
 	g_stLocaleFilename = "locale/germany/locale_string.txt";
 
 	g_iUseLocale = TRUE;
@@ -635,7 +635,7 @@ static void __LocaleService_Init_Korea()
 	g_stServiceMapPath = "locale/korea/map";
 
 	g_setQuestObjectDir.clear();
-	g_setQuestObjectDir.insert ("locale/korea/quest/object");
+	g_setQuestObjectDir.emplace ("locale/korea/quest/object");
 
 	g_iUseLocale = TRUE;
 	exp_table = exp_table_euckr;
@@ -649,7 +649,7 @@ static void __LocaleService_Init_France()
 	g_stServiceMapPath = "locale/france/map";
 
 	g_setQuestObjectDir.clear();
-	g_setQuestObjectDir.insert ("locale/france/quest/object");
+	g_setQuestObjectDir.emplace ("locale/france/quest/object");
 	g_stLocaleFilename = "locale/france/locale_string.txt";
 
 	g_iUseLocale = TRUE;
@@ -667,7 +667,7 @@ static void __LocaleService_Init_Italy()
 	g_stServiceMapPath = "locale/italy/map";
 
 	g_setQuestObjectDir.clear();
-	g_setQuestObjectDir.insert ("locale/italy/quest/object");
+	g_setQuestObjectDir.emplace ("locale/italy/quest/object");
 	g_stLocaleFilename = "locale/italy/locale_string.txt";
 
 	g_iUseLocale = TRUE;
@@ -685,7 +685,7 @@ static void __LocaleService_Init_spain()
 	g_stServiceMapPath = "locale/spain/map";
 
 	g_setQuestObjectDir.clear();
-	g_setQuestObjectDir.insert ("locale/spain/quest/object");
+	g_setQuestObjectDir.emplace ("locale/spain/quest/object");
 	g_stLocaleFilename = "locale/spain/locale_string.txt";
 
 	g_iUseLocale = TRUE;
@@ -703,7 +703,7 @@ static void __LocaleService_Init_greek()
 	g_stServiceMapPath = "locale/greek/map";
 
 	g_setQuestObjectDir.clear();
-	g_setQuestObjectDir.insert ("locale/greek/quest/object");
+	g_setQuestObjectDir.emplace ("locale/greek/quest/object");
 	g_stLocaleFilename = "locale/greek/locale_string.txt";
 
 	g_iUseLocale = TRUE;
@@ -721,7 +721,7 @@ static void __LocaleService_Init_UK()
 	g_stServiceMapPath = "locale/uk/map";
 
 	g_setQuestObjectDir.clear();
-	g_setQuestObjectDir.insert ("locale/uk/quest/object");
+	g_setQuestObjectDir.emplace ("locale/uk/quest/object");
 	g_stLocaleFilename = "locale/uk/locale_string.txt";
 
 	g_iUseLocale = TRUE;
@@ -739,7 +739,7 @@ static void __LocaleService_Init_Turkey()
 	g_stServiceMapPath = "locale/turkey/map";
 
 	g_setQuestObjectDir.clear();
-	g_setQuestObjectDir.insert ("locale/turkey/quest/object");
+	g_setQuestObjectDir.emplace ("locale/turkey/quest/object");
 	g_stLocaleFilename = "locale/turkey/locale_string.txt";
 
 	g_iUseLocale = TRUE;
@@ -757,7 +757,7 @@ static void __LocaleService_Init_Poland()
 	g_stServiceMapPath = "locale/poland/map";
 
 	g_setQuestObjectDir.clear();
-	g_setQuestObjectDir.insert ("locale/poland/quest/object");
+	g_setQuestObjectDir.emplace ("locale/poland/quest/object");
 	g_stLocaleFilename = "locale/poland/locale_string.txt";
 
 	g_iUseLocale = TRUE;
@@ -775,7 +775,7 @@ static void __LocaleService_Init_Portugal()
 	g_stServiceMapPath = "locale/portugal/map";
 
 	g_setQuestObjectDir.clear();
-	g_setQuestObjectDir.insert ("locale/portugal/quest/object");
+	g_setQuestObjectDir.emplace ("locale/portugal/quest/object");
 	g_stLocaleFilename = "locale/portugal/locale_string.txt";
 
 	g_iUseLocale = TRUE;
@@ -793,7 +793,7 @@ static void __LocaleService_Init_Canada()
 	g_stServiceMapPath	= "locale/canada/map";
 
 	g_setQuestObjectDir.clear();
-	g_setQuestObjectDir.insert ("locale/canada/quest/object");
+	g_setQuestObjectDir.emplace ("locale/canada/quest/object");
 	g_stLocaleFilename = "locale/canada/locale_string.txt";
 
 	check_name	= check_name_alphabet;
@@ -809,7 +809,7 @@ static void __LocaleService_Init_Brazil()
 	g_stServiceMapPath	= "locale/brazil/map";
 
 	g_setQuestObjectDir.clear();
-	g_setQuestObjectDir.insert ("locale/brazil/quest/object");
+	g_setQuestObjectDir.emplace ("locale/brazil/quest/object");
 	g_stLocaleFilename = "locale/brazil/locale_string.txt";
 
 	check_name = check_name_alphabet;
@@ -841,7 +841,7 @@ static void __LocaleService_Init_Russia()
 	g_stServiceMapPath = "locale/russia/map";
 
 	g_setQuestObjectDir.clear();
-	g_setQuestObjectDir.insert ("locale/russia/quest/object");
+	g_setQuestObjectDir.emplace ("locale/russia/quest/object");
 	g_stLocaleFilename = "locale/russia/locale_string.txt";
 
 	g_iUseLocale = TRUE;
@@ -859,7 +859,7 @@ static void __LocaleService_Init_Denmark()
 	g_stServiceMapPath = "locale/denmark/map";
 
 	g_setQuestObjectDir.clear();
-	g_setQuestObjectDir.insert ("locale/denmark/quest/object");
+	g_setQuestObjectDir.emplace ("locale/denmark/quest/object");
 	g_stLocaleFilename = "locale/denmark/locale_string.txt";
 
 	g_iUseLocale = TRUE;
@@ -877,7 +877,7 @@ static void __LocaleService_Init_Bulgaria()
 	g_stServiceMapPath = "locale/bulgaria/map";
 
 	g_setQuestObjectDir.clear();
-	g_setQuestObjectDir.insert ("locale/bulgaria/quest/object");
+	g_setQuestObjectDir.emplace ("locale/bulgaria/quest/object");
 	g_stLocaleFilename = "locale/bulgaria/locale_string.txt";
 
 	g_iUseLocale = TRUE;
@@ -895,7 +895,7 @@ static void __LocaleService_Init_Croatia()
 	g_stServiceMapPath = "locale/croatia/map";
 
 	g_setQuestObjectDir.clear();
-	g_setQuestObjectDir.insert ("locale/croatia/quest/object");
+	g_setQuestObjectDir.emplace ("locale/croatia/quest/object");
 	g_stLocaleFilename = "locale/croatia/locale_string.txt";
 
 	g_iUseLocale = TRUE;
@@ -913,7 +913,7 @@ static void __LocaleService_Init_Mexico()
 	g_stServiceMapPath = "locale/mexico/map";
 
 	g_setQuestObjectDir.clear();
-	g_setQuestObjectDir.insert ("locale/mexico/quest/object");
+	g_setQuestObjectDir.emplace ("locale/mexico/quest/object");
 	g_stLocaleFilename = "locale/mexico/locale_string.txt";
 
 	g_iUseLocale = TRUE;
@@ -931,7 +931,7 @@ static void __LocaleService_Init_Arabia()
 	g_stServiceMapPath = "locale/arabia/map";
 
 	g_setQuestObjectDir.clear();
-	g_setQuestObjectDir.insert ("locale/arabia/quest/object");
+	g_setQuestObjectDir.emplace ("locale/arabia/quest/object");
 	g_stLocaleFilename = "locale/arabia/locale_string.txt";
 
 	g_iUseLocale = TRUE;
@@ -949,7 +949,7 @@ static void __LocaleService_Init_Czech()
 	g_stServiceMapPath = "locale/czech/map";
 
 	g_setQuestObjectDir.clear();
-	g_setQuestObjectDir.insert ("locale/czech/quest/object");
+	g_setQuestObjectDir.emplace ("locale/czech/quest/object");
 	g_stLocaleFilename = "locale/czech/locale_string.txt";
 
 	g_iUseLocale = TRUE;
@@ -967,7 +967,7 @@ static void __LocaleService_Init_Hungary()
 	g_stServiceMapPath = "locale/hungary/map";
 
 	g_setQuestObjectDir.clear();
-	g_setQuestObjectDir.insert ("locale/hungary/quest/object");
+	g_setQuestObjectDir.emplace ("locale/hungary/quest/object");
 	g_stLocaleFilename = "locale/hungary/locale_string.txt";
 
 	g_iUseLocale = TRUE;
@@ -985,7 +985,7 @@ static void __LocaleService_Init_Romania()
 	g_stServiceMapPath = "locale/romania/map";
 
 	g_setQuestObjectDir.clear();
-	g_setQuestObjectDir.insert ("locale/romania/quest/object");
+	g_setQuestObjectDir.emplace ("locale/romania/quest/object");
 	g_stLocaleFilename = "locale/romania/locale_string.txt";
 
 	g_iUseLocale = TRUE;
@@ -1003,7 +1003,7 @@ static void __LocaleService_Init_Netherlands()
 	g_stServiceMapPath = "locale/netherlands/map";
 
 	g_setQuestObjectDir.clear();
-	g_setQuestObjectDir.insert ("locale/netherlands/quest/object");
+	g_setQuestObjectDir.emplace ("locale/netherlands/quest/object");
 	g_stLocaleFilename = "locale/netherlands/locale_string.txt";
 
 	g_iUseLocale = TRUE;
@@ -1021,7 +1021,7 @@ static void __LocaleService_Init_Singapore()
 	g_stServiceMapPath	= "locale/singapore/map";
 
 	g_setQuestObjectDir.clear();
-	g_setQuestObjectDir.insert ("locale/singapore/quest/object");
+	g_setQuestObjectDir.emplace ("locale/singapore/quest/object");
 	g_stLocaleFilename = "locale/singapore/locale_string.txt";
 
 	check_name	= check_name_alphabet;
@@ -1038,7 +1038,7 @@ static void __LocaleService_Init_Vietnam()
 	g_stServiceMapPath	= "locale/vietnam/map";
 
 	g_setQuestObjectDir.clear();
-	g_setQuestObjectDir.insert ("locale/vietnam/quest/object");
+	g_setQuestObjectDir.emplace ("locale/vietnam/quest/object");
 	g_stLocaleFilename = "locale/vietnam/locale_string.txt";
 
 	check_name	= check_name_alphabet;
@@ -1056,7 +1056,7 @@ static void __LocaleService_Init_Thailand()
 	g_stServiceMapPath	= "locale/thailand/map";
 
 	g_setQuestObjectDir.clear();
-	g_setQuestObjectDir.insert ("locale/thailand/quest/object");
+	g_setQuestObjectDir.emplace ("locale/thailand/quest/object");
 	g_stLocaleFilename = "locale/thailand/locale_string.txt";
 
 	check_name	= check_name_alphabet;
@@ -1072,7 +1072,7 @@ static void __LocaleService_Init_USA()
 	g_stServiceMapPath = "locale/usa/map";
 
 	g_setQuestObjectDir.clear();
-	g_setQuestObjectDir.insert ("locale/usa/quest/object");
+	g_setQuestObjectDir.emplace ("locale/usa/quest/object");
 	g_stLocaleFilename = "locale/usa/locale_string.txt";
 
 	g_iUseLocale = TRUE;

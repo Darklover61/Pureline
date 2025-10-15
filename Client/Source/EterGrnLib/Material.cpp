@@ -45,13 +45,13 @@ void CGrannyMaterial::TranslateSpecularMatrix (float fAddX, float fAddY, float f
 
 void CGrannyMaterial::ApplyRenderState()
 {
-	assert (m_pfnApplyRenderState != NULL && "CGrannyMaterial::SaveRenderState");
+	assert (m_pfnApplyRenderState != nullptr && "CGrannyMaterial::SaveRenderState");
 	(this->*m_pfnApplyRenderState)();
 }
 
 void CGrannyMaterial::RestoreRenderState()
 {
-	assert (m_pfnRestoreRenderState != NULL && "CGrannyMaterial::RestoreRenderState");
+	assert (m_pfnRestoreRenderState != nullptr && "CGrannyMaterial::RestoreRenderState");
 	(this->*m_pfnRestoreRenderState)();
 }
 
@@ -153,7 +153,7 @@ LPDIRECT3DTEXTURE8 CGrannyMaterial::GetD3DTexture (int iStage) const
 
 	if (ratImage.IsNull())
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	CGraphicImage * pImage = ratImage.GetPointer();
@@ -167,7 +167,7 @@ CGraphicImage* CGrannyMaterial::GetImagePointer (int iStage) const
 
 	if (ratImage.IsNull())
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	CGraphicImage * pImage = ratImage.GetPointer();
@@ -178,7 +178,7 @@ const CGraphicTexture* CGrannyMaterial::GetDiffuseTexture() const
 {
 	if (m_roImage[0].IsNull())
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	return m_roImage[0].GetPointer()->GetTexturePointer();
@@ -188,7 +188,7 @@ const CGraphicTexture* CGrannyMaterial::GetOpacityTexture() const
 {
 	if (m_roImage[1].IsNull())
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	return m_roImage[1].GetPointer()->GetTexturePointer();
@@ -238,8 +238,8 @@ bool CGrannyMaterial::CreateFromGrannyMaterialPointer (granny_material * pgrnMat
 {
 	m_pgrnMaterial = pgrnMaterial;
 
-	granny_texture * pgrnDiffuseTexture = NULL;
-	granny_texture * pgrnOpacityTexture = NULL;
+	granny_texture * pgrnDiffuseTexture = nullptr;
+	granny_texture * pgrnOpacityTexture = nullptr;
 
 	if (pgrnMaterial)
 	{
@@ -265,9 +265,9 @@ bool CGrannyMaterial::CreateFromGrannyMaterialPointer (granny_material * pgrnMat
 
 			granny_variant twoSideResult;
 
-			if (GrannyFindMatchingMember (pgrnMaterial->ExtendedData.Type, pgrnMaterial->ExtendedData.Object, "Two-sided", &twoSideResult)  && NULL != twoSideResult.Type)
+			if (GrannyFindMatchingMember (pgrnMaterial->ExtendedData.Type, pgrnMaterial->ExtendedData.Object, "Two-sided", &twoSideResult)  && nullptr != twoSideResult.Type)
 			{
-				GrannyConvertSingleObject (twoSideResult.Type, twoSideResult.Object, TwoSidedFieldType, &twoSided, NULL);
+				GrannyConvertSingleObject (twoSideResult.Type, twoSideResult.Object, TwoSidedFieldType, &twoSided, nullptr);
 			}
 
 			m_bTwoSideRender = 1 == twoSided;
@@ -299,8 +299,8 @@ bool CGrannyMaterial::CreateFromGrannyMaterialPointer (granny_material * pgrnMat
 
 void CGrannyMaterial::Initialize()
 {
-	m_roImage[0] = NULL;
-	m_roImage[1] = NULL;
+	m_roImage[0] = nullptr;
+	m_roImage[1] = nullptr;
 
 	SetSpecularInfo (FALSE, 0.0f, 0);
 }
@@ -343,7 +343,7 @@ void CGrannyMaterial::__ApplySpecularRenderState()
 	}
 	else
 	{
-		STATEMANAGER.SetTexture (1, NULL);
+		STATEMANAGER.SetTexture (1, nullptr);
 	}
 
 	STATEMANAGER.SetRenderState (D3DRS_TEXTUREFACTOR, D3DXCOLOR (g_fSpecularColor.r, g_fSpecularColor.g, g_fSpecularColor.b, __GetSpecularPower()));

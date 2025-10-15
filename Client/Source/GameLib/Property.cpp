@@ -12,7 +12,7 @@
  *
  *  그 이후의 바이트들은 텍스트 파일 로더와 같은 구조
  */
-CProperty::CProperty (const char* c_pszFileName) : mc_pFileName (NULL), m_dwCRC (0)
+CProperty::CProperty (const char* c_pszFileName) : mc_pFileName (nullptr), m_dwCRC (0)
 {
 	m_stFileName = c_pszFileName;
 	StringPath (m_stFileName);
@@ -96,7 +96,7 @@ bool CProperty::GetVector (const char* c_pszKey, CTokenVector & rTokenVector)
 	// 결국 이렇게.. - [levites]
 	// 현재 사용하는 곳 : WorldEditor/Dialog/MapObjectPropertyPageBuilding.cpp
 	CTokenVector & rSourceTokenVector = it->second;
-	CTokenVector::iterator itor = rSourceTokenVector.begin();
+	auto itor = rSourceTokenVector.begin();
 	for (; itor != rSourceTokenVector.end(); ++itor)
 	{
 		rTokenVector.push_back (*itor);
@@ -111,17 +111,15 @@ void CProperty::PutString (const char* c_pszKey, const char* c_pszString)
 	stl_lowers (stTempKey);
 
 	// 이미 있는걸 지움
-	CTokenVectorMap::iterator itor = m_stTokenMap.find (stTempKey);
-
-	if (itor != m_stTokenMap.end())
+	if (CTokenVectorMap::iterator itor = m_stTokenMap.find (stTempKey); itor != m_stTokenMap.end())
 	{
 		m_stTokenMap.erase (itor);
 	}
 
 	CTokenVector tokenVector;
-	tokenVector.push_back (c_pszString);
+	tokenVector.emplace_back (c_pszString);
 
-	m_stTokenMap.insert (CTokenVectorMap::value_type (stTempKey, tokenVector));
+	m_stTokenMap.try_emplace (stTempKey, tokenVector);
 }
 
 void CProperty::PutVector (const char* c_pszKey, const CTokenVector & c_rTokenVector)
@@ -129,7 +127,7 @@ void CProperty::PutVector (const char* c_pszKey, const CTokenVector & c_rTokenVe
 	std::string stTempKey = c_pszKey;
 	stl_lowers (stTempKey);
 
-	m_stTokenMap.insert (CTokenVectorMap::value_type (stTempKey, c_rTokenVector));
+	m_stTokenMap.try_emplace (stTempKey, c_rTokenVector);
 }
 
 void GetTimeString (char* str, time_t ct)
@@ -170,7 +168,7 @@ bool CProperty::Save (const char* c_pszFileName)
 	file.Write (m_stCRC.c_str(), m_stCRC.length());
 	file.Write ("\r\n", 2);
 
-	CTokenVectorMap::iterator itor = m_stTokenMap.begin();
+	auto itor = m_stTokenMap.begin();
 	char buf[4096 + 1];
 
 	while (itor != m_stTokenMap.end())
