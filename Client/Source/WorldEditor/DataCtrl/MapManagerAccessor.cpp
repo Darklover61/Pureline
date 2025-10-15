@@ -1521,6 +1521,10 @@ void CMapManagerAccessor::UpdateTerrainShadowMap()
 	{
 		CSpeedTreeForestDirectX8::Instance().Render (Forest_RenderAll | Forest_RenderToShadow);
 		m_pMapAccessor->RenderToShadowMap();
+
+		/* - DYNAMIC_OBJECT_SHADOWS ---------------------------- */
+		m_pMapAccessor->RenderObjectShadowsToTexture();
+		/* ----------------------------------------------------- */
 	}
 	else
 	{

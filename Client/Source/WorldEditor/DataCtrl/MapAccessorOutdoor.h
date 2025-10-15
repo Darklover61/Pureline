@@ -207,6 +207,10 @@ class CMapOutdoorAccessor : public CMapOutdoor
 		void RenderToShadowMap();
 		void RenderShadow();
 
+		/* - DYNAMIC_OBJECT_SHADOWS ---------------------------- */
+		void RenderObjectShadowsToTexture();
+		/* ----------------------------------------------------- */
+
 		// MiniMap
 		void RenderMiniMap();
 

@@ -2,6 +2,17 @@
 | Kaptan Yosun's Pureline                                        |
 +----------------------------------------------------------------+
 +------------+
+| 15.10.2025 |
++------------+
+~ Dynamic shadows for World Editor (Credits: m2Ciaran @Metin2Dev)
+~ Minor code modernizations
+	* auto
+	* contains
+	* insert -> try_emplace
+	* null -> nullptr
+	* typedef -> using
+
++------------+
 | 11.10.2025 |
 +------------+
 Added Dynamic tree and object shadows.

@@ -69,6 +69,10 @@ class CAreaAccessor : public CArea
 		// Shadow Map
 		void RenderToShadowMap();
 
+		/* - DYNAMIC_OBJECT_SHADOWS ---------------------------- */
+		void RenderShadowObjects();
+		/* ----------------------------------------------------- */
+
 		// 건물 텍스처 리로딩
 		void ReloadBuildingTexture();
 

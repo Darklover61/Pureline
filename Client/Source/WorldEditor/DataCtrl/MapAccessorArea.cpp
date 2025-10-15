@@ -1409,6 +1409,16 @@ void CAreaAccessor::RenderToShadowMap()
 		m_ShadowThingCloneInstaceVector[i]->RenderToShadowMap();
 	}
 }
+
+/* - DYNAMIC_OBJECT_SHADOWS ---------------------------- */
+void CAreaAccessor::RenderShadowObjects()
+{
+	for (CGraphicThingInstance* pInst : m_ShadowThingCloneInstaceVector)
+		if (pInst && pInst->isShow())
+			pInst->RenderToShadowMap();
+}
+/* ----------------------------------------------------- */
+
 // ShadowMap
 //////////////////////////////////////////////////////////////////////////
 

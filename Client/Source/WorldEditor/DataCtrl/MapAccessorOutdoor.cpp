@@ -1256,6 +1256,18 @@ void CMapOutdoorAccessor::RenderToShadowMap()
 	}
 }
 
+/* - DYNAMIC_OBJECT_SHADOWS ---------------------------- */
+void CMapOutdoorAccessor::RenderObjectShadowsToTexture()
+{
+	for (int i = 0; i < AROUND_AREA_NUM; ++i)
+	{
+		CAreaAccessor* pAreaAccessor;
+		if (GetAreaPointer(i, (CArea**)&pAreaAccessor) && pAreaAccessor)
+			pAreaAccessor->RenderShadowObjects();
+	}
+}
+/* ----------------------------------------------------- */
+
 bool CMapOutdoorAccessor::LoadArea (WORD wAreaCoordX, WORD wAreaCoordY, WORD wCellCoordX, WORD wCellCoordY)
 {
 	if (isAreaLoaded (wAreaCoordX, wAreaCoordY))
