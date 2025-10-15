@@ -47,7 +47,7 @@ void CArea::__UpdateAniThingList()
 	{
 		CGraphicThingInstance* pkThingInst;
 
-		TThingInstanceVector::iterator i = m_ThingCloneInstaceVector.begin();
+		auto i = m_ThingCloneInstaceVector.begin();
 		while (i != m_ThingCloneInstaceVector.end())
 		{
 			pkThingInst = *i++;
@@ -61,7 +61,7 @@ void CArea::__UpdateAniThingList()
 	{
 		CGraphicThingInstance* pkThingInst;
 
-		TThingInstanceVector::iterator i = m_AniThingCloneInstanceVector.begin();
+		auto i = m_AniThingCloneInstanceVector.begin();
 		while (i != m_AniThingCloneInstanceVector.end())
 		{
 			pkThingInst = *i++;
@@ -78,8 +78,7 @@ void CArea::__UpdateEffectList()
 	CEffectManager& rkEftMgr = CEffectManager::Instance();
 
 	// Effect
-	TEffectInstanceIterator i;
-	for (i = m_EffectInstanceMap.begin(); i != m_EffectInstanceMap.end();)
+	for (auto i = m_EffectInstanceMap.begin(); i != m_EffectInstanceMap.end();)
 	{
 		CEffectInstance * pEffectInstance = i->second;
 
@@ -105,8 +104,7 @@ void CArea::Update()
 void CArea::UpdateAroundAmbience (float fX, float fY, float fZ)
 {
 	// Ambience
-	TAmbienceInstanceVector::iterator i;
-	for (i = m_AmbienceCloneInstanceVector.begin(); i != m_AmbienceCloneInstanceVector.end(); ++i)
+	for (auto i = m_AmbienceCloneInstanceVector.begin(); i != m_AmbienceCloneInstanceVector.end(); ++i)
 	{
 		TAmbienceInstance * pInstance = *i;
 		pInstance->__Update (fX, fY, fZ);
@@ -141,8 +139,7 @@ void CArea::RenderEffect()
 
 	if (m_isDisableSortRendering)
 	{
-		TEffectInstanceIterator i;
-		for (i = m_EffectInstanceMap.begin(); i != m_EffectInstanceMap.end();)
+		for (auto i = m_EffectInstanceMap.begin(); i != m_EffectInstanceMap.end();)
 		{
 			CEffectInstance * pEffectInstance = i->second;
 			pEffectInstance->Render();
@@ -155,14 +152,13 @@ void CArea::RenderEffect()
 		s_kVct_pkEftInstSort.clear();
 
 		TEffectInstanceMap& rkMap_pkEftInstSrc = m_EffectInstanceMap;
-		TEffectInstanceMap::iterator i;
-		for (i = rkMap_pkEftInstSrc.begin(); i != rkMap_pkEftInstSrc.end(); ++i)
+		for (auto i = rkMap_pkEftInstSrc.begin(); i != rkMap_pkEftInstSrc.end(); ++i)
 		{
 			s_kVct_pkEftInstSort.push_back (i->second);
 		}
 
-		std::sort (s_kVct_pkEftInstSort.begin(), s_kVct_pkEftInstSort.end(), CArea_LessEffectInstancePtrRenderOrder());
-		std::for_each (s_kVct_pkEftInstSort.begin(), s_kVct_pkEftInstSort.end(), CArea_FEffectInstanceRender());
+		std::ranges::sort (s_kVct_pkEftInstSort, CArea_LessEffectInstancePtrRenderOrder());
+		std::ranges::for_each (s_kVct_pkEftInstSort, CArea_FEffectInstanceRender());
 
 	}
 }
@@ -184,8 +180,7 @@ DWORD CArea::DEBUG_GetRenderedGrapphicThingInstanceNum()
 
 void CArea::CollectRenderingObject (std::vector<CGraphicThingInstance*>& rkVct_pkOpaqueThingInst)
 {
-	TThingInstanceVector::iterator i;
-	for (i = m_ThingCloneInstaceVector.begin(); i != m_ThingCloneInstaceVector.end(); ++i)
+	for (auto i = m_ThingCloneInstaceVector.begin(); i != m_ThingCloneInstaceVector.end(); ++i)
 	{
 		CGraphicThingInstance* pkThingInst = *i;
 		if (pkThingInst->isShow())
@@ -200,8 +195,7 @@ void CArea::CollectRenderingObject (std::vector<CGraphicThingInstance*>& rkVct_p
 
 void CArea::CollectBlendRenderingObject (std::vector<CGraphicThingInstance*>& rkVct_pkBlendThingInst)
 {
-	TThingInstanceVector::iterator i;
-	for (i = m_ThingCloneInstaceVector.begin(); i != m_ThingCloneInstaceVector.end(); ++i)
+	for (auto i = m_ThingCloneInstaceVector.begin(); i != m_ThingCloneInstaceVector.end(); ++i)
 	{
 		CGraphicThingInstance* pkThingInst = *i;
 		if (pkThingInst->isShow())
@@ -245,8 +239,7 @@ void CArea::Render()
 
 			m_kRenderedGrapphicThingInstanceVector.push_back (pkThingInst);
 
-			TCRCWithNumberVector::iterator aCRCWithNumberVectorIterator = std::find_if (m_kRenderedThingInstanceCRCWithNumberVector.begin(),
-																						m_kRenderedThingInstanceCRCWithNumberVector.end(), FFindIfCRC (dwCRC));
+			auto aCRCWithNumberVectorIterator = std::ranges::find_if (m_kRenderedThingInstanceCRCWithNumberVector, FFindIfCRC (dwCRC));
 
 			if (m_kRenderedThingInstanceCRCWithNumberVector.end() == aCRCWithNumberVectorIterator)
 			{
@@ -262,16 +255,14 @@ void CArea::Render()
 			}
 		}
 	}
-	std::sort (m_kRenderedThingInstanceCRCWithNumberVector.begin(), m_kRenderedThingInstanceCRCWithNumberVector.end(), CRCNumComp());
+	std::ranges::sort (m_kRenderedThingInstanceCRCWithNumberVector, CRCNumComp());
 }
 
 
 void CArea::RenderCollision()
 {
-	DWORD i;
-
-	STATEMANAGER.SetTexture (0, NULL);
-	STATEMANAGER.SetTexture (1, NULL);
+	STATEMANAGER.SetTexture (0, nullptr);
+	STATEMANAGER.SetTexture (1, nullptr);
 
 	STATEMANAGER.SaveRenderState (D3DRS_ALPHABLENDENABLE, FALSE);
 	STATEMANAGER.SaveRenderState (D3DRS_CULLMODE, D3DCULL_NONE);
@@ -283,31 +274,28 @@ void CArea::RenderCollision()
 	STATEMANAGER.SetTextureStageState (1, D3DTSS_COLOROP, D3DTOP_DISABLE);
 	STATEMANAGER.SetTextureStageState (1, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
 
-	for (i = 0; i < GetObjectInstanceCount(); i++)
+	for (DWORD i = 0; i < GetObjectInstanceCount(); i++)
 	{
 		const TObjectInstance * po;
 		if (GetObjectInstancePointer (i, &po))
 		{
 			if (po->pTree && po->pTree->isShow())
 			{
-				DWORD j;
-				for (j = 0; j < po->pTree->GetCollisionInstanceCount(); j++)
+				for (DWORD j = 0; j < po->pTree->GetCollisionInstanceCount(); j++)
 				{
 					po->pTree->GetCollisionInstanceData (j)->Render();
 				}
 			}
 			if (po->pThingInstance && po->pThingInstance->isShow())
 			{
-				DWORD j;
-				for (j = 0; j < po->pThingInstance->GetCollisionInstanceCount(); j++)
+				for (DWORD j = 0; j < po->pThingInstance->GetCollisionInstanceCount(); j++)
 				{
 					po->pThingInstance->GetCollisionInstanceData (j)->Render();
 				}
 			}
 			if (po->pDungeonBlock && po->pDungeonBlock->isShow())
 			{
-				DWORD j;
-				for (j = 0; j < po->pDungeonBlock->GetCollisionInstanceCount(); j++)
+				for (DWORD j = 0; j < po->pDungeonBlock->GetCollisionInstanceCount(); j++)
 				{
 					po->pDungeonBlock->GetCollisionInstanceData (j)->Render();
 				}
@@ -327,7 +315,7 @@ void CArea::RenderAmbience()
 	STATEMANAGER.GetTextureStageState (0, D3DTSS_COLOROP, &dwColorOp);
 	STATEMANAGER.SetTextureStageState (0, D3DTSS_COLORARG1, D3DTA_TFACTOR);
 	STATEMANAGER.SetTextureStageState (0, D3DTSS_COLOROP, D3DTOP_SELECTARG1);
-	TAmbienceInstanceVector::iterator itor = m_AmbienceCloneInstanceVector.begin();
+	auto itor = m_AmbienceCloneInstanceVector.begin();
 	for (; itor != m_AmbienceCloneInstanceVector.end(); ++itor)
 	{
 		TAmbienceInstance * pInstance = *itor;
@@ -377,7 +365,7 @@ void CArea::RenderDungeon()
 	}
 	#endif
 
-	TDungeonBlockInstanceVector::iterator itor = m_DungeonBlockCloneInstanceVector.begin();
+	auto itor = m_DungeonBlockCloneInstanceVector.begin();
 	for (; itor != m_DungeonBlockCloneInstanceVector.end(); ++itor)
 	{
 		(*itor)->Render();
@@ -413,9 +401,7 @@ void CArea::Refresh()
 	m_ShadowThingCloneInstaceVector.clear();
 	m_AmbienceCloneInstanceVector.clear();
 
-	TObjectInstanceVector::iterator it;
-
-	for (it = m_ObjectInstanceVector.begin(); it != m_ObjectInstanceVector.end(); ++it)
+	for (auto it = m_ObjectInstanceVector.begin(); it != m_ObjectInstanceVector.end(); ++it)
 	{
 		TObjectInstance * pObjectInstance = *it;
 
@@ -491,11 +477,10 @@ void CArea::__Load_BuildObjectInstances()
 
 	m_GraphicThingInstanceCRCMap.clear();
 
-	std::sort (m_ObjectDataVector.begin(), m_ObjectDataVector.end(), ObjectDataComp());
+	std::ranges::sort (m_ObjectDataVector, ObjectDataComp());
 
 	DWORD i = 0;
-	TObjectInstanceVector::iterator it;
-	for (it = m_ObjectInstanceVector.begin(); it != m_ObjectInstanceVector.end(); ++it, ++i)
+	for (auto it = m_ObjectInstanceVector.begin(); it != m_ObjectInstanceVector.end(); ++it, ++i)
 	{
 		*it = ms_ObjectInstancePool.Alloc();
 		(*it)->Clear();
@@ -786,12 +771,12 @@ void CArea::__LoadAttribute (TObjectInstance * pObjectInstance, const char* c_sz
 		{
 			return std::tolower (c);
 		});
-		const bool bIsDungeonObject = (std::string::npos != attrFileName.find ("/dungeon/")) || (std::string::npos != attrFileName.find ("\\dungeon\\"));
+		const bool bIsDungeonObject = (attrFileName.contains("/dungeon/")) || (attrFileName.contains("\\dungeon\\"));
 
 		// NOTE: dungeon 오브젝트는 Dummy Collision을 자동으로 생성하지 않도록 함 (던전의 경우 더미 컬리전때문에 문제가 된 경우가 수차례 있었음. 이렇게 하기로 그래픽 팀과 협의 완료)
 		if (pAttributeData->IsEmpty() && false == bIsDungeonObject)
 		{
-			if (NULL != pObjectInstance && NULL != pObjectInstance->pThingInstance)
+			if (nullptr != pObjectInstance && nullptr != pObjectInstance->pThingInstance)
 			{
 				CGraphicThingInstance* object = pObjectInstance->pThingInstance;
 
@@ -1219,8 +1204,7 @@ void CArea::RefreshPortal()
 	m_ThingCloneInstaceVector.clear();
 	m_DungeonBlockCloneInstanceVector.clear();
 
-	TObjectInstanceVector::iterator it;
-	for (it = m_ObjectInstanceVector.begin(); it != m_ObjectInstanceVector.end(); ++it)
+	for (auto it = m_ObjectInstanceVector.begin(); it != m_ObjectInstanceVector.end(); ++it)
 	{
 		TObjectInstance * pObjectInstance = *it;
 
@@ -1255,8 +1239,7 @@ void CArea::RefreshPortal()
 void CArea::Clear()
 {
 	// Real Instances
-	TObjectInstanceVector::iterator it;
-	for (it = m_ObjectInstanceVector.begin(); it != m_ObjectInstanceVector.end(); ++it)
+	for (auto it = m_ObjectInstanceVector.begin(); it != m_ObjectInstanceVector.end(); ++it)
 	{
 		__Clear_DestroyObjectInstance (*it);
 	}
@@ -1280,8 +1263,7 @@ void CArea::Clear()
 
 	CEffectManager& rkEftMgr = CEffectManager::Instance();
 
-	TEffectInstanceIterator i;
-	for (i = m_EffectInstanceMap.begin(); i != m_EffectInstanceMap.end(); ++i)
+	for (auto i = m_EffectInstanceMap.begin(); i != m_EffectInstanceMap.end(); ++i)
 	{
 		CEffectInstance * pEffectInstance = i->second;
 		rkEftMgr.DestroyUnsafeEffectInstance (pEffectInstance);
@@ -1293,8 +1275,7 @@ void CArea::__Clear_DestroyObjectInstance (TObjectInstance * pObjectInstance)
 {
 	if (pObjectInstance->dwEffectInstanceIndex != 0xffffffff)
 	{
-		TEffectInstanceIterator f = m_EffectInstanceMap.find (pObjectInstance->dwEffectInstanceIndex);
-		if (m_EffectInstanceMap.end() != f)
+		if (TEffectInstanceIterator f = m_EffectInstanceMap.find (pObjectInstance->dwEffectInstanceIndex); m_EffectInstanceMap.end() != f)
 		{
 			CEffectInstance * pEffectInstance = f->second;
 			m_EffectInstanceMap.erase (f);

@@ -122,7 +122,7 @@ void CLightManager::FlushLight()
 	}
 
 	// quick sort lights
-	std::sort (m_LightSortVector.begin(), m_LightSortVector.end(), LightComp());
+	std::ranges::sort (m_LightSortVector, LightComp());
 
 	// NOTE - 거리로 정렬된 라이트를 Limit 갯수 만큼 제한해서 켜준다.
 	STATEMANAGER.SaveRenderState (D3DRS_LIGHTING, TRUE);

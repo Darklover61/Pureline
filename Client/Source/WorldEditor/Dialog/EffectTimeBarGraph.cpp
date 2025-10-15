@@ -2,7 +2,7 @@
 //
 
 #include "StdAfx.h"
-#include "..\WorldEditor.h"
+#include "../WorldEditor.h"
 #include "EffectTimeBarGraph.h"
 
 #ifdef _DEBUG

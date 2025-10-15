@@ -27,7 +27,7 @@ void CEffectManager::GetInfo (std::string* pstInfo)
 
 void CEffectManager::UpdateSound()
 {
-	for (TEffectInstanceMap::iterator itor = m_kEftInstMap.begin(); itor != m_kEftInstMap.end(); ++itor)
+	for (auto itor = m_kEftInstMap.begin(); itor != m_kEftInstMap.end(); ++itor)
 	{
 		CEffectInstance * pEffectInstance = itor->second;
 
@@ -102,12 +102,12 @@ struct CEffectManager_FEffectInstanceRender
 
 void CEffectManager::Render()
 {
-	STATEMANAGER.SetTexture (0, NULL);
-	STATEMANAGER.SetTexture (1, NULL);
+	STATEMANAGER.SetTexture (0, nullptr);
+	STATEMANAGER.SetTexture (1, nullptr);
 
 	if (m_isDisableSortRendering)
 	{
-		for (TEffectInstanceMap::iterator itor = m_kEftInstMap.begin(); itor != m_kEftInstMap.end();)
+		for (auto itor = m_kEftInstMap.begin(); itor != m_kEftInstMap.end();)
 		{
 			CEffectInstance * pEffectInstance = itor->second;
 			pEffectInstance->Render();
@@ -120,14 +120,13 @@ void CEffectManager::Render()
 		s_kVct_pkEftInstSort.clear();
 
 		TEffectInstanceMap& rkMap_pkEftInstSrc = m_kEftInstMap;
-		TEffectInstanceMap::iterator i;
-		for (i = rkMap_pkEftInstSrc.begin(); i != rkMap_pkEftInstSrc.end(); ++i)
+		for (auto i = rkMap_pkEftInstSrc.begin(); i != rkMap_pkEftInstSrc.end(); ++i)
 		{
 			s_kVct_pkEftInstSort.push_back (i->second);
 		}
 
-		std::sort (s_kVct_pkEftInstSort.begin(), s_kVct_pkEftInstSort.end(), CEffectManager_LessEffectInstancePtrRenderOrder());
-		std::for_each (s_kVct_pkEftInstSort.begin(), s_kVct_pkEftInstSort.end(), CEffectManager_FEffectInstanceRender());
+		std::ranges::sort (s_kVct_pkEftInstSort, CEffectManager_LessEffectInstancePtrRenderOrder());
+		std::ranges::for_each (s_kVct_pkEftInstSort, CEffectManager_FEffectInstanceRender());
 	}
 }
 

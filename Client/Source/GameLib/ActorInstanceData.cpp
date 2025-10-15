@@ -95,17 +95,14 @@ bool CActorInstance::SetRace (DWORD eRace)
 		CGraphicThingInstance::ReserveModelInstance (1);
 	}
 
-
-	CRaceData::TMotionModeDataIterator itor;
-
-	if (pRaceData->CreateMotionModeIterator (itor))
+	if (CRaceData::TMotionModeDataIterator itor; pRaceData->CreateMotionModeIterator (itor))
 	{
 		do
 		{
 			WORD wMotionMode = itor->first;
 			CRaceData::TMotionModeData * pMotionModeData = itor->second;
 
-			CRaceData::TMotionVectorMap::iterator itorMotion = pMotionModeData->MotionVectorMap.begin();
+			auto itorMotion = pMotionModeData->MotionVectorMap.begin();
 			for (; itorMotion != pMotionModeData->MotionVectorMap.end(); ++itorMotion)
 			{
 				WORD wMotionIndex = itorMotion->first;
@@ -147,8 +144,7 @@ void CActorInstance::SetHair (DWORD eHair)
 		}
 
 		const std::vector<CRaceData::SSkin>& c_rkVct_kSkin = pkHair->m_kVct_kSkin;
-		std::vector<CRaceData::SSkin>::const_iterator i;
-		for (i = c_rkVct_kSkin.begin(); i != c_rkVct_kSkin.end(); ++i)
+		for (auto i = c_rkVct_kSkin.begin(); i != c_rkVct_kSkin.end(); ++i)
 		{
 			const CRaceData::SSkin& c_rkSkinItem = *i;
 
@@ -215,8 +211,7 @@ void CActorInstance::SetShape (DWORD eShape, float fSpecular)
 		SetModelInstance (0, 0, 0);
 
 		const std::vector<CRaceData::SSkin>& c_rkVct_kSkin = pkShape->m_kVct_kSkin;
-		std::vector<CRaceData::SSkin>::const_iterator i;
-		for (i = c_rkVct_kSkin.begin(); i != c_rkVct_kSkin.end(); ++i)
+		for (auto i = c_rkVct_kSkin.begin(); i != c_rkVct_kSkin.end(); ++i)
 		{
 			const CRaceData::SSkin& c_rkSkinItem = *i;
 
@@ -303,7 +298,7 @@ void CActorInstance::ChangeMaterial (const char* c_szFileName)
 		return;
 	}
 
-	std::vector<CRaceData::SSkin>::const_iterator i = c_rkVct_kSkin.begin();
+	auto i = c_rkVct_kSkin.begin();
 	const CRaceData::SSkin& c_rkSkinItem = *i;
 
 	std::string dstFileName = "d:/ymir work/npc/guild_symbol/guild_symbol.dds";

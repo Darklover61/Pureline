@@ -304,10 +304,10 @@ void CActorInstance::AttachWeapon (DWORD dwItemIndex, DWORD dwParentPartIndex, D
 	CItemData * pItemData;
 	if (!CItemManager::Instance().GetItemDataPointer (dwItemIndex, &pItemData))
 	{
-		RegisterModelThing (dwPartIndex, NULL);
+		RegisterModelThing (dwPartIndex, nullptr);
 		SetModelInstance (dwPartIndex, dwPartIndex, 0);
 
-		RegisterModelThing (CRaceData::PART_WEAPON_LEFT, NULL);
+		RegisterModelThing (CRaceData::PART_WEAPON_LEFT, nullptr);
 		SetModelInstance (CRaceData::PART_WEAPON_LEFT, CRaceData::PART_WEAPON_LEFT, 0);
 
 		RefreshActorInstance();
@@ -375,11 +375,11 @@ void CActorInstance::AttachWeapon (DWORD dwParentPartIndex, DWORD dwPartIndex, C
 	if (USE_WEAPON_SPECULAR)
 	{
 		SMaterialData kMaterialData;
-		kMaterialData.pImage = NULL;
+		kMaterialData.pImage = nullptr;
 		kMaterialData.isSpecularEnable = TRUE;
 		kMaterialData.fSpecularPower = pItemData->GetSpecularPowerf();
 		kMaterialData.bSphereMapIndex = 1;
-		SetMaterialData (dwPartIndex, NULL, kMaterialData);
+		SetMaterialData (dwPartIndex, nullptr, kMaterialData);
 	}
 
 	// Weapon Trace
@@ -393,7 +393,7 @@ void CActorInstance::AttachWeapon (DWORD dwParentPartIndex, DWORD dwPartIndex, C
 
 void  CActorInstance::DettachEffect (DWORD dwEID)
 {
-	std::list<TAttachingEffect>::iterator i = m_AttachingEffectList.begin();
+	auto i = m_AttachingEffectList.begin();
 
 	while (i != m_AttachingEffectList.end())
 	{
@@ -682,29 +682,20 @@ void CActorInstance::SetWeaponTraceTexture (const char* szTextureName)
 
 void CActorInstance::UseTextureWeaponTrace()
 {
-	for_each (
-		m_WeaponTraceVector.begin(),
-		m_WeaponTraceVector.end(),
-		std::mem_fn (&CWeaponTrace::UseTexture)
-	);
+	std::ranges::for_each ( m_WeaponTraceVector, std::mem_fn (&CWeaponTrace::UseTexture));
 }
 
 void CActorInstance::UseAlphaWeaponTrace()
 {
-	for_each (
-		m_WeaponTraceVector.begin(),
-		m_WeaponTraceVector.end(),
-		std::mem_fn (&CWeaponTrace::UseAlpha)
-	);
+	std::ranges::for_each ( m_WeaponTraceVector, std::mem_fn (&CWeaponTrace::UseAlpha));
 }
 
 void CActorInstance::UpdateAttachingInstances()
 {
 	CEffectManager& rkEftMgr = CEffectManager::Instance();
 
-	std::list<TAttachingEffect>::iterator it;
 	DWORD dwCurrentTime = CTimer::Instance().GetCurrentMillisecond();
-	for (it = m_AttachingEffectList.begin(); it != m_AttachingEffectList.end();)
+	for (auto it = m_AttachingEffectList.begin(); it != m_AttachingEffectList.end();)
 	{
 		if (EFFECT_LIFE_WITH_MOTION == it->iLifeType)
 		{
@@ -757,8 +748,7 @@ void CActorInstance::UpdateAttachingInstances()
 
 void CActorInstance::ShowAllAttachingEffect()
 {
-	std::list<TAttachingEffect>::iterator it;
-	for (it = m_AttachingEffectList.begin(); it != m_AttachingEffectList.end(); ++it)
+	for (auto it = m_AttachingEffectList.begin(); it != m_AttachingEffectList.end(); ++it)
 	{
 		CEffectManager::Instance().SelectEffectInstance (it->dwEffectIndex);
 		CEffectManager::Instance().ShowEffect();
@@ -767,8 +757,7 @@ void CActorInstance::ShowAllAttachingEffect()
 
 void CActorInstance::HideAllAttachingEffect()
 {
-	std::list<TAttachingEffect>::iterator it;
-	for (it = m_AttachingEffectList.begin(); it != m_AttachingEffectList.end(); ++it)
+	for (auto it = m_AttachingEffectList.begin(); it != m_AttachingEffectList.end(); ++it)
 	{
 		CEffectManager::Instance().SelectEffectInstance (it->dwEffectIndex);
 		CEffectManager::Instance().HideEffect();
@@ -779,8 +768,7 @@ void CActorInstance::__ClearAttachingEffect()
 {
 	m_bEffectInitialized = false;
 
-	std::list<TAttachingEffect>::iterator it;
-	for (it = m_AttachingEffectList.begin(); it != m_AttachingEffectList.end(); ++it)
+	for (auto it = m_AttachingEffectList.begin(); it != m_AttachingEffectList.end(); ++it)
 	{
 		CEffectManager::Instance().DestroyEffectInstance (it->dwEffectIndex);
 	}

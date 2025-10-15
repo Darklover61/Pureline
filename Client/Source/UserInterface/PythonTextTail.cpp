@@ -37,7 +37,7 @@ void TextTail_SetLivingTime (long livingTime)
 }
 // END_OF_TEXTTAIL_LIVINGTIME_CONTROL
 
-CGraphicText* ms_pFont = NULL;
+CGraphicText* ms_pFont = nullptr;
 
 void CPythonTextTail::GetInfo (std::string* pstInfo)
 {
@@ -71,7 +71,7 @@ void CPythonTextTail::UpdateAllTextTail()
 			UpdateDistance (pixelPos, itorMap->second);
 		}
 
-		for (TChatTailMap::iterator itorChat = m_ChatTailMap.begin(); itorChat != m_ChatTailMap.end(); ++itorChat)
+		for (auto itorChat = m_ChatTailMap.begin(); itorChat != m_ChatTailMap.end(); ++itorChat)
 		{
 			UpdateDistance (pixelPos, itorChat->second);
 
@@ -94,7 +94,7 @@ void CPythonTextTail::UpdateShowingTextTail()
 		UpdateTextTail (*itor);
 	}
 
-	for (TChatTailMap::iterator itorChat = m_ChatTailMap.begin(); itorChat != m_ChatTailMap.end(); ++itorChat)
+	for (auto itorChat = m_ChatTailMap.begin(); itorChat != m_ChatTailMap.end(); ++itorChat)
 	{
 		UpdateTextTail (itorChat->second);
 	}
@@ -324,7 +324,7 @@ void CPythonTextTail::ArrangeTextTail()
 		pTextTail->pTextInstance->Update();
 	}
 
-	for (TChatTailMap::iterator itorChat = m_ChatTailMap.begin(); itorChat != m_ChatTailMap.end();)
+	for (auto itorChat = m_ChatTailMap.begin(); itorChat != m_ChatTailMap.end();)
 	{
 		TTextTail * pTextTail = itorChat->second;
 
@@ -380,7 +380,7 @@ void CPythonTextTail::Render()
 		}
 	}
 
-	for (TChatTailMap::iterator itorChat = m_ChatTailMap.begin(); itorChat != m_ChatTailMap.end(); ++itorChat)
+	for (auto itorChat = m_ChatTailMap.begin(); itorChat != m_ChatTailMap.end(); ++itorChat)
 	{
 		TTextTail * pTextTail = itorChat->second;
 		if (pTextTail->pOwner->isShow())

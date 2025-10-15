@@ -34,7 +34,7 @@ CRaceData::SHair* CRaceData::FindHair (UINT eHair)
 		{
 			TraceError ("Hair number %d is not exist.", eHair);
 		}
-		return NULL;
+		return nullptr;
 	}
 
 	return &f->second;
@@ -57,7 +57,7 @@ CRaceData::SShape* CRaceData::FindShape (UINT eShape)
 	std::map<DWORD, SShape>::iterator f = m_kMap_dwShapeKey_kShape.find (eShape);
 	if (m_kMap_dwShapeKey_kShape.end() == f)
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	return &f->second;
@@ -423,9 +423,7 @@ bool CRaceData::SetMotionRandomWeight (WORD wMotionModeIndex, WORD wMotionIndex,
 		return false;
 	}
 
-	TMotionVectorMap::iterator itor = pMotionModeData->MotionVectorMap.find (wMotionIndex);
-
-	if (pMotionModeData->MotionVectorMap.end() != itor)
+	if (TMotionVectorMap::iterator itor = pMotionModeData->MotionVectorMap.find (wMotionIndex); pMotionModeData->MotionVectorMap.end() != itor)
 	{
 		TMotionVector & rMotionVector = itor->second;
 		if (wMotionSubIndex < rMotionVector.size())

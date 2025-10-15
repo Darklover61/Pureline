@@ -396,8 +396,8 @@ struct FCharacterManagerCharacterInstanceListDeform
 
 void CPythonCharacterManager::Deform()
 {
-	std::for_each (m_kAliveInstMap.begin(), m_kAliveInstMap.end(), FCharacterManagerCharacterInstanceDeform());
-	std::for_each (m_kDeadInstList.begin(), m_kDeadInstList.end(), FCharacterManagerCharacterInstanceListDeform());
+	std::ranges::for_each (m_kAliveInstMap, FCharacterManagerCharacterInstanceDeform());
+	std::ranges::for_each (m_kDeadInstList, FCharacterManagerCharacterInstanceListDeform());
 }
 
 
@@ -494,9 +494,9 @@ void CPythonCharacterManager::__RenderSortedAliveActorList()
 		s_kVct_pkInstAliveSort.push_back (i->second);
 	}
 
-	std::sort (s_kVct_pkInstAliveSort.begin(), s_kVct_pkInstAliveSort.end(), LessCharacterInstancePtrRenderOrder());
-	std::for_each (s_kVct_pkInstAliveSort.begin(), s_kVct_pkInstAliveSort.end(), FCharacterInstanceRender());
-	std::for_each (s_kVct_pkInstAliveSort.begin(), s_kVct_pkInstAliveSort.end(), FCharacterInstanceRenderTrace());
+	std::ranges::sort (s_kVct_pkInstAliveSort, LessCharacterInstancePtrRenderOrder());
+	std::ranges::for_each (s_kVct_pkInstAliveSort, FCharacterInstanceRender());
+	std::ranges::for_each (s_kVct_pkInstAliveSort, FCharacterInstanceRenderTrace());
 }
 
 void CPythonCharacterManager::__RenderSortedDeadActorList()
@@ -511,8 +511,8 @@ void CPythonCharacterManager::__RenderSortedDeadActorList()
 		s_kVct_pkInstDeadSort.push_back (*i);
 	}
 
-	std::sort (s_kVct_pkInstDeadSort.begin(), s_kVct_pkInstDeadSort.end(), LessCharacterInstancePtrRenderOrder());
-	std::for_each (s_kVct_pkInstDeadSort.begin(), s_kVct_pkInstDeadSort.end(), FCharacterInstanceRender());
+	std::ranges::sort (s_kVct_pkInstDeadSort, LessCharacterInstancePtrRenderOrder());
+	std::ranges::for_each (s_kVct_pkInstDeadSort, FCharacterInstanceRender());
 
 }
 
@@ -560,7 +560,7 @@ struct FCharacterManagerCharacterInstanceRenderToShadowMap
 
 void CPythonCharacterManager::RenderShadowAllInstances()
 {
-	std::for_each (m_kAliveInstMap.begin(), m_kAliveInstMap.end(), FCharacterManagerCharacterInstanceRenderToShadowMap());
+	std::ranges::for_each (m_kAliveInstMap, FCharacterManagerCharacterInstanceRenderToShadowMap());
 }
 
 struct FCharacterManagerCharacterInstanceRenderCollision
@@ -573,7 +573,7 @@ struct FCharacterManagerCharacterInstanceRenderCollision
 
 void CPythonCharacterManager::RenderCollision()
 {
-	std::for_each (m_kAliveInstMap.begin(), m_kAliveInstMap.end(), FCharacterManagerCharacterInstanceRenderCollision());
+	std::ranges::for_each (m_kAliveInstMap, FCharacterManagerCharacterInstanceRenderCollision());
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -605,9 +605,7 @@ CInstanceBase* CPythonCharacterManager::CreateInstance (const CInstanceBase::SCr
 
 CInstanceBase* CPythonCharacterManager::RegisterInstance (DWORD VirtualID)
 {
-	TCharacterInstanceMap::iterator itor = m_kAliveInstMap.find (VirtualID);
-
-	if (m_kAliveInstMap.end() != itor)
+	if (TCharacterInstanceMap::iterator itor = m_kAliveInstMap.find (VirtualID); m_kAliveInstMap.end() != itor)
 	{
 		return nullptr;
 	}
@@ -697,9 +695,7 @@ CInstanceBase* CPythonCharacterManager::GetInstancePtr (DWORD VirtualID)
 
 CInstanceBase* CPythonCharacterManager::GetInstancePtrByName (const char* name)
 {
-	TCharacterInstanceMap::iterator itor;
-
-	for (itor = m_kAliveInstMap.begin(); itor != m_kAliveInstMap.end(); itor++)
+	for (auto itor = m_kAliveInstMap.begin(); itor != m_kAliveInstMap.end(); itor++)
 	{
 		CInstanceBase * pInstance = itor->second;
 
@@ -732,8 +728,7 @@ void CPythonCharacterManager::__UpdatePickedActorList()
 {
 	m_kVct_pkInstPicked.clear();
 
-	TCharacterInstanceMap::iterator i;
-	for (i = m_kAliveInstMap.begin(); i != m_kAliveInstMap.end(); ++i)
+	for (auto i = m_kAliveInstMap.begin(); i != m_kAliveInstMap.end(); ++i)
 	{
 		CInstanceBase* pkInstEach = i->second;
 		// 2004.07.17.levites.isShow를 ViewFrustumCheck로 변경
@@ -788,7 +783,7 @@ void CPythonCharacterManager::__SortPickedActorList()
 	CInstanceBase_SLessCameraDistance kLess;
 	kLess.m_kPPosEye = TPixelPosition (+c_rv3EyePos.x, -c_rv3EyePos.y, +c_rv3EyePos.z);
 
-	std::sort (m_kVct_pkInstPicked.begin(), m_kVct_pkInstPicked.end(), kLess);
+	std::ranges::sort (m_kVct_pkInstPicked, kLess);
 }
 
 void CPythonCharacterManager::__NEW_Pick()
@@ -811,8 +806,7 @@ void CPythonCharacterManager::__NEW_Pick()
 
 	// 정밀한 체크
 	{
-		std::vector<CInstanceBase*>::iterator f;
-		for (f = m_kVct_pkInstPicked.begin(); f != m_kVct_pkInstPicked.end(); ++f)
+		for (auto f = m_kVct_pkInstPicked.begin(); f != m_kVct_pkInstPicked.end(); ++f)
 		{
 			CInstanceBase* pkInstEach = *f;
 			if (pkInstEach != pkInstMain && pkInstEach->IntersectBoundingBox())
@@ -835,8 +829,7 @@ void CPythonCharacterManager::__NEW_Pick()
 
 	// 못찾겠으면 걍 순서대로
 	{
-		std::vector<CInstanceBase*>::iterator f;
-		for (f = m_kVct_pkInstPicked.begin(); f != m_kVct_pkInstPicked.end(); ++f)
+		for (auto f = m_kVct_pkInstPicked.begin(); f != m_kVct_pkInstPicked.end(); ++f)
 		{
 			CInstanceBase* pkInstEach = *f;
 			if (pkInstEach != pkInstMain)
@@ -1011,7 +1004,7 @@ void CPythonCharacterManager::DestroyAliveInstanceMap()
 
 void CPythonCharacterManager::DestroyDeadInstanceList()
 {
-	std::for_each (m_kDeadInstList.begin(), m_kDeadInstList.end(), CInstanceBase::Delete);
+	std::ranges::for_each (m_kDeadInstList, CInstanceBase::Delete);
 	m_kDeadInstList.clear();
 }
 

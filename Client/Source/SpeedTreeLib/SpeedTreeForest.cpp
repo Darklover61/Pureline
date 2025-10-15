@@ -38,7 +38,7 @@ CSpeedTreeForest::~CSpeedTreeForest()
 
 void CSpeedTreeForest::Clear()
 {
-	TTreeMap::iterator itor = m_pMainTreeMap.begin();
+	auto itor = m_pMainTreeMap.begin();
 	UINT uiCount;
 
 	while (itor != m_pMainTreeMap.end())
@@ -63,7 +63,7 @@ CSpeedTreeWrapper* CSpeedTreeForest::GetMainTree (DWORD dwCRC)
 
 	if (itor == m_pMainTreeMap.end())
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	return itor->second;
@@ -175,7 +175,7 @@ void CSpeedTreeForest::SetWindStrength (float fStrength)
 
 	m_fWindStrength = fStrength;
 
-	TTreeMap::iterator itor = m_pMainTreeMap.begin();
+	auto itor = m_pMainTreeMap.begin();
 	UINT uiCount;
 
 	while (itor != m_pMainTreeMap.end())

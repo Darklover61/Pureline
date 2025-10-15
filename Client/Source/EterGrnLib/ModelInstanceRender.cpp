@@ -174,8 +174,8 @@ void CGrannyModelInstance::RenderWithoutTexture()
 	}
 
 	STATEMANAGER.SetVertexShader (ms_pntVS);
-	STATEMANAGER.SetTexture (0, NULL);
-	STATEMANAGER.SetTexture (1, NULL);
+	STATEMANAGER.SetTexture (0, nullptr);
+	STATEMANAGER.SetTexture (1, nullptr);
 
 	// WORK
 	LPDIRECT3DVERTEXBUFFER8 lpd3dDeformPNTVtxBuf = __GetDeformableD3DVertexBufferPtr();
@@ -207,10 +207,10 @@ void CGrannyModelInstance::RenderWithoutTexture()
 // With One Texture
 void CGrannyModelInstance::RenderMeshNodeListWithOneTexture (CGrannyMesh::EType eMeshType, CGrannyMaterial::EType eMtrlType)
 {
-	assert (m_pModel != NULL);
+	assert (m_pModel != nullptr);
 
 	LPDIRECT3DINDEXBUFFER8 lpd3dIdxBuf = m_pModel->GetD3DIndexBuffer();
-	assert (lpd3dIdxBuf != NULL);
+	assert (lpd3dIdxBuf != nullptr);
 
 	const CGrannyModel::TMeshNode * pMeshNode = m_pModel->GetMeshNodeList (eMeshType, eMtrlType);
 
@@ -245,10 +245,10 @@ void CGrannyModelInstance::RenderMeshNodeListWithOneTexture (CGrannyMesh::EType 
 // With Two Texture
 void CGrannyModelInstance::RenderMeshNodeListWithTwoTexture (CGrannyMesh::EType eMeshType, CGrannyMaterial::EType eMtrlType)
 {
-	assert (m_pModel != NULL);
+	assert (m_pModel != nullptr);
 
 	LPDIRECT3DINDEXBUFFER8 lpd3dIdxBuf = m_pModel->GetD3DIndexBuffer();
-	assert (lpd3dIdxBuf != NULL);
+	assert (lpd3dIdxBuf != nullptr);
 
 	const CGrannyModel::TMeshNode * pMeshNode = m_pModel->GetMeshNodeList (eMeshType, eMtrlType);
 
@@ -282,10 +282,10 @@ void CGrannyModelInstance::RenderMeshNodeListWithTwoTexture (CGrannyMesh::EType 
 // Without Texture
 void CGrannyModelInstance::RenderMeshNodeListWithoutTexture (CGrannyMesh::EType eMeshType, CGrannyMaterial::EType eMtrlType)
 {
-	assert (m_pModel != NULL);
+	assert (m_pModel != nullptr);
 
 	LPDIRECT3DINDEXBUFFER8 lpd3dIdxBuf = m_pModel->GetD3DIndexBuffer();
-	assert (lpd3dIdxBuf != NULL);
+	assert (lpd3dIdxBuf != nullptr);
 
 	const CGrannyModel::TMeshNode * pMeshNode = m_pModel->GetMeshNodeList (eMeshType, eMtrlType);
 

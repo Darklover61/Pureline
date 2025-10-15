@@ -809,7 +809,7 @@ void CPythonMiniMap::RegisterGuildArea (DWORD dwID, DWORD dwGuildID, long x, lon
 
 DWORD CPythonMiniMap::GetGuildAreaID (DWORD x, DWORD y)
 {
-	TGuildAreaInfoVectorIterator itor = m_GuildAreaInfoVector.begin();
+	auto itor = m_GuildAreaInfoVector.begin();
 	for (; itor != m_GuildAreaInfoVector.end(); ++itor)
 	{
 		TGuildAreaInfo & rAreaInfo = *itor;
@@ -908,7 +908,7 @@ void CPythonMiniMap::__LoadAtlasMarkInfo()
 		char szMarkInfoName[32 + 1];
 		_snprintf (szMarkInfoName, sizeof (szMarkInfoName), "%lu", i);
 
-		if (stTokenVectorMap.end() == stTokenVectorMap.find (szMarkInfoName))
+		if (!stTokenVectorMap.contains(szMarkInfoName))
 		{
 			continue;
 		}
@@ -1055,7 +1055,7 @@ void CPythonMiniMap::UpdateAtlas()
 	}
 
 	{
-		TGuildAreaInfoVectorIterator itor = m_GuildAreaInfoVector.begin();
+		auto itor = m_GuildAreaInfoVector.begin();
 		for (; itor != m_GuildAreaInfoVector.end(); ++itor)
 		{
 			TGuildAreaInfo & rInfo = *itor;
@@ -1153,7 +1153,7 @@ void CPythonMiniMap::RenderAtlas (float fScreenX, float fScreenY)
 	STATEMANAGER.SetTransform (D3DTS_WORLD, &m_matIdentity);
 
 	{
-		TGuildAreaInfoVectorIterator itor = m_GuildAreaInfoVector.begin();
+		auto itor = m_GuildAreaInfoVector.begin();
 		for (; itor != m_GuildAreaInfoVector.end(); ++itor)
 		{
 			TGuildAreaInfo & rInfo = *itor;
@@ -1315,7 +1315,7 @@ bool CPythonMiniMap::GetAtlasInfo (float fScreenX, float fScreenY, std::string &
 		++m_AtlasMarkInfoVectorIterator;
 	}
 
-	TGuildAreaInfoVector::iterator itor = m_GuildAreaInfoVector.begin();
+	auto itor = m_GuildAreaInfoVector.begin();
 	for (; itor != m_GuildAreaInfoVector.end(); ++itor)
 	{
 		TGuildAreaInfo & rInfo = *itor;
@@ -1408,7 +1408,7 @@ void CPythonMiniMap::RemoveWayPoint (DWORD dwID)
 
 bool CPythonMiniMap::__GetWayPoint (DWORD dwID, TAtlasMarkInfo** ppkInfo)
 {
-	TAtlasMarkInfoVectorIterator itor = m_AtlasWayPointInfoVector.begin();
+	auto itor = m_AtlasWayPointInfoVector.begin();
 	for (; itor != m_AtlasWayPointInfoVector.end(); ++itor)
 	{
 		TAtlasMarkInfo & rInfo = *itor;

@@ -337,16 +337,13 @@ bool CItemManager::LoadItemTable (const char* c_szFileName)
 		CItemData * pItemData;
 		DWORD dwVnum = table->dwVnum;
 
-		TItemMap::iterator f = m_ItemMap.find (dwVnum);
-		if (m_ItemMap.end() == f)
+		if (TItemMap::iterator f = m_ItemMap.find (dwVnum); m_ItemMap.end() == f)
 		{
 			_snprintf (szName, sizeof (szName), "icon/item/%05d.tga", dwVnum);
 
 			if (CResourceManager::Instance().IsFileExist (szName) == false)
 			{
-				std::map<DWORD, DWORD>::iterator itVnum = itemNameMap.find (GetHashCode (table->szName));
-
-				if (itVnum != itemNameMap.end())
+				if (std::map<DWORD, DWORD>::iterator itVnum = itemNameMap.find (GetHashCode (table->szName)); itVnum != itemNameMap.end())
 				{
 					_snprintf (szName, sizeof (szName), "icon/item/%05d.tga", itVnum->second);
 				}
@@ -414,8 +411,7 @@ bool CItemManager::LoadItemTable (const char* c_szFileName)
 
 void CItemManager::Destroy()
 {
-	TItemMap::iterator i;
-	for (i = m_ItemMap.begin(); i != m_ItemMap.end(); ++i)
+	for (TItemMap::iterator i = m_ItemMap.begin(); i != m_ItemMap.end(); ++i)
 	{
 		CItemData::Delete (i->second);
 	}
@@ -423,7 +419,7 @@ void CItemManager::Destroy()
 	m_ItemMap.clear();
 }
 
-CItemManager::CItemManager() : m_pSelectedItemData (NULL)
+CItemManager::CItemManager() : m_pSelectedItemData (nullptr)
 {
 }
 CItemManager::~CItemManager()

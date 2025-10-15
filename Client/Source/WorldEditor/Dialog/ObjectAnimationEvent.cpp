@@ -2,7 +2,7 @@
 //
 
 #include "StdAfx.h"
-#include "..\WorldEditor.h"
+#include "../WorldEditor.h"
 #include "ObjectAnimationEvent.h"
 
 #ifdef _DEBUG
@@ -19,7 +19,7 @@ CObjectAnimationEvent::CObjectAnimationEvent (CWnd* pParent /*=NULL*/)
 	: CDialog (CObjectAnimationEvent::IDD, pParent)
 {
 	m_dwEventType = CRaceMotionData::MOTION_EVENT_TYPE_SOUND;
-	mc_pPreserveData = NULL;
+	mc_pPreserveData = nullptr;
 
 	//{{AFX_DATA_INIT(CObjectAnimationEvent)
 	// NOTE: the ClassWizard will add member initialization here
@@ -267,7 +267,7 @@ void CObjectAnimationEvent_HideDialog (CDialog * pDialog)
 
 void CObjectAnimationEvent::OnChangeEventType()
 {
-	for_each (m_EventPageVector.begin(), m_EventPageVector.end(), CObjectAnimationEvent_HideDialog);
+	std::ranges::for_each (m_EventPageVector, CObjectAnimationEvent_HideDialog);
 
 	DWORD dwCurSel = DWORD (m_ctrlEventType.GetCurSel());
 	if (dwCurSel >= m_EventPageVector.size())

@@ -2,7 +2,7 @@
 //
 
 #include "StdAfx.h"
-#include "..\WorldEditor.h"
+#include "../WorldEditor.h"
 #include "../Dialog/EffectParticleTimeEventGraph.h"
 
 #include "EffectLightPage.h"

@@ -7,6 +7,7 @@
 #include "../EterLib/Camera.h"
 #include "../EterLib/StateManager.h"
 
+#include <numbers>
 
 #define MAX_RENDER_SPALT 150
 
@@ -52,7 +53,7 @@ void CMapOutdoor::RenderTerrain()
 	__RenderTerrain_RecurseRenderQuadTree (m_pRootNode);
 
 	// 거리순 정렬
-	std::sort (m_PatchVector.begin(), m_PatchVector.end());
+	std::ranges::sort (m_PatchVector);
 
 	__RenderTerrain_RenderHardwareTransformPatch();
 }
@@ -85,19 +86,19 @@ void CMapOutdoor::__RenderTerrain_RecurseRenderQuadTree (CTerrainQuadtreeNode *N
 	}
 	else
 	{
-		if (Node->NW_Node != NULL)
+		if (Node->NW_Node != nullptr)
 		{
 			__RenderTerrain_RecurseRenderQuadTree (Node->NW_Node, bCullCheckNeed);
 		}
-		if (Node->NE_Node != NULL)
+		if (Node->NE_Node != nullptr)
 		{
 			__RenderTerrain_RecurseRenderQuadTree (Node->NE_Node, bCullCheckNeed);
 		}
-		if (Node->SW_Node != NULL)
+		if (Node->SW_Node != nullptr)
 		{
 			__RenderTerrain_RecurseRenderQuadTree (Node->SW_Node, bCullCheckNeed);
 		}
-		if (Node->SE_Node != NULL)
+		if (Node->SE_Node != nullptr)
 		{
 			__RenderTerrain_RecurseRenderQuadTree (Node->SE_Node, bCullCheckNeed);
 		}
@@ -136,7 +137,7 @@ int	CMapOutdoor::__RenderTerrain_RecurseRenderQuadTree_CheckBoundingCircle (cons
 
 void CMapOutdoor::__RenderTerrain_AppendPatch (const D3DXVECTOR3& c_rv3Center, float fDistance, long lPatchNum)
 {
-	assert (NULL != m_pTerrainPatchProxyList && "CMapOutdoor::__RenderTerrain_AppendPatch");
+	assert (nullptr != m_pTerrainPatchProxyList && "CMapOutdoor::__RenderTerrain_AppendPatch");
 	if (!m_pTerrainPatchProxyList[lPatchNum].isUsed())
 	{
 		return;
@@ -294,9 +295,9 @@ void CMapOutdoor::SetInverseViewAndDynamicShaodwMatrices()
 
 	D3DXVECTOR3 v3Target = pCamera->GetTarget();
 
-	D3DXVECTOR3 v3LightEye (v3Target.x - 1.732f * 1250.0f,
+	D3DXVECTOR3 v3LightEye (v3Target.x - std::numbers::sqrt3_v<float> * 1250.0f,
 							v3Target.y - 1250.0f,
-							v3Target.z + 2.0f * 1.732f * 1250.0f);
+							v3Target.z + 2.0f * std::numbers::sqrt3_v<float> * 1250.0f);
 
 	const auto vv = D3DXVECTOR3 (0.0f, 0.0f, 1.0f);
 	D3DXMatrixLookAtRH (&m_matLightView, &v3LightEye, &v3Target, &vv);
@@ -375,7 +376,7 @@ struct FRenderPCBlocker
 	{
 		pInstance->Show();
 		CGraphicThingInstance* pThingInstance = dynamic_cast <CGraphicThingInstance*> (pInstance);
-		if (pThingInstance != NULL)
+		if (pThingInstance != nullptr)
 		{
 			if (pThingInstance->HaveBlendThing())
 			{
@@ -460,7 +461,7 @@ void CMapOutdoor::RenderArea (bool bRenderAmbience)
 
 	#ifndef WORLD_EDITOR
 	// PCBlocker
-	std::for_each (m_PCBlockerVector.begin(), m_PCBlockerVector.end(), FPCBlockerHide());
+	std::ranges::for_each (m_PCBlockerVector, FPCBlockerHide());
 
 	// Shadow Receiver
 	if (m_bDrawShadow && m_bDrawChrShadow)
@@ -489,7 +490,7 @@ void CMapOutdoor::RenderArea (bool bRenderAmbience)
 		STATEMANAGER.SaveTextureStageState (1, D3DTSS_ADDRESSV, D3DTADDRESS_BORDER);
 		STATEMANAGER.SaveTextureStageState (1, D3DTSS_BORDERCOLOR, 0xFFFFFFFF);
 
-		std::for_each (m_ShadowReceiverVector.begin(), m_ShadowReceiverVector.end(), FAreaRenderShadow());
+		std::ranges::for_each (m_ShadowReceiverVector, FAreaRenderShadow());
 
 		STATEMANAGER.RestoreTextureStageState (1, D3DTSS_TEXCOORDINDEX);
 		STATEMANAGER.RestoreTextureStageState (1, D3DTSS_TEXTURETRANSFORMFLAGS);
@@ -524,13 +525,13 @@ void CMapOutdoor::RenderArea (bool bRenderAmbience)
 
 				CArea::TCRCWithNumberVector & rCRCWithNumberVector = pArea->DEBUG_GetRenderedCRCWithNumVector();
 
-				CArea::TCRCWithNumberVector::iterator aIterator = rCRCWithNumberVector.begin();
+				auto aIterator = rCRCWithNumberVector.begin();
 				while (aIterator != rCRCWithNumberVector.end())
 				{
 					DWORD dwCRC = (*aIterator++).dwCRC;
 
-					CArea::TCRCWithNumberVector::iterator aCRCWithNumberVectorIterator =
-						std::find_if (m_dwRenderedCRCWithNumberVector.begin(), m_dwRenderedCRCWithNumberVector.end(), CArea::FFindIfCRC (dwCRC));
+					auto aCRCWithNumberVectorIterator =
+						std::ranges::find_if (m_dwRenderedCRCWithNumberVector, CArea::FFindIfCRC (dwCRC));
 
 					if (m_dwRenderedCRCWithNumberVector.end() == aCRCWithNumberVectorIterator)
 					{
@@ -554,7 +555,7 @@ void CMapOutdoor::RenderArea (bool bRenderAmbience)
 			}
 		}
 
-		std::sort (m_dwRenderedCRCWithNumberVector.begin(), m_dwRenderedCRCWithNumberVector.end(), CArea::CRCNumComp());
+		std::ranges::sort (m_dwRenderedCRCWithNumberVector, CArea::CRCNumComp());
 	}
 	else
 	{
@@ -577,8 +578,8 @@ void CMapOutdoor::RenderArea (bool bRenderAmbience)
 
 		}
 
-		std::sort (s_kVct_pkOpaqueThingInstSort.begin(), s_kVct_pkOpaqueThingInstSort.end(), CMapOutdoor_LessThingInstancePtrRenderOrder());
-		std::for_each (s_kVct_pkOpaqueThingInstSort.begin(), s_kVct_pkOpaqueThingInstSort.end(), CMapOutdoor_FOpaqueThingInstanceRender());
+		std::ranges::sort (s_kVct_pkOpaqueThingInstSort, CMapOutdoor_LessThingInstancePtrRenderOrder());
+		std::ranges::for_each (s_kVct_pkOpaqueThingInstSort, CMapOutdoor_FOpaqueThingInstanceRender());
 	}
 
 	STATEMANAGER.RestoreRenderState (D3DRS_ZWRITEENABLE);
@@ -587,7 +588,7 @@ void CMapOutdoor::RenderArea (bool bRenderAmbience)
 	// Shadow Receiver
 	if (m_bDrawShadow && m_bDrawChrShadow)
 	{
-		std::for_each (m_ShadowReceiverVector.begin(), m_ShadowReceiverVector.end(), std::mem_fn (&CGraphicObjectInstance::Show));
+		std::ranges::for_each (m_ShadowReceiverVector, std::mem_fn (&CGraphicObjectInstance::Show));
 	}
 	#endif
 }
@@ -645,7 +646,7 @@ void CMapOutdoor::RenderBlendArea()
 		//STATEMANAGER.RestoreTransform(D3DTS_TEXTURE1);
 
 
-		std::sort (s_kVct_pkBlendThingInstSort.begin(), s_kVct_pkBlendThingInstSort.end(), CMapOutdoor_LessThingInstancePtrRenderOrder());
+		std::ranges::sort (s_kVct_pkBlendThingInstSort, CMapOutdoor_LessThingInstancePtrRenderOrder());
 
 		STATEMANAGER.SaveRenderState (D3DRS_ZWRITEENABLE, TRUE);
 		STATEMANAGER.SaveRenderState (D3DRS_ALPHABLENDENABLE, TRUE);
@@ -660,7 +661,7 @@ void CMapOutdoor::RenderBlendArea()
 		STATEMANAGER.SetTextureStageState (1, D3DTSS_COLOROP,   D3DTOP_SELECTARG1);
 		STATEMANAGER.SetTextureStageState (1, D3DTSS_ALPHAOP,   D3DTOP_DISABLE);
 
-		std::for_each (s_kVct_pkBlendThingInstSort.begin(), s_kVct_pkBlendThingInstSort.end(), CMapOutdoor_FBlendThingInstanceRender());
+		std::ranges::for_each (s_kVct_pkBlendThingInstSort, CMapOutdoor_FBlendThingInstanceRender());
 
 		STATEMANAGER.RestoreRenderState (D3DRS_ALPHABLENDENABLE);
 		STATEMANAGER.RestoreRenderState (D3DRS_SRCBLEND);
@@ -709,7 +710,7 @@ void CMapOutdoor::RenderPCBlocker()
 		STATEMANAGER.SaveTransform (D3DTS_TEXTURE1, &m_matBuildingTransparent);
 		STATEMANAGER.SetTexture (1, m_BuildingTransparentImageInstance.GetTexturePointer()->GetD3DTexture());
 
-		std::for_each (m_PCBlockerVector.begin(), m_PCBlockerVector.end(), FRenderPCBlocker());
+		std::ranges::for_each (m_PCBlockerVector, FRenderPCBlocker());
 
 		STATEMANAGER.SetTexture (1, NULL);
 		STATEMANAGER.RestoreTransform (D3DTS_TEXTURE1);
@@ -836,8 +837,8 @@ void CMapOutdoor::NEW_DrawWireFrame (CTerrainPatchProxy * pTerrainPatchProxy, WO
 	DWORD dwFogEnable = STATEMANAGER.GetRenderState (D3DRS_FOGENABLE);
 	STATEMANAGER.SetRenderState (D3DRS_FOGENABLE, FALSE);
 
-	STATEMANAGER.SetTexture (0, NULL);
-	STATEMANAGER.SetTexture (1, NULL);
+	STATEMANAGER.SetTexture (0, nullptr);
+	STATEMANAGER.SetTexture (1, nullptr);
 	STATEMANAGER.SetTextureStageState (0, D3DTSS_COLOROP, D3DTOP_DISABLE);
 
 	STATEMANAGER.DrawIndexedPrimitive (ePrimitiveType, 0, m_iPatchTerrainVertexCount, 0, wPrimitiveCount);
@@ -878,8 +879,8 @@ void CMapOutdoor::DrawWireFrame (long patchnum, WORD wPrimitiveCount, D3DPRIMITI
 	DWORD dwFogEnable = STATEMANAGER.GetRenderState (D3DRS_FOGENABLE);
 	STATEMANAGER.SetRenderState (D3DRS_FOGENABLE, FALSE);
 
-	STATEMANAGER.SetTexture (0, NULL);
-	STATEMANAGER.SetTexture (1, NULL);
+	STATEMANAGER.SetTexture (0, nullptr);
+	STATEMANAGER.SetTexture (1, nullptr);
 	STATEMANAGER.SetTextureStageState (0, D3DTSS_COLOROP, D3DTOP_DISABLE);
 
 	STATEMANAGER.DrawIndexedPrimitive (ePrimitiveType, 0, m_iPatchTerrainVertexCount, 0, wPrimitiveCount);
@@ -984,19 +985,19 @@ void CMapOutdoor::RecurseRenderAttr (CTerrainQuadtreeNode *Node, bool bCullEnabl
 		}
 		else
 		{
-			if (Node->NW_Node != NULL)
+			if (Node->NW_Node != nullptr)
 			{
 				RecurseRenderAttr (Node->NW_Node, bCullEnable);
 			}
-			if (Node->NE_Node != NULL)
+			if (Node->NE_Node != nullptr)
 			{
 				RecurseRenderAttr (Node->NE_Node, bCullEnable);
 			}
-			if (Node->SW_Node != NULL)
+			if (Node->SW_Node != nullptr)
 			{
 				RecurseRenderAttr (Node->SW_Node, bCullEnable);
 			}
-			if (Node->SE_Node != NULL)
+			if (Node->SE_Node != nullptr)
 			{
 				RecurseRenderAttr (Node->SE_Node, bCullEnable);
 			}

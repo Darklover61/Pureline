@@ -16,12 +16,12 @@ CGraphicThing::~CGraphicThing()
 
 void CGraphicThing::Initialize()
 {
-	m_pgrnFile = NULL;
-	m_pgrnFileInfo = NULL;
-	m_pgrnAni = NULL;
+	m_pgrnFile = nullptr;
+	m_pgrnFileInfo = nullptr;
+	m_pgrnAni = nullptr;
 
-	m_models = NULL;
-	m_motions = NULL;
+	m_models = nullptr;
+	m_motions = nullptr;
 }
 
 void CGraphicThing::OnClear()
@@ -103,7 +103,7 @@ bool CGraphicThing::CheckModelIndex (int iModel) const
 		return false;
 	}
 
-	assert (m_pgrnFileInfo != NULL);
+	assert (m_pgrnFileInfo != nullptr);
 
 	if (iModel < 0)
 	{
@@ -127,7 +127,7 @@ bool CGraphicThing::CheckMotionIndex (int iMotion) const
 	}
 	// Temporary
 
-	assert (m_pgrnFileInfo != NULL);
+	assert (m_pgrnFileInfo != nullptr);
 
 	if (iMotion < 0)
 	{
@@ -145,7 +145,7 @@ bool CGraphicThing::CheckMotionIndex (int iMotion) const
 CGrannyModel* CGraphicThing::GetModelPointer (int iModel)
 {
 	assert (CheckModelIndex (iModel));
-	assert (m_models != NULL);
+	assert (m_models != nullptr);
 	return m_models + iModel;
 }
 
@@ -155,10 +155,10 @@ CGrannyMotion* CGraphicThing::GetMotionPointer (int iMotion)
 
 	if (iMotion >= m_pgrnFileInfo->AnimationCount)
 	{
-		return NULL;
+		return nullptr;
 	}
 
-	assert (m_motions != NULL);
+	assert (m_motions != nullptr);
 	return (m_motions + iMotion);
 }
 
@@ -219,8 +219,8 @@ const std::string& GetModelLocalPath()
 
 bool CGraphicThing::LoadModels()
 {
-	assert (m_pgrnFile != NULL);
-	assert (m_models == NULL);
+	assert (m_pgrnFile != nullptr);
+	assert (m_models == nullptr);
 
 	if (m_pgrnFileInfo->ModelCount <= 0)
 	{
@@ -262,8 +262,8 @@ bool CGraphicThing::LoadModels()
 
 bool CGraphicThing::LoadMotions()
 {
-	assert (m_pgrnFile != NULL);
-	assert (m_motions == NULL);
+	assert (m_pgrnFile != nullptr);
+	assert (m_motions == nullptr);
 
 	if (m_pgrnFileInfo->AnimationCount <= 0)
 	{

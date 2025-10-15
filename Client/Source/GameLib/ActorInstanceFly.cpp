@@ -113,7 +113,7 @@ void CActorInstance::SetFlyTarget (const CFlyTarget & cr_FlyTarget)
 
 void CActorInstance::ClearFlyEventHandler()
 {
-	m_pFlyEventHandler = 0;
+	m_pFlyEventHandler = nullptr;
 }
 
 void CActorInstance::SetFlyEventHandler (IFlyEventHandler * pHandler)

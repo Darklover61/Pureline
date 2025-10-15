@@ -72,17 +72,17 @@ namespace UI
 		//         어차피 Python쪽에서 Destroy가 하나씩 다시 호출 될 것이므로..
 		//         하지만 만약을 위해 링크는 끊어 놓는다.
 		//         더 좋은 형태는 있는가? - [levites]
-		std::for_each (m_pChildList.begin(), m_pChildList.end(), FClear());
+		std::ranges::for_each (m_pChildList, FClear());
 		m_pChildList.clear();
 
-		m_pParent = NULL;
+		m_pParent = nullptr;
 		DestroyHandle();
 		Hide();
 	}
 
 	void CWindow::DestroyHandle()
 	{
-		m_poHandler = NULL;
+		m_poHandler = nullptr;
 	}
 
 	void CWindow::Show()
@@ -119,8 +119,7 @@ namespace UI
 			return;
 		}
 
-		TWindowContainer::iterator it;
-		for (it = m_pReserveChildList.begin(); it != m_pReserveChildList.end(); ++it)
+		for (auto it = m_pReserveChildList.begin(); it != m_pReserveChildList.end(); ++it)
 		{
 			m_pChildList.remove (*it);
 		}
@@ -139,8 +138,7 @@ namespace UI
 		OnUpdate();
 
 		m_isUpdatingChildren = TRUE;
-		TWindowContainer::iterator it;
-		for (it = m_pChildList.begin(); it != m_pChildList.end();)
+		for (auto it = m_pChildList.begin(); it != m_pChildList.end();)
 		{
 			TWindowContainer::iterator it_next = it;
 			++it_next;
@@ -165,7 +163,7 @@ namespace UI
 			CPythonGraphic::Instance().RenderBox2d (m_rect.left, m_rect.top, m_rect.right, m_rect.bottom);
 		}
 
-		std::for_each (m_pChildList.begin(), m_pChildList.end(), std::mem_fn (&CWindow::Render));
+		std::ranges::for_each (m_pChildList, std::mem_fn (&CWindow::Render));
 	}
 
 	void CWindow::OnUpdate()
@@ -317,7 +315,7 @@ namespace UI
 		}
 		m_rect.right = m_rect.left + m_lWidth;
 		#endif
-		std::for_each (m_pChildList.begin(), m_pChildList.end(), std::mem_fn (&CWindow::UpdateRect));
+		std::ranges::for_each (m_pChildList, std::mem_fn (&CWindow::UpdateRect));
 
 		OnChangePosition();
 
@@ -361,7 +359,7 @@ namespace UI
 
 	bool CWindow::IsChild (CWindow * pWin)
 	{
-		std::list<CWindow*>::iterator itor = m_pChildList.begin();
+		auto itor = m_pChildList.begin();
 
 		while (itor != m_pChildList.end())
 		{
@@ -395,7 +393,7 @@ namespace UI
 			return;
 		}
 
-		TWindowContainer::iterator itor = std::find (m_pChildList.begin(), m_pChildList.end(), pWin);
+		auto itor = std::find (m_pChildList.begin(), m_pChildList.end(), pWin);
 		if (m_pChildList.end() != itor)
 		{
 			m_pChildList.push_back (*itor);
@@ -471,8 +469,7 @@ namespace UI
 			return TRUE;
 		}
 
-		TWindowContainer::reverse_iterator itor;
-		for (itor = m_pChildList.rbegin(); itor != m_pChildList.rend(); ++itor)
+		for (auto itor = m_pChildList.rbegin(); itor != m_pChildList.rend(); ++itor)
 		{
 			CWindow * pWindow = *itor;
 
@@ -497,8 +494,7 @@ namespace UI
 			return TRUE;
 		}
 
-		TWindowContainer::reverse_iterator itor;
-		for (itor = m_pChildList.rbegin(); itor != m_pChildList.rend(); ++itor)
+		for (auto itor = m_pChildList.rbegin(); itor != m_pChildList.rend(); ++itor)
 		{
 			CWindow * pWindow = *itor;
 
@@ -523,8 +519,7 @@ namespace UI
 			return TRUE;
 		}
 
-		TWindowContainer::reverse_iterator itor;
-		for (itor = m_pChildList.rbegin(); itor != m_pChildList.rend(); ++itor)
+		for (auto itor = m_pChildList.rbegin(); itor != m_pChildList.rend(); ++itor)
 		{
 			CWindow * pWindow = *itor;
 
@@ -544,22 +539,21 @@ namespace UI
 			return this;
 		}
 
-		TWindowContainer::reverse_iterator itor;
-		for (itor = m_pChildList.rbegin(); itor != m_pChildList.rend(); ++itor)
+		for (auto itor = m_pChildList.rbegin(); itor != m_pChildList.rend(); ++itor)
 		{
 			CWindow * pWindow = *itor;
 
 			if (pWindow->IsShow())
 			{
 				CWindow * pProcessedWindow = pWindow->RunKeyDownEvent (ikey);
-				if (NULL != pProcessedWindow)
+				if (nullptr != pProcessedWindow)
 				{
 					return pProcessedWindow;
 				}
 			}
 		}
 
-		return NULL;
+		return nullptr;
 	}
 
 	BOOL CWindow::RunKeyUpEvent (int ikey)
@@ -569,8 +563,7 @@ namespace UI
 			return TRUE;
 		}
 
-		TWindowContainer::reverse_iterator itor;
-		for (itor = m_pChildList.rbegin(); itor != m_pChildList.rend(); ++itor)
+		for (auto itor = m_pChildList.rbegin(); itor != m_pChildList.rend(); ++itor)
 		{
 			CWindow * pWindow = *itor;
 
@@ -586,8 +579,7 @@ namespace UI
 
 	BOOL CWindow::RunPressEscapeKeyEvent()
 	{
-		TWindowContainer::reverse_iterator itor;
-		for (itor = m_pChildList.rbegin(); itor != m_pChildList.rend(); ++itor)
+		for (auto itor = m_pChildList.rbegin(); itor != m_pChildList.rend(); ++itor)
 		{
 			CWindow * pWindow = *itor;
 
@@ -608,8 +600,7 @@ namespace UI
 
 	BOOL CWindow::RunPressExitKeyEvent()
 	{
-		TWindowContainer::reverse_iterator itor;
-		for (itor = m_pChildList.rbegin(); itor != m_pChildList.rend(); ++itor)
+		for (auto itor = m_pChildList.rbegin(); itor != m_pChildList.rend(); ++itor)
 		{
 			CWindow * pWindow = *itor;
 
@@ -630,8 +621,7 @@ namespace UI
 
 	BOOL CWindow::OnMouseLeftButtonDown()
 	{
-		long lValue;
-		if (PyCallClassMemberFunc (m_poHandler, "OnMouseLeftButtonDown", BuildEmptyTuple(), &lValue))
+		if (long lValue; PyCallClassMemberFunc (m_poHandler, "OnMouseLeftButtonDown", BuildEmptyTuple(), &lValue))
 			if (0 != lValue)
 			{
 				return TRUE;
@@ -648,8 +638,7 @@ namespace UI
 
 	BOOL CWindow::OnMouseLeftButtonDoubleClick()
 	{
-		long lValue;
-		if (PyCallClassMemberFunc (m_poHandler, "OnMouseLeftButtonDoubleClick", BuildEmptyTuple(), &lValue))
+		if (long lValue; PyCallClassMemberFunc (m_poHandler, "OnMouseLeftButtonDoubleClick", BuildEmptyTuple(), &lValue))
 			if (0 != lValue)
 			{
 				return TRUE;
@@ -660,8 +649,7 @@ namespace UI
 
 	BOOL CWindow::OnMouseRightButtonDown()
 	{
-		long lValue;
-		if (PyCallClassMemberFunc (m_poHandler, "OnMouseRightButtonDown", BuildEmptyTuple(), &lValue))
+		if (long lValue; PyCallClassMemberFunc (m_poHandler, "OnMouseRightButtonDown", BuildEmptyTuple(), &lValue))
 			if (0 != lValue)
 			{
 				return TRUE;
@@ -672,8 +660,7 @@ namespace UI
 
 	BOOL CWindow::OnMouseRightButtonUp()
 	{
-		long lValue;
-		if (PyCallClassMemberFunc (m_poHandler, "OnMouseRightButtonUp", BuildEmptyTuple(), &lValue))
+		if (long lValue; PyCallClassMemberFunc (m_poHandler, "OnMouseRightButtonUp", BuildEmptyTuple(), &lValue))
 			if (0 != lValue)
 			{
 				return TRUE;
@@ -684,8 +671,7 @@ namespace UI
 
 	BOOL CWindow::OnMouseRightButtonDoubleClick()
 	{
-		long lValue;
-		if (PyCallClassMemberFunc (m_poHandler, "OnMouseRightButtonDoubleClick", BuildEmptyTuple(), &lValue))
+		if (long lValue; PyCallClassMemberFunc (m_poHandler, "OnMouseRightButtonDoubleClick", BuildEmptyTuple(), &lValue))
 			if (0 != lValue)
 			{
 				return TRUE;
@@ -696,8 +682,7 @@ namespace UI
 
 	BOOL CWindow::OnMouseMiddleButtonDown()
 	{
-		long lValue;
-		if (PyCallClassMemberFunc (m_poHandler, "OnMouseMiddleButtonDown", BuildEmptyTuple(), &lValue))
+		if (long lValue; PyCallClassMemberFunc (m_poHandler, "OnMouseMiddleButtonDown", BuildEmptyTuple(), &lValue))
 			if (0 != lValue)
 			{
 				return TRUE;
@@ -708,8 +693,7 @@ namespace UI
 
 	BOOL CWindow::OnMouseMiddleButtonUp()
 	{
-		long lValue;
-		if (PyCallClassMemberFunc (m_poHandler, "OnMouseMiddleButtonUp", BuildEmptyTuple(), &lValue))
+		if (long lValue; PyCallClassMemberFunc (m_poHandler, "OnMouseMiddleButtonUp", BuildEmptyTuple(), &lValue))
 			if (0 != lValue)
 			{
 				return TRUE;
@@ -720,8 +704,7 @@ namespace UI
 
 	BOOL CWindow::OnIMETabEvent()
 	{
-		long lValue;
-		if (PyCallClassMemberFunc (m_poHandler, "OnIMETab", BuildEmptyTuple(), &lValue))
+		if (long lValue; PyCallClassMemberFunc (m_poHandler, "OnIMETab", BuildEmptyTuple(), &lValue))
 			if (0 != lValue)
 			{
 				return TRUE;
@@ -732,8 +715,7 @@ namespace UI
 
 	BOOL CWindow::OnIMEReturnEvent()
 	{
-		long lValue;
-		if (PyCallClassMemberFunc (m_poHandler, "OnIMEReturn", BuildEmptyTuple(), &lValue))
+		if (long lValue; PyCallClassMemberFunc (m_poHandler, "OnIMEReturn", BuildEmptyTuple(), &lValue))
 			if (0 != lValue)
 			{
 				return TRUE;
@@ -744,8 +726,7 @@ namespace UI
 
 	BOOL CWindow::OnIMEKeyDownEvent (int ikey)
 	{
-		long lValue;
-		if (PyCallClassMemberFunc (m_poHandler, "OnIMEKeyDown", Py_BuildValue ("(i)", ikey), &lValue))
+		if (long lValue; PyCallClassMemberFunc (m_poHandler, "OnIMEKeyDown", Py_BuildValue ("(i)", ikey), &lValue))
 			if (0 != lValue)
 			{
 				return TRUE;
@@ -756,8 +737,7 @@ namespace UI
 
 	BOOL CWindow::OnIMEChangeCodePage()
 	{
-		long lValue;
-		if (PyCallClassMemberFunc (m_poHandler, "OnIMEChangeCodePage", BuildEmptyTuple(), &lValue))
+		if (long lValue; PyCallClassMemberFunc (m_poHandler, "OnIMEChangeCodePage", BuildEmptyTuple(), &lValue))
 			if (0 != lValue)
 			{
 				return TRUE;
@@ -768,8 +748,7 @@ namespace UI
 
 	BOOL CWindow::OnIMEOpenCandidateListEvent()
 	{
-		long lValue;
-		if (PyCallClassMemberFunc (m_poHandler, "OnIMEOpenCandidateList", BuildEmptyTuple(), &lValue))
+		if (long lValue; PyCallClassMemberFunc (m_poHandler, "OnIMEOpenCandidateList", BuildEmptyTuple(), &lValue))
 			if (0 != lValue)
 			{
 				return TRUE;
@@ -780,8 +759,7 @@ namespace UI
 
 	BOOL CWindow::OnIMECloseCandidateListEvent()
 	{
-		long lValue;
-		if (PyCallClassMemberFunc (m_poHandler, "OnIMECloseCandidateList", BuildEmptyTuple(), &lValue))
+		if (long lValue; PyCallClassMemberFunc (m_poHandler, "OnIMECloseCandidateList", BuildEmptyTuple(), &lValue))
 			if (0 != lValue)
 			{
 				return TRUE;
@@ -792,8 +770,7 @@ namespace UI
 
 	BOOL CWindow::OnIMEOpenReadingWndEvent()
 	{
-		long lValue;
-		if (PyCallClassMemberFunc (m_poHandler, "OnIMEOpenReadingWnd", BuildEmptyTuple(), &lValue))
+		if (long lValue; PyCallClassMemberFunc (m_poHandler, "OnIMEOpenReadingWnd", BuildEmptyTuple(), &lValue))
 			if (0 != lValue)
 			{
 				return TRUE;
@@ -804,8 +781,7 @@ namespace UI
 
 	BOOL CWindow::OnIMECloseReadingWndEvent()
 	{
-		long lValue;
-		if (PyCallClassMemberFunc (m_poHandler, "OnIMECloseReadingWnd", BuildEmptyTuple(), &lValue))
+		if (long lValue; PyCallClassMemberFunc (m_poHandler, "OnIMECloseReadingWnd", BuildEmptyTuple(), &lValue))
 			if (0 != lValue)
 			{
 				return TRUE;
@@ -816,8 +792,7 @@ namespace UI
 
 	BOOL CWindow::OnKeyDown (int ikey)
 	{
-		long lValue;
-		if (PyCallClassMemberFunc (m_poHandler, "OnKeyDown", Py_BuildValue ("(i)", ikey), &lValue))
+		if (long lValue; PyCallClassMemberFunc (m_poHandler, "OnKeyDown", Py_BuildValue ("(i)", ikey), &lValue))
 			if (0 != lValue)
 			{
 				return TRUE;
@@ -828,8 +803,7 @@ namespace UI
 
 	BOOL CWindow::OnKeyUp (int ikey)
 	{
-		long lValue;
-		if (PyCallClassMemberFunc (m_poHandler, "OnKeyUp", Py_BuildValue ("(i)", ikey), &lValue))
+		if (long lValue; PyCallClassMemberFunc (m_poHandler, "OnKeyUp", Py_BuildValue ("(i)", ikey), &lValue))
 			if (0 != lValue)
 			{
 				return TRUE;
@@ -840,8 +814,7 @@ namespace UI
 
 	BOOL CWindow::OnPressEscapeKey()
 	{
-		long lValue;
-		if (PyCallClassMemberFunc (m_poHandler, "OnPressEscapeKey", BuildEmptyTuple(), &lValue))
+		if (long lValue; PyCallClassMemberFunc (m_poHandler, "OnPressEscapeKey", BuildEmptyTuple(), &lValue))
 			if (0 != lValue)
 			{
 				return TRUE;
@@ -852,8 +825,7 @@ namespace UI
 
 	BOOL CWindow::OnPressExitKey()
 	{
-		long lValue;
-		if (PyCallClassMemberFunc (m_poHandler, "OnPressExitKey", BuildEmptyTuple(), &lValue))
+		if (long lValue; PyCallClassMemberFunc (m_poHandler, "OnPressExitKey", BuildEmptyTuple(), &lValue))
 			if (0 != lValue)
 			{
 				return TRUE;
@@ -885,7 +857,7 @@ namespace UI
 
 	CWindow* CWindow::PickWindow (long x, long y)
 	{
-		std::list<CWindow*>::reverse_iterator ritor = m_pChildList.rbegin();
+		auto ritor = m_pChildList.rbegin();
 		for (; ritor != m_pChildList.rend(); ++ritor)
 		{
 			CWindow * pWin = *ritor;
@@ -912,7 +884,7 @@ namespace UI
 
 		if (IsFlag (CWindow::FLAG_NOT_PICK))
 		{
-			return NULL;
+			return nullptr;
 		}
 
 		return (this);
@@ -920,7 +892,7 @@ namespace UI
 
 	CWindow* CWindow::PickTopWindow (long x, long y)
 	{
-		std::list<CWindow*>::reverse_iterator ritor = m_pChildList.rbegin();
+		auto ritor = m_pChildList.rbegin();
 		for (; ritor != m_pChildList.rend(); ++ritor)
 		{
 			CWindow * pWin = *ritor;
@@ -932,7 +904,7 @@ namespace UI
 					}
 		}
 
-		return NULL;
+		return nullptr;
 	}
 
 	///////////////////////////////////////////////////////////////////////////////////////////////
@@ -1178,7 +1150,7 @@ namespace UI
 		m_iHorizontalAlign = HORIZONTAL_ALIGN_LEFT;
 		m_dwWidthSummary = 0;
 	}
-	CNumberLine::CNumberLine (CWindow * pParent) : CWindow (NULL)
+	CNumberLine::CNumberLine (CWindow * pParent) : CWindow (nullptr)
 	{
 		m_strPath = "d:/ymir work/ui/game/taskbar/";
 		m_iHorizontalAlign = HORIZONTAL_ALIGN_LEFT;
@@ -1324,7 +1296,7 @@ namespace UI
 
 	CImageBox::CImageBox (PyObject * ppyObject) : CWindow (ppyObject)
 	{
-		m_pImageInstance = NULL;
+		m_pImageInstance = nullptr;
 	}
 	CImageBox::~CImageBox()
 	{
@@ -1342,7 +1314,7 @@ namespace UI
 		if (m_pImageInstance)
 		{
 			CGraphicImageInstance::Delete (m_pImageInstance);
-			m_pImageInstance = NULL;
+			m_pImageInstance = nullptr;
 		}
 	}
 
@@ -1437,7 +1409,7 @@ namespace UI
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	CMarkBox::CMarkBox (PyObject * ppyObject) : CWindow (ppyObject)
 	{
-		m_pMarkInstance = NULL;
+		m_pMarkInstance = nullptr;
 	}
 
 	CMarkBox::~CMarkBox()
@@ -1456,7 +1428,7 @@ namespace UI
 		if (m_pMarkInstance)
 		{
 			CGraphicMarkInstance::Delete (m_pMarkInstance);
-			m_pMarkInstance = NULL;
+			m_pMarkInstance = nullptr;
 		}
 	}
 
@@ -1567,7 +1539,7 @@ namespace UI
 		if (m_pImageInstance)
 		{
 			CGraphicExpandedImageInstance::Delete ((CGraphicExpandedImageInstance*)m_pImageInstance);
-			m_pImageInstance = NULL;
+			m_pImageInstance = nullptr;
 		}
 	}
 
@@ -1660,7 +1632,7 @@ namespace UI
 	}
 	CAniImageBox::~CAniImageBox()
 	{
-		for_each (m_ImageVector.begin(), m_ImageVector.end(), CGraphicExpandedImageInstance::DeleteExpandedImageInstance);
+		std::ranges::for_each (m_ImageVector, CGraphicExpandedImageInstance::DeleteExpandedImageInstance);
 	}
 
 	void CAniImageBox::SetDelay (int iDelay)
@@ -1706,7 +1678,7 @@ namespace UI
 		setRenderingRect.fTop = fTop;
 		setRenderingRect.fRight = fRight;
 		setRenderingRect.fBottom = fBottom;
-		for_each (m_ImageVector.begin(), m_ImageVector.end(), setRenderingRect);
+		std::ranges::for_each (m_ImageVector, setRenderingRect);
 	}
 
 	struct FSetRenderingMode
@@ -1721,7 +1693,7 @@ namespace UI
 	{
 		FSetRenderingMode setRenderingMode;
 		setRenderingMode.iMode = iMode;
-		for_each (m_ImageVector.begin(), m_ImageVector.end(), setRenderingMode);
+		std::ranges::for_each (m_ImageVector, setRenderingMode);
 	}
 
 	void CAniImageBox::ResetFrame()
@@ -1770,7 +1742,7 @@ namespace UI
 		FChangePosition changePosition;
 		changePosition.fx = m_rect.left;
 		changePosition.fy = m_rect.top;
-		for_each (m_ImageVector.begin(), m_ImageVector.end(), changePosition);
+		std::ranges::for_each (m_ImageVector, changePosition);
 	}
 
 	void CAniImageBox::OnEndFrame()
@@ -1784,10 +1756,10 @@ namespace UI
 
 	CButton::CButton (PyObject * ppyObject)
 		:	CWindow (ppyObject),
-		  m_pcurVisual (NULL),
 		  m_bEnable (TRUE),
 		  m_isPressed (FALSE),
-		  m_isFlash (FALSE)
+		  m_isFlash (FALSE),
+		  m_pcurVisual (nullptr)
 	{
 		CWindow::AddFlag (CWindow::FLAG_NOT_CAPTURE);
 	}
@@ -2222,7 +2194,7 @@ namespace UI
 		m_rect.right = m_rect.left + m_lWidth;
 		m_rect.bottom = m_rect.top + m_lHeight;
 
-		std::for_each (m_pChildList.begin(), m_pChildList.end(), std::mem_fn (&CWindow::UpdateRect));
+		std::ranges::for_each (m_pChildList, std::mem_fn (&CWindow::UpdateRect));
 
 		if (m_pcurVisual)
 		{

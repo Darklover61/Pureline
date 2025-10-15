@@ -43,14 +43,14 @@ NameDict g_map_ignoreFileName;
 NameDict g_map_ignoreDirName;
 NameDict g_map_ignoreBasePath;
 
-typedef std::unordered_map<string, BYTE, stringhash> TStrMap;
+using TStrMap = std::unordered_map<string, BYTE, stringhash>;
 
 TStrMap g_PackTypeByExtNameMap;
 std::string g_strFolderName = "pack/";
 
 static BYTE s_IV[32];
 
-typedef std::unordered_map<string, string, stringhash> MapNameToSDBFile;
+using MapNameToSDBFile = std::unordered_map<string, string, stringhash>;
 
 MapNameToSDBFile g_map_SDBFileList;
 int				 iCompressTexQuality = 0;
@@ -426,8 +426,8 @@ bool MakePackFiles (const std::vector<std::string>& filePaths, CEterPackManager*
 		return false;
 	}
 
-	std::vector<std::string>::const_iterator i = filePaths.begin();
-	std::vector<std::string>::const_iterator e = filePaths.end();
+	auto i = filePaths.begin();
+	auto e = filePaths.end();
 
 	bool bAddToIndex = false;
 
@@ -856,7 +856,7 @@ int main (int argc, char** argv)
 		//printf("\n - ExcludedFolderNameList\n");
 		CMakePackLog::GetSingleton().Writef ("\n - ExcludedFolderNameList\n");
 
-		CTokenVector::iterator itor = pTokenVector->begin();
+		auto itor = pTokenVector->begin();
 		for (; pTokenVector->end() != itor; ++itor)
 		{
 			std::string& rstrName = *itor;
@@ -873,7 +873,7 @@ int main (int argc, char** argv)
 		//printf("\n - ExcludedPathList\n");
 		CMakePackLog::GetSingleton().Write ("\n - ExcludedPathList\n");
 
-		CTokenVector::iterator itor = pTokenVector->begin();
+		auto itor = pTokenVector->begin();
 		for (; pTokenVector->end() != itor; ++itor)
 		{
 			std::string& rstrName = *itor;
@@ -890,7 +890,7 @@ int main (int argc, char** argv)
 		//printf("\n - ExcludedFileNameList\n");
 		CMakePackLog::GetSingleton().Writef ("\n - ExcludedFileNameList\n");
 
-		CTokenVector::iterator itor = pTokenVector->begin();
+		auto itor = pTokenVector->begin();
 		for (; pTokenVector->end() != itor; ++itor)
 		{
 			std::string& rstrName = *itor;
@@ -906,7 +906,7 @@ int main (int argc, char** argv)
 	{
 		CMakePackLog::GetSingleton().Writef ("\n - CompressExtNameList\n");
 
-		CTokenVector::iterator itor = pTokenVector->begin();
+		auto itor = pTokenVector->begin();
 		for (; pTokenVector->end() != itor; ++itor)
 		{
 			std::string& rstrName = *itor;
@@ -921,7 +921,7 @@ int main (int argc, char** argv)
 	{
 		CMakePackLog::GetSingleton().Writef ("\n - SecurityExtNameList\n");
 
-		CTokenVector::iterator itor = pTokenVector->begin();
+		auto itor = pTokenVector->begin();
 		for (; pTokenVector->end() != itor; ++itor)
 		{
 			std::string& rstrName = *itor;
@@ -936,7 +936,7 @@ int main (int argc, char** argv)
 	{
 		CMakePackLog::GetSingleton().Writef ("\n - OldCompressExtNameList\n");
 
-		CTokenVector::iterator itor = pTokenVector->begin();
+		auto itor = pTokenVector->begin();
 		for (; pTokenVector->end() != itor; ++itor)
 		{
 			std::string& rstrName = *itor;
@@ -971,7 +971,7 @@ int main (int argc, char** argv)
 	{
 		CMakePackLog::GetSingleton().Writef ("\n - PanamaExtNameList\n");
 
-		CTokenVector::iterator itor = pTokenVector->begin();
+		auto itor = pTokenVector->begin();
 		for (; pTokenVector->end() != itor; ++itor)
 		{
 			std::string& rstrName = *itor;
@@ -985,7 +985,7 @@ int main (int argc, char** argv)
 	{
 		CMakePackLog::GetSingleton().Writef ("\n - C/S Hybrid Encrypt ExtNameList\n");
 
-		CTokenVector::iterator itor = pTokenVector->begin();
+		auto itor = pTokenVector->begin();
 		for (; pTokenVector->end() != itor; ++itor)
 		{
 			std::string& rstrName = *itor;
@@ -1060,7 +1060,7 @@ int main (int argc, char** argv)
 	// SDB ( Supplementary Data Block Required File List )
 	if (TextFileLoader.GetTokenVector ("sdbfilelist", &pTokenVector))
 	{
-		CTokenVector::iterator itor = pTokenVector->begin();
+		auto itor = pTokenVector->begin();
 		for (; pTokenVector->end() != itor; ++itor)
 		{
 			std::string& rstrName = *itor;
@@ -1093,11 +1093,11 @@ int main (int argc, char** argv)
 	{
 		std::vector<std::string> filePaths;
 
-		CTokenVector::iterator itor = pTokenVector->begin();
+		auto itor = pTokenVector->begin();
 		for (; pTokenVector->end() != itor; ++itor)
 		{
 			std::string& rstrName = *itor;
-			std::vector<std::string>::iterator it = std::find (filePaths.begin(), filePaths.end(), rstrName);
+			auto it = std::find (filePaths.begin(), filePaths.end(), rstrName);
 			if (it == filePaths.end())
 			{
 				filePaths.push_back (rstrName);

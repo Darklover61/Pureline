@@ -2,7 +2,7 @@
 //
 
 #include "StdAfx.h"
-#include "..\WorldEditor.h"
+#include "../WorldEditor.h"
 #include "mapattributepage.h"
 #include "../DataCtrl/MapAccessorTerrain.h"
 #include "../DataCtrl/NonPlayerCharacterInfo.h"

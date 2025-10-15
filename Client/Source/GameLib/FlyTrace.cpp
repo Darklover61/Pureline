@@ -281,7 +281,7 @@ void CFlyTrace::Render()
 		//OLD: STATEMANAGER.DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, v+1, sizeof(TVertex));
 	}
 
-	std::sort (VSVector.begin(), VSVector.end());
+	std::ranges::sort (VSVector);
 
 	for (TFlyVertexSetVector::iterator it = VSVector.begin(); it != VSVector.end(); ++it)
 	{

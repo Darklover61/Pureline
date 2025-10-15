@@ -184,7 +184,7 @@ void CPythonLocale::FormatString (char* c, size_t size) const
 
 void CPythonLocale::MultiLineSplit (const std::string& sMessage, TTokenVector& vec) const
 {
-	if (sMessage.find ("[ENTER]") == std::string::npos)
+	if (!sMessage.contains("[ENTER]"))
 	{
 		return;
 	}

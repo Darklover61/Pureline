@@ -273,7 +273,7 @@ void CEffectMeshInstance_DeleteImageInstance (CGraphicImageInstance * pkInstance
 void CEffectMeshInstance_DeleteTextureInstance (CEffectMeshInstance::TTextureInstance & rkInstance)
 {
 	std::vector<CGraphicImageInstance*>& rVector = rkInstance.TextureInstanceVector;
-	for_each (rVector.begin(), rVector.end(), CEffectMeshInstance_DeleteImageInstance);
+	std::ranges::for_each (rVector, CEffectMeshInstance_DeleteImageInstance);
 	rVector.clear();
 }
 
@@ -283,7 +283,7 @@ void CEffectMeshInstance::OnInitialize()
 
 void CEffectMeshInstance::OnDestroy()
 {
-	for_each (m_TextureInstanceVector.begin(), m_TextureInstanceVector.end(), CEffectMeshInstance_DeleteTextureInstance);
+	std::ranges::for_each (m_TextureInstanceVector, CEffectMeshInstance_DeleteTextureInstance);
 	m_TextureInstanceVector.clear();
 	m_roMesh.SetPointer (NULL);
 }

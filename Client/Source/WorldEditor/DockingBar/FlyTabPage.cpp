@@ -2,7 +2,7 @@
 //
 
 #include "StdAfx.h"
-#include "..\worldeditor.h"
+#include "../WorldEditor.h"
 #include "FlyTabPage.h"
 #include "../MainFrm.h"
 #include "../../GameLib/FlyingData.h"

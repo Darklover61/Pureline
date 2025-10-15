@@ -564,8 +564,7 @@ void CActorInstance::TransformProcess()
 void CActorInstance::OnUpdateCollisionData (const CStaticCollisionDataVector * pscdVector)
 {
 	assert (pscdVector);
-	CStaticCollisionDataVector::const_iterator it;
-	for (it = pscdVector->begin(); it != pscdVector->end(); ++it)
+	for (auto it = pscdVector->begin(); it != pscdVector->end(); ++it)
 	{
 		const CStaticCollisionData & c_rColliData = *it;
 		const D3DXMATRIX & c_rMatrix = GetTransform();
@@ -709,7 +708,7 @@ void CActorInstance::AdjustDynamicCollisionMovement (const CActorInstance * c_pA
 			m_v3Movement *= gc_fActorSlideMoveSpeed / move_length;
 		}
 
-		TCollisionPointInstanceListIterator itMain = m_BodyPointInstanceList.begin();
+		auto itMain = m_BodyPointInstanceList.begin();
 		for (; itMain != m_BodyPointInstanceList.end(); ++itMain)
 		{
 			CDynamicSphereInstanceVector & c_rMainSphereVector = (*itMain).SphereInstanceVector;
@@ -717,7 +716,7 @@ void CActorInstance::AdjustDynamicCollisionMovement (const CActorInstance * c_pA
 			{
 				CDynamicSphereInstance & c_rMainSphere = c_rMainSphereVector[i];
 
-				TCollisionPointInstanceList::const_iterator itOpp = c_pActorInstance->m_BodyPointInstanceList.begin();
+				auto itOpp = c_pActorInstance->m_BodyPointInstanceList.begin();
 				for (; itOpp != c_pActorInstance->m_BodyPointInstanceList.end(); ++itOpp)
 				{
 					CSphereCollisionInstance s;
@@ -765,7 +764,7 @@ void CActorInstance::__AdjustCollisionMovement (const CGraphicObjectInstance * c
 		m_v3Movement *= gc_fActorSlideMoveSpeed / move_length;
 	}
 
-	TCollisionPointInstanceListIterator itMain = m_BodyPointInstanceList.begin();
+	auto itMain = m_BodyPointInstanceList.begin();
 	for (; itMain != m_BodyPointInstanceList.end(); ++itMain)
 	{
 		CDynamicSphereInstanceVector & c_rMainSphereVector = (*itMain).SphereInstanceVector;
@@ -834,11 +833,11 @@ float CActorInstance::GetHeight()
 
 bool CActorInstance::IntersectDefendingSphere()
 {
-	for (TCollisionPointInstanceList::iterator it = m_DefendingPointInstanceList.begin(); it != m_DefendingPointInstanceList.end(); ++it)
+	for (auto it = m_DefendingPointInstanceList.begin(); it != m_DefendingPointInstanceList.end(); ++it)
 	{
 		CDynamicSphereInstanceVector & rSphereInstanceVector = (*it).SphereInstanceVector;
 
-		CDynamicSphereInstanceVector::iterator it2 = rSphereInstanceVector.begin();
+		auto it2 = rSphereInstanceVector.begin();
 		for (; it2 != rSphereInstanceVector.end(); ++it2)
 		{
 			CDynamicSphereInstance & rInstance = *it2;
@@ -934,7 +933,7 @@ void CActorInstance::Destroy()
 	{
 		m_pAttributeInstance->Clear();
 		CAttributeInstance::Delete (m_pAttributeInstance);
-		m_pAttributeInstance = NULL;
+		m_pAttributeInstance = nullptr;
 	}
 
 	__ClearAttachingEffect();
@@ -1017,10 +1016,10 @@ void CActorInstance::__InitializeMotionData()
 
 void CActorInstance::__Initialize()
 {
-	m_pkCurRaceMotionData = NULL;
-	m_pkCurRaceData = NULL;
-	m_pkHorse = NULL;
-	m_pkTree = NULL;
+	m_pkCurRaceMotionData = nullptr;
+	m_pkCurRaceData = nullptr;
+	m_pkHorse = nullptr;
+	m_pkTree = nullptr;
 
 	m_fOwnerBaseTime = 0.0f;
 
@@ -1033,18 +1032,18 @@ void CActorInstance::__Initialize()
 	m_dwSelfVID = 0;
 	m_dwOwnerVID = 0;
 
-	m_pkEventHandler =  NULL;
+	m_pkEventHandler =  nullptr;
 
 	m_PhysicsObject.Initialize();
 
-	m_pAttributeInstance = NULL;
+	m_pAttributeInstance = nullptr;
 
-	m_pFlyEventHandler = 0;
+	m_pFlyEventHandler = nullptr;
 
 	m_v3FishingPosition = D3DXVECTOR3 (0.0f, 0.0f, 0.0f);
 	m_iFishingEffectID = -1;
 
-	m_pkHorse = NULL;
+	m_pkHorse = nullptr;
 
 	__InitializePositionData();
 	__InitializeRotationData();

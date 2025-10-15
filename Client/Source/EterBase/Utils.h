@@ -1,7 +1,7 @@
 #ifndef __INC_ETER2_ETERBASE_UTILS_H__
 #define __INC_ETER2_ETERBASE_UTILS_H__
 
-#include <windows.h>
+#include <Windows.h>
 #include <vector>
 #include <string>
 
@@ -49,7 +49,7 @@
 	#define TOGGLE_BIT(var,bit)             ((var) = (var) ^ (bit))
 #endif
 
-extern const char* CreateTempFileName (const char* c_pszPrefix = NULL);
+extern const char* CreateTempFileName (const char* c_pszPrefix = nullptr);
 extern void			GetFilePathNameExtension (const char* c_szFile, int len, std::string* pstPath, std::string* pstName, std::string* pstExt);
 extern void			GetFileExtension (const char* c_szFile, int len, std::string* pstExt);
 extern void			GetFileNameParts (const char* c_szFile, int len, char* pszPath, char* pszName, char* pszExt);

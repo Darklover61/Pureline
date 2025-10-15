@@ -4,6 +4,8 @@
 
 #include "MapOutdoor.h"
 
+#include <numbers>
+
 static int recreate = false;
 
 void CMapOutdoor::SetShadowTextureSize (WORD size)
@@ -87,9 +89,9 @@ bool CMapOutdoor::BeginRenderCharacterShadowToTexture()
 
 	D3DXVECTOR3 v3Target = pCurrentCamera->GetTarget();
 
-	D3DXVECTOR3 v3Eye (v3Target.x - 1.732f * 1250.0f,
+	D3DXVECTOR3 v3Eye (v3Target.x - std::numbers::sqrt3_v<float> * 1250.0f,
 					   v3Target.y - 1250.0f,
-					   v3Target.z + 2.0f * 1.732f * 1250.0f);
+					   v3Target.z + 2.0f * std::numbers::sqrt3_v<float> * 1250.0f);
 
 	const auto vv = D3DXVECTOR3 (0.0f, 0.0f, 1.0f);
 	D3DXMatrixLookAtRH (&matLightView,

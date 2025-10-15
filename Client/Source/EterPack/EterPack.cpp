@@ -216,8 +216,8 @@ void CMakePackLog::FlushError()
 
 	std::ostream_iterator <std::wstring, wchar_t, std::char_traits <wchar_t >> oit (std::wcout);
 
-	std::sort (vText.begin(), vText.end());
-	std::copy (vText.begin(), vText.end(), oit);
+	std::ranges::sort (vText);
+	std::ranges::copy (vText, oit);
 }
 #ifdef __MAKE_PACK__
 	FILE* CEterPack::ms_PackLogFile = NULL;

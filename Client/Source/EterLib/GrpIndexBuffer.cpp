@@ -5,20 +5,20 @@
 
 LPDIRECT3DINDEXBUFFER8 CGraphicIndexBuffer::GetD3DIndexBuffer() const
 {
-	assert (m_lpd3dIdxBuf != NULL);
+	assert (m_lpd3dIdxBuf != nullptr);
 	return m_lpd3dIdxBuf;
 }
 
 void CGraphicIndexBuffer::SetIndices (int startIndex) const
 {
-	assert (ms_lpd3dDevice != NULL);
+	assert (ms_lpd3dDevice != nullptr);
 	STATEMANAGER.SetIndices (m_lpd3dIdxBuf, startIndex);
 }
 
 
 bool CGraphicIndexBuffer::Lock (void** pretIndices) const
 {
-	assert (m_lpd3dIdxBuf != NULL);
+	assert (m_lpd3dIdxBuf != nullptr);
 
 	if (FAILED (m_lpd3dIdxBuf->Lock (0, 0, (BYTE**)pretIndices, 0)))
 	{
@@ -30,14 +30,14 @@ bool CGraphicIndexBuffer::Lock (void** pretIndices) const
 
 void CGraphicIndexBuffer::Unlock() const
 {
-	assert (m_lpd3dIdxBuf != NULL);
+	assert (m_lpd3dIdxBuf != nullptr);
 
 	m_lpd3dIdxBuf->Unlock();
 }
 
 bool CGraphicIndexBuffer::Lock (void** pretIndices)
 {
-	assert (m_lpd3dIdxBuf != NULL);
+	assert (m_lpd3dIdxBuf != nullptr);
 
 	if (FAILED (m_lpd3dIdxBuf->Lock (0, 0, (BYTE**)pretIndices, 0)))
 	{
@@ -49,14 +49,14 @@ bool CGraphicIndexBuffer::Lock (void** pretIndices)
 
 void CGraphicIndexBuffer::Unlock()
 {
-	assert (m_lpd3dIdxBuf != NULL);
+	assert (m_lpd3dIdxBuf != nullptr);
 
 	m_lpd3dIdxBuf->Unlock();
 }
 
 bool CGraphicIndexBuffer::Copy (int bufSize, const void* srcIndices)
 {
-	assert (m_lpd3dIdxBuf != NULL);
+	assert (m_lpd3dIdxBuf != nullptr);
 
 	BYTE* dstIndices;
 	if (FAILED (m_lpd3dIdxBuf->Lock (0, 0, &dstIndices, 0)))
@@ -137,7 +137,7 @@ void CGraphicIndexBuffer::Destroy()
 
 void CGraphicIndexBuffer::Initialize()
 {
-	m_lpd3dIdxBuf = NULL;
+	m_lpd3dIdxBuf = nullptr;
 }
 
 CGraphicIndexBuffer::CGraphicIndexBuffer()

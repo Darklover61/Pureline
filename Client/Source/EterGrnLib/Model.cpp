@@ -15,7 +15,7 @@ const CGrannyModel::TMeshNode* CGrannyModel::GetMeshNodeList (CGrannyMesh::EType
 CGrannyMesh* CGrannyModel::GetMeshPointer (int iMesh)
 {
 	assert (CheckMeshIndex (iMesh));
-	assert (m_meshs != NULL);
+	assert (m_meshs != nullptr);
 
 	return m_meshs + iMesh;
 }
@@ -23,7 +23,7 @@ CGrannyMesh* CGrannyModel::GetMeshPointer (int iMesh)
 const CGrannyMesh* CGrannyModel::GetMeshPointer (int iMesh) const
 {
 	assert (CheckMeshIndex (iMesh));
-	assert (m_meshs != NULL);
+	assert (m_meshs != nullptr);
 
 	return m_meshs + iMesh;
 }
@@ -113,7 +113,7 @@ bool CGrannyModel::LoadPNTVertices()
 		return true;
 	}
 
-	assert (m_meshs != NULL);
+	assert (m_meshs != nullptr);
 
 	if (!m_pntVtxBuf.Create (m_rigidVtxCount, m_dwFvF, D3DUSAGE_WRITEONLY, D3DPOOL_MANAGED))
 	{
@@ -168,8 +168,8 @@ bool CGrannyModel::LoadIndices()
 
 bool CGrannyModel::LoadMeshs()
 {
-	assert (m_meshs == NULL);
-	assert (m_pgrnModel != NULL);
+	assert (m_meshs == nullptr);
+	assert (m_pgrnModel != nullptr);
 
 	if (m_pgrnModel->MeshBindingCount <= 0)	// 메쉬가 없는 모델
 	{
@@ -222,7 +222,7 @@ bool CGrannyModel::LoadMeshs()
 		int i = 0;
 		while (i < grni32xTypeCount)
 		{
-			if (NULL == pgrnMesh->PrimaryVertexData->VertexType[i].Name || 0 == strlen (pgrnMesh->PrimaryVertexData->VertexType[i].Name))
+			if (nullptr == pgrnMesh->PrimaryVertexData->VertexType[i].Name || 0 == strlen (pgrnMesh->PrimaryVertexData->VertexType[i].Name))
 			{
 				++i;
 				continue;
@@ -424,7 +424,7 @@ bool CGrannyModel::__LoadVertices()
 		return true;
 	}
 
-	assert (m_meshs != NULL);
+	assert (m_meshs != nullptr);
 
 	//	assert((m_dwFvF & (D3DFVF_XYZ|D3DFVF_NORMAL|D3DFVF_TEX1)) == m_dwFvF);
 
@@ -454,9 +454,9 @@ void CGrannyModel::Initialize()
 {
 	memset (m_meshNodeLists, 0, sizeof (m_meshNodeLists));
 
-	m_pgrnModel = NULL;
-	m_meshs = NULL;
-	m_meshNodes = NULL;
+	m_pgrnModel = nullptr;
+	m_meshs = nullptr;
+	m_meshNodes = nullptr;
 
 	m_meshNodeSize = 0;
 	m_meshNodeCapacity = 0;
