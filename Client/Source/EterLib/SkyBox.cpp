@@ -168,7 +168,7 @@ void CSkyObject::Render()
 
 CGraphicImageInstance* CSkyObject::GenerateTexture (const char* szfilename)
 {
-	assert (szfilename != NULL);
+	assert (szfilename != nullptr);
 
 	if (strlen (szfilename) <= 0)
 	{
@@ -273,8 +273,7 @@ void CSkyBox::SetFaceTexture (const char* c_szFileName, int iFaceIndex)
 		return;
 	}
 
-	TGraphicImageInstanceMap::iterator itor = m_GraphicImageInstanceMap.find (c_szFileName);
-	if (m_GraphicImageInstanceMap.end() != itor)
+	if (TGraphicImageInstanceMap::iterator itor = m_GraphicImageInstanceMap.find (c_szFileName); m_GraphicImageInstanceMap.end() != itor)
 	{
 		return;
 	}
@@ -282,21 +281,20 @@ void CSkyBox::SetFaceTexture (const char* c_szFileName, int iFaceIndex)
 	m_Faces[iFaceIndex].m_strFaceTextureFileName = c_szFileName;
 
 	CGraphicImageInstance * pGraphicImageInstance = GenerateTexture (c_szFileName);
-	m_GraphicImageInstanceMap.insert (TGraphicImageInstanceMap::value_type (c_szFileName, pGraphicImageInstance));
+	m_GraphicImageInstanceMap.try_emplace (c_szFileName, pGraphicImageInstance);
 }
 
 
 void CSkyBox::SetCloudTexture (const char* c_szFileName)
 {
-	TGraphicImageInstanceMap::iterator itor = m_GraphicImageInstanceMap.find (c_szFileName);
-	if (m_GraphicImageInstanceMap.end() != itor)
+	if (TGraphicImageInstanceMap::iterator itor = m_GraphicImageInstanceMap.find (c_szFileName); m_GraphicImageInstanceMap.end() != itor)
 	{
 		return;
 	}
 
 	m_FaceCloud.m_strfacename = c_szFileName;
 	CGraphicImageInstance * pGraphicImageInstance = GenerateTexture (c_szFileName);
-	m_GraphicImageInstanceMap.insert (TGraphicImageInstanceMap::value_type (m_FaceCloud.m_strfacename, pGraphicImageInstance));
+	m_GraphicImageInstanceMap.try_emplace (m_FaceCloud.m_strfacename, pGraphicImageInstance);
 
 	// 이거 안쓰는거 같은데요? [cronan]
 	//	CGraphicImage * pImage = (CGraphicImage *) CResourceManager::Instance().GetResourcePointer("D:\\Ymir Work\\special/cloudalpha.tga");
@@ -333,7 +331,7 @@ void CSkyBox::SetCloudScrollSpeed (const D3DXVECTOR2 & c_rv2CloudScrollSpeed)
 
 void CSkyBox::Unload()
 {
-	TGraphicImageInstanceMap::iterator itor = m_GraphicImageInstanceMap.begin();
+	auto itor = m_GraphicImageInstanceMap.begin();
 
 	while (itor != m_GraphicImageInstanceMap.end())
 	{

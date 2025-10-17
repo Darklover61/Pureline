@@ -117,7 +117,7 @@ namespace marriage
 	void WeddingMap::Notice (const char* psz)
 	{
 		FNotice f (psz);
-		for_each (m_set_pkChr.begin(), m_set_pkChr.end(), f);
+		std::ranges::for_each (m_set_pkChr, f);
 	}
 
 	struct FWarpEveryone
@@ -137,7 +137,7 @@ namespace marriage
 	void WeddingMap::WarpAll()
 	{
 		FWarpEveryone f;
-		for_each (m_set_pkChr.begin(), m_set_pkChr.end(), f);
+		std::ranges::for_each (m_set_pkChr, f);
 	}
 
 	struct FDestroyEveryone

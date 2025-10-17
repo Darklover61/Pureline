@@ -1212,13 +1212,13 @@ struct monarch_notice_packet_func
 void SendNotice (const char* c_pszBuf)
 {
 	const DESC_MANAGER::DESC_SET & c_ref_set = DESC_MANAGER::instance().GetClientSet();
-	std::for_each (c_ref_set.begin(), c_ref_set.end(), notice_packet_func (c_pszBuf));
+	std::ranges::for_each (c_ref_set, notice_packet_func (c_pszBuf));
 }
 
 void SendMonarchNotice (BYTE bEmpire, const char* c_pszBuf)
 {
 	const DESC_MANAGER::DESC_SET & c_ref_set = DESC_MANAGER::instance().GetClientSet();
-	std::for_each (c_ref_set.begin(), c_ref_set.end(), monarch_notice_packet_func (bEmpire, c_pszBuf));
+	std::ranges::for_each (c_ref_set, monarch_notice_packet_func (bEmpire, c_pszBuf));
 }
 
 struct notice_map_packet_func
@@ -1233,7 +1233,7 @@ struct notice_map_packet_func
 
 	void operator() (LPDESC d)
 	{
-		if (d->GetCharacter() == NULL)
+		if (d->GetCharacter() == nullptr)
 		{
 			return;
 		}
@@ -1249,7 +1249,7 @@ struct notice_map_packet_func
 void SendNoticeMap (const char* c_pszBuf, int nMapIndex, bool bBigFont)
 {
 	const DESC_MANAGER::DESC_SET & c_ref_set = DESC_MANAGER::instance().GetClientSet();
-	std::for_each (c_ref_set.begin(), c_ref_set.end(), notice_map_packet_func (c_pszBuf, nMapIndex, bBigFont));
+	std::ranges::for_each (c_ref_set, notice_map_packet_func (c_pszBuf, nMapIndex, bBigFont));
 }
 
 struct log_packet_func
@@ -1278,7 +1278,7 @@ struct log_packet_func
 void SendLog (const char* c_pszBuf)
 {
 	const DESC_MANAGER::DESC_SET & c_ref_set = DESC_MANAGER::instance().GetClientSet();
-	std::for_each (c_ref_set.begin(), c_ref_set.end(), log_packet_func (c_pszBuf));
+	std::ranges::for_each (c_ref_set, log_packet_func (c_pszBuf));
 }
 
 void BroadcastNotice (const char* c_pszBuf)
@@ -1408,7 +1408,7 @@ ACMD (do_user)
 	user_func func;
 
 	func.initialize (ch);
-	std::for_each (c_ref_set.begin(), c_ref_set.end(), func);
+	std::ranges::for_each (c_ref_set, func);
 
 	if (func.count % 4)
 	{
@@ -1430,7 +1430,7 @@ ACMD (do_disconnect)
 	}
 
 	LPDESC d = DESC_MANAGER::instance().FindByCharacterName (arg1);
-	LPCHARACTER	tch = d ? d->GetCharacter() : NULL;
+	LPCHARACTER	tch = d ? d->GetCharacter() : nullptr;
 
 	if (!tch)
 	{
@@ -1459,7 +1459,7 @@ ACMD (do_kill)
 	}
 
 	LPDESC	d = DESC_MANAGER::instance().FindByCharacterName (arg1);
-	LPCHARACTER tch = d ? d->GetCharacter() : NULL;
+	LPCHARACTER tch = d ? d->GetCharacter() : nullptr;
 
 	if (!tch)
 	{
@@ -1496,7 +1496,7 @@ ACMD (do_set)
 {
 	char arg1[256], arg2[256], arg3[256];
 
-	LPCHARACTER tch = NULL;
+	LPCHARACTER tch = nullptr;
 
 	int i, len;
 	const char* line;
@@ -3936,8 +3936,8 @@ ACMD (do_siege)
 	char arg1[256], arg2[256];
 	two_arguments (argument, arg1, sizeof (arg1), arg2, sizeof (arg2));
 
-	int	empire = strtol (arg1, NULL, 10);
-	int tower_count = strtol (arg2, NULL, 10);
+	int	empire = strtol (arg1, nullptr, 10);
+	int tower_count = strtol (arg2, nullptr, 10);
 
 	if (empire == 0)
 	{

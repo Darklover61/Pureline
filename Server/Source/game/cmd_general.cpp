@@ -214,7 +214,7 @@ EVENTFUNC (shutdown_event)
 		if (--*pSec == -10)
 		{
 			const DESC_MANAGER::DESC_SET & c_set_desc = DESC_MANAGER::instance().GetClientSet();
-			std::for_each (c_set_desc.begin(), c_set_desc.end(), DisconnectFunc());
+			std::ranges::for_each (c_set_desc, DisconnectFunc());
 			return passes_per_sec;
 		}
 		else if (*pSec < -10)
@@ -227,7 +227,7 @@ EVENTFUNC (shutdown_event)
 	else if (*pSec == 0)
 	{
 		const DESC_MANAGER::DESC_SET & c_set_desc = DESC_MANAGER::instance().GetClientSet();
-		std::for_each (c_set_desc.begin(), c_set_desc.end(), SendDisconnectFunc());
+		std::ranges::for_each (c_set_desc, SendDisconnectFunc());
 		g_bNoMoreClient = true;
 		--*pSec;
 		return passes_per_sec;
@@ -266,7 +266,7 @@ void Shutdown (int iSec)
 
 ACMD (do_shutdown)
 {
-	if (NULL == ch)
+	if (nullptr == ch)
 	{
 		sys_err ("Accept shutdown command from %s.", ch->GetName());
 	}
@@ -281,14 +281,14 @@ EVENTFUNC (timed_event)
 {
 	TimedEventInfo * info = dynamic_cast<TimedEventInfo*> (event->info);
 
-	if (info == NULL)
+	if (info == nullptr)
 	{
 		sys_err ("timed_event> <Factor> Null pointer");
 		return 0;
 	}
 
 	LPCHARACTER	ch = info->ch;
-	if (ch == NULL)   // <Factor>
+	if (ch == nullptr)   // <Factor>
 	{
 		return 0;
 	}
@@ -296,7 +296,7 @@ EVENTFUNC (timed_event)
 
 	if (info->left_second <= 0)
 	{
-		ch->m_pkTimedEvent = NULL;
+		ch->m_pkTimedEvent = nullptr;
 
 		if (true == LC_IsEurope() || true == LC_IsYMIR() || true == LC_IsKorea())
 		{
@@ -512,7 +512,7 @@ ACMD (do_restart)
 		return;
 	}
 
-	if (NULL == ch->m_pkDeadEvent)
+	if (nullptr == ch->m_pkDeadEvent)
 	{
 		return;
 	}
@@ -845,7 +845,7 @@ ACMD (do_stat)
 
 ACMD (do_pvp)
 {
-	if (ch->GetArena() != NULL || CArenaManager::instance().IsArenaMap (ch->GetMapIndex()) == true)
+	if (ch->GetArena() != nullptr || CArenaManager::instance().IsArenaMap (ch->GetMapIndex()) == true)
 	{
 		ch->ChatPacket (CHAT_TYPE_INFO, "[LS;403]"/* "You cannot use this in the duel arena." */);
 		return;
@@ -868,7 +868,7 @@ ACMD (do_pvp)
 		return;
 	}
 
-	if (pkVictim->GetArena() != NULL)
+	if (pkVictim->GetArena() != nullptr)
 	{
 		pkVictim->ChatPacket (CHAT_TYPE_INFO, "[LS;522]"/* "This player is currently fighting." */);
 		return;
@@ -1268,14 +1268,14 @@ ACMD (do_war)
 
 	do
 	{
-		if (g->GetMasterCharacter() != NULL)
+		if (g->GetMasterCharacter() != nullptr)
 		{
 			break;
 		}
 
 		CCI *pCCI = P2P_MANAGER::instance().FindByPID (g->GetMasterPID());
 
-		if (pCCI != NULL)
+		if (pCCI != nullptr)
 		{
 			break;
 		}
@@ -1289,14 +1289,14 @@ ACMD (do_war)
 
 	do
 	{
-		if (opp_g->GetMasterCharacter() != NULL)
+		if (opp_g->GetMasterCharacter() != nullptr)
 		{
 			break;
 		}
 
 		CCI *pCCI = P2P_MANAGER::instance().FindByPID (opp_g->GetMasterPID());
 
-		if (pCCI != NULL)
+		if (pCCI != nullptr)
 		{
 			break;
 		}
@@ -1451,19 +1451,19 @@ ACMD (do_observer_exit)
 	{
 		if (ch->GetWarMap())
 		{
-			ch->SetWarMap (NULL);
+			ch->SetWarMap (nullptr);
 		}
 
-		if (ch->GetArena() != NULL || ch->GetArenaObserverMode() == true)
+		if (ch->GetArena() != nullptr || ch->GetArenaObserverMode() == true)
 		{
 			ch->SetArenaObserverMode (false);
 
-			if (ch->GetArena() != NULL)
+			if (ch->GetArena() != nullptr)
 			{
 				ch->GetArena()->RemoveObserver (ch->GetPlayerID());
 			}
 
-			ch->SetArena (NULL);
+			ch->SetArena (nullptr);
 			ch->WarpSet (ARENA_RETURN_POINT_X (ch->GetEmpire()), ARENA_RETURN_POINT_Y (ch->GetEmpire()));
 		}
 		else
@@ -1672,7 +1672,7 @@ ACMD (do_monarch_warpto)
 				ch->SetMC (CHARACTER::MI_WARP);
 			}
 		}
-		else if (NULL == CHARACTER_MANAGER::instance().FindPC (arg1))
+		else if (nullptr == CHARACTER_MANAGER::instance().FindPC (arg1))
 		{
 			ch->ChatPacket (CHAT_TYPE_INFO, "There is no one by that name");
 		}
@@ -1751,9 +1751,7 @@ ACMD (do_monarch_transfer)
 
 	if (!tch)
 	{
-		CCI * pkCCI = P2P_MANAGER::instance().Find (arg1);
-
-		if (pkCCI)
+		if (CCI * pkCCI = P2P_MANAGER::instance().Find (arg1))
 		{
 			if (pkCCI->bEmpire != ch->GetEmpire())
 			{

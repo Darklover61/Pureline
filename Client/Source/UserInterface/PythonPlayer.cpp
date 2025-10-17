@@ -1683,9 +1683,7 @@ void CPythonPlayer::SetGameWindow (PyObject * ppyObject)
 
 void CPythonPlayer::NEW_ClearSkillData (bool bAll)
 {
-	std::map<DWORD, DWORD>::iterator it;
-
-	for (it = m_skillSlotDict.begin(); it != m_skillSlotDict.end();)
+	for (auto it = m_skillSlotDict.begin(); it != m_skillSlotDict.end();)
 	{
 		if (bAll || __GetSkillType (it->first) == CPythonSkill::SKILL_TYPE_ACTIVE)
 		{

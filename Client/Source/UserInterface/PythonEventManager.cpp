@@ -17,7 +17,7 @@ const int c_fLine_Temp = 16;
 
 void ShowArgument (script::TArgList & rArgumentList)
 {
-	for (script::TArgList::iterator itor = rArgumentList.begin(); itor != rArgumentList.end(); ++itor)
+	for (auto itor = rArgumentList.begin(); itor != rArgumentList.end(); ++itor)
 	{
 		const std::string & rName = (*itor).strName;
 
@@ -28,7 +28,7 @@ void ShowArgument (script::TArgList & rArgumentList)
 
 const std::string& GetArgumentString (const char* c_szName, script::TArgList & rArgumentList)
 {
-	for (script::TArgList::iterator itor = rArgumentList.begin(); itor != rArgumentList.end(); ++itor)
+	for (auto itor = rArgumentList.begin(); itor != rArgumentList.end(); ++itor)
 	{
 		const std::string & rName = (*itor).strName;
 
@@ -84,11 +84,11 @@ void CPythonEventManager::__InitEventSet (TEventSet& rEventSet)
 	rEventSet.CurrentColor = D3DXCOLOR (1, 1, 1, 1);
 	rEventSet.strCurrentLine = "";
 
-	rEventSet.pCurrentTextLine = NULL;
+	rEventSet.pCurrentTextLine = nullptr;
 	rEventSet.ScriptTextLineList.clear();
 
 	rEventSet.isConfirmWait = FALSE;
-	rEventSet.pConfirmTimeTextLine = NULL;
+	rEventSet.pConfirmTimeTextLine = nullptr;
 	rEventSet.iConfirmEndTime = 0;
 
 	rEventSet.DiffuseColor = D3DXCOLOR (1, 1, 1, 1);
@@ -135,8 +135,8 @@ int CPythonEventManager::RegisterEventSet (const char* c_szFileName)
 
 	strncpy (pEventSet->szFileName, c_szFileName, 32);
 
-	pEventSet->pCurrentTextLine = NULL;
-	pEventSet->poEventHandler = NULL;
+	pEventSet->pCurrentTextLine = nullptr;
+	pEventSet->poEventHandler = nullptr;
 
 	__InitEventSet (*pEventSet);
 
@@ -154,7 +154,7 @@ int CPythonEventManager::RegisterEventSetFromString (const std::string& strScrip
 	}
 
 	// SCRIPT_PARSING_FAILURE_CLEAR_BUG 스크립트 파싱 실패시 __ClearEventSetp 에서 에러 발생
-	pEventSet->pCurrentTextLine = NULL;
+	pEventSet->pCurrentTextLine = nullptr;
 	// END_OF_SCRIPT_PARSING_FAILURE_CLEAR_BUG
 
 	if (!pEventSet->ScriptGroup.Create (strScript))
@@ -164,7 +164,7 @@ int CPythonEventManager::RegisterEventSetFromString (const std::string& strScrip
 	}
 
 	pEventSet->szFileName[0] = 0;
-	pEventSet->poEventHandler = NULL;
+	pEventSet->poEventHandler = nullptr;
 	__InitEventSet (*pEventSet);
 
 	// NOTE : 만약 단순한 스크립트 이벤트 실행 커맨드라면 다시 만든다.
@@ -209,7 +209,7 @@ void CPythonEventManager::__ClearEventSetp (TEventSet * pEventSet)
 		return;
 	}
 
-	for (TScriptTextLineList::iterator itor = pEventSet->ScriptTextLineList.begin(); itor != pEventSet->ScriptTextLineList.end(); ++itor)
+	for (auto itor = pEventSet->ScriptTextLineList.begin(); itor != pEventSet->ScriptTextLineList.end(); ++itor)
 	{
 		TTextLine & rkLine = *itor;
 		rkLine.pInstance->Destroy();
@@ -222,7 +222,7 @@ void CPythonEventManager::__ClearEventSetp (TEventSet * pEventSet)
 		pEventSet->pCurrentTextLine->Destroy();
 		m_ScriptTextLinePool.Free (pEventSet->pCurrentTextLine);
 	}
-	pEventSet->pCurrentTextLine = NULL;
+	pEventSet->pCurrentTextLine = nullptr;
 	pEventSet->strCurrentLine = "";
 	pEventSet->iCurrentLetter = 0;
 
@@ -763,8 +763,7 @@ void CPythonEventManager::ProcessEventSet (TEventSet * pEventSet)
 		case EVENT_TYPE_ITEM_NAME:
 		{
 			int iIndex = atoi (GetArgument ("value", ScriptCommand.argList));
-			CItemData * pItemData;
-			if (CItemManager::Instance().GetItemDataPointer (iIndex, &pItemData))
+			if (CItemData * pItemData; CItemManager::Instance().GetItemDataPointer (iIndex, &pItemData))
 			{
 				pEventSet->strCurrentLine.append (pItemData->GetName());
 				pEventSet->pCurrentTextLine->SetValue (pEventSet->strCurrentLine.c_str());
@@ -786,8 +785,7 @@ void CPythonEventManager::ProcessEventSet (TEventSet * pEventSet)
 			int iIndex = atoi (GetArgument ("value", ScriptCommand.argList));
 			const char* c_szName;
 
-			CPythonNonPlayer& rkNonPlayer = CPythonNonPlayer::Instance();
-			if (rkNonPlayer.GetName (iIndex, &c_szName))
+			if (CPythonNonPlayer& rkNonPlayer = CPythonNonPlayer::Instance(); rkNonPlayer.GetName (iIndex, &c_szName))
 			{
 				pEventSet->strCurrentLine.append (c_szName);
 				pEventSet->pCurrentTextLine->SetValue (pEventSet->strCurrentLine.c_str());
@@ -842,7 +840,7 @@ void CPythonEventManager::ProcessEventSet (TEventSet * pEventSet)
 				}
 
 				pSet->isConfirmWait = FALSE;
-				pSet->pConfirmTimeTextLine = NULL;
+				pSet->pConfirmTimeTextLine = nullptr;
 				pSet->iConfirmEndTime = 0;
 
 				PyCallClassMemberFunc (pSet->poEventHandler, "CloseSelf", Py_BuildValue ("()"));
@@ -872,7 +870,7 @@ void CPythonEventManager::RenderEventSet (int iIndex)
 
 	int iCount = 0;
 
-	for (TScriptTextLineList::iterator itor = pEventSet->ScriptTextLineList.begin(); itor != pEventSet->ScriptTextLineList.end(); ++itor, ++iCount)
+	for (auto itor = pEventSet->ScriptTextLineList.begin(); itor != pEventSet->ScriptTextLineList.end(); ++itor, ++iCount)
 	{
 		if (iCount < pEventSet->iVisibleStartLine)
 		{
@@ -968,7 +966,7 @@ void CPythonEventManager::MakeQuestion (TEventSet * pEventSet, script::TArgList 
 	pEventSet->nAnswer = rArgumentList.size();
 
 	int iIndex = 0;
-	for (script::TArgList::iterator itor = rArgumentList.begin(); itor != rArgumentList.end(); ++itor)
+	for (auto itor = rArgumentList.begin(); itor != rArgumentList.end(); ++itor)
 	{
 		script::TArg & rArgument = *itor;
 		PyCallClassMemberFunc (pEventSet->poEventHandler, "AppendQuestion", Py_BuildValue ("(si)", rArgument.strValue.c_str(), iIndex));
@@ -1047,7 +1045,7 @@ void CPythonEventManager::ClearLine (TEventSet * pEventSet)
 		return;
 	}
 
-	for (TScriptTextLineList::iterator itor = pEventSet->ScriptTextLineList.begin(); itor != pEventSet->ScriptTextLineList.end(); ++itor)
+	for (auto itor = pEventSet->ScriptTextLineList.begin(); itor != pEventSet->ScriptTextLineList.end(); ++itor)
 	{
 		TTextLine & rkLine = *itor;
 		CGraphicTextInstance * pInstance = rkLine.pInstance;
@@ -1059,7 +1057,7 @@ void CPythonEventManager::ClearLine (TEventSet * pEventSet)
 	pEventSet->pCurrentTextLine->Update();
 
 	// clear
-	pEventSet->pCurrentTextLine = NULL;
+	pEventSet->pCurrentTextLine = nullptr;
 	pEventSet->ScriptTextLineList.clear();
 
 	__InsertLine (*pEventSet);
@@ -1155,7 +1153,7 @@ void CPythonEventManager::__InsertLine (TEventSet& rEventSet, BOOL isCenter, int
 void CPythonEventManager::RefreshLinePosition (TEventSet * pEventSet)
 {
 	//int iCount = 0;
-	for (TScriptTextLineList::iterator itor = pEventSet->ScriptTextLineList.begin(); itor != pEventSet->ScriptTextLineList.end(); ++itor)
+	for (auto itor = pEventSet->ScriptTextLineList.begin(); itor != pEventSet->ScriptTextLineList.end(); ++itor)
 	{
 		TTextLine & rkLine = *itor;
 		CGraphicTextInstance * pInstance = rkLine.pInstance;

@@ -769,7 +769,7 @@ void CGuildManager::AddDeclare (BYTE bType, DWORD guild_from, DWORD guild_to)
 {
 	TGuildDeclareInfo di (bType, guild_from, guild_to);
 
-	if (m_DeclareMap.find (di) == m_DeclareMap.end())
+	if (!m_DeclareMap.contains(di))
 	{
 		m_DeclareMap.insert (di);
 	}
@@ -834,7 +834,7 @@ bool CGuildManager::WaitStart (TPacketGuildWar * p)
 	DWORD dwCurTime = CClientManager::instance().GetCurrentTime();
 
 	TGuildWaitStartInfo info (p->bType, p->dwGuildFrom, p->dwGuildTo, p->lWarPrice, p->lInitialScore, NULL);
-	m_pqWaitStart.push (std::make_pair (dwCurTime + GetGuildWarWaitStartDuration(), info));
+	m_pqWaitStart.emplace (dwCurTime + GetGuildWarWaitStartDuration(), info);
 
 	sys_log (0,
 			 "GuildWar: WaitStart g1 %d g2 %d price %d start at %u",
@@ -899,7 +899,7 @@ void CGuildManager::UseSkill (DWORD GID, DWORD dwSkillVnum, DWORD dwCooltime)
 {
 	// GUILD_SKILL_COOLTIME_BUG_FIX
 	sys_log (0, "UseSkill(gid=%d, skill=%d) CoolTime(%d:%d)", GID, dwSkillVnum, dwCooltime, CClientManager::instance().GetCurrentTime() + dwCooltime);
-	m_pqSkill.push (std::make_pair (CClientManager::instance().GetCurrentTime() + dwCooltime, TGuildSkillUsed (GID, dwSkillVnum)));
+	m_pqSkill.emplace (CClientManager::instance().GetCurrentTime() + dwCooltime, TGuildSkillUsed (GID, dwSkillVnum));
 	// END_OF_GUILD_SKILL_COOLTIME_BUG_FIX
 }
 

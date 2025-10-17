@@ -358,7 +358,7 @@ void CWarMap::UpdateUserCount()
 		m_TeamData[1].GetAccumulatedJoinerCount(),
 		m_iObserverCount);
 
-	std::for_each (m_set_pkChr.begin(), m_set_pkChr.end(), f);
+	std::ranges::for_each (m_set_pkChr, f);
 }
 
 void CWarMap::IncMember (LPCHARACTER ch)
@@ -500,7 +500,7 @@ struct FExitGuildWar
 void CWarMap::ExitAll()
 {
 	FExitGuildWar f;
-	std::for_each (m_set_pkChr.begin(), m_set_pkChr.end(), f);
+	std::ranges::for_each (m_set_pkChr, f);
 }
 
 void CWarMap::CheckWarEnd()
@@ -667,13 +667,13 @@ namespace
 void CWarMap::Notice (const char* psz)
 {
 	FNotice f (psz);
-	std::for_each (m_set_pkChr.begin(), m_set_pkChr.end(), f);
+	std::ranges::for_each (m_set_pkChr, f);
 }
 
 void CWarMap::Packet (const void* p, int size)
 {
 	FPacket f (p, size);
-	std::for_each (m_set_pkChr.begin(), m_set_pkChr.end(), f);
+	std::ranges::for_each (m_set_pkChr, f);
 }
 
 void CWarMap::SendWarPacket (LPDESC d)
@@ -1061,7 +1061,7 @@ void CWarMap::ResetFlag()
 	}
 
 	FRemoveFlagAffect f;
-	std::for_each (m_set_pkChr.begin(), m_set_pkChr.end(), f);
+	std::ranges::for_each (m_set_pkChr, f);
 
 	RemoveFlag (0);
 	RemoveFlag (1);
@@ -1180,7 +1180,7 @@ TWarMapInfo* CWarMapManager::GetWarMapInfo (long lMapIndex)
 
 	if (m_map_kWarMapInfo.end() == it)
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	return it->second;
@@ -1204,7 +1204,7 @@ CWarMap* CWarMapManager::Find (long lMapIndex)
 
 	if (it == m_mapWarMap.end())
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	return it->second;

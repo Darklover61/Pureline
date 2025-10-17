@@ -976,7 +976,7 @@ void CHARACTER::Reward (bool bItemDrop)
 
 			int total_dam = 0;
 
-			for (TDamageMap::iterator it = m_map_kDamage.begin(); it != m_map_kDamage.end(); ++it)
+			for (auto it = m_map_kDamage.begin(); it != m_map_kDamage.end(); ++it)
 			{
 				int iDamage = it->second.iTotalDamage;
 				if (iDamage > 0)
@@ -1028,7 +1028,7 @@ void CHARACTER::Reward (bool bItemDrop)
 			else
 			{
 				// 데미지 많이 준 사람들 끼리만 소유권 나눠가짐
-				std::vector<LPCHARACTER>::iterator it = v.begin();
+				auto it = v.begin();
 
 				while (iItemIdx >= 0)
 				{
@@ -1199,7 +1199,7 @@ void CHARACTER::ItemDropPenalty (LPCHARACTER pkKiller)
 			//random_shuffle(vec_bSlots.begin(), vec_bSlots.end());
 			std::random_device rd;
 			std::mt19937 g (rd());
-			std::shuffle (vec_bSlots.begin(), vec_bSlots.end(), g);
+			std::ranges::shuffle (vec_bSlots, g);
 
 			int iQty = MIN (vec_bSlots.size(), r.iInventoryQty);
 
@@ -1242,7 +1242,7 @@ void CHARACTER::ItemDropPenalty (LPCHARACTER pkKiller)
 			//random_shuffle(vec_bSlots.begin(), vec_bSlots.end());
 			std::random_device rd;
 			std::mt19937 g (rd());
-			std::shuffle (vec_bSlots.begin(), vec_bSlots.end(), g);
+			std::ranges::shuffle (vec_bSlots, g);
 			int iQty;
 
 			if (isDropAllEquipments)
@@ -1646,7 +1646,7 @@ void CHARACTER::Dead (LPCHARACTER pkKiller, bool bImmediateDead)
 	REMOVE_BIT (m_pointsInstant.instant_flag, INSTANT_FLAG_STUN);
 
 	// 플레이어 캐릭터이면
-	if (GetDesc() != NULL)
+	if (GetDesc() != nullptr)
 	{
 		//
 		// 클라이언트에 에펙트 패킷을 다시 보낸다.
@@ -1710,7 +1710,7 @@ void CHARACTER::Dead (LPCHARACTER pkKiller, bool bImmediateDead)
 		sys_log (1, "DEAD_EVENT_CREATE: %s %p %p", GetName(), this, get_pointer (m_pkDeadEvent));
 	}
 
-	if (m_pkExchange != NULL)
+	if (m_pkExchange != nullptr)
 	{
 		m_pkExchange->Cancel();
 	}
@@ -1726,7 +1726,7 @@ void CHARACTER::Dead (LPCHARACTER pkKiller, bool bImmediateDead)
 
 	if (true == IsMonster() && 2493 == GetMobTable().dwVnum)
 	{
-		if (NULL != pkKiller && NULL != pkKiller->GetGuild())
+		if (nullptr != pkKiller && nullptr != pkKiller->GetGuild())
 		{
 			CDragonLairManager::instance().OnDragonDead (this, pkKiller->GetGuild()->GetID());
 		}
@@ -1771,12 +1771,12 @@ void CHARACTER::SendDamagePacket (LPCHARACTER pAttacker, int Damage, BYTE Damage
 		damageInfo.flag = DamageFlag;
 		damageInfo.damage = Damage;
 
-		if (GetDesc() != NULL)
+		if (GetDesc() != nullptr)
 		{
 			GetDesc()->Packet (&damageInfo, sizeof (TPacketGCDamageInfo));
 		}
 
-		if (pAttacker->GetDesc() != NULL)
+		if (pAttacker->GetDesc() != nullptr)
 		{
 			pAttacker->GetDesc()->Packet (&damageInfo, sizeof (TPacketGCDamageInfo));
 		}
@@ -1810,9 +1810,8 @@ bool CHARACTER::Damage (LPCHARACTER pAttacker, int dam, EDamageType type) // ret
 	if (GetRaceNum() == 5001)
 	{
 		bool bDropMoney = false;
-		int iPercent = (GetHP() * 100) / GetMaxHP();
 
-		if (iPercent <= 10 && GetMaxSP() < 5)
+		if (int iPercent = (GetHP() * 100) / GetMaxHP(); iPercent <= 10 && GetMaxSP() < 5)
 		{
 			SetMaxSP (5);
 			bDropMoney = true;
@@ -1963,7 +1962,7 @@ bool CHARACTER::Damage (LPCHARACTER pAttacker, int dam, EDamageType type) // ret
 				{
 					CSkillProto* pkSk = CSkillManager::instance().Get (SKILL_RESIST_PENETRATE);
 
-					if (NULL != pkSk)
+					if (nullptr != pkSk)
 					{
 						pkSk->SetPointVar ("k", 1.0f * GetSkillPower (SKILL_RESIST_PENETRATE) / 100.0f);
 
@@ -2563,7 +2562,7 @@ bool CHARACTER::Damage (LPCHARACTER pAttacker, int dam, EDamageType type) // ret
 
 		if (it == m_map_kDamage.end())
 		{
-			m_map_kDamage.insert (TDamageMap::value_type (pAttacker->GetVID(), TBattleInfo (dam, 0)));
+			m_map_kDamage.try_emplace (pAttacker->GetVID(), dam, 0);
 			it = m_map_kDamage.find (pAttacker->GetVID());
 		}
 		else
@@ -2873,7 +2872,7 @@ namespace NPartyExpDistribute
 	};
 }
 
-typedef struct SDamageInfo
+using TDamageInfo = struct SDamageInfo
 {
 	int iDam;
 	LPCHARACTER pAttacker;
@@ -2881,8 +2880,8 @@ typedef struct SDamageInfo
 
 	void Clear()
 	{
-		pAttacker = NULL;
-		pParty = NULL;
+		pAttacker = nullptr;
+		pParty = nullptr;
 	}
 
 	inline void Distribute (LPCHARACTER ch, int iExp)
@@ -2927,7 +2926,7 @@ typedef struct SDamageInfo
 			pParty->ForEachOnlineMember (fDist);
 		}
 	}
-} TDamageInfo;
+};
 
 LPCHARACTER CHARACTER::DistributeExp()
 {
@@ -2935,20 +2934,20 @@ LPCHARACTER CHARACTER::DistributeExp()
 
 	if (iExpToDistribute <= 0)
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	int	iTotalDam = 0;
-	LPCHARACTER pkChrMostAttacked = NULL;
+	LPCHARACTER pkChrMostAttacked = nullptr;
 	int iMostDam = 0;
 
-	typedef std::vector<TDamageInfo> TDamageInfoTable;
+	using TDamageInfoTable = std::vector<TDamageInfo>;
 	TDamageInfoTable damage_info_table;
 	std::map<LPPARTY, TDamageInfo> map_party_damage;
 
 	damage_info_table.reserve (m_map_kDamage.size());
 
-	TDamageMap::iterator it = m_map_kDamage.begin();
+	auto it = m_map_kDamage.begin();
 
 	// 일단 주위에 없는 사람을 걸러 낸다. (50m)
 	while (it != m_map_kDamage.end())
@@ -2980,9 +2979,9 @@ LPCHARACTER CHARACTER::DistributeExp()
 			{
 				TDamageInfo di;
 				di.iDam = iDam;
-				di.pAttacker = NULL;
+				di.pAttacker = nullptr;
 				di.pParty = pAttacker->GetParty();
-				map_party_damage.insert (std::make_pair (di.pParty, di));
+				map_party_damage.try_emplace (di.pParty, di);
 			}
 			else
 			{
@@ -2995,7 +2994,7 @@ LPCHARACTER CHARACTER::DistributeExp()
 
 			di.iDam = iDam;
 			di.pAttacker = pAttacker;
-			di.pParty = NULL;
+			di.pParty = nullptr;
 
 			//sys_log(0, "__ pq_damage %s %d", pAttacker->GetName(), iDam);
 			//pq_damage.push(di);
@@ -3003,7 +3002,7 @@ LPCHARACTER CHARACTER::DistributeExp()
 		}
 	}
 
-	for (std::map<LPPARTY, TDamageInfo>::iterator it = map_party_damage.begin(); it != map_party_damage.end(); ++it)
+	for (auto it = map_party_damage.begin(); it != map_party_damage.end(); ++it)
 	{
 		damage_info_table.push_back (it->second);
 		//sys_log(0, "__ pq_damage_party [%u] %d", it->second.pParty->GetLeaderPID(), it->second.iDam);
@@ -3014,7 +3013,7 @@ LPCHARACTER CHARACTER::DistributeExp()
 
 	if (iTotalDam == 0)	// 데미지 준게 0이면 리턴
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	if (m_pkChrStone)	// 돌이 있을 경우 경험치의 반을 돌에게 넘긴다.
@@ -3032,7 +3031,7 @@ LPCHARACTER CHARACTER::DistributeExp()
 
 	if (damage_info_table.empty())
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	// 제일 데미지를 많이 준 사람이 HP 회복을 한다.
@@ -3040,11 +3039,9 @@ LPCHARACTER CHARACTER::DistributeExp()
 
 	{
 		// 제일 데미지를 많이 준 사람이나 파티가 총 경험치의 20% + 자기가 때린만큼의 경험치를 먹는다.
-		TDamageInfoTable::iterator di = damage_info_table.begin();
+		auto di = damage_info_table.begin();
 		{
-			TDamageInfoTable::iterator it;
-
-			for (it = damage_info_table.begin(); it != damage_info_table.end(); ++it)
+			for (auto it = damage_info_table.begin(); it != damage_info_table.end(); ++it)
 			{
 				if (it->iDam > di->iDam)
 				{
@@ -3081,9 +3078,7 @@ LPCHARACTER CHARACTER::DistributeExp()
 
 	{
 		// 남은 80%의 경험치를 분배한다.
-		TDamageInfoTable::iterator it;
-
-		for (it = damage_info_table.begin(); it != damage_info_table.end(); ++it)
+		for (auto it = damage_info_table.begin(); it != damage_info_table.end(); ++it)
 		{
 			TDamageInfo & di = *it;
 
@@ -3546,9 +3541,9 @@ LPCHARACTER CHARACTER::GetNearestVictim (LPCHARACTER pkChr)
 	}
 
 	float fMinDist = 99999.0f;
-	LPCHARACTER pkVictim = NULL;
+	LPCHARACTER pkVictim = nullptr;
 
-	TDamageMap::iterator it = m_map_kDamage.begin();
+	auto it = m_map_kDamage.begin();
 
 	// 일단 주위에 없는 사람을 걸러 낸다.
 	while (it != m_map_kDamage.end())
@@ -3623,7 +3618,7 @@ LPCHARACTER CHARACTER::GetProtege() const // 보호해야 할 대상을 리턴
 		return m_pkParty->GetLeader();
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 int CHARACTER::GetAlignment() const
@@ -4033,10 +4028,9 @@ void CHARACTER::ChangeVictimByAggro (int iNewAggro, LPCHARACTER pNewVictim)
 		}
 
 		// Aggro가 감소한 경우
-		TDamageMap::iterator it;
-		TDamageMap::iterator itFind = m_map_kDamage.end();
+		auto itFind = m_map_kDamage.end();
 
-		for (it = m_map_kDamage.begin(); it != m_map_kDamage.end(); ++it)
+		for (auto it = m_map_kDamage.begin(); it != m_map_kDamage.end(); ++it)
 		{
 			if (it->second.iAggro > iNewAggro)
 			{

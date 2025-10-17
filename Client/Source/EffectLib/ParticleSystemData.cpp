@@ -305,8 +305,7 @@ BOOL CParticleSystemData::OnLoadScript (CTextFileLoader & rTextFileLoader)
 			{
 				times.insert (TimeEventA[i].m_fTime);
 			}
-			std::set<float>::iterator it;
-			for (it = times.begin(); it != times.end(); ++it)
+			for (auto it = times.begin(); it != times.end(); ++it)
 			{
 				float fTime = *it;
 				float fR, fG, fB, fA;

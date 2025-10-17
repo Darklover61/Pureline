@@ -4457,16 +4457,16 @@ struct FuncClearSync
 	void operator() (LPCHARACTER ch)
 	{
 		assert (ch != NULL);
-		ch->SetSyncOwner (NULL, false);	// false 플래그로 해야 for_each 가 제대로 돈다.
+		ch->SetSyncOwner (nullptr, false);	// false 플래그로 해야 for_each 가 제대로 돈다.
 	}
 };
 
 void CHARACTER::ClearSync()
 {
-	SetSyncOwner (NULL);
+	SetSyncOwner (nullptr);
 
 	// 아래 for_each에서 나를 m_pkChrSyncOwner로 가진 자들의 포인터를 NULL로 한다.
-	std::for_each (m_kLst_pkChrSyncOwned.begin(), m_kLst_pkChrSyncOwned.end(), FuncClearSync());
+	std::ranges::for_each (m_kLst_pkChrSyncOwned, FuncClearSync());
 	m_kLst_pkChrSyncOwned.clear();
 }
 
@@ -4538,7 +4538,7 @@ EVENTFUNC (party_request_event)
 {
 	TPartyJoinEventInfo * info = dynamic_cast<TPartyJoinEventInfo*> (event->info);
 
-	if (info == NULL)
+	if (info == nullptr)
 	{
 		sys_err ("party_request_event> <Factor> Null pointer");
 		return 0;
@@ -4550,7 +4550,7 @@ EVENTFUNC (party_request_event)
 	{
 		sys_log (0, "PartyRequestEvent %s", ch->GetName());
 		ch->ChatPacket (CHAT_TYPE_COMMAND, "PartyRequestDenied");
-		ch->SetPartyRequestEvent (NULL);
+		ch->SetPartyRequestEvent (nullptr);
 	}
 
 	return 0;
@@ -4763,15 +4763,13 @@ EVENTFUNC (party_invite_event)
 {
 	TPartyJoinEventInfo * pInfo = dynamic_cast<TPartyJoinEventInfo*> (event->info);
 
-	if (pInfo == NULL)
+	if (pInfo == nullptr)
 	{
 		sys_err ("party_invite_event> <Factor> Null pointer");
 		return 0;
 	}
 
-	LPCHARACTER pchInviter = CHARACTER_MANAGER::instance().FindByPID (pInfo->dwLeaderPID);
-
-	if (pchInviter)
+	if (LPCHARACTER pchInviter = CHARACTER_MANAGER::instance().FindByPID (pInfo->dwLeaderPID))
 	{
 		sys_log (1, "PartyInviteEvent %s", pchInviter->GetName());
 		pchInviter->PartyInviteDeny (pInfo->dwGuestPID);
@@ -4793,9 +4791,7 @@ void CHARACTER::PartyInvite (LPCHARACTER pchInvitee)
 		return;
 	}
 
-	PartyJoinErrCode errcode = IsPartyJoinableCondition (this, pchInvitee);
-
-	switch (errcode)
+	switch (PartyJoinErrCode errcode = IsPartyJoinableCondition (this, pchInvitee))
 	{
 		case PERR_NONE:
 			break;
@@ -4841,7 +4837,7 @@ void CHARACTER::PartyInvite (LPCHARACTER pchInvitee)
 			return;
 	}
 
-	if (m_PartyInviteEventMap.end() != m_PartyInviteEventMap.find (pchInvitee->GetPlayerID()))
+	if (m_PartyInviteEventMap.contains(pchInvitee->GetPlayerID()))
 	{
 		return;
 	}
@@ -5129,7 +5125,7 @@ void CHARACTER::SetWeddingMap (marriage::WeddingMap* pMap)
 void CHARACTER::SetRegen (LPREGEN pkRegen)
 {
 	m_pkRegen = pkRegen;
-	if (pkRegen != NULL)
+	if (pkRegen != nullptr)
 	{
 		regen_id_ = pkRegen->id;
 	}
@@ -5251,7 +5247,7 @@ void CHARACTER::OnClick (LPCHARACTER pkChrCauser)
 				if (pkChrCauser->GetShop())
 				{
 					pkChrCauser->GetShop()->RemoveGuest (pkChrCauser);
-					pkChrCauser->SetShop (NULL);
+					pkChrCauser->SetShop (nullptr);
 				}
 
 				GetMyShop()->AddGuest (pkChrCauser, GetVID(), false);
@@ -5334,7 +5330,7 @@ void CHARACTER::SetStone (LPCHARACTER pkChrStone)
 
 	if (m_pkChrStone)
 	{
-		if (pkChrStone->m_set_pkChrSpawnedBy.find (this) == pkChrStone->m_set_pkChrSpawnedBy.end())
+		if (!pkChrStone->m_set_pkChrSpawnedBy.contains(this))
 		{
 			pkChrStone->m_set_pkChrSpawnedBy.insert (this);
 		}
@@ -5345,8 +5341,8 @@ struct FuncDeadSpawnedByStone
 {
 	void operator() (LPCHARACTER ch)
 	{
-		ch->Dead (NULL);
-		ch->SetStone (NULL);
+		ch->Dead (nullptr);
+		ch->SetStone (nullptr);
 	}
 };
 
@@ -5356,7 +5352,7 @@ void CHARACTER::ClearStone()
 	{
 		// 내가 스폰시킨 몬스터들을 모두 죽인다.
 		FuncDeadSpawnedByStone f;
-		std::for_each (m_set_pkChrSpawnedBy.begin(), m_set_pkChrSpawnedBy.end(), f);
+		std::ranges::for_each (m_set_pkChrSpawnedBy, f);
 		m_set_pkChrSpawnedBy.clear();
 	}
 
@@ -5366,7 +5362,7 @@ void CHARACTER::ClearStone()
 	}
 
 	m_pkChrStone->m_set_pkChrSpawnedBy.erase (this);
-	m_pkChrStone = NULL;
+	m_pkChrStone = nullptr;
 }
 
 void CHARACTER::ClearTarget()
@@ -5374,7 +5370,7 @@ void CHARACTER::ClearTarget()
 	if (m_pkChrTarget)
 	{
 		m_pkChrTarget->m_set_pkChrTargetedBy.erase (this);
-		m_pkChrTarget = NULL;
+		m_pkChrTarget = nullptr;
 	}
 
 	TPacketGCTarget p;
@@ -5383,12 +5379,12 @@ void CHARACTER::ClearTarget()
 	p.dwVID = 0;
 	p.bHPPercent = 0;
 
-	CHARACTER_SET::iterator it = m_set_pkChrTargetedBy.begin();
+	auto it = m_set_pkChrTargetedBy.begin();
 
 	while (it != m_set_pkChrTargetedBy.end())
 	{
 		LPCHARACTER pkChr = * (it++);
-		pkChr->m_pkChrTarget = NULL;
+		pkChr->m_pkChrTarget = nullptr;
 
 		if (!pkChr->GetDesc())
 		{
@@ -5531,7 +5527,7 @@ void CHARACTER::CheckTarget()
 
 	if (DISTANCE_APPROX (GetX() - m_pkChrTarget->GetX(), GetY() - m_pkChrTarget->GetY()) >= 4800)
 	{
-		SetTarget (NULL);
+		SetTarget (nullptr);
 	}
 }
 
@@ -5872,7 +5868,7 @@ bool CHARACTER::Follow (LPCHARACTER pkChr, float fMinDistance)
 
 			LPSECTREE tree = SECTREE_MANAGER::instance().Get (GetMapIndex(), dx, dy);
 
-			if (NULL == tree)
+			if (nullptr == tree)
 			{
 				break;
 			}
@@ -6062,7 +6058,7 @@ void CHARACTER::CloseSafebox()
 	m_pkSafebox->Save();
 
 	M2_DELETE (m_pkSafebox);
-	m_pkSafebox = NULL;
+	m_pkSafebox = nullptr;
 
 	ChatPacket (CHAT_TYPE_COMMAND, "CloseSafebox");
 
@@ -6147,7 +6143,7 @@ void CHARACTER::CloseMall()
 	m_pkMall->Save();
 
 	M2_DELETE (m_pkMall);
-	m_pkMall = NULL;
+	m_pkMall = nullptr;
 
 	ChatPacket (CHAT_TYPE_COMMAND, "CloseMall");
 }

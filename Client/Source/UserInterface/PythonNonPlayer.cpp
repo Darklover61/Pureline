@@ -105,7 +105,7 @@ const CPythonNonPlayer::TMobTable* CPythonNonPlayer::GetTable (DWORD dwVnum)
 
 	if (itor == m_NonPlayerDataMap.end())
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	return itor->second;
@@ -128,7 +128,7 @@ BYTE CPythonNonPlayer::GetEventTypeByVID (DWORD dwVID)
 {
 	CInstanceBase * pInstance = CPythonCharacterManager::Instance().GetInstancePtr (dwVID);
 
-	if (NULL == pInstance)
+	if (nullptr == pInstance)
 	{
 		//Tracef("CPythonNonPlayer::GetEventTypeByVID - There is no Virtual Number\n");
 		return ON_CLICK_EVENT_NONE;

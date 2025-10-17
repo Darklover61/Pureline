@@ -85,7 +85,7 @@ namespace marriage
 			return it->second;
 		}
 
-		return NULL;
+		return nullptr;
 	}
 
 	void Align (DWORD& rPID1, DWORD& rPID2)
@@ -112,8 +112,7 @@ namespace marriage
 
 		std::unique_ptr<SQLMsg> pmsg (CDBManager::instance().DirectQuery (szQuery));
 
-		SQLResult* res = pmsg->Get();
-		if (res->uiAffectedRows == 0 || res->uiAffectedRows == (uint32_t) -1)
+		if (SQLResult* res = pmsg->Get(); res->uiAffectedRows == 0 || res->uiAffectedRows == (uint32_t) -1)
 		{
 			sys_err ("cannot insert marriage");
 			return;
@@ -152,8 +151,7 @@ namespace marriage
 
 		std::unique_ptr<SQLMsg> pmsg (CDBManager::instance().DirectQuery (szQuery));
 
-		SQLResult* res = pmsg->Get();
-		if (res->uiAffectedRows == 0 || res->uiAffectedRows == (uint32_t) -1)
+		if (SQLResult* res = pmsg->Get(); res->uiAffectedRows == 0 || res->uiAffectedRows == (uint32_t) -1)
 		{
 			sys_err ("cannot update marriage : PID:%u %u", dwPID1, dwPID2);
 			return;
@@ -314,7 +312,7 @@ namespace marriage
 	void CManager::ReadyWedding (DWORD dwMapIndex, DWORD dwPID1, DWORD dwPID2)
 	{
 		DWORD dwStartTime = CClientManager::instance().GetCurrentTime();
-		m_pqWeddingStart.push (TWedding (dwStartTime + 5, dwMapIndex, dwPID1, dwPID2));
+		m_pqWeddingStart.emplace (dwStartTime + 5, dwMapIndex, dwPID1, dwPID2);
 	}
 
 	void CManager::EndWedding (DWORD dwPID1, DWORD dwPID2)
@@ -385,8 +383,8 @@ namespace marriage
 				CClientManager::instance().ForwardPacket (HEADER_DG_WEDDING_START, &p, sizeof (p));
 
 				w.dwTime += WEDDING_LENGTH;
-				m_pqWeddingEnd.push (TWeddingInfo (w.dwTime, w.dwPID1, w.dwPID2));
-				m_mapRunningWedding.insert (make_pair (make_pair (w.dwPID1, w.dwPID2), w));
+				m_pqWeddingEnd.emplace (w.dwTime, w.dwPID1, w.dwPID2);
+				m_mapRunningWedding.try_emplace (make_pair (w.dwPID1, w.dwPID2), w);
 			}
 		}
 	}

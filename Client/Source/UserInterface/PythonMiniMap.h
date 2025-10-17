@@ -110,7 +110,7 @@ class CPythonMiniMap : public CScreen, public CSingleton<CPythonMiniMap>
 
 	protected:
 		// Atlas
-		typedef struct
+		using TAtlasMarkInfo = struct
 		{
 			BYTE m_byType;
 			DWORD m_dwID; // For WayPoint
@@ -122,10 +122,10 @@ class CPythonMiniMap : public CScreen, public CSingleton<CPythonMiniMap>
 			float m_fMiniMapY;
 			DWORD m_dwChrVID;
 			std::string m_strText;
-		} TAtlasMarkInfo;
+		};
 
 		// GuildArea
-		typedef struct
+		using TGuildAreaInfo = struct
 		{
 			DWORD dwGuildID;
 			long lx, ly;
@@ -133,7 +133,7 @@ class CPythonMiniMap : public CScreen, public CSingleton<CPythonMiniMap>
 
 			float fsxRender, fsyRender;
 			float fexRender, feyRender;
-		} TGuildAreaInfo;
+		};
 
 		struct SObserver
 		{
@@ -149,15 +149,15 @@ class CPythonMiniMap : public CScreen, public CSingleton<CPythonMiniMap>
 		};
 
 		// 캐릭터 리스트
-		typedef struct
+		using TMarkPosition = struct
 		{
 			float	m_fX;
 			float	m_fY;
 			UINT	m_eNameColor;
-		} TMarkPosition;
+		};
 
-		typedef std::vector<TMarkPosition>				TInstanceMarkPositionVector;
-		typedef TInstanceMarkPositionVector::iterator	TInstancePositionVectorIterator;
+		using TInstanceMarkPositionVector = std::vector<TMarkPosition>;
+		using TInstancePositionVectorIterator = TInstanceMarkPositionVector::iterator;
 
 	protected:
 		bool __GetWayPoint (DWORD dwID, TAtlasMarkInfo** ppkInfo);
@@ -225,10 +225,10 @@ class CPythonMiniMap : public CScreen, public CSingleton<CPythonMiniMap>
 		float							m_fAtlasImageSizeX;
 		float							m_fAtlasImageSizeY;
 
-		typedef std::vector<TAtlasMarkInfo>		TAtlasMarkInfoVector;
-		typedef TAtlasMarkInfoVector::iterator	TAtlasMarkInfoVectorIterator;
-		typedef std::vector<TGuildAreaInfo>		TGuildAreaInfoVector;
-		typedef TGuildAreaInfoVector::iterator	TGuildAreaInfoVectorIterator;
+		using TAtlasMarkInfoVector = std::vector<TAtlasMarkInfo>;
+		using TAtlasMarkInfoVectorIterator = TAtlasMarkInfoVector::iterator;
+		using TGuildAreaInfoVector = std::vector<TGuildAreaInfo>;
+		using TGuildAreaInfoVectorIterator = TGuildAreaInfoVector::iterator;
 		TAtlasMarkInfoVectorIterator			m_AtlasMarkInfoVectorIterator;
 		TAtlasMarkInfoVector					m_AtlasNPCInfoVector;
 		TAtlasMarkInfoVector					m_AtlasWarpInfoVector;

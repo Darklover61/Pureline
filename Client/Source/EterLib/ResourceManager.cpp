@@ -66,9 +66,7 @@ void CResourceManager::ProcessBackgroundLoading()
 	while (ms_loadingThread.Fetch (&pData))
 	{
 		//printf("LOD %s\n", pData->stFileName.c_str());
-		CResource * pResource = GetResourcePointer (pData->stFileName.c_str());
-
-		if (pResource)
+		if (CResource * pResource = GetResourcePointer (pData->stFileName.c_str()))
 		{
 			if (pResource->IsEmpty())
 			{

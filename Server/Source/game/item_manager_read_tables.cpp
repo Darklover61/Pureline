@@ -120,7 +120,7 @@ bool ITEM_MANAGER::ReadCommonDropItemFile (const char* c_pszFileName)
 		std::vector<CItemDropInfo>& v = g_vec_pkCommonDropItem[i];
 		std::sort (v.begin(), v.end());
 
-		std::vector<CItemDropInfo>::iterator it = v.begin();
+		auto it = v.begin();
 
 		sys_log (1, "CommonItemDrop rank %d", i);
 

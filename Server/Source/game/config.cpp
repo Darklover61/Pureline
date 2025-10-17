@@ -164,9 +164,7 @@ bool map_allow_find (int index)
 
 void map_allow_log()
 {
-	std::set<int>::iterator i;
-
-	for (i = s_set_map_allows.begin(); i != s_set_map_allows.end(); ++i)
+	for (std::set<int>::iterator i = s_set_map_allows.begin(); i != s_set_map_allows.end(); ++i)
 	{
 		sys_log (0, "MAP_ALLOW: %d", *i);
 	}
@@ -187,7 +185,7 @@ void map_allow_add (int index)
 void map_allow_copy (long* pl, int size)
 {
 	int iCount = 0;
-	std::set<int>::iterator it = s_set_map_allows.begin();
+	auto it = s_set_map_allows.begin();
 
 	while (it != s_set_map_allows.end())
 	{
@@ -210,7 +208,7 @@ static void FN_add_adminpageIP (char* line)
 	while (v)
 	{
 		g_stAdminPageIP.push_back (v);
-		v = strtok_r (NULL, delim, &last);
+		v = strtok_r (nullptr, delim, &last);
 	}
 }
 
@@ -261,11 +259,11 @@ bool GetIPInfo()
 
 	gethostname (host_name, sizeof (host_name));
 	host_ent = gethostbyname (host_name);
-	if (host_ent == NULL)
+	if (host_ent == nullptr)
 	{
 		return false;
 	}
-	for (; host_ent->h_addr_list[n] != NULL; ++n)
+	for (; host_ent->h_addr_list[n] != nullptr; ++n)
 	{
 		struct sockaddr_in addr;
 		struct sockaddr_in* sai = &addr;
@@ -583,7 +581,7 @@ void config_init (const string& st_localeServiceName)
 
 		MYSQL_ROW row;
 
-		while (NULL != (row = mysql_fetch_row (pMsg->Get()->pSQLResult)))
+		while (nullptr != (row = mysql_fetch_row (pMsg->Get()->pSQLResult)))
 		{
 			// 로케일 세팅
 			if (strcasecmp (row[0], "LOCALE") == 0)
@@ -1253,7 +1251,7 @@ void CheckClientVersion()
 	}
 
 	const DESC_MANAGER::DESC_SET & set = DESC_MANAGER::instance().GetClientSet();
-	DESC_MANAGER::DESC_SET::const_iterator it = set.begin();
+	auto it = set.begin();
 
 	while (it != set.end())
 	{
@@ -1296,11 +1294,11 @@ void LoadStateUserCount()
 
 bool IsValidProcessCRC (DWORD dwCRC)
 {
-	return s_set_dwProcessCRC.find (dwCRC) != s_set_dwProcessCRC.end();
+	return s_set_dwProcessCRC.contains(dwCRC);
 }
 
 bool IsValidFileCRC (DWORD dwCRC)
 {
-	return s_set_dwFileCRC.find (dwCRC) != s_set_dwFileCRC.end();
+	return s_set_dwFileCRC.contains(dwCRC);
 }
 

@@ -68,7 +68,7 @@ CLight* CLightManager::GetLight (TLightID LightID)
 	if (m_LightMap.end() == itor)
 	{
 		assert (!"CLightManager::SetLightData - Failed to find light ID!");
-		return NULL;
+		return nullptr;
 	}
 
 	return itor->second;
@@ -109,7 +109,7 @@ void CLightManager::FlushLight()
 	//		 다시 Flush 하는 식으로 최적화 할 수 있다. - [levites]
 
 	// light들의 거리를 추출해 정렬한다.
-	TLightMap::iterator itor = m_LightMap.begin();
+	auto itor = m_LightMap.begin();
 
 	for (; itor != m_LightMap.end(); ++itor)
 	{
@@ -151,7 +151,7 @@ TLightID CLightManager::NewLightID()
 	{
 		TLightID id = m_NonUsingLightIDDeque.back();
 		m_NonUsingLightIDDeque.pop_back();
-		return (id);
+		return id;
 	}
 
 	return m_dwSkipIndex + m_LightMap.size();

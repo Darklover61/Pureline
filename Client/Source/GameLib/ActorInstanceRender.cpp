@@ -357,7 +357,7 @@ void CActorInstance::RenderCollisionData()
 	s_Screen.SetDiffuseColor (1.0f, 0.0f, 0.0f);
 	//	if (m_SplashArea.fDisappearingTime > GetLocalTime())
 	{
-		CDynamicSphereInstanceVector::iterator itor = m_kSplashArea.SphereInstanceVector.begin();
+		auto itor = m_kSplashArea.SphereInstanceVector.begin();
 		for (; itor != m_kSplashArea.SphereInstanceVector.end(); ++itor)
 		{
 			const CDynamicSphereInstance & c_rInstance = *itor;

@@ -63,7 +63,7 @@ void CDungeon::Initialize()
 
 	m_stRegenFile = "";
 
-	m_pParty = NULL;
+	m_pParty = nullptr;
 }
 
 void CDungeon::SetFlag (std::string name, int value)
@@ -75,7 +75,7 @@ void CDungeon::SetFlag (std::string name, int value)
 	}
 	else
 	{
-		m_map_Flag.insert (make_pair (name, value));
+		m_map_Flag.try_emplace (name, value);
 	}
 }
 
@@ -150,7 +150,7 @@ struct FWarpToDungeon
 
 void CDungeon::Join (LPCHARACTER ch)
 {
-	if (SECTREE_MANAGER::instance().GetMap (m_lMapIndex) == NULL)
+	if (SECTREE_MANAGER::instance().GetMap (m_lMapIndex) == nullptr)
 	{
 		sys_err ("CDungeon: SECTREE_MAP not found for #%ld", m_lMapIndex);
 		return;
@@ -163,7 +163,7 @@ void CDungeon::JoinParty (LPPARTY pParty)
 	pParty->SetDungeon (this);
 	m_map_pkParty.insert (std::make_pair (pParty, 0));
 
-	if (SECTREE_MANAGER::instance().GetMap (m_lMapIndex) == NULL)
+	if (SECTREE_MANAGER::instance().GetMap (m_lMapIndex) == nullptr)
 	{
 		sys_err ("CDungeon: SECTREE_MAP not found for #%ld", m_lMapIndex);
 		return;
@@ -175,7 +175,7 @@ void CDungeon::JoinParty (LPPARTY pParty)
 
 void CDungeon::QuitParty (LPPARTY pParty)
 {
-	pParty->SetDungeon (NULL);
+	pParty->SetDungeon (nullptr);
 	//sys_log(0, "DUNGEON-PARTY quit %p %p", this, pParty);
 	TPartyMap::iterator it = m_map_pkParty.find (pParty);
 
@@ -199,19 +199,19 @@ EVENTFUNC (dungeon_dead_event)
 {
 	dungeon_id_info* info = dynamic_cast<dungeon_id_info*> (event->info);
 
-	if (info == NULL)
+	if (info == nullptr)
 	{
 		sys_err ("dungeon_dead_event> <Factor> Null pointer");
 		return 0;
 	}
 
 	LPDUNGEON pDungeon = CDungeonManager::instance().Find (info->dungeon_id);
-	if (pDungeon == NULL)
+	if (pDungeon == nullptr)
 	{
 		return 0;
 	}
 
-	pDungeon->deadEvent = NULL;
+	pDungeon->deadEvent = nullptr;
 
 	CDungeonManager::instance().Destroy (info->dungeon_id);
 	return 0;
@@ -219,7 +219,7 @@ EVENTFUNC (dungeon_dead_event)
 
 void CDungeon::IncMember (LPCHARACTER ch)
 {
-	if (m_set_pkCharacter.find (ch) == m_set_pkCharacter.end())
+	if (!m_set_pkCharacter.contains(ch))
 	{
 		m_set_pkCharacter.insert (ch);
 	}
@@ -251,9 +251,7 @@ void CDungeon::DecMember (LPCHARACTER ch)
 void CDungeon::IncPartyMember (LPPARTY pParty, LPCHARACTER ch)
 {
 	//sys_log(0, "DUNGEON-PARTY inc %p %p", this, pParty);
-	TPartyMap::iterator it = m_map_pkParty.find (pParty);
-
-	if (it != m_map_pkParty.end())
+	if (TPartyMap::iterator it = m_map_pkParty.find (pParty); it != m_map_pkParty.end())
 	{
 		it->second++;
 	}
@@ -268,9 +266,7 @@ void CDungeon::IncPartyMember (LPPARTY pParty, LPCHARACTER ch)
 void CDungeon::DecPartyMember (LPPARTY pParty, LPCHARACTER ch)
 {
 	//sys_log(0, "DUNGEON-PARTY dec %p %p", this, pParty);
-	TPartyMap::iterator it = m_map_pkParty.find (pParty);
-
-	if (it == m_map_pkParty.end())
+	if (TPartyMap::iterator it = m_map_pkParty.find (pParty); it == m_map_pkParty.end())
 	{
 		sys_err ("cannot find party");
 	}
@@ -386,17 +382,15 @@ void CDungeon::JumpParty (LPPARTY pParty, long lFromMapIndex, int x, int y)
 	x *= 100;
 	y *= 100;
 
-	LPSECTREE_MAP pMap = SECTREE_MANAGER::instance().GetMap (lFromMapIndex);
-
-	if (!pMap)
+	if (LPSECTREE_MAP pMap = SECTREE_MANAGER::instance().GetMap (lFromMapIndex); !pMap)
 	{
 		sys_err ("cannot find map by index %d", lFromMapIndex);
 		return;
 	}
 
-	if (pParty->GetDungeon_for_Only_party() == NULL)
+	if (pParty->GetDungeon_for_Only_party() == nullptr)
 	{
-		if (m_pParty == NULL)
+		if (m_pParty == nullptr)
 		{
 			m_pParty = pParty;
 		}
@@ -415,7 +409,7 @@ void CDungeon::JumpParty (LPPARTY pParty, long lFromMapIndex, int x, int y)
 
 void CDungeon::SetPartyNull()
 {
-	m_pParty = NULL;
+	m_pParty = nullptr;
 }
 
 
@@ -423,7 +417,7 @@ void CDungeonManager::Destroy (CDungeon::IdType dungeon_id)
 {
 	sys_log (0, "DUNGEON destroy : map index %u", dungeon_id);
 	LPDUNGEON pDungeon = Find (dungeon_id);
-	if (pDungeon == NULL)
+	if (pDungeon == nullptr)
 	{
 		return;
 	}
@@ -446,7 +440,7 @@ LPDUNGEON CDungeonManager::Find (CDungeon::IdType dungeon_id)
 	{
 		return it->second;
 	}
-	return NULL;
+	return nullptr;
 }
 
 LPDUNGEON CDungeonManager::FindByMapIndex (long lMapIndex)
@@ -466,7 +460,7 @@ LPDUNGEON CDungeonManager::Create (long lOriginalMapIndex)
 	if (!lMapIndex)
 	{
 		sys_log (0, "Fail to Create Dungeon : OrginalMapindex %d NewMapindex %d", lOriginalMapIndex, lMapIndex);
-		return NULL;
+		return nullptr;
 	}
 
 	// <Factor> TODO: Change id assignment, or drop it
@@ -555,7 +549,7 @@ void CDungeon::SpawnMoveUnique (const char* key, DWORD vnum, const char* pos_fro
 	}
 
 	LPSECTREE_MAP pkSectreeMap = SECTREE_MANAGER::instance().GetMap (m_lMapIndex);
-	if (pkSectreeMap == NULL)
+	if (pkSectreeMap == nullptr)
 	{
 		sys_err ("CDungeon: SECTREE_MAP not found for #%ld", m_lMapIndex);
 		return;
@@ -571,7 +565,7 @@ void CDungeon::SpawnMoveUnique (const char* key, DWORD vnum, const char* pos_fro
 
 		if (ch)
 		{
-			m_map_UniqueMob.insert (make_pair (std::string (key), ch));
+			m_map_UniqueMob.try_emplace (std::string (key), ch);
 			ch->AddAffect (AFFECT_DUNGEON_UNIQUE, POINT_NONE, 0, AFF_DUNGEON_UNIQUE, 65535, 0, true);
 			ch->SetDungeon (this);
 
@@ -605,7 +599,7 @@ void CDungeon::SpawnUnique (const char* key, DWORD vnum, const char* pos)
 	}
 
 	LPSECTREE_MAP pkSectreeMap = SECTREE_MANAGER::instance().GetMap (m_lMapIndex);
-	if (pkSectreeMap == NULL)
+	if (pkSectreeMap == nullptr)
 	{
 		sys_err ("CDungeon: SECTREE_MAP not found for #%ld", m_lMapIndex);
 		return;
@@ -619,7 +613,7 @@ void CDungeon::SpawnUnique (const char* key, DWORD vnum, const char* pos)
 
 		if (ch)
 		{
-			m_map_UniqueMob.insert (make_pair (std::string (key), ch));
+			m_map_UniqueMob.try_emplace (std::string (key), ch);
 			ch->SetDungeon (this);
 			ch->AddAffect (AFFECT_DUNGEON_UNIQUE, POINT_NONE, 0, AFF_DUNGEON_UNIQUE, 65535, 0, true);
 			break;
@@ -636,7 +630,7 @@ void CDungeon::SetUnique (const char* key, DWORD vid)
 	LPCHARACTER ch = CHARACTER_MANAGER::instance().Find (vid);
 	if (ch)
 	{
-		m_map_UniqueMob.insert (make_pair (std::string (key), ch));
+		m_map_UniqueMob.try_emplace (std::string (key), ch);
 		ch->AddAffect (AFFECT_DUNGEON_UNIQUE, POINT_NONE, 0, AFF_DUNGEON_UNIQUE, 65535, 0, true);
 	}
 }
@@ -707,7 +701,7 @@ void CDungeon::DeadCharacter (LPCHARACTER ch)
 {
 	if (!ch->IsPC())
 	{
-		TUniqueMobMap::iterator it = m_map_UniqueMob.begin();
+		auto it = m_map_UniqueMob.begin();
 		while (it != m_map_UniqueMob.end())
 		{
 			if (it->second == ch)
@@ -771,10 +765,10 @@ void CDungeon::Spawn (DWORD vnum, const char* pos)
 LPCHARACTER CDungeon::SpawnMob (DWORD vnum, int x, int y, int dir)
 {
 	LPSECTREE_MAP pkSectreeMap = SECTREE_MANAGER::instance().GetMap (m_lMapIndex);
-	if (pkSectreeMap == NULL)
+	if (pkSectreeMap == nullptr)
 	{
 		sys_err ("CDungeon: SECTREE_MAP not found for #%ld", m_lMapIndex);
-		return NULL;
+		return nullptr;
 	}
 	sys_log (0, "CDungeon::SpawnMob %u %d %d", vnum, x,  y);
 
@@ -793,10 +787,10 @@ LPCHARACTER CDungeon::SpawnMob (DWORD vnum, int x, int y, int dir)
 LPCHARACTER CDungeon::SpawnMob_ac_dir (DWORD vnum, int x, int y, int dir)
 {
 	LPSECTREE_MAP pkSectreeMap = SECTREE_MANAGER::instance().GetMap (m_lMapIndex);
-	if (pkSectreeMap == NULL)
+	if (pkSectreeMap == nullptr)
 	{
 		sys_err ("CDungeon: SECTREE_MAP not found for #%ld", m_lMapIndex);
-		return NULL;
+		return nullptr;
 	}
 	sys_log (0, "CDungeon::SpawnMob %u %d %d", vnum, x,  y);
 
@@ -814,7 +808,7 @@ LPCHARACTER CDungeon::SpawnMob_ac_dir (DWORD vnum, int x, int y, int dir)
 void CDungeon::SpawnNameMob (DWORD vnum, int x, int y, const char* name)
 {
 	LPSECTREE_MAP pkSectreeMap = SECTREE_MANAGER::instance().GetMap (m_lMapIndex);
-	if (pkSectreeMap == NULL)
+	if (pkSectreeMap == nullptr)
 	{
 		sys_err ("CDungeon: SECTREE_MAP not found for #%ld", m_lMapIndex);
 		return;
@@ -833,7 +827,7 @@ void CDungeon::SpawnGotoMob (long lFromX, long lFromY, long lToX, long lToY)
 	const int MOB_GOTO_VNUM = 20039;
 
 	LPSECTREE_MAP pkSectreeMap = SECTREE_MANAGER::instance().GetMap (m_lMapIndex);
-	if (pkSectreeMap == NULL)
+	if (pkSectreeMap == nullptr)
 	{
 		sys_err ("CDungeon: SECTREE_MAP not found for #%ld", m_lMapIndex);
 		return;
@@ -859,10 +853,10 @@ void CDungeon::SpawnGotoMob (long lFromX, long lFromY, long lToX, long lToY)
 LPCHARACTER CDungeon::SpawnGroup (DWORD vnum, long x, long y, float radius, bool bAggressive, int count)
 {
 	LPSECTREE_MAP pkSectreeMap = SECTREE_MANAGER::instance().GetMap (m_lMapIndex);
-	if (pkSectreeMap == NULL)
+	if (pkSectreeMap == nullptr)
 	{
 		sys_err ("CDungeon: SECTREE_MAP not found for #%ld", m_lMapIndex);
-		return NULL;
+		return nullptr;
 	}
 
 	int iRadius = (int) radius;
@@ -872,7 +866,7 @@ LPCHARACTER CDungeon::SpawnGroup (DWORD vnum, long x, long y, float radius, bool
 	int ex = sx + iRadius;
 	int ey = sy + iRadius;
 
-	LPCHARACTER ch = NULL;
+	LPCHARACTER ch = nullptr;
 
 	while (count--)
 	{
@@ -923,7 +917,7 @@ void CDungeon::ClearRegen()
 
 bool CDungeon::IsValidRegen (LPREGEN regen, size_t regen_id)
 {
-	itertype (m_regen) it = std::find (m_regen.begin(), m_regen.end(), regen);
+	itertype (m_regen) it = std::ranges::find (m_regen, regen);
 	if (it == m_regen.end())
 	{
 		return false;
@@ -960,7 +954,7 @@ void CDungeon::SpawnMoveGroup (DWORD vnum, const char* pos_from, const char* pos
 	}
 
 	LPSECTREE_MAP pkSectreeMap = SECTREE_MANAGER::instance().GetMap (m_lMapIndex);
-	if (pkSectreeMap == NULL)
+	if (pkSectreeMap == nullptr)
 	{
 		sys_err ("CDungeon: SECTREE_MAP not found for #%ld", m_lMapIndex);
 		return;
@@ -1025,7 +1019,7 @@ namespace
 void CDungeon::KillAll()
 {
 	LPSECTREE_MAP pkMap = SECTREE_MANAGER::instance().GetMap (m_lMapIndex);
-	if (pkMap == NULL)
+	if (pkMap == nullptr)
 	{
 		sys_err ("CDungeon: SECTREE_MAP not found for #%ld", m_lMapIndex);
 		return;
@@ -1038,7 +1032,7 @@ void CDungeon::KillAll()
 void CDungeon::Purge()
 {
 	LPSECTREE_MAP pkMap = SECTREE_MANAGER::instance().GetMap (m_lMapIndex);
-	if (pkMap == NULL)
+	if (pkMap == nullptr)
 	{
 		sys_err ("CDungeon: SECTREE_MAP not found for #%ld", m_lMapIndex);
 		return;
@@ -1238,14 +1232,14 @@ EVENTFUNC (dungeon_jump_to_event)
 {
 	dungeon_id_info * info = dynamic_cast<dungeon_id_info*> (event->info);
 
-	if (info == NULL)
+	if (info == nullptr)
 	{
 		sys_err ("dungeon_jump_to_event> <Factor> Null pointer");
 		return 0;
 	}
 
 	LPDUNGEON pDungeon = CDungeonManager::instance().Find (info->dungeon_id);
-	pDungeon->jump_to_event_ = NULL;
+	pDungeon->jump_to_event_ = nullptr;
 
 	if (pDungeon)
 	{
@@ -1263,14 +1257,14 @@ EVENTFUNC (dungeon_exit_all_event)
 {
 	dungeon_id_info * info = dynamic_cast<dungeon_id_info*> (event->info);
 
-	if (info == NULL)
+	if (info == nullptr)
 	{
 		sys_err ("dungeon_exit_all_event> <Factor> Null pointer");
 		return 0;
 	}
 
 	LPDUNGEON pDungeon = CDungeonManager::instance().Find (info->dungeon_id);
-	pDungeon->exit_all_event_ = NULL;
+	pDungeon->exit_all_event_ = nullptr;
 
 	if (pDungeon)
 	{
@@ -1442,7 +1436,7 @@ bool CDungeon::IsAllPCNearTo (int x, int y, int dist)
 
 void CDungeon::CreateItemGroup (std::string& group_name, ItemGroup& item_group)
 {
-	m_map_ItemGroup.insert (ItemGroupMap::value_type (group_name, item_group));
+	m_map_ItemGroup.try_emplace (group_name, item_group);
 }
 
 const CDungeon::ItemGroup* CDungeon::GetItemGroup (std::string& group_name)
@@ -1454,6 +1448,6 @@ const CDungeon::ItemGroup* CDungeon::GetItemGroup (std::string& group_name)
 	}
 	else
 	{
-		return NULL;
+		return nullptr;
 	}
 }

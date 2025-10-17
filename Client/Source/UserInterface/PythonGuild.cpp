@@ -747,8 +747,7 @@ PyObject* guildIsMemberByName (PyObject * poSelf, PyObject * poArgs)
 		return Py_BuildException();
 	}
 
-	CPythonGuild::TGuildMemberData * pData;
-	if (CPythonGuild::Instance().GetMemberDataPtrByName (szName, &pData))
+	if (CPythonGuild::TGuildMemberData * pData; CPythonGuild::Instance().GetMemberDataPtrByName (szName, &pData))
 	{
 		return Py_BuildValue ("i", TRUE);
 	}
@@ -882,7 +881,7 @@ void initguild()
 		// Guild
 		{ "Destroy",						guildDestroy,						METH_VARARGS },
 
-		{ NULL,								NULL,								NULL },
+		{ nullptr,							nullptr,							NULL },
 	};
 
 	PyObject * poModule = Py_InitModule ("guild", s_methods);

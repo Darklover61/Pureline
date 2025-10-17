@@ -5,6 +5,7 @@
 
 #include "CsvReader.h"
 
+#include <span>
 #include <sstream>
 
 using namespace std;
@@ -106,7 +107,7 @@ int get_Item_Type_Value (string inputString)
 	for (int j = 0; j < sizeof (arType) / sizeof (arType[0]); j++)
 	{
 		string tempString = arType[j];
-		if	(inputString.find (tempString) != string::npos && tempString.find (inputString) != string::npos)
+		if	(inputString.contains(tempString) && tempString.contains(inputString))
 		{
 			//cout << j << " ";
 			retInt =  j;
@@ -282,7 +283,7 @@ int get_Item_SubType_Value (int type_value, string inputString)
 
 	static string* arSubType[] =
 	{
-		0,			//0
+		nullptr,			//0
 		arSub1,		//1
 		arSub2,		//2
 		arSub3,		//3
@@ -290,70 +291,70 @@ int get_Item_SubType_Value (int type_value, string inputString)
 		arSub5,		//5
 		arSub6,		//6
 		arSub7,		//7
-		0,			//8
+		nullptr,	//8
 		arSub9,		//9
-		0,			//10
+		nullptr,	//10
 		arSub11,	//11
-		0,			//12
+		nullptr,	//12
 		arSub13,	//13
-		0,			//14
+		nullptr,	//14
 		arSub15,	//15
-		0,			//16
-		0,			//17
-		0,			//18
-		0,			//19
-		0,			//20
-		0,			//21
-		0,			//22
-		0,			//23
-		0,			//24
-		0,			//25
-		0,			//26
+		nullptr,	//16
+		nullptr,	//17
+		nullptr,	//18
+		nullptr,	//19
+		nullptr,	//20
+		nullptr,	//21
+		nullptr,	//22
+		nullptr,	//23
+		nullptr,	//24
+		nullptr,	//25
+		nullptr,	//26
 		arSub27,	//27
 		arSub28,	//28
 		arSub28,	//29
 		arSub30,	//30
-		0,			//31
-		0,			//32
-		0			//33
+		nullptr,	//31
+		nullptr,	//32
+		nullptr		//33
 	};
 
 	static int arNumberOfSubtype[_countof (arSubType)] =
 	{
 		0,									// 0
-		sizeof (arSub1) / sizeof (arSub1[0]),	// 1
-		sizeof (arSub2) / sizeof (arSub2[0]),	// 2
-		sizeof (arSub3) / sizeof (arSub3[0]),	// 3
-		sizeof (arSub4) / sizeof (arSub4[0]),	// 4
-		sizeof (arSub5) / sizeof (arSub5[0]),	// 5
-		sizeof (arSub6) / sizeof (arSub6[0]),	// 6
-		sizeof (arSub7) / sizeof (arSub7[0]),	// 7
-		0,									// 8
-		sizeof (arSub9) / sizeof (arSub9[0]),	// 9
-		0,									// 10
-		sizeof (arSub11) / sizeof (arSub11[0]),	// 11
-		0,									// 12
-		sizeof (arSub13) / sizeof (arSub13[0]),	// 13
-		0,									// 14
-		sizeof (arSub15) / sizeof (arSub15[0]),	// 15
-		0,									// 16
-		0,									// 17
-		0,									// 18
-		0,									// 19
-		0,									// 20
-		0,									// 21
-		0,									// 22
-		0,									// 23
-		0,									// 24
-		0,									// 25
-		0,									// 26
-		sizeof (arSub27) / sizeof (arSub27[0]),	// 27
-		sizeof (arSub28) / sizeof (arSub28[0]),	// 28
-		sizeof (arSub28) / sizeof (arSub28[0]),	// 29
-		sizeof (arSub30) / sizeof (arSub30[0]),	// 30
-		0,									// 31
-		0,									// 32 반지
-		0,									// 33 벨트
+		std::size(arSub1),	// 1
+		std::size(arSub2),	// 2
+		std::size(arSub3),	// 3
+		std::size(arSub4),	// 4
+		std::size(arSub5),	// 5
+		std::size(arSub6),	// 6
+		std::size(arSub7),	// 7
+		0,					// 8
+		std::size(arSub9),	// 9
+		0,					// 10
+		std::size(arSub11),	// 11
+		0,					// 12
+		std::size(arSub13),	// 13
+		0,					// 14
+		std::size(arSub15),	// 15
+		0,					// 16
+		0,					// 17
+		0,					// 18
+		0,					// 19
+		0,					// 20
+		0,					// 21
+		0,					// 22
+		0,					// 23
+		0,					// 24
+		0,					// 25
+		0,					// 26
+		std::size(arSub27),	// 27
+		std::size(arSub28),	// 28
+		std::size(arSub28),	// 29
+		std::size(arSub30),	// 30
+		0,					// 31
+		0,					// 32 반지
+		0,					// 33 벨트
 	};
 
 
@@ -367,7 +368,7 @@ int get_Item_SubType_Value (int type_value, string inputString)
 	}
 
 	//아이템 타입의 서브타입 어레이가 존재하는지 알아보고, 없으면 0 리턴
-	if (arSubType[type_value] == 0)
+	if (arSubType[type_value] == nullptr)
 	{
 		return 0;
 	}
@@ -420,7 +421,7 @@ int get_Item_AntiFlag_Value (string inputString)
 
 	int retValue = 0;
 	string* arInputString = StringSplit (inputString, "|");				//프로토 정보 내용을 단어별로 쪼갠 배열.
-	for (int i = 0; i < sizeof (arAntiFlag) / sizeof (arAntiFlag[0]); i++)
+	for (int i = 0; i < std::size(arAntiFlag); i++)
 	{
 		string tempString = arAntiFlag[i];
 		for (int j = 0; j < 30 ; j++)		//최대 30개 단어까지. (하드코딩)
@@ -472,7 +473,7 @@ int get_Item_Flag_Value (string inputString)
 
 	int retValue = 0;
 	string* arInputString = StringSplit (inputString, "|");				//프로토 정보 내용을 단어별로 쪼갠 배열.
-	for (int i = 0; i < sizeof (arFlag) / sizeof (arFlag[0]); i++)
+	for (int i = 0; i < std::size(arFlag); i++)
 	{
 		string tempString = arFlag[i];
 		for (int j = 0; j < 30 ; j++)		//최대 30개 단어까지. (하드코딩)
@@ -517,7 +518,7 @@ int get_Item_WearFlag_Value (string inputString)
 
 	int retValue = 0;
 	string* arInputString = StringSplit (inputString, "|");				//프로토 정보 내용을 단어별로 쪼갠 배열.
-	for (int i = 0; i < sizeof (arWearrFlag) / sizeof (arWearrFlag[0]); i++)
+	for (int i = 0; i < std::size(arWearrFlag); i++)
 	{
 		string tempString = arWearrFlag[i];
 		for (int j = 0; j < 30 ; j++)		//최대 30개 단어까지. (하드코딩)
@@ -556,7 +557,7 @@ int get_Item_Immune_Value (string inputString)
 
 	int retValue = 0;
 	string* arInputString = StringSplit (inputString, "|");				//프로토 정보 내용을 단어별로 쪼갠 배열.
-	for (int i = 0; i < sizeof (arImmune) / sizeof (arImmune[0]); i++)
+	for (int i = 0; i < std::size(arImmune); i++)
 	{
 		string tempString = arImmune[i];
 		for (int j = 0; j < 30 ; j++)		//최대 30개 단어까지. (하드코딩)
@@ -597,7 +598,7 @@ int get_Item_LimitType_Value (string inputString)
 
 	int retInt = -1;
 	//cout << "LimitType : " << limitTypeStr << " -> ";
-	for (int j = 0; j < sizeof (arLimitType) / sizeof (arLimitType[0]); j++)
+	for (int j = 0; j < std::size(arLimitType); j++)
 	{
 		string tempString = arLimitType[j];
 		string tempInputString = trim (inputString);
@@ -712,7 +713,7 @@ int get_Item_ApplyType_Value (string inputString)
 
 	int retInt = -1;
 	//cout << "ApplyType : " << applyTypeStr << " -> ";
-	for (int j = 0; j < sizeof (arApplyType) / sizeof (arApplyType[0]); j++)
+	for (int j = 0; j < std::size(arApplyType); j++)
 	{
 		string tempString = arApplyType[j];
 		string tempInputString = trim (inputString);
@@ -747,7 +748,7 @@ int get_Mob_Rank_Value (string inputString)
 
 	int retInt = -1;
 	//cout << "Rank : " << rankStr << " -> ";
-	for (int j = 0; j < sizeof (arRank) / sizeof (arRank[0]); j++)
+	for (int j = 0; j < std::size(arRank); j++)
 	{
 		string tempString = arRank[j];
 		string tempInputString = trim (inputString);
@@ -782,7 +783,7 @@ int get_Mob_Type_Value (string inputString)
 
 	int retInt = -1;
 	//cout << "Type : " << typeStr << " -> ";
-	for (int j = 0; j < sizeof (arType) / sizeof (arType[0]); j++)
+	for (int j = 0; j < std::size(arType); j++)
 	{
 		string tempString = arType[j];
 		string tempInputString = trim (inputString);
@@ -814,7 +815,7 @@ int get_Mob_BattleType_Value (string inputString)
 
 	int retInt = -1;
 	//cout << "Battle Type : " << battleTypeStr << " -> ";
-	for (int j = 0; j < sizeof (arBattleType) / sizeof (arBattleType[0]); j++)
+	for (int j = 0; j < std::size(arBattleType); j++)
 	{
 		string tempString = arBattleType[j];
 		string tempInputString = trim (inputString);
@@ -843,7 +844,7 @@ int get_Mob_Size_Value (string inputString)
 
 	int retInt = 0;
 	//cout << "Size : " << sizeStr << " -> ";
-	for (int j = 0; j < sizeof (arSize) / sizeof (arSize[0]); j++)
+	for (int j = 0; j < std::size(arSize); j++)
 	{
 		string tempString = arSize[j];
 		string tempInputString = trim (inputString);
@@ -879,7 +880,7 @@ int get_Mob_AIFlag_Value (string inputString)
 
 	int retValue = 0;
 	string* arInputString = StringSplit (inputString, ",");				//프로토 정보 내용을 단어별로 쪼갠 배열.
-	for (int i = 0; i < sizeof (arAIFlag) / sizeof (arAIFlag[0]); i++)
+	for (int i = 0; i < std::size(arAIFlag); i++)
 	{
 		string tempString = arAIFlag[i];
 		for (int j = 0; j < 30 ; j++)		//최대 30개 단어까지. (하드코딩)
@@ -926,7 +927,7 @@ int get_Mob_RaceFlag_Value (string inputString)
 
 	int retValue = 0;
 	string* arInputString = StringSplit (inputString, ",");				//프로토 정보 내용을 단어별로 쪼갠 배열.
-	for (int i = 0; i < sizeof (arRaceFlag) / sizeof (arRaceFlag[0]); i++)
+	for (int i = 0; i < std::size(arRaceFlag); i++)
 	{
 		string tempString = arRaceFlag[i];
 		for (int j = 0; j < 30 ; j++)		//최대 30개 단어까지. (하드코딩)
@@ -962,7 +963,7 @@ int get_Mob_ImmuneFlag_Value (string inputString)
 
 	int retValue = 0;
 	string* arInputString = StringSplit (inputString, ",");				//프로토 정보 내용을 단어별로 쪼갠 배열.
-	for (int i = 0; i < sizeof (arImmuneFlag) / sizeof (arImmuneFlag[0]); i++)
+	for (int i = 0; i < std::size(arImmuneFlag); i++)
 	{
 		string tempString = arImmuneFlag[i];
 		for (int j = 0; j < 30 ; j++)		//최대 30개 단어까지. (하드코딩)
@@ -1003,8 +1004,7 @@ bool Set_Proto_Mob_Table (TMobTable* mobTable, cCsvTable& csvTable, std::map<int
 	strlcpy (mobTable->szName, csvTable.AsStringByIndex (col++), sizeof (mobTable->szName));
 
 	// Overwrite name with localized name if found
-	auto it = nameMap.find (mobTable->dwVnum);
-	if (it != nameMap.end())
+	if (auto it = nameMap.find (mobTable->dwVnum); it != nameMap.end())
 	{
 		strlcpy (mobTable->szName, it->second, sizeof (mobTable->szName));
 	}
@@ -1305,7 +1305,7 @@ bool Set_Proto_Item_Table (TItemTable *itemTable, cCsvTable &csvTable, std::map<
 	int col = 0;
 
 	int dataArray[33];
-	for (int i = 0; i < sizeof (dataArray) / sizeof (dataArray[0]); i++)
+	for (int i = 0; i < std::size(dataArray); i++)
 	{
 		int validCheck = 0;
 		if (i == 2)
@@ -1338,27 +1338,12 @@ bool Set_Proto_Item_Table (TItemTable *itemTable, cCsvTable &csvTable, std::map<
 			dataArray[i] = get_Item_Immune_Value (csvTable.AsStringByIndex (col));
 			validCheck = dataArray[i];
 		}
-		else if (i == 14)
+		else if (i == 14 || i == 16)
 		{
 			dataArray[i] = get_Item_LimitType_Value (csvTable.AsStringByIndex (col));
 			validCheck = dataArray[i];
 		}
-		else if (i == 16)
-		{
-			dataArray[i] = get_Item_LimitType_Value (csvTable.AsStringByIndex (col));
-			validCheck = dataArray[i];
-		}
-		else if (i == 18)
-		{
-			dataArray[i] = get_Item_ApplyType_Value (csvTable.AsStringByIndex (col));
-			validCheck = dataArray[i];
-		}
-		else if (i == 20)
-		{
-			dataArray[i] = get_Item_ApplyType_Value (csvTable.AsStringByIndex (col));
-			validCheck = dataArray[i];
-		}
-		else if (i == 22)
+		else if (i == 18 || i == 20 || i == 22)
 		{
 			dataArray[i] = get_Item_ApplyType_Value (csvTable.AsStringByIndex (col));
 			validCheck = dataArray[i];
@@ -1416,8 +1401,7 @@ bool Set_Proto_Item_Table (TItemTable *itemTable, cCsvTable &csvTable, std::map<
 
 	strlcpy (itemTable->szName, csvTable.AsStringByIndex (1), sizeof (itemTable->szName));
 	// Overwrite name with localized name if found
-	auto it = nameMap.find (itemTable->dwVnum);
-	if (it != nameMap.end())
+	if (auto it = nameMap.find (itemTable->dwVnum); it != nameMap.end())
 	{
 		strlcpy (itemTable->szName, it->second, sizeof (itemTable->szName));
 	}

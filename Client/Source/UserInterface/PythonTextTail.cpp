@@ -237,8 +237,7 @@ void CPythonTextTail::ArrangeTextTail()
 		pTextTail->pTextInstance->GetTextSize (&iNameWidth, &iNameHeight);
 
 		// Title 위치 업데이트
-		CGraphicTextInstance * pTitle = pTextTail->pTitleTextInstance;
-		if (pTitle)
+		if (CGraphicTextInstance * pTitle = pTextTail->pTitleTextInstance)
 		{
 			int iTitleWidth, iTitleHeight;
 			pTitle->GetTextSize (&iTitleWidth, &iTitleHeight);
@@ -559,9 +558,7 @@ void CPythonTextTail::RegisterCharacterTextTail (DWORD dwGuildID, DWORD dwVirtua
 	{
 		pTextTail->pMarkInstance = CGraphicMarkInstance::New();
 
-		DWORD dwMarkID = CGuildMarkManager::Instance().GetMarkID (dwGuildID);
-
-		if (dwMarkID != CGuildMarkManager::INVALID_MARK_ID)
+		if (DWORD dwMarkID = CGuildMarkManager::Instance().GetMarkID (dwGuildID); dwMarkID != CGuildMarkManager::INVALID_MARK_ID)
 		{
 			std::string markImagePath;
 
@@ -616,9 +613,7 @@ void CPythonTextTail::RegisterChatTail (DWORD VirtualID, const char* c_szChat)
 		return;
 	}
 
-	TChatTailMap::iterator itor = m_ChatTailMap.find (VirtualID);
-
-	if (m_ChatTailMap.end() != itor)
+	if (TChatTailMap::iterator itor = m_ChatTailMap.find (VirtualID); m_ChatTailMap.end() != itor)
 	{
 		TTextTail * pTextTail = itor->second;
 
@@ -661,9 +656,7 @@ void CPythonTextTail::RegisterInfoTail (DWORD VirtualID, const char* c_szChat)
 		return;
 	}
 
-	TChatTailMap::iterator itor = m_ChatTailMap.find (VirtualID);
-
-	if (m_ChatTailMap.end() != itor)
+	if (TChatTailMap::iterator itor = m_ChatTailMap.find (VirtualID); m_ChatTailMap.end() != itor)
 	{
 		TTextTail * pTextTail = itor->second;
 
@@ -716,9 +709,8 @@ bool CPythonTextTail::GetTextTailPosition (DWORD dwVID, float* px, float* py, fl
 
 bool CPythonTextTail::IsChatTextTail (DWORD dwVID)
 {
-	TChatTailMap::iterator itorChat = m_ChatTailMap.find (dwVID);
 
-	if (m_ChatTailMap.end() == itorChat)
+	if (TChatTailMap::iterator itorChat = m_ChatTailMap.find (dwVID); m_ChatTailMap.end() == itorChat)
 	{
 		return false;
 	}

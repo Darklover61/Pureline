@@ -32,10 +32,10 @@ void CCamera::SetTargetHeight (float fTarget)
 
 
 CCamera::CCamera() :
+	m_isLock (false),
 	m_fEyeGroundHeightRatio (0.3f),
 	m_fTargetHeightLimitRatio (2.0f),
-	m_fResistance (c_fDefaultResistance),
-	m_isLock (false)
+	m_fResistance (c_fDefaultResistance)
 {
 	m_fDistance						= 1.0f;
 	m_eCameraState					= CAMERA_STATE_NORMAL;
@@ -593,8 +593,7 @@ void CCamera::CalculateRoll()
 	}
 	fDot = acosf (fDot);
 	fDot *= (180.0f / D3DX_PI);
-	float fCross = D3DXVec2CCW (&v2ViewXY, &vv);
-	if (0 > fCross)
+	if (float fCross = D3DXVec2CCW (&v2ViewXY, &vv); 0 > fCross)
 	{
 		fDot = -fDot;
 	}
@@ -608,8 +607,8 @@ void CCamera::CalculateRoll()
 //////////////////////////////////////////////////////////////////////////
 
 CCameraManager::CCameraManager() :
-	m_pCurrentCamera (NULL),
-	m_pPreviousCamera (NULL)
+	m_pCurrentCamera (nullptr),
+	m_pPreviousCamera (nullptr)
 {
 	AddCamera (DEFAULT_PERSPECTIVE_CAMERA);
 	AddCamera (DEFAULT_ORTHO_CAMERA);
@@ -619,7 +618,7 @@ CCameraManager::CCameraManager() :
 
 CCameraManager::~CCameraManager()
 {
-	for (TCameraMap::iterator itor = m_CameraMap.begin(); itor != m_CameraMap.end(); ++itor)
+	for (auto itor = m_CameraMap.begin(); itor != m_CameraMap.end(); ++itor)
 	{
 		delete (*itor).second;
 	}
@@ -652,7 +651,7 @@ void CCameraManager::ResetToPreviousCamera()
 		assert (false);
 	}
 	m_pCurrentCamera = m_pPreviousCamera;
-	m_pPreviousCamera = NULL;
+	m_pPreviousCamera = nullptr;
 }
 
 bool CCameraManager::isCurrentCamera (unsigned char ucCameraNum)
@@ -667,7 +666,7 @@ bool CCameraManager::isCurrentCamera (unsigned char ucCameraNum)
 // 잡스러운 함수들...
 bool CCameraManager::AddCamera (unsigned char ucCameraNum)
 {
-	if (m_CameraMap.end() != m_CameraMap.find (ucCameraNum))
+	if (m_CameraMap.contains(ucCameraNum))
 	{
 		return false;
 	}
@@ -692,7 +691,7 @@ unsigned char CCameraManager::GetCurrentCameraNum()
 	{
 		return NO_CURRENT_CAMERA;
 	}
-	for (TCameraMap::iterator itor = m_CameraMap.begin(); itor != m_CameraMap.end(); ++itor)
+	for (auto itor = m_CameraMap.begin(); itor != m_CameraMap.end(); ++itor)
 		if (m_pCurrentCamera == (*itor).second)
 		{
 			return (*itor).first;

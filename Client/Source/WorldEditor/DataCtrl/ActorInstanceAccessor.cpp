@@ -5,12 +5,12 @@
 
 void CActorInstanceAccessor::ClearAttachingObject()
 {
-	for (std::list<SAttachingModelInstance>::iterator itor = m_AttachingObjectList.begin(); itor != m_AttachingObjectList.end(); ++itor)
+	for (auto itor = m_AttachingObjectList.begin(); itor != m_AttachingObjectList.end(); ++itor)
 	{
 		SAttachingModelInstance & rInstance = *itor;
 		rInstance.pThing->Release();
 		delete rInstance.pModelInstance;
-		rInstance.pModelInstance = NULL;
+		rInstance.pModelInstance = nullptr;
 	}
 	m_AttachingObjectList.clear();
 }
@@ -60,7 +60,7 @@ void CActorInstanceAccessor::UpdateAttachingObject()
 		return;
 	}
 
-	for (std::list<SAttachingModelInstance>::iterator itor = m_AttachingObjectList.begin(); itor != m_AttachingObjectList.end(); ++itor)
+	for (auto itor = m_AttachingObjectList.begin(); itor != m_AttachingObjectList.end(); ++itor)
 	{
 		SAttachingModelInstance & rInstance = *itor;
 		rInstance.pModelInstance->Update (CGrannyModelInstance::ANIFPS_MAX);
@@ -71,7 +71,7 @@ void CActorInstanceAccessor::UpdateAttachingObject()
 
 void CActorInstanceAccessor::RenderAttachingObject()
 {
-	for (std::list<SAttachingModelInstance>::iterator itor = m_AttachingObjectList.begin(); itor != m_AttachingObjectList.end(); ++itor)
+	for (auto itor = m_AttachingObjectList.begin(); itor != m_AttachingObjectList.end(); ++itor)
 	{
 		SAttachingModelInstance & rInstance = *itor;
 		rInstance.pModelInstance->RenderWithOneTexture();
@@ -185,8 +185,7 @@ BOOL CActorInstanceAccessor::SetAccessorModel (CGraphicThing * pThing)
 		return FALSE;
 	}
 
-	CGrannyModel * pModel = pThing->GetModelPointer (0);
-	if (!pModel)
+	if (CGrannyModel * pModel = pThing->GetModelPointer (0); !pModel)
 	{
 		LogBox ("[ERROR] SetAccessorModel: Not a valid model file.", "Error");
 		pThing->Release();
@@ -224,8 +223,7 @@ BOOL CActorInstanceAccessor::SetAccessorMotion (CGraphicThing * pThing)
 		return FALSE;
 	}
 
-	CGrannyMotion * pMotion = pThing->GetMotionPointer (0);
-	if (!pMotion)
+	if (CGrannyMotion * pMotion = pThing->GetMotionPointer (0); !pMotion)
 	{
 		LogBox ("[ERROR] SetAccessorMotion: Not a valid motion file.", "Error");
 		pThing->Release();
@@ -242,12 +240,12 @@ BOOL CActorInstanceAccessor::SetAccessorMotion (CGraphicThing * pThing)
 
 BOOL CActorInstanceAccessor::IsModelThing()
 {
-	return NULL != m_pModelThing;
+	return nullptr != m_pModelThing;
 }
 
 BOOL CActorInstanceAccessor::IsMotionThing()
 {
-	return NULL != m_pMotionThing;
+	return nullptr != m_pMotionThing;
 }
 
 void CActorInstanceAccessor::ClearModel()
@@ -257,7 +255,7 @@ void CActorInstanceAccessor::ClearModel()
 		m_pModelThing->Release();
 	}
 
-	m_pModelThing = NULL;
+	m_pModelThing = nullptr;
 }
 
 void CActorInstanceAccessor::ClearMotion()
@@ -267,7 +265,7 @@ void CActorInstanceAccessor::ClearMotion()
 		m_pMotionThing->Release();
 	}
 
-	m_pMotionThing = NULL;
+	m_pMotionThing = nullptr;
 }
 
 void CActorInstanceAccessor::ClearAttachingEffect()
@@ -277,8 +275,8 @@ void CActorInstanceAccessor::ClearAttachingEffect()
 
 CActorInstanceAccessor::CActorInstanceAccessor()
 {
-	m_pModelThing = NULL;
-	m_pMotionThing = NULL;
+	m_pModelThing = nullptr;
+	m_pMotionThing = nullptr;
 
 	m_kCurMotNode.fStartTime = 0.0f;
 	m_kCurMotNode.fEndTime = 0.0f;

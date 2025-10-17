@@ -1847,12 +1847,12 @@ namespace
 
 void CGuild::P2PChat (const char* c_pszText)
 {
-	std::for_each (m_memberOnline.begin(), m_memberOnline.end(), FGuildChat (c_pszText));
+	std::ranges::for_each (m_memberOnline, FGuildChat (c_pszText));
 }
 
 void CGuild::Chat (const char* c_pszText)
 {
-	std::for_each (m_memberOnline.begin(), m_memberOnline.end(), FGuildChat (c_pszText));
+	std::ranges::for_each (m_memberOnline, FGuildChat (c_pszText));
 
 	TPacketGGGuild p1;
 	TPacketGGGuildChat p2;

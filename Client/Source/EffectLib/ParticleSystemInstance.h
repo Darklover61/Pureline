@@ -23,11 +23,10 @@ class CParticleSystemInstance : public CEffectElementBaseInstance
 		template <typename T>
 		inline void ForEachParticleRendering (T & FunObj)
 		{
-			DWORD dwFrameIndex;
-			for (dwFrameIndex = 0; dwFrameIndex < m_kVct_pkImgInst.size(); dwFrameIndex++)
+			for (DWORD dwFrameIndex = 0; dwFrameIndex < m_kVct_pkImgInst.size(); dwFrameIndex++)
 			{
 				STATEMANAGER.SetTexture (0, m_kVct_pkImgInst[dwFrameIndex]->GetTextureReference().GetD3DTexture());
-				TParticleInstanceList::iterator itor = m_ParticleInstanceListVector[dwFrameIndex].begin();
+				auto itor = m_ParticleInstanceListVector[dwFrameIndex].begin();
 				for (; itor != m_ParticleInstanceListVector[dwFrameIndex].end(); ++itor)
 				{
 					if (!InFrustum (*itor))
@@ -76,11 +75,11 @@ class CParticleSystemInstance : public CEffectElementBaseInstance
 		DWORD m_dwCurrentEmissionCount;
 		int	m_iLoopCount;
 
-		typedef std::list<CParticleInstance*> TParticleInstanceList;
-		typedef std::vector<TParticleInstanceList> TParticleInstanceListVector;
+		using TParticleInstanceList = std::list<CParticleInstance *>;
+		using TParticleInstanceListVector = std::vector<TParticleInstanceList>;
 		TParticleInstanceListVector m_ParticleInstanceListVector;
 
-		typedef std::vector<CGraphicImageInstance*> TImageInstanceVector;
+		using TImageInstanceVector = std::vector<CGraphicImageInstance *>;
 		TImageInstanceVector m_kVct_pkImgInst;
 
 		CParticleSystemData* m_pData;
